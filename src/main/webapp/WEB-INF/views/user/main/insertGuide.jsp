@@ -118,7 +118,18 @@
 						<span class="form-title" style="display:inline-block";>개인차량 여부</span>
 						  <label class="checkbox-inline icon-label"><input type="radio" value="Y" name="hasCar" >있음</label>
 						<label class="checkbox-inline icon-label"><input type="radio" value="N" name="hasCar">없음</label>
-						
+					</div>
+					
+					<!-- 이동수단 선택 -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>이동수단</span>
+						<div class="transit" style="width:600px !important;">
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="transit"/>도보</label>
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="transit"/>버스</label>
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="transit"/>본인자가용</label>
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="transit"/>자전거</label>
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="transit"/>스쿠터</label>
+						</div>
 					</div>
 					
 					<!-- 가이드 경험 -->
@@ -185,14 +196,14 @@
 				<!-- 프로필 사진  -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>프로필 사진</span>
-			      <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*가이드 프로필 사진을 업로드 해주세요</p>
 				</div>
 
 			    <!-- 기타 첨부 서류 -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>기타 첨부 서류</span>
-			      <input  multiple="multiple" type="file" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input multiple="multiple" name="imageCerti" type="file" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*본인의 전문성을 증명할 수 있는 서류를 업로드 해주세요.</p>
                   <p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 				</div>
@@ -224,7 +235,7 @@
 			 <!-- 여행 제목  -->
 			 	<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>여행제목  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="해변에서 즐기는 해돋이 요가" value="">
+			 	    <input type="text" class="select-nomalsize" name="tripName" placeholder="해변에서 즐기는 해돋이 요가">
 			 	     <p class="description" style="margin-bottom: 3px;">*여행 테마, 본인 전문성을 강조한 제목을 입력해주세요. </p>
 				</div>
 				
@@ -234,33 +245,56 @@
 						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
                           <div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>	
-			 
+			 <hr>
 			 <!-- 코스 이름  -->
 			 <div class="form-layer">
-					<span class="form-title" style="display:inline-block";>코스 이름  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="여행의 첫 시작 ! 애월 " value="">
-			 	    
-				</div>
+				<span class="form-title" style="display:inline-block";>코스 이름  </span>
+			 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 " value="">
+			</div>
 				
-				<!-- 코스 소개 -->
-					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>코스 소개</span>
-						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
-                          <div remain-traffic_info" class="maxText">(최대 500자)</div>
-                          <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
-					</div>		
+			<!-- 코스 소개 -->
+			<div class="form-layer">
+				<span class="form-title" style="display:inline-block";>코스 소개</span>
+				<textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
+                <div class="maxText">(최대 500자)</div>
+                <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			</div>		
+			
+			<!-- 코스 일 차 -->
+			<div class="form-layer">
+				<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
+			 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/>
+			 	<button id="addTripCourse" style="margin-left: 50px;  border-radius: 0px; box-shadow: none;
+					 background-color:skyblue;" > 여행 추가</button>
+			</div>
+			<div id="addedCourse">
+			</div>
+			
+			<script>
+				const $addTripCourse = document.getElementById("addTripCourse");
+				const $courses = document.getElementById("addedCourse");
 				
+				const $courseInfo = document.getElementById("tripDay").value + "일차 - " + document.getElementById("courseTitle").value;
+				console.log(courseInfo);
+				$addTripCourse.onclick = function() {
 				
+					$('<input/>').attr({type:'text',name:'addedCourse', value: courseInfo}).appendTo('#addedCourse');
+
+				}
+			</script>			
+			<hr>
 			<!-- 만나는 장소  -->
 			 	<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>만나는 장소  </span>
 				
-			         <input type="text" class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
-					 <button class="submit-btn" type="submit" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" onclick="searchaddress()"> 주소 검색</button>
-				     <input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
+			         <input type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
+					 <button class="submit-btn" id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
+					 background-color:skyblue;" > 주소 검색</button>
+				     <input type="text" name="address1" id="address1" readonly style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
+				      name="adrDetail" placeholder="나머지 주소를 입력하세요.">
+				     <input type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요." value=""> 
-		
+					 
 			 	     <p class="description" style="margin-bottom: 3px;">*여행을 진행하기 전에 어디서 만날 건지 여행자에게 알려주세요. <br> 예약완료 시 메시지를 통해 자세한 장소를 공유해주세요. </p>
 					 <br>
 				</div>
@@ -282,19 +316,19 @@
 			   	 <!-- 최소인원   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>최소 인원  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="최소인원을 입력해주세요. " value="">
+			 	    <input type="number" class="select-nomalsize" name="minimum" placeholder="최소인원(1이상)을 입력해주세요." min="1">
 				  </div>
 				  
 				  <!-- 최대인원   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>최대 인원  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="최대인원을 입력해주세요. " value="">
+			 	    <input type="number" class="select-nomalsize" name="maximum" placeholder="최대인원(1이상)을 입력해주세요." min="1">
 				  </div>
 				  
 				 <!-- 1인당 가격   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>1인당 가격  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="1인당 가격  ex)150,000" value="">
+			 	    <input type="number" class="select-nomalsize" name="accomoName" placeholder="1인당 가격  ex)150,000">
 				  </div>
 			   
 			   	 <!-- 포함 사항    -->
@@ -326,13 +360,24 @@
 		</tbody>
  </table>
 
+<script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+</script>
 <script>
-
-function searchaddress(){
-	alert("아멀랑~");
-	
-
-}
+		const $searchZipCode = document.getElementById("searchZipCode");
+		
+		$searchZipCode.onclick = function() {
+		
+			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+					document.getElementById("zipCode").value = data.zonecode;
+					document.getElementById("address1").value = data.address;
+					document.getElementById("address2").focus();
+				}
+			}).open();
+		}
 </script>
 <br><br><br>
 
