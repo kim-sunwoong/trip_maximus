@@ -1,0 +1,1137 @@
+@charset "utf-8";
+input:read-only {
+    cursor: not-allowed;
+}
+
+.font-size-17 {
+    font-size: 17px;
+}
+
+.signup1 {
+    padding: 7px;
+}
+
+@media all and (max-width: 600px) {
+    /*600 이하*/
+    .font-size-17 {
+        font-size: 15px;
+    }
+
+    .signup1 {
+        padding: 6px;
+    }
+}
+
+@media all and (max-width: 400px) {
+    /*400 이하*/
+    .font-size-17 {
+        font-size: 13px;
+    }
+
+    .signup1 {
+        padding: 3px;
+    }
+}
+
+@media all and (min-width: 840px) {
+    /*840이상*/
+    .signup1 {
+        padding: 12px;
+    }
+}
+
+@media all and (min-width: 1080px) {
+    /*1080이상*/
+    .signup1 {
+        padding: 15px;
+    }
+}
+
+.tm-btn {
+    padding: 6px 0;
+    color: #ff7358 !important;
+    font-size: 13px;
+    line-height: 15px;
+    vertical-align: middle;
+    background-color: white !important;
+    cursor: pointer;
+    border: 1px solid #ff7358 !important;
+    border-radius: .25em;
+    text-align: center;
+}
+.tm-btn2 {
+    padding: 6px 0;
+    color: #ffffff !important;
+    font-size: 13px;
+    line-height: 15px;
+    vertical-align: middle;
+    background-color: #ff7358 !important;
+    cursor: pointer;
+    border: 1px solid #ff7358 !important;
+    border-radius: .25em;
+    text-align: center;
+}
+
+#signup-write-re:after {
+    content: 'ㆍ수정필요 'attr(data-check-length);
+    color: #ff7358;
+    font-size: 12px;
+}
+
+#signup-rewrite:after {
+    content: 'ㆍ수정중';
+    color: #ff7358;
+    font-size: 12px;
+}
+
+#signup-write:after {
+    content: 'ㆍ작성중';
+    color: #ff7358;
+    font-size: 12px;
+}
+
+#signup-write-ok:after {
+    content: 'ㆍOK';
+    color: #ff7358;
+    font-size: 12px;
+}
+
+.padding-top-bottom-10 {
+    padding: 10px 0 10px 0;
+}
+
+.padding-top-bottom-20 {
+    padding: 20px 0 20px 0;
+}
+
+.padding-top-bottom-30 {
+    padding: 30px 0 30px 0;
+}
+
+.padding-top-bottom-40 {
+    padding: 40px 0 40px 0;
+}
+
+.height-line-1 {
+    height: 50px;
+}
+
+.height-line-1-1 {
+    height: 60px;
+}
+
+.height-line-1-2 {
+    height: 70px;
+}
+
+.height-line-1-3 {
+    height: 80px;
+}
+
+.height-line-1-4 {
+    height: 90px;
+}
+
+.height-line-2 {
+    height: 100px;
+}
+
+.height-line-2-1 {
+    height: 110px;
+}
+
+.height-line-2-2 {
+    height: 120px;
+}
+
+.height-line-4 {
+    height: 200px;
+}
+
+.height-line-5 {
+    height: 250px;
+}
+
+.height-line-5-1 {
+    height: 260px;
+}
+
+.height-line-5-2 {
+    height: 270px;
+}
+
+.height-line-6 {
+    height: 300px;
+}
+
+/* admin_header.php 시작*/
+.TM-width-25 {
+    width: 25px;
+}
+
+.TM-width-35 {
+    width: 35px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.product_manage .table_input, .reservation_manage .table_input, .customizing_manage .table_input {
+    width: 120px;
+    min-width: 80px;
+    max-width: 200px;
+}
+
+.w3-bar .w3-bar-item {
+    padding: 8px 6px;
+}
+
+.padding-45 {
+    padding: 20px 30px 40px 40px;
+}
+
+ul.signup-ul {
+    list-style-type: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+ul.signup-ul > li.sub {
+    margin-left: 20px;
+    line-height: 28px;
+}
+
+ul.signup-ul > li {
+    padding: 5px 0 5px 0;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+ul.signup-ul > li:last-child {
+    border: none;
+}
+
+ul.signup-ul > li a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+
+ul.signup-ul > li a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+/* admin_header.php 끝*/
+
+.signup-tab {
+    padding-bottom: 20px;
+}
+
+/* signup1.php  시작*/
+p {
+    margin-bottom: 0;
+}
+
+.signup1 .signup_tabel .select_list .styleRank label {
+    width: 100%;
+}
+
+.signup1 .signup_tabel .file_upload > div {
+    width: 100%;
+}
+
+.signup1 .filebox label {
+    min-width: 90px;
+    width: 30%;
+}
+
+.signup1 .w3-container, .w3-panel {
+    padding: 0.01em 0px;
+}
+
+.signup1 .btnWrap {
+    margin-top: 20px;
+}
+
+.signup1 .btnWrap button, .btnWrap a {
+    margin-right: 0;
+    width: 49%;
+}
+
+.signup1 .tm-profile-img {
+    text-align: left;
+}
+
+.signup1 .tm-profile-img img {
+    width: 100px;
+    height: 100px;
+}
+
+.signup_tabel .introduce textarea {
+    height: 150px;
+}
+
+
+/*1-2*/
+.mb_memo_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.mb_memo_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.mb_memo_ex .title {
+    font-size: 17px;
+    margin-bottom: 10px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.mb_memo_ex .text {
+    background-color: #ffffff;
+    font-size: 11px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/*1-3*/
+.mb_profile_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.mb_profile_ex .ex_ok {
+    margin-bottom: 10px;
+}
+
+.mb_profile_ex .ex_ok .type {
+    font-weight: 700;
+    color: #3e52f5;
+}
+
+.mb_profile_ex .ex_no .type {
+    font-weight: 700;
+    color: #f55751;
+}
+
+.mb_action_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.mb_action_ex .content {
+    margin-top: 10px;
+}
+
+.mb_action_ex .type {
+    font-weight: 600;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.mb_action_ex .text {
+    position: relative;
+    margin-bottom: 5px;
+    font-size: 14px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.tm_imgbox1, .tm_imgbox2 {
+    background-color: #e8e8e8;
+}
+
+@media all and (max-width: 600px) {
+    /*600 이하*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 157px !important;
+        height: 210px !important;
+    }
+
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 157px !important;
+        height: 210px !important;
+    }
+
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 70px !important;
+    }
+
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 210px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 157px !important;
+        height: 210px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 157px !important;
+        height: 210px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 70px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 210px !important;
+    }
+}
+
+@media all and (max-width: 500px) {
+    /*500 이하*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 135px !important;
+        height: 180px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 135px !important;
+        height: 180px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 60px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 180px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 135px !important;
+        height: 180px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 135px !important;
+        height: 180px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 60px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 180px !important;
+    }
+}
+
+@media all and (max-width: 400px) {
+    /*400 이하*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 115px !important;
+        height: 170px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 115px !important;
+        height: 170px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 50px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 170px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 115px !important;
+        height: 170px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 115px !important;
+        height: 170px !important;
+    }
+    .signup1-41 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 50px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 170px !important;
+    }
+}
+
+@media all and (max-width: 370px) {
+    /*350 이하*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 100px !important;
+        height: 140px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 100px !important;
+        height: 140px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 40px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 140px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 100px !important;
+        height: 140px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 100px !important;
+        height: 140px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 40px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 140px !important;
+    }
+}
+
+@media all and (min-width: 600px) {
+    /*840이상*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 140px !important;
+        height: 190px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 140px !important;
+        height: 190px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 60px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 190px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 140px !important;
+        height: 190px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 140px !important;
+        height: 190px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 60px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 190px !important;
+    }
+
+}
+
+@media all and (min-width: 1080px) {
+    /*1080이상*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 165px !important;
+        height: 220px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 165px !important;
+        height: 220px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 80px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 220px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 165px !important;
+        height: 220px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 165px !important;
+        height: 220px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 80px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 220px !important;
+    }
+}
+
+@media all and (min-width: 1680px) {
+    /*1680*/
+    .signup3-1 .tm_imgbox1, .signup3-1 .tm_imgbox2 {
+        width: 270px !important;
+        height: 360px !important;
+    }
+    .signup3-1 .tm_imgbox1 img, .signup3-1 .tm_imgbox2 img {
+        width: 270px !important;
+        height: 360px !important;
+    }
+    .signup3-1 .tm_imgbox1 span, .signup3-1 .tm_imgbox2 span {
+        top: 150px !important;
+    }
+    .signup3-1 #tm_interview_01, .signup3-1 #tm_interview_02 {
+        height: 360px !important;
+    }
+
+    .signup1-4 .tm_imgbox1, .signup1-4 .tm_imgbox2 {
+        width: 270px !important;
+        height: 360px !important;
+    }
+    .signup1-4 .tm_imgbox1 img, .signup1-4 .tm_imgbox2 img {
+        width: 270px !important;
+        height: 360px !important;
+    }
+    .signup1-4 .tm_imgbox1 span, .signup1-4 .tm_imgbox2 span {
+        top: 150px !important;
+    }
+    .signup1-4 #tm_interview_01, .signup1-4 #tm_interview_02 {
+        height: 360px !important;
+    }
+}
+
+/* signup1.php 끝*/
+/* signup2.php !~*/
+
+.it_name_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.it_name_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.it_name_ex .content {
+    margin-top: 10px;
+}
+
+.goodsDetailWrap .add_imgBox .img_box {
+    width: 100%;
+}
+
+.goodsDetailWrap .img_box .filebox {
+    top: 45px;
+}
+
+.goodsDetailWrap .add_imgBox {
+    max-height: 50vw;
+}
+
+
+.main_it_img_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.main_it_img_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.main_it_img_ex .title {
+    font-size: 17px;
+    margin-bottom: 10px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.main_it_img_ex .content {
+    margin-top: 10px;
+}
+
+/*2-3 */
+.filebox label {
+    width: 100%;
+}
+
+.guideCourse .img_input .img_box {
+    width: 100%;
+    min-height: 40px;
+    height: 100%;
+    max-height: 260px;
+}
+
+.guideCourse .img_input .img_box .div_course_preview {
+    margin-top: 10px;
+    line-height: 260px;
+    text-align: center;
+    width: 100%;
+    height: 260px;
+    background-color: #e8e8e8;
+    color: #A8A9B6;
+}
+
+.guideCourse .img_input .img_box img {
+    width: 100%;
+    min-height: 70px;
+    height: 260px;
+    max-height: 260px;
+}
+
+@media all and (min-width: 600px) {
+    .guideCourse .course_add{
+        height:640px !important;
+    }
+    .guideCourse .img_input .img_box .div_course_preview{
+        height: 300px;
+        line-height:300px;
+    }
+    .guideCourse .img_input .img_box img {
+        height: 300px;
+    }
+}
+@media all and (min-width: 700px) {
+    .guideCourse .course_add{
+        height:700px !important;
+    }
+    .guideCourse .img_input .img_box .div_course_preview{
+        height: 340px;
+        line-height:340px;
+    }
+    .guideCourse .img_input .img_box img {
+        height: 340px;
+    }
+}
+@media all and (min-width: 840px) {
+    .guideCourse .course_add{
+        height:740px !important;
+    }
+    .guideCourse .img_input .img_box .div_course_preview{
+        height: 380px;
+        line-height:380px;
+    }
+    .guideCourse .img_input .img_box img {
+        height: 380px;
+    }
+}
+@media all and (min-width: 1040px) {
+    .guideCourse .course_add{
+        height:780px !important;
+    }
+    .guideCourse .img_input .img_box .div_course_preview{
+        height: 420px;
+        line-height:420px;
+    }
+    .guideCourse .img_input .img_box img {
+        height: 420px;
+    }
+}
+@media all and (min-width: 1240px) {
+    .guideCourse .course_add{
+        height:810px !important;
+    }
+    .guideCourse .img_input .img_box .div_course_preview{
+        height: 450px;
+        line-height:450px;
+    }
+    .guideCourse .img_input .img_box img {
+        height: 450px;
+    }
+}
+.guideCourse .img_input textarea {
+    width: 100%;
+    height: 150px;
+}
+
+.guideCourse .course_add {
+    border: 1px solid #ccc;
+    margin-bottom: 10px !important;
+    padding: 13px 20px 8px;
+    height: 620px;
+}
+
+.guideCourse .course_add label {
+    padding: 7px 0 7px;
+}
+
+.guideCourse .img_input .img_box label {
+    margin-bottom: 0px;
+}
+
+.guideCourse .img_input .img_box .filebox label {
+    margin-top: 0px;
+    display: inline-block;
+}
+
+
+.guideCourse_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.guideCourse_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.guideCourse_ex .content {
+    margin-top: 10px;
+}
+
+.beforecheck_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.beforecheck_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.beforecheck_ex .content {
+    margin-top: 10px;
+}
+
+.aftercheck_ex {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.aftercheck_ex .type {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff7358;
+}
+
+.aftercheck_ex .content {
+    margin-top: 10px;
+}
+
+.goodsDetailWrap .w100 label input[type="text"], .goodsDetailWrap .w100 textarea {
+    margin-top: 0;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.list_table th, .list_table td.total_price .aftercheck {
+    margin-top: 20px;
+}
+
+/* 구글 지도 */
+#locationField {
+    position: fixed !important;
+    top: 43% !important;
+}
+
+@media all and (max-width: 839px) {
+    /*839이하*/
+    #map {
+        width: 90% !important;
+        left: 42% !important;
+    }
+
+    #locationField {
+        width: 90% !important;
+        left: 42% !important;
+    }
+}
+
+@media all and (min-width: 840px) {
+    /*840이상*/
+    #map {
+        width: 80% !important;
+        left: 42% !important;
+    }
+
+    #locationField {
+        width: 80% !important;
+        left: 42% !important;
+    }
+}
+
+@media all and (min-width: 993px) {
+    /*993 이상*/
+    #map {
+        width: 63% !important;
+        left: 59% !important;
+    }
+
+    #locationField {
+        width: 63% !important;
+        left: 59% !important;
+    }
+
+}
+
+@media all and (min-width: 1100px) {
+    /*1100 이상*/
+    #map {
+        width: 60% !important;
+        left: 56% !important;
+    }
+    #locationField {
+        width: 60% !important;
+        left: 56% !important;
+    }
+}
+
+/* signup2.php ~!*/
+.signup1 input[type="radio"],
+.signup2 input[type="radio"],
+.signup3 input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.signup1 input[type="radio"] + label,
+.signup2 input[type="radio"] + label,
+.signup3 input[type="radio"] + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.signup1 input[type="radio"] + label:before,
+.signup2 input[type="radio"] + label:before,
+.signup3 input[type="radio"] + label:before {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 2px;
+    width: 21px;
+    height: 21px;
+    text-align: center;
+    background: #fafafa;
+    border: 1px solid #cacece;
+    border-radius: 100%;
+    /*box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);*/
+}
+
+.signup1 input[type="radio"] + label:active:before,
+.signup2 input[type="radio"] + label:active:before,
+.signup3 input[type="radio"] + label:active:before,
+.signup1 input[type="radio"]:checked + label:active:before,
+.signup2 input[type="radio"]:checked + label:active:before,
+.signup3 input[type="radio"]:checked + label:active:before {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.signup1 input[type="radio"]:checked + label:before,
+.signup2 input[type="radio"]:checked + label:before,
+.signup3 input[type="radio"]:checked + label:before {
+    background: #E9ECEE;
+    border-color: #adb8c0;
+}
+
+.signup1 input[type="radio"]:checked + label:after,
+.signup2 input[type="radio"]:checked + label:after,
+.signup3 input[type="radio"]:checked + label:after
+{
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    width: 14px;
+    height: 14px;
+    background: #ff7358;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 10px rgba(255, 53, 60, 0.3);
+}
+
+.signup1 input[type="checkbox"],
+.signup2 input[type="checkbox"],
+.signup3 input[type="checkbox"]{ /* 실제 체크박스는 화면에서 숨김 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0
+}
+
+.signup1 input[type="checkbox"] + label,
+.signup2 input[type="checkbox"] + label,
+.signup3 input[type="checkbox"] + label
+{
+    display: inline-block;
+    position: relative;
+    padding-left: 30px; /* 글자와 체크박스 사이의 간격을 변경 */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.signup1 input[type="checkbox"] + label:before,
+.signup2 input[type="checkbox"] + label:before,
+.signup3 input[type="checkbox"] + label:before{ /* 가짜 체크박스 */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px; /* 이 값을 변경해서 글자와의 정렬 */
+    width: 21px; /* 체크박스의 너비를 지정 */
+    height: 21px; /* 체크박스의 높이를 지정 */
+    line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */
+    text-align: center;
+    background: #fafafa;
+    border: 1px solid #cacece;
+    border-radius: 3px;
+    /*box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);*/
+}
+
+.signup1 input[type="checkbox"] + label:active:before,
+.signup2 input[type="checkbox"] + label:active:before,
+.signup3 input[type="checkbox"] + label:active:before,
+.signup1 input[type="checkbox"]:checked + label:active:before,
+.signup2 input[type="checkbox"]:checked + label:active:before,
+.signup3 input[type="checkbox"]:checked + label:active:before
+{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.signup1 input[type="checkbox"]:disabled,
+.signup2 input[type="checkbox"]:disabled,
+.signup3 input[type="checkbox"]:disabled{
+    color: #99a1a7;
+    background: #c2ee84;
+}
+
+.signup1 input[type="checkbox"]:checked + label:after,
+.signup2 input[type="checkbox"]:checked + label:after,
+.signup3 input[type="checkbox"]:checked + label:after { /* 체크박스를 체크했을때 */
+    content: ''; /* 체크표시 유니코드 사용 */
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    width: 21px;
+    height: 21px;
+    background: #ffffff;
+    border: 1px solid #cacece;
+    border-radius: 3px;
+}
+
+.signup1 input[type="checkbox"]:checked + label:before,
+.signup2 input[type="checkbox"]:checked + label:before,
+.signup3 input[type="checkbox"]:checked + label:before
+{ /* 체크박스를 체크했을때 */
+    content: ''; /* 체크표시 유니코드 사용 */
+    z-index: 1;
+    top: 4px;
+    left: 2px;
+    width: 17px;
+    height: 17px;
+    background: #ff7358;
+    color: #99a1a7;
+    text-shadow: 1px 1px #fff;
+    border-color: #e0e0e0;
+    border-radius: 3px;
+}
+
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#img_snackbar, #next_snackbar ,#file_snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    max-width: 1080px;
+    width: 69vw;
+    /* Set a default minimum width */
+    margin-left: 1vw; /* Divide value of min-width by 2 */
+    margin-right: 1vw;
+    background-color: #ff7358; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 10px; /* Rounded borders */
+    padding: 17px; /* Padding */
+    font-weight: 600;
+    font-size: 18px;
+    position: fixed; /* Sit on top of the screen */
+    z-index: 100; /* Add a z-index if needed */
+    left: 300px; /* Center the snackbar */
+    top: 40px; /* 30px from the bottom */
+}
+@media ( max-width: 993px ) {
+    #img_snackbar, #next_snackbar ,#file_snackbar {
+        left: 0px;
+        width: 98vw;
+        min-width: 50%;
+    }
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#img_snackbar.show, #next_snackbar.show, #file_snackbar.show {
+    visibility: visible !important; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s;/*, fadeout 0.5s 2.5s;*/
+    animation: fadein 0.5s;/*, fadeout 0.5s 2.5s;*/
+    -moz-animation:fadein 0.5s ;
+    -o-animation: fadein 0.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+@-ms-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 40px; opacity: 1;}
+}
+@-moz-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 40px; opacity: 1;}
+}
+@-o-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 40px; opacity: 1;}
+}
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 40px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 40px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+@-ms-keyframes fadeout {
+    from {top: 40px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+@-moz-keyframes fadeout {
+    from {top: 40px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+@-o-keyframes fadeout {
+    from {top: 40px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+@keyframes fadeout {
+    from {top: 40px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}

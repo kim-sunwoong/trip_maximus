@@ -1,0 +1,232 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+/*===========================================================================
+	RESET
+============================================================================*/
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+
+/* css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, br,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary, strong,
+time, mark, audio, video, button, input {margin:0;padding:0;border:0;font-size:100%;box-sizing:border-box;}
+
+*{font-family: 'Noto Sans KR', sans-serif;margin:0;padding:0;border:0;font-size:100%;box-sizing:border-box;}
+a {display: inline-block;text-decoration:none;color: inherit;}
+a:link, a:visited {text-decoration:none}
+a:hover, a:active {text-decoration:none}
+address, em, i{font-style: normal;}
+img {border:none;vertical-align:middle}
+ol, ul, li {list-style:none}
+table {border-collapse: collapse;border-spacing: 0}
+fieldset {border:none}
+legend{width:1px;height:1px;overflow:hidden;visibility:hidden;line-height:0;font-size:0;position:absolute; left:-999px}
+input, select, button, textarea{outline: none}
+textarea {resize:none}
+button, input[type="button"] {padding:0;margin:0;border:none;vertical-align:middle;cursor:pointer}
+input{margin:0;padding:0;border:0;vertical-align: middle;}
+input[type=text]::-ms-clear {display:none}
+input[type=password]::-ms-clear {display:none}
+button:focus{outline:0;}
+
+body {position: relative;}
+
+/*===========================================================================
+	FONT
+============================================================================*/
+html, body {font-family: 'Noto Sans KR', sans-serif;font-size: 13px;font-weight: 400;color: #1d1d1d;letter-spacing: -0.5px;}
+h1, h2, h3, h4, h5, h6 {font-weight: 500;}
+
+/* 폰트 크기 */
+.tit{font-size: 20px;}
+.txt_big{font-size: 18px;}
+.txt_md{font-size: 15px;}
+.txt_bs{font-size: 13px;}
+.txt_sm{font-size: 11px;}
+
+/* 폰트 컬러 */
+.txtC{color:#ff7358;}
+.txtG{color:#a3a3a3;}
+.txtW{color: #fff;}
+.link_txt{color: #2684ff;}
+
+/* 폰트 기타 */
+.txt_b{font-weight: bold;}
+.txt_r{text-align: right;}
+
+/*===========================================================================
+	COMMON
+============================================================================*/
+.clearfix{*zoom:1;}
+.clearfix:after {content:'';display:block;clear:both}
+.floatL{float: left;}
+.floatR{float: right;}
+.blind{overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.ellipsis{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+em{font-style: normal;}
+select{min-width: 120px;border: 1px solid #a3a3a3;padding:4px 10px;border-radius: 3px; -webkit-appearance: none; /* 화살표 없애기 for chrome*/-moz-appearance: none;/* 화살표 없애기 for firefox*/appearance: none;/* 화살표 없애기 공통*/background: url(/img/html/tm_admin/imgs/common/icon_down.png) no-repeat 92% 50%; background-size: 12px;}
+select::-ms-expand {display: none;/* 화살표 없애기 for IE10, 11*/}
+input[type=text]::placeholder, textarea::placeholder{line-height: 1.71; color: #b6bdcb;}
+
+/* 공통 */
+.wrap{margin-left: 170px; padding-top:59px;}
+.contentWrap{padding:20px 40px; position: relative; min-width: 1200px; max-width: 1500px; background: white;}
+.mWrap{padding-top: 60px;}
+.bgBlue{background-color: #0647a6;}
+.bgSky{background-color: #2684ff;}
+.bgSg{background-color: #f1f6fe;}
+.bgSg6{background-color: #f6f7fa;}
+
+/* 버튼 */
+.btn{display: inline-block; border-radius: 5px; text-align: center;}
+.btnRound{height: 32px;margin: auto; padding: 6px 20px;border-radius: 25px;background-color: #f1f6fe;font-size: 14px;font-weight: 500;color: #ff7358;}
+.btnC{background-color: #ff7358;border: 1px solid #ff7358;color: white;}
+.btnC_B{background-color: #4869ff;border: 1px solid #6562ff;color: white;}
+.btnC_G{background-color: #4ebf68;border: 1px solid #25a139;color: white;}
+.btnC_G:before{
+    content:'\2713';
+    display:inline-block;
+    color: #ffffff;
+    font-size: 19px;
+    line-height: 16px;
+    font-weight: bold;
+    padding:0 6px 0 0;
+}
+.btnSky{background-color: #f1f6fe; color: #ff7358;}
+.btnWrap .btn{display: block; width: 100%;height: 50px; padding: 15px 0; font-size: 14px; font-weight: 500;}
+.btnWrap .btn:nth-child(n+2){margin-top: 8px;}
+.btnLine{background-color: #fff;border: 1px solid #ff7358;color: #ff7358;}
+.btnLineB{background-color: #fff;border: 1px solid #0647a6;color: #0647a6;}
+.btn_wrap .btn{line-height: 32px;}
+
+/****** Style Star Rating Widget *****/
+.rating{margin-left: 20px; border: none;float: left;}
+.rating > input{ display: none; } 
+.rating > label:before{margin: 2px 3px;font-size: 1.25em;font-family: FontAwesome;display: inline-block;content: "\f005";}
+.rating > .half:before{content: "\f089";position: absolute;}
+.rating > label{color:#ddd;float:right;}
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label{ color: #ffb924;  } /* hover previous stars in list */
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { /* color: #FFED85; */  }
+
+
+/* 바닥에 붙는 버튼 */
+.btnBtm{position: absolute;bottom: 30px;width: calc(100% - 40px);}
+
+/*===========================================================================
+	header footer
+============================================================================*/
+/* MOBILE HEADER */
+.headerTop{position: fixed;z-index: 500;width: 100%;height: 60px;padding: 20px;background-color: white;box-shadow: inset 0 -1px 0 0 #ebedf2;}
+.logo{font-size: 14px; text-align: center;}
+.headerTop ul{position: absolute;top: 20px;}
+.headerTop img{width: 20px;}
+.headerLeft{left: 10px;}
+.headerRight{right: 10px;}
+.headerTop li{float: left;margin: 0 10px;}
+.headerTop li a{display: block;}
+
+/* header */
+.headerTit {position: fixed; z-index: 500;width: 100%;background-color: #ff7358;}
+.headerTit h1 a{padding: 15px;font-size: 20px; color: white;}
+.headerTit h2{padding: 20px;color: white;}
+.util{padding: 0 5px;}
+.util li{float: left;padding: 10px 5px;}
+.util li a, .util li p{padding: 10px;color: white;}
+.gnbWrap{position: fixed;top: 60px;left: 0;padding: 20px;width: 170px;background: white;z-index: 400;max-width: 220px; height: 100%;background:#e3e3df; border-right: 1px solid #dbdbdb;-webkit-box-shadow: 2px 0 2px rgba(150, 150, 150, 1);-moz-box-shadow: 2px 0 2px rgba(150,150,150,0.1);box-shadow: 2px 0 2px rgba(150,150,150,0.1);}
+.nav h2{padding-bottom: 15px;word-break: keep-all;line-height: 1.3;}
+.nav_li a{padding: 5px 0;font-size: 14px;line-height: 1.3;word-break: keep-all;}
+.nav_li a:hover, .nav_li.on a{color: #ff5355;}
+.nav h3{font-weight: normal; line-height: 1.67; letter-spacing: -0.4px;}
+.nav li a{display: block;padding: 10px 0;font-weight: 500;line-height: 1.43; color: #1d1d1d;}
+.nav .depth_2{padding-left: 30px;}
+.nav .depth_2 li{position: relative;}
+.nav .depth_2 li a{color: #888;}
+.nav .depth_2 li:hover a{color: #ff5355;opacity: 0.7;}
+.nav .depth_2 li:before{content: '';position: absolute;top: 12px;left: -16px;width: 8px;height: 8px;border-left: 1px solid #444;border-bottom: 1px solid #444;}
+
+/* 테이블 기본 */
+.tableT{margin-top: 50px;}
+.basic_table{width: 100%;}
+.basic_table table{width: 100%;}
+.table2Box table{float: left;width: 48%;margin-left: 4%;}
+.table4Box table{float: left;width: 22%;margin-left: 4%;}
+.table4Box table:first-child, .table2Box table:first-child{margin-left: 0;}
+.basic_table th{background: #ebedf1;font-weight: 500;color: #333;}
+table .txtTl{text-align: left !important;}
+table .txtTc{text-align: center !important;}
+table .txtTr{text-align: right !important;}
+.imgBx td{height: 100px;}
+.imgBx td img{max-height: 100px;}
+.reservTable {border-collapse:separate; border-spacing:0;border-width:1px; border:1px solid #ccc;}
+.borB0 {border-bottom:none;}
+
+/* 리스트 테이블 */
+/* .list_table tr{border-bottom: 1px solid #ccc;} */
+.list_table th, .list_table td{position: relative;padding: 10px;border-top: 1px solid #ccc;border-right:1px solid #ccc;text-align: inherit;}
+.list_table td:last-child{border-right:none;}
+.list_table td a:not(.btn){color: #2684ff;}
+.list_table td .btn{position: absolute;right: 10px;top: 50%;margin-top: -10px;}
+.list_table thead th{padding: 15px;font-size: 14px;}
+
+/*pagination*/
+.pagination{text-align:center;margin-top:50px;}
+.pagination ul{display:inline-block;}
+.pagination li{float:left;}
+.pagination li a{display: block;padding:8px 12px;border:1px solid #bbb;border-right:0;font-size: 12px;color:#bbb;min-width:40px;letter-spacing:-1.4px;}
+.pagination  li a.active{border-color:#2f2f2f;background-color:#2f2f2f;color:#fff}
+.pagination li a img{width:auto;margin-top:-4px;}
+.pagination li:first-child a{border-radius: 5px 0 0 5px;}
+.pagination li:last-child a{border-right:1px solid #bbb;border-radius: 0 5px 5px 0;}
+.admin_btn + .pagination{margin-top: 50px;}
+
+/*===========================================================================
+	메인
+============================================================================*/
+.admTit {padding-bottom: 15px;border-bottom: 1px solid #1d2941;}
+.main_total_info{margin: auto;margin-top: 50px;max-width: 1000px;padding: 15px;box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);background-color: #f8f8f8;border-radius: 3px;}
+.main_total_info ul{padding: 30px 20px 40px;}
+.main_total_info li{width: 25%;text-align: center;}
+.main_total_info .list_3{padding: 10px 10px 40px;}
+.main_total_info .list_3 li{width: 33.333333%;}
+.main_total_info li p:last-child{padding-top: 15px;font-size: 28px;color: #1d2941;}
+.main_total_info h3{padding-bottom: 15px;}
+.dashboard tbody{text-align: center;}
+
+a {text-decoration: none; outline: none}
+
+a:hover, a:active ,a:visited {text-decoration: none !important;}
+
+
+
+
+
+/*===========================================================================
+	미디어쿼리
+============================================================================*/
+/* 모바일 */
+@media all and (max-width: 480px) {
+    
+}
+/* 테블렛 */
+@media all and (min-width: 481px) {
+    .mWrap{max-width: 480px;margin: auto;}
+}
+/* PC */
+@media all and (min-width: 769px) {
+
+}
