@@ -6,5 +6,5 @@ import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
 
 public interface AdminMapper {
 
-	List<AdminDTO> selectAdmin(AdminDTO admin);
+	List<AdminDTO> selectAdmin();
 }

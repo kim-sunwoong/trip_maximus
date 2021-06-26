@@ -144,16 +144,18 @@
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
+	                                      <c:forEach items="${selectAdmin}" var = "list">
 	                                        <tr>
-	                                            <td>1</td>
-	                                            <td>관리자</td>
-	                                            <td>정주영</td>
-	                                            <td>joo@greedy.com</td>
-	                                            <td>2021/06/07</td>
+	                                            <td><c:out value="${list.adminNo}"/></td>
+	                                            <td><c:out value="${list.adminPosition}"/></td>
+	                                            <td><c:out value="${list.adminName}"/></td>
+	                                            <td><c:out value="${list.adminEmail}"/></td>
+	                                            <td><c:out value="${list.hireDate}"/></td>
 	                                            <td>
 	                                                <label><input type="radio" name="delete" value="delete">Delete</label>   
 	                                            </td>
 	                                        </tr>
+	                                        </c:forEach>
 	                                    </tbody>
 	                                </table>
 	                            </div>

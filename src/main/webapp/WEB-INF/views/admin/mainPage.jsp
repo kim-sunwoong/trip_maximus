@@ -33,46 +33,48 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="AdminNoticeManagement.html">
-                                공지사항
+                                	공지사항
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminReportManagement.html">
-                                신고처리
+                              		  신고처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminGuideEnroll.html">
-                                가이드 가입 처리
+                                	가이드 가입 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminGuideLevelUp.html">
-                                가이드 등업 처리
+                               	 	가이드 등업 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminGuideCalculate.html">
-                                가이드 정산 처리
+                                	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminTax.html">
-                                세금계산서 발행
+                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminAnswerManagement.html">
-                                문의 내역
+                                	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminWorkerManagement.html">
-                                사원 관리
+                            <a class="nav-link collapsed"  href="${ pageContext.servletContext.contextPath }/admin/workerList">
+                                	사원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="AdminMemberManagement.html">
-                                회원 관리
+                              		  회원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                         </div>
                     </div>
+                   
                     <div class="sb-sidenav-footer">
                         <div class="small">
                         Copyright &copy; Tripful axcel

@@ -20,7 +20,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminDTO> selectAdmin(AdminDTO admin) {
-		return mapper.selectAdmin(admin);
+	public List<AdminDTO> selectAdmin() {
+		return mapper.selectAdmin();
 	}
 }
