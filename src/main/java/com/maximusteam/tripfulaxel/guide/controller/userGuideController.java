@@ -1,4 +1,4 @@
-package com.maximusteam.tripfulaxel.user.guide.controller;
+package com.maximusteam.tripfulaxel.guide.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
