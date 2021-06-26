@@ -106,46 +106,40 @@
 				<!-- 개인 차량 여부 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>개인차량 여부</span>
-						  <label class="checkbox-inline icon-label"><input type="radio" value="있음" name="accomoType" >있음</label>
-						<label class="checkbox-inline icon-label"><input type="radio" value="없음" name="accomoType">없음</label>
+						  <label class="checkbox-inline icon-label"><input type="radio" value="Y" name="hasCar" >있음</label>
+						<label class="checkbox-inline icon-label"><input type="radio" value="N" name="hasCar">없음</label>
 						
 					</div>
 					
 					<!-- 가이드 경험 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 경험</span>
-						 <label class="checkbox-inline icon-label"><input type="radio" value="있음" name="accomoType" >있음</label>
-						<label class="checkbox-inline icon-label"><input type="radio" value="없음" name="accomoType">없음</label>
+						 <label class="checkbox-inline icon-label"><input type="radio" value="Y" name="hasExp" >있음</label>
+						<label class="checkbox-inline icon-label"><input type="radio" value="N" name="hasExp">없음</label>
 					</div>
 
                     <!-- 가이드 스타일  -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 스타일</span>
 						<div class="guidetitle">
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="로컬색" name="accomoType" >로컬색이 짙은 트렌디</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="액티비티" name="accomoType">액티비티를 즐김</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">여행분야의 전문성이 높음</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">함께 신나게 놀 수 있음</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">오지 탐험 전문</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">인생샷을 남겨주는 스냅 전문</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">운동을 잘하는 가이드</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">맛집 탐방 위주의 여행</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="전문성" name="accomoType">방방곡곡 제주를 경험할 수 있음</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
 						</div>
 					</div>
 					
 					<!-- 거주기간 -->
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>거주기간</span>
+						<span class="form-title" style="display:inline-block">거주기간</span>
 						<span>
 							<select name=checkIn class="select-time">
-								<option value="3개월">3개월 이상</option>
-								<option value="6개월">6개월 이상</option>
-								<option value="1년">1년 이상</option>
-								<option value="2년">2년 이상</option>
-								<option value="3년">3년 이상</option>
-								<option value="4년">4년 이상</option>
-								<option value="5년">5년 이상</option>
+								<option value="1">6개월이내</option>
+								<option value="2">1년이내</option>
+								<option value="3">3년이내</option>
+								<option value="4">5년이내</option>
+								<option value="5">5년이상</option>
 							</select>
 						</span>
 					</div>
