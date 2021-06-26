@@ -276,6 +276,7 @@
 				
 				const $courseInfo = document.getElementById("tripDay").value + "일차 - " + document.getElementById("courseTitle").value;
 				console.log(courseInfo);
+				
 				$addTripCourse.onclick = function() {
 				
 					$('<input/>').attr({type:'text',name:'addedCourse', value: courseInfo}).appendTo('#addedCourse');
