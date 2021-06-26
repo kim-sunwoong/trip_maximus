@@ -5,6 +5,8 @@
  <configuration>
  	<typeAliases>
 		<typeAlias alias="AdminDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO"/>
+		<typeAlias alias="MemberDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO"/>
+		<typeAlias alias="ReportDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO"/>
   		<typeAlias alias="UserDTO" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO"/>	
   	</typeAliases>
 

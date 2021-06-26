@@ -21,8 +21,25 @@ public class AdminController {
 	
 	@GetMapping("workerList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
 	public String selectWorkerList(Model model) {
-		model.addAttribute("selectAdmin", adminService.selectAdmin());
+		
+		model.addAttribute("selectAdmin", adminService.selectAdminList());
 			
-		return "admin/workerManagement"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+		return "admin/workerList"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+	}
+	
+	@GetMapping("memberList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
+	public String selectMemberList(Model model) {
+		
+		model.addAttribute("selectMember", adminService.selectMemberList());
+			
+		return "admin/memberManagement"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+	}
+	
+	@GetMapping("reportList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
+	public String selectReportList(Model model) {
+		
+//		model.addAttribute("selectReport", adminService.selectReportList());
+			
+		return "admin/reportManagement"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
 	}
 }

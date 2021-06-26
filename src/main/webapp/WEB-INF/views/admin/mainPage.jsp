@@ -40,7 +40,7 @@
                                 	공지사항
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminReportManagement.html">
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/reportList">
                               		  신고처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -68,7 +68,7 @@
                                 	사원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminMemberManagement.html">
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/memberList">
                               		  회원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
