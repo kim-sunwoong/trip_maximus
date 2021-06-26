@@ -11,7 +11,7 @@ public class UserDTO {
 	private String userBday;
 	private String userGender;
 	private String userEmail;
-	private Date userRegisterDay;
+	private String userRegisterDay;
 	private int userReportCount;
 	private String userGuideYN;
 	
@@ -20,7 +20,7 @@ public class UserDTO {
 	}
 
 	public UserDTO(int userCode, String userName, String userPhone, String userPwd, String userBday, String userGender,
-			String userEmail, Date userRegisterDay, int userReportCount, String userGuideYN) {
+			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN) {
 		super();
 		this.userCode = userCode;
 		this.userName = userName;
@@ -90,11 +90,11 @@ public class UserDTO {
 		this.userEmail = userEmail;
 	}
 
-	public Date getUserRegisterDay() {
+	public String getUserRegisterDay() {
 		return userRegisterDay;
 	}
 
-	public void setUserRegisterDay(Date userRegisterDay) {
+	public void setUserRegisterDay(String userRegisterDay) {
 		this.userRegisterDay = userRegisterDay;
 	}
 
