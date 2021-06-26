@@ -15,20 +15,70 @@
 <style>
 	th {
 		background-color : #87ceeb7a !important; 
-	
 	}
-	
-
- .description {
-  color : #337ab7 !important;
- 
- }
-
+ 	.description {
+  		color : #337ab7 !important;
+ 	}
 </style>
 
+<!-- <script>
+ 참고할 사항
+    function to_ajax(){
+  
+ 
+        var queryString = $("form[name=testForm]").serialize() ;
+ 
+        $.ajax({
+            type : 'post',
+            url : '/test.jsp',
+            data : queryString,
+            dataType : 'json',
+            error: function(xhr, status, error){
+                alert(error);
+            },
+            success : function(json){
+                alert(json)
+            }
+        });
+  
+    }
+ </script>
+ 
+ <form id="form2" name="form2" method="post" enctype="multipart/form-data">
+    <input type="file" id="files" name="files" multiple/>
+    <input type="button" value="확인" onclick="test2(); return false;">
+</form>
+ 
+<script>
+    function test2(){
+        var form = $("form")[0];        
+        var formData = new FormData(form);
 
-
+        $.ajax({
+            cache : false,
+            url : "${pageContext.request.contextPath}/testForm2", // 요기에
+            processData: false,
+            contentType: false,
+            type : 'POST', 
+            data : formData, 
+            success : function(data) {
+                var jsonObj = JSON.parse(data);
+            }, // success 
+    
+            error : function(xhr, status) {
+                alert(xhr + " : " + status);
+            }
+        }); // $.ajax */    }
+ 
+</script> -->
 <body>
+<!-- <script>
+	const loginMember = '${ requestScope.loginMember }';
+	if(loginMember != null && loginMember !== '') {
+		alert(loginMember);
+	}
+</script> -->
+
 <jsp:include page="../common/header.jsp"></jsp:include>
 
 <table id="registTb" class="table table-bordered">
@@ -46,11 +96,11 @@
 				<td>
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
-				<form action="" method="post">
+				<form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
 				<!-- 성명 -->
 					<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>성명  </span>
-				   <input type="text" class="select-nomalsize" name="accomoName">	
+				   <input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
 					</div>
 				
 				<!-- 개인 차량 여부 -->
