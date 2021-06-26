@@ -12,7 +12,7 @@
 		<result column="ADMIN_HIRE_DATE" property="hireDate" />
 	</resultMap>
 	
-	<select id="selectAdmin" resultMap="memberResultSet" parameterType="AdminDTO">
+	<select id="selectAdmin" resultMap="memberResultSet">
         SELECT 
                A.ADMIN_NO
              , A.ADMIN_POSITION

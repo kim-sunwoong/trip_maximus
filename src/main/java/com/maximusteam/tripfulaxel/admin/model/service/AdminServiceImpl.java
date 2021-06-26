@@ -16,11 +16,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	public AdminServiceImpl(AdminMapper mapper) {
+		System.out.println("서비스:ㅇㅇㅇ");
 		this.mapper = mapper;
 	}
 
 	@Override
 	public List<AdminDTO> selectAdmin() {
+		System.out.println("서비스:1111111111111111111111111111112");
 		return mapper.selectAdmin();
 	}
+	
 }
