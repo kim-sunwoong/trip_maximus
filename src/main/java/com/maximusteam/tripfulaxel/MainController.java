@@ -6,16 +6,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 
 @Controller
 @RequestMapping("/*")
@@ -71,13 +73,15 @@ public class MainController {
 	}
 	
 	@GetMapping("insertGuide")
-	public String insertGuide() {
+	public String insertGuide(Model model) {
 		
 		/* 로그인이 되었다는 가정하에 기능 구현을 위한 세션에 로그인정보 집어넣기 */
+		UserDTO user = new UserDTO(1,"차진서", "010-9882-1912", "1234", "19920504", "남자", 
+				"up1912@gmail.com", "2021-06-26",0,"N");
+
+		model.addAttribute("loginMember", user);
 		
-		
-		
-		return "user/main/insertGuide";
+		return "redirect:/";
 	}
 
 }
