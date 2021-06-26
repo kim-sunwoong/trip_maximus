@@ -1,4 +1,4 @@
-package com.maximusteam.tripfulaxel.model.dto;
+package com.maximusteam.tripfulaxel.admin.model.dto;
 
 import java.util.Date;
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.admin.model.dao.AdminMapper">
+
+	<resultMap id="memberResultSet" type="AdminDTO">
+		<id column="ADMIN_NO" property="adminNo" />
+		<result column="ADMIN_POSITION" property="adminPosition" />
+		<result column="ADMIN_NAME" property="adminName" />
+		<result column="ADMIN_EMAIL" property="adminEmail" />
+		<result column="ADMIN_HIRE_DATE" property="hireDate" />
+	</resultMap>
+	
+	<select id="selectAdmin" resultMap="memberResultSet" parameterType="AdminDTO">
+        SELECT 
+               A.ADMIN_NO
+             , A.ADMIN_POSITION
+             , A.ADMIN_NAME
+             , A.ADMIN_EMAIL
+             , A.ADMIN_HIRE_DATE
+          FROM ADMIN A 
+	</select>
+
+</mapper>

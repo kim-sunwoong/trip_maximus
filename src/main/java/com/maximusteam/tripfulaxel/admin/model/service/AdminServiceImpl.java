@@ -1,11 +1,12 @@
-package com.maximusteam.tripfulaxel.model.service;
+package com.maximusteam.tripfulaxel.admin.model.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.maximusteam.tripfulaxel.model.dao.AdminMapper;
+import com.maximusteam.tripfulaxel.admin.model.dao.AdminMapper;
+import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
 
 
 @Service
