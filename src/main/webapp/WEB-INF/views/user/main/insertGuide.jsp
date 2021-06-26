@@ -97,13 +97,23 @@
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
 				<form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
-				<!-- 성명 -->
+				
+					<!-- 회원번호 (invisible) -->
+					<input id="userCode" name="userCode" value="${ requestScope.loginMember.userCode }"/ hidden="true">
+				
+					<!-- 성명 -->
 					<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>성명  </span>
-				   <input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
+				   	<input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
 					</div>
 				
-				<!-- 개인 차량 여부 -->
+					<!-- 닉네임 -->			
+					<div class="form-layer">
+					<span class="form-title" style="display:inline-block";>닉네임  </span>
+				   	<input type="text" class="select-nomalsize" name="guideNickname" required="required">	
+					</div>
+					
+					<!-- 개인 차량 여부 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>개인차량 여부</span>
 						  <label class="checkbox-inline icon-label"><input type="radio" value="Y" name="hasCar" >있음</label>
@@ -148,7 +158,7 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 소개</span>
 						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="당신을 소개해주세요"></textarea>
-                          <div remain-traffic_info" class="maxText">(최대 1000자)</div>
+                          <div class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
 			</tr>
