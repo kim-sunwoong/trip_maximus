@@ -162,6 +162,12 @@
                         <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
 	                    </a>
 	                    </li>
+	                    </li>
+	                    <li class="floatL">
+	                    <a class="signup_link" href="${ pageContext.servletContext.contextPath }/admin">
+                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
+	                    </a>
+	                    </li>
                     </ul>
         		</div>
 

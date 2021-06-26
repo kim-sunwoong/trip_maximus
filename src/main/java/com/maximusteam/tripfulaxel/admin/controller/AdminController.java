@@ -20,8 +20,8 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 	
-	@GetMapping("admin")
-	public String login(){
+	@GetMapping(value={"/", "admin"})
+	public String main(){
 		return "admin/mainPage";
 	}
 	
