@@ -5,6 +5,8 @@
  <configuration>
  	<typeAliases>
 <!--  		<typeAlias alias="MemberDTO" type="com.greedy.spring.member.model.dto.MemberDTO"/>
- --> 	</typeAliases>
+ --> 	
+ 	<typeAlias alias="AdminDTO" type="com.maximumsteam.tripfulaxel.model.dto.AdminDTO"/>
+ </typeAliases>
  	
  </configuration>
