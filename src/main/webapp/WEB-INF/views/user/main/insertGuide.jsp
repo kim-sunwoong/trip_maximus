@@ -155,7 +155,7 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block">거주기간</span>
 						<span>
-							<select name=checkIn class="select-time">
+							<select name="periodCode" class="select-time">
 								<option value="1">6개월이내</option>
 								<option value="2">1년이내</option>
 								<option value="3">3년이내</option>
@@ -168,7 +168,7 @@
 					<!-- 가이드 소개 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 소개</span>
-						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="당신을 소개해주세요"></textarea>
+						 <textarea class="form-control textarea-layer" rows="9" name="intro" placeholder="당신을 소개해주세요"></textarea>
                           <div class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -189,14 +189,14 @@
 				<td>
 				<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>신분증</span>
-                    <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+                    <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					  <p class="description" style="margin-bottom: 3px;">*신분증은 뒷번호를 가린 후 업로드 해주세요. </p>
 				</div>
 				
 				<!-- 프로필 사진  -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>프로필 사진</span>
-			      <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input type="file" name="imageFace" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*가이드 프로필 사진을 업로드 해주세요</p>
 				</div>
 
@@ -242,7 +242,7 @@
 			<!-- 여정 소개 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>여행 소개</span>
-						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
+						 <textarea class="form-control textarea-layer" rows="9" name="tripIntro" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
                           <div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>	
 			 <hr>
@@ -259,15 +259,15 @@
 					<!-- 코스 소개 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>코스 소개</span>
-						<textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
+						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
-		                <input type="file" id="photo" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					</div>		
 					
 					<!-- 코스 일 차 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
-					 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
+					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
 					 	<input type="button" id="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
@@ -355,13 +355,13 @@
 				 <!-- 1인당 가격   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>1인당 가격  </span>
-			 	    <input type="number" class="select-nomalsize" name="accomoName" placeholder="1인당 가격  ex)150,000">
+			 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
 				  </div>
 			   
 			   	 <!-- 포함 사항    -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
+			 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
 			 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
 				  </div>
 			   
@@ -369,7 +369,7 @@
 		    	<!-- 불포함 사항    -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>불포함 사항  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="예시) 식비 등 "  value="">
+			 	    <input type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
 				  </div> 
 			   
 			   </td>
