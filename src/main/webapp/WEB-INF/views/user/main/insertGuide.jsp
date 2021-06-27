@@ -249,7 +249,7 @@
 			 <!-- 코스 이름  -->
 			 <div class="form-layer">
 				<span class="form-title" style="display:inline-block";>코스 이름  </span>
-			 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 " value="">
+			 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
 			</div>
 				
 			<!-- 코스 소개 -->
@@ -264,24 +264,35 @@
 			<div class="form-layer">
 				<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
 			 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/>
-			 	<button id="addTripCourse" style="margin-left: 50px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" > 여행 추가</button>
+			 	<input type="button" id="addTripCourse" style="margin-left: 50px;  border-radius: 0px; box-shadow: none;
+					 background-color:skyblue;" value="여행추가">
 			</div>
+					 
+			<h3 align="center">추가된 여행 리스트</h3>
 			<div id="addedCourse">
 			</div>
 			
 			<script>
+				$(document).ready(function(){
+					
 				const $addTripCourse = document.getElementById("addTripCourse");
-				const $courses = document.getElementById("addedCourse");
-				
-				const $courseInfo = document.getElementById("tripDay").value + "일차 - " + document.getElementById("courseTitle").value;
-				console.log(courseInfo);
 				
 				$addTripCourse.onclick = function() {
 				
-					$('<input/>').attr({type:'text',name:'addedCourse', value: courseInfo}).appendTo('#addedCourse');
-
-				}
+					var courseTitle = $('#courseTitle').val();
+					var tripDay = $('#tripDay').val();
+					
+ 					$('#addedCourse').append(
+ 							'<input type="text" name="courses" value="DAY - '+ tripDay + ' : ' + courseTitle +'">\
+ 							<button type="button" class="btnRemove">삭제</button><br>'
+ 					);
+ 					$('.btnRemove').on('click', function(){
+ 						$(this).prev().remove();
+ 						$(this).next().remove();
+ 						$(this).remove();
+ 					});
+					}
+				});
 			</script>			
 			<hr>
 			<!-- 만나는 장소  -->
