@@ -56,7 +56,6 @@
 	</aop:config>
 	
 	<!--  dao 추가해주어야 함 -->
-	<!-- <mybatis-spring:scan 
-		base-package="com.maximusteam.tripfulaxel.member.model.dao, 
-					  com.maximusteam.tripfulaxel.board.model.dao"/> -->
+	<mybatis-spring:scan 
+		base-package="com.maximusteam.tripfulaxel.admin.model.dao"/> 
 </beans>

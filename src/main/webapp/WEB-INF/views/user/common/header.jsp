@@ -164,7 +164,10 @@
 	                    </li>
 	                    </li>
 	                    <li class="floatL">
-	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin">
+
+
+	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
+
                         <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
 	                    </a>
 	                    </li>
