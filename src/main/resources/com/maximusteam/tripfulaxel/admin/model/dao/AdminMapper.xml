@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.admin.model.dao.AdminMapper">
+
+	<!-- 관리자리스트 -->
+	<resultMap id="adminList" type="AdminDTO">
+		<id column="ADMIN_NO" property="adminNo" />
+		<result column="ADMIN_POSITION" property="adminPosition" />
+		<result column="ADMIN_NAME" property="adminName" />
+		<result column="ADMIN_EMAIL" property="adminEmail" />
+		<result column="ADMIN_HIRE_DATE" property="hireDate" />
+	</resultMap>
+	
+	<!-- 회원리스트 -->
+	<resultMap id="memberList" type="MemberDTO">
+		<id column="USER_CODE" property="memberNo" />
+		<result column="USER_NAME" property="memberName" />
+		<result column="USER_EMAIL" property="memberId" />
+		<result column="USER_REGISTER_DAY" property="enrollDate" />
+		<result column="USER_REPORT_COUNT" property="count" />
+	</resultMap>
+	
+	<!-- 신고리스트 -->
+	<resultMap id="reportList" type="ReportDTO">
+		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
+		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
+		<result column="EXAMINE_REQUEST_REASON" property="reportReason" />
+		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
+		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
+	</resultMap>
+	
+	<select id="selectAdmin" resultMap="adminList">
+        SELECT 
+               A.ADMIN_NO
+             , A.ADMIN_POSITION
+             , A.ADMIN_NAME
+             , A.ADMIN_EMAIL
+             , A.ADMIN_HIRE_DATE
+          FROM ADMIN A 
+	</select>
+	
+	<select id="selectMember" resultMap="memberList">
+        SELECT 
+               A.USER_CODE
+             , A.USER_NAME
+             , A.USER_EMAIL
+             , A.USER_REGISTER_DAY
+             , A.USER_REPORT_COUNT
+          FROM USER A
+         WHERE USER_GUIDE_YN = 'N'
+	</select>
+	
+	<select id="selectReport" resultMap="reportList">
+        SELECT 
+               A.EXAMINE_REQUEST_CODE
+             , A.EXAMINE_REQUEST_REASON
+             , A.EXAMINE_REQUEST_REASON
+             , A.EXAMINE_REQUEST_YN
+             , A.EXAMINE_REQUEST_YN
+          FROM EXAMINE A
+          JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
+         WHERE EXAMINE_TYPE_CODE = 1
+            OR EXAMINE_TYPE_CODE = 2
+	</select>
+
+</mapper>
