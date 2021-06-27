@@ -246,30 +246,32 @@
                           <div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>	
 			 <hr>
+			 
+			 
 			 <!-- 코스 이름  -->
-			 <div class="form-layer">
-				<span class="form-title" style="display:inline-block";>코스 이름  </span>
-			 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
-			</div>
-				
-			<!-- 코스 소개 -->
-			<div class="form-layer">
-				<span class="form-title" style="display:inline-block";>코스 소개</span>
-				<textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
-                <div class="maxText">(최대 500자)</div>
-                <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
-			</div>		
-			
-			<!-- 코스 일 차 -->
-			<div class="form-layer">
-				<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
-			 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/>
-			 	<input type="button" id="addTripCourse" style="margin-left: 50px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" value="여행추가">
-			</div>
-					 
-			<h3 align="center">추가된 여행 리스트</h3>
-			<div id="addedCourse">
+			 <div id="courseContainer">
+				 <div id="course">
+					 <div class="form-layer">
+						<span class="form-title" style="display:inline-block";>코스 이름  </span>
+					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
+					</div>
+						
+					<!-- 코스 소개 -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>코스 소개</span>
+						<textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
+		                <div class="maxText">(최대 500자)</div>
+		                <input type="file" id="photo" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+					</div>		
+					
+					<!-- 코스 일 차 -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
+					 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
+					</div>
+					 	<input type="button" id="addTripCourse" style=" border-radius: 0px; box-shadow: none;
+							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
+				</div>
 			</div>
 			
 			<script>
@@ -277,15 +279,28 @@
 					
 				const $addTripCourse = document.getElementById("addTripCourse");
 				
+				var courseCopy = $('#course').clone();
+
 				$addTripCourse.onclick = function() {
-				
-					var courseTitle = $('#courseTitle').val();
-					var tripDay = $('#tripDay').val();
+					/* var courseTitle = $('#courseTitle').val();
+					var tripDay = $('#tripDay').val(); */
 					
- 					$('#addedCourse').append(
- 							'<input type="text" name="courses" value="DAY - '+ tripDay + ' : ' + courseTitle +'">\
- 							<button type="button" class="btnRemove">삭제</button><br>'
+					$('#courseContainer').append(
+	 						'<hr>'
+	 				);
+					
+ 					$('#courseContainer').append(
+ 							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
+ 							<button type="button" class="btnRemove">삭제</button><br>\
+ 			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+ 							' */
+ 						courseCopy
  					);
+					$('#courseContainer').append(
+ 						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
+							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+ 					);
+ 					
  					$('.btnRemove').on('click', function(){
  						$(this).prev().remove();
  						$(this).next().remove();
@@ -300,8 +315,8 @@
 					<span class="form-title" style="display:inline-block";>만나는 장소  </span>
 				
 			         <input type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
-					 <button class="submit-btn" id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" > 주소 검색</button>
+					 <input type="button"  id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
+					 background-color:skyblue;" value=" 주소 검색 ">
 				     <input type="text" name="address1" id="address1" readonly style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요.">
 				     <input type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
