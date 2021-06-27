@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,15 +119,17 @@
 
 
 			<div class="row">
+			<c:forEach items="joinTrip">
+			
 				<div class="col-lg-4 col-md-6">
 					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
 						<img src="/tripfulaxel/resources/user/images/trip/jeju1.png"
 							alt="Speaker 1" class="img-fluid">
 						<div class="details">
 							<h3>
-								<a>먹방투어 같이가요~</a>
+								<a>${joinTrip.tripTitle }</a>
 							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
+							<p>${joinTrip.tripStartDate } ~ ${joinTrip.tripEndDate }</p>
 								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
 							<div class="social">
 								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
@@ -134,6 +137,8 @@
 						</div>
 					</div>
 				</div>
+			
+			</c:forEach>
 				<div class="col-lg-4 col-md-6">
 					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
 						<img src="/tripfulaxel/resources/user/images/trip/jeju2.png"

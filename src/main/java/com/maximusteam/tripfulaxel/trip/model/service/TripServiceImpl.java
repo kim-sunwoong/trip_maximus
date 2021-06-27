@@ -2,6 +2,7 @@ package com.maximusteam.tripfulaxel.trip.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class TripServiceImpl implements TripService{
 	}
 
 	@Override
-	public List<TripDTO> selectJoinTripList(String tripType) {
+	public List<TripDTO> selectTripList(Map<String, String> parameter) {
 		
-		return tripMapper.selectJoinTripList(tripType);
+		return tripMapper.selectTripList(parameter);
 	}
 
 }

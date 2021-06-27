@@ -57,7 +57,6 @@
 	
 	<!--  dao 추가해주어야 함 -->
 	<mybatis-spring:scan 
-		base-package="com.maximusteam.tripfulaxel.admin.model.dao"/> 
+		base-package="com.maximusteam.tripfulaxel.*.model.dao"/> 
 		
-	<mybatis-spring:scan base-package="com.maximusteam.tripfulaxel.trip.model.dao"/>
 </beans>

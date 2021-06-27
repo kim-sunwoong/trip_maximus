@@ -1,6 +1,7 @@
 package com.maximusteam.tripfulaxel.trip.model.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 public class TripDTO {
 
@@ -13,6 +14,9 @@ public class TripDTO {
 	private String include;
 	private String nInclude;
 	private Date tripEndDate;
+	
+	private List<TripCourseDTO> tripCourseList;
+	private List<TripImageDTO> tripImgList;
 	
 //	같이가요
 	private int joinTripCode;
@@ -35,8 +39,9 @@ public class TripDTO {
 	}
 
 	public TripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, String meetLocation,
-			String include, String nInclude, Date tripEndDate, int joinTripCode, int joinTripMaximum, int guideTripCode,
-			int payment, int guideTripMinimum, int guideTripMaximum, int userTripCode, String userTripComentTitle,
+			String include, String nInclude, Date tripEndDate, List<TripCourseDTO> tripCourseList,
+			List<TripImageDTO> tripImgList, int joinTripCode, int joinTripMaximum, int guideTripCode, int payment,
+			int guideTripMinimum, int guideTripMaximum, int userTripCode, String userTripComentTitle,
 			String userTripComent, int userTripComentPoint) {
 		super();
 		this.tripCode = tripCode;
@@ -47,6 +52,8 @@ public class TripDTO {
 		this.include = include;
 		this.nInclude = nInclude;
 		this.tripEndDate = tripEndDate;
+		this.tripCourseList = tripCourseList;
+		this.tripImgList = tripImgList;
 		this.joinTripCode = joinTripCode;
 		this.joinTripMaximum = joinTripMaximum;
 		this.guideTripCode = guideTripCode;
@@ -121,6 +128,22 @@ public class TripDTO {
 
 	public void setTripEndDate(Date tripEndDate) {
 		this.tripEndDate = tripEndDate;
+	}
+
+	public List<TripCourseDTO> getTripCourseList() {
+		return tripCourseList;
+	}
+
+	public void setTripCourseList(List<TripCourseDTO> tripCourseList) {
+		this.tripCourseList = tripCourseList;
+	}
+
+	public List<TripImageDTO> getTripImgList() {
+		return tripImgList;
+	}
+
+	public void setTripImgList(List<TripImageDTO> tripImgList) {
+		this.tripImgList = tripImgList;
 	}
 
 	public int getJoinTripCode() {
@@ -207,12 +230,15 @@ public class TripDTO {
 	public String toString() {
 		return "TripDTO [tripCode=" + tripCode + ", tripTitle=" + tripTitle + ", tripIntro=" + tripIntro
 				+ ", tripStartDate=" + tripStartDate + ", meetLocation=" + meetLocation + ", include=" + include
-				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", joinTripCode=" + joinTripCode
-				+ ", joinTripMaximum=" + joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment
-				+ ", guideTripMinimum=" + guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum
-				+ ", userTripCode=" + userTripCode + ", userTripComentTitle=" + userTripComentTitle
-				+ ", userTripComent=" + userTripComent + ", userTripComentPoint=" + userTripComentPoint + "]";
+				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", tripCourseList=" + tripCourseList
+				+ ", tripImgList=" + tripImgList + ", joinTripCode=" + joinTripCode + ", joinTripMaximum="
+				+ joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment + ", guideTripMinimum="
+				+ guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum + ", userTripCode=" + userTripCode
+				+ ", userTripComentTitle=" + userTripComentTitle + ", userTripComent=" + userTripComent
+				+ ", userTripComentPoint=" + userTripComentPoint + "]";
 	}
+
+
     
     
 	
