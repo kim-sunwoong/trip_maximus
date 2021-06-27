@@ -74,7 +74,6 @@ public class MainController {
 	
 	@GetMapping("insertGuide")
 	public String insertGuide(Model model) {
-		System.out.println("coooommmon");
 		/* 로그인이 되었다는 가정하에 기능 구현을 위한 세션에 로그인정보 집어넣기 */
 		UserDTO user = new UserDTO(1,"차진서", "010-9882-1912", "1234", "19920504", "남자", 
 				"up1912@gmail.com", "2021-06-26",0,"N");
