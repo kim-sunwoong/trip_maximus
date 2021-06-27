@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
+	
+	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.TripDTO" id="joinTrip">
+		<id property="tripCode"/>
+		<result property="tripTitle" column=""/>
+		<result property="tripIntro" column=""/>
+		<result property="tripStartDate" column=""/>
+		<result property="meetLocation" column=""/>
+		<result property="include" column=""/>
+		<result property="nInclude" column=""/>
+		<result property="tripEndDate" column=""/>
+		
+		<result property="joinTripMaximum" column=""/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+		
+	</resultMap>
+	
+	<select id="selectJoinTripList" resultMap="joinTrip">
+	
+	
+	</select>
+	
+</mapper>
