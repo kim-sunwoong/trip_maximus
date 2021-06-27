@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.admin.model.dao.AdminMapper;
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 
@@ -38,6 +40,17 @@ public class AdminServiceImpl implements AdminService {
 	public List<ReportDTO> selectReportList() {
 		System.out.println("신고 리스트333");
 		return mapper.selectReport();
+	}
+
+	@Override
+	public List<GuideDTO> selectGuideList() {
+		
+		return mapper.selectGuide();
+	}
+
+	@Override
+	public List<CalculateDTO> selectCalculateList() {
+		return mapper.selectCalculate();
 	}
 
 	

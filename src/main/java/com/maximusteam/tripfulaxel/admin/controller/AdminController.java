@@ -15,12 +15,17 @@ import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
 @RequestMapping("/admin/*")
 public class AdminController {
 
-//	@Qualifier("adminServiceImpl")
 	private final AdminService adminService;
 	 
 	@Autowired
 	public AdminController(AdminService adminService) {
 		this.adminService = adminService;
+	}
+	
+	@GetMapping("notice") 
+	public String selectNotice(Model model) {
+
+		return "admin/noticeManagement"; 
 	}
 	
 	@GetMapping("workerList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
@@ -34,19 +39,35 @@ public class AdminController {
 		return "admin/workerList"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
 	}
 	
-	@GetMapping("memberList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
+	@GetMapping("memberList") 
 	public String selectMemberList(Model model) {
 		
 		model.addAttribute("selectMember", adminService.selectMemberList());
 			
-		return "admin/memberManagement"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+		return "admin/memberManagement"; 
 	}
 	
-	@GetMapping("reportList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
+	@GetMapping("reportList") 
 	public String selectReportList(Model model) {
 		
-//		model.addAttribute("selectReport", adminService.selectReportList());
+		model.addAttribute("selectReport", adminService.selectReportList());
 			
-		return "admin/reportManagement"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+		return "admin/reportManagement";
+	}
+	
+	@GetMapping("guideList")
+	public String selectGuideList(Model model) {
+		
+		model.addAttribute("selectGuide", adminService.selectGuideList());
+			
+		return "admin/guideEnroll"; 
+	}
+		
+	@GetMapping("calculateList")
+	public String selectCalculateList(Model model) {
+			
+	model.addAttribute("selectCalculate", adminService.selectCalculateList());
+				
+	return "admin/guideCalculate"; 
 	}
 }
