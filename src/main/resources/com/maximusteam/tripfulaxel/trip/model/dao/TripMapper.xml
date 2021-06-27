@@ -4,26 +4,39 @@
 	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
 	
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.TripDTO" id="joinTrip">
+	
 		<id property="tripCode"/>
-		<result property="tripTitle" column=""/>
-		<result property="tripIntro" column=""/>
-		<result property="tripStartDate" column=""/>
-		<result property="meetLocation" column=""/>
-		<result property="include" column=""/>
-		<result property="nInclude" column=""/>
-		<result property="tripEndDate" column=""/>
-		
-		<result property="joinTripMaximum" column=""/>
-		<result property="" column=""/>
-		<result property="" column=""/>
-		<result property="" column=""/>
-		<result property="" column=""/>
-		<result property="" column=""/>
-		
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+
+		<!-- join trip 부분 -->		
+		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
+		<result property="joinTripCode" column="J_TRIP_CODE"/>
 	</resultMap>
 	
-	<select id="selectJoinTripList" resultMap="joinTrip">
+	<select id="selectJoinTripList" resultMap="joinTrip" parameterType="string">
 	
+		SELECT 
+	 	  	   * 
+	<choose >
+	 <when test="tripType = join">
+		 FROM JOIN_TRIP jt
+          JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
+	 </when>
+	 <when test="tripType = guide">
+	 	FROM GUIDE_TRIP gt
+          JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
+	 </when>	  
+	 <otherwise>
+	 	FROM USER_TRIP ut
+          JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
+	 </otherwise>
+	</choose>
 	
 	</select>
 	
