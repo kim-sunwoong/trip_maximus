@@ -30,13 +30,16 @@ public class TripController {
 	@RequestMapping("join/select/list")
 	public String selectJoinTripList(Model model) {
 		
-		String tripType = "join";
+		String tripType = "guide";
 		Map<String, String> parameter = new HashMap<String, String>();
 		parameter.put("tripType", tripType);
 		List<TripDTO> joinTripList = tripService.selectTripList(parameter);
 		
 		for(TripDTO trip : joinTripList) {
+			int count = 0;
 			System.out.println(trip);
+			count++;
+			System.out.println("count : " + count);
 			for(TripCourseDTO course : trip.getTripCourseList()) {
 				System.out.println(course);
 			}

@@ -32,6 +32,7 @@
 		<result property="userTripComent" column="U_TRIP_COMENT_INFO"/>
 		<result property="userTripComentPoint" column="U_TRIP_COMENT_POINT"/>
 		
+		<!-- course -->
 		<collection property="tripCourseList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO">
 			<result property="courseCode" column="TRIP_COURSE_CODE"/>
 			<result property="courseName" column="TRIP_COURSE_NAME"/>
@@ -40,6 +41,7 @@
 			<result property="tripCode" column="TRIP_CODE"/>
 		</collection>
 		
+		<!-- image -->
 		<collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripImageDTO">
 			<result property="tripCode" column="TRIP_CODE"/>
 			<result property="saveName" column="TRIP_IMAGE_SAVED_NAME"/>
@@ -67,6 +69,9 @@
 		   TRIP_INCLUDE,
 		   TRIP_N_INCLUDE,
 		   TRIP_END_DATE,
+		   TRIP_IMAGE_SAVED_NAME,
+		   TRIP_IMAGE_TYPE_CODE,
+		   TRIP_IMAGE_ORIGIN_NAME,
 		   TRIP_COURSE_CODE,
 		   TRIP_COURSE_NAME,
 		   TRIP_COURSE_INFO,
@@ -83,22 +88,28 @@
 	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
 		 </when>
 		 <when test='tripType eq "guide".toString()'>
-		 		 gt.TRIP_CODE,
-		 	     G_TRIP_CODE, 
-		 	     G_TRIP_PAYMENT, 
-		 	     G_TRIP_MINIMUM, 
-		 	     G_TRIP_MAXIMUM
-		 	FROM GUIDE_TRIP gt
-	          JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
+		   G_TRIP_CODE,
+		   G_TRIP_PAYMENT,
+		   G_TRIP_MINIMUM,
+		   G_TRIP_MAXIMUM,
+		   gt.TRIP_CODE,
+		   ti.TRIP_IMAGE_CODE
+	  FROM GUIDE_TRIP gt 
+	  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 		
 		 </when>	  
 		 <otherwise>
-		 	U_TRIP_CODE, 
-		 	U_TRIP_COMENT_TITLE, 
-		 	U_TRIP_COMENT_INFO, 
-		 	U_TRIP_COMENT_POINT,
-		 	ut.TRIP_CODE
-		 	FROM USER_TRIP ut
-	          JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
+		   U_TRIP_CODE,
+		   U_TRIP_COMENT_TITLE,
+		   U_TRIP_COMENT_INFO,
+		   U_TRIP_COMENT_POINT,
+		   ut.TRIP_CODE,
+		   ti.TRIP_IMAGE_CODE
+	  FROM USER_TRIP ut 
+	  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 	
 		 </otherwise>
 		</choose>
 		
