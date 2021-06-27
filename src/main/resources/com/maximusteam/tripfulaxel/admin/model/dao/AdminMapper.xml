@@ -49,6 +49,7 @@
              , A.USER_REGISTER_DAY
              , A.USER_REPORT_COUNT
           FROM USER A
+         WHERE USER_GUIDE_YN = 'N'
 	</select>
 	
 	<select id="selectReport" resultMap="reportList">
