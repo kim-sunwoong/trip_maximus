@@ -82,6 +82,20 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+<script>
+					
+						function sort() {
+							
+							var themeList = document.getElementById("search_theme");
+							theme = themeList.options[themeList.selectedIndex].value;
+							
+							const sortList = document.getElementById("sort_condition");
+							sort = sortList.options[sortList.selectedIndex].value;
+							
+							location.href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=guide&sortTheme=" + theme + "&sortCondition=" + sort;
+						}
+						
+</script>
 </head>
 <body>
 
@@ -94,13 +108,13 @@
 				<div class="new_search_box">
 				<ul class="clearfix">
 					<li style="margin-left: 380px; margin-top: 10px; width:170px;">
-					<select name="search_condition" id="sort_condition" style="width:170px;">
+					<select name="search_condition" id="sort_condition" onchange="sort()" style="width:170px;">
 							<option value="">인기순/최신순</option>
 							<option value="최신순" selected="selected">최신순</option>
 							<option value="인기순">인기순</option>
 					</select></li>
 					<li style="margin-left: 5px; margin-top: 10px; width:220px;">
-					<select name="search_theme" id="search_theme" style="width:220px;">
+					<select name="search_theme" id="search_theme" onchange="sort()" style="width:220px;">
 							<option value="">여행 테마 선택</option>
 							<option value="1">직접 체험하는 액티비티</option>
 							<option value="2">온몸으로 느끼는 자연</option>
@@ -108,15 +122,7 @@
 							<option value="4">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</option>
 							<option value="5">인생샷을 건지는 스냅</option>
 					</select></li>
-					<script>
-						const theme = document.getElementById("search_theme");
-						theme = theme.options[theme.selectedIndex].value;
-						
-						const sort = document.getElementById("sort_condition");
-						sort = sort.options[sort.selectedIndex].value;
 					
-						
-					</script>
 				</ul>
 			</div>
 
