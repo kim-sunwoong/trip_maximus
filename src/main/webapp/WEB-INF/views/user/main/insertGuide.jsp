@@ -377,9 +377,9 @@
  			<tr>
 				<br>
 				<th colspan="2" style="background-color: white !important; ">
-						<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
-						box-shadow: none;  border-radius: 0px;  background-color:skyblue;">
-						제출하기</button>
+						<input type="button" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
+						box-shadow: none;  border-radius: 0px;  background-color:skyblue;" value="제출하기">
+						
 				</th>
 			</tr> 
 			
@@ -387,6 +387,15 @@
 		</tbody>
  </table>
 
+<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
+<script>
+
+
+
+</script>
+
+
+<!-- 주소 api 사용 -->
 <script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 </script>
