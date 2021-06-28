@@ -1,7 +1,5 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +18,6 @@ public class UserMyPageController {
 	public UserMyPageController(UserMypageServiceImpl userMypageService) {
 		this.userMypageService = userMypageService;
 	}
-	
 	
 	@GetMapping(value = { "mypageTab1", "/"})
 	public String selectJoinList(Model model) {
