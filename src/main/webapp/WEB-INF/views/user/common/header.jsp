@@ -170,7 +170,7 @@
 	                    </li>
 	                    
 	                    <li class="floatL">
-		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage">
+		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage/">
 	                        <span style="color:white; font-size: 18px; font-weight: bold;">마이페이지</span>
 		                    </a>
 	                    </li>
@@ -206,7 +206,7 @@
                 </li>
                 <li class="floatL header_menu">
                     <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
-                    <span style="color:white; font-size: 20px; " > 같이가요 여행</span></a>
+                    <span style="color:white; font-size: 20px;" > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
                     <a href="#" class="btnLineC txt_md">

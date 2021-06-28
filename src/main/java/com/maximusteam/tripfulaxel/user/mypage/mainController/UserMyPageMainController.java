@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserMyPageMainController {
 
 	
-	@GetMapping("/") 
-	public String userMain(){
-		return "user/mypage/mypageTab1";
-	}
+//	@GetMapping(value = { "/", "mypageTab1" ,"main"}) 
+//	public String userMain(){
+//		return "user/mypage/mypageTab1";
+//	}
 }
