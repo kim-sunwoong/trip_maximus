@@ -1,25 +1,33 @@
 package com.maximusteam.tripfulaxel.user.model.service;
 
+import com.maximusteam.tripfulaxel.user.model.dao.UserDAO;
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 /**
  * @author JJY
  *
  */
-public class UserServiceImpl{
+public class UserServiceImpl implements UserService{
 	
-	/*
-	 * private UserMapper mapper;
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public UserServiceImpl(UserMapper mapper) { this.mapper = mapper; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @Override public boolean registUser(UserDTO user) {
-	 * 
-	 * return userMapper.insert(user) > 0? true;false; }
-	 */
-}
+	
+	  private UserDAO userDAO;
+	  
+	 
+	  public UserServiceImpl(UserDTO user) { 
+		 this.userDAO = userDAO;
+	}
+
+
+	@Override
+	public boolean registUser(UserDTO user) {
+	
+		return userDAO.regist(user) > 0? true:false;
+	}
+
+
+
+
+
+
+	  
+	  
+} 

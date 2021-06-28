@@ -185,7 +185,7 @@ li.header_menu:hover {
 					필수 입력</p>
 					
 				<form style="margin-top: 10px;" class="member_form" name="fregisterform" 
-				     action="${ pageContext.servletContext.contextPath }/user/regist"
+				     action=""
 					 onsubmit="return fregisterform_submit(this);" method="post"
 					  enctype="multipart/form-data" autocomplete="off">
 					  
@@ -950,11 +950,11 @@ li.header_menu:hover {
         }
     });
 
-    function sorry() {
+/*     function sorry() {
         alert('현재 페이스북 가입은 개발 진행 중으로 네이버, 카카오톡으로만 가입이 가능합니다.');
         return false;
     }
-
+ */
     //숫자만 입력
     function onlynum(event) {
         event = event || window.event;

@@ -8,6 +8,11 @@ import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
  */
 public interface UserService {
  
+	/**
+	 * 회원가입용 메소드
+	 * @param user
+	 * @return
+	 */
 	boolean registUser(UserDTO user);
 	
 }
