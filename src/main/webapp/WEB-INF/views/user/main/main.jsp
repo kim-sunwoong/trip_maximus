@@ -183,16 +183,25 @@ li.header_menu:hover {
 				<span class="txt_sm or" style="margin-top: 3vh">당신의 여행에 가속을</span>
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
-				<form style="margin-top: 10px;" class="member_form" name="fregisterform" action="#"
-					onsubmit="return fregisterform_submit(this);" method="post"
-					enctype="multipart/form-data" autocomplete="off">
+					
+				<form style="margin-top: 10px;" class="member_form" name="fregisterform" 
+				     action="${ pageContext.servletContext.contextPath }/user/regist"
+					 onsubmit="return fregisterform_submit(this);" method="post"
+					  enctype="multipart/form-data" autocomplete="off">
+					  
 			     <input type="email" id="reg_mb_email" name="mb_email" value=""
 						required class="email frm_input full_input" size="70"
 						maxlength="100" placeholder="* 이메일 주소">
+						
 				 <input type="text" name="mb_name" value="" required class="frm_input half_input"
 						size="3" placeholder="* 이름(예:홍길동)">
+						
+				 <input type="text" name="mb_phone" value="" required class="frm_input half_input"
+				        placeholder="* 전화번호(예:01012345678)">
+				        
 				 <input type="password" name="mb_password" required class="frm_input half_input"
 						minlength="3" maxlength="20" placeholder="* 비밀번호">
+						
 				 <input type="password" name="mb_password_re" required 
 				        class="frm_input half_input right_input" minlength="3" 
 				        maxlength="20" placeholder="* 비밀번호 확인">
@@ -415,14 +424,16 @@ li.header_menu:hover {
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_4" name="agree_4" value="1"
-							class="checkOne"> <label for="agree_4"><i
-							id="agree_4_i"></i><span>마케팅 정보수신에 동의(선택)</span></label>
+							class="checkOne"> 
+						<label for="agree_4"> <i id="agree_4_i"></i>
+						 <span>마케팅 정보수신에 동의(선택)</span>
+                       </label>
 					</p>
-					<input type="hidden" name="w" value=""> <input
-						type="hidden" name="s" value=""> <input id="signin_btn"
-						class="btnBgC txt_bs submit" type="submit" value="가입하기"
-						style="margin-top: 3vh;"> <label for="signin_btn"
-						style="cursor: pointer;">가입하기</label>
+					<input type="hidden" name="w" value=""> 
+					<input type="hidden" name="s" value=""> 
+					<input id="signin_btn" class="btnBgC txt_bs submit" type="submit" value="가입하기"
+						style="margin-top: 3vh;"> 
+					<label for="signin_btn" style="cursor: pointer;">가입하기</label>
 				</form>
 			</div>
 		</div>
