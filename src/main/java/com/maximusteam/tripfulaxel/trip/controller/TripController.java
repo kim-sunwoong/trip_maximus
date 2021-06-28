@@ -39,6 +39,26 @@ public class TripController {
 		parameter.put("condition", condition);
 		List<TripDTO> tripList = tripService.selectTripList(parameter);
 		
+		int count = 0;
+		for(TripDTO trip : tripList) {
+			System.out.println("count : " + count);
+			count++;
+			System.out.println(trip);
+			for(TripImageDTO image : trip.getTripImgList()) {
+				System.out.println(image);
+			}
+			for(TripCourseDTO course : trip.getTripCourseList()) {
+				System.out.println(course);
+			}
+			for(TripThemeDTO theme : trip.getTripThemeList()) {
+				System.out.println(theme);
+			}
+			for(TripTransitDTO transit : trip.getTripTransitList()) {
+				System.out.println(transit);
+			}
+			
+		}
+		
 		
 		System.out.println(tripList);
 		model.addAttribute("tripList", tripList);

@@ -94,13 +94,16 @@
 		   THEME_DETAIL,
 		   THEME_CHOICE_CODE,
 		   t2.THEME_CODE,
+		   t.TRIP_CODE,
+		<if test="condition.sortCondition eq '인기순'.toString()">
+		 	IFNULL(iv.CNT, 0) as rvcnt,
+		</if>
   
 		<choose>
 			 <!-- 같이가요 일때 -->
 			 <when test='condition.tripType == 2'>
 				   J_TRIP_CODE,
 				   J_TRIP_MAXIMIM,
-				   jt.TRIP_CODE,
 				   ti.TRIP_IMAGE_CODE
 			  FROM JOIN_TRIP jt 
 			  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
@@ -112,7 +115,6 @@
 				   G_TRIP_PAYMENT,
 				   G_TRIP_MINIMUM,
 				   G_TRIP_MAXIMUM,
-				   gt.TRIP_CODE,
 				   ti.TRIP_IMAGE_CODE
 			  FROM GUIDE_TRIP gt 
 			  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
@@ -124,7 +126,6 @@
 				   U_TRIP_COMENT_TITLE,
 				   U_TRIP_COMENT_INFO,
 				   U_TRIP_COMENT_POINT,
-				   ut.TRIP_CODE,
 				   ti.TRIP_IMAGE_CODE
 			  FROM USER_TRIP ut 
 			  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
@@ -140,7 +141,7 @@
 	  JOIN TRIP_REGIST_LIST trl ON (t.TRIP_CODE = trl.TRIP_CODE)
 	  
 	  <!-- 첫 정렬은 최신순이며 인기 순이 선택되었을때 리뷰 카운트를 세는 join이 추가됨 -->
-	  <if test="condition.sortTheme != 0 and condition.sortCondition eq '인기순'.toString()">
+	  <if test="condition.sortCondition eq '인기순'.toString()">
 	  LEFT OUTER JOIN ( SELECT 
   				TRIP_CODE,
 	   		    COUNT(tr.TRIP_REVIEW_CODE) as CNT
@@ -158,7 +159,14 @@
 		  <when test="condition.sortTheme == 0">
 			   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
 		      	 AND trl.REGIST_TYPE_CODE = 3
-			   ORDER BY gt.TRIP_CODE DESC
+		      	 
+		       <if test="condition.sortCondition eq '최신순'.toString()">
+		      		  ORDER BY t.TRIP_CODE DESC
+		       </if>
+		       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
+		       <if test="condition.sortCondition eq '인기순'.toString()">
+		      		  ORDER BY rvcnt DESC;
+		       </if>
 		  </when>
 				  
 				<!-- 첫 호출이 아닌 상태 최신순/인기순 and 테마가 선택되어 있음 -->
@@ -168,7 +176,7 @@
 		      	 AND ttc.THEME_CODE = #{condition.sortTheme}
 		      	 
 		       <if test="condition.sortCondition eq '최신순'.toString()">
-		      		  ORDER BY gt.TRIP_CODE DESC
+		      		  ORDER BY t.TRIP_CODE DESC
 		       </if>
 		       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
 		       <if test="condition.sortCondition eq '인기순'.toString()">

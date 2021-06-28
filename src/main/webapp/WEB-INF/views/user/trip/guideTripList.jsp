@@ -89,10 +89,15 @@
 							var themeList = document.getElementById("search_theme");
 							theme = themeList.options[themeList.selectedIndex].value;
 							
-							const sortList = document.getElementById("sort_condition");
+							var sortList = document.getElementById("sort_condition");
 							sort = sortList.options[sortList.selectedIndex].value;
 							
-							location.href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=guide&sortTheme=" + theme + "&sortCondition=" + sort;
+							
+							if (theme != "") {
+								location.href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortTheme=" + theme + "&sortCondition=" + sort;
+							} else {
+								location.href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=" + sort;
+							}
 						}
 						
 </script>
@@ -115,7 +120,7 @@
 					</select></li>
 					<li style="margin-left: 5px; margin-top: 10px; width:220px;">
 					<select name="search_theme" id="search_theme" onchange="sort()" style="width:220px;">
-							<option value="">여행 테마 선택</option>
+							<option value="" selected="selected">여행 테마 선택</option>
 							<option value="1">직접 체험하는 액티비티</option>
 							<option value="2">온몸으로 느끼는 자연</option>
 							<option value="3">가이드만 알고 있는 시크릿 스팟 여행</option>
