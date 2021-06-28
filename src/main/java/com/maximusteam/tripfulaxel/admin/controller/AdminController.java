@@ -70,4 +70,12 @@ public class AdminController {
 				
 	return "admin/guideCalculate"; 
 	}
+	
+	@GetMapping("taxList")
+	public String selectTaxList(Model model) {
+			
+	model.addAttribute("selectTax", adminService.selectTaxList());
+				
+	return "admin/tax"; 
+	}
 }

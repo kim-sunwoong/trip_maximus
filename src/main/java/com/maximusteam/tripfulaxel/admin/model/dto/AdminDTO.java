@@ -8,11 +8,11 @@ public class AdminDTO {
 	private String adminPosition;
 	private String adminName;
 	private String adminEmail;
-	private java.util.Date hireDate;
+	private java.sql.Date hireDate;
 	
 	public AdminDTO() {}
 
-	public AdminDTO(int adminNo, String adminPosition, String adminName, String adminEmail, Date hireDate) {
+	public AdminDTO(int adminNo, String adminPosition, String adminName, String adminEmail, java.sql.Date hireDate) {
 		super();
 		this.adminNo = adminNo;
 		this.adminPosition = adminPosition;
@@ -53,11 +53,11 @@ public class AdminDTO {
 		this.adminEmail = adminEmail;
 	}
 
-	public java.util.Date getHireDate() {
+	public java.sql.Date getHireDate() {
 		return hireDate;
 	}
 
-	public void setHireDate(java.util.Date hireDate) {
+	public void setHireDate(java.sql.Date hireDate) {
 		this.hireDate = hireDate;
 	}
 
@@ -66,6 +66,7 @@ public class AdminDTO {
 		return "AdminDTO [adminNo=" + adminNo + ", adminPosition=" + adminPosition + ", adminName=" + adminName
 				+ ", adminEmail=" + adminEmail + ", hireDate=" + hireDate + "]";
 	}
+
 	
 	
 

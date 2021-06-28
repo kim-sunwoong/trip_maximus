@@ -9,12 +9,12 @@ public class ReportDTO {
     private String reportReason;
     private String reportUser; //신고작성자
     private String reportStatus;
-    private java.util.Date reportDate;
+    private java.sql.Date reportDate;
 	
     public ReportDTO() {}
 
 	public ReportDTO(int reportNo, String reportTitle, String reportReason, String reportUser, String reportStatus,
-			Date reportDate) {
+			java.sql.Date reportDate) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
@@ -64,11 +64,11 @@ public class ReportDTO {
 		this.reportStatus = reportStatus;
 	}
 
-	public java.util.Date getReportDate() {
+	public java.sql.Date getReportDate() {
 		return reportDate;
 	}
 
-	public void setReportDate(java.util.Date reportDate) {
+	public void setReportDate(java.sql.Date reportDate) {
 		this.reportDate = reportDate;
 	}
 
@@ -77,6 +77,7 @@ public class ReportDTO {
 		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportReason=" + reportReason
 				+ ", reportUser=" + reportUser + ", reportStatus=" + reportStatus + ", reportDate=" + reportDate + "]";
 	}
+
 
 	
     

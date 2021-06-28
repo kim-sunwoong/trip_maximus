@@ -46,13 +46,20 @@
 		<result column="INVOICE_DATE" property="calculateDate" />
 	</resultMap>
 	
+	<!-- 세금 리스트 -->
+	<resultMap id="taxList" type="TaxDTO">
+		<id column="BILL_REQUEST_CODE" property="taxNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="BILL_REQUEST_DATE" property="taxDate" />
+	</resultMap>
+	
 	<select id="selectAdmin" resultMap="adminList">
         SELECT 
                A.ADMIN_NO
              , A.ADMIN_POSITION
              , A.ADMIN_NAME
              , A.ADMIN_EMAIL
-             , A.ADMIN_HIRE_DATE
+             , DATE_FORMAT( A.ADMIN_HIRE_DATE, '%Y-%m-%d') AS ADMIN_HIRE_DATE
           FROM ADMIN A 
 	</select>
 	
@@ -61,7 +68,7 @@
                A.USER_CODE
              , A.USER_NAME
              , A.USER_EMAIL
-             , A.USER_REGISTER_DAY
+             , DATE_FORMAT( A.USER_REGISTER_DAY, '%Y-%m-%d') AS USER_REGISTER_DAY
              , A.USER_REPORT_COUNT
           FROM USER A
          WHERE USER_GUIDE_YN = 'N'
@@ -73,7 +80,7 @@
              , A.EXAMINE_REQUEST_REASON
              , C.USER_EMAIL
              , A.EXAMINE_REQUEST_YN
-             , A.EXAMINE_REQUEST_DATE
+             , DATE_FORMAT( A.EXAMINE_REQUEST_DATE, '%Y-%m-%d') AS EXAMINE_REQUEST_DATE
           FROM EXAMINE A
           JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
           JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
@@ -96,13 +103,24 @@
         SELECT 
                A.INVOICE_CODE
              , E.USER_EMAIL
-             , A.INVOICE_DATE
+             , DATE_FORMAT(A.INVOICE_DATE, '%Y-%m-%d') AS INVOICE_DATE
           FROM INVOICE A
-          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOCE_CODE)
+          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOICE_CODE)
           JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
           JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
           JOIN USER E ON ( D.USER_CODE = E.USER_CODE);	
     </select>	
 	
-
+	<select id="selectTax" resultMap="taxList">
+         SELECT 
+               A.BILL_REQUEST_CODE
+             , E.USER_EMAIL
+             , DATE_FORMAT(A.BILL_REQUEST_DATE, '%Y-%m-%d') AS BILL_REQUEST_DATE
+          FROM BILL_REQUEST A
+          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOICE_CODE)
+          JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
+          JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+          JOIN USER E ON ( D.USER_CODE = E.USER_CODE)
+         WHERE E.USER_GUIDE_YN = 'Y'
+	</select>	
 </mapper>

@@ -7,15 +7,12 @@ public class MemberDTO {
     private int memberNo;
     private String memberName;
     private String memberId;
-    private java.util.Date enrollDate;
+    private java.sql.Date enrollDate;
     private int count;
 
-    public MemberDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public MemberDTO() {}
 
-	public MemberDTO(int memberNo, String memberName, String memberId, Date enrollDate, int count) {
+	public MemberDTO(int memberNo, String memberName, String memberId, java.sql.Date enrollDate, int count) {
 		super();
 		this.memberNo = memberNo;
 		this.memberName = memberName;
@@ -48,11 +45,11 @@ public class MemberDTO {
 		this.memberId = memberId;
 	}
 
-	public java.util.Date getEnrollDate() {
+	public java.sql.Date getEnrollDate() {
 		return enrollDate;
 	}
 
-	public void setEnrollDate(java.util.Date enrollDate) {
+	public void setEnrollDate(java.sql.Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
 
@@ -69,7 +66,8 @@ public class MemberDTO {
 		return "MemberDTO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
 				+ ", enrollDate=" + enrollDate + ", count=" + count + "]";
 	}
-    
+
+	
     
     
     

@@ -11,6 +11,7 @@ import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
 
 
 @Service
@@ -44,13 +45,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<GuideDTO> selectGuideList() {
-		
 		return mapper.selectGuide();
 	}
 
 	@Override
 	public List<CalculateDTO> selectCalculateList() {
 		return mapper.selectCalculate();
+	}
+
+	@Override
+	public List<TaxDTO> selectTaxList() {
+		return mapper.selectTax();
 	}
 
 	
