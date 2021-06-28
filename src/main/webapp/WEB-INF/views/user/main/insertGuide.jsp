@@ -269,7 +269,7 @@
 						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
 					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
-					 	<input type="button" id="addTripCourse" style=" border-radius: 0px; box-shadow: none;
+					 	<input type="button" id="addTripCourse" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
 				</div>
 			</div>
@@ -277,7 +277,7 @@
 			<script>
 				$(document).ready(function(){
 					
-				const $addTripCourse = document.getElementById("addTripCourse");
+				const $addTripCourse = document.getElementsByClassName("addTripCourse");
 				
 				var courseCopy = $('#course').clone();
 
