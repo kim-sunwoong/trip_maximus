@@ -1,21 +1,23 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
+import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
 
 @Controller
 @RequestMapping("/user/mypage/*")
 public class UserMyPageController {
 
-	private final UserMypageService userMypageService;
+	private final UserMypageServiceImpl userMypageService;
 	
 	@Autowired
-	public UserMyPageController(Model model) {
+	public UserMyPageController(UserMypageServiceImpl userMypageService) {
 		this.userMypageService = userMypageService;
 	}
 	
@@ -23,7 +25,7 @@ public class UserMyPageController {
 	@GetMapping(value = { "mypageTab1", "/"})
 	public String selectJoinList(Model model) {
 		
-		
+//		List<>
 		
 		return "user/mypage/mypageTab1";
 	}
