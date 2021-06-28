@@ -17,6 +17,8 @@ public class TripDTO {
 	
 	private List<TripCourseDTO> tripCourseList;
 	private List<TripImageDTO> tripImgList;
+	private List<TripThemeDTO> tripThemeList;
+	private List<TripTransitDTO> tripTransitList;
 	
 //	같이가요
 	private int joinTripCode;
@@ -40,10 +42,10 @@ public class TripDTO {
 
 	public TripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, String meetLocation,
 			String include, String nInclude, Date tripEndDate, List<TripCourseDTO> tripCourseList,
-			List<TripImageDTO> tripImgList, int joinTripCode, int joinTripMaximum, int guideTripCode, int payment,
-			int guideTripMinimum, int guideTripMaximum, int userTripCode, String userTripComentTitle,
-			String userTripComent, int userTripComentPoint) {
-		super();
+			List<TripImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
+			int joinTripCode, int joinTripMaximum, int guideTripCode, int payment, int guideTripMinimum,
+			int guideTripMaximum, int userTripCode, String userTripComentTitle, String userTripComent,
+			int userTripComentPoint) {
 		this.tripCode = tripCode;
 		this.tripTitle = tripTitle;
 		this.tripIntro = tripIntro;
@@ -54,6 +56,8 @@ public class TripDTO {
 		this.tripEndDate = tripEndDate;
 		this.tripCourseList = tripCourseList;
 		this.tripImgList = tripImgList;
+		this.tripThemeList = tripThemeList;
+		this.tripTransitList = tripTransitList;
 		this.joinTripCode = joinTripCode;
 		this.joinTripMaximum = joinTripMaximum;
 		this.guideTripCode = guideTripCode;
@@ -146,6 +150,22 @@ public class TripDTO {
 		this.tripImgList = tripImgList;
 	}
 
+	public List<TripThemeDTO> getTripThemeList() {
+		return tripThemeList;
+	}
+
+	public void setTripThemeList(List<TripThemeDTO> tripThemeList) {
+		this.tripThemeList = tripThemeList;
+	}
+
+	public List<TripTransitDTO> getTripTransitList() {
+		return tripTransitList;
+	}
+
+	public void setTripTransitList(List<TripTransitDTO> tripTransitList) {
+		this.tripTransitList = tripTransitList;
+	}
+
 	public int getJoinTripCode() {
 		return joinTripCode;
 	}
@@ -231,16 +251,13 @@ public class TripDTO {
 		return "TripDTO [tripCode=" + tripCode + ", tripTitle=" + tripTitle + ", tripIntro=" + tripIntro
 				+ ", tripStartDate=" + tripStartDate + ", meetLocation=" + meetLocation + ", include=" + include
 				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", tripCourseList=" + tripCourseList
-				+ ", tripImgList=" + tripImgList + ", joinTripCode=" + joinTripCode + ", joinTripMaximum="
-				+ joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment + ", guideTripMinimum="
-				+ guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum + ", userTripCode=" + userTripCode
-				+ ", userTripComentTitle=" + userTripComentTitle + ", userTripComent=" + userTripComent
-				+ ", userTripComentPoint=" + userTripComentPoint + "]";
+				+ ", tripImgList=" + tripImgList + ", tripThemeList=" + tripThemeList + ", tripTransitList="
+				+ tripTransitList + ", joinTripCode=" + joinTripCode + ", joinTripMaximum=" + joinTripMaximum
+				+ ", guideTripCode=" + guideTripCode + ", payment=" + payment + ", guideTripMinimum=" + guideTripMinimum
+				+ ", guideTripMaximum=" + guideTripMaximum + ", userTripCode=" + userTripCode + ", userTripComentTitle="
+				+ userTripComentTitle + ", userTripComent=" + userTripComent + ", userTripComentPoint="
+				+ userTripComentPoint + "]";
 	}
 
-
-    
-    
-	
 	
 }

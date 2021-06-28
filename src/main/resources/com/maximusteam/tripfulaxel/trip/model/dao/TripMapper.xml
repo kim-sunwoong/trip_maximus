@@ -49,6 +49,19 @@
 			<result property="imgType" column="TRIP_IMAGE_TYPE_CODE"/>
 		</collection>
 		
+		<!-- theme -->
+		<collection property="tripThemeList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO">
+			<result property="themeDetail" column="THEME_DETAIL"/>
+			<result property="themeCode" column="THEME_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- transit -->
+		<collection property="tripTransitList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO">
+			<result property="transitDetail" column="TRANSIT_DETAIL"/>
+			<result property="transitCode" column="TRANSIT_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
 		
 	</resultMap>
 	
@@ -75,6 +88,12 @@
 		   TRIP_COURSE_CODE,
 		   TRIP_COURSE_NAME,
 		   TRIP_COURSE_INFO,
+		   TRANSIT_CHOICE_CODE, 
+	  	   t3.TRANSIT_CODE,
+		   TRANSIT_DETAIL,
+		   THEME_DETAIL,
+		   THEME_CHOICE_CODE,
+		   t2.THEME_CODE,
   
 		<choose>
 		 <when test='tripType eq "join".toString()'>
@@ -86,6 +105,10 @@
 	  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
 	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
 	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
+	  JOIN TRIP_THEME_CHOICE ttc ON (jt.TRIP_CODE = ttc.TRIP_CODE)
+	  JOIN THEME t2 ON (ttc.THEME_CODE = t2.THEME_CODE)
+	  JOIN TRANSIT_CHOICE tc2 ON (jt.TRIP_CODE = tc2.TRIP_CODE)
+	  JOIN TRANSIT t3 ON (tc2.TRANSIT_CODE = t3.TRANSIT_CODE)
 		 </when>
 		 <when test='tripType eq "guide".toString()'>
 		   G_TRIP_CODE,
@@ -98,6 +121,10 @@
 	  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
 	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
 	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 		
+	  JOIN TRIP_THEME_CHOICE ttc ON (gt.TRIP_CODE = ttc.TRIP_CODE)
+	  JOIN THEME t2 ON (ttc.THEME_CODE = t2.THEME_CODE)
+	  JOIN TRANSIT_CHOICE tc2 ON (gt.TRIP_CODE = tc2.TRIP_CODE)
+	  JOIN TRANSIT t3 ON (tc2.TRANSIT_CODE = t3.TRANSIT_CODE)
 		 </when>	  
 		 <otherwise>
 		   U_TRIP_CODE,
@@ -110,6 +137,10 @@
 	  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
 	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
 	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 	
+	  JOIN TRIP_THEME_CHOICE ttc ON (ut.TRIP_CODE = ttc.TRIP_CODE)
+	  JOIN THEME t2 ON (ttc.THEME_CODE = t2.THEME_CODE)
+	  JOIN TRANSIT_CHOICE tc2 ON (ut.TRIP_CODE = tc2.TRIP_CODE)
+	  JOIN TRANSIT t3 ON (tc2.TRANSIT_CODE = t3.TRANSIT_CODE)
 		 </otherwise>
 		</choose>
 		

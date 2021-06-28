@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripImageDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;
 import com.maximusteam.tripfulaxel.trip.model.service.TripServiceImpl;
 
 @Controller
@@ -30,21 +32,27 @@ public class TripController {
 	@RequestMapping("join/select/list")
 	public String selectJoinTripList(Model model) {
 		
-		String tripType = "guide";
+		String tripType = "join";
 		Map<String, String> parameter = new HashMap<String, String>();
 		parameter.put("tripType", tripType);
 		List<TripDTO> joinTripList = tripService.selectTripList(parameter);
 		
+		int count = 0;
 		for(TripDTO trip : joinTripList) {
-			int count = 0;
+			System.out.println( count  + " 번째 여행");
 			System.out.println(trip);
 			count++;
-			System.out.println("count : " + count);
 			for(TripCourseDTO course : trip.getTripCourseList()) {
 				System.out.println(course);
 			}
 			for(TripImageDTO image : trip.getTripImgList()) {
 				System.out.println(image);
+			}
+			for(TripThemeDTO theme : trip.getTripThemeList()) {
+				System.out.println(theme);
+			}
+			for(TripTransitDTO transit : trip.getTripTransitList()) {
+				System.out.println(transit);
 			}
 		}
 		
