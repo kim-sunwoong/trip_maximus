@@ -43,8 +43,18 @@ public class TripController {
 		parameter.put("tripCode", tripCode);
 		parameter.put("condition", condition);
 		
-		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		reviewList = tripService.selectReviewList(tripCode);
+		List<TripDTO> trip = tripService.selectTripList(parameter);
+		for(TripDTO t : trip) {
+			System.out.println(t);
+		}
+		
+		List<ReviewDTO> reviewList = tripService.selectReviewList(tripCode);
+		for(ReviewDTO review : reviewList) {
+			System.out.println(review);
+		}
+		
+		model.addAttribute("trip", trip);
+		model.addAttribute("reviewList", reviewList);
 		
 		if(condition.getTripType() == 2) {
 			return "user/trip/joinTripDetail";

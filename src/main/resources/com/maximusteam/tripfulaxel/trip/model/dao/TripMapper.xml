@@ -6,24 +6,24 @@
 	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
 	
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO" id="review">
-		<result property="reviewCode" column=""/>
-		<result property="reviewTitle" column=""/>
-		<result property="reviewInfo" column=""/>
-		<result property="reviewDate" column=""/>
-		<result property="reviewPoint" column=""/>
+		<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+		<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+		<result property="reviewInfo" column="TRIP_REVIEW_CONTENT"/>
+		<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+		<result property="reviewPoint" column="TRIP_REVIEW_GRADE"/>
 		
 		<association property="reviewComent" javaType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewComentDTO">
-			<result property="replyCode" column=""/>
-			<result property="replyInfo" column=""/>
-			<result property="replyDate" column=""/>
-			<result property="reviewCode" column=""/>
+			<result property="replyCode" column="TRIP_REPLY_CODE"/>
+			<result property="replyInfo" column="TRIP_REPLY_DETAIL"/>
+			<result property="replyDate" column="TRIP_REPLY_DATE"/>
+			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
 		</association>
 	
 		<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewImageDTO">
-			<result property="reviewImgCode" column=""/>
-			<result property="saveName" column=""/>
-			<result property="orignName" column=""/>
-			<result property="reviewCode" column=""/>
+			<result property="reviewImgCode" column="REVIEW_IMAGE_CODE"/>
+			<result property="saveName" column="REVIEW_IMAGE_SAVED_NAME"/>
+			<result property="orignName" column="REVIEW_IMAGE_ORIGIN_NAME"/>
+			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
 		</collection>
 		
 	</resultMap>	
@@ -219,8 +219,26 @@
 	</select>
 	
 	<select id="selectReviewList" parameterType="_int" resultMap="review">
-	
-	
+		  SELECT 
+	  	     tr.TRIP_REVIEW_CODE, 
+	  	     TRIP_REVIEW_TITLE, 
+	  	     TRIP_REVIEW_CONTENT,
+	  	     TRIP_REVIEW_DATE, 
+	  	     TRIP_REVIEW_GRADE,
+	  	     tr2.TRIP_REPLY_CODE,
+	  	     tr2.TRIP_REPLY_DETAIL,
+	  	     tr2.TRIP_REPLY_DATE,
+	  	     ri.REVIEW_IMAGE_CODE ,
+	  	     ri.REVIEW_IMAGE_ORIGIN_NAME,
+	  	     ri.REVIEW_IMAGE_SAVED_NAME
+		FROM TRIP_REGIST_LIST trl 
+		JOIN JOIN_TRIP_APPLY jta ON ( trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+		JOIN TRIP_REVIEW tr ON ( jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE)
+		JOIN TRIP_REPLY tr2 ON (tr.TRIP_REVIEW_CODE = tr2.TRIP_REVIEW_CODE)
+		JOIN REVIEW_IMAGE ri ON (tr.TRIP_REVIEW_CODE = ri.TRIP_REVIEW_CODE)
+	   WHERE trl.TRIP_CODE = #{tripCode}
 	</select>
+	
+	
 	
 </mapper>
