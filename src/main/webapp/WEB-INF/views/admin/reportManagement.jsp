@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -144,18 +145,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<c:forEach items="${selectReport}" var = "report">
                                         <tr>
-                                            <td>1</td>
-                                            <td>신고합니다!</td>
-                                            <td>사용자1</td>
-                                            <td>대기중</td>
-                                            <td>2021/06/07</td>
+                                            <td><c:out value="${report.reportNo}"/></td>
+                                            <td><c:out value="${report.reportTitle}"/></td>
+                                            <td><c:out value="${report.reportUser}"/></td>
+                                            <td><c:out value="${report.reportStatus}"/></td>
+                                            <td><c:out value="${report.reportDate}"/></td>
                                             <td>
                                                 <button type="submit" onclick="location.href='AdminReportManagementDetail.html'">
-                                                    상세보기
+                                                     	상세보기
                                                 </button>
                                             </td>
                                         </tr>
+                                        </c:forEach>
                                      
                                     </tbody>
                                 </table>
