@@ -80,6 +80,53 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 
+<!-- 이메일 중복체크용  -->	
+<script>
+/* $(function(){
+	// ajax 필수로 하게 어떻게 하나..?
+	$("#duplicationCheck").click(function(){
+		var useremail = $('#useremail').val();
+		
+		 if (useremail == '') {
+		      alert('이메일을 입력해주세요.')
+		      return;
+		    }
+		
+		$.ajax({
+			url: "${ pageContext.servletContext.contextPath }/user/
+",
+			type: "get",
+			data:{ useremail : useremail },
+			success: function(data,textStatus,xhr){
+				console.log(data);
+				if (data == "fail"){
+
+					$("#checkMessage").html("사용할 수 없는 이메일입니다.");
+					alert("사용불가아이디");
+					$("#idCheck").value("fail");
+					return;
+
+				} else if(data == "success") {
+				    $("#checkMessage").html("사용할 수 있는 이메일입니다.");
+				    $("#idCheck").attr("value", "success");
+				    console.log(idCheck);
+				    return;
+				}
+			},
+			error: function(xhr, status, error){
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+			
+		});
+		
+	});
+});  
+ */
+
+</script>
+
 </head>
 <body>
 	<style>
@@ -184,256 +231,109 @@ li.header_menu:hover {
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
 					
-				<form style="margin-top: 10px;" class="member_form" name="fregisterform" 
-				     action=""
-					 onsubmit="return fregisterform_submit(this);" method="post"
+				<form style="margin-top: 10px;" id="frm1" class="member_form" name="fregisterform" 
+				     
+					  method="post"
 					  enctype="multipart/form-data" autocomplete="off">
 					  
-			     <input type="email" id="reg_mb_email" name="mb_email" value=""
+			     <input type="email" id="useremail" name="useremail" value=""
 						required class="email frm_input full_input" size="70"
 						maxlength="100" placeholder="* 이메일 주소">
+				
+				<!-- 중복확인용 -->		
+				<input id="duplicationCheck" class="btnBgC txt_bs submit"  value="중복확인"
+						style="margin-top: 3vh; text-align: center;"> 
+				
+				<!-- 히든 중복체크를 위한 것  -->
+				 <input type="hidden" id="idCheck" name="idCheck" value="fail">
 						
-				 <input type="text" name="mb_name" value="" required class="frm_input half_input"
+				 <input type="text" id="username" name="username" value="" 
+				        required class="frm_input half_input"
 						size="3" placeholder="* 이름(예:홍길동)">
 						
-				 <input type="text" name="mb_phone" value="" required class="frm_input half_input"
-				        placeholder="* 전화번호(예:01012345678)">
+				 <input type="text" id="userphone" name="userphone" value="" 
+				        required class="frm_input half_input"
+				        placeholder="* 전화번호(예:010-1234-5678)">
 				        
-				 <input type="password" name="mb_password" required class="frm_input half_input"
+				 <input type="password" id="userpassword" name="userpassword" 
+				        required class="frm_input half_input"
 						minlength="3" maxlength="20" placeholder="* 비밀번호">
 						
-				 <input type="password" name="mb_password_re" required 
+				 <input type="password" id="repassword" name="repassword" required 
 				        class="frm_input half_input right_input" minlength="3" 
 				        maxlength="20" placeholder="* 비밀번호 확인">
-
-					<p
-						style="font-size: 13px; color: #ff7358; margin-top: 5px; display: inline-block;">*연령대와
-						성별에 맞는 최적의 여행을 만들어드려요!</p>
-
-					<div class="birth_select clearfix">
-
-						<!--<input type="text" name="mb_birth_Y" value="" class="birth_year frm_input half_input" size="4"
-                           placeholder="출생연도" onkeyup="onlynum(event)" size="4" maxlength="4">-->
-						<select name="mb_birth_Y" class="birth_year frm_input half_input"
-							style="width: 30%; min-width: 95px; max-width: 120px; height: 40px;">
-							<option value="">출생연도</option>
-							<option value="2021">2021</option>
-							<option value="2020">2020</option>
-							<option value="2019">2019</option>
-							<option value="2018">2018</option>
-							<option value="2017">2017</option>
-							<option value="2016">2016</option>
-							<option value="2015">2015</option>
-							<option value="2014">2014</option>
-							<option value="2013">2013</option>
-							<option value="2012">2012</option>
-							<option value="2011">2011</option>
-							<option value="2010">2010</option>
-							<option value="2009">2009</option>
-							<option value="2008">2008</option>
-							<option value="2007">2007</option>
-							<option value="2006">2006</option>
-							<option value="2005">2005</option>
-							<option value="2004">2004</option>
-							<option value="2003">2003</option>
-							<option value="2002">2002</option>
-							<option value="2001">2001</option>
-							<option value="2000">2000</option>
-							<option value="1999">1999</option>
-							<option value="1998">1998</option>
-							<option value="1997">1997</option>
-							<option value="1996">1996</option>
-							<option value="1995">1995</option>
-							<option value="1994">1994</option>
-							<option value="1993">1993</option>
-							<option value="1992">1992</option>
-							<option value="1991">1991</option>
-							<option value="1990">1990</option>
-							<option value="1989">1989</option>
-							<option value="1988">1988</option>
-							<option value="1987">1987</option>
-							<option value="1986">1986</option>
-							<option value="1985">1985</option>
-							<option value="1984">1984</option>
-							<option value="1983">1983</option>
-							<option value="1982">1982</option>
-							<option value="1981">1981</option>
-							<option value="1980">1980</option>
-							<option value="1979">1979</option>
-							<option value="1978">1978</option>
-							<option value="1977">1977</option>
-							<option value="1976">1976</option>
-							<option value="1975">1975</option>
-							<option value="1974">1974</option>
-							<option value="1973">1973</option>
-							<option value="1972">1972</option>
-							<option value="1971">1971</option>
-							<option value="1970">1970</option>
-							<option value="1969">1969</option>
-							<option value="1968">1968</option>
-							<option value="1967">1967</option>
-							<option value="1966">1966</option>
-							<option value="1965">1965</option>
-							<option value="1964">1964</option>
-							<option value="1963">1963</option>
-							<option value="1962">1962</option>
-							<option value="1961">1961</option>
-							<option value="1960">1960</option>
-							<option value="1959">1959</option>
-							<option value="1958">1958</option>
-							<option value="1957">1957</option>
-							<option value="1956">1956</option>
-							<option value="1955">1955</option>
-							<option value="1954">1954</option>
-							<option value="1953">1953</option>
-							<option value="1952">1952</option>
-							<option value="1951">1951</option>
-							<option value="1950">1950</option>
-							<option value="1949">1949</option>
-							<option value="1948">1948</option>
-							<option value="1947">1947</option>
-							<option value="1946">1946</option>
-							<option value="1945">1945</option>
-							<option value="1944">1944</option>
-							<option value="1943">1943</option>
-							<option value="1942">1942</option>
-							<option value="1941">1941</option>
-							<option value="1940">1940</option>
-							<option value="1939">1939</option>
-							<option value="1938">1938</option>
-							<option value="1937">1937</option>
-							<option value="1936">1936</option>
-							<option value="1935">1935</option>
-							<option value="1934">1934</option>
-							<option value="1933">1933</option>
-							<option value="1932">1932</option>
-							<option value="1931">1931</option>
-							<option value="1930">1930</option>
-							<option value="1929">1929</option>
-							<option value="1928">1928</option>
-							<option value="1927">1927</option>
-							<option value="1926">1926</option>
-							<option value="1925">1925</option>
-							<option value="1924">1924</option>
-							<option value="1923">1923</option>
-							<option value="1922">1922</option>
-							<option value="1921">1921</option>
-							<option value="1920">1920</option>
-							<option value="1919">1919</option>
-							<option value="1918">1918</option>
-							<option value="1917">1917</option>
-							<option value="1916">1916</option>
-							<option value="1915">1915</option>
-							<option value="1914">1914</option>
-							<option value="1913">1913</option>
-							<option value="1912">1912</option>
-							<option value="1911">1911</option>
-							<option value="1910">1910</option>
-						</select>
-						 <select name="mb_birth_M" value="" class="frm_input half_input">
-							<option value="월">월</option>
-							<option value='1'>1월</option>
-							<option value='2'>2월</option>
-							<option value='3'>3월</option>
-							<option value='4'>4월</option>
-							<option value='5'>5월</option>
-							<option value='6'>6월</option>
-							<option value='7'>7월</option>
-							<option value='8'>8월</option>
-							<option value='9'>9월</option>
-							<option value='10'>10월</option>
-							<option value='11'>11월</option>
-							<option value='12'>12월</option>
-						</select> 
-						<select id="reg_mb_birth_D" name="mb_birth_D" value=""
-							class="frm_input half_input">
-							<option value="일">일</option>
-							<option value='1'>1일</option>
-							<option value='2'>2일</option>
-							<option value='3'>3일</option>
-							<option value='4'>4일</option>
-							<option value='5'>5일</option>
-							<option value='6'>6일</option>
-							<option value='7'>7일</option>
-							<option value='8'>8일</option>
-							<option value='9'>9일</option>
-							<option value='10'>10일</option>
-							<option value='11'>11일</option>
-							<option value='12'>12일</option>
-							<option value='13'>13일</option>
-							<option value='14'>14일</option>
-							<option value='15'>15일</option>
-							<option value='16'>16일</option>
-							<option value='17'>17일</option>
-							<option value='18'>18일</option>
-							<option value='19'>19일</option>
-							<option value='20'>20일</option>
-							<option value='21'>21일</option>
-							<option value='22'>22일</option>
-							<option value='23'>23일</option>
-							<option value='24'>24일</option>
-							<option value='25'>25일</option>
-							<option value='26'>26일</option>
-							<option value='27'>27일</option>
-							<option value='28'>28일</option>
-							<option value='29'>29일</option>
-							<option value='30'>30일</option>
-							<option value='31'>31일</option>
-						</select>
-					</div>
-					<div class="gender_wrap" style="height: 50px;">
-						<input type="radio" id="gender1" name="mb_gender" value="1">
-						<label for="gender1" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
+				
+			     <input type="text" id="userbirth" name="userbirth" value=""
+			            required class="frm_input half_input" placeholder="* 출생연도(예:19971129)">
+		
+					
+		         <div class="gender_wrap" style="height: 50px;">
+						<input type="radio" id="gender1" name="mb_gender" value="1" checked>
+							<label for="gender1" class="cf"
+							style="margin-top: 10px; vertical-align: middle; height: 
+							40px; display: inline-block; width: calc(50% - 5px);">
+							<i style="margin: 12px 9px;" class="floatL"></i> 
 							 <span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label>
-						 <input type="radio" id="gender2" name="mb_gender" value="2">
-						<label for="gender2" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
+					 	</label>
+
+						
+						 <input type="radio" id="gender2" name="mb_gender" value="2"  >
+							<label for="gender2" class="cf"
+							style="margin-top: 10px; vertical-align: middle; height: 
+							40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i>
 							 <span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
-					</div>
+					 </div> 
 
-					<p class="checkbox_wrap">
-						<input type="checkbox" id="agree_all"> <label
-							for="agree_all"><i id="agree_all_i"></i><span>아래
-								약관에 모두 동의합니다.</span></label>
+ 				<p class="checkbox_wrap">
+						<input type="checkbox" id="agree_all"> 
+						<label for="agree_all" >
+						  <i id="agree_all_i"></i>
+						  <span>아래 약관에 모두 동의합니다.</span>
+						</label>
 					</p>
+					
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_1" class="checkOne" name="check">
-						<label for="agree_1" style="vertical-align: middle;"><i
-							id="agree_1_i"></i><span
-							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
-							target="_blank">회원가입 및 운영약관(필수)</span></label>
+						<label for="agree_1" style="vertical-align: middle;">
+						<i id="agree_1_i"></i>
+						<span onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
+							target="_blank">회원가입 및 운영약관(필수)</span>
+						</label>
 					</p>
+					
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_2" class="checkOne" name="check">
-						<label for="agree_2" style="vertical-align: middle;"><i
-							id="agree_2_i"></i><span
+						<label for="agree_2" style="vertical-align: middle;">
+						<i id="agree_2_i"></i><span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
-							target="_blank">개인정보 수집 및 이용(필수)</span></label>
+							target="_blank">개인정보 수집 및 이용(필수)</span>
+					  </label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_3" class="checkOne" name="check">
-						<label for="agree_3" style="vertical-align: middle;"><i
-							id="agree_3_i"></i><span
+						<label for="agree_3" style="vertical-align: middle;">
+						<i id="agree_3_i"></i>
+						<span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php#location')"
-							target="_blank">위치정보 이용약관(선택)</span></label>
+							target="_blank">위치정보 이용약관(선택)</span>
+						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_4" name="agree_4" value="1"
 							class="checkOne"> 
-						<label for="agree_4"> <i id="agree_4_i"></i>
+						<label for="agree_4">
+					  <i id="agree_4_i"></i>
 						 <span>마케팅 정보수신에 동의(선택)</span>
                        </label>
-					</p>
+					</p> 
+					
 					<input type="hidden" name="w" value=""> 
 					<input type="hidden" name="s" value=""> 
-					<input id="signin_btn" class="btnBgC txt_bs submit" type="submit" value="가입하기"
+					<input id="signinbtn" class="btnBgC txt_bs submit" type="submit" value="가입하기"
 						style="margin-top: 3vh;"> 
-					<label for="signin_btn" style="cursor: pointer;">가입하기</label>
+					<!-- <label for="signin_btn" style="cursor: pointer;">가입하기</label> -->
 				</form>
 			</div>
 		</div>
@@ -516,7 +416,8 @@ li.header_menu:hover {
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i><span
+							<i style="margin: 12px 9px;" class="floatL"></i>
+							<span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
 						</label> <input type="radio" id="find_gender2" name="find_gender"
 							value="2"
@@ -895,81 +796,15 @@ li.header_menu:hover {
 
 
 	<!-- //팝업 끝 -->
-	<script>
-    
-    function imgShuffle(target, CDN) {
-        var num = Math.floor(Math.random() * (32 - 1 + 1)) + 1;
-        if (num < 10) {
-            num = '0' + num;
-        }
-        $(target).attr('src', CDN + '/' + num + '.png');
-    }
-
-    function setCookie( name, value, expiredays ){
-        var todayDate = new Date();
-        todayDate.setDate( todayDate.getDate() + expiredays );
-        document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toGMTString() + ';'
-    }
-
-    function setCookieMinutes( name, value, expiredays ){
-        var todayDate = new Date();
-        todayDate.setMinutes( todayDate.getMinutes() + expiredays );
-        //console.log(todayDate.toGMTString());
-        document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toString() + ';'
-    }
-
-    function getCookie(name){
-        var obj = name + "=";
-        var x = 0;
-        while ( x <= document.cookie.length )
-        {
-            var y = (x+obj.length);
-            if ( document.cookie.substring( x, y ) == obj )
-            {
-                if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
-                    endOfCookie = document.cookie.length;
-                return unescape( document.cookie.substring( y, endOfCookie ) );
-            }
-            x = document.cookie.indexOf( " ", x ) + 1;
-            if ( x == 0 )
-                break;
-        }
-        return "";
-    }
-
-    //닫기 버튼 클릭시
-    function divpop_closeWin(){
-        setCookieMinutes('header_divpop', 'Y' , 60 );
-
-        $(".header_banner").hide();
-    }
-
-    $(function(){
-        if(getCookie("header_divpop") !="Y"){
-            $(".header_banner").show();
-        }
-    });
-
-/*     function sorry() {
-        alert('현재 페이스북 가입은 개발 진행 중으로 네이버, 카카오톡으로만 가입이 가능합니다.');
-        return false;
-    }
- */
-    //숫자만 입력
-    function onlynum(event) {
-        event = event || window.event;
-        var keyID = (event.which) ? event.which : event.keyCode;
-        if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-            return;
-        else
-            event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    }
-
-    /* 체크박스 전체 선택 */
+	
+	
+	<script type="text/javascript" >
+	
+	 /* 체크박스 전체 선택 */
     function allCheckFunc(obj) {
         $(".checkOne").prop("checked", $(obj).prop("checked"));
     }
-
+	
     /* 체크박스 체크시 전체선택 체크 여부 */
     function oneCheckFunc(obj) {
         var allObj = $("#agree_all");
@@ -999,586 +834,127 @@ li.header_menu:hover {
             });
         });
     });
+	 
+	 
+	
+// 회원가입 유효성 체크     
+	$(function(){
+		
+		$("#signinbtn").click(function(e){
+			if(regist()){
+				e.preventDefault();
+			} else {
+				
+				$("#frm1").attr("action","${ pageContext.servletContext.contextPath }/user/regist").submit();
+			}
+		
+		});
+		
+		
+		
+		function regist() {
+			
+			var useremail = document.getElementById("useremail");
+	 		var username = document.getElementById("username"); 
+			var userphone = document.getElementById("userphone");
+			var userpassword = document.getElementById("userpassword");
+			var repassword = document.getElementById("repassword");
+			var userbirth = document.getElementById("userbirth");
+		    var duplicationCheck = document.getElementById("duplicationCheck");
+		    var idCheck = document.getElementById("idCheck");
+			
+	/* 		useremail.setAttribute("checkresult", "fail"); */
+			
 
-    // submit 최종 폼체크
+			    // 이메일
+				if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
+						"이메일 형식에 맞춰 입력하세요.")) {
+					return false;
+				}
 
-    function CheckPass(str) {
-//        var reg1 = /^[a-z0-9]{8,14}$/;    // a-z 0-9 중에 7자리 부터 14자리만 허용 한다는 뜻이구요
-        var reg2 = /[a-z]/g;
-        var reg3 = /[0-9]/g;
-//        return(reg1.test(str) &&  reg2.test(str) && reg3.test(str));
-        return (reg2.test(str) && reg3.test(str));
-    }
+				// 휴대전화 
+				if (!chk(/^\d{2,3}-\d{3,4}-\d{4}$/, userphone,
+						"전화번호는 010-1234-5678 형식으로 넣어주세요.")) {
+					return false;
+				}
 
-    function fregisterform_submit(f) {
-        // E-mail 검사
-        if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
-            var msg = reg_mb_email_check();
-            if (msg) {
-                alert(msg);
-                f.reg_mb_email.select();
-                return false;
-            }
-        }
-        // 회원비밀번호 검사
-        if (f.s.value == "") {
-            if (CheckPass(f.mb_password.value) == false) {
-                alert("비밀번호는 영문 숫자 조합 8자리 이상입니다.");
-                return false;
-            }
-            if (f.w.value == "") {
-                if (f.mb_password.value.length < 8) {
-                    alert("비밀번호를 8글자 이상 입력하십시오.");
-                    f.mb_password.focus();
-                    return false;
-                }
-            }
-            if (f.mb_password.value != f.mb_password_re.value) {
-                alert("비밀번호가 같지 않습니다.");
-                f.mb_password_re.focus();
-                return false;
-            }
-            if (f.mb_password.value.length > 0) {
-                if (f.mb_password_re.value < 8) {
-                    alert("비밀번호를 8글자 이상 입력하십시오.");
-                    f.mb_password_re.focus();
-                    return false;
-                }
-            }
-            if (f.mb_password.value.length > 0) {
-                if (f.mb_password_re.value.length < 8) {
-                    alert("재입력 비밀번호를 8글자 이상 입력하십시오.");
-                    f.mb_password_re.focus();
-                    return false;
-                }
-            }
-        }
-        // 이름 검사
-        if (f.w.value == "") {
-            if (f.mb_name.value.length < 1) {
-                alert("이름을 입력하십시오.");
-                f.mb_name.focus();
-                return false;
-            }
-            var reg4 = /[가-힣]{2,20}|[a-zA-Z]{2,20}/;
-            console.log(reg4);
-            if (!reg4.test(f.mb_name.value)) {
-                alert("이름을 확인해주십시오.(한글 또는 영문 2~20자 이내)");
-                f.mb_name.focus();
-                return false;
-            }
-        }
-        if (f.mb_birth_Y.value == '') {
-            alert("출생연도를 선택해주세요.");
-            f.mb_birth_Y.focus();
-            return false;
-        }
-        if (f.mb_birth_M.value == '월') {
-            alert("월을 선택해주세요.");
-            f.mb_birth_M.focus();
-            return false;
-        }
+				// 비밀번호 
+				if (!chk(/^[a-zA-Z0-9]{8,15}$/, userpassword,
+						"비밀번호는 영어와 숫자를 사용하여 8자리 이상 15자리 이하 입력하세요.")) {
+					return false;
+				}
+				
+				
+				 var checkNum = document.getElementById("userpassword").value.search(/[0-9]/g);
+		         var checkEng = document.getElementById("userpassword").value.search(/[a-z]/ig);
+				
+		         
+		         if(checkNum < 0 || checkEng < 0){
+		             alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+		             userpassword.value="";
+		             userpassword.focus();
+		             return false;
+		          } 
+		         
+		           // userpassword와 repassword 일치하는지 확인
+		           if(userpassword.value != repassword.value){
+		              alert("비밀번호가 다릅니다. 다시 확인해주세요.");
+		              repassword.value="";
+		              repassword.focus();
+		              return false;
+		           }
+		           
+		         // 이름
+		         if(!chk(/^[가-힣]{1,}$/,username,"이름은 한글로 1글자 이상 입력하세요")){
+		               return false;
+		            }
+		         
+		         // 생년월일
+		         if(!chk(/^[0-9]*$/,userbirth,"생년월일은 특수문자(-) 없이 숫자로만 입력해주세요.")){
+		               return false;
+		            }
+		         
+		         // 성별
+		         if($("input[name=mb_gender]:checked").val() == false){
+		        	 alert("성별을 선택하여 주십시오.");
+		        	 
+		        	 return false;
+		        	 
+		         }
+		         
+		         // 약관동의 체크
+		         if ($("#agree_1").is(":checked") !== true || $("#agree_2").is(":checked") !== true) {
+		             alert("서비스 이용약관에 동의하세요.");
+		             return false;
+		         }
+		         
+				
+				// 유효성 검사 alert 창 
+				function chk(re, ele, msg) {
+					if (!re.test(ele.value)) {
+						alert(msg);
+						ele.value = "";
+						ele.focus();
+						return false;
+					}
 
-        if (f.mb_birth_D.value == '일') {
-            alert("일을 선택해주세요.");
-            f.mb_birth_D.focus();
-            return false;
-        }
+					return true;
+				}
 
-        if ($('input[name=mb_gender]:checked').val() == undefined) {
-            alert("성별을 선택하여 주십시오.");
-            $('#agree1').focus();
-            return false;
-        }
-        // 약관동의 체크
-        if ($("#agree_1").is(":checked") !== true || $("#agree_2").is(":checked") !== true) {
-            alert("서비스 이용약관에 동의하세요.");
-            return false;
-        }
-        return true;
-    }
+			}
+	});
 
-    var reg_mb_email_check = function () {
-        var result = "";
-        jQuery.ajax({
-            type: "POST",
-            url: "/bbs/ajax.mb_email.php",
-            data: {
-                "reg_mb_email": $("#reg_mb_email").val()
-            },
-            cache: false,
-            async: false,
-            success: function (data) {
-                result = data;
-            }
-        });
-        return result;
-    }
+/*     window.onload = function(){	    
+	    var $item = document.getElementById("duplicationCheck");
+		  // 요소의 data-value 속성에 hello world를 설정한다.
+		  $item.setAttribute("checkResult", "fail");
+		  // 요소의 value 속성에 test를 설정한다.
+	}; */
+	
 
-    function login_link() {
-        $("html").addClass("pop");
-        $(".pop_wrap:visible").hide();
-        $(".login_pop").parent(".pop_wrap").show();
-    }
-
-    var cert_code = '';
-    var cert_tel = '';
-    $(".send_certified_button").click(function () {
-        if (!$(this).hasClass('btnBgC')) {
-            return false;
-        }
-        var returnType = $(this).attr('data-type');
-        if ('') {
-            if ($(this).attr('data-now') === '1') {
-                var mb_tel1 = $('input[name="mb_tel1"]').val();
-                var country_code = $('select[name="country_code"]').val();
-
-                if (mb_tel1.length < 6) {
-                    alert("휴대폰 번호를 입력해주세요.");
-                    return false;
-                }
-
-                $('.send_certified_button.send_btn').removeClass('btnBgC');
-                $('.send_certified_button.success_btn').removeClass('btnBgC');
-
-                var datavalue = {
-                    'jobFlag': 'mb_tel_certified',
-                    'mb_tel': mb_tel1,
-                    'country_code': country_code
-                };
-                                $.ajax({
-                    url: '/service/action/mb_tel_certified.php',
-                    type: 'POST',
-                    data: datavalue,
-                    dataType: 'JSON',
-                    success: function (data) {
-                        console.log(data);
-                        if (data.result === 'success') {
-                            cert_code = data.cert_code;
-                            cert_tel = data.cert_tel;
-
-                            $('#certified').removeAttr("disabled");
-                            $("#country_code").attr("disabled", true);
-                            $("#mb_tel1").attr("disabled", true);
-                            $('.send_certified_button.success_btn').show();
-                            $('.send_certified_button.success_btn').addClass('btnBgC');
-                        }
-                    },
-                    error: function (data) {
-                        console.log('error' + data);
-                        $('.send_certified_button.send_btn').addClass('btnBgC');
-                    }
-                });
-
-            } else if ($(this).attr('data-now') === '2') {
-                var certified = $('input[name="certified"]').val();
-                if (cert_code != certified) {
-                    alert("인증번호가 틀립니다.");
-                    return false;
-                }
-                if (cert_tel === '' || cert_code === '' || certified === '') {
-                    alert("인증 정보가 틀립니다.");
-                    return false;
-                }
-                if (returnType === 'dataReturn') {
-                    $.ajax({
-                        url: '/service/action/mb_tel_certified.php',
-                        type: 'POST',
-                        data: {
-                            'jobFlag': 'mb_tel_save',
-                            'mb_tel': cert_tel,
-                            'mb_id': ''
-                        },
-                        dataType: 'JSON',
-                        success: function (data) {
-                            //console.log(data);
-                            if (data.result === 'success') {
-                                $('.tel_certified_pop_link').text('본인인증 완료');
-                                alert('휴대폰 본인인증 완료되었습니다.');
-                                var mb_tel = cert_tel.split('|');
-                                $('select.mb_cert_country_code').val(mb_tel[0]).prop("selected", true);
-                                $('input.mb_cert_tel').val(mb_tel[1]);
-
-                                $("html").removeClass("pop");
-                                $('.pop_bg.pop_wrap').css('display', 'none');
-                            }
-
-                        },
-                        error: function (data) {
-                            console.log('error' + data);
-                        }
-                    });
-                } else {
-                    $.ajax({
-                        url: '/service/action/mb_tel_certified.php',
-                        type: 'POST',
-                        data: {
-                            'jobFlag': 'mb_tel_save',
-                            'mb_tel': cert_tel,
-                            'mb_id': ''
-                        },
-                        dataType: 'JSON',
-                        success: function (data) {
-                            //console.log(data);
-                            if (data.result === 'success') {
-                                alert('휴대폰 본인인증 완료되었습니다.');
-                                $('.tel_certified_pop_link').text('본인인증 완료');
-                                $(".pop_wrap").hide();
-                                $('.container').removeClass('not_scroll');
-                                $('body').css('overflow', 'visible');
-                                location.reload();
-                            }
-
-                        },
-                        error: function (data) {
-                            console.log('error' + data);
-                        }
-                    });
-                }
-
-            }
-        } else {
-            alert('로그인 후 시도해주세요.');
-            location.reload();
-        }
-    });
-
-
-    $(".find_id_button").click(function () {
-        var name = $('input[name="find_id_name"]').val();
-        var year = $('input[name="find_id_year"]').val();
-        var mon = $('select[name="find_id_mon"]').val();
-        var day = $('select[name="find_id_day"]').val();
-
-        var birth = (year != '' && mon != 0 && day != 0) ? year + '/' + mon + '/' + day : '';
-        var gender = $('input[name=find_gender]:checked').val() ? $('input[name=find_gender]:checked').val() : '';
-
-
-        if ($('input[name="find_id_name"]').length < 1 || name == '') {
-            alert("이름을 입력해주세요.");
-            return false;
-        } else {
-            $.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=find_id&name=' + name + '&gender=' + gender + '&birth=' + birth,
-                dataType: 'JSON',
-                success: function (data) {
-                    console.log(data);
-                    var apd_html = '';
-
-                    $("html").addClass("pop");
-                    $(".pop_wrap:visible").hide();
-                    $(".find_id_fin_pop").parent(".pop_wrap").show();
-
-                    $('.find_member_wrap').empty();
-
-                    if (data.length > 0) {
-                        apd_html += '<h3 class="tit txt_bold">이메일(ID) 찾기</h3>';
-                        apd_html += '<p class="txt_bs txt_bold" style="margin-top:20px; line-height:20px;">- 조회 결과 입력하신 정보와 일치하는<br/>이메일은 아래와 같습니다.</p>';
-                        apd_html += '<p class="txt_bs txt_bold" style="margin-top:20px; line-height:20px;">- 이름, 성별, 생년월일이 동일한 동명이인의 이메일이<br/>함께 검색될 수 있습니다.</p>';
-                        apd_html += '<p style="margin-top:20px;">이메일(ID)은</p>';
-                        apd_html += '<ul class="find_id" style="text-align: center;">';
-                        for (var i = 0; i < data.length; i++) {
-                            apd_html += '<li style="color:#ff7358;"><span><p style="text-align:center;margin-top:5px;">' + data[i].mb_id.replace('/(?<=.{2}).(?=.*@)/g', '*') + ' (가입일 : ' + new Date(data[i].mb_datetime).format('yyyy년 MM월 dd일') + ')</p></span></li>';
-                        }
-                        apd_html += '</ul>';
-                        apd_html += '<p>입니다.</p>';
-                        apd_html += '<a class="btnBgC txt_bs submit" href="#" style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;" onclick="login_link();">로그인</a>';
-                        $('.find_member_wrap').html(apd_html);
-                    } else {
-                        //apd_html += '<h3 class="tit txt_bold">이메일(ID) 찾기</h3>';
-                        //apd_html += '<p class="txt_bs txt_bold">이메일(ID)이 없습니다.<br><p style="margin-top:10px;">SNS 계정은 해당 SNS에서 조회할 수 있습니다.</p>';
-                        $('.find_member_wrap').html('이메일(ID)이 없습니다.<br><p style="margin-top:10px;">SNS로 가입한 계정의 이메일(ID)는 고객센터로 문의해주세요 :)</p>');
-                    }
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                }
-            });
-        }
-    });
-
-    $(".find_password_button").click(function () {
-        var email = $('input[name="find_password_email"]').val();
-        jQuery.ajax({
-            url: '/skin/html/ajax.php',
-            type: 'POST',
-            data: 'p=find_password&email=' + email,
-            success: function (data) {
-                // console.log('success' + data);
-                if (data.length > 0) {
-                    $('.find_password_fin_pop p').html('임시 비밀번호를 메일로 전송하였습니다.');
-                } else {
-                    $('.find_password_fin_pop p').html('이메일(ID)이 없습니다.<br><p style="margin-top:10px;">SNS로 가입한 계정의 이메일(ID)는 고객센터로 문의해주세요 :)</p>');
-                }
-            },
-            error: function (data) {
-                console.log('error' + data);
-            }
-        });
-    });
-
-    var searchVal = '';
-    var delayTimer;
-
-    $('.totalsearch').keydown(function (e) {
-        if (e.keyCode == 13 || e.keyCode == 9) {
-            searchVal = $(this).val();
-            if (searchVal == '') {
-                $('.header_auto_select').empty();
-                $('.header_auto_select').css('display', 'none');
-                clearTimeout(delayTimer);
-            } else if (searchVal !== '') {
-                $('.header_auto_select').empty();
-                $('.header_auto_select').css('display', 'none');
-                if (searchVal !== undefined || searchVal !== null) {
-                    if (searchVal.length >= 1 && searchVal !== '') {
-                        doSearch();
-                    }
-                } else {
-                    $('.header_auto_select').empty();
-                    $('.header_auto_select').css('display', 'none');
-                }
-            }
-        }
-    });
-
-    $('.totalsearch').on("keyup", function (e) {
-        e.preventDefault();
-        searchVal = $(this).val();
-        if (searchVal == '') {
-            $('.header_auto_select').empty();
-            $('.header_auto_select').css('display', 'none');
-            clearTimeout(delayTimer);
-        } else if (searchVal !== '') {
-            // alert('검색어..');
-            $('.header_auto_select').empty();
-            $('.header_auto_select').css('display', 'none');
-            //alert(searchVal.length);
-            if (searchVal !== undefined || searchVal !== null) {
-                if (searchVal.length >= 1 && searchVal !== '') {
-                    doSearch();
-                }
-            } else {
-                $('.header_auto_select').empty();
-                $('.header_auto_select').css('display', 'none');
-            }
-        }
-    });
-
-    function doSearch() {
-        clearTimeout(delayTimer);
-        delayTimer = setTimeout(function () {
-            jQuery.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=auto_search_country&search_area=' + searchVal,
-                async: false,
-                dataType: 'JSON',
-                success: function (data) {
-                    console.log(data);
-                    if (data.length > 0) {
-                        $('.header_auto_select').css('display', 'block');
-                        $('.header_auto_select').append('<li class="header_auto_select_list" style="color: #fff;padding: 10px 20px 10px 38px;float: none;width: auto;height: auto;overflow:auto;border:none;cursor:pointer;">' + data[0].country + '</li>');
-                        for (var i = 0; data.length > i; i++) {
-                            $('.header_auto_select').append('<li class="header_auto_select_list" style="color: #fff;padding: 10px 20px 10px 38px;float: none;width: auto;height: auto;overflow:auto;border:none;cursor:pointer;">' + data[i].country + ' > ' + data[i].area + '</li>');
-                        }
-                    }
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                }
-            });
-            jQuery.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=auto_search_area&search_area=' + searchVal,
-                async: false,
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.length > 0) {
-                        $('.header_auto_select').css('display', 'block');
-                        for (var i = 0; data.length > i; i++) {
-                            $('.header_auto_select').append('<li class="header_auto_select_list" style="color: #fff;padding: 10px 20px 10px 38px;float: none;width: auto;height: auto;overflow:auto;border:none;cursor:pointer;">' + data[i].country + ' > ' + data[i].area + '</li>');
-                        }
-                    }
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                }
-            });
-            jQuery.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=auto_search_tm&search_area=' + searchVal,
-                async: false,
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.length > 0) {
-                        $('.header_auto_select').css('display', 'block');
-                        for (var i = 0; data.length > i; i++) {
-                            $('.header_auto_select').append('<li class="" style="color: #fff;padding: 10px 20px 10px 38px;float: none;width: auto;height: auto;overflow:auto;border:none;cursor:pointer;" data-value="0" onclick="location.href=\'/skin/html/tm.php?mb_no='
-                                + data[i].mb_no + '\'"> ' + data[i].country + ' > ' + data[i].area + ' > ' + data[i].mb_nick + '</li>');
-                        }
-                    }
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                }
-            });
-            jQuery.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=auto_search_item&search_area=' + searchVal,
-                async: false,
-                dataType: 'JSON',
-                success: function (data) {
-                    $('.header_auto_select').css('display', 'block');
-                    for (var i = 0; data.length > i; i++) {
-                        $('.header_auto_select').append('<li class="header_auto_select_list" style="color: #fff;padding: 10px 20px 10px 38px;float: none;width: auto;height: auto;overflow:auto;border:none;cursor:pointer;" data-value="1">'
-                            + data[i].country + ' > ' + data[i].area + ' > ' + data[i].it_name + '</li>');
-                    }
-
-                    searchVal = '';
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                }
-            });
-            $('.header_auto_select_list').click(function () {
-                var searchdata = $(this).data('value');
-                var searchVal = $(this).text() + '>' + searchdata;
-                if (searchdata == undefined) {
-                    var searchVal = $(this).text();
-                    jQuery.ajax({
-                        url: '/skin/html/ajax.php',
-                        type: 'POST',
-                        data: 'p=session2&searchVal=' + searchVal,
-                        success: function (data) {
-                            // console.log('success' + data);
-                            location.href = '/skin/html/search.php?search=0';
-                        },
-                        error: function (data) {
-                            console.log('error' + data);
-                            alert('업데이트를 실패하였습니다.');
-                        }
-                    });
-                } else if (searchdata == '0') {
-                    jQuery.ajax({
-                        url: '/skin/html/ajax.php',
-                        type: 'POST',
-                        data: 'p=totalsearch&searchVal=' + searchVal,
-                        dataType: 'JSON',
-                        success: function (data) {
-//			 				console.log(data);
-                            location.href = '/skin/html/tm.php?mb_no=' + data.mb_no;
-                        },
-                        error: function (data) {
-                            console.log('error' + data);
-                            alert('업데이트를 실패하였습니다.');
-                        }
-                    });
-                } else if (searchdata == '1') {
-                    jQuery.ajax({
-                        url: '/skin/html/ajax.php',
-                        type: 'POST',
-                        data: 'p=totalsearch&searchVal=' + searchVal,
-                        dataType: 'JSON',
-                        success: function (data) {
-                            //console.log(data);
-                            location.href = '/skin/html/offer.php?it_id=' + data.it_id;
-                        },
-                        error: function (data) {
-                            console.log('error' + data);
-                            alert('업데이트를 실패하였습니다.');
-                        }
-                    });
-                }
-            });
-        }, 500);
-
-    }
-
-    $(function () {
-        $(".sns-wrap").on("click", "a.social_link", function (e) {
-            e.preventDefault();
-            var pop_url = $(this).attr("href");
-            //alert(pop_url);
-            var newWin = window.open(
-                pop_url,
-                "social_sing_on",
-                "location=0,status=0,scrollbars=0,width=600,height=500"
-            );
-
-            if (!newWin || newWin.closed || typeof newWin.closed == 'undefined') {
-                alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
-            }
-
-            return false;
-        });
-    });
-
-    function shareKakaotalk() {
-        Kakao.init('7ecc88f4a16173c33025206c3fb0dc08');      // 사용할 앱의 JavaScript 키를 설정
-        Kakao.Link.sendDefault({
-            objectType: "feed",
-            content: {
-                title: '',   // 콘텐츠의 타이틀
-                description: '',   // 콘텐츠 상세설명
-                imageUrl: 'https://d3jp64jhrslomr.cloudfront.net' + $('.main_img_0').data('img-src'),  // 썸네일 이미지
-                link: {
-                    mobileWebUrl: window.location.href,   // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                    webUrl: window.location.href // PC버전 카카오톡에서 사용하는 웹 링크 URL
-                }
-            },
-            social: {
-                likeCount: 0,       // LIKE 개수
-                commentCount: 0,    // 댓글 개수
-                sharedCount: 0,     // 공유 회수
-            },
-            buttons: [
-                {
-                    title: '트래블 확인하기',    // 버튼 제목
-                    link: {
-                        mobileWebUrl: window.location.href,   // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                        webUrl: window.location.href // PC버전 카카오톡에서 사용하는 웹 링크 URL
-                    }
-                }
-            ]
-        });
-        Kakao.cleanup();
-    }
-
-    function shareFaceBook() {
-        var linkUrl = window.location.href;
-        window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(linkUrl));
-    }
-
-    function CopyUrlToClipboard() {
-        var obShareUrl = document.getElementById("ShareUrl");
-        obShareUrl.value = window.document.location.href;  // 현재 URL 을 세팅해 줍니다
-        obShareUrl.select();  // 해당 값이 선택되도록 select() 합니다
-        document.execCommand("copy"); // 클립보드에 복사합니다.
-        obShareUrl.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
-        alert('URL이 복사되었습니다');
-    }
-
-    function popUpTwitter() {
-        window.open('https://twitter.com/intent/tweet'
-            + '?via=TravelMakers'
-            + '&text=' + encodeURIComponent($('title').text()) // Title in this html document
-            + '&url=' + encodeURIComponent(window.location.href)
-            // , "_blank"
-            // , 'width=600,height=400,resizable=yes,scrollbars=yes'
-        );
-    }
-
-    function shareLine() {
-        window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(window.location.href));
-    }
-
-</script>
+	
+	
+	</script>
 
 	<!-- //헤더 영역 끝 -->
 	

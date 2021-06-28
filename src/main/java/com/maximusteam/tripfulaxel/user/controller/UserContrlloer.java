@@ -18,31 +18,7 @@ import com.maximusteam.tripfulaxel.user.model.service.UserService;
 @RequestMapping("/user/*")
 public class UserContrlloer {
 
-	 private final UserService userservice; 
-	 
-	 @Autowired
-	public UserContrlloer(UserService userservice) {
-		this.userservice = userservice;
-	}
 
-
-
-	/**
-	 * 회원가입을 위한 메소드
-	 * 
-	 * @param user
-	 * @param request
-	 */
-	/*
-	 * public UserContrlloer(@ModelAttribute UserDTO user, HttpServletRequest
-	 * request) {
-	 * 
-	 * System.out.println(user);
-	 * 
-	 * return 0;
-	 * 
-	 * }
-	 */
 	 
 
 }
