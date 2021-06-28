@@ -21,6 +21,17 @@
 		<result column="USER_REGISTER_DAY" property="enrollDate" />
 		<result column="USER_REPORT_COUNT" property="count" />
 	</resultMap>
+	  
+	<!-- 회원상세정보 -->
+	<resultMap id="memberDetail" type="MemberDTO">
+		<result column="USER_NAME" property="memberName" />
+		<result column="USER_PHONE" property="memberPhone" />
+		<result column="USER_BDAY" property="memberBDay" />
+		<result column="USER_GENDER" property="gender" />
+		<result column="USER_EMAIL" property="memberId" />
+		<result column="USER_GUIDE_YN" property="memberGuideStatus" />
+		<result column="USER_CODE" property="memberNo" />
+	</resultMap>
 	
 	<!-- 신고리스트 -->
 	<resultMap id="reportList" type="ReportDTO">
@@ -74,6 +85,19 @@
          WHERE USER_GUIDE_YN = 'N'
 	</select>
 	
+	<select id="selectMemberDetail" resultMap="memberDetail" parameterType="_int">
+        SELECT 
+               A.USER_NAME
+             , A.USER_PHONE
+             , A.USER_BDAY
+             , A.USER_GENDER
+             , A.USER_EMAIL
+             , A.USER_GUIDE_YN
+             , A.USER_CODE
+          FROM USER A
+         WHERE USER_CODE = #{no}
+	</select>
+	
 	<select id="selectReport" resultMap="reportList">
         SELECT 
                A.EXAMINE_REQUEST_CODE
@@ -123,4 +147,10 @@
           JOIN USER E ON ( D.USER_CODE = E.USER_CODE)
          WHERE E.USER_GUIDE_YN = 'Y'
 	</select>	
+	
+	<delete id="memberDelete" parameterType="_int">
+		DELETE 
+          FROM USER
+         WHERE USER_CODE = #{ no } 
+	</delete>
 </mapper>

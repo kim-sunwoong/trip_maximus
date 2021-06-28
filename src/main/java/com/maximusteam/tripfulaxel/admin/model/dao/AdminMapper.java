@@ -22,4 +22,8 @@ public interface AdminMapper {
 	List<CalculateDTO> selectCalculate();
 
 	List<TaxDTO> selectTax();
+
+	MemberDTO selectMemberDetail(int no);
+
+	int memberDelete(int no);
 }

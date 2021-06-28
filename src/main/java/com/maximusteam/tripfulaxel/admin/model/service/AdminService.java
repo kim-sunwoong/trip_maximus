@@ -22,4 +22,9 @@ public interface AdminService {
 	List<CalculateDTO> selectCalculateList();
 
 	List<TaxDTO> selectTaxList();
+
+	MemberDTO selectMemberDetail(int no);
+
+	int MemberDelete(int no);
+	
 }

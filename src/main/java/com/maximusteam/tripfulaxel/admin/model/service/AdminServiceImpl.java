@@ -58,6 +58,20 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectTax();
 	}
 
+	@Override
+	public MemberDTO selectMemberDetail(int no) {
+		return mapper.selectMemberDetail(no);
+
+	}
+
+	@Override
+	public int MemberDelete(int no) {
+		
+		return mapper.memberDelete(no);
+	}
+
+
+
 	
 	
 }

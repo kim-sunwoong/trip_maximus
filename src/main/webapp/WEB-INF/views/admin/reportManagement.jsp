@@ -145,9 +145,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${selectReport}" var = "report">
+                                    	<c:forEach items="${selectReport}" var = "report" varStatus="status">
                                         <tr>
-                                            <td><c:out value="${report.reportNo}"/></td>
+                                            <td><c:out value="${status.count}"/></td>
                                             <td><c:out value="${report.reportTitle}"/></td>
                                             <td><c:out value="${report.reportUser}"/></td>
                                             <td><c:out value="${report.reportStatus}"/></td>

@@ -9,16 +9,25 @@ public class MemberDTO {
     private String memberId;
     private java.sql.Date enrollDate;
     private int count;
+    private String memberPhone;
+    private String memberBDay;
+    private String gender;
+    private String memberGuideStatus;
 
     public MemberDTO() {}
 
-	public MemberDTO(int memberNo, String memberName, String memberId, java.sql.Date enrollDate, int count) {
+	public MemberDTO(int memberNo, String memberName, String memberId, java.sql.Date enrollDate, int count,
+			String memberPhone, String memberBDay, String gender, String memberGuideStatus) {
 		super();
 		this.memberNo = memberNo;
 		this.memberName = memberName;
 		this.memberId = memberId;
 		this.enrollDate = enrollDate;
 		this.count = count;
+		this.memberPhone = memberPhone;
+		this.memberBDay = memberBDay;
+		this.gender = gender;
+		this.memberGuideStatus = memberGuideStatus;
 	}
 
 	public int getMemberNo() {
@@ -61,12 +70,46 @@ public class MemberDTO {
 		this.count = count;
 	}
 
+	public String getMemberPhone() {
+		return memberPhone;
+	}
+
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
+	}
+
+	public String getMemberBDay() {
+		return memberBDay;
+	}
+
+	public void setMemberBDay(String memberBDay) {
+		this.memberBDay = memberBDay;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getMemberGuideStatus() {
+		return memberGuideStatus;
+	}
+
+	public void setMemberGuideStatus(String memberGuideStatus) {
+		this.memberGuideStatus = memberGuideStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDTO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
-				+ ", enrollDate=" + enrollDate + ", count=" + count + "]";
+				+ ", enrollDate=" + enrollDate + ", count=" + count + ", memberPhone=" + memberPhone + ", memberBDay="
+				+ memberBDay + ", gender=" + gender + ", memberGuideStatus=" + memberGuideStatus + "]";
 	}
 
+	
 	
     
     
