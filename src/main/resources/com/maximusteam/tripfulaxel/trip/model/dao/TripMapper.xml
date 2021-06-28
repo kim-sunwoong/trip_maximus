@@ -5,6 +5,29 @@
 <mapper
 	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
 	
+	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO" id="review">
+		<result property="reviewCode" column=""/>
+		<result property="reviewTitle" column=""/>
+		<result property="reviewInfo" column=""/>
+		<result property="reviewDate" column=""/>
+		<result property="reviewPoint" column=""/>
+		
+		<association property="reviewComent" javaType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewComentDTO">
+			<result property="replyCode" column=""/>
+			<result property="replyInfo" column=""/>
+			<result property="replyDate" column=""/>
+			<result property="reviewCode" column=""/>
+		</association>
+	
+		<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewImageDTO">
+			<result property="reviewImgCode" column=""/>
+			<result property="saveName" column=""/>
+			<result property="orignName" column=""/>
+			<result property="reviewCode" column=""/>
+		</collection>
+		
+	</resultMap>	
+	
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.TripDTO" id="trip">
 	
 		<result property="tripCode" column="TRIP_CODE"/>
@@ -95,6 +118,7 @@
 		   THEME_CHOICE_CODE,
 		   t2.THEME_CODE,
 		   t.TRIP_CODE,
+		   
 		<if test="condition.sortCondition eq '인기순'.toString()">
 		 	IFNULL(iv.CNT, 0) as rvcnt,
 		</if>
@@ -132,13 +156,18 @@
 		  
 			 </otherwise>
 		</choose>
+		
 	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
-	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
+	  LEFT JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
 	  JOIN TRIP_THEME_CHOICE ttc ON (t.TRIP_CODE = ttc.TRIP_CODE)
 	  JOIN THEME t2 ON (ttc.THEME_CODE = t2.THEME_CODE)
 	  JOIN TRANSIT_CHOICE tc2 ON (t.TRIP_CODE = tc2.TRIP_CODE)
 	  JOIN TRANSIT t3 ON (tc2.TRANSIT_CODE = t3.TRANSIT_CODE)
 	  JOIN TRIP_REGIST_LIST trl ON (t.TRIP_CODE = trl.TRIP_CODE)
+	  
+	  <if test="tripCode != null">
+	      WHERE t.TRIP_CODE = #{tripCode}
+	  </if>
 	  
 	  <!-- 첫 정렬은 최신순이며 인기 순이 선택되었을때 리뷰 카운트를 세는 join이 추가됨 -->
 	  <if test="condition.sortCondition eq '인기순'.toString()">
@@ -154,37 +183,44 @@
 	   	   ) as iv ON (gt.TRIP_CODE = iv.TRIP_CODE)
 	  </if>
 	  
-	  <choose>
-		  <!--  페이지 첫 호출시 기본 정렬 상태 -> 최신순만 정렬함. 테마는 정렬 x-->
-		  <when test="condition.sortTheme == 0">
-			   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
-		      	 AND trl.REGIST_TYPE_CODE = 3
-		      	 
-		       <if test="condition.sortCondition eq '최신순'.toString()">
-		      		  ORDER BY t.TRIP_CODE DESC
-		       </if>
-		       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
-		       <if test="condition.sortCondition eq '인기순'.toString()">
-		      		  ORDER BY rvcnt DESC;
-		       </if>
-		  </when>
-				  
-				<!-- 첫 호출이 아닌 상태 최신순/인기순 and 테마가 선택되어 있음 -->
-		  <otherwise>
-			   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
-		      	 AND trl.REGIST_TYPE_CODE = 3
-		      	 AND ttc.THEME_CODE = #{condition.sortTheme}
-		      	 
-		       <if test="condition.sortCondition eq '최신순'.toString()">
-		      		  ORDER BY t.TRIP_CODE DESC
-		       </if>
-		       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
-		       <if test="condition.sortCondition eq '인기순'.toString()">
-		      		  ORDER BY rvcnt DESC;
-		       </if>
-		    </otherwise>
-	   </choose>
+	  <if test="tripCode == null">
+		  <choose>
+			  <!--  페이지 첫 호출시 기본 정렬 상태 -> 최신순만 정렬함. 테마는 정렬 x-->
+			  <when test="condition.sortTheme == 0">
+				   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
+			      	 AND trl.REGIST_TYPE_CODE = 3
+			      	 
+			       <if test="condition.sortCondition eq '최신순'.toString()">
+			      		  ORDER BY t.TRIP_CODE DESC
+			       </if>
+			       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
+			       <if test="condition.sortCondition eq '인기순'.toString()">
+			      		  ORDER BY rvcnt DESC;
+			       </if>
+			  </when>
+					  
+					<!-- 첫 호출이 아닌 상태 최신순/인기순 and 테마가 선택되어 있음 -->
+			  <otherwise>
+				   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
+			      	 AND trl.REGIST_TYPE_CODE = 3
+			      	 AND ttc.THEME_CODE = #{condition.sortTheme}
+			      	 
+			       <if test="condition.sortCondition eq '최신순'.toString()">
+			      		  ORDER BY t.TRIP_CODE DESC
+			       </if>
+			       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
+			       <if test="condition.sortCondition eq '인기순'.toString()">
+			      		  ORDER BY rvcnt DESC;
+			       </if>
+			    </otherwise>
+		  </choose>
+	  </if>
 		
+	</select>
+	
+	<select id="selectReviewList" parameterType="_int" resultMap="review">
+	
+	
 	</select>
 	
 </mapper>

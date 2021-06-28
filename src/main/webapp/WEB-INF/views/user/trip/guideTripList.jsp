@@ -112,22 +112,27 @@
 			<!-- searchBox -->
 				<div class="new_search_box">
 				<ul class="clearfix">
+				
 					<li style="margin-left: 380px; margin-top: 10px; width:170px;">
-					<select name="search_condition" id="sort_condition" onchange="sort()" style="width:170px;">
-							<option value="">인기순/최신순</option>
-							<option value="최신순" selected="selected">최신순</option>
-							<option value="인기순">인기순</option>
-					</select></li>
+							<select name="search_condition" id="sort_condition" onchange="sort()" style="width:170px;">
+								<option value="">인기순/최신순</option>
+								<option value="최신순" <c:if test="${condition.sortCondition eq '최신순' or condition.sortCondition eq ''}">selected</c:if>>최신순</option>
+								<option value="인기순" <c:if test="${condition.sortCondition eq '인기순'}">selected</c:if>>인기순</option>
+							</select>
+					</li>
 					<li style="margin-left: 5px; margin-top: 10px; width:220px;">
-					<select name="search_theme" id="search_theme" onchange="sort()" style="width:220px;">
-							<option value="" selected="selected">여행 테마 선택</option>
-							<option value="1">직접 체험하는 액티비티</option>
-							<option value="2">온몸으로 느끼는 자연</option>
-							<option value="3">가이드만 알고 있는 시크릿 스팟 여행</option>
-							<option value="4">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</option>
-							<option value="5">인생샷을 건지는 스냅</option>
-					</select></li>
-					
+						<select name="search_theme" id="search_theme" onchange="sort()" style="width:220px;">
+								<option value="" <c:if test="${condition.sortTheme == null}">selected</c:if>>여행 테마 선택</option>
+								<option value="1" <c:if test="${condition.sortTheme == 1}">selected</c:if>>직접 체험하는 액티비티</option>
+								<option value="2" <c:if test="${condition.sortTheme == 2}">selected</c:if>>온몸으로 느끼는 자연</option>
+								<option value="3" <c:if test="${condition.sortTheme == 3}">selected</c:if>>가이드만 알고 있는 시크릿 스팟 여행</option>
+								<option value="4" <c:if test="${condition.sortTheme == 4}">selected</c:if>>이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</option>
+								<option value="5" <c:if test="${condition.sortTheme == 5}">selected</c:if>>인생샷을 건지는 스냅</option>
+						</select>
+					</li>
+				
+
+
 				</ul>
 			</div>
 
@@ -140,9 +145,10 @@
 				<c:forEach var="trip" items="${tripList }">
 			
 				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
+					<div class="speaker" data-aos="fade-up" data-aos-delay="100" style="width:360px; height:270px;"
+					onclick="location.href='${pageContext.servletContext.contextPath}/trip/select?tripCode=${trip.tripCode }&tripType=1'">
 						<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/guidetrip/${trip.tripImgList[0].saveName}"
-							alt="Speaker 1" class="img-fluid">
+							alt="Speaker 1" class="img-fluid" style="object-fit:cover; width:100%; height:100%;">
 						<div class="details">
 							<h3>
 								<a><c:out value="${trip.tripTitle }"/></a>
@@ -150,7 +156,7 @@
 							<p><c:out value="${trip.tripStartDate }"/> ~ <c:out value="${trip.tripEndDate }"/> </p>
 								<h4 style="color: white;">코스 : ${trip.tripCourseList[0].courseName}</h4>
 							<div class="social">
-								<h4 style="color: white;">모집 인원 : ${trip.joinTripMaximum}</h4>
+								<h4 style="color: white;">모집 인원 : ${trip.guideTripMaximum}</h4>
 							</div>
 						</div>
 					</div>
