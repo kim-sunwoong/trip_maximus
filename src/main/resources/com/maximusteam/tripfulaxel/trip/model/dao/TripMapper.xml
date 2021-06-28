@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
+	
+	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.TripDTO" id="trip">
+	
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		
+		<!-- join trip 부분 -->		
+		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
+		<result property="joinTripCode" column="J_TRIP_CODE"/>
+		
+		<!-- guide trip 부분 -->
+		<result property="guideTripCode" column="G_TRIP_CODE"/>
+		<result property="payment" column="G_TRIP_PAYMENT"/>
+		<result property="guideTripMinimum" column="G_TRIP_MINIMUM"/>
+		<result property="guideTripMaximum" column="G_TRIP_MAXIMUM"/>
+		
+		<!-- user trip 부분 -->
+		<result property="userTripCode" column="U_TRIP_CODE"/>
+		<result property="userTripComentTitle" column="U_TRIP_COMENT_TITLE"/>
+		<result property="userTripComent" column="U_TRIP_COMENT_INFO"/>
+		<result property="userTripComentPoint" column="U_TRIP_COMENT_POINT"/>
+		
+		<!-- course -->
+		<collection property="tripCourseList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO">
+			<result property="courseCode" column="TRIP_COURSE_CODE"/>
+			<result property="courseName" column="TRIP_COURSE_NAME"/>
+			<result property="courseInfo" column="TRIP_COURSE_INFO"/>
+			<result property="image" column="TRIP_IMAGE_SAVED_NAME"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- image -->
+		<collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripImageDTO">
+			<result property="tripCode" column="TRIP_CODE"/>
+			<result property="saveName" column="TRIP_IMAGE_SAVED_NAME"/>
+			<result property="orignName" column="TRIP_IMAGE_ORIGIN_NAME"/>
+			<result property="imgType" column="TRIP_IMAGE_TYPE_CODE"/>
+		</collection>
+		
+		
+	</resultMap>
+	
+	<select id="selectTripList" resultMap="trip" parameterType="Map">
+	
+	SELECT	   
+		   TRIP_TITLE,
+		   TRIP_INTRO,
+		   TRIP_START_DATE,
+	   	   TRIP_MEET_LOCATION,
+		   TRIP_INCLUDE,
+		   TRIP_N_INCLUDE,
+		   TRIP_END_DATE,
+		   TRIP_TITLE,
+		   TRIP_INTRO,
+	       TRIP_START_DATE,
+		   TRIP_MEET_LOCATION,
+		   TRIP_INCLUDE,
+		   TRIP_N_INCLUDE,
+		   TRIP_END_DATE,
+		   TRIP_IMAGE_SAVED_NAME,
+		   TRIP_IMAGE_TYPE_CODE,
+		   TRIP_IMAGE_ORIGIN_NAME,
+		   TRIP_COURSE_CODE,
+		   TRIP_COURSE_NAME,
+		   TRIP_COURSE_INFO,
+  
+		<choose>
+		 <when test='tripType eq "join".toString()'>
+		   J_TRIP_CODE,
+		   J_TRIP_MAXIMIM,
+		   jt.TRIP_CODE,
+		   ti.TRIP_IMAGE_CODE
+	  FROM JOIN_TRIP jt 
+	  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
+		 </when>
+		 <when test='tripType eq "guide".toString()'>
+		   G_TRIP_CODE,
+		   G_TRIP_PAYMENT,
+		   G_TRIP_MINIMUM,
+		   G_TRIP_MAXIMUM,
+		   gt.TRIP_CODE,
+		   ti.TRIP_IMAGE_CODE
+	  FROM GUIDE_TRIP gt 
+	  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 		
+		 </when>	  
+		 <otherwise>
+		   U_TRIP_CODE,
+		   U_TRIP_COMENT_TITLE,
+		   U_TRIP_COMENT_INFO,
+		   U_TRIP_COMENT_POINT,
+		   ut.TRIP_CODE,
+		   ti.TRIP_IMAGE_CODE
+	  FROM USER_TRIP ut 
+	  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 	
+		 </otherwise>
+		</choose>
+		
+		
+		</select>
+	
+</mapper>

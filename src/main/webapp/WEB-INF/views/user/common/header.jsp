@@ -202,7 +202,7 @@
                     <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md">
+                    <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
                     <span style="color:white; font-size: 20px; " > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
