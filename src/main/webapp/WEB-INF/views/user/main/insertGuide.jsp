@@ -249,8 +249,8 @@
 			 
 			 
 			 <!-- 코스 이름  -->
-			 <div id="courseContainer">
-				 <div id="course">
+			 <div class="courseContainer">
+				 <div class="course" id>
 					 <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>코스 이름  </span>
 					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
@@ -269,7 +269,7 @@
 						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
 					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
-					 	<input type="button" id="addTripCourse" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
+					 	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
 				</div>
 			</div>
@@ -277,36 +277,37 @@
 			<script>
 				$(document).ready(function(){
 					
-				const $addTripCourse = document.getElementsByClassName("addTripCourse");
-				
-				var courseCopy = $('#course').clone();
+/* 				const $addTripCourse = document.getElementsByClassName("addTripCourse");
+ */				
+				var courseCopy = $('.course').clone();
 
-				$addTripCourse.onclick = function() {
-					/* var courseTitle = $('#courseTitle').val();
-					var tripDay = $('#tripDay').val(); */
-					
-					$('#courseContainer').append(
+				$(document).on("click", "input[name='addTripCourse']", function () {
+				    
+					$('.courseContainer').append(
 	 						'<hr>'
 	 				);
 					
- 					$('#courseContainer').append(
+					$('.courseContainer').append(
  							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
  							<button type="button" class="btnRemove">삭제</button><br>\
  			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
  							' */
  						courseCopy
  					);
-					$('#courseContainer').append(
+					$('.courseContainer').append(
  						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
 							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
- 					);
+ 					); 
  					
- 					$('.btnRemove').on('click', function(){
- 						$(this).prev().remove();
- 						$(this).next().remove();
- 						$(this).remove();
- 					});
-					}
+ 					
+					
+				  });
+				
+					$('.btnRemove').on('click', function(){
+						$(this).prev().remove();
+						$(this).next().remove();
+						$(this).remove();
+					});
 				});
 			</script>			
 			<hr>
