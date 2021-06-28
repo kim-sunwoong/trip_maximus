@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
@@ -29,16 +30,15 @@ public class TripController {
 		this.tripService = tripService;
 	}
 	
-	@RequestMapping("join/select/list")
-	public String selectJoinTripList(Model model) {
-		
-		String tripType = "join";
+	@RequestMapping("select/list")
+	public String selectJoinTripList(@RequestParam String tripType, Model model) {
+		System.out.println(tripType);
 		Map<String, String> parameter = new HashMap<String, String>();
 		parameter.put("tripType", tripType);
-		List<TripDTO> joinTripList = tripService.selectTripList(parameter);
+		List<TripDTO> tripList = tripService.selectTripList(parameter);
 		
 		int count = 0;
-		for(TripDTO trip : joinTripList) {
+		for(TripDTO trip : tripList) {
 			System.out.println( count  + " 번째 여행");
 			System.out.println(trip);
 			count++;
@@ -56,10 +56,16 @@ public class TripController {
 			}
 		}
 		
-		System.out.println(joinTripList);
-		model.addAttribute("joinTrip", joinTripList);
+		System.out.println(tripList);
+		model.addAttribute("tripList", tripList);
 		
-		return "user/trip/joinTripList";
+		if(tripType.equals("join")) {
+			return "user/trip/joinTripList";
+		} else if(tripType.equals("guide")) {
+			return "user/trip/guideTripList";
+		} else {
+			return "user/trip/myTripList";
+		}
 		
 	}
 }

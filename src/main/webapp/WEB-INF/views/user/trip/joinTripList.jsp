@@ -119,27 +119,30 @@
 
 
 			<div class="row">
-			<c:forEach items="joinTrip">
+			
+			<c:forEach var="trip" items="${tripList }">
 			
 				<div class="col-lg-4 col-md-6">
 					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju1.png"
+						<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/jointrip/${trip.tripImgList[0].saveName}.jpg"
 							alt="Speaker 1" class="img-fluid">
 						<div class="details">
 							<h3>
-								<a>${joinTrip.tripTitle }</a>
+								<a><c:out value="${trip.tripTitle }"/></a>
 							</h3>
-							<p>${joinTrip.tripStartDate } ~ ${joinTrip.tripEndDate }</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
+							<p><c:out value="${trip.tripStartDate }"/> ~ <c:out value="${trip.tripEndDate }"/> </p>
+								<h4 style="color: white;">코스 : ${trip.tripCourseList[0].courseName}</h4>
 							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
+								<h4 style="color: white;">모집 인원 : ${trip.joinTripMaximum}</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 			
 			</c:forEach>
-				<div class="col-lg-4 col-md-6">
+			
+			
+				<!-- <div class="col-lg-4 col-md-6">
 					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
 						<img src="/tripfulaxel/resources/user/images/trip/jeju2.png"
 							alt="Speaker 2" class="img-fluid">
@@ -154,311 +157,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju3.png"
-							alt="Speaker 3" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju5.png"
-							alt="Speaker 4" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju6.png"
-							alt="Speaker 5" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju7.png"
-							alt="Speaker 6" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju8.png"
-							alt="Speaker 1" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju1.png"
-							alt="Speaker 1" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju2.png"
-							alt="Speaker 2" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju3.png"
-							alt="Speaker 3" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju5.png"
-							alt="Speaker 4" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju6.png"
-							alt="Speaker 5" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju7.png"
-							alt="Speaker 6" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju8.png"
-							alt="Speaker 1" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju1.png"
-							alt="Speaker 1" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju2.png"
-							alt="Speaker 2" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju3.png"
-							alt="Speaker 3" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju5.png"
-							alt="Speaker 4" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="200">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju6.png"
-							alt="Speaker 5" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="300">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju7.png"
-							alt="Speaker 6" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="/tripfulaxel/resources/user/images/trip/jeju8.png"
-							alt="Speaker 1" class="img-fluid">
-						<div class="details">
-							<h3>
-								<a>먹방투어 같이가요~</a>
-							</h3>
-							<p>일자 : 6/20 ~ 6/23</p>
-								<h4 style="color: white;">코스 : 서귀포 ~ 부산 앞바다</h4>
-							<div class="social">
-								<h4 style="color: white;">인원 : 2/4 곧 출발 합니다~</h4>
-							</div>
-						</div>
-					</div>
-				</div>
+				</div>  -->
+				
 
 			</div>
 		</div>
