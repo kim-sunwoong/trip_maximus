@@ -155,7 +155,7 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block">거주기간</span>
 						<span>
-							<select name=checkIn class="select-time">
+							<select name="periodCode" class="select-time">
 								<option value="1">6개월이내</option>
 								<option value="2">1년이내</option>
 								<option value="3">3년이내</option>
@@ -168,7 +168,7 @@
 					<!-- 가이드 소개 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 소개</span>
-						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="당신을 소개해주세요"></textarea>
+						 <textarea class="form-control textarea-layer" rows="9" name="intro" placeholder="당신을 소개해주세요"></textarea>
                           <div class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -189,14 +189,14 @@
 				<td>
 				<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>신분증</span>
-                    <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+                    <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					  <p class="description" style="margin-bottom: 3px;">*신분증은 뒷번호를 가린 후 업로드 해주세요. </p>
 				</div>
 				
 				<!-- 프로필 사진  -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>프로필 사진</span>
-			      <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input type="file" name="imageFace" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*가이드 프로필 사진을 업로드 해주세요</p>
 				</div>
 
@@ -242,34 +242,36 @@
 			<!-- 여정 소개 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>여행 소개</span>
-						 <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
+						 <textarea class="form-control textarea-layer" rows="9" name="tripIntro" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
                           <div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>	
 			 <hr>
+			 
+			 
 			 <!-- 코스 이름  -->
-			 <div class="form-layer">
-				<span class="form-title" style="display:inline-block";>코스 이름  </span>
-			 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
-			</div>
-				
-			<!-- 코스 소개 -->
-			<div class="form-layer">
-				<span class="form-title" style="display:inline-block";>코스 소개</span>
-				<textarea class="form-control textarea-layer" rows="9" name="near" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
-                <div class="maxText">(최대 500자)</div>
-                <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
-			</div>		
-			
-			<!-- 코스 일 차 -->
-			<div class="form-layer">
-				<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
-			 	<input type="number" class="select-nomalsize" id="tripDay" name="tripDay" min="1" style="width:50px !important; margin-left:70px;"/>
-			 	<input type="button" id="addTripCourse" style="margin-left: 50px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" value="여행추가">
-			</div>
-					 
-			<h3 align="center">추가된 여행 리스트</h3>
-			<div id="addedCourse">
+			 <div id="courseContainer">
+				 <div id="course">
+					 <div class="form-layer">
+						<span class="form-title" style="display:inline-block";>코스 이름  </span>
+					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
+					</div>
+						
+					<!-- 코스 소개 -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>코스 소개</span>
+						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
+		                <div class="maxText">(최대 500자)</div>
+		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+					</div>		
+					
+					<!-- 코스 일 차 -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
+					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
+					</div>
+					 	<input type="button" id="addTripCourse" style=" border-radius: 0px; box-shadow: none;
+							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
+				</div>
 			</div>
 			
 			<script>
@@ -277,15 +279,28 @@
 					
 				const $addTripCourse = document.getElementById("addTripCourse");
 				
+				var courseCopy = $('#course').clone();
+
 				$addTripCourse.onclick = function() {
-				
-					var courseTitle = $('#courseTitle').val();
-					var tripDay = $('#tripDay').val();
+					/* var courseTitle = $('#courseTitle').val();
+					var tripDay = $('#tripDay').val(); */
 					
- 					$('#addedCourse').append(
- 							'<input type="text" name="courses" value="DAY - '+ tripDay + ' : ' + courseTitle +'">\
- 							<button type="button" class="btnRemove">삭제</button><br>'
+					$('#courseContainer').append(
+	 						'<hr>'
+	 				);
+					
+ 					$('#courseContainer').append(
+ 							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
+ 							<button type="button" class="btnRemove">삭제</button><br>\
+ 			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+ 							' */
+ 						courseCopy
  					);
+					$('#courseContainer').append(
+ 						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
+							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+ 					);
+ 					
  					$('.btnRemove').on('click', function(){
  						$(this).prev().remove();
  						$(this).next().remove();
@@ -300,8 +315,8 @@
 					<span class="form-title" style="display:inline-block";>만나는 장소  </span>
 				
 			         <input type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
-					 <button class="submit-btn" id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
-					 background-color:skyblue;" > 주소 검색</button>
+					 <input type="button"  id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
+					 background-color:skyblue;" value=" 주소 검색 ">
 				     <input type="text" name="address1" id="address1" readonly style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요.">
 				     <input type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
@@ -340,13 +355,13 @@
 				 <!-- 1인당 가격   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>1인당 가격  </span>
-			 	    <input type="number" class="select-nomalsize" name="accomoName" placeholder="1인당 가격  ex)150,000">
+			 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
 				  </div>
 			   
 			   	 <!-- 포함 사항    -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
+			 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
 			 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
 				  </div>
 			   
@@ -354,7 +369,7 @@
 		    	<!-- 불포함 사항    -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>불포함 사항  </span>
-			 	    <input type="text" class="select-nomalsize" name="accomoName" placeholder="예시) 식비 등 "  value="">
+			 	    <input type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
 				  </div> 
 			   
 			   </td>
@@ -362,9 +377,9 @@
  			<tr>
 				<br>
 				<th colspan="2" style="background-color: white !important; ">
-						<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
-						box-shadow: none;  border-radius: 0px;  background-color:skyblue;">
-						제출하기</button>
+						<input type="button" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
+						box-shadow: none;  border-radius: 0px;  background-color:skyblue;" value="제출하기">
+						
 				</th>
 			</tr> 
 			
@@ -372,6 +387,15 @@
 		</tbody>
  </table>
 
+<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
+<script>
+
+
+
+</script>
+
+
+<!-- 주소 api 사용 -->
 <script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 </script>

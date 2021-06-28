@@ -26,9 +26,24 @@
 	<resultMap id="reportList" type="ReportDTO">
 		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
-		<result column="EXAMINE_REQUEST_REASON" property="reportReason" />
+		<result column="USER_EMAIL" property="reportUser" />
 		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
 		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
+	</resultMap>
+	
+	<!-- 가이드 리스트 -->
+	<resultMap id="guideList" type="GuideDTO">
+		<id column="GUIDE_CODE" property="guideNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="USER_GUIDE_YN" property="guideEnrollStatus" />
+		<result column="GUIDE_YN" property="guideApproveStatus" />
+	</resultMap>
+	
+	<!-- 정산 리스트 -->
+	<resultMap id="calculateList" type="CalculateDTO">
+		<id column="INVOICE_CODE" property="calculateNo" />
+		<result column="USER_EMAIL" property="userId" />
+		<result column="INVOICE_DATE" property="calculateDate" />
 	</resultMap>
 	
 	<select id="selectAdmin" resultMap="adminList">
@@ -49,19 +64,45 @@
              , A.USER_REGISTER_DAY
              , A.USER_REPORT_COUNT
           FROM USER A
+         WHERE USER_GUIDE_YN = 'N'
 	</select>
 	
 	<select id="selectReport" resultMap="reportList">
         SELECT 
                A.EXAMINE_REQUEST_CODE
              , A.EXAMINE_REQUEST_REASON
-             , A.EXAMINE_REQUEST_REASON
+             , C.USER_EMAIL
              , A.EXAMINE_REQUEST_YN
-             , A.EXAMINE_REQUEST_YN
+             , A.EXAMINE_REQUEST_DATE
           FROM EXAMINE A
           JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
+          JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
          WHERE EXAMINE_TYPE_CODE = 1
             OR EXAMINE_TYPE_CODE = 2
 	</select>
+	
+	<select id="selectGuide" resultMap="guideList">
+        SELECT 
+               A.GUIDE_CODE
+             , C.USER_EMAIL
+             , C.USER_GUIDE_YN
+             , A.GUIDE_YN
+          FROM GUIDE A
+          JOIN USER C ON (A.USER_CODE = C.USER_CODE)
+         WHERE A.GUIDE_YN = 'N'
+	</select>
+	
+	<select id="selectCalculate" resultMap="calculateList">
+        SELECT 
+               A.INVOICE_CODE
+             , E.USER_EMAIL
+             , A.INVOICE_DATE
+          FROM INVOICE A
+          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOCE_CODE)
+          JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
+          JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+          JOIN USER E ON ( D.USER_CODE = E.USER_CODE);	
+    </select>	
+	
 
 </mapper>

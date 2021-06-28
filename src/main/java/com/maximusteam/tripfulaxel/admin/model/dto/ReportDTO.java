@@ -7,16 +7,19 @@ public class ReportDTO {
     private int reportNo;
     private String reportTitle;
     private String reportReason;
+    private String reportUser; //신고작성자
     private String reportStatus;
     private java.util.Date reportDate;
 	
     public ReportDTO() {}
 
-	public ReportDTO(int reportNo, String reportTitle, String reportReason, String reportStatus, Date reportDate) {
+	public ReportDTO(int reportNo, String reportTitle, String reportReason, String reportUser, String reportStatus,
+			Date reportDate) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
 		this.reportReason = reportReason;
+		this.reportUser = reportUser;
 		this.reportStatus = reportStatus;
 		this.reportDate = reportDate;
 	}
@@ -45,6 +48,14 @@ public class ReportDTO {
 		this.reportReason = reportReason;
 	}
 
+	public String getReportUser() {
+		return reportUser;
+	}
+
+	public void setReportUser(String reportUser) {
+		this.reportUser = reportUser;
+	}
+
 	public String getReportStatus() {
 		return reportStatus;
 	}
@@ -64,8 +75,9 @@ public class ReportDTO {
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportReason=" + reportReason
-				+ ", reportStatus=" + reportStatus + ", reportDate=" + reportDate + "]";
+				+ ", reportUser=" + reportUser + ", reportStatus=" + reportStatus + ", reportDate=" + reportDate + "]";
 	}
-    
+
+	
     
 }
