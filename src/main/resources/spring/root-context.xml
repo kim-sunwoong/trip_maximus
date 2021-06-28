@@ -29,6 +29,7 @@
 		<property name="url" value="jdbc:mysql://localhost/TRIPFULAXEL?" />
 		<property name="username" value="sunwoong" />
 		<property name="password" value="sunwoong" />
+
 		<property name="defaultAutoCommit" value="false" />
 	</bean>
 	
