@@ -168,7 +168,7 @@
 	                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
 		                    </a>
 	                    </li>
-	                    
+	                    <!-- 나중에 로그인된 사람만 보게 해야함 -->
 	                    <li class="floatL">
 		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage">
 	                        <span style="color:white; font-size: 18px; font-weight: bold;">마이페이지</span>
