@@ -183,20 +183,19 @@ li.header_menu:hover {
 				<span class="txt_sm or" style="margin-top: 3vh">당신의 여행에 가속을</span>
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
-				<form style="margin-top: 10px;" class="member_form"
-					name="fregisterform" action="#"
+				<form style="margin-top: 10px;" class="member_form" name="fregisterform" action="#"
 					onsubmit="return fregisterform_submit(this);" method="post"
 					enctype="multipart/form-data" autocomplete="off">
-					<input type="email" id="reg_mb_email" name="mb_email" value=""
+			     <input type="email" id="reg_mb_email" name="mb_email" value=""
 						required class="email frm_input full_input" size="70"
-						maxlength="100" placeholder="* 이메일 주소"> <input type="text"
-						name="mb_name" value="" required class="frm_input half_input"
-						size="3" placeholder="* 이름(예:홍길동)"> <input type="password"
-						name="mb_password" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
-						type="password" name="mb_password_re" required
-						class="frm_input half_input right_input" minlength="3"
-						maxlength="20" placeholder="* 비밀번호 확인">
+						maxlength="100" placeholder="* 이메일 주소">
+				 <input type="text" name="mb_name" value="" required class="frm_input half_input"
+						size="3" placeholder="* 이름(예:홍길동)">
+				 <input type="password" name="mb_password" required class="frm_input half_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호">
+				 <input type="password" name="mb_password_re" required 
+				        class="frm_input half_input right_input" minlength="3" 
+				        maxlength="20" placeholder="* 비밀번호 확인">
 
 					<p
 						style="font-size: 13px; color: #ff7358; margin-top: 5px; display: inline-block;">*연령대와
@@ -321,7 +320,8 @@ li.header_menu:hover {
 							<option value="1912">1912</option>
 							<option value="1911">1911</option>
 							<option value="1910">1910</option>
-						</select> <select name="mb_birth_M" value="" class="frm_input half_input">
+						</select>
+						 <select name="mb_birth_M" value="" class="frm_input half_input">
 							<option value="월">월</option>
 							<option value='1'>1월</option>
 							<option value='2'>2월</option>
@@ -335,7 +335,8 @@ li.header_menu:hover {
 							<option value='10'>10월</option>
 							<option value='11'>11월</option>
 							<option value='12'>12월</option>
-						</select> <select id="reg_mb_birth_D" name="mb_birth_D" value=""
+						</select> 
+						<select id="reg_mb_birth_D" name="mb_birth_D" value=""
 							class="frm_input half_input">
 							<option value="일">일</option>
 							<option value='1'>1일</option>
@@ -375,23 +376,15 @@ li.header_menu:hover {
 						<input type="radio" id="gender1" name="mb_gender" value="1">
 						<label for="gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> <span
-							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="gender2" name="mb_gender" value="2">
+							<i style="margin: 12px 9px;" class="floatL"></i>
+							 <span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
+						</label>
+						 <input type="radio" id="gender2" name="mb_gender" value="2">
 						<label for="gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> <span
-							class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
+							<i style="margin: 12px 9px;" class="floatL"></i>
+							 <span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
-
-						<!-- <div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-					  <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
-					</div>
-					<div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-					  <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
-					</div> -->
 					</div>
 
 					<p class="checkbox_wrap">
@@ -435,6 +428,8 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //회원가입 팝업 끝 -->
+	
+	
 	<!-- 로그인 팝업 시작-->
 	<div class="pop_bg pop_wrap signup_pop">
 		<div class="member_pop_box close_wrap login_pop"

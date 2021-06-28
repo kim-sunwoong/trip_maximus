@@ -154,22 +154,25 @@
 	                    <li class="floatL">
 	                       <a class="login_link" href="#">
                           <span style="color:white; font-size: 18px; font-weight: bold;">로그인</span>
-	                       
 	                       </a>
 	                    </li>
+	                    
 	                    <li class="floatL">
-	                    <a class="signup_link" href="#">
-                        <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
-	                    </a>
+		                    <a class="signup_link" href="#">
+	                        <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
+		                    </a>
 	                    </li>
-	                    </li>
+	                    
 	                    <li class="floatL">
-
-
-	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
-
-                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
-	                    </a>
+		                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
+	                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
+		                    </a>
+	                    </li>
+	                    
+	                    <li class="floatL">
+		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage">
+	                        <span style="color:white; font-size: 18px; font-weight: bold;">마이페이지</span>
+		                    </a>
 	                    </li>
                     </ul>
         		</div>
@@ -202,7 +205,7 @@
                     <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md">
+                    <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
                     <span style="color:white; font-size: 20px; " > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
