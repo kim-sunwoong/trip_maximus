@@ -11,7 +11,7 @@ public class ReviewDTO {
 	private Date reviewDate;
 	private int reviewPoint;
 	
-	private List<ReviewImageDTO> reviewImgList;
+	private List<ImageDTO> reviewImgList;
 	
 	private ReviewComentDTO reviewComent;
 	
@@ -20,7 +20,7 @@ public class ReviewDTO {
 	}
 
 	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int reviewPoint,
-			List<ReviewImageDTO> reviewImgList, ReviewComentDTO reviewComent) {
+			List<ImageDTO> reviewImgList, ReviewComentDTO reviewComent) {
 		super();
 		this.reviewCode = reviewCode;
 		this.reviewTitle = reviewTitle;
@@ -71,11 +71,11 @@ public class ReviewDTO {
 		this.reviewPoint = reviewPoint;
 	}
 
-	public List<ReviewImageDTO> getReviewImgList() {
+	public List<ImageDTO> getReviewImgList() {
 		return reviewImgList;
 	}
 
-	public void setReviewImgList(List<ReviewImageDTO> reviewImgList) {
+	public void setReviewImgList(List<ImageDTO> reviewImgList) {
 		this.reviewImgList = reviewImgList;
 	}
 

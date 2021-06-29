@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.trip.model.dao.TripMapper;
+import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
@@ -33,6 +34,12 @@ public class TripServiceImpl implements TripService{
 	public List<ReviewDTO> selectReviewList(int tripCode) {
 		
 		return tripMapper.selectReviewList(tripCode);
+	}
+
+	@Override
+	public GuideDTO selectGuide(int tripCode) {
+		
+		return tripMapper.selectGuide(tripCode);
 	}
 
 }

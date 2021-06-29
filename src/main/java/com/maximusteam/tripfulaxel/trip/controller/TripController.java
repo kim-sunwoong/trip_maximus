@@ -18,7 +18,8 @@ import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
-import com.maximusteam.tripfulaxel.trip.model.dto.TripImageDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;
 import com.maximusteam.tripfulaxel.trip.model.service.TripServiceImpl;
@@ -44,6 +45,15 @@ public class TripController {
 		parameter.put("condition", condition);
 		
 		List<TripDTO> trip = tripService.selectTripList(parameter);
+		List<TripCourseDTO> courseList = trip.get(0).getTripCourseList();
+		Iterator<TripCourseDTO> courseIter = courseList.iterator();
+		while(courseIter.hasNext()) {
+			TripCourseDTO course = courseIter.next();
+			if(course.getCourseCode() == 0) {
+				courseIter.remove();
+			}
+		}
+		
 		for(TripDTO t : trip) {
 			System.out.println(t);
 		}
@@ -53,7 +63,11 @@ public class TripController {
 			System.out.println(review);
 		}
 		
+		GuideDTO guide = tripService.selectGuide(tripCode);
+		System.out.println("가이드");
+		System.out.println(guide);
 		model.addAttribute("trip", trip);
+		model.addAttribute("guide", guide);
 		model.addAttribute("reviewList", reviewList);
 		
 		if(condition.getTripType() == 2) {
@@ -92,7 +106,7 @@ public class TripController {
 			System.out.println("count : " + count);
 			count++;
 			System.out.println(trip);
-			for(TripImageDTO image : trip.getTripImgList()) {
+			for(ImageDTO image : trip.getTripImgList()) {
 				System.out.println(image);
 			}
 			for(TripCourseDTO course : trip.getTripCourseList()) {
