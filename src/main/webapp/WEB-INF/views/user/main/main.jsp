@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -170,7 +171,11 @@ li.header_menu:hover {
 </style>
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
-
+허
+<%-- <c:if test="${ messeage ne '회원가입성공' }">
+ <script type="text/javascript"> alert("${ messeage }");</script>
+    
+</c:if> --%>
 
 	<!-- 팝업 시작 -->
 
@@ -191,8 +196,8 @@ li.header_menu:hover {
 					 name="fregisterform" autocomplete="off">
 
 					<input type="email" id="userEmail" name="userEmail"
-						value="juyoung@greedy.com" required
-						class="email frm_input full_input" size="70" maxlength="100"
+						value="" required
+						class="email frm_input full_input" sizem="70" maxlength="100"
 						placeholder="* 이메일 주소">
 
 					<!-- 중복확인용 -->
@@ -202,21 +207,21 @@ li.header_menu:hover {
 					<!-- 히든 중복체크를 위한 것  -->
 					<input type="hidden" id="Check" name="Check" value="fail">
 
-					<input type="text" id="userName" name="userName" value="정주영"
+					<input type="text" id="userName" name="userName" value=""
 						required class="frm_input half_input" size="3"
-						placeholder="* 이름(예:홍길동)"> <input type="text"
-						id="userPhone" name="userPhone" value="010-1234-5678" required
+						placeholder="* 이름(예:홍길동)"> 
+					<input type="text" id="userPhone" name="userPhone" value="" required
 						class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
 
 					<input type="password" id="userPwd" name="userPwd"
-						value="juyoung123" required class="frm_input half_input"
+						value="" required class="frm_input half_input"
 						minlength="3" maxlength="20" placeholder="* 비밀번호">
 					<input type="password" id="repassword" name="repassword" required
-						value="juyoung123" class="frm_input half_input right_input"
+						value="" class="frm_input half_input right_input"
 						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> 
-				  <input type="text" id="userBday" name="userBday" value="1997-11-29"
+				    <input type="text" id="userBday" name="userBday" value=""
 						required class="frm_input half_input"
-						 placeholder="* 출생연도(예:19971129)">
+						 placeholder="* 출생연도(예:19900120)">
 
 
 					<div class="gender_wrap" style="height: 50px;">
@@ -236,16 +241,16 @@ li.header_menu:hover {
 					</div>
 
 					<p class="checkbox_wrap">
-						<input type="checkbox" id="agree_all"> <label
-							for="agree_all"> <i id="agree_all_i"></i>
-							 <span>아래 약관에 모두 동의합니다.</span>
+					<input type="checkbox" id="agree_all">
+						 <label for="agree_all"> <i id="agree_all_i"></i>
+						<span>아래 약관에 모두 동의합니다.</span>
 						</label>
 					</p>
 
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_1" class="checkOne" name="check">
-						<label for="agree_1" style="vertical-align: middle;"> <i
-							id="agree_1_i"></i> <span
+						<label for="agree_1" style="vertical-align: middle;"> 
+						<i id="agree_1_i"></i> <span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
 							target="_blank">회원가입 및 운영약관(필수)</span>
 						</label>
@@ -253,29 +258,31 @@ li.header_menu:hover {
 
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_2" class="checkOne" name="check">
-						<label for="agree_2" style="vertical-align: middle;"> <i
-							id="agree_2_i"></i><span
-							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
+						<label for="agree_2" style="vertical-align: middle;"> 
+						<i id="agree_2_i"></i>
+						<span onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
 							target="_blank">개인정보 수집 및 이용(필수)</span>
 						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_3" class="checkOne" name="check">
-						<label for="agree_3" style="vertical-align: middle;"> <i
-							id="agree_3_i"></i> <span
+						<label for="agree_3" style="vertical-align: middle;"> 
+						<i id="agree_3_i"></i> 
+						<span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php#location')"
 							target="_blank">위치정보 이용약관(선택)</span>
 						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_4" name="agree_4" value="1"
-							class="checkOne"> <label for="agree_4"> <i
-							id="agree_4_i"></i> <span>마케팅 정보수신에 동의(선택)</span>
+							class="checkOne"> <label for="agree_4">
+							 <i id="agree_4_i"></i> <span>마케팅 정보수신에 동의(선택)</span>
 						</label>
 					</p>
 
-					<input type="hidden" name="w" value=""> <input
-						type="hidden" name="s" value=""> <input id="signinbtn"
+					<input type="hidden" name="w" value="">
+				     <input type="hidden" name="s" value="">
+					<input id="signinbtn"
 						class="btnBgC txt_bs submit" type="submit" value="가입하기" onclick="return regist()";
 						style="margin-top: 3vh;">
 
@@ -290,17 +297,19 @@ li.header_menu:hover {
 	<div class="pop_bg pop_wrap signup_pop">
 		<div class="member_pop_box close_wrap login_pop"
 			style="width: 90%; max-width: 500px;; padding: 5vh 0; max-height: 600px;">
-			<span class="close_btn"></span> <span class="close_btn"></span>
+			<span class="close_btn"></span> 
+			<span class="close_btn"></span>
 			<div class="member_wrap" style="width: 100%; padding: 0 5%;">
 				<h3 class="tit txt_bold">로그인</h3>
 
 				<span class="txt_sm or" style="margin-top: 3vh">환영합니다!</span>
-				<form class="member_form" name="flogin" action="javascript:void(0);" method="post"
+				<form class="member_form" name="flogin" action="${ pageContext.servletContext.contextPath }/user/login" 
+				    method="post"
 					style="margin-top: 3vh">
-					<input type="email" name="mb_email" id="login_email" required
+					<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
 						style="margin: 0 auto; width: 60%; display: flex;"> 
-					<input type="password" name="mb_password" id="login_pw" required
+					<input type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button class="btnBgC txt_bs submit" type="submit"
@@ -308,16 +317,19 @@ li.header_menu:hover {
 				</form>
 				
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="javascript:void(0);"
-						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
-						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR"><a href="javascript:void(0);"
-						class="signup_link txt_sm txt_bold">회원가입</a></li>
+					<li class="floatL">
+					<a href="javascript:void(0);" class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> 
+						<a href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
+					<li class="floatR">
+					<a href="javascript:void(0);" class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
+	
+	
+	
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
@@ -356,14 +368,13 @@ li.header_menu:hover {
 				<form class="member_form" >
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
-						<input type="radio" id="find_gender1" name="find_gender" value="1"
+						<input type="radio" id="find_gender1" name="find_gender" value="남자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i> <span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="find_gender2" name="find_gender"
-							value="2"
+						</label> <input type="radio" id="find_gender2" name="find_gender" value="여자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
@@ -672,6 +683,15 @@ li.header_menu:hover {
 			}
 		
 		}
+		
+ 		/* 회원가입 실패 및 성공 시  */
+		var messege = '${messege}';
+		if( messege === 'registOK') {
+			alert('tripfulaxel에 회원이 되셨습니다 축하합니다! ')
+		} else if(messeage === 'registNO'){
+			alert('회원가입에 실패하셨습니다!')
+		}
+		 
 	</script>
 
 	<!-- //헤더 영역 끝 -->

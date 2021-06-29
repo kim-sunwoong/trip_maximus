@@ -10,7 +10,10 @@ public interface UserMapper {
 
 
 	int registUser(UserDTO user);
+	
+	String selectUserPwd(UserDTO user);
 
 	UserDTO loginUser(UserDTO user);
+
 
 }

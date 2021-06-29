@@ -3,7 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.UserMapper">
+ <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.UserMapper">
+ 
+    <resultMap id="userResult" type="UserDTO">
+      <result column="USER_CODE" property="userCode" />
+      <result column="USER_NAME" property="userName" />
+      <result column="USER_PHONE" property="userPhone" />
+      <result column="USER_PWD" property="userPwd" />
+      <result column="USER_BDAY" property="userBday" />
+      <result column="USER_GENDER" property="userGender" />
+      <result column="USER_EMAIL" property="userEmail" />
+      <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+      <result column="USER_REPORT_COUNT" property="userReportCount" />
+      <result column="USER_GUIDE_YN" property="userGuideYN" />
+    </resultMap>
 	
 	<!-- 회원가입  -->
 	<!--  parameterType : 파라미터의 타입을 지정한다. 이미 정의된 별칭을 사용할 수 있거나, 클래스의 full-name을 적어준다.  -->
@@ -34,6 +47,18 @@
           , NOW()
         )
 	</insert>
+	
+	
+	<select id="loginUser" resultMap="userResult" parameterType="UserDTO">
+	<![CDATA[
+		SELECT
+		       USER_EMAIL
+		       USER_PWD
+		  FROM USER
+		  WHERE USER_EMAIL = #{ userEmail } 
+		    AND USER_REPORT_COUNT < 3
+	     ]]>
+	</select>
 
 
 </mapper>

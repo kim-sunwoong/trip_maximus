@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService {
 		return mapper.registUser(user) > 0? true:false;
 	}
 
-
-
+	
 	/**
 	 * 로그인용 메소드
 	 */
 	@Override
 	public UserDTO loginUser(UserDTO user) {
-	
+		
+		
 		return mapper.loginUser(user);
 	}
 
