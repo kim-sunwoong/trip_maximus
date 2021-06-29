@@ -321,16 +321,13 @@
 				
 				<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
 				$('#submitButton').click(function(){
-				        var formData = new FormData($('#insertGuideForm')[0]);
-						console.log("james");
-				        console.log(formData); // FormData
-			        	
-				       
-						var test = new FormData();
-						var imageData = document.getElementById('insertGuideForm');
-						console.log("cha");
-						console.log(imageData);
-						
+ 				        var formData = new FormData($('#insertGuideForm')[0]);
+ 				        
+ 				        /* for(var pair of formData.entries()){
+ 				        	console.log(pair[0] + ", " + pair[1]);
+ 				        }
+ 				         */
+ 				         
 				        $.ajax({
 				            url : "${pageContext.request.contextPath}/guide/insert",
 				            type : 'post', 
@@ -343,6 +340,8 @@
 				            async : false,
 				            success : function(data) {
 				                var jsonObj = JSON.parse(data);
+				                // 성공했을시
+				                // 실패했을시
 				            }, // success 
 				    
 				            error : function(xhr, status) {
@@ -434,9 +433,49 @@
 
 $("document").ready(function(){
 
+	var formData;	
+	
     $('input[type=file]').change(function(e) {
-        alert('changed!' + this);
-    });
+    	
+    	console.log(e.target.files);
+    	
+    	var formArray = {};
+    	var fileList = e.target.files;
+    	
+    	var formData = new FormData();	
+
+    	for(var i = 0; i < fileList.length; i ++){
+    		var file = fileList[i];
+    		
+    		formData.append('imageFile', file);
+    	}
+
+    	formData.append('imageCategory', e.target.name)
+
+    	$.ajax({             
+        	type: "POST",          
+            enctype: 'multipart/form-data',  
+            url: "${pageContext.request.contextPath}/imageUpload/guide",        
+            data: formData,          
+            processData: false,    
+            contentType: false,      
+            cache: false,           
+            timeout: 600000,       
+            success: function (data) { 
+            	alert("complete");           
+/*             	$("#btnSubmit").prop("disabled", false);      
+ */            },          
+            error: function (e) {  
+            	console.log("ERROR : ", e);     
+/*                 $("#btnSubmit").prop("disabled", false);    
+ */                alert("fail");      
+             }     
+    	});  
+ 
+ 	    
+     });
+    
+    
 });
 
 
