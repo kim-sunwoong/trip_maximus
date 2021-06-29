@@ -248,6 +248,7 @@
 
 					<div class="form-layer">
 						<input type="file"  name="imageTrip"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
+                  		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
 			 <hr>
 			 
