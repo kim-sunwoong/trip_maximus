@@ -49,6 +49,7 @@
 	</insert>
 	
 	
+	<!-- 로그인 확인용 -->
 	<select id="loginUser" resultMap="userResult" parameterType="UserDTO">
 	<![CDATA[
 		SELECT
@@ -60,6 +61,13 @@
 	     ]]>
 	</select>
 
+	<!-- 이메일 중복 체크용 -->
+	<select id="duplicationCheck" resultType="int" parameterType="UserDTO">
+		SELECT 
+		       COUNT(*)
+		  FROM USER
+		 WHERE USER_EMAIL = #{ userEmail }
+	</select>
 
 </mapper>
 

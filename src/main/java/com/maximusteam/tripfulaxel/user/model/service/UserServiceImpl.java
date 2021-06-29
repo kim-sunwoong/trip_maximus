@@ -47,4 +47,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+
+	/**
+	 * 이메일 중복체크용
+	 */
+	@Override
+	public int duplicationCheck(UserDTO user) {
+		
+		return mapper.duplicationCheck(user);
+	}
+
+
 }

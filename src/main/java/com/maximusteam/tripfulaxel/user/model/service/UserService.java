@@ -14,6 +14,8 @@ public interface UserService {
 	boolean registUser(UserDTO user);
 
 	UserDTO loginUser(UserDTO user);
+	
+	int duplicationCheck(UserDTO user);
 
 
 

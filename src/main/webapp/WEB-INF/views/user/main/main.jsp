@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -171,8 +171,8 @@ li.header_menu:hover {
 </style>
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
-허
-<%-- <c:if test="${ messeage ne '회원가입성공' }">
+	허
+	<%-- <c:if test="${ messeage ne '회원가입성공' }">
  <script type="text/javascript"> alert("${ messeage }");</script>
     
 </c:if> --%>
@@ -192,65 +192,66 @@ li.header_menu:hover {
 					필수 입력</p>
 
 				<form style="margin-top: 10px;" name="frm1" class="member_form"
-				     method="post" action="${ pageContext.servletContext.contextPath }/user/regist"
-					 name="fregisterform" autocomplete="off">
+					method="post"
+					action="${ pageContext.servletContext.contextPath }/user/regist"
+					name="fregisterform" autocomplete="off">
 
-					<input type="email" id="userEmail" name="userEmail"
-						value="" required
-						class="email frm_input full_input" sizem="70" maxlength="100"
-						placeholder="* 이메일 주소">
+					<input type="email" id="userEmail" name="userEmail" value=""
+						required class="email frm_input full_input" size="70"
+						maxlength="100" placeholder="* 이메일 주소">
 
-					<!-- 중복확인용 -->
-					<input id="duplicationCheck" class="btnBgC txt_bs submit"
-						value="중복확인" style="margin-top: 3vh; text-align: center;">
+					<div id="checkMessage">
+						<!-- 중복확인용 -->
+						<input id="duplicationCheck" class="btnBgC txt_bs submit"
+							type="button" value="중복확인"
+							style="margin-top: 3vh; text-align: center;">
+					</div>
 
 					<!-- 히든 중복체크를 위한 것  -->
-					<input type="hidden" id="Check" name="Check" value="fail">
+					<input type="hidden" id="check" name="check" value="fail">
 
-					<input type="text" id="userName" name="userName" value=""
+					<input type="text" id="userName" name="userName" value="홍길동"
 						required class="frm_input half_input" size="3"
-						placeholder="* 이름(예:홍길동)"> 
-					<input type="text" id="userPhone" name="userPhone" value="" required
+						placeholder="* 이름(예:홍길동)"> <input type="text"
+						id="userPhone" name="userPhone" value="010-1234-5678" required
 						class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
 
 					<input type="password" id="userPwd" name="userPwd"
-						value="" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호">
-					<input type="password" id="repassword" name="repassword" required
-						value="" class="frm_input half_input right_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> 
-				    <input type="text" id="userBday" name="userBday" value=""
+						value="greedy1234" required class="frm_input half_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
+						type="password" id="repassword" name="repassword" required
+						value="greedy1234" class="frm_input half_input right_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
+						type="text" id="userBday" name="userBday" value="19901129"
 						required class="frm_input half_input"
-						 placeholder="* 출생연도(예:19900120)">
+						placeholder="* 출생연도(예:19900120)">
 
 
 					<div class="gender_wrap" style="height: 50px;">
 						<input type="radio" id="gender1" name="userGender" value="남자"
-							checked> 
-						<label for="gender1" class="cf"
+							checked> <label for="gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
-						 <span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> 
-						<input type="radio" id="gender2" name="userGender" value="여자">
+							<i style="margin: 12px 9px;" class="floatL"></i> <span
+							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
+						</label> <input type="radio" id="gender2" name="userGender" value="여자">
 						<label for="gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
-						 <span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
+							<i style="margin: 12px 9px;" class="floatL"></i> <span
+							class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
 					</div>
 
 					<p class="checkbox_wrap">
-					<input type="checkbox" id="agree_all">
-						 <label for="agree_all"> <i id="agree_all_i"></i>
-						<span>아래 약관에 모두 동의합니다.</span>
+						<input type="checkbox" id="agree_all"> <label
+							for="agree_all"> <i id="agree_all_i"></i> <span>아래
+								약관에 모두 동의합니다.</span>
 						</label>
 					</p>
 
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_1" class="checkOne" name="check">
-						<label for="agree_1" style="vertical-align: middle;"> 
-						<i id="agree_1_i"></i> <span
+						<label for="agree_1" style="vertical-align: middle;"> <i
+							id="agree_1_i"></i> <span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
 							target="_blank">회원가입 및 운영약관(필수)</span>
 						</label>
@@ -258,33 +259,31 @@ li.header_menu:hover {
 
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_2" class="checkOne" name="check">
-						<label for="agree_2" style="vertical-align: middle;"> 
-						<i id="agree_2_i"></i>
-						<span onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
+						<label for="agree_2" style="vertical-align: middle;"> <i
+							id="agree_2_i"></i> <span
+							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
 							target="_blank">개인정보 수집 및 이용(필수)</span>
 						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_3" class="checkOne" name="check">
-						<label for="agree_3" style="vertical-align: middle;"> 
-						<i id="agree_3_i"></i> 
-						<span
+						<label for="agree_3" style="vertical-align: middle;"> <i
+							id="agree_3_i"></i> <span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php#location')"
 							target="_blank">위치정보 이용약관(선택)</span>
 						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_4" name="agree_4" value="1"
-							class="checkOne"> <label for="agree_4">
-							 <i id="agree_4_i"></i> <span>마케팅 정보수신에 동의(선택)</span>
+							class="checkOne"> <label for="agree_4"> <i
+							id="agree_4_i"></i> <span>마케팅 정보수신에 동의(선택)</span>
 						</label>
 					</p>
 
-					<input type="hidden" name="w" value="">
-				     <input type="hidden" name="s" value="">
-					<input id="signinbtn"
-						class="btnBgC txt_bs submit" type="submit" value="가입하기" onclick="return regist()";
-						style="margin-top: 3vh;">
+					<input type="hidden" name="w" value=""> <input
+						type="hidden" name="s" value=""> <input id="signinbtn"
+						class="btnBgC txt_bs submit" type="submit" value="가입하기"
+						onclick="return regist();" style="margin-top: 3vh;">
 
 				</form>
 			</div>
@@ -297,39 +296,39 @@ li.header_menu:hover {
 	<div class="pop_bg pop_wrap signup_pop">
 		<div class="member_pop_box close_wrap login_pop"
 			style="width: 90%; max-width: 500px;; padding: 5vh 0; max-height: 600px;">
-			<span class="close_btn"></span> 
-			<span class="close_btn"></span>
+			<span class="close_btn"></span> <span class="close_btn"></span>
 			<div class="member_wrap" style="width: 100%; padding: 0 5%;">
 				<h3 class="tit txt_bold">로그인</h3>
 
 				<span class="txt_sm or" style="margin-top: 3vh">환영합니다!</span>
-				<form class="member_form" name="flogin" action="${ pageContext.servletContext.contextPath }/user/login" 
-				    method="post"
-					style="margin-top: 3vh">
+				<form class="member_form" name="flogin"
+					action="${ pageContext.servletContext.contextPath }/user/login"
+					method="post" style="margin-top: 3vh">
 					<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;"> 
-					<input type="password" name="userPwd" id="userPwd" required
+						style="margin: 0 auto; width: 60%; display: flex;"> <input
+						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button class="btnBgC txt_bs submit" type="submit"
 						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
-				
+
 				<ul class="find_signup clearfix">
-					<li class="floatL">
-					<a href="javascript:void(0);" class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> 
-						<a href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR">
-					<a href="javascript:void(0);" class="signup_link txt_sm txt_bold">회원가입</a></li>
+					<li class="floatL"><a href="javascript:void(0);"
+						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
+						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID)
+							찾기</a></li>
+					<li class="floatR"><a href="javascript:void(0);"
+						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
-	
-	
-	
+
+
+
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
@@ -346,7 +345,8 @@ li.header_menu:hover {
 				<!--           		<form class="member_form">
                                                   <input class="btnBgC txt_bs login_link submit" type="submit" value="로그인">
                               </form> -->
-				<a class="btnBgC txt_bs login_link submit" href="javascript:void(0);"
+				<a class="btnBgC txt_bs login_link submit"
+					href="javascript:void(0);"
 					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
 			</div>
 		</div>
@@ -365,16 +365,18 @@ li.header_menu:hover {
 					<span>* 표시는 필수 입력입니다. <br>(생년월일 입력시에는 전체 다 입력해주세요)
 					</span>
 				</p>
-				<form class="member_form" >
+				<form class="member_form">
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
-						<input type="radio" id="find_gender1" name="find_gender" value="남자"
+						<input type="radio" id="find_gender1" name="find_gender"
+							value="남자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i> <span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="find_gender2" name="find_gender" value="여자"
+						</label> <input type="radio" id="find_gender2" name="find_gender"
+							value="여자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
@@ -515,51 +517,89 @@ li.header_menu:hover {
 
 	<!-- 이메일 중복체크용  -->
 	<script>
-		/* $(function(){
-		 $("#duplicationCheck").click(function(){
-		 var useremail = $('#useremail').val();
 		
-		 if (useremail == '') {
-		 alert('이메일을 입력해주세요.')
-		 return;
-		 }
-		
-		 $.ajax({
-		 url: "${ pageContext.servletContext.contextPath }/user/
-		 ",
-		 type: "get",
-		 data:{ useremail : useremail },
-		 success: function(data,textStatus,xhr){
-		 console.log(data);
-		 if (data == "fail"){
-
-		 $("#checkMessage").html("사용할 수 없는 이메일입니다.");
-		 alert("사용불가아이디");
-		 $("#idCheck").value("fail");
-		 return;
-
-		 } else if(data == "success") {
-		 $("#checkMessage").html("사용할 수 있는 이메일입니다.");
-		 $("#idCheck").attr("value", "success");
-		 console.log(idCheck);
-		 return;
-		 }
-		 },
-		 error: function(xhr, status, error){
-		 console.log(xhr);
-		 console.log(status);
-		 console.log(error);
-		 }
-		
-		 });
-		
-		 });
-		 });  
-		 */
 	</script>
 
+	<%-- 
+	var gbl_data = 0;
+	   	$(function(){
+	   		
+	   		$("#duplicationCheck").click(function(){
+	   			console.log("asdf + "+ "${ pageContext.servletContext.contextPath }");
+	   			var userEmail = $("#userEmail").val();
+	   				
+	   			$.ajax({
+	   				url:"${ pageContext.servletContext.contextPath }/user/duplicateCheck",
+	   				type:"post",
+	   				data : {
+	   					userEmail : userEmail
+	   				},
+	   				success: function(data,textStatus,xhr) {
+	   					console.log("data : " + data);
+	   					if(data == 'success') {
+	   						alert("현재 이메일을 사용하셔도 됩니다.");
+	   						gbl_data = 1;
+	   					}  else {
+	   						alert("중복된 이메일입니다. 다른 이메일을 사용해주세요.");
+	   						$("#userEmail").select();
+	   					}
+	   					
+	   				},
+	   				error : function(xhr,status,error) {
+	   					console.log(error);
+	   				}
+	   			})
+	   		});
+	   		
 
+	   	});  --%>
 	<script type="text/javascript">
+	
+	
+	
+	
+	var gbl_data = 0;
+	var isDuplicate = true;
+   	$(function(){
+   		
+   		$("#duplicationCheck").click(function(){
+   			console.log("asdf + "+ "${ pageContext.servletContext.contextPath }");
+   			var userEmail = $("#userEmail").val();
+   				
+   			$.ajax({
+   				url:"${ pageContext.servletContext.contextPath }/user/duplicateCheck",
+   				type:"post",
+   				data : {
+   					userEmail : userEmail
+   				},
+   				success: function(data,textStatus,xhr) {
+   					
+   					if(data == 'success') {
+   						isDuplicate = false;
+   						alert("현재 이메일을 사용하셔도 됩니다.");
+   						gbl_data = 1;
+   					}  else {
+   						alert("중복된 이메일입니다. 다른 이메일을 사용해주세요.");
+   						$("#userEmail").select();
+   					}
+   					
+   				},
+   				error : function(xhr,status,error) {
+   					console.log(error);
+   				}
+   			})
+   		});
+   		
+
+   	}); 
+	
+	
+	
+	
+	
+	
+	
+	
 		/* 체크박스 전체 선택 */
 		function allCheckFunc(obj) {
 			$(".checkOne").prop("checked", $(obj).prop("checked"));
@@ -606,6 +646,7 @@ li.header_menu:hover {
 			var userbirth = document.getElementById("userBday");
 			var duplicationCheck = document.getElementById("duplicationCheck");
 			var idCheck = document.getElementById("idCheck");
+			var checkMessage = document.getElementById("checkMessage");
 
 			// 이메일
 			if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
@@ -681,6 +722,17 @@ li.header_menu:hover {
 
 				return true;
 			}
+			
+		      // 이메일 중복 체크
+	          if(checkMessage.innerHTML != "사용할 수 있는 이메일입니다."){
+	         	 duplicationCheck.focus();
+	         	 
+	          }
+			if(isDuplicate){
+				alert("이메일 중복확인을 해주세요.")
+	         	 return false;
+			}			
+	
 		
 		}
 		
@@ -688,7 +740,7 @@ li.header_menu:hover {
 		var messege = '${messege}';
 		if( messege === 'registOK') {
 			alert('tripfulaxel에 회원이 되셨습니다 축하합니다! ')
-		} else if(messeage === 'registNO'){
+		} else {
 			alert('회원가입에 실패하셨습니다!')
 		}
 		 
