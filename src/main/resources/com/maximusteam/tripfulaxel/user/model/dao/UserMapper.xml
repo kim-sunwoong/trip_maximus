@@ -4,38 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.UserMapper">
-
-   <resultMap id="userResult" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
-		<id column="USER_CODE" property="userCode"/>
-		<result column="USER_NAME" property="userName" />
-		<result column="USER_PHONE" property="userPhone" />
-		<result column="USER_PWD" property="userPwd" />
-		<result column="USER_BDAY" property="userBday" />
-		<result column="USER_GENDER" property="userGender" />
-		<result column="USER_EMAIL" property="userEmail" />
-		<result column="USER_REGISTER_DAY" property="userRegisterDay" />
-	</resultMap>
-
+	
 	<!-- 회원가입  -->
 	<!--  parameterType : 파라미터의 타입을 지정한다. 이미 정의된 별칭을 사용할 수 있거나, 클래스의 full-name을 적어준다.  -->
-	<insert id="registUser" parameterType="UserDTO">
-	 <selectKey resultType="int"  keyProperty="seqUserCode" order="BEFORE">
+	<insert id="registUser" parameterType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
+	 <selectKey resultType="int"  keyProperty="userCode" order="BEFORE">
 	 	SELECT MAX(USER_CODE) + 1 FROM USER
 	 </selectKey>
-		INSERT INTO USER A
+		INSERT INTO USER 
 		(
-			 A.USER_CODE
-		   , A.USER_NAME
-		   , A.USER_PHONE
-		   , A.USER_PWD
-		   , A.USER_BDAY
-		   , A.USER_GENDER
-		   , A.USER_EMAIL
-		   , A.USER_REGISTER_DAY
+			 USER_CODE
+		   , USER_NAME
+		   , USER_PHONE
+		   , USER_PWD
+		   , USER_BDAY
+		   , USER_GENDER
+		   , USER_EMAIL
+		   , USER_REGISTER_DAY
 		)
         VALUES
         (
-            # { seqUserCode }
+            #{ userCode }
           , #{ userName }
           , #{ userPhone }
           , #{ userPwd }
@@ -45,14 +34,7 @@
           , NOW()
         )
 	</insert>
-	
-	<select id="loginUser" resultMap="userResultSet" parameterType="UserDTO" >
-		SELECT 
-		        USER_EMAIL
-		      , USER_PWD
-		  FROM USER
-		 WHERE USER_EMAIL = #{ userEmail }
-	</select>
+
 
 </mapper>
 

@@ -210,33 +210,35 @@ li.header_menu:hover {
 
 					<input type="password" id="userPwd" name="userPwd"
 						value="juyoung123" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
-						type="password" id="repassword" name="repassword" required
+						minlength="3" maxlength="20" placeholder="* 비밀번호">
+					<input type="password" id="repassword" name="repassword" required
 						value="juyoung123" class="frm_input half_input right_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
-						type="text" id="userBday" name="userBday" value="19971129"
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> 
+				  <input type="text" id="userBday" name="userBday" value="1997-11-29"
 						required class="frm_input half_input"
-						placeholder="* 출생연도(예:19971129)">
+						 placeholder="* 출생연도(예:19971129)">
 
 
 					<div class="gender_wrap" style="height: 50px;">
-						<input type="radio" id="gender1" name="userGender" value="1"
-							checked> <label for="gender1" class="cf"
+						<input type="radio" id="gender1" name="userGender" value="남자"
+							checked> 
+						<label for="gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> <span
-							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="gender2" name="userGender" value="2">
+							<i style="margin: 12px 9px;" class="floatL"></i>
+						 <span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
+						</label> 
+						<input type="radio" id="gender2" name="userGender" value="여자">
 						<label for="gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> <span
-							class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
+							<i style="margin: 12px 9px;" class="floatL"></i>
+						 <span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
 					</div>
 
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_all"> <label
-							for="agree_all"> <i id="agree_all_i"></i> <span>아래
-								약관에 모두 동의합니다.</span>
+							for="agree_all"> <i id="agree_all_i"></i>
+							 <span>아래 약관에 모두 동의합니다.</span>
 						</label>
 					</p>
 
@@ -297,15 +299,16 @@ li.header_menu:hover {
 					style="margin-top: 3vh">
 					<input type="email" name="mb_email" id="login_email" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;"> <input
-						type="password" name="mb_password" id="login_pw" required
+						style="margin: 0 auto; width: 60%; display: flex;"> 
+					<input type="password" name="mb_password" id="login_pw" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button class="btnBgC txt_bs submit" type="submit"
 						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
+				
 				<ul class="find_signup clearfix">
-					<li class="floatL""><a href="javascript:void(0);"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
 						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
 					<li class="floatR"><a href="javascript:void(0);"
