@@ -80,52 +80,7 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 
-<!-- 이메일 중복체크용  -->	
-<script>
-/* $(function(){
-	// ajax 필수로 하게 어떻게 하나..?
-	$("#duplicationCheck").click(function(){
-		var useremail = $('#useremail').val();
-		
-		 if (useremail == '') {
-		      alert('이메일을 입력해주세요.')
-		      return;
-		    }
-		
-		$.ajax({
-			url: "${ pageContext.servletContext.contextPath }/user/
-",
-			type: "get",
-			data:{ useremail : useremail },
-			success: function(data,textStatus,xhr){
-				console.log(data);
-				if (data == "fail"){
 
-					$("#checkMessage").html("사용할 수 없는 이메일입니다.");
-					alert("사용불가아이디");
-					$("#idCheck").value("fail");
-					return;
-
-				} else if(data == "success") {
-				    $("#checkMessage").html("사용할 수 있는 이메일입니다.");
-				    $("#idCheck").attr("value", "success");
-				    console.log(idCheck);
-				    return;
-				}
-			},
-			error: function(xhr, status, error){
-				console.log(xhr);
-				console.log(status);
-				console.log(error);
-			}
-			
-		});
-		
-	});
-});  
- */
-
-</script>
 
 </head>
 <body>
@@ -216,7 +171,7 @@ li.header_menu:hover {
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
-	
+
 	<!-- 팝업 시작 -->
 
 	<!-- 회원가입 팝업 시작 -->
@@ -230,117 +185,106 @@ li.header_menu:hover {
 				<span class="txt_sm or" style="margin-top: 3vh">당신의 여행에 가속을</span>
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
-					
-				<form style="margin-top: 10px;" id="frm1" class="member_form" name="fregisterform" 
-				     
-					  method="post"
-					  enctype="multipart/form-data" autocomplete="off">
-					  
-			     <input type="email" id="useremail" name="useremail" value=""
-						required class="email frm_input full_input" size="70"
-						maxlength="100" placeholder="* 이메일 주소">
-				
-				<!-- 중복확인용 -->		
-				<input id="duplicationCheck" class="btnBgC txt_bs submit"  value="중복확인"
-						style="margin-top: 3vh; text-align: center;"> 
-				
-				<!-- 히든 중복체크를 위한 것  -->
-				 <input type="hidden" id="idCheck" name="idCheck" value="fail">
-						
-				 <input type="text" id="username" name="username" value="" 
-				        required class="frm_input half_input"
-						size="3" placeholder="* 이름(예:홍길동)">
-						
-				 <input type="text" id="userphone" name="userphone" value="" 
-				        required class="frm_input half_input"
-				        placeholder="* 전화번호(예:010-1234-5678)">
-				        
-				 <input type="password" id="userpassword" name="userpassword" 
-				        required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호">
-						
-				 <input type="password" id="repassword" name="repassword" required 
-				        class="frm_input half_input right_input" minlength="3" 
-				        maxlength="20" placeholder="* 비밀번호 확인">
-				
-			     <input type="text" id="userbirth" name="userbirth" value=""
-			            required class="frm_input half_input" placeholder="* 출생연도(예:19971129)">
-		
-					
-		         <div class="gender_wrap" style="height: 50px;">
-						<input type="radio" id="gender1" name="mb_gender" value="1" checked>
-							<label for="gender1" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 
-							40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> 
-							 <span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-					 	</label>
 
-						
-						 <input type="radio" id="gender2" name="mb_gender" value="2"  >
-							<label for="gender2" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 
-							40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
-							 <span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
+				<form style="margin-top: 10px;" id="frm1" class="member_form"
+					name="fregisterform" method="post" onsubmit="return regist()"
+					action="${ pageContext.servletContext.contextPath }/user/regist"
+					autocomplete="off">
+
+					<input type="email" id="userEmail" name="userEmail"
+						value="juyoung@greedy.com" required
+						class="email frm_input full_input" size="70" maxlength="100"
+						placeholder="* 이메일 주소">
+
+					<!-- 중복확인용 -->
+					<input id="duplicationCheck" class="btnBgC txt_bs submit"
+						value="중복확인" style="margin-top: 3vh; text-align: center;">
+
+					<!-- 히든 중복체크를 위한 것  -->
+					<input type="hidden" id="Check" name="Check" value="fail">
+
+					<input type="text" id="userName" name="userName" value="정주영"
+						required class="frm_input half_input" size="3"
+						placeholder="* 이름(예:홍길동)"> <input type="text"
+						id="userPhone" name="userPhone" value="010-1234-5678" required
+						class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
+
+					<input type="password" id="userPwd" name="userPwd"
+						value="juyoung123" required class="frm_input half_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
+						type="password" id="repassword" name="repassword" required
+						value="juyoung123" class="frm_input half_input right_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
+						type="text" id="userBday" name="userBday" value="19971129"
+						required class="frm_input half_input"
+						placeholder="* 출생연도(예:19971129)">
+
+
+					<div class="gender_wrap" style="height: 50px;">
+						<input type="radio" id="gender1" name="userGender" value="1"
+							checked> <label for="gender1" class="cf"
+							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
+							<i style="margin: 12px 9px;" class="floatL"></i> <span
+							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
+						</label> <input type="radio" id="gender2" name="userGender" value="2">
+						<label for="gender2" class="cf"
+							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
+							<i style="margin: 12px 9px;" class="floatL"></i> <span
+							class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
-					 </div> 
+					</div>
 
- 				<p class="checkbox_wrap">
-						<input type="checkbox" id="agree_all"> 
-						<label for="agree_all" >
-						  <i id="agree_all_i"></i>
-						  <span>아래 약관에 모두 동의합니다.</span>
+					<p class="checkbox_wrap">
+						<input type="checkbox" id="agree_all"> <label
+							for="agree_all"> <i id="agree_all_i"></i> <span>아래
+								약관에 모두 동의합니다.</span>
 						</label>
 					</p>
-					
+
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_1" class="checkOne" name="check">
-						<label for="agree_1" style="vertical-align: middle;">
-						<i id="agree_1_i"></i>
-						<span onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
+						<label for="agree_1" style="vertical-align: middle;"> <i
+							id="agree_1_i"></i> <span
+							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php')"
 							target="_blank">회원가입 및 운영약관(필수)</span>
 						</label>
 					</p>
-					
+
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_2" class="checkOne" name="check">
-						<label for="agree_2" style="vertical-align: middle;">
-						<i id="agree_2_i"></i><span
+						<label for="agree_2" style="vertical-align: middle;"> <i
+							id="agree_2_i"></i><span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
 							target="_blank">개인정보 수집 및 이용(필수)</span>
-					  </label>
+						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_3" class="checkOne" name="check">
-						<label for="agree_3" style="vertical-align: middle;">
-						<i id="agree_3_i"></i>
-						<span
+						<label for="agree_3" style="vertical-align: middle;"> <i
+							id="agree_3_i"></i> <span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/conditions.php#location')"
 							target="_blank">위치정보 이용약관(선택)</span>
 						</label>
 					</p>
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_4" name="agree_4" value="1"
-							class="checkOne"> 
-						<label for="agree_4">
-					  <i id="agree_4_i"></i>
-						 <span>마케팅 정보수신에 동의(선택)</span>
-                       </label>
-					</p> 
-					
-					<input type="hidden" name="w" value=""> 
-					<input type="hidden" name="s" value=""> 
-					<input id="signinbtn" class="btnBgC txt_bs submit" type="submit" value="가입하기"
-						style="margin-top: 3vh;"> 
-					<!-- <label for="signin_btn" style="cursor: pointer;">가입하기</label> -->
+							class="checkOne"> <label for="agree_4"> <i
+							id="agree_4_i"></i> <span>마케팅 정보수신에 동의(선택)</span>
+						</label>
+					</p>
+
+					<input type="hidden" name="w" value=""> <input
+						type="hidden" name="s" value=""> <input id="signinbtn"
+						class="btnBgC txt_bs submit" type="submit" value="가입하기"
+						style="margin-top: 3vh;">
+
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- //회원가입 팝업 끝 -->
-	
-	
+
+
 	<!-- 로그인 팝업 시작-->
 	<div class="pop_bg pop_wrap signup_pop">
 		<div class="member_pop_box close_wrap login_pop"
@@ -357,11 +301,9 @@ li.header_menu:hover {
 						style="margin: 0 auto; width: 60%; display: flex;"> <input
 						type="password" name="mb_password" id="login_pw" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
-						style="margin: 10px auto 0; width: 60%; display: flex;"> 
-						<button class="btnBgC txt_bs submit" type="submit" 
-						  style="margin: 10px auto 0; width: 60%;">
-						   로그인
-						  </button>
+						style="margin: 10px auto 0; width: 60%; display: flex;">
+					<button class="btnBgC txt_bs submit" type="submit"
+						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
 				<ul class="find_signup clearfix">
 					<li class="floatL""><a href="#"
@@ -416,8 +358,7 @@ li.header_menu:hover {
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
-							<span
+							<i style="margin: 12px 9px;" class="floatL"></i> <span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
 						</label> <input type="radio" id="find_gender2" name="find_gender"
 							value="2"
@@ -606,162 +547,84 @@ li.header_menu:hover {
 						<p style="padding: 10px 0;">국가번호</p>
 						<select name="country_code" id="country_code"
 							style="margin-top: 0;">
-							<option value="" selected>
-								이외국가</option>
-							<option value="+1">
-								+1 미국</option>
-							<option value="+1">
-								+1 캐나다</option>
-							<option value="+1">
-								+1 괌</option>
-							<option value="+1">
-								+1 사이판</option>
-							<option value="+20">
-								+20 이집트</option>
-							<option value="+212">
-								+212 모로코</option>
-							<option value="+254">
-								+254 케냐</option>
-							<option value="+27">
-								+27 남아프리카 공화국</option>
-							<option value="+30">
-								+30 그리스</option>
-							<option value="+31">
-								+31 네덜란드</option>
-							<option value="+32">
-								+32 벨기에</option>
-							<option value="+33">
-								+33 프랑스</option>
-							<option value="+34">
-								+34 스페인</option>
-							<option value="+351">
-								+351 포르투갈</option>
-							<option value="+352">
-								+352 룩셈부르크</option>
-							<option value="+353">
-								+353 아일랜드</option>
-							<option value="+354">
-								+354 아이슬란드</option>
-							<option value="+356">
-								+356 몰타</option>
-							<option value="+358">
-								+358 핀란드</option>
-							<option value="+359">
-								+359 불가리아</option>
-							<option value="+36">
-								+36 헝가리</option>
-							<option value="+377">
-								+377 모나코</option>
-							<option value="+380">
-								+380 우크라이나</option>
-							<option value="+381">
-								+381 세르비아</option>
-							<option value="+385">
-								+385 크로아티아</option>
-							<option value="+386">
-								+386 슬로베니아</option>
-							<option value="+387">
-								+387 보스니아 헤르체고비나</option>
-							<option value="+39">
-								+39 이탈리아</option>
-							<option value="+40">
-								+40 루마니아</option>
-							<option value="+41">
-								+41 스위스</option>
-							<option value="+420">
-								+420 체코</option>
-							<option value="+421">
-								+421 슬로바키아</option>
-							<option value="+43">
-								+43 오스트리아</option>
-							<option value="+44">
-								+44 영국</option>
-							<option value="+45">
-								+45 덴마크</option>
-							<option value="+46">
-								+46 스웨덴</option>
-							<option value="+47">
-								+47 노르웨이</option>
-							<option value="+48">
-								+48 폴란드</option>
-							<option value="+49">
-								+49 독일</option>
-							<option value="+51">
-								+51 페루</option>
-							<option value="+52">
-								+52 멕시코</option>
-							<option value="+53">
-								+53 쿠바</option>
-							<option value="+54">
-								+54 아르헨티나</option>
-							<option value="+55">
-								+55 브라질</option>
-							<option value="+56">
-								+56 칠레</option>
-							<option value="+57">
-								+57 콜롬비아</option>
-							<option value="+591">
-								+591 볼리비아</option>
-							<option value="+598">
-								+598 우루과이</option>
-							<option value="+60">
-								+60 말레이시아</option>
-							<option value="+61">
-								+61 호주</option>
-							<option value="+62">
-								+62 인도네시아</option>
-							<option value="+63">
-								+63 필리핀</option>
-							<option value="+64">
-								+64 뉴질랜드</option>
-							<option value="+65">
-								+65 싱가포르</option>
-							<option value="+66">
-								+66 태국</option>
-							<option value="+680">
-								+680 팔라우</option>
-							<option value="+7">
-								+7 카자흐스탄</option>
-							<option value="+7">
-								+7 러시아</option>
-							<option value="+81">
-								+81 일본</option>
-							<option value="+82" selected>
-								+82 한국</option>
-							<option value="+84">
-								+84 베트남</option>
-							<option value="+852">
-								+852 홍콩</option>
-							<option value="+853">
-								+853 마카오</option>
-							<option value="+855">
-								+855 캄보디아</option>
-							<option value="+856">
-								+856 라오스</option>
-							<option value="+86">
-								+86 중국</option>
-							<option value="+886">
-								+886 대만</option>
-							<option value="+90">
-								+90 터키</option>
-							<option value="+91">
-								+91 인도</option>
-							<option value="+95">
-								+95 미얀마</option>
-							<option value="+960">
-								+960 몰디브</option>
-							<option value="+962">
-								+962 요르단</option>
-							<option value="+971">
-								+971 아랍에미리트</option>
-							<option value="+972">
-								+972 이스라엘</option>
-							<option value="+974">
-								+974 카타르</option>
-							<option value="+976">
-								+976 몽골</option>
-							<option value="+977">
-								+977 네팔</option>
+							<option value="" selected>이외국가</option>
+							<option value="+1">+1 미국</option>
+							<option value="+1">+1 캐나다</option>
+							<option value="+1">+1 괌</option>
+							<option value="+1">+1 사이판</option>
+							<option value="+20">+20 이집트</option>
+							<option value="+212">+212 모로코</option>
+							<option value="+254">+254 케냐</option>
+							<option value="+27">+27 남아프리카 공화국</option>
+							<option value="+30">+30 그리스</option>
+							<option value="+31">+31 네덜란드</option>
+							<option value="+32">+32 벨기에</option>
+							<option value="+33">+33 프랑스</option>
+							<option value="+34">+34 스페인</option>
+							<option value="+351">+351 포르투갈</option>
+							<option value="+352">+352 룩셈부르크</option>
+							<option value="+353">+353 아일랜드</option>
+							<option value="+354">+354 아이슬란드</option>
+							<option value="+356">+356 몰타</option>
+							<option value="+358">+358 핀란드</option>
+							<option value="+359">+359 불가리아</option>
+							<option value="+36">+36 헝가리</option>
+							<option value="+377">+377 모나코</option>
+							<option value="+380">+380 우크라이나</option>
+							<option value="+381">+381 세르비아</option>
+							<option value="+385">+385 크로아티아</option>
+							<option value="+386">+386 슬로베니아</option>
+							<option value="+387">+387 보스니아 헤르체고비나</option>
+							<option value="+39">+39 이탈리아</option>
+							<option value="+40">+40 루마니아</option>
+							<option value="+41">+41 스위스</option>
+							<option value="+420">+420 체코</option>
+							<option value="+421">+421 슬로바키아</option>
+							<option value="+43">+43 오스트리아</option>
+							<option value="+44">+44 영국</option>
+							<option value="+45">+45 덴마크</option>
+							<option value="+46">+46 스웨덴</option>
+							<option value="+47">+47 노르웨이</option>
+							<option value="+48">+48 폴란드</option>
+							<option value="+49">+49 독일</option>
+							<option value="+51">+51 페루</option>
+							<option value="+52">+52 멕시코</option>
+							<option value="+53">+53 쿠바</option>
+							<option value="+54">+54 아르헨티나</option>
+							<option value="+55">+55 브라질</option>
+							<option value="+56">+56 칠레</option>
+							<option value="+57">+57 콜롬비아</option>
+							<option value="+591">+591 볼리비아</option>
+							<option value="+598">+598 우루과이</option>
+							<option value="+60">+60 말레이시아</option>
+							<option value="+61">+61 호주</option>
+							<option value="+62">+62 인도네시아</option>
+							<option value="+63">+63 필리핀</option>
+							<option value="+64">+64 뉴질랜드</option>
+							<option value="+65">+65 싱가포르</option>
+							<option value="+66">+66 태국</option>
+							<option value="+680">+680 팔라우</option>
+							<option value="+7">+7 카자흐스탄</option>
+							<option value="+7">+7 러시아</option>
+							<option value="+81">+81 일본</option>
+							<option value="+82" selected>+82 한국</option>
+							<option value="+84">+84 베트남</option>
+							<option value="+852">+852 홍콩</option>
+							<option value="+853">+853 마카오</option>
+							<option value="+855">+855 캄보디아</option>
+							<option value="+856">+856 라오스</option>
+							<option value="+86">+86 중국</option>
+							<option value="+886">+886 대만</option>
+							<option value="+90">+90 터키</option>
+							<option value="+91">+91 인도</option>
+							<option value="+95">+95 미얀마</option>
+							<option value="+960">+960 몰디브</option>
+							<option value="+962">+962 요르단</option>
+							<option value="+971">+971 아랍에미리트</option>
+							<option value="+972">+972 이스라엘</option>
+							<option value="+974">+974 카타르</option>
+							<option value="+976">+976 몽골</option>
+							<option value="+977">+977 네팔</option>
 						</select>
 					</div>
 					<div class="clearfix">&nbsp;</div>
@@ -796,185 +659,208 @@ li.header_menu:hover {
 
 
 	<!-- //팝업 끝 -->
-	
-	
-	<script type="text/javascript" >
-	
-	 /* 체크박스 전체 선택 */
-    function allCheckFunc(obj) {
-        $(".checkOne").prop("checked", $(obj).prop("checked"));
-    }
-	
-    /* 체크박스 체크시 전체선택 체크 여부 */
-    function oneCheckFunc(obj) {
-        var allObj = $("#agree_all");
-        var objName = $(obj).attr("name");
 
-        if ($(obj).prop("checked")) {
-            checkBoxLength = $("[name=" + objName + "]").length;
-            checkedLength = $("[name=" + objName + "]:checked").length;
-
-            if (checkBoxLength == checkedLength) {
-                allObj.prop("checked", true);
-            } else {
-                allObj.prop("checked", false);
-            }
-        } else {
-            allObj.prop("checked", false);
-        }
-    }
-
-    $(function () {
-        $("#agree_all").click(function () {
-            allCheckFunc(this);
-        });
-        $(".checkOne").click(function () {
-            $(this).each(function () {
-                oneCheckFunc($(this));
-            });
-        });
-    });
-	 
-	 
-	
-// 회원가입 유효성 체크     
-	$(function(){
+	<!-- 이메일 중복체크용  -->
+	<script>
+		/* $(function(){
+		 $("#duplicationCheck").click(function(){
+		 var useremail = $('#useremail').val();
 		
-		$("#signinbtn").click(function(e){
-			if(regist()){
-				e.preventDefault();
+		 if (useremail == '') {
+		 alert('이메일을 입력해주세요.')
+		 return;
+		 }
+		
+		 $.ajax({
+		 url: "${ pageContext.servletContext.contextPath }/user/
+		 ",
+		 type: "get",
+		 data:{ useremail : useremail },
+		 success: function(data,textStatus,xhr){
+		 console.log(data);
+		 if (data == "fail"){
+
+		 $("#checkMessage").html("사용할 수 없는 이메일입니다.");
+		 alert("사용불가아이디");
+		 $("#idCheck").value("fail");
+		 return;
+
+		 } else if(data == "success") {
+		 $("#checkMessage").html("사용할 수 있는 이메일입니다.");
+		 $("#idCheck").attr("value", "success");
+		 console.log(idCheck);
+		 return;
+		 }
+		 },
+		 error: function(xhr, status, error){
+		 console.log(xhr);
+		 console.log(status);
+		 console.log(error);
+		 }
+		
+		 });
+		
+		 });
+		 });  
+		 */
+	</script>
+
+
+	<script type="text/javascript">
+		/* 체크박스 전체 선택 */
+		function allCheckFunc(obj) {
+			$(".checkOne").prop("checked", $(obj).prop("checked"));
+		}
+
+		/* 체크박스 체크시 전체선택 체크 여부 */
+		function oneCheckFunc(obj) {
+			var allObj = $("#agree_all");
+			var objName = $(obj).attr("name");
+
+			if ($(obj).prop("checked")) {
+				checkBoxLength = $("[name=" + objName + "]").length;
+				checkedLength = $("[name=" + objName + "]:checked").length;
+
+				if (checkBoxLength == checkedLength) {
+					allObj.prop("checked", true);
+				} else {
+					allObj.prop("checked", false);
+				}
 			} else {
-				
-				$("#frm1").attr("action","${ pageContext.servletContext.contextPath }/user/regist").submit();
+				allObj.prop("checked", false);
 			}
-		
+		}
+
+		$(function() {
+			$("#agree_all").click(function() {
+				allCheckFunc(this);
+			});
+			$(".checkOne").click(function() {
+				$(this).each(function() {
+					oneCheckFunc($(this));
+				});
+			});
 		});
-		
-		
-		
+
+		/* 회원가입 유효성 체크 */
 		function regist() {
-			
-			var useremail = document.getElementById("useremail");
-	 		var username = document.getElementById("username"); 
-			var userphone = document.getElementById("userphone");
-			var userpassword = document.getElementById("userpassword");
+
+			var useremail = document.getElementById("userEmail");
+			var username = document.getElementById("userName");
+			var userphone = document.getElementById("userPhone");
+			var userpassword = document.getElementById("userPwd");
 			var repassword = document.getElementById("repassword");
-			var userbirth = document.getElementById("userbirth");
-		    var duplicationCheck = document.getElementById("duplicationCheck");
-		    var idCheck = document.getElementById("idCheck");
-			
-	/* 		useremail.setAttribute("checkresult", "fail"); */
-			
+			var userbirth = document.getElementById("userBday");
+			var duplicationCheck = document.getElementById("duplicationCheck");
+			var idCheck = document.getElementById("idCheck");
 
-			    // 이메일
-				if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
-						"이메일 형식에 맞춰 입력하세요.")) {
-					return false;
-				}
+			/* 		useremail.setAttribute("checkresult", "fail"); */
 
-				// 휴대전화 
-				if (!chk(/^\d{2,3}-\d{3,4}-\d{4}$/, userphone,
-						"전화번호는 010-1234-5678 형식으로 넣어주세요.")) {
-					return false;
-				}
+			// 이메일
+			if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
+					"이메일 형식에 맞춰 입력하세요.")) {
+				return false;
+			}
 
-				// 비밀번호 
-				if (!chk(/^[a-zA-Z0-9]{8,15}$/, userpassword,
-						"비밀번호는 영어와 숫자를 사용하여 8자리 이상 15자리 이하 입력하세요.")) {
-					return false;
-				}
-				
-				
-				 var checkNum = document.getElementById("userpassword").value.search(/[0-9]/g);
-		         var checkEng = document.getElementById("userpassword").value.search(/[a-z]/ig);
-				
-		         
-		         if(checkNum < 0 || checkEng < 0){
-		             alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
-		             userpassword.value="";
-		             userpassword.focus();
-		             return false;
-		          } 
-		         
-		           // userpassword와 repassword 일치하는지 확인
-		           if(userpassword.value != repassword.value){
-		              alert("비밀번호가 다릅니다. 다시 확인해주세요.");
-		              repassword.value="";
-		              repassword.focus();
-		              return false;
-		           }
-		           
-		         // 이름
-		         if(!chk(/^[가-힣]{1,}$/,username,"이름은 한글로 1글자 이상 입력하세요")){
-		               return false;
-		            }
-		         
-		         // 생년월일
-		         if(!chk(/^[0-9]*$/,userbirth,"생년월일은 특수문자(-) 없이 숫자로만 입력해주세요.")){
-		               return false;
-		            }
-		         
-		         // 성별
-		         if($("input[name=mb_gender]:checked").val() == false){
-		        	 alert("성별을 선택하여 주십시오.");
-		        	 
-		        	 return false;
-		        	 
-		         }
-		         
-		         // 약관동의 체크
-		         if ($("#agree_1").is(":checked") !== true || $("#agree_2").is(":checked") !== true) {
-		             alert("서비스 이용약관에 동의하세요.");
-		             return false;
-		         }
-		         
-				
-				// 유효성 검사 alert 창 
-				function chk(re, ele, msg) {
-					if (!re.test(ele.value)) {
-						alert(msg);
-						ele.value = "";
-						ele.focus();
-						return false;
-					}
+			// 휴대전화 
+			if (!chk(/^\d{2,3}-\d{3,4}-\d{4}$/, userphone,
+					"전화번호는 010-1234-5678 형식으로 넣어주세요.")) {
+				return false;
+			}
 
-					return true;
-				}
+			// 비밀번호 
+			if (!chk(/^[a-zA-Z0-9]{8,15}$/, userpassword,
+					"비밀번호는 영어와 숫자를 사용하여 8자리 이상 15자리 이하 입력하세요.")) {
+				return false;
+			}
+
+			var checkNum = document.getElementById("userPwd").value
+					.search(/[0-9]/g);
+			var checkEng = document.getElementById("userPwd").value
+					.search(/[a-z]/ig);
+
+			if (checkNum < 0 || checkEng < 0) {
+				alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+				userpassword.value = "";
+				userpassword.focus();
+				return false;
+			}
+
+			// userpassword와 repassword 일치하는지 확인
+			if (userpassword.value != repassword.value) {
+				alert("비밀번호가 다릅니다. 다시 확인해주세요.");
+				repassword.value = "";
+				repassword.focus();
+				return false;
+			}
+
+			// 이름
+			if (!chk(/^[가-힣]{1,}$/, username, "이름은 한글로 1글자 이상 입력하세요")) {
+				return false;
+			}
+
+			// 생년월일
+			if (!chk(/^[0-9]*$/, userbirth, "생년월일은 특수문자(-) 없이 숫자로만 입력해주세요.")) {
+				return false;
+			}
+
+			// 성별
+			if ($("input[name=userGender]:checked").val() == false) {
+				alert("성별을 선택하여 주십시오.");
+
+				return false;
 
 			}
-	});
 
-/*     window.onload = function(){	    
-	    var $item = document.getElementById("duplicationCheck");
-		  // 요소의 data-value 속성에 hello world를 설정한다.
-		  $item.setAttribute("checkResult", "fail");
-		  // 요소의 value 속성에 test를 설정한다.
-	}; */
-	
+			// 약관동의 체크
+			if ($("#agree_1").is(":checked") !== true
+					|| $("#agree_2").is(":checked") !== true) {
+				alert("서비스 이용약관에 동의하세요.");
+				return false;
+			}
 
-	
-	
+			// 유효성 검사 alert 창 
+			function chk(re, ele, msg) {
+				if (!re.test(ele.value)) {
+					alert(msg);
+					ele.value = "";
+					ele.focus();
+					return false;
+				}
+
+				return true;
+			}
+
+		}
+
+		/*     window.onload = function(){	    
+		 var $item = document.getElementById("duplicationCheck");
+		 // 요소의 data-value 속성에 hello world를 설정한다.
+		 $item.setAttribute("checkResult", "fail");
+		 // 요소의 value 속성에 test를 설정한다.
+		 }; */
 	</script>
 
 	<!-- //헤더 영역 끝 -->
-	
-	
+
+
 	<!-- 본문 영역 시작 -->
 	<div class="index">
-				
+
 		<div class="bd-example" style="width: 1070px !important; margin: auto">
 			<div id="carouselExampleCaptions" class="carousel slide"
 				data-ride="carousel">
-				
+
 				<div class="main_tit_area"
 					style="margin-bottom: 50px !important; margin-top: 50px !important;">
-					
+
 					<h2 class="txt_tit">&emsp;</h2>
-					<h2 class="txt_tit" style="font-size:30px; color:skyblue;">TRIPFUL AXEL</h2>
+					<h2 class="txt_tit" style="font-size: 30px; color: skyblue;">TRIPFUL
+						AXEL</h2>
 					<p class="txtG txt_md">: 당신의 여행에 가속을</p>
-					
+
 				</div>
-				
+
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleCaptions" data-slide-to="0"
 						class="active"></li>
@@ -991,12 +877,13 @@ li.header_menu:hover {
 					<div class="carousel-item active">
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
-							style=" width:800px; height:535;"
+							style="width: 800px; height: 535;"
 							src="/tripfulaxel/resources/user/images/common/local_guide_main.png"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">로컬
+								가이드 여행</h1>
 							<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>
 						</div>
 					</div>
@@ -1008,7 +895,8 @@ li.header_menu:hover {
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">나만의 여행</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">나만의
+								여행</h1>
 							<p>나의 소중했던 여행, 다른 회원들과 공유해보아요!</p>
 						</div>
 					</div>
@@ -1020,7 +908,8 @@ li.header_menu:hover {
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">같이가요 여행</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">같이가요
+								여행</h1>
 							<p>혼자가기엔 아쉬운 여행, 여행 파트너를 찾아보거나 다른 회원의 여행에 조인할 수 있어요!</p>
 						</div>
 					</div>
@@ -1032,7 +921,7 @@ li.header_menu:hover {
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">여행플래너</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">여행플래너</h1>
 							<p>나의 여행, 플랜 만들기부터 공유까지 할 수 있어요!</p>
 						</div>
 					</div>
@@ -1044,7 +933,8 @@ li.header_menu:hover {
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">실시간 정보 공유</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
+								정보 공유</h1>
 							<p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
 						</div>
 					</div>
@@ -1062,20 +952,21 @@ li.header_menu:hover {
 			</div>
 			<hr>
 		</div>
-		
+
 		<div class="bd-example" style="width: 1070px !important; margin: auto">
 			<div id="carouselExampleCaptions1" class="carousel slide"
 				data-ride="carousel">
-				
+
 				<div class="main_tit_area"
 					style="margin-bottom: 50px !important; margin-top: 50px !important;">
-					
+
 					<h2 class="txt_tit">&emsp;</h2>
-					<h2 class="txt_tit" style="font-size:30px; color:skyblue;">제주도, 재주도 많다</h2>
+					<h2 class="txt_tit" style="font-size: 30px; color: skyblue;">제주도,
+						재주도 많다</h2>
 					<p class="txtG txt_md">사진출처 : 한국관광공사</p>
-					
+
 				</div>
-				
+
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleCaptions1" data-slide-to="0"
 						class="active"></li>
@@ -1100,16 +991,17 @@ li.header_menu:hover {
 					<li data-target="#carouselExampleCaptions1" data-slide-to="10"
 						class=""></li>
 				</ol>
-				<div id="jejuData" class="carousel-inner" >
+				<div id="jejuData" class="carousel-inner">
 					<div class="carousel-item active">
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
-							style=" width:800px; height:700px;"
+							style="width: 800px; height: 700px;"
 							src="/tripfulaxel/resources/user/images/common/main2.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
-							<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>
+							<h1 style="font-size: 50px; margin-bottom: 10px; color: white;">로컬
+								가이드 여행</h1>
 							<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>
 						</div>
 					</div>
@@ -1126,58 +1018,73 @@ li.header_menu:hover {
 			</div>
 			<hr>
 		</div>
-		
 
-		
-<!-- 		<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
- -->		
- 		<script>
 
-		$(document).ready(function(){
-			console.log("gg");
-        	$.ajax({
-    			url:"jeju",
-    			success:function(data,status,xhr){
-    				/* console.log(JSON.parse(data.jejuData));*/
-/*     				h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
- */    				/* JSON.parse(data.jejuData).response.body.items.item[0] */
-					console.log(JSON.parse(data.jejuData).response.body.items);
-					$.each(JSON.parse(data.jejuData).response.body.items.item, function(i,item) {
-						console.log(item.galWebImageUrl);
-              	/* var aa ='<li style="text-align: center; display: none;">' +
-                            '<a class="exhibition_href" href="#" target="_blank">' +
-			    				'<div class="exhibition_img"' + 
-				'style="width: 1070px; overflow: hidden; background: rgba(150, 150, 150, 0.3)' + 
-                            'url('+ "'" +item.galWebImageUrl+ "'"+') no-repeat center/cover;">'+
-                       '</div>' +
-				'</a>' +
-				'</li>'; */
-				
-						var aa = '<div class="carousel-item">'+
-							'<img class="d-block w-100"' +
-								'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'+
-							'style=" width:800px; height:700px;"' + 
-							'src="' +item.galWebImageUrl+ '"' +
-							'data-holder-rendered="true">' + 
-						'<div class="carousel-caption d-none d-md-block"' +
-							'style="bottom: 50px;">' + 
-							'<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>' +
-							'<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>' +
-						'</div>' +	
-						'</div>'; 
-/* 						var aa = "<p>" + "dddd" + "</p>";
- */					
-	               		$("#jejuData").append(aa);
-             		});
-        		},
-    			error:function(xhr,status,error){
-    				console.log(error);
-    			}
-    		});
-        });
 
+		<!-- 		<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+ -->
+		<script>
+			$(document)
+					.ready(
+							function() {
+								console.log("gg");
+								$
+										.ajax({
+											url : "jeju",
+											success : function(data, status,
+													xhr) {
+												/* console.log(JSON.parse(data.jejuData));*/
+												/*     				h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
+												 *//* JSON.parse(data.jejuData).response.body.items.item[0] */
+												console
+														.log(JSON
+																.parse(data.jejuData).response.body.items);
+												$
+														.each(
+																JSON
+																		.parse(data.jejuData).response.body.items.item,
+																function(i,
+																		item) {
+																	console
+																			.log(item.galWebImageUrl);
+																	/* var aa ='<li style="text-align: center; display: none;">' +
+																	          '<a class="exhibition_href" href="#" target="_blank">' +
+																				'<div class="exhibition_img"' + 
+																	'style="width: 1070px; overflow: hidden; background: rgba(150, 150, 150, 0.3)' + 
+																	          'url('+ "'" +item.galWebImageUrl+ "'"+') no-repeat center/cover;">'+
+																	     '</div>' +
+																	'</a>' +
+																	'</li>'; */
+
+																	var aa = '<div class="carousel-item">'
+																			+ '<img class="d-block w-100"'
+																			+ 'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'
+																			+ 'style=" width:800px; height:700px;"'
+																			+ 'src="'
+																			+ item.galWebImageUrl
+																			+ '"'
+																			+ 'data-holder-rendered="true">'
+																			+ '<div class="carousel-caption d-none d-md-block"' +
+							'style="bottom: 50px;">'
+																			+ '<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>'
+																			+ '<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>'
+																			+ '</div>'
+																			+ '</div>';
+																	/* 						var aa = "<p>" + "dddd" + "</p>";
+																	 */
+																	$(
+																			"#jejuData")
+																			.append(
+																					aa);
+																});
+											},
+											error : function(xhr, status, error) {
+												console.log(error);
+											}
+										});
+							});
 		</script>
-		
+
 		<!-- <div class="application">
         <div class="pcWrap">
             <div class="floatL left">
@@ -1192,7 +1099,7 @@ li.header_menu:hover {
 
 
 
-		
+
 	</div>
 
 
@@ -1201,38 +1108,37 @@ li.header_menu:hover {
 	<script type="text/javascript"
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
 	<script type="text/javascript">
-    $(function () {
-        $(".lazy").Lazy();
+		$(function() {
+			$(".lazy").Lazy();
 
-        $('.new_best_product').on('afterChange', function () {
-            $(".lazy").Lazy();
-        });
-    });
-    function customizingLink() {
-        if ('') {
-            jQuery.ajax({
-                url: '/skin/html/ajax.php',
-                type: 'POST',
-                data: 'p=cus0&mb_id=',
-                success: function (data) {
-                    console.log('success' + data);
-                    location.href = '/skin/html/customizing1.php';
-                },
-                error: function (data) {
-                    console.log('error' + data);
-                    alert('업데이트를 실패하였습니다.')
-                }
-            });
-        } else {
-            $('.signup_pop').css('display', 'block');
-        }
-    }
+			$('.new_best_product').on('afterChange', function() {
+				$(".lazy").Lazy();
+			});
+		});
+		function customizingLink() {
+			if ('') {
+				jQuery.ajax({
+					url : '/skin/html/ajax.php',
+					type : 'POST',
+					data : 'p=cus0&mb_id=',
+					success : function(data) {
+						console.log('success' + data);
+						location.href = '/skin/html/customizing1.php';
+					},
+					error : function(data) {
+						console.log('error' + data);
+						alert('업데이트를 실패하였습니다.')
+					}
+				});
+			} else {
+				$('.signup_pop').css('display', 'block');
+			}
+		}
 
-    function findTMLink() {
-        location.href = '/skin/html/findtm.php';
-    }
-
-</script>
+		function findTMLink() {
+			location.href = '/skin/html/findtm.php';
+		}
+	</script>
 	<!-- //본문 영역 끝 -->
 
 	<jsp:include page="../common/footer.jsp"></jsp:include>
