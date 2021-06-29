@@ -153,7 +153,7 @@
 	                                            <td><c:out value="${list.adminEmail}"/></td>
 	                                            <td><c:out value="${list.hireDate}"/></td>
 	                                            <td>
-	                                                <label><input type="radio" name="delete" value="delete">Delete</label>   
+	                                               <button onclick="location.href='${ pageContext.servletContext.contextPath }/admin/adminDelete?adminNo=${list.adminNo}'" class="btn btn-danger">삭제</button>  
 	                                            </td>
 	                                        </tr>
 	                                        </c:forEach>
@@ -161,7 +161,7 @@
 	                                </table>
 	                            </div>
 	                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">등록</button>
-	                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">삭제</button>
+	                          <!--   <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">삭제</button> -->
                         	</div>
                     	</div>
                 	</main>

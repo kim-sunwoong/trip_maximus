@@ -170,7 +170,7 @@
 	                    </li>
 	                    <!-- 나중에 로그인된 사람만 보게 해야함 -->
 	                    <li class="floatL">
-		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage">
+		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage/">
 	                        <span style="color:white; font-size: 18px; font-weight: bold;">마이페이지</span>
 		                    </a>
 	                    </li>
@@ -197,16 +197,17 @@
       	</style>
             <ul>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 로컬가이드</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
+
                     <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
-                    <span style="color:white; font-size: 20px; " > 같이가요 여행</span></a>
+                    <span style="color:white; font-size: 20px;" > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
                     <a href="#" class="btnLineC txt_md">
