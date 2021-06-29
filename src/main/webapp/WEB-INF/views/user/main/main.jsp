@@ -218,10 +218,12 @@ li.header_menu:hover {
 
 					<input type="password" id="userPwd" name="userPwd"
 						value="greedy1234" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
+						minlength="3" maxlength="20" placeholder="* 비밀번호">
+					 <input
 						type="password" id="repassword" name="repassword" required
 						value="greedy1234" class="frm_input half_input right_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인">
+					 <input
 						type="text" id="userBday" name="userBday" value="19901129"
 						required class="frm_input half_input"
 						placeholder="* 출생연도(예:19900120)">
@@ -306,7 +308,8 @@ li.header_menu:hover {
 					method="post" style="margin-top: 3vh">
 					<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;"> <input
+						style="margin: 0 auto; width: 60%; display: flex;">
+				   <input
 						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
@@ -326,7 +329,12 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
-
+	<script type="text/javascript">
+		var messege = '${pwdError}';
+		if (messege === 'pwdError') {
+			alert(' 비밀번호가 불일치합니다. ')
+		} 
+	</script>
 
 
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
@@ -515,55 +523,14 @@ li.header_menu:hover {
 
 	<!-- //팝업 끝 -->
 
-	<!-- 이메일 중복체크용  -->
-	<script>
-		
-	</script>
 
-	<%-- 
-	var gbl_data = 0;
-	   	$(function(){
-	   		
-	   		$("#duplicationCheck").click(function(){
-	   			console.log("asdf + "+ "${ pageContext.servletContext.contextPath }");
-	   			var userEmail = $("#userEmail").val();
-	   				
-	   			$.ajax({
-	   				url:"${ pageContext.servletContext.contextPath }/user/duplicateCheck",
-	   				type:"post",
-	   				data : {
-	   					userEmail : userEmail
-	   				},
-	   				success: function(data,textStatus,xhr) {
-	   					console.log("data : " + data);
-	   					if(data == 'success') {
-	   						alert("현재 이메일을 사용하셔도 됩니다.");
-	   						gbl_data = 1;
-	   					}  else {
-	   						alert("중복된 이메일입니다. 다른 이메일을 사용해주세요.");
-	   						$("#userEmail").select();
-	   					}
-	   					
-	   				},
-	   				error : function(xhr,status,error) {
-	   					console.log(error);
-	   				}
-	   			})
-	   		});
-	   		
-
-	   	});  --%>
 	<script type="text/javascript">
-	
-	
-	
-	
-	var gbl_data = 0;
+
+	/* 이메일 중복체크용 */
 	var isDuplicate = true;
    	$(function(){
    		
    		$("#duplicationCheck").click(function(){
-   			console.log("asdf + "+ "${ pageContext.servletContext.contextPath }");
    			var userEmail = $("#userEmail").val();
    				
    			$.ajax({
@@ -592,13 +559,6 @@ li.header_menu:hover {
    		
 
    	}); 
-	
-	
-	
-	
-	
-	
-	
 	
 		/* 체크박스 전체 선택 */
 		function allCheckFunc(obj) {
@@ -740,7 +700,7 @@ li.header_menu:hover {
 		var messege = '${messege}';
 		if( messege === 'registOK') {
 			alert('tripfulaxel에 회원이 되셨습니다 축하합니다! ')
-		} else {
+		} else if( messege === 'registNO' ){
 			alert('회원가입에 실패하셨습니다!')
 		}
 		 

@@ -12,10 +12,11 @@ import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 public interface UserService {
 
 	boolean registUser(UserDTO user);
+	
+	int duplicationCheck(UserDTO user);
 
 	UserDTO loginUser(UserDTO user);
 	
-	int duplicationCheck(UserDTO user);
 
 
 

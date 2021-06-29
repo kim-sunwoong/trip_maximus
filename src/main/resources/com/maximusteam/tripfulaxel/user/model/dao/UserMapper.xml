@@ -48,6 +48,13 @@
         )
 	</insert>
 	
+	<!-- 이메일 중복 체크용 -->
+	<select id="duplicationCheck" resultType="int" parameterType="UserDTO">
+		SELECT 
+		       COUNT(*)
+		  FROM USER
+		 WHERE USER_EMAIL = #{ userEmail }
+	</select>
 	
 	<!-- 로그인 확인용 -->
 	<select id="loginUser" resultMap="userResult" parameterType="UserDTO">
@@ -57,17 +64,14 @@
 		       USER_PWD
 		  FROM USER
 		  WHERE USER_EMAIL = #{ userEmail } 
+		    AND USER_PWD = #{ userPwd }
 		    AND USER_REPORT_COUNT < 3
 	     ]]>
 	</select>
 
-	<!-- 이메일 중복 체크용 -->
-	<select id="duplicationCheck" resultType="int" parameterType="UserDTO">
-		SELECT 
-		       COUNT(*)
-		  FROM USER
-		 WHERE USER_EMAIL = #{ userEmail }
-	</select>
+
+	
+
 
 </mapper>
 
