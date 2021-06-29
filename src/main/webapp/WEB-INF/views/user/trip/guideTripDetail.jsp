@@ -66,6 +66,19 @@
  	
 
  	</style>
+ 	<script>
+ 						function amount() {
+ 							var total = document.getElementById("totalPay");
+ 							
+ 							var amountList = document.getElementById("amountList");
+							var amount = amountList.options[amountList.selectedIndex].value;
+							
+							var totalPay = ${trip[0].payment } * amount;
+							
+							total.innerHTML = totalPay;
+							
+						}
+ 	</script>
  </head>
  <body>
 
@@ -106,11 +119,19 @@
  					<div class="clearfix2 offer_tm_profile">
  						<div class="profile_details clearfix">
  							<div class="pfImg floatL">
- 								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+ 								<c:forEach var="guideImg" items="${guide.guideImageList }">
+ 									<c:if test="${guideImg.imgType == 1}">
+ 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/guide/${guideImg.saveName}.png">
+ 									</c:if>
+ 								</c:forEach>
+ 								
  							</div>
  							<div class="tm_info floatL">
  								<h3 class="nick">
  								</h3>
+ 								<p class="txt_md">
+ 									가이드 닉네임 : <c:out value="${guide.nickName }"/>
+ 								</p>
  								<p class="txt_md">
  									지역 : 제주도
  								</p>
@@ -411,37 +432,29 @@
  			<div id="head">
  				<div class="offerResult new_box_shadow" style="width:320px">
  					<span class="area_txt">제주도</span>
- 					<h2 class="tit travel_title">제주 밤바다 야경의 색감에 빠져드는 로컬 트립</h2>
+ 					<h2 class="tit travel_title"><c:out value="${trip[0].tripTitle }"/></h2>
  					<div
  						style="width: 30px; position: absolute; top: 10px; right: 21px;">
  					</div>
  					<div class="price_div txtG" style="margin-bottom: 3px;">
- 						<span class=" txtC">70,000 원</span> / 1인
- 					</div>
- 					<div class="price_div txtG" style="margin-bottom: 3px;">
- 						<span class=" txtC">65,000 원</span> / 2인
- 					</div>
- 					<div class="price_div txtG" style="margin-bottom: 3px;">
- 						<span class=" txtC">60,000 원</span> / 3인
- 					</div>
- 					<div class="price_div txtG" style="margin-bottom: 3px;">
- 						<span class=" txtC">50,000 원</span> / 4인
+ 						<span class=" txtC"><c:out value="${trip[0].payment }"/> 원</span> / 1인
  					</div>
  					<ul class="inputLabel">
- 						<li><input type="text" class="datepicker" id="datepicker"
- 							name="reser_date" placeholder="날짜 선택" autocomplete="off">
- 						</li>
- 						<li><select name="reser_Per">
- 								<option value="1 x 70,000">1 명</option>
- 								<option value="2 x 65,000">2 명</option>
- 								<option value="3 x 60,000">3 명</option>
- 								<option value="4 x 50,000">4 명</option>
+ 						<li>
+ 							<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
+						</li>
+ 						<li><select name="reser_Per" id="amountList" onchange="amount()">
+ 								<option value="1">1 명</option>
+ 								<option value="2">2 명</option>
+ 								<option value="3">3 명</option>
+ 								<option value="4">4 명</option>
  						</select>
+ 						
  					</ul>
  					<div class="offerPrice">
  						<div class="clearfix2">
  							<span class="txtG">총 금액</span> <span
- 								class="total_price txtC txt_big"></span>
+ 								class="total_price txtC txt_big" id="totalPay"></span>
  						</div>
  					</div>
  					<button class="btn btnBgC btnFull txt_md"
@@ -457,11 +470,15 @@
                     <div class="clearfix">
                     <br>
                         <div class="msgImg floatL">
-                            <img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+                            <c:forEach var="guideImg" items="${guide.guideImageList }">
+ 									<c:if test="${guideImg.imgType == 1}">
+ 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/guide/${guideImg.saveName}.png">
+ 									</c:if>
+ 							</c:forEach>
                         </div>
                         <div class="floatL txt_bold">
                             <p>To.</p>
-                            <p>이안 TM</p>
+                            <p><c:out value="${guide.nickName }"/></p>
                         </div>
                     </div>
                     <textarea name="sendcontent" id="" placeholder="내용을 입력하세요."></textarea>
