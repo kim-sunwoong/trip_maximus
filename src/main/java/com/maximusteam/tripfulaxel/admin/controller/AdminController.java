@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
@@ -70,4 +71,45 @@ public class AdminController {
 				
 	return "admin/guideCalculate"; 
 	}
+	
+	@GetMapping("taxList")
+	public String selectTaxList(Model model) {
+			
+	model.addAttribute("selectTax", adminService.selectTaxList());
+				
+	return "admin/tax"; 
+	}
+	
+	@GetMapping("memberDetail")
+	public String selectMemberDetail(@RequestParam("memberNo")int no,Model model) {
+	
+	model.addAttribute("selectMemberDetail", adminService.selectMemberDetail(no));
+				
+	return "admin/memberManagementDetail"; 
+	}
+	
+	@GetMapping("memberDelete")
+	public String MemberDelete(@RequestParam("memberNo")int no,Model model) {
+	
+	model.addAttribute("memberDelete", adminService.MemberDelete(no));
+				
+	return "redirect:memberList"; 
+	}
+	
+	@GetMapping("adminDelete")
+	public String adminDelete(@RequestParam("adminNo")int no,Model model) {
+	
+	model.addAttribute("adminDelete", adminService.adminDelete(no));
+				
+	return "redirect:workerList"; 
+	}
+	
+	@GetMapping("reportDetail")
+	public String selectReportDetail(@RequestParam("reportNo")int no,Model model) {
+	
+	model.addAttribute("selectReportDetail", adminService.selectReportDetail(no));
+				
+	return "admin/reportManagementDetail"; 
+	}
+
 }

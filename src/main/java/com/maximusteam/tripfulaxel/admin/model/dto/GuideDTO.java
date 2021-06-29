@@ -7,10 +7,7 @@ public class GuideDTO {
     private String guideEnrollStatus; //EXAMINE_REQUEST_YN 등록 여부
     private String guideApproveStatus; //심사 승인 여부
 	
-    public GuideDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public GuideDTO() {}
 
 	public GuideDTO(int guideNo, String guideId, String guideEnrollStatus, String guideApproveStatus) {
 		super();

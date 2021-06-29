@@ -141,7 +141,6 @@
                                             <th>아이디</th>
                                             <th>회원가입일</th>
                                             <th>신고 누적 횟수</th>
-                                            <th>차단</th>
                                             <th>상세보기</th>
                                         </tr>
                                     </thead>
@@ -154,12 +153,7 @@
 	                                        <td><c:out value="${member.enrollDate}"/></td>
 	                                        <td><c:out value="${member.count}"/></td>
                                             <td>
-                                                <button>
-                                                    	차단
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button type="button" onclick="location.href='AdminMemberManagementDetail.html'">
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/memberDetail?memberNo=${member.memberNo}'">
                                                     	상세보기
                                                 </button>
                                             </td>
