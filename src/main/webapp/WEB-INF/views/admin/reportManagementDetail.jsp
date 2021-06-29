@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,37 +14,14 @@
         <link
             href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
             rel="stylesheet"/>
-       
-		<link href="${ pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet"/>
-        <script src="${ pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
-        <script src="${ pageContext.servletContext.contextPath }/resources/admin/js/datatables-simple-demo.js"></script>
+
+		<link href="/tripfulaxel/resources/admin/css/style.css" rel="stylesheet"/>
+        <script src="/tripfulaxel/resources/admin/js/scripts.js"></script>
+        <script src="/tripfulaxel/resources/admin/js/datatables-simple-demo.js"></script>
         
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"></script>
-            
-			<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-            <script>
-                $(document).ready(function(){
-                    $("#datatablesSimple").DataTable({
-                        "info":false,
-                        dom: '<lf<t>>',
-                        "language":{
-                            "lengthMenu":'<select>'+
-                                '<option value="10">10</option>'+
-                                '<option value="20">20</option>'+
-                                '<option value="30">30</option>'+
-                                '</select>'
-                        }
-                    });
-                   
-                });
-    
-            </script>
         
     </head>
     <body class="sb-nav-fixed">
@@ -124,49 +100,78 @@
 
             <div id="layoutSidenav_content">
                 <main>
-                    	<div class="container-fluid px-4" style="margin-top: 30px;">
-                        	<div class="card mb-4">
-	
-	                            <div class="card-header" style="font-size: x-large;">
-	                                <i class="fas fa-table me-1"></i>
-	                                                                      사원관리
-	                            </div>
-	
-	                            <div class="card-body">
-	                                <table id="datatablesSimple" class="table table">
-	                                    <thead>
-	                                        <tr>
-	                                            <th>관리자 사원번호</th>
-	                                            <th>직책</th>
-	                                            <th>이름</th>
-	                                            <th>이메일</th>
-	                                            <th>입사일</th>
-	                                            <th>삭제</th>
-	                                        </tr>
-	                                    </thead>
-	                                    <tbody>
-	                                      <c:forEach items="${selectAdmin}" var = "list">
-	                                        <tr>
-	                                            <td><c:out value="${list.adminNo}"/></td>
-	                                            <td><c:out value="${list.adminPosition}"/></td>
-	                                            <td><c:out value="${list.adminName}"/></td>
-	                                            <td><c:out value="${list.adminEmail}"/></td>
-	                                            <td><c:out value="${list.hireDate}"/></td>
-	                                            <td>
-	                                               <button onclick="location.href='${ pageContext.servletContext.contextPath }/admin/adminDelete?adminNo=${list.adminNo}'" class="btn btn-danger">삭제</button>  
-	                                            </td>
-	                                        </tr>
-	                                        </c:forEach>
-	                                    </tbody>
-	                                </table>
-	                            </div>
-	                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">등록</button>
-	                          <!--   <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">삭제</button> -->
-                        	</div>
-                    	</div>
-                	</main>
-            	</div>
-        </div>
+                    <div class="container-fluid px-4" style="margin-top: 30px;">
+                        <div class="card mb-4">
 
+                            <div class="card-header" style="font-size: x-large;">
+                                <i class="fas fa-table me-1"></i>
+                                신고관리
+                            </div>
+
+                            <div class="card-body">
+                                    <table class="table table">
+                                    <tr>
+                                     <td style="width: 10%;">제목</td>
+                                     <td>
+                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTitle}" readonly>
+                                     </td>
+                                    </tr>
+                                    <tr>
+                                     <td>신고 대상자</td>
+                                     <td>
+                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTarget}" readonly>
+                                     </td>
+                                    </tr>
+                                    <tr>
+                                     <td>신고 작성자</td>
+                                     <td>
+                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportWriter}" readonly>
+                                     </td>
+                                    </tr>
+                                
+                                    <tr>
+                                     <td>신고 내용</td>
+                                     <td>
+                                     	<!-- <textarea rows="10" cols="50" name="content" class="form-control" readonly></textarea> -->
+                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTitle}" readonly>
+                                     </td>
+                                    </tr>
+
+                                                                    
+                                    <tr>
+                                        <td>답변 내용</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                       </tr>
+                                     <tr> 
+                                     <td colspan="2"  class="text-center">
+                                     
+                                      <input type="submit" value="답변쓰기완료" class="btn btn-success">
+                                      <!-- <input type="reset" value="취소" class="btn btn-warning">
+                                      <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
+                                     </td>
+                                    </tr>
+                                    
+                                    </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+        <!-- <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+            crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+            crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script> -->
     </body>
 </html>

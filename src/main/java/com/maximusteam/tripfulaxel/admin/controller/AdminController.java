@@ -93,8 +93,23 @@ public class AdminController {
 	
 	model.addAttribute("memberDelete", adminService.MemberDelete(no));
 				
-	return "admin/memberManagement"; 
+	return "redirect:memberList"; 
 	}
 	
+	@GetMapping("adminDelete")
+	public String adminDelete(@RequestParam("adminNo")int no,Model model) {
+	
+	model.addAttribute("adminDelete", adminService.adminDelete(no));
+				
+	return "redirect:workerList"; 
+	}
+	
+	@GetMapping("reportDetail")
+	public String selectReportDetail(@RequestParam("reportNo")int no,Model model) {
+	
+	model.addAttribute("selectReportDetail", adminService.selectReportDetail(no));
+				
+	return "admin/reportManagementDetail"; 
+	}
 
 }

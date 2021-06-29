@@ -70,6 +70,18 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.memberDelete(no);
 	}
 
+	@Override
+	public int adminDelete(int no) {
+		
+		return mapper.adminDelete(no);
+	}
+
+	@Override
+	public ReportDTO selectReportDetail(int no) {
+
+		return mapper.selectReportDetail(no);
+	}
+
 
 
 	

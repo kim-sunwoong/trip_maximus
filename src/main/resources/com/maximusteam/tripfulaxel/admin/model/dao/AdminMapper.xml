@@ -37,9 +37,16 @@
 	<resultMap id="reportList" type="ReportDTO">
 		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
-		<result column="USER_EMAIL" property="reportUser" />
+		<result column="USER_EMAIL" property="reportId" />
 		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
 		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
+	</resultMap>
+	
+	<!-- 신고 상세 -->
+	<resultMap id="reportDetail" type="ReportDTO">
+		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
+		<result column="EXAMINE_REQUEST_TO" property="reportTarget" />
+		<result column="USER_EMAIL" property="reportId" />
 	</resultMap>
 	
 	<!-- 가이드 리스트 -->
@@ -112,6 +119,15 @@
             OR EXAMINE_TYPE_CODE = 2
 	</select>
 	
+	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">
+        SELECT 
+               A.EXAMINE_REQUEST_REASON
+             , A.EXAMINE_REQUEST_FROM
+             , A.EXAMINE_REQUEST_TO
+         FROM EXAMINE A
+        WHERE EXAMINE_REQUEST_CODE = #{no}
+	</select>
+	
 	<select id="selectGuide" resultMap="guideList">
         SELECT 
                A.GUIDE_CODE
@@ -152,5 +168,11 @@
 		DELETE 
           FROM USER
          WHERE USER_CODE = #{ no } 
+	</delete>
+	
+	<delete id="adminDelete" parameterType="_int">
+		DELETE 
+          FROM ADMIN
+         WHERE ADMIN_NO = #{ no } 
 	</delete>
 </mapper>

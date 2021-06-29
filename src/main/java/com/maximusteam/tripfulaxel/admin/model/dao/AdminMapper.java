@@ -26,4 +26,8 @@ public interface AdminMapper {
 	MemberDTO selectMemberDetail(int no);
 
 	int memberDelete(int no);
+
+	int adminDelete(int no);
+
+	ReportDTO selectReportDetail(int no);
 }
