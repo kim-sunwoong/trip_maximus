@@ -180,8 +180,8 @@
         <article class="find_btn_area floatR " style="margin-right: 350px;">
    
    		  <div style="margin-top:5px; margin-bottom: -10px;">
-   		    <a href="/"><img id="rotating_img" style="width: 90px; height:99px; object-fit:cover;" src="/tripfulaxel/resources/user/images/common/3.png" alt=""></a> 
-             <a href="/"><img style="width: 300px; height:99px" src="/tripfulaxel/resources/user/images/common/2.png" alt=""></a> 
+   		    <a href="/"><img id="rotating_img" style="width: 90px; height:99px; object-fit:cover;" src="/tripfulaxel/resources/images/common/3.png" alt=""></a> 
+             <a href="/"><img style="width: 300px; height:99px" src="/tripfulaxel/resources/images/common/2.png" alt=""></a> 
    		  
    		  </div>
       	<style>
@@ -193,7 +193,7 @@
 		    from {-webkit-transform: rotate(359deg);}
 		    to   {-webkit-transform: rotate(0deg);}
 		}
-      	
+      	=====
       	</style>
             <ul>
                 <li class="floatL header_menu">
