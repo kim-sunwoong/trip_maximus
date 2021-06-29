@@ -65,15 +65,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int MemberDelete(int no) {
+	public int deleteMember(int no) {
 		
-		return mapper.memberDelete(no);
+		return mapper.deleteMember(no);
 	}
 
 	@Override
-	public int adminDelete(int no) {
+	public int deleteAdmin(int no) {
 		
-		return mapper.adminDelete(no);
+		return mapper.deleteAdmin(no);
 	}
 
 	@Override
@@ -81,6 +81,23 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectReportDetail(no);
 	}
+
+	@Override
+	public int insertReport(ReportDTO report) {
+		return mapper.insertReport(report);
+	}
+
+	@Override
+	public int updateReportStatus(ReportDTO report) {
+		return mapper.updateReportStatus(report);
+	}
+
+	@Override
+	public int updateReportCount(ReportDTO report) {
+		return mapper.updateReportCount(report);
+	}
+
+
 
 
 

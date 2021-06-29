@@ -46,7 +46,10 @@
 	<resultMap id="reportDetail" type="ReportDTO">
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
 		<result column="EXAMINE_REQUEST_TO" property="reportTarget" />
-		<result column="USER_EMAIL" property="reportId" />
+		<result column="EXAMINE_REQUEST_FROM" property="reportWriter" />
+		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
+		<result column="EXAMINE_RESPONSE_CODE" property="responseCode" />
+		<result column="EXAMINE_REQUEST_CODE" property="requestCode" />
 	</resultMap>
 	
 	<!-- 가이드 리스트 -->
@@ -124,8 +127,11 @@
                A.EXAMINE_REQUEST_REASON
              , A.EXAMINE_REQUEST_FROM
              , A.EXAMINE_REQUEST_TO
+             , B.EXAMINE_RESPONSE_CODE
+             , B.EXAMINE_REQUEST_CODE
          FROM EXAMINE A
-        WHERE EXAMINE_REQUEST_CODE = #{no}
+         JOIN EXAMINE_RESPONSE B ON (A.EXAMINE_REQUEST_CODE = B.EXAMINE_REQUEST_CODE)
+        WHERE A.EXAMINE_REQUEST_CODE = #{no}
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
@@ -164,15 +170,53 @@
          WHERE E.USER_GUIDE_YN = 'Y'
 	</select>	
 	
-	<delete id="memberDelete" parameterType="_int">
-		DELETE 
-          FROM USER
-         WHERE USER_CODE = #{ no } 
+	<delete id="deleteMember" parameterType="_int">
+       DELETE 
+         FROM USER
+        WHERE USER_CODE = #{ no } 
 	</delete>
 	
-	<delete id="adminDelete" parameterType="_int">
-		DELETE 
+	<delete id="deleteAdmin" parameterType="_int">
+        DELETE 
           FROM ADMIN
          WHERE ADMIN_NO = #{ no } 
 	</delete>
+	
+	<insert id="insertReport" parameterType="ReportDTO">
+	
+		<selectKey  resultType="map" keyProperty="responseCode,requestCode" order="BEFORE">
+        SELECT 
+               MAX(EXAMINE_RESPONSE_CODE) + 1
+             , MAX(EXAMINE_REQUEST_CODE) + 1 
+          FROM EXAMINE_RESPONSE
+    	</selectKey>
+
+	INSERT 
+	  INTO EXAMINE_RESPONSE
+	VALUES
+		(
+		 #{ responseCode }
+		,#{ ReportDTO.responseDate } 
+		,#{ ReportDTO.responseContent }
+		,#{ requestCode }
+		, 2
+		, 1
+		)
+	</insert>
+	
+	<update id="updateReportStatus" parameterType="_int">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
+	</update> 
+	
+	<update id="updateReportCount" parameterType="_int">
+        UPDATE 
+          USER a, USER b
+           SET
+               a.USER_REPORT_COUNT = b.USER_REPORT_COUNT + 1
+         WHERE a.USER_CODE = #{ reportTarget }	
+	</update>  
 </mapper>

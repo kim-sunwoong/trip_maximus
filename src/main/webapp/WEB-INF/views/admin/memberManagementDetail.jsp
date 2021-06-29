@@ -152,7 +152,7 @@
                                     
                                     <tr>
                                        <td class="text-center" colspan="2">
-                                            <button onclick="location.href='${ pageContext.servletContext.contextPath }/admin/memberDelete?memberNo=${selectMemberDetail.memberNo}'" class="btn btn-danger">회원삭제</button>
+                                            <button onclick="location.href='${ pageContext.servletContext.contextPath }/admin/deleteMember?memberNo=${selectMemberDetail.memberNo}'" class="btn btn-danger">회원삭제</button>
                                        </td>    
                                   	</tr> 
                                   </table>

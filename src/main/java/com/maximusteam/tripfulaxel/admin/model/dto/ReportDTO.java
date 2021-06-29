@@ -11,11 +11,16 @@ public class ReportDTO {
     private int reportTarget; //신고대상자
     private String reportStatus; // 신고 처리상태
     private java.sql.Date reportDate;
+    private String responseContent;
+    private java.sql.Date responseDate;
+    private int responseCode;
+    private int requestCode;
 	
     public ReportDTO() {}
 
 	public ReportDTO(int reportNo, String reportTitle, String reportId, int reportWriter, int reportTarget,
-			String reportStatus, java.sql.Date reportDate) {
+			String reportStatus, java.sql.Date reportDate, String responseContent, java.sql.Date responseDate,
+			int responseCode, int requestCode) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
@@ -24,6 +29,10 @@ public class ReportDTO {
 		this.reportTarget = reportTarget;
 		this.reportStatus = reportStatus;
 		this.reportDate = reportDate;
+		this.responseContent = responseContent;
+		this.responseDate = responseDate;
+		this.responseCode = responseCode;
+		this.requestCode = requestCode;
 	}
 
 	public int getReportNo() {
@@ -82,12 +91,52 @@ public class ReportDTO {
 		this.reportDate = reportDate;
 	}
 
+	public String getResponseContent() {
+		return responseContent;
+	}
+
+	public void setResponseContent(String responseContent) {
+		this.responseContent = responseContent;
+	}
+
+	public java.sql.Date getResponseDate() {
+		return responseDate;
+	}
+
+	public void setResponseDate(java.sql.Date responseDate) {
+		this.responseDate = responseDate;
+	}
+
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	public int getRequestCode() {
+		return requestCode;
+	}
+
+	public void setRequestCode(int requestCode) {
+		this.requestCode = requestCode;
+	}
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportId=" + reportId
 				+ ", reportWriter=" + reportWriter + ", reportTarget=" + reportTarget + ", reportStatus=" + reportStatus
-				+ ", reportDate=" + reportDate + "]";
+				+ ", reportDate=" + reportDate + ", responseContent=" + responseContent + ", responseDate="
+				+ responseDate + ", responseCode=" + responseCode + ", requestCode=" + requestCode + "]";
 	}
+
+	
+
+	
+	
+
+	
 
     
 

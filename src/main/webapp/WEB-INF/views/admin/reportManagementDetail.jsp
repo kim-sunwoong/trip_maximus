@@ -105,53 +105,57 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                신고관리
+                                	신고관리
                             </div>
 
                             <div class="card-body">
+                               <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertReport">
                                     <table class="table table">
                                     <tr>
                                      <td style="width: 10%;">제목</td>
                                      <td>
-                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTitle}" readonly>
+                                     	<input type="text"  class="form-control" name="reportTitle" value="${selectReportDetail.reportTitle}" readonly>
                                      </td>
                                     </tr>
                                     <tr>
                                      <td>신고 대상자</td>
                                      <td>
-                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTarget}" readonly>
+                                     	<input type="number"  class="form-control" name="reportTarget" value="${selectReportDetail.reportTarget}" readonly>
                                      </td>
                                     </tr>
                                     <tr>
                                      <td>신고 작성자</td>
                                      <td>
-                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportWriter}" readonly>
+                                     	<input type="number"  class="form-control" name="reportWriter" value="${selectReportDetail.reportWriter}" readonly>
                                      </td>
                                     </tr>
-                                
+                                	
                                     <tr>
                                      <td>신고 내용</td>
                                      <td>
                                      	<!-- <textarea rows="10" cols="50" name="content" class="form-control" readonly></textarea> -->
-                                     	<input type="text"  class="form-control" name="writer" value="${selectReportDetail.reportTitle}" readonly>
+                                     	<input type="text"  class="form-control" name="reportContent" value="${selectReportDetail.reportTitle}" readonly>
                                      </td>
                                     </tr>
-
-                                                                    
+									<tr>
+                                        <td>날짜</td>
+                                        <td><input type="date" rows="10" cols="50" id="date" name="reportResponseDate" class="form-control"></input></td>
+                                       </tr>
+                                     <tr> 
                                     <tr>
                                         <td>답변 내용</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                        <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
                                        </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">
-                                     
-                                      <input type="submit" value="답변쓰기완료" class="btn btn-success">
+                                      <button type="submit" class="btn btn-success">답변쓰기완료</button>
                                       <!-- <input type="reset" value="취소" class="btn btn-warning">
                                       <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
                                      </td>
                                     </tr>
                                     
                                     </table>
+                                    </form>
                             </div>
 
                         </div>
