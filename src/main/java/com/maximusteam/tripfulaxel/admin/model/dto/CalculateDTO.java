@@ -6,11 +6,11 @@ public class CalculateDTO {
 
 	private int calculateNo;
 	private String userId;
-	private java.util.Date calculateDate;
+	private java.sql.Date calculateDate;
 	
 	public CalculateDTO() {	}
 
-	public CalculateDTO(int calculateNo, String userId, Date calculateDate) {
+	public CalculateDTO(int calculateNo, String userId, java.sql.Date calculateDate) {
 		super();
 		this.calculateNo = calculateNo;
 		this.userId = userId;
@@ -33,11 +33,11 @@ public class CalculateDTO {
 		this.userId = userId;
 	}
 
-	public java.util.Date getCalculateDate() {
+	public java.sql.Date getCalculateDate() {
 		return calculateDate;
 	}
 
-	public void setCalculateDate(java.util.Date calculateDate) {
+	public void setCalculateDate(java.sql.Date calculateDate) {
 		this.calculateDate = calculateDate;
 	}
 
@@ -46,6 +46,8 @@ public class CalculateDTO {
 		return "CalculateDTO [calculateNo=" + calculateNo + ", userId=" + userId + ", calculateDate=" + calculateDate
 				+ "]";
 	}
+
+	
 	
 	
 	 

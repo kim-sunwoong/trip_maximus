@@ -145,16 +145,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${selectReport}" var = "report">
+                                    	<c:forEach items="${selectReport}" var = "report" varStatus="status">
                                         <tr>
-                                            <td><c:out value="${report.reportNo}"/></td>
+                                            <td>
+                                            	<c:out value="${status.count}"/>
+                                            	<input type="hidden" value="${report.reportNo}"/>
+                                            </td>
                                             <td><c:out value="${report.reportTitle}"/></td>
-                                            <td><c:out value="${report.reportUser}"/></td>
+                                            <td><c:out value="${report.reportId}"/></td>
                                             <td><c:out value="${report.reportStatus}"/></td>
                                             <td><c:out value="${report.reportDate}"/></td>
                                             <td>
-                                                <button type="submit" onclick="location.href='AdminReportManagementDetail.html'">
-                                                     	상세보기
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/reportDetail?reportNo=${report.reportNo}'">
+                                                    	상세보기
                                                 </button>
                                             </td>
                                         </tr>

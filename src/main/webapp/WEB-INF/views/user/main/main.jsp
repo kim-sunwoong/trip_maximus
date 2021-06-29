@@ -713,7 +713,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 535;"
-							src="/tripfulaxel/resources/user/images/common/local_guide_main.png"
+							src="/tripfulaxel/resources/images/common/local_guide_main.png"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -726,7 +726,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
 							alt="Second slide [800x400]"
-							src="/tripfulaxel/resources/user/images/common/trip_alone.jpg"
+							src="/tripfulaxel/resources/images/common/trip_alone.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -739,7 +739,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/user/images/common/trip_together.jpg"
+							src="/tripfulaxel/resources/images/common/trip_together.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -752,7 +752,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/user/images/common/trip_planner.jpeg"
+							src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -764,7 +764,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/user/images/common/trip_realtime.jpg"
+							src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -831,7 +831,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 700px;"
-							src="/tripfulaxel/resources/user/images/common/main2.jpg"
+							src="/tripfulaxel/resources/images/common/main2.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">

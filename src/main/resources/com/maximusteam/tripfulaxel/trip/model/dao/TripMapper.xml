@@ -5,6 +5,29 @@
 <mapper
 	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
 	
+	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO" id="review">
+		<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+		<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+		<result property="reviewInfo" column="TRIP_REVIEW_CONTENT"/>
+		<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+		<result property="reviewPoint" column="TRIP_REVIEW_GRADE"/>
+		
+		<association property="reviewComent" javaType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewComentDTO">
+			<result property="replyCode" column="TRIP_REPLY_CODE"/>
+			<result property="replyInfo" column="TRIP_REPLY_DETAIL"/>
+			<result property="replyDate" column="TRIP_REPLY_DATE"/>
+			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+		</association>
+	
+		<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewImageDTO">
+			<result property="reviewImgCode" column="REVIEW_IMAGE_CODE"/>
+			<result property="saveName" column="REVIEW_IMAGE_SAVED_NAME"/>
+			<result property="orignName" column="REVIEW_IMAGE_ORIGIN_NAME"/>
+			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+		</collection>
+		
+	</resultMap>	
+	
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.TripDTO" id="trip">
 	
 		<result property="tripCode" column="TRIP_CODE"/>
@@ -49,6 +72,19 @@
 			<result property="imgType" column="TRIP_IMAGE_TYPE_CODE"/>
 		</collection>
 		
+		<!-- theme -->
+		<collection property="tripThemeList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO">
+			<result property="themeDetail" column="THEME_DETAIL"/>
+			<result property="themeCode" column="THEME_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- transit -->
+		<collection property="tripTransitList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO">
+			<result property="transitDetail" column="TRANSIT_DETAIL"/>
+			<result property="transitCode" column="TRANSIT_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
 		
 	</resultMap>
 	
@@ -75,45 +111,134 @@
 		   TRIP_COURSE_CODE,
 		   TRIP_COURSE_NAME,
 		   TRIP_COURSE_INFO,
+		   TRANSIT_CHOICE_CODE, 
+	  	   t3.TRANSIT_CODE,
+		   TRANSIT_DETAIL,
+		   THEME_DETAIL,
+		   THEME_CHOICE_CODE,
+		   t2.THEME_CODE,
+		   t.TRIP_CODE,
+		   
+		<if test="condition.sortCondition eq '인기순'.toString()">
+		 	IFNULL(iv.CNT, 0) as rvcnt,
+		</if>
   
 		<choose>
-		 <when test='tripType eq "join".toString()'>
-		   J_TRIP_CODE,
-		   J_TRIP_MAXIMIM,
-		   jt.TRIP_CODE,
-		   ti.TRIP_IMAGE_CODE
-	  FROM JOIN_TRIP jt 
-	  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
-	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
-	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
-		 </when>
-		 <when test='tripType eq "guide".toString()'>
-		   G_TRIP_CODE,
-		   G_TRIP_PAYMENT,
-		   G_TRIP_MINIMUM,
-		   G_TRIP_MAXIMUM,
-		   gt.TRIP_CODE,
-		   ti.TRIP_IMAGE_CODE
-	  FROM GUIDE_TRIP gt 
-	  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
-	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
-	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 		
-		 </when>	  
-		 <otherwise>
-		   U_TRIP_CODE,
-		   U_TRIP_COMENT_TITLE,
-		   U_TRIP_COMENT_INFO,
-		   U_TRIP_COMENT_POINT,
-		   ut.TRIP_CODE,
-		   ti.TRIP_IMAGE_CODE
-	  FROM USER_TRIP ut 
-	  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
-	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
-	  JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)		 	
-		 </otherwise>
+			 <!-- 같이가요 일때 -->
+			 <when test='condition.tripType == 2'>
+				   J_TRIP_CODE,
+				   J_TRIP_MAXIMIM,
+				   ti.TRIP_IMAGE_CODE
+			  FROM JOIN_TRIP jt 
+			  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
+			 </when>
+			 
+			 <!-- guide 일 때 -->
+			 <when test='condition.tripType == 1'>
+				   G_TRIP_CODE,
+				   G_TRIP_PAYMENT,
+				   G_TRIP_MINIMUM,
+				   G_TRIP_MAXIMUM,
+				   ti.TRIP_IMAGE_CODE
+			  FROM GUIDE_TRIP gt 
+			  JOIN TRIP t ON (gt.TRIP_CODE = t.TRIP_CODE)
+			 </when>
+			 
+			 <!-- 나만의 여행 일 때 -->  
+			 <otherwise>
+				   U_TRIP_CODE,
+				   U_TRIP_COMENT_TITLE,
+				   U_TRIP_COMENT_INFO,
+				   U_TRIP_COMENT_POINT,
+				   ti.TRIP_IMAGE_CODE
+			  FROM USER_TRIP ut 
+			  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)
+		  
+			 </otherwise>
 		</choose>
 		
+	  JOIN TRIP_IMAGE ti ON (t.TRIP_CODE = ti.TRIP_CODE)
+	  LEFT JOIN TRIP_COURSE tc ON (ti.TRIP_IMAGE_CODE = tc.TRIP_IMAGE_CODE)
+	  JOIN TRIP_THEME_CHOICE ttc ON (t.TRIP_CODE = ttc.TRIP_CODE)
+	  JOIN THEME t2 ON (ttc.THEME_CODE = t2.THEME_CODE)
+	  JOIN TRANSIT_CHOICE tc2 ON (t.TRIP_CODE = tc2.TRIP_CODE)
+	  JOIN TRANSIT t3 ON (tc2.TRANSIT_CODE = t3.TRANSIT_CODE)
+	  JOIN TRIP_REGIST_LIST trl ON (t.TRIP_CODE = trl.TRIP_CODE)
+	  
+	  <if test="tripCode != null">
+	      WHERE t.TRIP_CODE = #{tripCode}
+	  </if>
+	  
+	  <!-- 첫 정렬은 최신순이며 인기 순이 선택되었을때 리뷰 카운트를 세는 join이 추가됨 -->
+	  <if test="condition.sortCondition eq '인기순'.toString()">
+	  LEFT OUTER JOIN ( SELECT 
+  				TRIP_CODE,
+	   		    COUNT(tr.TRIP_REVIEW_CODE) as CNT
+	   	   FROM TRIP_REGIST_LIST trl2
+	   	   JOIN JOIN_TRIP_APPLY jta ON (trl2.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+	   	   JOIN TRIP_REVIEW tr ON (jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE)
+	   	  WHERE trl2.TRIP_TYPE_CODE = #{condition.tripType}
+		    AND trl2.REGIST_TYPE_CODE = 3
+		  GROUP BY trl2.TRIP_CODE 
+	   	   ) as iv ON (gt.TRIP_CODE = iv.TRIP_CODE)
+	  </if>
+	  
+	  <if test="tripCode == null">
+		  <choose>
+			  <!--  페이지 첫 호출시 기본 정렬 상태 -> 최신순만 정렬함. 테마는 정렬 x-->
+			  <when test="condition.sortTheme == 0">
+				   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
+			      	 AND trl.REGIST_TYPE_CODE = 3
+			      	 
+			       <if test="condition.sortCondition eq '최신순'.toString()">
+			      		  ORDER BY t.TRIP_CODE DESC
+			       </if>
+			       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
+			       <if test="condition.sortCondition eq '인기순'.toString()">
+			      		  ORDER BY rvcnt DESC;
+			       </if>
+			  </when>
+					  
+					<!-- 첫 호출이 아닌 상태 최신순/인기순 and 테마가 선택되어 있음 -->
+			  <otherwise>
+				   WHERE trl.TRIP_TYPE_CODE = #{condition.tripType}
+			      	 AND trl.REGIST_TYPE_CODE = 3
+			      	 AND ttc.THEME_CODE = #{condition.sortTheme}
+			      	 
+			       <if test="condition.sortCondition eq '최신순'.toString()">
+			      		  ORDER BY t.TRIP_CODE DESC
+			       </if>
+			       <!-- 정렬이 인기순으로 선택시 위에 조인하여 셀렉해온 리뷰 수 기준으로 정렬해옴 -->
+			       <if test="condition.sortCondition eq '인기순'.toString()">
+			      		  ORDER BY rvcnt DESC;
+			       </if>
+			    </otherwise>
+		  </choose>
+	  </if>
 		
-		</select>
+	</select>
+	
+	<select id="selectReviewList" parameterType="_int" resultMap="review">
+		  SELECT 
+	  	     tr.TRIP_REVIEW_CODE, 
+	  	     TRIP_REVIEW_TITLE, 
+	  	     TRIP_REVIEW_CONTENT,
+	  	     TRIP_REVIEW_DATE, 
+	  	     TRIP_REVIEW_GRADE,
+	  	     tr2.TRIP_REPLY_CODE,
+	  	     tr2.TRIP_REPLY_DETAIL,
+	  	     tr2.TRIP_REPLY_DATE,
+	  	     ri.REVIEW_IMAGE_CODE ,
+	  	     ri.REVIEW_IMAGE_ORIGIN_NAME,
+	  	     ri.REVIEW_IMAGE_SAVED_NAME
+		FROM TRIP_REGIST_LIST trl 
+		JOIN JOIN_TRIP_APPLY jta ON ( trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+		JOIN TRIP_REVIEW tr ON ( jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE)
+		JOIN TRIP_REPLY tr2 ON (tr.TRIP_REVIEW_CODE = tr2.TRIP_REVIEW_CODE)
+		JOIN REVIEW_IMAGE ri ON (tr.TRIP_REVIEW_CODE = ri.TRIP_REVIEW_CODE)
+	   WHERE trl.TRIP_CODE = #{tripCode}
+	</select>
+	
+	
 	
 </mapper>
