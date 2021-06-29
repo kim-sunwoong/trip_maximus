@@ -186,10 +186,9 @@ li.header_menu:hover {
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
 
-				<form style="margin-top: 10px;" id="frm1" class="member_form"
-					name="fregisterform" method="post" onsubmit="return regist()"
-					action="${ pageContext.servletContext.contextPath }/user/regist"
-					autocomplete="off">
+				<form style="margin-top: 10px;" name="frm1" class="member_form"
+				     method="post" action="${ pageContext.servletContext.contextPath }/user/regist"
+					 name="fregisterform" autocomplete="off">
 
 					<input type="email" id="userEmail" name="userEmail"
 						value="juyoung@greedy.com" required
@@ -275,7 +274,7 @@ li.header_menu:hover {
 
 					<input type="hidden" name="w" value=""> <input
 						type="hidden" name="s" value=""> <input id="signinbtn"
-						class="btnBgC txt_bs submit" type="submit" value="가입하기"
+						class="btnBgC txt_bs submit" type="submit" value="가입하기" onclick="return regist()";
 						style="margin-top: 3vh;">
 
 				</form>
@@ -294,35 +293,28 @@ li.header_menu:hover {
 				<h3 class="tit txt_bold">로그인</h3>
 
 				<span class="txt_sm or" style="margin-top: 3vh">환영합니다!</span>
-				<form class="member_form" name="flogin" 
-				     action="${ pageContext.servletContext.contextPath }/user/login" 
-				     method="post"
-					 style="margin-top: 3vh">
-			 	<input type="email" name="userEmail" id="userEmail" required
+				<form class="member_form" name="flogin" action="javascript:void(0);" method="post"
+					style="margin-top: 3vh">
+					<input type="email" name="mb_email" id="login_email" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;">
-				  <input
-						type="password" name="userPwd" id="userPwd" required
+						style="margin: 0 auto; width: 60%; display: flex;"> <input
+						type="password" name="mb_password" id="login_pw" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
-				 <button class="btnBgC txt_bs submit" type="submit"
+					<button class="btnBgC txt_bs submit" type="submit"
 						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
-				
 				<ul class="find_signup clearfix">
-					<li class="floatL">
-					<a href="#" class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a>
-				    <a href="#" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a>
-				    </li>
-					<li class="floatR">
-					<a href="#"	class="signup_link txt_sm txt_bold">회원가입</a>
-					</li>
+					<li class="floatL""><a href="javascript:void(0);"
+						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
+						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
+					<li class="floatR"><a href="javascript:void(0);"
+						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
-	
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
@@ -336,7 +328,10 @@ li.header_menu:hover {
 				<p class="txt_bs txt_bold">
 					이메일(ID)은 <span class="find_id">hongildong1234</span> 입니다.
 				</p>
-				<a class="btnBgC txt_bs login_link submit" href="#"
+				<!--           		<form class="member_form">
+                                                  <input class="btnBgC txt_bs login_link submit" type="submit" value="로그인">
+                              </form> -->
+				<a class="btnBgC txt_bs login_link submit" href="javascript:void(0);"
 					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
 			</div>
 		</div>
@@ -355,7 +350,7 @@ li.header_menu:hover {
 					<span>* 표시는 필수 입력입니다. <br>(생년월일 입력시에는 전체 다 입력해주세요)
 					</span>
 				</p>
-				<form class="member_form">
+				<form class="member_form" >
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
 						<input type="radio" id="find_gender1" name="find_gender" value="1"
@@ -385,9 +380,9 @@ li.header_menu:hover {
 						value="이메일(ID) 찾기" style="margin-top: 3vh;">이메일(ID) 찾기</button>
 				</form>
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="#"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기</a></li>
-					<li class="floatR"><a href="#"
+					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
@@ -428,6 +423,7 @@ li.header_menu:hover {
 						<input type="text" class="birth_year" placeholder="출생연도"
 							name="find_id_year"> <select name="find_id_mon">
 							<option value="0">월</option>
+							<option value='1'>1월</option>
 						</select> <select name="find_id_day">
 							<option value="0">일</option>
 							<option value='1'>1일</option>
@@ -438,9 +434,9 @@ li.header_menu:hover {
 					<!-- <input class="btnBgC txt_bs submit" type="submit" value="비밀번호 재설정 메일 보내기"> -->
 				</form>
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="#"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR"><a href="#"
+					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
@@ -587,7 +583,7 @@ li.header_menu:hover {
 
 		/* 회원가입 유효성 체크 */
 		function regist() {
-
+			
 			var useremail = document.getElementById("userEmail");
 			var username = document.getElementById("userName");
 			var userphone = document.getElementById("userPhone");
@@ -671,9 +667,8 @@ li.header_menu:hover {
 
 				return true;
 			}
-
+		
 		}
-
 	</script>
 
 	<!-- //헤더 영역 끝 -->
@@ -713,7 +708,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 535;"
-							src="/tripfulaxel/resources/images/common/local_guide_main.png"
+							src="/tripfulaxel/resources/user/images/common/local_guide_main.png"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -726,7 +721,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
 							alt="Second slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_alone.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_alone.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -739,7 +734,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_together.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_together.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -752,7 +747,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
+							src="/tripfulaxel/resources/user/images/common/trip_planner.jpeg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -764,7 +759,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_realtime.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -831,7 +826,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 700px;"
-							src="/tripfulaxel/resources/images/common/main2.jpg"
+							src="/tripfulaxel/resources/user/images/common/main2.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
