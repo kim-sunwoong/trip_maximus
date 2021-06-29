@@ -81,6 +81,9 @@
 
 <jsp:include page="../common/header.jsp"></jsp:include>
 
+
+<form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
+
 <table id="registTb" class="table table-bordered">
 	<thead></thead>
 	
@@ -96,7 +99,6 @@
 				<td>
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
-				<form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
 				
 					<!-- 회원번호 (invisible) -->
 					<input id="userCode" name="userCode" value="${ requestScope.loginMember.userCode }"/ hidden="true">
@@ -266,11 +268,7 @@
 						<span class="form-title" style="display:inline-block">코스 소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
-<<<<<<< HEAD
-		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
-=======
 		                <input type="file"  name="imageCourse"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
->>>>>>> refs/remotes/origin/jinseo_cha
 					</div>		
 					
 					<!-- 코스 일 차 -->
@@ -289,38 +287,6 @@
 			<script>
 				$(document).ready(function(){
 					
-<<<<<<< HEAD
-/* 				const $addTripCourse = document.getElementsByClassName("addTripCourse");
- */				
-				var courseCopy = $('.course').clone();
-
-				$(document).on("click", "input[name='addTripCourse']", function () {
-				    
-					$('.courseContainer').append(
-	 						'<hr>'
-	 				);
-					
-					$('.courseContainer').append(
- 							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
- 							<button type="button" class="btnRemove">삭제</button><br>\
- 			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
- 							' */
- 						courseCopy
- 					);
-					$('.courseContainer').append(
- 						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
-							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
- 					); 
- 					
- 					
-					
-				  });
-				
-					$('.btnRemove').on('click', function(){
-						$(this).prev().remove();
-						$(this).next().remove();
-						$(this).remove();
-=======
 				$(document).on("click", "input[name='addTripCourse']", function (e) {
 
 					$(e.target).parent().after('<div class="course"  name="lastcourse">'
@@ -356,8 +322,15 @@
 				<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
 				$('#submitButton').click(function(){
 				        var formData = new FormData($('#insertGuideForm')[0]);
-						console.log(formData);
-			        
+						console.log("james");
+				        console.log(formData); // FormData
+			        	
+				       
+						var test = new FormData();
+						var imageData = document.getElementById('insertGuideForm');
+						console.log("cha");
+						console.log(imageData);
+						
 				        $.ajax({
 				            url : "${pageContext.request.contextPath}/guide/insert",
 				            type : 'post', 
@@ -376,7 +349,6 @@
 				                alert(xhr + " : " + status);
 				            }
 				       	 });
->>>>>>> refs/remotes/origin/jinseo_cha
 					});
 				});
 			</script>			
@@ -423,40 +395,52 @@
 			 	    <input type="number" class="select-nomalsize" name="maximum" placeholder="최대인원(1이상)을 입력해주세요." min="1">
 				  </div>
 				  
-				 <!-- 1인당 가격   -->
-			      <div class="form-layer">
-					<span class="form-title" style="display:inline-block";>1인당 가격  </span>
-			 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
-				  </div>
+					 <!-- 1인당 가격   -->
+				      <div class="form-layer">
+						<span class="form-title" style="display:inline-block";>1인당 가격  </span>
+				 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
+					  </div>
 			   
-			   	 <!-- 포함 사항    -->
-			      <div class="form-layer">
-					<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
-			 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
-			 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
-				  </div>
+			   	 	<!-- 포함 사항    -->
+				      <div class="form-layer">
+						<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
+				 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
+				 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
+					  </div>
 			   
 			   
-		    	<!-- 불포함 사항    -->
-			      <div class="form-layer">
-					<span class="form-title" style="display:inline-block";>불포함 사항  </span>
-			 	    <input type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
-				  </div> 
-			   
-			   </td>
-		<!-- 가격 정보 끝 -->
- 			<tr>
-				<br>
-				<th colspan="2" style="background-color: white !important; ">
-						<input type="button" id="submitButton" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
-						box-shadow: none;  border-radius: 0px;  background-color:skyblue;" value="제출하기">
-						
-				</th>
-			</tr> 
+		    		<!-- 불포함 사항    -->
+				      <div class="form-layer">
+						<span class="form-title" style="display:inline-block";>불포함 사항  </span>
+				 	    <input type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
+					  </div> 
+				   
+				   </td>
+					<!-- 가격 정보 끝 -->
+		 			<tr>
+						<br>
+						<th colspan="2" style="background-color: white !important; ">
+								<input type="button" id="submitButton" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
+								box-shadow: none;  border-radius: 0px;  background-color:skyblue;" value="제출하기">
+								
+						</th>
+					</tr> 
 			
-             </form>
+             
 		</tbody>
  </table>
+</form>
+<script>
+
+$("document").ready(function(){
+
+    $('input[type=file]').change(function(e) {
+        alert('changed!' + this);
+    });
+});
+
+
+</script>
 
 
 <!-- 주소 api 사용 -->
