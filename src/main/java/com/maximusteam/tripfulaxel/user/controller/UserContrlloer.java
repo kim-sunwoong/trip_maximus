@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.model.service.UserService;
 
@@ -36,7 +37,7 @@ public class UserContrlloer {
 	 * @return
 	 */
 	@PostMapping("/regist")
-	public String registUser(@ModelAttribute UserDTO user, HttpServletRequest request) {
+	public String registUser(@ModelAttribute UserDTO user, Model model) {
 		
 		System.out.println(user);
 		
@@ -45,8 +46,23 @@ public class UserContrlloer {
 		
 		return "main";
 			
+	}
+	
+	/**
+	 * 로그인용 메소드
+	 * @param user
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/login")
+	public String loginUser(@ModelAttribute UserDTO user)  {
+			
+		System.out.println(user.getUserEmail());
+		System.out.println(user.getUserPwd());
 		
-		
+		userService.loginUser(user);
+				
+		return "main";
 	}
 	
 

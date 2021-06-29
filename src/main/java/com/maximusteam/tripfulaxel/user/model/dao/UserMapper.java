@@ -11,4 +11,6 @@ public interface UserMapper {
 
 	int registUser(UserDTO user);
 
+	UserDTO loginUser(UserDTO user);
+
 }

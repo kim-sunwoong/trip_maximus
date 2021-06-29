@@ -294,28 +294,35 @@ li.header_menu:hover {
 				<h3 class="tit txt_bold">로그인</h3>
 
 				<span class="txt_sm or" style="margin-top: 3vh">환영합니다!</span>
-				<form class="member_form" name="flogin" action="#" method="post"
-					style="margin-top: 3vh">
-					<input type="email" name="mb_email" id="login_email" required
+				<form class="member_form" name="flogin" 
+				     action="${ pageContext.servletContext.contextPath }/user/login" 
+				     method="post"
+					 style="margin-top: 3vh">
+			 	<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;"> <input
-						type="password" name="mb_password" id="login_pw" required
+						style="margin: 0 auto; width: 60%; display: flex;">
+				  <input
+						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
-					<button class="btnBgC txt_bs submit" type="submit"
+				 <button class="btnBgC txt_bs submit" type="submit"
 						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
+				
 				<ul class="find_signup clearfix">
-					<li class="floatL""><a href="#"
-						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
-						href="#" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR"><a href="#"
-						class="signup_link txt_sm txt_bold">회원가입</a></li>
+					<li class="floatL">
+					<a href="#" class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a>
+				    <a href="#" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a>
+				    </li>
+					<li class="floatR">
+					<a href="#"	class="signup_link txt_sm txt_bold">회원가입</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
+	
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
@@ -329,9 +336,6 @@ li.header_menu:hover {
 				<p class="txt_bs txt_bold">
 					이메일(ID)은 <span class="find_id">hongildong1234</span> 입니다.
 				</p>
-				<!--           		<form class="member_form">
-                                                  <input class="btnBgC txt_bs login_link submit" type="submit" value="로그인">
-                              </form> -->
 				<a class="btnBgC txt_bs login_link submit" href="#"
 					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
 			</div>
@@ -373,51 +377,8 @@ li.header_menu:hover {
 						<input type="text" class="birth_year" placeholder="출생연도"
 							name="find_id_year"> <select name="find_id_mon">
 							<option value="0">월</option>
-							<option value='1'>1월</option>
-							<option value='2'>2월</option>
-							<option value='3'>3월</option>
-							<option value='4'>4월</option>
-							<option value='5'>5월</option>
-							<option value='6'>6월</option>
-							<option value='7'>7월</option>
-							<option value='8'>8월</option>
-							<option value='9'>9월</option>
-							<option value='10'>10월</option>
-							<option value='11'>11월</option>
-							<option value='12'>12월</option>
 						</select> <select name="find_id_day">
 							<option value="0">일</option>
-							<option value='1'>1일</option>
-							<option value='2'>2일</option>
-							<option value='3'>3일</option>
-							<option value='4'>4일</option>
-							<option value='5'>5일</option>
-							<option value='6'>6일</option>
-							<option value='7'>7일</option>
-							<option value='8'>8일</option>
-							<option value='9'>9일</option>
-							<option value='10'>10일</option>
-							<option value='11'>11일</option>
-							<option value='12'>12일</option>
-							<option value='13'>13일</option>
-							<option value='14'>14일</option>
-							<option value='15'>15일</option>
-							<option value='16'>16일</option>
-							<option value='17'>17일</option>
-							<option value='18'>18일</option>
-							<option value='19'>19일</option>
-							<option value='20'>20일</option>
-							<option value='21'>21일</option>
-							<option value='22'>22일</option>
-							<option value='23'>23일</option>
-							<option value='24'>24일</option>
-							<option value='25'>25일</option>
-							<option value='26'>26일</option>
-							<option value='27'>27일</option>
-							<option value='28'>28일</option>
-							<option value='29'>29일</option>
-							<option value='30'>30일</option>
-							<option value='31'>31일</option>
 						</select>
 					</div>
 					<button class="btnBgC txt_bs find_id_button submit" type="button"
@@ -467,51 +428,9 @@ li.header_menu:hover {
 						<input type="text" class="birth_year" placeholder="출생연도"
 							name="find_id_year"> <select name="find_id_mon">
 							<option value="0">월</option>
-							<option value='1'>1월</option>
-							<option value='2'>2월</option>
-							<option value='3'>3월</option>
-							<option value='4'>4월</option>
-							<option value='5'>5월</option>
-							<option value='6'>6월</option>
-							<option value='7'>7월</option>
-							<option value='8'>8월</option>
-							<option value='9'>9월</option>
-							<option value='10'>10월</option>
-							<option value='11'>11월</option>
-							<option value='12'>12월</option>
 						</select> <select name="find_id_day">
 							<option value="0">일</option>
 							<option value='1'>1일</option>
-							<option value='2'>2일</option>
-							<option value='3'>3일</option>
-							<option value='4'>4일</option>
-							<option value='5'>5일</option>
-							<option value='6'>6일</option>
-							<option value='7'>7일</option>
-							<option value='8'>8일</option>
-							<option value='9'>9일</option>
-							<option value='10'>10일</option>
-							<option value='11'>11일</option>
-							<option value='12'>12일</option>
-							<option value='13'>13일</option>
-							<option value='14'>14일</option>
-							<option value='15'>15일</option>
-							<option value='16'>16일</option>
-							<option value='17'>17일</option>
-							<option value='18'>18일</option>
-							<option value='19'>19일</option>
-							<option value='20'>20일</option>
-							<option value='21'>21일</option>
-							<option value='22'>22일</option>
-							<option value='23'>23일</option>
-							<option value='24'>24일</option>
-							<option value='25'>25일</option>
-							<option value='26'>26일</option>
-							<option value='27'>27일</option>
-							<option value='28'>28일</option>
-							<option value='29'>29일</option>
-							<option value='30'>30일</option>
-							<option value='31'>31일</option>
 						</select>
 					</div>
 					<button class="btnBgC txt_bs find_password_button submit"
@@ -549,82 +468,6 @@ li.header_menu:hover {
 							style="margin-top: 0;">
 							<option value="" selected>이외국가</option>
 							<option value="+1">+1 미국</option>
-							<option value="+1">+1 캐나다</option>
-							<option value="+1">+1 괌</option>
-							<option value="+1">+1 사이판</option>
-							<option value="+20">+20 이집트</option>
-							<option value="+212">+212 모로코</option>
-							<option value="+254">+254 케냐</option>
-							<option value="+27">+27 남아프리카 공화국</option>
-							<option value="+30">+30 그리스</option>
-							<option value="+31">+31 네덜란드</option>
-							<option value="+32">+32 벨기에</option>
-							<option value="+33">+33 프랑스</option>
-							<option value="+34">+34 스페인</option>
-							<option value="+351">+351 포르투갈</option>
-							<option value="+352">+352 룩셈부르크</option>
-							<option value="+353">+353 아일랜드</option>
-							<option value="+354">+354 아이슬란드</option>
-							<option value="+356">+356 몰타</option>
-							<option value="+358">+358 핀란드</option>
-							<option value="+359">+359 불가리아</option>
-							<option value="+36">+36 헝가리</option>
-							<option value="+377">+377 모나코</option>
-							<option value="+380">+380 우크라이나</option>
-							<option value="+381">+381 세르비아</option>
-							<option value="+385">+385 크로아티아</option>
-							<option value="+386">+386 슬로베니아</option>
-							<option value="+387">+387 보스니아 헤르체고비나</option>
-							<option value="+39">+39 이탈리아</option>
-							<option value="+40">+40 루마니아</option>
-							<option value="+41">+41 스위스</option>
-							<option value="+420">+420 체코</option>
-							<option value="+421">+421 슬로바키아</option>
-							<option value="+43">+43 오스트리아</option>
-							<option value="+44">+44 영국</option>
-							<option value="+45">+45 덴마크</option>
-							<option value="+46">+46 스웨덴</option>
-							<option value="+47">+47 노르웨이</option>
-							<option value="+48">+48 폴란드</option>
-							<option value="+49">+49 독일</option>
-							<option value="+51">+51 페루</option>
-							<option value="+52">+52 멕시코</option>
-							<option value="+53">+53 쿠바</option>
-							<option value="+54">+54 아르헨티나</option>
-							<option value="+55">+55 브라질</option>
-							<option value="+56">+56 칠레</option>
-							<option value="+57">+57 콜롬비아</option>
-							<option value="+591">+591 볼리비아</option>
-							<option value="+598">+598 우루과이</option>
-							<option value="+60">+60 말레이시아</option>
-							<option value="+61">+61 호주</option>
-							<option value="+62">+62 인도네시아</option>
-							<option value="+63">+63 필리핀</option>
-							<option value="+64">+64 뉴질랜드</option>
-							<option value="+65">+65 싱가포르</option>
-							<option value="+66">+66 태국</option>
-							<option value="+680">+680 팔라우</option>
-							<option value="+7">+7 카자흐스탄</option>
-							<option value="+7">+7 러시아</option>
-							<option value="+81">+81 일본</option>
-							<option value="+82" selected>+82 한국</option>
-							<option value="+84">+84 베트남</option>
-							<option value="+852">+852 홍콩</option>
-							<option value="+853">+853 마카오</option>
-							<option value="+855">+855 캄보디아</option>
-							<option value="+856">+856 라오스</option>
-							<option value="+86">+86 중국</option>
-							<option value="+886">+886 대만</option>
-							<option value="+90">+90 터키</option>
-							<option value="+91">+91 인도</option>
-							<option value="+95">+95 미얀마</option>
-							<option value="+960">+960 몰디브</option>
-							<option value="+962">+962 요르단</option>
-							<option value="+971">+971 아랍에미리트</option>
-							<option value="+972">+972 이스라엘</option>
-							<option value="+974">+974 카타르</option>
-							<option value="+976">+976 몽골</option>
-							<option value="+977">+977 네팔</option>
 						</select>
 					</div>
 					<div class="clearfix">&nbsp;</div>
@@ -754,8 +597,6 @@ li.header_menu:hover {
 			var duplicationCheck = document.getElementById("duplicationCheck");
 			var idCheck = document.getElementById("idCheck");
 
-			/* 		useremail.setAttribute("checkresult", "fail"); */
-
 			// 이메일
 			if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
 					"이메일 형식에 맞춰 입력하세요.")) {
@@ -833,12 +674,6 @@ li.header_menu:hover {
 
 		}
 
-		/*     window.onload = function(){	    
-		 var $item = document.getElementById("duplicationCheck");
-		 // 요소의 data-value 속성에 hello world를 설정한다.
-		 $item.setAttribute("checkResult", "fail");
-		 // 요소의 value 속성에 test를 설정한다.
-		 }; */
 	</script>
 
 	<!-- //헤더 영역 끝 -->
