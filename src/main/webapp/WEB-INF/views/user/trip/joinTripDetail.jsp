@@ -101,7 +101,7 @@
 					<div class="offer_main_slider">
 						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/guidetrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}.jpg">
 	 						</div>
  						</c:forEach>
 					</div>
@@ -129,7 +129,7 @@
 					<div class="clearfix2 offer_tm_profile">
 						<div class="profile_details clearfix">
 							<div class="pfImg floatL">
-								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="tm_info floatL" style="font-size: 18px;">
 								<h3 class="nick"></h3>
@@ -199,7 +199,7 @@
 								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/guidetrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}.jpg">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -298,7 +298,8 @@
 
 				<div class="offerArea" id="offerReview"
 					style="padding-bottom: 120px;">
-					<div class="reviewBox">
+					<!-- 리뷰 -->
+						<div class="reviewBox">
 						<h4 class="txt_big">대표 리뷰</h4>
 						<dl>
 										<dt class="clearfix">
@@ -307,7 +308,7 @@
 											</span> &nbsp;
 											<c:out value="${reviewList[0].reviewDate } "/> &nbsp;
 											<c:forEach var="cnt" begin="1" end="${reviewList[0].reviewPoint }">
-												<img src="/tripfulaxel/resources/user/images/common/star.png" style="width: 20px; height: 20px;">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
 											</c:forEach>
 										</dt>
 										<br>
@@ -360,7 +361,7 @@
 											</span> &nbsp;
 											<c:out value="${review.reviewDate } "/> &nbsp;
 											<c:forEach var="cnt" begin="1" end="${review.reviewPoint }">
-												<img src="/tripfulaxel/resources/user/images/common/star.png" style="width: 20px; height: 20px;">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
 											</c:forEach>
 										</dt>
 										<br>
@@ -409,7 +410,7 @@
 						<!--  전체 리뷰 보기 끝 -->
 
 					</div>
-
+					
 				</div>
 
 			</div>
@@ -460,7 +461,7 @@
 						<div class="clearfix">
 							<br>
 							<div class="msgImg floatL">
-								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="floatL txt_bold">
 								<p>To.</p>

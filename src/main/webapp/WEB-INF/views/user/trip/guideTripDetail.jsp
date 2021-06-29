@@ -91,7 +91,7 @@
  					<div class="offer_main_slider">
  						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/guidetrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
  						
@@ -121,7 +121,7 @@
  							<div class="pfImg floatL">
  								<c:forEach var="guideImg" items="${guide.guideImageList }">
  									<c:if test="${guideImg.imgType == 1}">
- 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/guide/${guideImg.saveName}.png">
+ 										<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${guideImg.saveName}.png">
  									</c:if>
  								</c:forEach>
  								
@@ -144,7 +144,7 @@
  								</p>
  								<p class="txt_md"> 가이드 레벨 : <c:out value="${guide.guideLevel} "/>
  									<c:forEach var="cnt" begin="1" end="${guide.guideLevelCode}">
- 										<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
+ 										<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
  									</c:forEach>
  								</p>
  							</div>
@@ -207,7 +207,7 @@
  								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/guidetrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -319,14 +319,14 @@
 											</span> &nbsp;
 											<c:out value="${reviewList[0].reviewDate } "/> &nbsp;
 											<c:forEach var="cnt" begin="1" end="${reviewList[0].reviewPoint }">
-												<img src="/tripfulaxel/resources/user/images/common/star.png" style="width: 20px; height: 20px;">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
 											</c:forEach>
 										</dt>
 										<br>
 										<div class="reviewimage">
 											<div class="imageone">
 												<c:forEach var="img" items="${reviewList[0].reviewImgList }">
-													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.saveName}.jpg" alt="">
 												</c:forEach>
 											</div>
 											
@@ -375,14 +375,14 @@
 											</span> &nbsp;
 											<c:out value="${review.reviewDate } "/> &nbsp;
 											<c:forEach var="cnt" begin="1" end="${review.reviewPoint }">
-												<img src="/tripfulaxel/resources/user/images/common/star.png" style="width: 20px; height: 20px;">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
 											</c:forEach>
 										</dt>
 										<br>
 										<div class="reviewimage">
 											<div class="imageone">
 												<c:forEach var="img" items="${review.reviewImgList }">
-													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.saveName}.jpg" alt="">
 												</c:forEach>
 											</div>
 											
@@ -472,7 +472,7 @@
                         <div class="msgImg floatL">
                             <c:forEach var="guideImg" items="${guide.guideImageList }">
  									<c:if test="${guideImg.imgType == 1}">
- 										<img src="${pageContext.servletContext.contextPath}/resources/user/images/guide/${guideImg.saveName}.png">
+ 										<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${guideImg.saveName}.png">
  									</c:if>
  							</c:forEach>
                         </div>

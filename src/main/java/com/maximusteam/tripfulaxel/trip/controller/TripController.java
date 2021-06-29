@@ -47,6 +47,7 @@ public class TripController {
 		List<TripDTO> trip = tripService.selectTripList(parameter);
 		List<TripCourseDTO> courseList = trip.get(0).getTripCourseList();
 		Iterator<TripCourseDTO> courseIter = courseList.iterator();
+		
 		while(courseIter.hasNext()) {
 			TripCourseDTO course = courseIter.next();
 			if(course.getCourseCode() == 0) {
@@ -58,17 +59,27 @@ public class TripController {
 			System.out.println(t);
 		}
 		
-		List<ReviewDTO> reviewList = tripService.selectReviewList(tripCode);
-		for(ReviewDTO review : reviewList) {
-			System.out.println(review);
+		if(condition.getTripType() != 3) {
+			
+			List<ReviewDTO> reviewList = tripService.selectReviewList(tripCode);
+			
+			for(ReviewDTO review : reviewList) {
+				System.out.println(review);
+			}
+			
+			model.addAttribute("reviewList", reviewList);
+			
 		}
 		
-		GuideDTO guide = tripService.selectGuide(tripCode);
-		System.out.println("가이드");
-		System.out.println(guide);
+		if(condition.getTripType() == 1) {
+			
+			GuideDTO guide = tripService.selectGuide(tripCode);
+			System.out.println("가이드");
+			System.out.println(guide);
+			model.addAttribute("guide", guide);
+		}
+		
 		model.addAttribute("trip", trip);
-		model.addAttribute("guide", guide);
-		model.addAttribute("reviewList", reviewList);
 		
 		if(condition.getTripType() == 2) {
 			return "user/trip/joinTripDetail";
