@@ -245,15 +245,20 @@
 						 <textarea class="form-control textarea-layer" rows="9" name="tripIntro" placeholder="가이드와 함께 해서 가능한 포인트와 여행 상품에 대한 전반적인 내용을 작성해주세요."></textarea>
                           <div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>	
+
+					<div class="form-layer">
+						<input type="file"  name="imageTrip"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
+                  		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
+					</div>
 			 <hr>
 			 
 			 
 			 <!-- 코스 이름  -->
 			 <div class="courseContainer">
-				 <div class="course"  name="lastcourse">
+				 <div class="course" id>
 					 <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>코스 이름  </span>
-					 	<input type="text" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
+					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
 					</div>
 						
 					<!-- 코스 소개 -->
@@ -261,18 +266,22 @@
 						<span class="form-title" style="display:inline-block">코스 소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
+<<<<<<< HEAD
+		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+=======
 		                <input type="file"  name="imageCourse"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+>>>>>>> refs/remotes/origin/jinseo_cha
 					</div>		
 					
 					<!-- 코스 일 차 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
-					 	<input type="number" class="select-nomalsize" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
+					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
 					 	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
 					
-					<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>
+					<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
 					<hr>
 				</div>
 			</div>
@@ -280,8 +289,40 @@
 			<script>
 				$(document).ready(function(){
 					
-				$(document).on("click", "input[name='addTripCourse']", function (e) {
+<<<<<<< HEAD
+/* 				const $addTripCourse = document.getElementsByClassName("addTripCourse");
+ */				
+				var courseCopy = $('.course').clone();
+
+				$(document).on("click", "input[name='addTripCourse']", function () {
 				    
+					$('.courseContainer').append(
+	 						'<hr>'
+	 				);
+					
+					$('.courseContainer').append(
+ 							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
+ 							<button type="button" class="btnRemove">삭제</button><br>\
+ 			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+ 							' */
+ 						courseCopy
+ 					);
+					$('.courseContainer').append(
+ 						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
+							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+ 					); 
+ 					
+ 					
+					
+				  });
+				
+					$('.btnRemove').on('click', function(){
+						$(this).prev().remove();
+						$(this).next().remove();
+						$(this).remove();
+=======
+				$(document).on("click", "input[name='addTripCourse']", function (e) {
+
 					$(e.target).parent().after('<div class="course"  name="lastcourse">'
 								 +'<div class="form-layer">'
 								 +'<span class="form-title" style="display:inline-block";>코스 이름  </span>'
@@ -301,7 +342,7 @@
 								 +'	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;'
 								 +'		 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">'
 								
-								 +'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+								 +'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
 								 +'<hr>'
 								 +'</div>');
 						
@@ -310,6 +351,33 @@
 						});
 				    });
 				
+				
+				
+				<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
+				$('#submitButton').click(function(){
+				        var formData = new FormData($('#insertGuideForm')[0]);
+						console.log(formData);
+			        
+				        $.ajax({
+				            url : "${pageContext.request.contextPath}/guide/insert",
+				            type : 'post', 
+				            data : formData, 
+				            dataType : 'json',
+				            encType : 'multipart/form-data',
+				            contentType: false,
+				            processData: false,
+				            cache : false,
+				            async : false,
+				            success : function(data) {
+				                var jsonObj = JSON.parse(data);
+				            }, // success 
+				    
+				            error : function(xhr, status) {
+				                alert(xhr + " : " + status);
+				            }
+				       	 });
+>>>>>>> refs/remotes/origin/jinseo_cha
+					});
 				});
 			</script>			
 			<hr>
@@ -380,7 +448,7 @@
  			<tr>
 				<br>
 				<th colspan="2" style="background-color: white !important; ">
-						<input type="button" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
+						<input type="button" id="submitButton" class="submit-btn" style="margin-top: 10px; margin-bottom: 10px; width: 200px; 
 						box-shadow: none;  border-radius: 0px;  background-color:skyblue;" value="제출하기">
 						
 				</th>
@@ -389,13 +457,6 @@
              </form>
 		</tbody>
  </table>
-
-<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
-<script>
-
-
-
-</script>
 
 
 <!-- 주소 api 사용 -->
