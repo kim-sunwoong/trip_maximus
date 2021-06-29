@@ -422,6 +422,18 @@
 		</tbody>
  </table>
 
+<script>
+
+$("document").ready(function(){
+
+    $('input[type=file]').change(function(e) {
+        alert('changed!' + this);
+    });
+});
+
+
+</script>
+
 
 <!-- 주소 api 사용 -->
 <script
