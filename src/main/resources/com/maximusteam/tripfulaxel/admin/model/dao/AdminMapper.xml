@@ -131,7 +131,7 @@
          FROM EXAMINE A
          JOIN EXAMINE_RESPONSE B ON (A.EXAMINE_REQUEST_CODE = B.EXAMINE_REQUEST_CODE)
          JOIN EXAMINE_TYPE C ON (A.TYPE_CODE = C.EXAMINE_TYPE_CODE)
-        WHERE A.EXAMINE_REQUEST_CODE = #{ no };
+        WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
@@ -184,10 +184,10 @@
 	
 	<insert id="insertReport" parameterType="ReportDTO">
 	
-		<selectKey  resultType="map" keyProperty="responseCode,requestCode" order="BEFORE">
+		<selectKey  resultType="ReportDTO" keyColumn="responseCode,requestCode" keyProperty="responseCode,requestCode" order="BEFORE">
 	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE) + 1 as responseCode
-	             , MAX(EXAMINE_REQUEST_CODE) + 1 as requestCode
+	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	             , MAX(EXAMINE_REQUEST_CODE + 1)  as requestCode
 	          FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
