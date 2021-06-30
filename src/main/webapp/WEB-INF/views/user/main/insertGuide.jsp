@@ -257,7 +257,7 @@
 			 
 			 <!-- 코스 이름  -->
 			 <div class="courseContainer">
-				 <div class="course" id>
+				 <div class="course">
 					 <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>코스 이름  </span>
 					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
