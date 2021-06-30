@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,22 +99,11 @@
 			<div class="offerDetail floatL">
 				<div class="offer_main">
 					<div class="offer_main_slider">
-						<div class="topimg">
-							<img src="/tripfulaxel/resources/user/images/trip/jeju1.png">
-						</div>
-						<div class="topimg">
-							<img src="/tripfulaxel/resources/user/images/trip/jeju2.png">
-						</div>
-						<div class="topimg">
-							<img src="/tripfulaxel/resources/user/images/trip/jeju3.png">
-						</div>
-						<div class="topimg">
-							<img src="/tripfulaxel/resources/user/images/trip/jeju4.png">
-						</div>
-						<div class="topimg">
-							<img src="/tripfulaxel/resources/user/images/trip/jeju5.png">
-						</div>
-
+						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
+ 							<div class="topimg">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}.jpg">
+	 						</div>
+ 						</c:forEach>
 					</div>
 
 		
@@ -139,7 +129,7 @@
 					<div class="clearfix2 offer_tm_profile">
 						<div class="profile_details clearfix">
 							<div class="pfImg floatL">
-								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="tm_info floatL" style="font-size: 18px;">
 								<h3 class="nick"></h3>
@@ -160,19 +150,17 @@
 						<ul class="starUl">
 							<li style="width: 100%; padding-left: 0">
 								<p class="WhiteSpacing text_cut_expand4"
-									style="width: 100%; word-break: break-all;">저는 배낭 여행은 물론
-									인솔자 분과 함께 떠나는 패키지 여행도 참 많이 다녔어요. 패키지 여행에서 항상 아쉬웠던 점은 그 지역에서
-									유명하지도, 가고 싶지 않은 곳도 어쩔 수 없이 가야 할 때,1900년도 초반의 상하이를 느낄 수 있는 예원의 옛 거리부터 형형색색의 간판이 거리를 물들이는
-									난징동루 보행길, 그리고 난징동루의 알록달록한 거리에 취해 걷다보면 눈 앞에 펼쳐지는 와이탄의 무지갯빛 야경까지,
-									이색적이고 아름다운 도시 상하이의 매력을 느끼게 해드릴게요!</p>
+									style="width: 100%; word-break: break-all;">
+									<c:out value="${trip[0].tripIntro }"/>	
+								</p>
 							</li>
 						</ul>
 						<div class="offerBox">
 							<h4 class="txt_big">여행 테마</h4>
 							<ul class="textP">
-								<li>1. TM만 알고 있는 시크릿 스팟 트래블</li>
-								<li>2. 이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</li>
-								<li>3. 현지의 트렌디한 BAR/PUB/CLUB</li>
+								<c:forEach var="theme" items="${trip[0].tripThemeList }" varStatus="status">
+ 									<li><c:out value="${status.count }"/>. <c:out value="${theme.themeDetail }"/>   </li>
+ 								</c:forEach>
 								<!-- <li class="iconUl_local">한국인 관광객이 1도 없는 로컬 트래블</li>
                                      <li class="iconUl_spot">TM만 알고 있는 시크릿 스팟 트래블</li>
                                      <li class="iconUl_ext">직접 체험하는 액티비티(익스트림 스포트 등) 트래블</li> -->
@@ -181,8 +169,9 @@
 						<div class="offerBox">
 							<h4 class="txt_big">여행 이동수단</h4>
 							<ul class="textP">
-								<li>1. 현지인처럼 대중교통으로 이동해요.</li>
-								<li>2. 여행지의 구석구석을 보며 걸어요.</li>
+								<c:forEach var="transit" items="${ trip[0].tripTransitList}" varStatus="status">
+ 									<li><c:out value="${status.count }"/>. <c:out value="${transit.transitDetail }"/></li>
+ 								</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -207,52 +196,25 @@
 								</span>
 							</h4>
 							<div class="corseWrap">
-								<dl class="clearfix new_box_shadow">
-									<dt class="floatL" style="width: 200px; height: 220px;">
-										<img src="/tripfulaxel/resources/user/images/trip/jeju7.png">
-									</dt>
-									<dd class="floatL">
-										<h5 class="txt_md" style="word-break: break-all;">여행의 첫
-											시작, 예원</h5>
-										<div>
-											<p class="WhiteSpacing" style="word-break: break-all;">전통적이고
-												웅장한 건물 사이에서 맛보는 로컬음식! 주문과 동시에 작은 대나무 찜기에 쪄 나오는 중국식 만두 샤오롱바오,
-												딸기와 산사나무 열매를 긴 나무 막대에 꿰어 달콤한 시럽을 바른 후 굳혀 만든 전통 간식 과일 꼬치 탕후루,
-												불판 위에서 지글지글 돌아가는 양꼬치 모두 예원에서 맛볼 수 있어요! 맘에 드시는 간식을 골라 한 입
-												맛보신다면 여행에서의 소소한 행복에 포옥 빠지게 된답니다 :)</p>
-										</div>
-									</dd>
-								</dl>
-								<dl class="clearfix new_box_shadow">
-									<dt class="floatL" style="width: 200px; height: 220px;">
-										<img src="/tripfulaxel/resources/user/images/trip/jeju6.png">
-									</dt>
-									<dd class="floatL">
-										<h5 class="txt_md" style="word-break: break-all;">난징동루에서
-											와이탄까지</h5>
-										<div>
-											<p class="WhiteSpacing" style="word-break: break-all;">알록달록
-												색칠놀이를 해놓은 것만 같은 복작복작하고 재미난 거리, 난징동루 보행길을 함께 걸어봐요. 조그마한 장신구를
-												파는 상점부터 대형 복합 쇼핑몰, 최근 재오픈 한 M&M 초콜릿 스토어까지 없는 게 없는 이 곳! 상해
-												여행에서 꼭 사진을 찍는다는 [ I♡SH ] 간판도 바로 이 곳 난징동루 보행길에 있답니다!</p>
-										</div>
-									</dd>
-								</dl>
-								<dl class="clearfix new_box_shadow">
-									<dt class="floatL" style="width: 200px; height: 220px;">
-										<img src="/tripfulaxel/resources/user/images/trip/jeju8.png">
-									</dt>
-									<dd class="floatL">
-										<h5 class="txt_md" style="word-break: break-all;">중국 하면
-											상하이! 상하이 하면 와이탄!</h5>
-										<div>
-											<p class="WhiteSpacing" style="word-break: break-all;">상하이에서
-												제일 핫한 이 곳! 상하이 도심속의 작은 유럽 와이탄! 난징동루 보행길의 알록달록한 거리에 취해 걷다보면 눈
-												앞에 펼쳐지는 와이탄의 무지개빛 야경. 끝없이 펼쳐져 있는 아름다운 건물들을 눈에 담고 황푸강의 시원한
-												바람을 느껴보아요!</p>
-										</div>
-									</dd>
-								</dl>
+								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
+ 									<dl class="clearfix new_box_shadow">
+	 									<dt class="floatL" style="width:200px; height:220px;">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}.jpg">
+	 									</dt>
+	 									<dd class="floatL">
+	 										<h5 class="txt_md" style="word-break: break-all;">
+	 											<c:out value="${status.count }"/>. <c:out value="${course.courseName }"/>
+	 										</h5>
+	 										<div>
+	 											<p class="WhiteSpacing" style="word-break: break-all;">
+	 												<c:out value="${course.courseInfo }"/>
+	 											</p>
+	 										</div>
+	 									</dd>
+	 								</dl>
+ 								
+ 								</c:forEach>
+							
 							</div>
 						</div>
 						<div class="offerBox">
@@ -284,19 +246,30 @@
 									비자센터에 직접 방문하신다면 조금 더 저렴한 가격으로 발급을 받으실 수도 있어요.
 							</ul>
 						</div>
-						<div class="offerBox">
-							<h4 class="txt_big">포함사항</h4>
-							<ul class="textP">
-								<li class="txtG" style="word-break: break-all;">여행 통역비,
-									가이드비, 간식비(샤오롱바오,탕후루,양꼬치 중 택1)</li>
-							</ul>
-						</div>
-						<div class="offerBox">
-							<h4 class="txt_big">불포함사항</h4>
-							<ul class="textP">
-								<li class="txtG" style="word-break: break-all;">교통비</li>
-							</ul>
-						</div>
+						<c:if test="${trip[0].include ne ''} ">
+ 						
+	 						<div class="offerBox">
+	 							<h4 class="txt_big">포함사항</h4>
+	 							<ul class="textP">
+	 								<li class="txtG" style="word-break: break-all;">
+	 									<c:out value="${trip[0].include }"/>
+	 								</li>
+	 							</ul>
+	 						</div>
+ 						
+ 						</c:if>
+						
+						<c:if test="${trip[0].nInclude ne ''}">
+	 						<div class="offerBox">
+	 							<h4 class="txt_big">불포함사항</h4>
+	 							<ul class="textP">
+	 								<li class="txtG" style="word-break: break-all;">
+	 									<c:out value="${trip[0].nInclude }"/>
+	 								</li>
+	 							</ul>
+	 						</div>
+ 						
+ 						</c:if>
 						<div class="offerBox">
 							<h4 class="txt_big">취소 및 환불 규정</h4>
 							<ul class="textP text_cut_expand2">
@@ -325,215 +298,119 @@
 
 				<div class="offerArea" id="offerReview"
 					style="padding-bottom: 120px;">
-					<div class="reviewBox">
+					<!-- 리뷰 -->
+						<div class="reviewBox">
 						<h4 class="txt_big">대표 리뷰</h4>
 						<dl>
-							<dt class="clearfix">
-								<span class="txt_md floatL txt_bold txt_md">백**&nbsp;</span> <img
-									src="/tripfulaxel/resources/user/images/common/star.png"
-									style="width: 20px; height: 20px;"> <img
-									src="/tripfulaxel/resources/user/images/common/star.png"
-									style="width: 20px; height: 20px;"> <img
-									src="/tripfulaxel/resources/user/images/common/star.png"
-									style="width: 20px; height: 20px;"> <img
-									src="/tripfulaxel/resources/user/images/common/star.png"
-									style="width: 20px; height: 20px;"> <img
-									src="/tripfulaxel/resources/user/images/common/star.png"
-									style="width: 20px; height: 20px;">
-							</dt>
-							<br>
-							<div class="reviewimage">
-								<div class="imageone">
-									<img style="width: 250px; height: 130px"
-										src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-									<img style="width: 250px; height: 130px"
-										src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-									<img style="width: 250px; height: 130px"
-										src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-								</div>
-								<dd class="qnaCont">
-									<p class="WhiteSpacing">명완TM님께서 관광지나 음식에 대한 설명도 이해하기 쉽게 잘
-										설명해주시고 무엇보다 너무 친절해요ㅠㅠ 그리고 사진도 예쁘게 찍어주시고 최고입니당! 너무 즐거운 여행 이었어요!
-										감사합니다아아</p>
-								</dd>
-
-							</div>
-
-							<h4 class="txt_big">가이드 댓글</h4>
-
-							<div class="ReplyEntity" style="background-color: #80808014;">
-								<dt class="clearfix">
-									<span class="txt_md floatL txt_bold txt_md">가이드</span> <span
-										class="floatL txtG txt_sm">&nbsp;&nbsp;2019-04-15</span>
-
-								</dt>
-								<div class="ReplyEntity_guide">안녕하세요! 멋진 작품 후기 정말 감사드립니다:)
-									똥손이 맞으신지 바다 비누는 말할것도 없고 남은 비누로 만든 조개들 색조합 좀 보세요! 예쁘게 사용하시길
-									바랄게요(하트) 감사합니다:)</div>
-							</div>
-
-						</dl>
+										<dt class="clearfix">
+											<span class="txt_md floatL txt_bold txt_md">
+												<c:out value="${reviewList[0].reviewTitle } "/>
+											</span> &nbsp;
+											<c:out value="${reviewList[0].reviewDate } "/> &nbsp;
+											<c:forEach var="cnt" begin="1" end="${reviewList[0].reviewPoint }">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
+											</c:forEach>
+										</dt>
+										<br>
+										<div class="reviewimage">
+											<div class="imageone">
+												<c:forEach var="img" items="${reviewList[0].reviewImgList }">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+												</c:forEach>
+											</div>
+											
+											<dd class="qnaCont">
+												<p class="WhiteSpacing">
+													<c:out value="${reviewList[0].reviewInfo }"/>
+												</p>
+											</dd>
+	
+										</div>
+										
+										<c:if test="${reviewList[0].reviewComent != null }">
+										
+											<h4 class="txt_big">가이드 댓글</h4>
+	
+											<div class="ReplyEntity" style="background-color: #80808014;">
+												<dt class="clearfix">
+													<span class="txt_md floatL txt_bold txt_md">
+														가이드
+													</span> 
+													<span class="floatL txtG txt_sm">
+														&nbsp;&nbsp; <c:out value="${reviewList[0].reviewComent.replyDate}"/>
+													</span>
+												</dt>
+												<div class="ReplyEntity_guide">
+													<c:out value="${reviewList[0].reviewComent.replyInfo }"/>
+												</div>
+											</div>
+										</c:if>
+									</dl>
 						<!-- 전체 리뷰 보기 -->
 						<br>
 
 						<details>
 							<summary class="txt_big" style="font: bold; font-size: 25px;">전체 리뷰 보기</summary><br>
 							<!-- 리뷰 -->
-							<div class="tpt">
-								<dl>
-									<dt class="clearfix">
-										<span class="txt_md floatL txt_bold txt_md">백**&nbsp;</span> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;">
-									</dt>
-									<br>
-									<div class="reviewimage">
-										<div class="imageone">
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-										</div>
-										<dd class="qnaCont">
-											<p class="WhiteSpacing">명완TM님께서 관광지나 음식에 대한 설명도 이해하기 쉽게 잘
-												설명해주시고 무엇보다 너무 친절해요ㅠㅠ 그리고 사진도 예쁘게 찍어주시고 최고입니당! 너무 즐거운 여행
-												이었어요! 감사합니다아아</p>
-										</dd>
-
-									</div>
-
-									<h4 class="txt_big">가이드 댓글</h4>
-
-									<div class="ReplyEntity" style="background-color: #80808014;">
-										<dt class="clearfix">
-											<span class="txt_md floatL txt_bold txt_md">가이드</span> <span
-												class="floatL txtG txt_sm">&nbsp;&nbsp;2019-04-15</span>
-
-										</dt>
-										<div class="ReplyEntity_guide">안녕하세요! 멋진 작품 후기 정말
-											감사드립니다:) 똥손이 맞으신지 바다 비누는 말할것도 없고 남은 비누로 만든 조개들 색조합 좀 보세요! 예쁘게
-											사용하시길 바랄게요(하트) 감사합니다:)</div>
-									</div>
-
-								</dl>
-							</div>
-							<br>
-							<br>
-								<!-- 리뷰 -->
+							<c:forEach var="review" items="${reviewList }">
 								<div class="tpt">
-								<dl>
-									<dt class="clearfix">
-										<span class="txt_md floatL txt_bold txt_md">백**&nbsp;</span> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;">
-									</dt>
-									<br>
-									<div class="reviewimage">
-										<div class="imageone">
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-										</div>
-										<dd class="qnaCont">
-											<p class="WhiteSpacing">명완TM님께서 관광지나 음식에 대한 설명도 이해하기 쉽게 잘
-												설명해주시고 무엇보다 너무 친절해요ㅠㅠ 그리고 사진도 예쁘게 찍어주시고 최고입니당! 너무 즐거운 여행
-												이었어요! 감사합니다아아</p>
-										</dd>
-
-									</div>
-
-									<h4 class="txt_big">가이드 댓글</h4>
-
-									<div class="ReplyEntity" style="background-color: #80808014;">
+									<dl>
 										<dt class="clearfix">
-											<span class="txt_md floatL txt_bold txt_md">가이드</span> <span
-												class="floatL txtG txt_sm">&nbsp;&nbsp;2019-04-15</span>
-
+											<span class="txt_md floatL txt_bold txt_md">
+												<c:out value="${review.reviewTitle } "/>
+											</span> &nbsp;
+											<c:out value="${review.reviewDate } "/> &nbsp;
+											<c:forEach var="cnt" begin="1" end="${review.reviewPoint }">
+												<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
+											</c:forEach>
 										</dt>
-										<div class="ReplyEntity_guide">안녕하세요! 멋진 작품 후기 정말
-											감사드립니다:) 똥손이 맞으신지 바다 비누는 말할것도 없고 남은 비누로 만든 조개들 색조합 좀 보세요! 예쁘게
-											사용하시길 바랄게요(하트) 감사합니다:)</div>
-									</div>
-
-								</dl>
-							</div>
-							<br><br>
-								<!-- 리뷰 -->
-								<div class="tpt">
-								<dl>
-									<dt class="clearfix">
-										<span class="txt_md floatL txt_bold txt_md">백**&nbsp;</span> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;"> <img
-											src="/tripfulaxel/resources/user/images/common/star.png"
-											style="width: 20px; height: 20px;">
-									</dt>
-									<br>
-									<div class="reviewimage">
-										<div class="imageone">
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
-											<img style="width: 250px; height: 130px"
-												src="../../../resources/user/images/trip/jeju1.png" alt=""></a>
+										<br>
+										<div class="reviewimage">
+											<div class="imageone">
+												<c:forEach var="img" items="${review.reviewImgList }">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+												</c:forEach>
+											</div>
+											
+											<dd class="qnaCont">
+												<p class="WhiteSpacing">
+													<c:out value="${review.reviewInfo }"/>
+												</p>
+											</dd>
+	
 										</div>
-										<dd class="qnaCont">
-											<p class="WhiteSpacing">명완TM님께서 관광지나 음식에 대한 설명도 이해하기 쉽게 잘
-												설명해주시고 무엇보다 너무 친절해요ㅠㅠ 그리고 사진도 예쁘게 찍어주시고 최고입니당! 너무 즐거운 여행
-												이었어요! 감사합니다아아</p>
-										</dd>
-
-									</div>
-
-									<h4 class="txt_big">가이드 댓글</h4>
-
-									<div class="ReplyEntity" style="background-color: #80808014;">
-										<dt class="clearfix">
-											<span class="txt_md floatL txt_bold txt_md">가이드</span> <span
-												class="floatL txtG txt_sm">&nbsp;&nbsp;2019-04-15</span>
-
-										</dt>
-										<div class="ReplyEntity_guide">안녕하세요! 멋진 작품 후기 정말
-											감사드립니다:) 똥손이 맞으신지 바다 비누는 말할것도 없고 남은 비누로 만든 조개들 색조합 좀 보세요! 예쁘게
-											사용하시길 바랄게요(하트) 감사합니다:)</div>
-									</div>
-
-								</dl>
-							</div>
+										
+										<c:if test="${review.reviewComent != null }">
+										
+											<h4 class="txt_big">가이드 댓글</h4>
+	
+											<div class="ReplyEntity" style="background-color: #80808014;">
+												<dt class="clearfix">
+													<span class="txt_md floatL txt_bold txt_md">
+														가이드
+													</span> 
+													<span class="floatL txtG txt_sm">
+														&nbsp;&nbsp; <c:out value="${review.reviewComent.replyDate}"/>
+													</span>
+												</dt>
+												<div class="ReplyEntity_guide">
+													<c:out value="${review.reviewComent.replyInfo }"/>
+												</div>
+											</div>
+										</c:if>
+		
+									</dl>
+								</div>
+								<br>
+								<br>
+							
+							</c:forEach>
 								<!-- 리뷰 -->
 						</details>
 						<!--  전체 리뷰 보기 끝 -->
 
 					</div>
-
+					
 				</div>
 
 			</div>
@@ -544,7 +421,7 @@
 				<div id="head">
 					<div class="offerResult new_box_shadow" style="width: 320px">
 						<span class="area_txt">제주도</span>
-						<h2 class="tit travel_title">제주도 방방곡곡 체력만땅 친구 구해요!!</h2>
+						<h2 class="tit travel_title"><c:out value="${trip[0].tripTitle }"/></h2>
 						<div
 							style="width: 30px; position: absolute; top: 10px; right: 21px;">
 						</div>
@@ -554,20 +431,19 @@
 								보아요!</span>
 						</div>
 						<ul class="inputLabel">
-							<li><input type="text" class="datepicker" id="datepicker"
-								name="reser_date" placeholder="7월17일 ~ 7월18일" autocomplete="off">
+							<li>
+								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
 							</li>
 							<li><select name="reser_Per">
-									<option value="1 x 70,000">1 명</option>
-									<option value="2 x 65,000">2 명</option>
-									<option value="3 x 60,000">3 명</option>
-									<option value="4 x 50,000">4 명</option>
+									<option value="1">1 명</option>
+									<option value="2">2 명</option>
+									<option value="3">3 명</option>
+									<option value="4">4 명</option>
 							</select>
 						</ul>
 						<div class="offerPrice">
 							<div class="clearfix2">
-								<span class="txtG">여행 인원 : 4인</span> <span class="txtG">현재
-									인원 : 2인</span> <span class="total_price txtC txt_big"></span>
+								<span class="txtG">여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
 							</div>
 						</div>
 						<button class="btn btnBgC btnFull txt_md"
@@ -585,7 +461,7 @@
 						<div class="clearfix">
 							<br>
 							<div class="msgImg floatL">
-								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="floatL txt_bold">
 								<p>To.</p>

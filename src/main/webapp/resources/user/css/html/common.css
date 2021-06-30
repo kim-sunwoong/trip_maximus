@@ -254,7 +254,7 @@ html.pop{height:100vh; overflow:hidden;}
 .information_modify input[type="radio"] + label i{visibility: visible; display: inline-block; width: 16px; height: 16px; border-radius: 50%; border:1px solid #9d9d9d; font-size: 0; cursor: pointer;}
 .member_form input[type="checkbox"]:checked +label i,
 .information_modify input[type="checkbox"]:checked +label i,.member_form input[type="radio"]:checked +label i,
-.information_modify input[type="radio"]:checked +label i{border:1px solid #ff7358; background: url(/tripfulaxel/resources/user/images/common/icon_check.png) no-repeat center; background-size: 10px 8px;}
+.information_modify input[type="radio"]:checked +label i{border:1px solid #ff7358; background: url(/tripfulaxel/resources/images/common/icon_check.png) no-repeat center; background-size: 10px 8px;}
 .member_form .submit{margin-top: 40px; width:100%; height:40px;}
 /* 회원가입 팝업 */
 .signup_pop .member_form input[type="checkbox"],.signup_pop .member_form input[type="radio"]{display: none;}

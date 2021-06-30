@@ -5,6 +5,32 @@
 <mapper
 	namespace="com.maximusteam.tripfulaxel.trip.model.dao.TripMapper">
 	
+	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO" id="guide">
+		<result property="guideCode" column="GUIDE_CODE"/>
+		<result property="carYn" column="GUIDE_CAR_YN"/>
+		<result property="expYn" column="GUIDE_EXP_YN"/>
+		<result property="nickName" column="GUIDE_NICKNAME"/>
+		<result property="guideIntro" column="GUIDE_INTRO"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="guideYn" column="GUIDE_YN"/>
+		<result property="guideLevel" column="GUIDE_LEVEL_DETAIL"/>
+		<result property="guideLevelCode" column="GUIDE_LEVEL_CODE"/>
+		<result property="regidencePeriodCode" column="RESIDENCE_PERIOD_CODE"/>
+		<result property="regidencePeriod" column="RESIDENCE_PERIOD_DETAIL"/>
+		
+		<collection property="guideStyleList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.GuideStyleDTO">
+			<result property="guideCode" column="GUIDE_CODE"/>
+			<result property="guideStyle" column="GUIDE_STYLE_DETAIL"/>
+			<result property="styleCode" column="GUIDE_STYLE_CODE"/>
+		</collection>
+		<collection property="guideImageList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO">
+			<result property="code" column="GUIDE_CODE"/>		
+			<result property="saveName" column="GUIDE_IMAGE_SAVED_NAME"/>		
+			<result property="orignName" column="GUIDE_IMAGE_ORIGIN_NAME"/>		
+			<result property="imgType" column="GUIDE_IMAGE_TYPE_CODE"/>		
+		</collection>
+	</resultMap>
+	
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO" id="review">
 		<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
 		<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
@@ -19,11 +45,10 @@
 			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
 		</association>
 	
-		<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ReviewImageDTO">
-			<result property="reviewImgCode" column="REVIEW_IMAGE_CODE"/>
+		<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO" >
 			<result property="saveName" column="REVIEW_IMAGE_SAVED_NAME"/>
 			<result property="orignName" column="REVIEW_IMAGE_ORIGIN_NAME"/>
-			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+			<result property="code" column="TRIP_REVIEW_CODE"/>
 		</collection>
 		
 	</resultMap>	
@@ -65,8 +90,8 @@
 		</collection>
 		
 		<!-- image -->
-		<collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripImageDTO">
-			<result property="tripCode" column="TRIP_CODE"/>
+		<collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO">
+			<result property="code" column="TRIP_CODE"/>
 			<result property="saveName" column="TRIP_IMAGE_SAVED_NAME"/>
 			<result property="orignName" column="TRIP_IMAGE_ORIGIN_NAME"/>
 			<result property="imgType" column="TRIP_IMAGE_TYPE_CODE"/>
@@ -239,6 +264,33 @@
 	   WHERE trl.TRIP_CODE = #{tripCode}
 	</select>
 	
+	<select id="selectGuide" parameterType="_int" resultMap="guide">
 	
+	  SELECT 
+	  	     g.GUIDE_CODE, 
+	  	     GUIDE_CAR_YN,
+	  	     GUIDE_EXP_YN,
+	  	     GUIDE_NICKNAME,
+	  	     GUIDE_INTRO,
+	  	     g.USER_CODE,
+	  	     GUIDE_YN,
+	  	     g.GUIDE_LEVEL_CODE, 
+	  	     GUIDE_LEVEL_DETAIL,
+	  	     g.RESIDENCE_PERIOD_CODE,
+	  	     RESIDENCE_PERIOD_DETAIL,
+	  	     gsc.GUIDE_STYLE_CODE,
+	  	     gs.GUIDE_STYLE_DETAIL,
+	  	     gi.GUIDE_IMAGE_ORIGIN_NAME,
+	  	     gi.GUIDE_IMAGE_SAVED_NAME,
+	  	     gi.GUIDE_IMAGE_TYPE_CODE
+	    FROM TRIP_REGIST_LIST trl 
+	    JOIN GUIDE g ON (trl.USER_CODE = g.USER_CODE)
+	    JOIN GUIDE_LEVEL gl ON (g.GUIDE_LEVEL_CODE = gl.GUIDE_LEVEL_CODE)
+	    JOIN RESIDENCE_PERIOD rp ON (g.RESIDENCE_PERIOD_CODE = rp.RESIDENCE_PERIOD_CODE )
+ 	    JOIN GUIDE_STYLE_CHOICE gsc ON (g.GUIDE_CODE = gsc.GUIDE_CODE)
+ 	    JOIN GUIDE_STYLE gs ON (gsc.GUIDE_STYLE_CODE = gs.GUIDE_STYLE_CODE)
+ 	    JOIN GUIDE_IMAGE gi ON (g.GUIDE_CODE = gi.GUIDE_CODE)
+ 	   WHERE trl.TRIP_CODE = #{tripCode}
+	</select>
 	
 </mapper>
