@@ -309,7 +309,7 @@ li.header_menu:hover {
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button id="loginSubmit" class="btnBgC txt_bs submit" type="submit"
-						      style="margin: 10px auto 0; width: 60%;">로그인</button>
+						      style="margin: 10px auto 0; width: 60%; margin-left: 20%">로그인</button>
 				</form>
 
 				<ul class="find_signup clearfix">
