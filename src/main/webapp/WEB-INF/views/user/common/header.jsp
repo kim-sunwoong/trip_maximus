@@ -190,15 +190,15 @@
 		    from {-webkit-transform: rotate(359deg);}
 		    to   {-webkit-transform: rotate(0deg);}
 		}
-      	
+
       	</style>
             <ul>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 로컬가이드</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
@@ -219,4 +219,3 @@
 </header>
 </body>
 </html>
-
