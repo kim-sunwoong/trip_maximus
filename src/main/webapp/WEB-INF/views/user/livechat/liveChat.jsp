@@ -22,11 +22,12 @@
 		$('#message').val('')
 	});
 
-	let sock = new SockJS("${pageContext.servletContext.contextPath}/echo");
+	let sock = new SockJS("http://localhost:8080/tripfulaxel/share/echo");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	// 메시지 전송
 	function sendMessage() {
+		alert("hi");
 		sock.send($("#message").val());
 	}
 	// 서버로부터 메시지를 받았을 때

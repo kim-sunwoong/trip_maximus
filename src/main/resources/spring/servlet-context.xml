@@ -46,7 +46,7 @@
 	</beans:bean>
 	
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:mapping handler="echoHandler" path="/share/echo"/>
 		<websocket:sockjs />
 	</websocket:handlers>
 	
