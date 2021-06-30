@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -170,7 +171,11 @@ li.header_menu:hover {
 </style>
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
-
+	허
+	<%-- <c:if test="${ messeage ne '회원가입성공' }">
+ <script type="text/javascript"> alert("${ messeage }");</script>
+    
+</c:if> --%>
 
 	<!-- 팝업 시작 -->
 
@@ -186,47 +191,51 @@ li.header_menu:hover {
 				<p style="text-align: right; margin-top: 20px; color: #ff7358;">*
 					필수 입력</p>
 
-				<form style="margin-top: 10px;" id="frm1" class="member_form"
-					name="fregisterform" method="post" onsubmit="return regist()"
+				<form style="margin-top: 10px;" name="frm1" class="member_form"
+					method="post"
 					action="${ pageContext.servletContext.contextPath }/user/regist"
-					autocomplete="off">
+					name="fregisterform" autocomplete="off">
 
-					<input type="email" id="userEmail" name="userEmail"
-						value="juyoung@greedy.com" required
-						class="email frm_input full_input" size="70" maxlength="100"
-						placeholder="* 이메일 주소">
+					<input type="email" id="userEmail" name="userEmail" value=""
+						required class="email frm_input full_input" size="70"
+						maxlength="100" placeholder="* 이메일 주소">
 
-					<!-- 중복확인용 -->
-					<input id="duplicationCheck" class="btnBgC txt_bs submit"
-						value="중복확인" style="margin-top: 3vh; text-align: center;">
+					<div id="checkMessage">
+						<!-- 중복확인용 -->
+						<input id="duplicationCheck" class="btnBgC txt_bs submit"
+							type="button" value="중복확인"
+							style="margin-top: 3vh; text-align: center;">
+					</div>
 
 					<!-- 히든 중복체크를 위한 것  -->
-					<input type="hidden" id="Check" name="Check" value="fail">
+					<input type="hidden" id="check" name="check" value="fail">
 
-					<input type="text" id="userName" name="userName" value="정주영"
+					<input type="text" id="userName" name="userName" value="홍길동"
 						required class="frm_input half_input" size="3"
 						placeholder="* 이름(예:홍길동)"> <input type="text"
 						id="userPhone" name="userPhone" value="010-1234-5678" required
 						class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
 
 					<input type="password" id="userPwd" name="userPwd"
-						value="juyoung123" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
+						value="greedy1234" required class="frm_input half_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호">
+					 <input
 						type="password" id="repassword" name="repassword" required
-						value="juyoung123" class="frm_input half_input right_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
-						type="text" id="userBday" name="userBday" value="19971129"
+						value="greedy1234" class="frm_input half_input right_input"
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인">
+					 <input
+						type="text" id="userBday" name="userBday" value="19901129"
 						required class="frm_input half_input"
-						placeholder="* 출생연도(예:19971129)">
+						placeholder="* 출생연도(예:19900120)">
 
 
 					<div class="gender_wrap" style="height: 50px;">
-						<input type="radio" id="gender1" name="userGender" value="1"
+						<input type="radio" id="gender1" name="userGender" value="남자"
 							checked> <label for="gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i> <span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="gender2" name="userGender" value="2">
+						</label> <input type="radio" id="gender2" name="userGender" value="여자">
 						<label for="gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i> <span
@@ -253,7 +262,7 @@ li.header_menu:hover {
 					<p class="checkbox_wrap">
 						<input type="checkbox" id="agree_2" class="checkOne" name="check">
 						<label for="agree_2" style="vertical-align: middle;"> <i
-							id="agree_2_i"></i><span
+							id="agree_2_i"></i> <span
 							onclick="javascript:window.open('https://travelmaker.co.kr/skin/html/privacypolicy.php')"
 							target="_blank">개인정보 수집 및 이용(필수)</span>
 						</label>
@@ -276,7 +285,7 @@ li.header_menu:hover {
 					<input type="hidden" name="w" value=""> <input
 						type="hidden" name="s" value=""> <input id="signinbtn"
 						class="btnBgC txt_bs submit" type="submit" value="가입하기"
-						style="margin-top: 3vh;">
+						onclick="return regist();" style="margin-top: 3vh;">
 
 				</form>
 			</div>
@@ -294,28 +303,40 @@ li.header_menu:hover {
 				<h3 class="tit txt_bold">로그인</h3>
 
 				<span class="txt_sm or" style="margin-top: 3vh">환영합니다!</span>
-				<form class="member_form" name="flogin" action="#" method="post"
-					style="margin-top: 3vh">
-					<input type="email" name="mb_email" id="login_email" required
+				<form class="member_form" name="flogin"
+					action="${ pageContext.servletContext.contextPath }/user/login"
+					method="post" style="margin-top: 3vh">
+					<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;"> <input
-						type="password" name="mb_password" id="login_pw" required
+						style="margin: 0 auto; width: 60%; display: flex;">
+				   <input
+						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button class="btnBgC txt_bs submit" type="submit"
 						style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
+
 				<ul class="find_signup clearfix">
-					<li class="floatL""><a href="#"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
-						href="#" class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR"><a href="#"
+						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID)
+							찾기</a></li>
+					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
+	<script type="text/javascript">
+		var messege = '${pwdError}';
+		if (messege === 'pwdError') {
+			alert(' 비밀번호가 불일치합니다. ')
+		} 
+	</script>
+
+
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
@@ -332,7 +353,8 @@ li.header_menu:hover {
 				<!--           		<form class="member_form">
                                                   <input class="btnBgC txt_bs login_link submit" type="submit" value="로그인">
                               </form> -->
-				<a class="btnBgC txt_bs login_link submit" href="#"
+				<a class="btnBgC txt_bs login_link submit"
+					href="javascript:void(0);"
 					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
 			</div>
 		</div>
@@ -354,14 +376,15 @@ li.header_menu:hover {
 				<form class="member_form">
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
-						<input type="radio" id="find_gender1" name="find_gender" value="1"
+						<input type="radio" id="find_gender1" name="find_gender"
+							value="남자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i> <span
 							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
 						</label> <input type="radio" id="find_gender2" name="find_gender"
-							value="2"
+							value="여자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
@@ -373,60 +396,17 @@ li.header_menu:hover {
 						<input type="text" class="birth_year" placeholder="출생연도"
 							name="find_id_year"> <select name="find_id_mon">
 							<option value="0">월</option>
-							<option value='1'>1월</option>
-							<option value='2'>2월</option>
-							<option value='3'>3월</option>
-							<option value='4'>4월</option>
-							<option value='5'>5월</option>
-							<option value='6'>6월</option>
-							<option value='7'>7월</option>
-							<option value='8'>8월</option>
-							<option value='9'>9월</option>
-							<option value='10'>10월</option>
-							<option value='11'>11월</option>
-							<option value='12'>12월</option>
 						</select> <select name="find_id_day">
 							<option value="0">일</option>
-							<option value='1'>1일</option>
-							<option value='2'>2일</option>
-							<option value='3'>3일</option>
-							<option value='4'>4일</option>
-							<option value='5'>5일</option>
-							<option value='6'>6일</option>
-							<option value='7'>7일</option>
-							<option value='8'>8일</option>
-							<option value='9'>9일</option>
-							<option value='10'>10일</option>
-							<option value='11'>11일</option>
-							<option value='12'>12일</option>
-							<option value='13'>13일</option>
-							<option value='14'>14일</option>
-							<option value='15'>15일</option>
-							<option value='16'>16일</option>
-							<option value='17'>17일</option>
-							<option value='18'>18일</option>
-							<option value='19'>19일</option>
-							<option value='20'>20일</option>
-							<option value='21'>21일</option>
-							<option value='22'>22일</option>
-							<option value='23'>23일</option>
-							<option value='24'>24일</option>
-							<option value='25'>25일</option>
-							<option value='26'>26일</option>
-							<option value='27'>27일</option>
-							<option value='28'>28일</option>
-							<option value='29'>29일</option>
-							<option value='30'>30일</option>
-							<option value='31'>31일</option>
 						</select>
 					</div>
 					<button class="btnBgC txt_bs find_id_button submit" type="button"
 						value="이메일(ID) 찾기" style="margin-top: 3vh;">이메일(ID) 찾기</button>
 				</form>
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="#"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기</a></li>
-					<li class="floatR"><a href="#"
+					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
@@ -468,50 +448,9 @@ li.header_menu:hover {
 							name="find_id_year"> <select name="find_id_mon">
 							<option value="0">월</option>
 							<option value='1'>1월</option>
-							<option value='2'>2월</option>
-							<option value='3'>3월</option>
-							<option value='4'>4월</option>
-							<option value='5'>5월</option>
-							<option value='6'>6월</option>
-							<option value='7'>7월</option>
-							<option value='8'>8월</option>
-							<option value='9'>9월</option>
-							<option value='10'>10월</option>
-							<option value='11'>11월</option>
-							<option value='12'>12월</option>
 						</select> <select name="find_id_day">
 							<option value="0">일</option>
 							<option value='1'>1일</option>
-							<option value='2'>2일</option>
-							<option value='3'>3일</option>
-							<option value='4'>4일</option>
-							<option value='5'>5일</option>
-							<option value='6'>6일</option>
-							<option value='7'>7일</option>
-							<option value='8'>8일</option>
-							<option value='9'>9일</option>
-							<option value='10'>10일</option>
-							<option value='11'>11일</option>
-							<option value='12'>12일</option>
-							<option value='13'>13일</option>
-							<option value='14'>14일</option>
-							<option value='15'>15일</option>
-							<option value='16'>16일</option>
-							<option value='17'>17일</option>
-							<option value='18'>18일</option>
-							<option value='19'>19일</option>
-							<option value='20'>20일</option>
-							<option value='21'>21일</option>
-							<option value='22'>22일</option>
-							<option value='23'>23일</option>
-							<option value='24'>24일</option>
-							<option value='25'>25일</option>
-							<option value='26'>26일</option>
-							<option value='27'>27일</option>
-							<option value='28'>28일</option>
-							<option value='29'>29일</option>
-							<option value='30'>30일</option>
-							<option value='31'>31일</option>
 						</select>
 					</div>
 					<button class="btnBgC txt_bs find_password_button submit"
@@ -519,9 +458,9 @@ li.header_menu:hover {
 					<!-- <input class="btnBgC txt_bs submit" type="submit" value="비밀번호 재설정 메일 보내기"> -->
 				</form>
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="#"
+					<li class="floatL"><a href="javascript:void(0);"
 						class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-					<li class="floatR"><a href="#"
+					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
 			</div>
@@ -549,82 +488,6 @@ li.header_menu:hover {
 							style="margin-top: 0;">
 							<option value="" selected>이외국가</option>
 							<option value="+1">+1 미국</option>
-							<option value="+1">+1 캐나다</option>
-							<option value="+1">+1 괌</option>
-							<option value="+1">+1 사이판</option>
-							<option value="+20">+20 이집트</option>
-							<option value="+212">+212 모로코</option>
-							<option value="+254">+254 케냐</option>
-							<option value="+27">+27 남아프리카 공화국</option>
-							<option value="+30">+30 그리스</option>
-							<option value="+31">+31 네덜란드</option>
-							<option value="+32">+32 벨기에</option>
-							<option value="+33">+33 프랑스</option>
-							<option value="+34">+34 스페인</option>
-							<option value="+351">+351 포르투갈</option>
-							<option value="+352">+352 룩셈부르크</option>
-							<option value="+353">+353 아일랜드</option>
-							<option value="+354">+354 아이슬란드</option>
-							<option value="+356">+356 몰타</option>
-							<option value="+358">+358 핀란드</option>
-							<option value="+359">+359 불가리아</option>
-							<option value="+36">+36 헝가리</option>
-							<option value="+377">+377 모나코</option>
-							<option value="+380">+380 우크라이나</option>
-							<option value="+381">+381 세르비아</option>
-							<option value="+385">+385 크로아티아</option>
-							<option value="+386">+386 슬로베니아</option>
-							<option value="+387">+387 보스니아 헤르체고비나</option>
-							<option value="+39">+39 이탈리아</option>
-							<option value="+40">+40 루마니아</option>
-							<option value="+41">+41 스위스</option>
-							<option value="+420">+420 체코</option>
-							<option value="+421">+421 슬로바키아</option>
-							<option value="+43">+43 오스트리아</option>
-							<option value="+44">+44 영국</option>
-							<option value="+45">+45 덴마크</option>
-							<option value="+46">+46 스웨덴</option>
-							<option value="+47">+47 노르웨이</option>
-							<option value="+48">+48 폴란드</option>
-							<option value="+49">+49 독일</option>
-							<option value="+51">+51 페루</option>
-							<option value="+52">+52 멕시코</option>
-							<option value="+53">+53 쿠바</option>
-							<option value="+54">+54 아르헨티나</option>
-							<option value="+55">+55 브라질</option>
-							<option value="+56">+56 칠레</option>
-							<option value="+57">+57 콜롬비아</option>
-							<option value="+591">+591 볼리비아</option>
-							<option value="+598">+598 우루과이</option>
-							<option value="+60">+60 말레이시아</option>
-							<option value="+61">+61 호주</option>
-							<option value="+62">+62 인도네시아</option>
-							<option value="+63">+63 필리핀</option>
-							<option value="+64">+64 뉴질랜드</option>
-							<option value="+65">+65 싱가포르</option>
-							<option value="+66">+66 태국</option>
-							<option value="+680">+680 팔라우</option>
-							<option value="+7">+7 카자흐스탄</option>
-							<option value="+7">+7 러시아</option>
-							<option value="+81">+81 일본</option>
-							<option value="+82" selected>+82 한국</option>
-							<option value="+84">+84 베트남</option>
-							<option value="+852">+852 홍콩</option>
-							<option value="+853">+853 마카오</option>
-							<option value="+855">+855 캄보디아</option>
-							<option value="+856">+856 라오스</option>
-							<option value="+86">+86 중국</option>
-							<option value="+886">+886 대만</option>
-							<option value="+90">+90 터키</option>
-							<option value="+91">+91 인도</option>
-							<option value="+95">+95 미얀마</option>
-							<option value="+960">+960 몰디브</option>
-							<option value="+962">+962 요르단</option>
-							<option value="+971">+971 아랍에미리트</option>
-							<option value="+972">+972 이스라엘</option>
-							<option value="+974">+974 카타르</option>
-							<option value="+976">+976 몽골</option>
-							<option value="+977">+977 네팔</option>
 						</select>
 					</div>
 					<div class="clearfix">&nbsp;</div>
@@ -660,53 +523,43 @@ li.header_menu:hover {
 
 	<!-- //팝업 끝 -->
 
-	<!-- 이메일 중복체크용  -->
-	<script>
-		/* $(function(){
-		 $("#duplicationCheck").click(function(){
-		 var useremail = $('#useremail').val();
-		
-		 if (useremail == '') {
-		 alert('이메일을 입력해주세요.')
-		 return;
-		 }
-		
-		 $.ajax({
-		 url: "${ pageContext.servletContext.contextPath }/user/
-		 ",
-		 type: "get",
-		 data:{ useremail : useremail },
-		 success: function(data,textStatus,xhr){
-		 console.log(data);
-		 if (data == "fail"){
-
-		 $("#checkMessage").html("사용할 수 없는 이메일입니다.");
-		 alert("사용불가아이디");
-		 $("#idCheck").value("fail");
-		 return;
-
-		 } else if(data == "success") {
-		 $("#checkMessage").html("사용할 수 있는 이메일입니다.");
-		 $("#idCheck").attr("value", "success");
-		 console.log(idCheck);
-		 return;
-		 }
-		 },
-		 error: function(xhr, status, error){
-		 console.log(xhr);
-		 console.log(status);
-		 console.log(error);
-		 }
-		
-		 });
-		
-		 });
-		 });  
-		 */
-	</script>
-
 
 	<script type="text/javascript">
+
+	/* 이메일 중복체크용 */
+	var isDuplicate = true;
+   	$(function(){
+   		
+   		$("#duplicationCheck").click(function(){
+   			var userEmail = $("#userEmail").val();
+   				
+   			$.ajax({
+   				url:"${ pageContext.servletContext.contextPath }/user/duplicateCheck",
+   				type:"post",
+   				data : {
+   					userEmail : userEmail
+   				},
+   				success: function(data,textStatus,xhr) {
+   					
+   					if(data == 'success') {
+   						isDuplicate = false;
+   						alert("현재 이메일을 사용하셔도 됩니다.");
+   						gbl_data = 1;
+   					}  else {
+   						alert("중복된 이메일입니다. 다른 이메일을 사용해주세요.");
+   						$("#userEmail").select();
+   					}
+   					
+   				},
+   				error : function(xhr,status,error) {
+   					console.log(error);
+   				}
+   			})
+   		});
+   		
+
+   	}); 
+	
 		/* 체크박스 전체 선택 */
 		function allCheckFunc(obj) {
 			$(".checkOne").prop("checked", $(obj).prop("checked"));
@@ -744,7 +597,7 @@ li.header_menu:hover {
 
 		/* 회원가입 유효성 체크 */
 		function regist() {
-
+			
 			var useremail = document.getElementById("userEmail");
 			var username = document.getElementById("userName");
 			var userphone = document.getElementById("userPhone");
@@ -753,8 +606,7 @@ li.header_menu:hover {
 			var userbirth = document.getElementById("userBday");
 			var duplicationCheck = document.getElementById("duplicationCheck");
 			var idCheck = document.getElementById("idCheck");
-
-			/* 		useremail.setAttribute("checkresult", "fail"); */
+			var checkMessage = document.getElementById("checkMessage");
 
 			// 이메일
 			if (!chk(/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/, useremail,
@@ -830,15 +682,28 @@ li.header_menu:hover {
 
 				return true;
 			}
-
+			
+		      // 이메일 중복 체크
+	          if(checkMessage.innerHTML != "사용할 수 있는 이메일입니다."){
+	         	 duplicationCheck.focus();
+	         	 
+	          }
+			if(isDuplicate){
+				alert("이메일 중복확인을 해주세요.")
+	         	 return false;
+			}			
+	
+		
 		}
-
-		/*     window.onload = function(){	    
-		 var $item = document.getElementById("duplicationCheck");
-		 // 요소의 data-value 속성에 hello world를 설정한다.
-		 $item.setAttribute("checkResult", "fail");
-		 // 요소의 value 속성에 test를 설정한다.
-		 }; */
+		
+ 		/* 회원가입 실패 및 성공 시  */
+		var messege = '${messege}';
+		if( messege === 'registOK') {
+			alert('tripfulaxel에 회원이 되셨습니다 축하합니다! ')
+		} else if( messege === 'registNO' ){
+			alert('회원가입에 실패하셨습니다!')
+		}
+		 
 	</script>
 
 	<!-- //헤더 영역 끝 -->
@@ -878,7 +743,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 535;"
-							src="/tripfulaxel/resources/images/common/local_guide_main.png"
+							src="/tripfulaxel/resources/user/images/common/local_guide_main.png"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -891,7 +756,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
 							alt="Second slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_alone.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_alone.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -904,7 +769,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_together.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_together.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -917,7 +782,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
+							src="/tripfulaxel/resources/user/images/common/trip_planner.jpeg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -929,7 +794,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
 							alt="Third slide [800x400]"
-							src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
+							src="/tripfulaxel/resources/user/images/common/trip_realtime.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
@@ -996,7 +861,7 @@ li.header_menu:hover {
 						<img class="d-block w-100"
 							data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
 							style="width: 800px; height: 700px;"
-							src="/tripfulaxel/resources/images/common/main2.jpg"
+							src="/tripfulaxel/resources/user/images/common/main2.jpg"
 							data-holder-rendered="true">
 						<div class="carousel-caption d-none d-md-block"
 							style="bottom: 50px;">
