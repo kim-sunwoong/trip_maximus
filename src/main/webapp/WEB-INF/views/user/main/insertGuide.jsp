@@ -191,21 +191,21 @@
 				<td>
 				<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>신분증</span>
-                    <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+                    <input type="file" name="imageID" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					  <p class="description" style="margin-bottom: 3px;">*신분증은 뒷번호를 가린 후 업로드 해주세요. </p>
 				</div>
 				
 				<!-- 프로필 사진  -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>프로필 사진</span>
-			      <input type="file" name="imageFace" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input type="file" name="imageFace" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*가이드 프로필 사진을 업로드 해주세요</p>
 				</div>
 
 			    <!-- 기타 첨부 서류 -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>기타 첨부 서류</span>
-			      <input multiple="multiple" name="imageCerti" type="file" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input multiple="multiple" name="imageCerti" type="file" onchange="selectedImage(this)" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*본인의 전문성을 증명할 수 있는 서류를 업로드 해주세요.</p>
                   <p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 				</div>
@@ -249,7 +249,7 @@
 					</div>	
 
 					<div class="form-layer">
-						<input type="file"  name="imageTrip"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
+						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
 			 <hr>
@@ -268,7 +268,7 @@
 						<span class="form-title" style="display:inline-block">코스 소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
-		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+		                <input type="file" name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					</div>		
 					
 					<!-- 코스 일 차 -->
@@ -298,9 +298,11 @@
 								 +'<span class="form-title" style="display:inline-block">코스 소개</span>'
 								 +'<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>'
 								 +'<div class="maxText">(최대 500자)</div>'
-								 +'<input type="file"  name="imageCourse"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">'
+								 +'<input type="file"  name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">'
 								 +'</div>'		
-															
+										
+								 								 
+								 
 								 +'<div class="form-layer">'
 								 +'<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>'
 								 +'<input type="number" class="select-nomalsize" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>'
@@ -315,6 +317,9 @@
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
 						});
+						
+					
+						
 				    });
 				
 				
@@ -323,11 +328,6 @@
 				$('#submitButton').click(function(){
  				        var formData = new FormData($('#insertGuideForm')[0]);
  				        
- 				        /* for(var pair of formData.entries()){
- 				        	console.log(pair[0] + ", " + pair[1]);
- 				        }
- 				         */
- 				         
 				        $.ajax({
 				            url : "${pageContext.request.contextPath}/guide/insert",
 				            type : 'post', 
@@ -431,16 +431,16 @@
 </form>
 <script>
 
-$("document").ready(function(){
-
+/* $("document").ready(function(){
+ */
+ 	function selectedImage(e){
 	var formData;	
 	
-    $('input[type=file]').change(function(e) {
-    	
-    	console.log(e.target.files);
-    	
+/*     $('input[type=file]').on("change", function(e) {
+ */    	
+    	console.log(e.files);
     	var formArray = {};
-    	var fileList = e.target.files;
+    	var fileList = e.files;
     	
     	var formData = new FormData();	
 
@@ -450,7 +450,7 @@ $("document").ready(function(){
     		formData.append('imageFile', file);
     	}
 
-    	formData.append('imageCategory', e.target.name)
+    	formData.append('imageCategory', e.name)
 
     	$.ajax({             
         	type: "POST",          
@@ -473,11 +473,11 @@ $("document").ready(function(){
     	});  
  
  	    
-     });
+    /*  }); */
     
-    
-});
-
+ }
+/* });
+ */
 
 </script>
 

@@ -171,7 +171,7 @@ li.header_menu:hover {
 </style>
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	허
+	
 	<%-- <c:if test="${ messeage ne '회원가입성공' }">
  <script type="text/javascript"> alert("${ messeage }");</script>
     
