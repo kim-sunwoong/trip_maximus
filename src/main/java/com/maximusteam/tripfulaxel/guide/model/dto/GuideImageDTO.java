@@ -6,7 +6,7 @@ public class GuideImageDTO {
 	private String savedName;
 	private int imageTypeCode;
 	private String originName;
-	private int userCode;
+	private int refCode;
 	
 	public GuideImageDTO() {
 		super();
@@ -35,23 +35,23 @@ public class GuideImageDTO {
 	public void setOriginName(String originName) {
 		this.originName = originName;
 	}
-	public int getUserCode() {
-		return userCode;
+	public int getRefCode() {
+		return refCode;
 	}
-	public void setUserCode(int userCode) {
-		this.userCode = userCode;
+	public void setRefCode(int refCode) {
+		this.refCode = refCode;
 	}
-	public GuideImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, int userCode) {
+	public GuideImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, int refCode) {
 		super();
 		this.imageCode = imageCode;
 		this.savedName = savedName;
 		this.imageTypeCode = imageTypeCode;
 		this.originName = originName;
-		this.userCode = userCode;
+		this.refCode = refCode;
 	}
 	@Override
 	public String toString() {
 		return "GuideImageDTO [imageCode=" + imageCode + ", savedName=" + savedName + ", imageTypeCode=" + imageTypeCode
-				+ ", originName=" + originName + ", userCode=" + userCode + "]";
+				+ ", originName=" + originName + ", userCode=" + refCode + "]";
 	}
 }

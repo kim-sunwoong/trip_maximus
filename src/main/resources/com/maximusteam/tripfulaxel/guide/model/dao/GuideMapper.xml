@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper">
+
+	<insert id="insertGuideImage" parameterType="java.util.List">
+	    INSERT INTO GUIDE_IMAGE
+	    (
+	    	  GUIDE_IMAGE_CODE
+	        , GUIDE_IMAGE_SAVED_NAME
+	        , GUIDE_IMAGE_TYPE_CODE
+	        , GUIDE_IMAGE_ORIGIN_NAME
+	        , USER_CODE
+	    )
+	    VALUES
+	    <foreach collection="list" item="item" separator=",">
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_IMAGE_CODE) + 1, 1) FROM GUIDE_IMAGE b)
+	        , #{item.savedName}
+	        , #{item.imageTypeCode}
+	        , #{item.originName}
+	        , #{item.refCode}
+	    )
+	    </foreach>
+	</insert>
+	
+	<insert id="insertTripImage" parameterType="java.util.List">
+	    INSERT INTO TRIP_IMAGE
+	    (
+	    	  TRIP_IMAGE_CODE
+	    	, TRIP_IMAGE_SAVED_NAME
+	    	, TRIP_IMAGE_TYPE_CODE
+	    	, TRIP_IMAGE_ORIGIN_NAME
+	    	, TRIP_CODE
+	    )
+	    VALUES
+		<foreach collection="list" item="item" separator=",">
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_IMAGE_CODE) + 1, 1) FROM TRIP_IMAGE b)
+	        , #{item.savedName}
+	        , #{item.imageTypeCode}
+	        , #{item.originName}
+	        , #{item.refCode}
+	    )
+	    </foreach>
+	</insert>
+	
+	
+</mapper>
+    

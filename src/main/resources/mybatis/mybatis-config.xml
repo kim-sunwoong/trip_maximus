@@ -11,6 +11,7 @@
 		<typeAlias alias="CalculateDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO"/>
 		<typeAlias alias="TaxDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO"/>
   		<typeAlias alias="UserDTO" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO"/>	
+  		<typeAlias alias="GuideImageDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.GuideImageDTO"/>	
   	</typeAliases>
 
  	

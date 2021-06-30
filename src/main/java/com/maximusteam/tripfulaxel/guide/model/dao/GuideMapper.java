@@ -1,5 +1,11 @@
 package com.maximusteam.tripfulaxel.guide.model.dao;
 
-public class GuideMapper {
+import java.util.List;
 
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideImageDTO;
+
+public interface GuideMapper {
+
+	int insertGuideImage(List<GuideImageDTO> imageList); 
+	int insertTripImage(List<GuideImageDTO> imageList); 
 }
