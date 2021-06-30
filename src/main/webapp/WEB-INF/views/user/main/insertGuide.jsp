@@ -266,11 +266,7 @@
 						<span class="form-title" style="display:inline-block">코스 소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
-<<<<<<< HEAD
 		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
-=======
-		                <input type="file"  name="imageCourse"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
->>>>>>> refs/remotes/origin/jinseo_cha
 					</div>		
 					
 					<!-- 코스 일 차 -->
@@ -288,39 +284,9 @@
 			
 			<script>
 				$(document).ready(function(){
-					
-<<<<<<< HEAD
-/* 				const $addTripCourse = document.getElementsByClassName("addTripCourse");
- */				
+
 				var courseCopy = $('.course').clone();
 
-				$(document).on("click", "input[name='addTripCourse']", function () {
-				    
-					$('.courseContainer').append(
-	 						'<hr>'
-	 				);
-					
-					$('.courseContainer').append(
- 							/* '<input type="text" name="courses" style="margin-left:200px" value="'+ tripDay + '-' + courseTitle +'">\
- 							<button type="button" class="btnRemove">삭제</button><br>\
- 			                <input type="file" id="photo" name="selectedPhoto" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
- 							' */
- 						courseCopy
- 					);
-					$('.courseContainer').append(
- 						'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none;\
-							 background-color:red; margin-top:15px; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
- 					); 
- 					
- 					
-					
-				  });
-				
-					$('.btnRemove').on('click', function(){
-						$(this).prev().remove();
-						$(this).next().remove();
-						$(this).remove();
-=======
 				$(document).on("click", "input[name='addTripCourse']", function (e) {
 
 					$(e.target).parent().after('<div class="course"  name="lastcourse">'
@@ -376,7 +342,6 @@
 				                alert(xhr + " : " + status);
 				            }
 				       	 });
->>>>>>> refs/remotes/origin/jinseo_cha
 					});
 				});
 			</script>			
