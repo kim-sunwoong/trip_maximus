@@ -214,7 +214,7 @@
                     <span style="color:white; font-size: 20px;">여행 플래너</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/share/livechat" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
             </ul>
