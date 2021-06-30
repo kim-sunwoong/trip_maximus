@@ -15,7 +15,7 @@ public interface AdminMapper {
 
 	List<MemberDTO> selectMember();
 
-	List<ReportDTO> selectReport();
+	List<ReportDTO> selectReport(String type);
 
 	List<GuideDTO> selectGuide();
 
@@ -36,4 +36,7 @@ public interface AdminMapper {
 	int updateReportStatus(ReportDTO report);
 
 	int updateReportCount(ReportDTO report);
+
+	List<ReportDTO> selectReport();
+
 }

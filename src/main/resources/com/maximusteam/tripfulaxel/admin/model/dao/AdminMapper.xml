@@ -107,7 +107,7 @@
          WHERE USER_CODE = #{no}
 	</select>
 	
-	<select id="selectReport" resultMap="reportList">
+	<select id="selectReport" resultMap="reportList" parameterType="String">
         SELECT 
                A.EXAMINE_REQUEST_CODE
              , A.EXAMINE_REQUEST_REASON
@@ -117,8 +117,19 @@
           FROM EXAMINE A
           JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
           JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
-         WHERE EXAMINE_TYPE_CODE = 1
+          
+          <if test='type == "0"'>
+	       WHERE EXAMINE_TYPE_CODE = 1
             OR EXAMINE_TYPE_CODE = 2
+	      </if>
+	      
+	      <if test='type == "guide"'>
+	       WHERE EXAMINE_TYPE_CODE = 1
+	      </if>
+	      
+	     <if test='type == "user"'>
+	       WHERE EXAMINE_TYPE_CODE = 1
+	      </if>
 	</select>
 	
 	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">

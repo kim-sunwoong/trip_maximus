@@ -133,6 +133,11 @@
                             </div>
 
                             <div class="card-body">
+                         <div class="btn-group btn-group-justified">
+                          <a  href="${ pageContext.servletContext.contextPath }/admin/selectReportList" class="btn btn-warning">전체 </a>
+                          <a  href="${ pageContext.servletContext.contextPath }/admin/selectReportBycategory?ut=guide" class="btn btn-warning">가이드</a>
+                          <a  href="${ pageContext.servletContext.contextPath }/admin/selectReportBycategory?ut=user" class="btn btn-warning">유저</a>
+                        </div>
                                 <table id="datatablesSimple" class="table table">
                                     <thead>
                                         <tr>

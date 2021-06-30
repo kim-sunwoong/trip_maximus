@@ -15,7 +15,7 @@ public interface AdminService {
 
 	List<MemberDTO> selectMemberList();
 
-	List<ReportDTO> selectReportList();
+	List<ReportDTO> selectReportList(String type);
 
 	List<GuideDTO> selectGuideList();
 
@@ -36,5 +36,11 @@ public interface AdminService {
 	int updateReportStatus(ReportDTO report);
 
 	int updateReportCount(ReportDTO report);
+
+	List<ReportDTO> selectReportList();
+
+//	List<ReportDTO> selectReportGuideList(String type);
+//
+//	List<ReportDTO> selectReportUserList(String type);
 	
 }
