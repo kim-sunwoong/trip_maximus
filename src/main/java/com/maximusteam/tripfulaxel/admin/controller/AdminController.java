@@ -59,29 +59,16 @@ public class AdminController {
 		return "admin/memberManagement";
 	}
 
-	
-	@GetMapping("reportList") 
-	public String selectReportList(Model model) {
-	  
-		model.addAttribute("selectReport", adminService.selectReportList());
-	  
-	return "admin/reportManagement"; 
-		
-	}
-	
-
-	@GetMapping("selectReportList")
-	public String selectMemberBycategory(@RequestParam(value = "ut", defaultValue = "0") String type, Model model) {
-		System.out.println("!111111111111110 " + type);
-		model.addAttribute("selectReport", adminService.selectReportList(type));
-
+	@GetMapping("reportList")
+	public String selectMemberBycategory(@RequestParam(value = "ut", defaultValue = "all") String type, Model model) {
+		ReportDTO rd = new ReportDTO();
+		rd.setUserType(type);
+		model.addAttribute("selectReport", adminService.selectReportList(rd));
 		return "admin/reportManagement";
-
 	}
 
 	@GetMapping("guideList")
 	public String selectGuideList(Model model) {
-
 		model.addAttribute("selectGuide", adminService.selectGuideList());
 
 		return "admin/guideEnroll";

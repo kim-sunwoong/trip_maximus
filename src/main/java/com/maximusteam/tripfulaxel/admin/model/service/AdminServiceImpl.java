@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ReportDTO> selectReportList(String type) {
+	public List<ReportDTO> selectReportList(ReportDTO type) {
 		return mapper.selectReport(type);
 	}
 
@@ -91,19 +91,7 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateReportCount(report);
 	}
 
-	@Override
-	public List<ReportDTO> selectReportList() {
-		
-		return mapper.selectReport();
-	}
 
-	/*
-	 * @Override public List<ReportDTO> selectReportGuideList(String type) { return
-	 * mapper.selectReport(type); }
-	 * 
-	 * @Override public List<ReportDTO> selectReportUserList(String type) { return
-	 * mapper.selectReport(type); }
-	 */
 
 
 
