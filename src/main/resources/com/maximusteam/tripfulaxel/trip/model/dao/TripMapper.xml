@@ -205,7 +205,7 @@
 	   	  WHERE trl2.TRIP_TYPE_CODE = #{condition.tripType}
 		    AND trl2.REGIST_TYPE_CODE = 3
 		  GROUP BY trl2.TRIP_CODE 
-	   	   ) as iv ON (gt.TRIP_CODE = iv.TRIP_CODE)
+	   	   ) as iv ON (t.TRIP_CODE = iv.TRIP_CODE)
 	  </if>
 	  
 	  <if test="tripCode == null">
