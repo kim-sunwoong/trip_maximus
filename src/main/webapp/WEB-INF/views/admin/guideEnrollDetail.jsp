@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,7 +14,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
             rel="stylesheet"/>
-      
+   
 		<link href="/tripfulaxel/resources/admin/css/style.css" rel="stylesheet"/>
         <script src="/tripfulaxel/resources/admin/js/scripts.js"></script>
         <script src="/tripfulaxel/resources/admin/js/datatables-simple-demo.js"></script>
@@ -106,56 +105,65 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                회원관리
+                                가이드 가입
                             </div>
 
                             <div class="card-body">
                                 <table class="table table">
-                                	
                                     <tr>
-                                      <td style="width: 15%;">이름</td>
-                                      <td>
-                                      <input type="text" class="form-control" name="id" value="${selectMemberDetail.memberName}" >
-                                      </td>        
+                                        <td style="width: 15%;">이름</td>
+                                        <td><input type="text"  class="form-control" name="writer"></td>
                                     </tr>
-                                     
+
                                     <tr>
-                                      <td>전화번호</td>
-                                      <td><input type="text" class="form-control" name="id" value="${selectMemberDetail.memberPhone}" >
-                                      </td>        
+                                        <td style="width: 15%;">성별</td>
+                                        <td><input type="text"  class="form-control" name="writer"></td>
                                     </tr>
-                                     
+
                                     <tr>
-                                      <td>생년월일</td>
-                                      <td><input type="text" class="form-control" name="id" value="${selectMemberDetail.memberBDay}">
-                                      </td>        
+                                     <td style="width: 15%;">활동명</td>
+                                     <td><input type="text"  class="form-control" name="writer"></td>
                                     </tr>
-                                     
                                     <tr>
-                                      <td>성별</td>
-                                      <td><input type="text" class="form-control" name="id" value="${selectMemberDetail.gender}">
-                                      </td>        
+                                     <td>가이드 경험 여부</td>
+                                     <td><input type="text"  class="form-control" name="subject" value=></td>
                                     </tr>
-                                     
                                     <tr>
-                                      <td>이메일</td>
-                                      <td><input type="text" class="form-control" name="id" value="${selectMemberDetail.memberId}">
-                                      </td>        
+                                        <td>개인차량여부</td>
+                                        <td><input type="text"  class="form-control" name="subject" value=></td>
+                                       </tr>
+
+                                    <tr>
+                                     <td>가이드 소개</td>
+                                     <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
                                     </tr>
-                                     
+
+                                                                    
                                     <tr>
-                                      <td>가이드 등록여부</td>
-                                      <td><input type="text" class="form-control" name="id" value="${selectMemberDetail.memberGuideStatus}">
-                                      <input type="hidden" value="${selectMemberDetail.memberNo}">
-                                      </td>        
+                                        <td>신분증 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>가이드 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>활동 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                     <tr> 
+                                     <td colspan="2"  class="text-center">
+                                     
+                                      <input type="submit" value="가입승인" class="btn btn-success">
+                                      <input type="reset" value="가입취소" class="btn btn-warning">
+                                      <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
+                                     </td>
                                     </tr>
                                     
-                                    <tr>
-                                       <td class="text-center" colspan="2">
-                                            <button onclick="location.href='${ pageContext.servletContext.contextPath }/admin/deleteMember?memberNo=${selectMemberDetail.memberNo}'" class="btn btn-danger">회원삭제</button>
-                                       </td>    
-                                  	</tr> 
-                                  </table>
+                                    </table>
                             </div>
 
                         </div>
@@ -164,7 +172,7 @@
             </div>
 
         </div>
-        <script
+        <!-- <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
@@ -176,6 +184,6 @@
         <script
             src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
             crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/datatables-simple-demo.js"></script> -->
     </body>
 </html>

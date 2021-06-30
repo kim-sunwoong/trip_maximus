@@ -10,5 +10,8 @@ public interface UserMapper {
 
 
 	int registUser(UserDTO user);
+	
+	int duplicationCheck(UserDTO user);
 
+	UserDTO loginUser(UserDTO user);
 }

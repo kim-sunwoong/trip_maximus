@@ -46,7 +46,9 @@
 	<resultMap id="reportDetail" type="ReportDTO">
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
 		<result column="EXAMINE_REQUEST_TO" property="reportTarget" />
-		<result column="USER_EMAIL" property="reportId" />
+		<result column="EXAMINE_REQUEST_FROM" property="reportWriter" />
+		<result column="EXAMINE_RESPONSE_CODE" property="responseCode" />
+		<result column="EXAMINE_REQUEST_CODE" property="requestCode" />
 	</resultMap>
 	
 	<!-- 가이드 리스트 -->
@@ -120,12 +122,16 @@
 	</select>
 	
 	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">
-        SELECT 
+	        SELECT 
                A.EXAMINE_REQUEST_REASON
              , A.EXAMINE_REQUEST_FROM
              , A.EXAMINE_REQUEST_TO
+             , B.EXAMINE_RESPONSE_CODE
+             , B.EXAMINE_REQUEST_CODE
          FROM EXAMINE A
-        WHERE EXAMINE_REQUEST_CODE = #{no}
+         JOIN EXAMINE_RESPONSE B ON (A.EXAMINE_REQUEST_CODE = B.EXAMINE_REQUEST_CODE)
+         JOIN EXAMINE_TYPE C ON (A.TYPE_CODE = C.EXAMINE_TYPE_CODE)
+        WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
@@ -164,15 +170,60 @@
          WHERE E.USER_GUIDE_YN = 'Y'
 	</select>	
 	
-	<delete id="memberDelete" parameterType="_int">
-		DELETE 
-          FROM USER
-         WHERE USER_CODE = #{ no } 
+	<delete id="deleteMember" parameterType="_int">
+       DELETE 
+         FROM USER
+        WHERE USER_CODE = #{ no } 
 	</delete>
 	
-	<delete id="adminDelete" parameterType="_int">
-		DELETE 
+	<delete id="deleteAdmin" parameterType="_int">
+        DELETE 
           FROM ADMIN
          WHERE ADMIN_NO = #{ no } 
 	</delete>
+	
+	<insert id="insertReport" parameterType="ReportDTO">
+	
+		<selectKey  resultType="ReportDTO" keyColumn="responseCode,requestCode" keyProperty="responseCode,requestCode" order="BEFORE">
+	        SELECT 
+	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	             , MAX(EXAMINE_REQUEST_CODE + 1)  as requestCode
+	          FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		, 2
+		, 1
+		)
+	</insert>
+	
+	<update id="updateReportStatus" parameterType="ReportDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
+	</update> 
+	
+	<update id="updateReportCount" parameterType="ReportDTO">
+        UPDATE 
+          USER a, USER b
+           SET
+               a.USER_REPORT_COUNT = b.USER_REPORT_COUNT + 1
+         WHERE a.USER_CODE = #{ reportTarget }	
+	</update>  
 </mapper>
