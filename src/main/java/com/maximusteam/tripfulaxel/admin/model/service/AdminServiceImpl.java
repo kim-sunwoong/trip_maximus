@@ -11,6 +11,7 @@ import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
 
 
 @Service
@@ -20,31 +21,26 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	public AdminServiceImpl(AdminMapper mapper) {
-		System.out.println("연결제발!!!!!!!!!!!!!!!");
 		this.mapper = mapper;
 	}
 
 	@Override
 	public List<AdminDTO> selectAdminList() {
-		System.out.println("관리자 리스트111");
 		return mapper.selectAdmin();
 	}
 
 	@Override
 	public List<MemberDTO> selectMemberList() {
-		System.out.println("회원관리 리스트222");
 		return mapper.selectMember();
 	}
 
 	@Override
 	public List<ReportDTO> selectReportList() {
-		System.out.println("신고 리스트333");
 		return mapper.selectReport();
 	}
 
 	@Override
 	public List<GuideDTO> selectGuideList() {
-		
 		return mapper.selectGuide();
 	}
 
@@ -52,6 +48,52 @@ public class AdminServiceImpl implements AdminService {
 	public List<CalculateDTO> selectCalculateList() {
 		return mapper.selectCalculate();
 	}
+
+	@Override
+	public List<TaxDTO> selectTaxList() {
+		return mapper.selectTax();
+	}
+
+	@Override
+	public MemberDTO selectMemberDetail(int no) {
+		return mapper.selectMemberDetail(no);
+
+	}
+
+	@Override
+	public int deleteMember(int no) {
+		
+		return mapper.deleteMember(no);
+	}
+
+	@Override
+	public int deleteAdmin(int no) {
+		return mapper.deleteAdmin(no);
+	}
+
+	@Override
+	public ReportDTO selectReportDetail(int no) {
+		return mapper.selectReportDetail(no);
+	}
+
+	@Override
+	public int insertReport(ReportDTO report) {
+		return mapper.insertReport(report);
+	}
+
+	@Override
+	public int updateReportStatus(ReportDTO report) {
+		return mapper.updateReportStatus(report);
+	}
+
+	@Override
+	public int updateReportCount(ReportDTO report) {
+		return mapper.updateReportCount(report);
+	}
+
+
+
+
 
 	
 	

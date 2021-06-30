@@ -26,7 +26,6 @@
 	<resultMap id="reportList" type="ReportDTO">
 		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
-		<result column="USER_EMAIL" property="reportUser" />
 		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
 		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
 	</resultMap>

@@ -152,21 +152,24 @@
                           </a>
                         </li>
 	                    <li class="floatL">
-	                       <a class="login_link" href="#">
+	                       <a class="login_link" href="javascript:void(0);">
                           <span style="color:white; font-size: 18px; font-weight: bold;">로그인</span>
+	                       
 	                       </a>
 	                    </li>
-	                    
 	                    <li class="floatL">
-		                    <a class="signup_link" href="#">
-	                        <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
-		                    </a>
+	                    <a class="signup_link" href="javascript:void(0);">
+                        <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
+	                    </a>
 	                    </li>
-	                    
+	                    </li>
 	                    <li class="floatL">
-		                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
-	                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
-		                    </a>
+
+
+	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
+
+                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
+	                    </a>
 	                    </li>
 	                    <!-- 나중에 로그인된 사람만 보게 해야함 -->
 	                    <li class="floatL">
@@ -180,8 +183,8 @@
         <article class="find_btn_area floatR " style="margin-right: 350px;">
    
    		  <div style="margin-top:5px; margin-bottom: -10px;">
-   		    <a href="/"><img id="rotating_img" style="width: 90px; height:99px; object-fit:cover;" src="/tripfulaxel/resources/user/images/common/3.png" alt=""></a> 
-             <a href="/"><img style="width: 300px; height:99px" src="/tripfulaxel/resources/user/images/common/2.png" alt=""></a> 
+   		    <a href="/"><img id="rotating_img" style="width: 90px; height:99px; object-fit:cover;" src="/tripfulaxel/resources/images/common/3.png" alt=""></a> 
+             <a href="/"><img style="width: 300px; height:99px" src="/tripfulaxel/resources/images/common/2.png" alt=""></a> 
    		  
    		  </div>
       	<style>
@@ -193,19 +196,19 @@
 		    from {-webkit-transform: rotate(359deg);}
 		    to   {-webkit-transform: rotate(0deg);}
 		}
-      	
+
       	</style>
             <ul>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 로컬가이드</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순" class="btnLineC txt_md">
                     <span style="color:white; font-size: 20px;" > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
@@ -213,7 +216,7 @@
                     <span style="color:white; font-size: 20px;">여행 플래너</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/share/livechat" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
             </ul>
@@ -222,4 +225,3 @@
 </header>
 </body>
 </html>
-

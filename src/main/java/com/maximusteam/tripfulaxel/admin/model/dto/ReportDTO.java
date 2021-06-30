@@ -1,27 +1,36 @@
 package com.maximusteam.tripfulaxel.admin.model.dto;
 
-import java.util.Date;
-
 public class ReportDTO {
 
-    private int reportNo;
-    private String reportTitle;
-    private String reportReason;
-    private String reportUser; //신고작성자
-    private String reportStatus;
-    private java.util.Date reportDate;
+    private int reportNo; // 신고번호
+    private String reportTitle; // 신고내용
+    private String reportId; // 이메일
+    private int reportWriter; //신고작성자
+    private int reportTarget; //신고대상자
+    private String reportStatus; // 신고 처리상태
+    private java.sql.Date reportDate;
+    private String responseContent;
+    private java.sql.Date responseDate;
+    private int responseCode;
+    private int requestCode; 
 	
     public ReportDTO() {}
 
-	public ReportDTO(int reportNo, String reportTitle, String reportReason, String reportUser, String reportStatus,
-			Date reportDate) {
+	public ReportDTO(int reportNo, String reportTitle, String reportId, int reportWriter, int reportTarget,
+			String reportStatus, java.sql.Date reportDate, String responseContent, java.sql.Date responseDate,
+			int responseCode, int requestCode) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
-		this.reportReason = reportReason;
-		this.reportUser = reportUser;
+		this.reportId = reportId;
+		this.reportWriter = reportWriter;
+		this.reportTarget = reportTarget;
 		this.reportStatus = reportStatus;
 		this.reportDate = reportDate;
+		this.responseContent = responseContent;
+		this.responseDate = responseDate;
+		this.responseCode = responseCode;
+		this.requestCode = requestCode;
 	}
 
 	public int getReportNo() {
@@ -40,20 +49,28 @@ public class ReportDTO {
 		this.reportTitle = reportTitle;
 	}
 
-	public String getReportReason() {
-		return reportReason;
+	public String getReportId() {
+		return reportId;
 	}
 
-	public void setReportReason(String reportReason) {
-		this.reportReason = reportReason;
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
 	}
 
-	public String getReportUser() {
-		return reportUser;
+	public int getReportWriter() {
+		return reportWriter;
 	}
 
-	public void setReportUser(String reportUser) {
-		this.reportUser = reportUser;
+	public void setReportWriter(int reportWriter) {
+		this.reportWriter = reportWriter;
+	}
+
+	public int getReportTarget() {
+		return reportTarget;
+	}
+
+	public void setReportTarget(int reportTarget) {
+		this.reportTarget = reportTarget;
 	}
 
 	public String getReportStatus() {
@@ -64,19 +81,67 @@ public class ReportDTO {
 		this.reportStatus = reportStatus;
 	}
 
-	public java.util.Date getReportDate() {
+	public java.sql.Date getReportDate() {
 		return reportDate;
 	}
 
-	public void setReportDate(java.util.Date reportDate) {
+	public void setReportDate(java.sql.Date reportDate) {
 		this.reportDate = reportDate;
+	}
+
+	public String getResponseContent() {
+		return responseContent;
+	}
+
+	public void setResponseContent(String responseContent) {
+		this.responseContent = responseContent;
+	}
+
+	public java.sql.Date getResponseDate() {
+		return responseDate;
+	}
+
+	public void setResponseDate(java.sql.Date responseDate) {
+		this.responseDate = responseDate;
+	}
+
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	public int getRequestCode() {
+		return requestCode;
+	}
+
+	public void setRequestCode(int requestCode) {
+		this.requestCode = requestCode;
 	}
 
 	@Override
 	public String toString() {
-		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportReason=" + reportReason
-				+ ", reportUser=" + reportUser + ", reportStatus=" + reportStatus + ", reportDate=" + reportDate + "]";
+		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportId=" + reportId
+				+ ", reportWriter=" + reportWriter + ", reportTarget=" + reportTarget + ", reportStatus=" + reportStatus
+				+ ", reportDate=" + reportDate + ", responseContent=" + responseContent + ", responseDate="
+				+ responseDate + ", responseCode=" + responseCode + ", requestCode=" + requestCode + "]";
 	}
+
+	
+
+	
+	
+
+	
+
+    
+
+	
+
+
+
 
 	
     

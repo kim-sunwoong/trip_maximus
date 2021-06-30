@@ -22,15 +22,26 @@
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://13.209.158.238:3306/tripfulaxel?" />
-		<property name="username" value="tripfulaxel" />
-		<property name="password" value="maximusTeam" />
-		<property name="defaultAutoCommit" value="false" />
-	</bean>
+
+   <bean id="rdataSource" class="org.apache.commons.dbcp.BasicDataSource"
+      destroy-method="close">
+      <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+      <property name="url" value="jdbc:mysql://13.209.158.238:3306/tripfulaxel?" />
+      <property name="username" value="tripfulaxel" />
+      <property name="password" value="maximusTeam" />
+      <property name="defaultAutoCommit" value="false" />
+   </bean>
+   
+   <bean id="dataSource"
+      class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+      <constructor-arg ref="rdataSource"></constructor-arg>
+      <property name="logFormatter">
+         <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+            <property name="loggingType" value="MULTI_LINE" />
+            <property name="sqlPrefix" value="[SQL]" />
+         </bean>
+      </property>
+   </bean>
 	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

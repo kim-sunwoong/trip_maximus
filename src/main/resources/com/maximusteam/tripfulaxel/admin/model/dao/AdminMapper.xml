@@ -21,14 +21,34 @@
 		<result column="USER_REGISTER_DAY" property="enrollDate" />
 		<result column="USER_REPORT_COUNT" property="count" />
 	</resultMap>
+	  
+	<!-- 회원상세정보 -->
+	<resultMap id="memberDetail" type="MemberDTO">
+		<result column="USER_NAME" property="memberName" />
+		<result column="USER_PHONE" property="memberPhone" />
+		<result column="USER_BDAY" property="memberBDay" />
+		<result column="USER_GENDER" property="gender" />
+		<result column="USER_EMAIL" property="memberId" />
+		<result column="USER_GUIDE_YN" property="memberGuideStatus" />
+		<result column="USER_CODE" property="memberNo" />
+	</resultMap>
 	
 	<!-- 신고리스트 -->
 	<resultMap id="reportList" type="ReportDTO">
 		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
-		<result column="USER_EMAIL" property="reportUser" />
+		<result column="USER_EMAIL" property="reportId" />
 		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
 		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
+	</resultMap>
+	
+	<!-- 신고 상세 -->
+	<resultMap id="reportDetail" type="ReportDTO">
+		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
+		<result column="EXAMINE_REQUEST_TO" property="reportTarget" />
+		<result column="EXAMINE_REQUEST_FROM" property="reportWriter" />
+		<result column="EXAMINE_RESPONSE_CODE" property="responseCode" />
+		<result column="EXAMINE_REQUEST_CODE" property="requestCode" />
 	</resultMap>
 	
 	<!-- 가이드 리스트 -->
@@ -46,13 +66,20 @@
 		<result column="INVOICE_DATE" property="calculateDate" />
 	</resultMap>
 	
+	<!-- 세금 리스트 -->
+	<resultMap id="taxList" type="TaxDTO">
+		<id column="BILL_REQUEST_CODE" property="taxNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="BILL_REQUEST_DATE" property="taxDate" />
+	</resultMap>
+	
 	<select id="selectAdmin" resultMap="adminList">
         SELECT 
                A.ADMIN_NO
              , A.ADMIN_POSITION
              , A.ADMIN_NAME
              , A.ADMIN_EMAIL
-             , A.ADMIN_HIRE_DATE
+             , DATE_FORMAT( A.ADMIN_HIRE_DATE, '%Y-%m-%d') AS ADMIN_HIRE_DATE
           FROM ADMIN A 
 	</select>
 	
@@ -61,10 +88,23 @@
                A.USER_CODE
              , A.USER_NAME
              , A.USER_EMAIL
-             , A.USER_REGISTER_DAY
+             , DATE_FORMAT( A.USER_REGISTER_DAY, '%Y-%m-%d') AS USER_REGISTER_DAY
              , A.USER_REPORT_COUNT
           FROM USER A
          WHERE USER_GUIDE_YN = 'N'
+	</select>
+	
+	<select id="selectMemberDetail" resultMap="memberDetail" parameterType="_int">
+        SELECT 
+               A.USER_NAME
+             , A.USER_PHONE
+             , A.USER_BDAY
+             , A.USER_GENDER
+             , A.USER_EMAIL
+             , A.USER_GUIDE_YN
+             , A.USER_CODE
+          FROM USER A
+         WHERE USER_CODE = #{no}
 	</select>
 	
 	<select id="selectReport" resultMap="reportList">
@@ -73,12 +113,25 @@
              , A.EXAMINE_REQUEST_REASON
              , C.USER_EMAIL
              , A.EXAMINE_REQUEST_YN
-             , A.EXAMINE_REQUEST_DATE
+             , DATE_FORMAT( A.EXAMINE_REQUEST_DATE, '%Y-%m-%d') AS EXAMINE_REQUEST_DATE
           FROM EXAMINE A
           JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
           JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
          WHERE EXAMINE_TYPE_CODE = 1
             OR EXAMINE_TYPE_CODE = 2
+	</select>
+	
+	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">
+	        SELECT 
+               A.EXAMINE_REQUEST_REASON
+             , A.EXAMINE_REQUEST_FROM
+             , A.EXAMINE_REQUEST_TO
+             , B.EXAMINE_RESPONSE_CODE
+             , B.EXAMINE_REQUEST_CODE
+         FROM EXAMINE A
+         JOIN EXAMINE_RESPONSE B ON (A.EXAMINE_REQUEST_CODE = B.EXAMINE_REQUEST_CODE)
+         JOIN EXAMINE_TYPE C ON (A.TYPE_CODE = C.EXAMINE_TYPE_CODE)
+        WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
@@ -96,13 +149,81 @@
         SELECT 
                A.INVOICE_CODE
              , E.USER_EMAIL
-             , A.INVOICE_DATE
+             , DATE_FORMAT(A.INVOICE_DATE, '%Y-%m-%d') AS INVOICE_DATE
           FROM INVOICE A
-          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOCE_CODE)
+          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOICE_CODE)
           JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
           JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
           JOIN USER E ON ( D.USER_CODE = E.USER_CODE);	
     </select>	
 	
-
+	<select id="selectTax" resultMap="taxList">
+         SELECT 
+               A.BILL_REQUEST_CODE
+             , E.USER_EMAIL
+             , DATE_FORMAT(A.BILL_REQUEST_DATE, '%Y-%m-%d') AS BILL_REQUEST_DATE
+          FROM BILL_REQUEST A
+          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOICE_CODE)
+          JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
+          JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+          JOIN USER E ON ( D.USER_CODE = E.USER_CODE)
+         WHERE E.USER_GUIDE_YN = 'Y'
+	</select>	
+	
+	<delete id="deleteMember" parameterType="_int">
+       DELETE 
+         FROM USER
+        WHERE USER_CODE = #{ no } 
+	</delete>
+	
+	<delete id="deleteAdmin" parameterType="_int">
+        DELETE 
+          FROM ADMIN
+         WHERE ADMIN_NO = #{ no } 
+	</delete>
+	
+	<insert id="insertReport" parameterType="ReportDTO">
+	
+		<selectKey  resultType="ReportDTO" keyColumn="responseCode,requestCode" keyProperty="responseCode,requestCode" order="BEFORE">
+	        SELECT 
+	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	             , MAX(EXAMINE_REQUEST_CODE + 1)  as requestCode
+	          FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		, 2
+		, 1
+		)
+	</insert>
+	
+	<update id="updateReportStatus" parameterType="ReportDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
+	</update> 
+	
+	<update id="updateReportCount" parameterType="ReportDTO">
+        UPDATE 
+          USER a, USER b
+           SET
+               a.USER_REPORT_COUNT = b.USER_REPORT_COUNT + 1
+         WHERE a.USER_CODE = #{ reportTarget }	
+	</update>  
 </mapper>

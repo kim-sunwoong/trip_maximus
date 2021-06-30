@@ -5,6 +5,6 @@ public class NoticeDTO {
     private int noticeNo;
     private String userId;
     private String noticeTitle;
-    private java.util.Date noticeDate;
+    private java.sql.Date noticeDate;
 
 }
