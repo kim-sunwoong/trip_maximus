@@ -647,11 +647,14 @@
         
         <div class="Footer_tm w3-col l4 m12 s12">
             <div class="travelMakerNaming FS_15 FW_bold FC_black900">약관 및 방침</div>
-            <div style="font-size: 18px; color:gray;"><a href="#">이용약관</a></div>
-            <div style="font-size: 18px; color:gray; line-height: 30px;"><a href="#">개인정보 처리방침</a></div>
-            <div style="font-size: 18px; color:gray; line-height: 20px;"><a href="#">취소환불규정</a></div>
+            <div style="font-size: 18px; color:gray;">
+            <a href="javascript:void(0)">이용약관</a></div>
+            <div style="font-size: 18px; color:gray; line-height: 30px;">
+            <a href="${ pageContext.servletContext.contextPath }/user/personalInfo">개인정보 및 처리방침</a></div>
+            <div style="font-size: 18px; color:gray; line-height: 20px;">
+            <a href="${ pageContext.servletContext.contextPath }/user/payment">취소환불규정</a></div>
         </div>
-        
+       <!--  /tripfulaxel/WEB-INF/views/user/main/provision -->
         
 
         <div class="Footer_tm w3-col l4 m12 s12">

@@ -75,7 +75,7 @@ public class UserContrlloer {
     @RequestMapping(value = "/duplicateCheck", method = RequestMethod.POST)
     @ResponseBody
     public void duplicationCheckForAjax(@ModelAttribute UserDTO user, 
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
+      HttpServletResponse response) throws Exception {
     	
         PrintWriter out = response.getWriter();
         
@@ -99,29 +99,61 @@ public class UserContrlloer {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/login")
+    @RequestMapping(value = "login", method = RequestMethod.POST)
 	public String loginUser(@ModelAttribute UserDTO user, HttpServletRequest request, RedirectAttributes rttr) {
 
-		System.out.println(user.getUserEmail());
-		System.out.println(user.getUserPwd());
-		
-		UserDTO loginUser = userService.loginUser(user);
-		
-		System.out.println("입력한 정보" + loginUser);
-		
-		if (!passwordEncoder.matches(user.getUserPwd(), userService.loginUser(user).getUserPwd())) {
-			System.out.println("비밀번호 매치 실패 !");
-			rttr.addFlashAttribute("pwdError", "pwdError");
-			return "redirect:/user/login";
+		System.out.println("회원이 입력한 이메일 " + user.getUserEmail());
+		System.out.println("회원이 입력한 비밀번호 " + user.getUserPwd());
 
-		}  else {
+		
+
+		// 1. 사용자가 입력한 이메일 주소를 가지고 사용자가 있는지 조회한다.
+		UserDTO userDTO = userService.loginUser(user);
+		System.out.println("입력한 정보 " + userDTO);
+		
+		
+		// 2-1. 조회결과 사용자 정보가 있는 경우
+		if (userDTO != null) { 
+	
 			
-		     HttpSession session = request.getSession();
-	         session.setAttribute("loginUser", loginUser);
-	            
-	         return "redirect:/";
-		}
+			// 2-1-1. 사용자가 입력한 비밀번호와 DB에서 조회한 비밀번호를 비교한다.
+			if (passwordEncoder.matches(user.getUserPwd(), userService.loginUser(user).getUserPwd())) {
+				
+				
+				// 2-1-2. 조회된 결과에서 신고누적 횟수를 체크한다. 
+				if (userDTO.getUserReportCount() < 3) {
+					
+					HttpSession session = request.getSession();
+					session.setAttribute("loginUser", userService.loginUser(user));
 
+					return "redirect:/";
+
+				} else {
+					
+					// 신고 3회 이상 차단 
+					System.out.println("신고 횟수 누적 3회 이상 ");
+					rttr.addFlashAttribute("login", "차단당하셨습니다.");
+					return "redirect:/";
+
+				}
+
+			} else {
+				
+				// 비밀번호 매칭 실패 
+				System.out.println("비밀번호 매칭 실패 ");
+				rttr.addFlashAttribute("login", "비밀번호가 틀립니다.");
+				return "redirect:/";
+			}
+		} else {
+			
+			// 2-3. 조회결과 사용자가 정보가 없을 경우
+			// 해당하는 이메일이 없음.
+			System.out.println("해당하는 이메일이 없습니다. ");
+			rttr.addFlashAttribute("login", "해당하는 이메일이 없습니다.");
+			return "redirect:/";
+
+		}
+		
 
 	}
 

@@ -171,11 +171,6 @@ li.header_menu:hover {
 </style>
 
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	허
-	<%-- <c:if test="${ messeage ne '회원가입성공' }">
- <script type="text/javascript"> alert("${ messeage }");</script>
-    
-</c:if> --%>
 
 	<!-- 팝업 시작 -->
 
@@ -313,8 +308,8 @@ li.header_menu:hover {
 						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
-					<button class="btnBgC txt_bs submit" type="submit"
-						style="margin: 10px auto 0; width: 60%;">로그인</button>
+					<button id="loginSubmit" class="btnBgC txt_bs submit" type="submit"
+						      style="margin: 10px auto 0; width: 60%;">로그인</button>
 				</form>
 
 				<ul class="find_signup clearfix">
@@ -329,11 +324,16 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
+	
 	<script type="text/javascript">
-		var messege = '${pwdError}';
-		if (messege === 'pwdError') {
-			alert(' 비밀번호가 불일치합니다. ')
-		} 
+		$(document).ready(function(){
+			/* 로그인 실패 여부  */
+				var login = '${ requestScope.login }';
+				console.log("값 체크 :" +login);
+				if (login != null && login != '') {
+					alert(login);
+				}
+		});
 	</script>
 
 

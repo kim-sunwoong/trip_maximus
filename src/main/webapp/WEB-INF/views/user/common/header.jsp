@@ -151,23 +151,22 @@
                            <span style="color:white; font-size: 18px; font-weight: bold;">로컬가이드 등록</span>
                           </a>
                         </li>
+                 
 	                    <li class="floatL">
 	                       <a class="login_link" href="javascript:void(0);">
                           <span style="color:white; font-size: 18px; font-weight: bold;">로그인</span>
 	                       
 	                       </a>
 	                    </li>
+	                    
 	                    <li class="floatL">
 	                    <a class="signup_link" href="javascript:void(0);">
                         <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
 	                    </a>
 	                    </li>
-	                    </li>
+	                    
 	                    <li class="floatL">
-
-
 	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
-
                         <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
 	                    </a>
 	                    </li>
@@ -181,6 +180,8 @@
              <a href="/"><img style="width: 300px; height:99px" src="/tripfulaxel/resources/images/common/2.png" alt=""></a> 
    		  
    		  </div>
+   		  
+   		  
       	<style>
       	#rotating_img {
 		    -webkit-animation: rotation 2s infinite linear;
@@ -192,6 +193,7 @@
 		}
 
       	</style>
+      	
             <ul>
                 <li class="floatL header_menu">
                     <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순" class="btnLineC txt_md" >
@@ -215,7 +217,7 @@
                 </li>
             </ul>
         </article>
-            </div>
+         </div>
 </header>
 </body>
 </html>
