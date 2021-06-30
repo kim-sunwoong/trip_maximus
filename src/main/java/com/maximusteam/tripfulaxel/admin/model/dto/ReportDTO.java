@@ -1,12 +1,10 @@
 package com.maximusteam.tripfulaxel.admin.model.dto;
 
-import java.util.Date;
-
 public class ReportDTO {
 
     private int reportNo; // 신고번호
     private String reportTitle; // 신고내용
-    private String reportId;
+    private String reportId; // 이메일
     private int reportWriter; //신고작성자
     private int reportTarget; //신고대상자
     private String reportStatus; // 신고 처리상태
@@ -14,7 +12,7 @@ public class ReportDTO {
     private String responseContent;
     private java.sql.Date responseDate;
     private int responseCode;
-    private int requestCode;
+    private int requestCode; 
 	
     public ReportDTO() {}
 

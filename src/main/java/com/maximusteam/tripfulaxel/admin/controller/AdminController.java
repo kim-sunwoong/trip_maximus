@@ -126,6 +126,7 @@ public class AdminController {
 	@PostMapping("insertReport")
 	public String insertReport(@ModelAttribute ReportDTO report,Model model) {
 	
+		System.out.println("1111111111111111111111111" + report);
 		int insertReport = adminService.insertReport(report);
 		model.addAttribute("insertReport", insertReport);
 		

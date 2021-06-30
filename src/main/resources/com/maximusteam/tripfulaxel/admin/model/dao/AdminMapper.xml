@@ -47,7 +47,6 @@
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
 		<result column="EXAMINE_REQUEST_TO" property="reportTarget" />
 		<result column="EXAMINE_REQUEST_FROM" property="reportWriter" />
-		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
 		<result column="EXAMINE_RESPONSE_CODE" property="responseCode" />
 		<result column="EXAMINE_REQUEST_CODE" property="requestCode" />
 	</resultMap>
@@ -123,7 +122,7 @@
 	</select>
 	
 	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">
-        SELECT 
+	        SELECT 
                A.EXAMINE_REQUEST_REASON
              , A.EXAMINE_REQUEST_FROM
              , A.EXAMINE_REQUEST_TO
@@ -131,7 +130,8 @@
              , B.EXAMINE_REQUEST_CODE
          FROM EXAMINE A
          JOIN EXAMINE_RESPONSE B ON (A.EXAMINE_REQUEST_CODE = B.EXAMINE_REQUEST_CODE)
-        WHERE A.EXAMINE_REQUEST_CODE = #{no}
+         JOIN EXAMINE_TYPE C ON (A.TYPE_CODE = C.EXAMINE_TYPE_CODE)
+        WHERE A.EXAMINE_REQUEST_CODE = #{ no };
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
@@ -185,26 +185,33 @@
 	<insert id="insertReport" parameterType="ReportDTO">
 	
 		<selectKey  resultType="map" keyProperty="responseCode,requestCode" order="BEFORE">
-        SELECT 
-               MAX(EXAMINE_RESPONSE_CODE) + 1
-             , MAX(EXAMINE_REQUEST_CODE) + 1 
-          FROM EXAMINE_RESPONSE
+	        SELECT 
+	               MAX(EXAMINE_RESPONSE_CODE) + 1 as responseCode
+	             , MAX(EXAMINE_REQUEST_CODE) + 1 as requestCode
+	          FROM EXAMINE_RESPONSE
     	</selectKey>
-
-	INSERT 
-	  INTO EXAMINE_RESPONSE
-	VALUES
+		INSERT 
+		  INTO EXAMINE_RESPONSE
 		(
-		 #{ responseCode }
-		,#{ ReportDTO.responseDate } 
-		,#{ ReportDTO.responseContent }
-		,#{ requestCode }
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
 		, 2
 		, 1
 		)
 	</insert>
 	
-	<update id="updateReportStatus" parameterType="_int">
+	<update id="updateReportStatus" parameterType="ReportDTO">
         UPDATE 
   	    EXAMINE
   		   SET 
@@ -212,7 +219,7 @@
          WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
 	</update> 
 	
-	<update id="updateReportCount" parameterType="_int">
+	<update id="updateReportCount" parameterType="ReportDTO">
         UPDATE 
           USER a, USER b
            SET

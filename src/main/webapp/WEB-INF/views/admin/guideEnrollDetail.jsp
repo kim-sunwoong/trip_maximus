@@ -14,7 +14,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
             rel="stylesheet"/>
-
+   
 		<link href="/tripfulaxel/resources/admin/css/style.css" rel="stylesheet"/>
         <script src="/tripfulaxel/resources/admin/js/scripts.js"></script>
         <script src="/tripfulaxel/resources/admin/js/datatables-simple-demo.js"></script>
@@ -27,7 +27,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axcel</a>
+            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axel</a>
             <!-- Sidebar Toggle-->
             <button
                 class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -92,7 +92,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">
-                            Copyright &copy; Tripful axcel
+                            Copyright &copy; Tripful axel
                         </div>
                     </div>
                 </nav>
@@ -105,57 +105,65 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                	신고관리
+                                가이드 가입
                             </div>
 
                             <div class="card-body">
-                               <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertReport">
-                                    <table class="table table">
+                                <table class="table table">
                                     <tr>
-                                     <td style="width: 10%;">제목</td>
-                                     <td>
-                                     	<input type="text"  class="form-control" name="reportTitle" value="${selectReportDetail.reportTitle}" readonly>
-                                     </td>
+                                        <td style="width: 15%;">이름</td>
+                                        <td><input type="text"  class="form-control" name="writer"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 15%;">성별</td>
+                                        <td><input type="text"  class="form-control" name="writer"></td>
+                                    </tr>
+
+                                    <tr>
+                                     <td style="width: 15%;">활동명</td>
+                                     <td><input type="text"  class="form-control" name="writer"></td>
                                     </tr>
                                     <tr>
-                                     <td>신고 대상자</td>
-                                     <td>
-                                     	<input type="number"  class="form-control" name="reportTarget" value="${selectReportDetail.reportTarget}" readonly>
-                                     </td>
+                                     <td>가이드 경험 여부</td>
+                                     <td><input type="text"  class="form-control" name="subject" value=></td>
                                     </tr>
                                     <tr>
-                                     <td>신고 작성자</td>
-                                     <td>
-                                     	<input type="number"  class="form-control" name="reportWriter" value="${selectReportDetail.reportWriter}" readonly>
-                                     </td>
-                                    </tr>
-                                	
-                                    <tr>
-                                     <td>신고 내용</td>
-                                     <td>
-                                     	<!-- <textarea rows="10" cols="50" name="content" class="form-control" readonly></textarea> -->
-                                     	<input type="text"  class="form-control" name="reportContent" value="${selectReportDetail.reportTitle}" readonly>
-                                     </td>
-                                    </tr>
-									<tr>
-                                        <td>날짜</td>
-                                        <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
+                                        <td>개인차량여부</td>
+                                        <td><input type="text"  class="form-control" name="subject" value=></td>
                                        </tr>
-                                     <tr> 
+
                                     <tr>
-                                        <td>답변 내용</td>
-                                        <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
-                                       </tr>
+                                     <td>가이드 소개</td>
+                                     <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                                                    
+                                    <tr>
+                                        <td>신분증 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>가이드 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>활동 사진</td>
+                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                    </tr>
+
                                      <tr> 
                                      <td colspan="2"  class="text-center">
-                                      <button type="submit" class="btn btn-success">답변쓰기완료</button>
-                                      <!-- <input type="reset" value="취소" class="btn btn-warning">
-                                      <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
+                                     
+                                      <input type="submit" value="가입승인" class="btn btn-success">
+                                      <input type="reset" value="가입취소" class="btn btn-warning">
+                                      <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
                                      </td>
                                     </tr>
                                     
                                     </table>
-                                    </form>
                             </div>
 
                         </div>

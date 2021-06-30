@@ -21,25 +21,21 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	public AdminServiceImpl(AdminMapper mapper) {
-		System.out.println("연결제발!!!!!!!!!!!!!!!");
 		this.mapper = mapper;
 	}
 
 	@Override
 	public List<AdminDTO> selectAdminList() {
-		System.out.println("관리자 리스트111");
 		return mapper.selectAdmin();
 	}
 
 	@Override
 	public List<MemberDTO> selectMemberList() {
-		System.out.println("회원관리 리스트222");
 		return mapper.selectMember();
 	}
 
 	@Override
 	public List<ReportDTO> selectReportList() {
-		System.out.println("신고 리스트333");
 		return mapper.selectReport();
 	}
 
@@ -72,13 +68,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int deleteAdmin(int no) {
-		
 		return mapper.deleteAdmin(no);
 	}
 
 	@Override
 	public ReportDTO selectReportDetail(int no) {
-
 		return mapper.selectReportDetail(no);
 	}
 
