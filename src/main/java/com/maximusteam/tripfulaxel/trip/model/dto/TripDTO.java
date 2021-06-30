@@ -16,7 +16,7 @@ public class TripDTO {
 	private Date tripEndDate;
 	
 	private List<TripCourseDTO> tripCourseList;
-	private List<TripImageDTO> tripImgList;
+	private List<ImageDTO> tripImgList;
 	private List<TripThemeDTO> tripThemeList;
 	private List<TripTransitDTO> tripTransitList;
 	
@@ -42,7 +42,7 @@ public class TripDTO {
 
 	public TripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, String meetLocation,
 			String include, String nInclude, Date tripEndDate, List<TripCourseDTO> tripCourseList,
-			List<TripImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
+			List<ImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
 			int joinTripCode, int joinTripMaximum, int guideTripCode, int payment, int guideTripMinimum,
 			int guideTripMaximum, int userTripCode, String userTripComentTitle, String userTripComent,
 			int userTripComentPoint) {
@@ -142,11 +142,11 @@ public class TripDTO {
 		this.tripCourseList = tripCourseList;
 	}
 
-	public List<TripImageDTO> getTripImgList() {
+	public List<ImageDTO> getTripImgList() {
 		return tripImgList;
 	}
 
-	public void setTripImgList(List<TripImageDTO> tripImgList) {
+	public void setTripImgList(List<ImageDTO> tripImgList) {
 		this.tripImgList = tripImgList;
 	}
 

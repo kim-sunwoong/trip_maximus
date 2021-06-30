@@ -141,17 +141,22 @@
 				<c:forEach var="trip" items="${tripList }">
 			
 				<div class="col-lg-4 col-md-6">
-					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-						<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/usertrip/${trip.tripImgList[0].saveName}"
+					<div class="speaker" data-aos="fade-up" data-aos-delay="100" style="width:360px; height:270px;"
+					onclick="location.href='${pageContext.servletContext.contextPath}/trip/select?tripCode=${trip.tripCode }&tripType=3'">
+						<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${trip.tripImgList[0].saveName}"
 							alt="Speaker 1" class="img-fluid" style="object-fit:cover; width:100%; height:100%;">
 						<div class="details">
 							<h3>
 								<a><c:out value="${trip.tripTitle }"/></a>
 							</h3>
 							<p><c:out value="${trip.tripStartDate }"/> ~ <c:out value="${trip.tripEndDate }"/> </p>
-								<h4 style="color: white;">평점 : ${trip.tripCourseList[0].courseName}</h4>
+								<h4 style="color: white;">코스 : ${trip.tripCourseList[0].courseName}</h4>
 							<div class="social">
-								<h4 style="color: white;">모집 인원 : ${trip.joinTripMaximum}</h4>
+								<h4 style="color: white;">나의 후기 점수 : 
+									<c:forEach var="cnt" begin="1" end="${trip.userTripComentPoint}">
+ 										<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
+ 									</c:forEach>
+								</h4>
 							</div>
 						</div>
 					</div>

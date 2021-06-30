@@ -1,22 +1,22 @@
 package com.maximusteam.tripfulaxel.trip.model.dto;
 
-public class TripImageDTO {
+public class ImageDTO {
 
 	private String saveName;
 	private String orignName;
 	private int imgType;
-	private int tripCode;
+	private int code;
 	
-	public TripImageDTO() {
+	public ImageDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TripImageDTO(String saveName, String orignName, int imgType, int tripCode) {
+	public ImageDTO(String saveName, String orignName, int imgType, int code) {
 		super();
 		this.saveName = saveName;
 		this.orignName = orignName;
 		this.imgType = imgType;
-		this.tripCode = tripCode;
+		this.code = code;
 	}
 
 	public String getSaveName() {
@@ -43,19 +43,21 @@ public class TripImageDTO {
 		this.imgType = imgType;
 	}
 
-	public int getTripCode() {
-		return tripCode;
+	public int getCode() {
+		return code;
 	}
 
-	public void setTripCode(int tripCode) {
-		this.tripCode = tripCode;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	@Override
 	public String toString() {
-		return "TripImageDTO [saveName=" + saveName + ", orignName=" + orignName + ", imgType=" + imgType
-				+ ", tripCode=" + tripCode + "]";
+		return "ImageDTO [saveName=" + saveName + ", orignName=" + orignName + ", imgType=" + imgType + ", code=" + code
+				+ "]";
 	}
+
+
 	
 	
 }

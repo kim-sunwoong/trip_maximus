@@ -206,7 +206,7 @@
                 </li>
                 <li class="floatL header_menu">
 
-                    <a href="${pageContext.servletContext.contextPath}/trip/join/select/list" class="btnLineC txt_md">
+                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순" class="btnLineC txt_md">
                     <span style="color:white; font-size: 20px;" > 같이가요 여행</span></a>
                 </li>
                 <li class="floatL header_menu">
@@ -214,7 +214,7 @@
                     <span style="color:white; font-size: 20px;">여행 플래너</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/share/livechat" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
             </ul>

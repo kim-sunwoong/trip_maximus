@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  	pageEncoding="UTF-8"%>
+ 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!DOCTYPE html>
  <html>
  <head>
@@ -75,21 +76,11 @@
  			<div class="offerDetail floatL">
  				<div class="offer_main">
  					<div class="offer_main_slider">
- 						<div class="topimg">
- 							<img src="/tripfulaxel/resources/user/images/trip/jeju1.png">
- 						</div>
- 						<div class="topimg">
- 							<img src="/tripfulaxel/resources/user/images/trip/jeju2.png">
- 						</div>
- 						<div class="topimg">
- 							<img src="/tripfulaxel/resources/user/images/trip/jeju3.png">
- 						</div>
- 						<div class="topimg">
- 							<img src="/tripfulaxel/resources/user/images/trip/jeju4.png">
- 						</div>
- 						<div class="topimg">
- 							<img src="/tripfulaxel/resources/user/images/trip/jeju5.png">
- 						</div>
+ 						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
+ 							<div class="topimg">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${tripImg.saveName}">
+	 						</div>
+ 						</c:forEach>
 
  					</div>
 
@@ -99,7 +90,7 @@
  				<div class="offerNav">
  					<ul class="clearfix offerNavList" style="background:skyblue; color:white">
  						<li class="floatL" data-id="offerMaker"><a
- 							href="#offerMaker">같이가요!</a></li>
+ 							href="#offerMaker">나만의 여행!</a></li>
  						<li class="floatL" data-id="offerTravel"><a
  							href="#offerTravel">여행 소개</a></li>
  						<li class="floatL" data-id="Course"><a href="#Course">코스
@@ -115,7 +106,7 @@
  					<div class="clearfix2 offer_tm_profile">
  						<div class="profile_details clearfix">
  							<div class="pfImg floatL">
- 								<img src="/tripfulaxel/resources/user/images/trip/guide1.png">
+ 								<img src="/tripfulaxel/resources/images/trip/guide1.png">
  							</div>
  							<div class="tm_info floatL" style="font-size: 18px;">
  								<h3 class="nick">
@@ -125,10 +116,13 @@
  								</p>
 	
  								<p style="width: 100%;" class="txt_md">
- 									한마디 : 오랜만에 떠나는 여행 즐거운 추억 남겨보아요~~~!!
+ 									한마디 : <c:out value="${trip[0].userTripComentTitle }"/>
  								</p>
  								<p class="txt_md">
- 									평점5.0
+ 									나의 후기 점수 : 
+ 									<c:forEach var="cnt" begin="1" end="${trip[0].userTripComentPoint}">
+ 										<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
+ 									</c:forEach>
  								</p>
  							</div>
  						</div>
@@ -141,22 +135,17 @@
  						<ul class="starUl">
  							<li style="width: 100%; padding-left: 0">
  								<p class="WhiteSpacing text_cut_expand4"
- 									style="width: 100%; word-break: break-all;">저는 배낭 여행은 물론
- 									인솔자 분과 함께 떠나는 패키지 여행도 참 많이 다녔어요. 패키지 여행에서 항상 아쉬웠던 점은 그 지역에서
- 									유명하지도, 가고 싶지 않은 곳도 어쩔 수 없이 가야 할 때, 갈 생각 없던 상점에 따라가 생각에도 없던 물건을
- 									구매하고 있는 나 자신을 발견했을 때, 이렇게 내가 하고 싶은 알찬 여행이 아닌 이끌리는 여행을 할 때였어요.
- 									길지도 짧지도 않은 상하이 생활 3년 차! 상하이에 왔다면 정말 꼭 봐야 할 코스를 알차게 모아 소개시켜드릴게요!
- 									여행의 첫 시작, 1900년도 초반의 상하이를 느낄 수 있는 예원의 옛 거리부터 형형색색의 간판이 거리를 물들이는
- 									난징동루 보행길, 그리고 난징동루의 알록달록한 거리에 취해 걷다보면 눈 앞에 펼쳐지는 와이탄의 무지갯빛 야경까지,
- 									이색적이고 아름다운 도시 상하이의 매력을 느끼게 해드릴게요!</p>
+ 									style="width: 100%; word-break: break-all;">
+ 									<c:out value="${trip[0].tripIntro }"/>	
+ 								</p>
  							</li>
  						</ul>
  						<div class="offerBox">
  							<h4 class="txt_big">여행 테마</h4>
  							<ul class="textP">
- 								<li>1. TM만 알고 있는 시크릿 스팟 트래블</li>
- 								<li>2. 이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</li>
- 								<li>3. 현지의 트렌디한 BAR/PUB/CLUB</li>
+ 								<c:forEach var="theme" items="${trip[0].tripThemeList }" varStatus="status">
+	 								<li><c:out value="${status.count }"/>. <c:out value="${theme.themeDetail }"/>   </li>
+	 							</c:forEach>
  								<!-- <li class="iconUl_local">한국인 관광객이 1도 없는 로컬 트래블</li>
                                      <li class="iconUl_spot">TM만 알고 있는 시크릿 스팟 트래블</li>
                                      <li class="iconUl_ext">직접 체험하는 액티비티(익스트림 스포트 등) 트래블</li> -->
@@ -165,8 +154,9 @@
  						<div class="offerBox">
  							<h4 class="txt_big">여행 이동수단</h4>
  							<ul class="textP">
- 								<li>1. 현지인처럼 대중교통으로 이동해요.</li>
- 								<li>2. 여행지의 구석구석을 보며 걸어요.</li>
+ 								<c:forEach var="transit" items="${ trip[0].tripTransitList}" varStatus="status">
+ 									<li><c:out value="${status.count }"/>. <c:out value="${transit.transitDetail }"/></li>
+ 								</c:forEach>
  							</ul>
  						</div>
  					</div>
@@ -191,52 +181,25 @@
  								</span>
  							</h4>
  							<div class="corseWrap">
- 								<dl class="clearfix new_box_shadow">
- 									<dt class="floatL" style="width:200px; height:220px;">
- 									<img src="/tripfulaxel/resources/user/images/trip/jeju7.png">
- 									</dt>
- 									<dd class="floatL">
- 										<h5 class="txt_md" style="word-break: break-all;">여행의 첫
- 											시작, 예원</h5>
- 										<div>
- 											<p class="WhiteSpacing" style="word-break: break-all;">전통적이고
- 												웅장한 건물 사이에서 맛보는 로컬음식! 주문과 동시에 작은 대나무 찜기에 쪄 나오는 중국식 만두 샤오롱바오,
- 												딸기와 산사나무 열매를 긴 나무 막대에 꿰어 달콤한 시럽을 바른 후 굳혀 만든 전통 간식 과일 꼬치 탕후루,
- 												불판 위에서 지글지글 돌아가는 양꼬치 모두 예원에서 맛볼 수 있어요! 맘에 드시는 간식을 골라 한 입
- 												맛보신다면 여행에서의 소소한 행복에 포옥 빠지게 된답니다 :)</p>
- 										</div>
- 									</dd>
- 								</dl>
- 								<dl class="clearfix new_box_shadow">
- 									<dt class="floatL" style="width:200px; height:220px;">
- 									<img src="/tripfulaxel/resources/user/images/trip/jeju6.png">
- 									</dt>
- 									<dd class="floatL">
- 										<h5 class="txt_md" style="word-break: break-all;">난징동루에서
- 											와이탄까지</h5>
- 										<div>
- 											<p class="WhiteSpacing" style="word-break: break-all;">알록달록
- 												색칠놀이를 해놓은 것만 같은 복작복작하고 재미난 거리, 난징동루 보행길을 함께 걸어봐요. 조그마한 장신구를
- 												파는 상점부터 대형 복합 쇼핑몰, 최근 재오픈 한 M&M 초콜릿 스토어까지 없는 게 없는 이 곳! 상해
- 												여행에서 꼭 사진을 찍는다는 [ I♡SH ] 간판도 바로 이 곳 난징동루 보행길에 있답니다!</p>
- 										</div>
- 									</dd>
- 								</dl>
- 								<dl class="clearfix new_box_shadow">
- 									<dt class="floatL" style="width:200px; height:220px;">
- 									<img src="/tripfulaxel/resources/user/images/trip/jeju8.png">
- 									</dt>
- 									<dd class="floatL">
- 										<h5 class="txt_md" style="word-break: break-all;">중국 하면
- 											상하이! 상하이 하면 와이탄!</h5>
- 										<div>
- 											<p class="WhiteSpacing" style="word-break: break-all;">상하이에서
- 												제일 핫한 이 곳! 상하이 도심속의 작은 유럽 와이탄! 난징동루 보행길의 알록달록한 거리에 취해 걷다보면 눈
- 												앞에 펼쳐지는 와이탄의 무지개빛 야경. 끝없이 펼쳐져 있는 아름다운 건물들을 눈에 담고 황푸강의 시원한
- 												바람을 느껴보아요!</p>
- 										</div>
- 									</dd>
- 								</dl>
+ 								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
+ 									<dl class="clearfix new_box_shadow">
+	 									<dt class="floatL" style="width:200px; height:220px;">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${course.image}">
+	 									</dt>
+	 									<dd class="floatL">
+	 										<h5 class="txt_md" style="word-break: break-all;">
+	 											<c:out value="${status.count }"/>. <c:out value="${course.courseName }"/>
+	 										</h5>
+	 										<div>
+	 											<p class="WhiteSpacing" style="word-break: break-all;">
+	 												<c:out value="${course.courseInfo }"/>
+	 											</p>
+	 										</div>
+	 									</dd>
+	 								</dl>
+ 								
+ 								</c:forEach>
+ 							
  							</div>
  						</div>
  						<div class="offerBox">
@@ -274,19 +237,29 @@
  									비슷한 디디추싱을 이용하게 될 거예요. 택시 이용 시엔 트래블 비용이 추가됩니다:)</li>
  							</ul>
  						</div>
- 						<div class="offerBox">
- 							<h4 class="txt_big">포함사항</h4>
- 							<ul class="textP">
- 								<li class="txtG" style="word-break: break-all;">여행 통역비,
- 									가이드비, 간식비(샤오롱바오,탕후루,양꼬치 중 택1)</li>
- 							</ul>
- 						</div>
- 						<div class="offerBox">
- 							<h4 class="txt_big">불포함사항</h4>
- 							<ul class="textP">
- 								<li class="txtG" style="word-break: break-all;">교통비</li>
- 							</ul>
- 						</div>
+ 						<c:if test="${trip[0].include ne ''} ">
+ 						
+	 						<div class="offerBox">
+	 							<h4 class="txt_big">포함사항</h4>
+	 							<ul class="textP">
+	 								<li class="txtG" style="word-break: break-all;">
+	 									<c:out value="${trip[0].include }"/>
+	 								</li>
+	 							</ul>
+	 						</div>
+ 						
+ 						</c:if>
+ 						<c:if test="${trip[0].nInclude ne ''}">
+	 						<div class="offerBox">
+	 							<h4 class="txt_big">불포함사항</h4>
+	 							<ul class="textP">
+	 								<li class="txtG" style="word-break: break-all;">
+	 									<c:out value="${trip[0].nInclude }"/>
+	 								</li>
+	 							</ul>
+	 						</div>
+ 						
+ 						</c:if>
  						<div class="offerBox">
  							<h4 class="txt_big">취소 및 환불 규정</h4>
  							<ul class="textP text_cut_expand2">
@@ -323,20 +296,18 @@
  			<div id="head">
  				<div class="offerResult new_box_shadow" style="width:380px;">
  					<span class="area_txt">여행 설계자의 여행 후기 입니다.</span>
- 					<h2 class="tit travel_title">나만의 로컬 맛집 탐방기!!</h2>
+ 					<h2 class="tit travel_title"><c:out value="${trip[0].userTripComentTitle }"/></h2>
  					<div
  						style="width: 30px; position: absolute; top: 10px; right: 21px;">
  					</div>
  					<br>
  					<ul class="inputLabel">
- 						<span class=" txtC" style="font-size: 16px; color:black;">여행 날짜 : 7월17일 ~ 7월18일</span><br>
+ 						<span class=" txtC" style="font-size: 16px; color:black;">여행 날짜 : <c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/></span><br>
  						<span class=" txtC" style="font-size: 16px; color:black;">여행 인원 : 혼자</span><br>
- 						<span class=" txtC" style="font-size: 16px; color:black;">평점 : </span>
- 						<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
- 						<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
- 						<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
- 						<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
- 						<img src="/tripfulaxel/resources/user/images/common/star.png" style="width:20px; height:20px;">
+ 						<span class=" txtC" style="font-size: 16px; color:black;">나의 후기 점수 : </span>
+ 						<c:forEach var="cnt" begin="1" end="${trip[0].userTripComentPoint}">
+							<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
+ 						</c:forEach>
  					</ul>
  						<div class="msgCont">
                     <div class="clearfix">
@@ -344,18 +315,18 @@
                         
                     </div>
                     <div style="width:340px; height:250px; border:1px">
-                    <img src="/tripfulaxel/resources/user/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
+                    <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
                     </div>
                 </div>
  						<div class="msgCont">
                     <div class="clearfix">
                         <div class="msgImg floatL" style="width:50px; height:50px;">
-                            <img src="/tripfulaxel/resources/user/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
+                            <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
                         </div>
                         <span class=" txtC" style="font-size: 17px; color:black; margin-top:10px;">나만의 여행 후기</span>
                     </div>
                     <div style="width:340px; height:250px; border:1px solid #E2E2E2">
-                    <label style="font-size: 16px; color:black; margin-left:10px;"> 혼자 다녀온 여행 넘넘 맛났다~~</label></div>
+                    <label style="font-size: 16px; color:black; margin-left:10px;"> <c:out value="${trip[0].userTripComent }"/></label></div>
                 </div>
  						
  				</div>
