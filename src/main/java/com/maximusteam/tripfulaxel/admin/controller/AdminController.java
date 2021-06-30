@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
 
 @Controller
@@ -25,8 +28,17 @@ public class AdminController {
 	
 	@GetMapping("notice") 
 	public String selectNotice(Model model) {
-
 		return "admin/noticeManagement"; 
+	}
+	
+	@GetMapping("noticeDetail") 
+	public String selectNoticeDetail(Model model) {
+		return "admin/noticeDetail"; 
+	}
+	
+	@GetMapping("noticeWrite") 
+	public String selectNoticeWrite(Model model) {
+		return "admin/noticeWrite"; 
 	}
 	
 	@GetMapping("workerList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
@@ -35,7 +47,6 @@ public class AdminController {
 		System.out.println("여기는 된단 소린데..");
 		List<AdminDTO> adminList = adminService.selectAdminList();
 		model.addAttribute("selectAdmin", adminList);
-		System.out.println("여기가 안된다 소리..");
 			
 		return "admin/workerList"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
 	}
@@ -88,18 +99,18 @@ public class AdminController {
 	return "admin/memberManagementDetail"; 
 	}
 	
-	@GetMapping("memberDelete")
-	public String MemberDelete(@RequestParam("memberNo")int no,Model model) {
+	@GetMapping("deleteMember")
+	public String deleteMember(@RequestParam("memberNo")int no,Model model) {
 	
-	model.addAttribute("memberDelete", adminService.MemberDelete(no));
+	model.addAttribute("deleteMember", adminService.deleteMember(no));
 				
 	return "redirect:memberList"; 
 	}
 	
-	@GetMapping("adminDelete")
-	public String adminDelete(@RequestParam("adminNo")int no,Model model) {
+	@GetMapping("deleteAdmin")
+	public String deleteAdmin(@RequestParam("adminNo")int no,Model model) {
 	
-	model.addAttribute("adminDelete", adminService.adminDelete(no));
+	model.addAttribute("deleteAdmin", adminService.deleteAdmin(no));
 				
 	return "redirect:workerList"; 
 	}
@@ -110,6 +121,21 @@ public class AdminController {
 	model.addAttribute("selectReportDetail", adminService.selectReportDetail(no));
 				
 	return "admin/reportManagementDetail"; 
+	}
+	
+	@PostMapping("insertReport")
+	public String insertReport(@ModelAttribute ReportDTO report,Model model) {
+	
+		System.out.println("1111111111111111111111111" + report);
+		int insertReport = adminService.insertReport(report);
+		model.addAttribute("insertReport", insertReport);
+		
+		if(insertReport > 0) {
+			adminService.updateReportStatus(report);
+			adminService.updateReportCount(report);
+		}
+
+	return "admin/reportManagement"; 
 	}
 
 }

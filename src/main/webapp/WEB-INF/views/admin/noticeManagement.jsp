@@ -147,18 +147,8 @@
                                             <td>강사</td>
                                             <td>이해승</td>
                                             <td>
-                                                <button type="submit" onclick="location.href='AdminNoticeDetail.html'">
-                                                    상세보기
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>일반 회원</td>
-                                            <td>김현빈</td>
-                                            <td>
-                                                <button type="button" onclick="location.href=''">
-                                                    상세보기
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
                                                 </button>
                                             </td>
                                         </tr>
@@ -166,7 +156,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">작성하기</button>
+                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;" type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeWrite'">
+                            	작성하기
+                            </button>
 
                         </div>
                     </div>
