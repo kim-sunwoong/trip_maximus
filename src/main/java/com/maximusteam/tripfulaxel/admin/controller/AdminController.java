@@ -70,7 +70,6 @@ public class AdminController {
 	@GetMapping("guideList")
 	public String selectGuideList(Model model) {
 		model.addAttribute("selectGuide", adminService.selectGuideList());
-
 		return "admin/guideEnroll";
 	}
 
@@ -78,7 +77,6 @@ public class AdminController {
 	public String selectCalculateList(Model model) {
 
 		model.addAttribute("selectCalculate", adminService.selectCalculateList());
-
 		return "admin/guideCalculate";
 	}
 
@@ -86,7 +84,6 @@ public class AdminController {
 	public String selectTaxList(Model model) {
 
 		model.addAttribute("selectTax", adminService.selectTaxList());
-
 		return "admin/tax";
 	}
 
@@ -94,7 +91,6 @@ public class AdminController {
 	public String selectMemberDetail(@RequestParam("memberNo") int no, Model model) {
 
 		model.addAttribute("selectMemberDetail", adminService.selectMemberDetail(no));
-
 		return "admin/memberManagementDetail";
 	}
 
@@ -102,7 +98,6 @@ public class AdminController {
 	public String deleteMember(@RequestParam("memberNo") int no, Model model) {
 
 		model.addAttribute("deleteMember", adminService.deleteMember(no));
-
 		return "redirect:memberList";
 	}
 
@@ -110,7 +105,6 @@ public class AdminController {
 	public String deleteAdmin(@RequestParam("adminNo") int no, Model model) {
 
 		model.addAttribute("deleteAdmin", adminService.deleteAdmin(no));
-
 		return "redirect:workerList";
 	}
 
@@ -118,14 +112,12 @@ public class AdminController {
 	public String selectReportDetail(@RequestParam("reportNo") int no, Model model) {
 
 		model.addAttribute("selectReportDetail", adminService.selectReportDetail(no));
-
 		return "admin/reportManagementDetail";
 	}
 
 	@PostMapping("insertReport")
 	public String insertReport(@ModelAttribute ReportDTO report, Model model) {
 
-		System.out.println("1111111111111111111111111" + report);
 		int insertReport = adminService.insertReport(report);
 		model.addAttribute("insertReport", insertReport);
 
@@ -134,7 +126,14 @@ public class AdminController {
 			adminService.updateReportCount(report);
 		}
 
-		return "admin/reportManagement";
+		return "redirect:reportList";
+	}
+	
+	@GetMapping("enrollDetail")
+	public String selectEnrollDetail(@RequestParam("guideNo") int no, Model model) {
+
+		model.addAttribute("selectEnrollDetail", adminService.selectEnrollDetail(no));
+		return "admin/guideEnrollDetail";
 	}
 
 }

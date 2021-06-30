@@ -91,6 +91,11 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateReportCount(report);
 	}
 
+	@Override
+	public GuideDTO selectEnrollDetail(int no) {
+		return mapper.selectEnrollDetail(no);
+	}
+
 
 
 

@@ -37,6 +37,8 @@ public interface AdminService {
 
 	int updateReportCount(ReportDTO report);
 
+	GuideDTO selectEnrollDetail(int no);
+
 
 	
 }

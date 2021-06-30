@@ -53,10 +53,20 @@
 	
 	<!-- 가이드 리스트 -->
 	<resultMap id="guideList" type="GuideDTO">
-		<id column="GUIDE_CODE" property="guideNo" />
+		<id column="USER_CODE" property="guideNo" />
 		<result column="USER_EMAIL" property="guideId" />
 		<result column="USER_GUIDE_YN" property="guideEnrollStatus" />
 		<result column="GUIDE_YN" property="guideApproveStatus" />
+	</resultMap>
+
+	<!-- 가이드 상세 -->
+	<resultMap id="guideDetail" type="GuideDTO">
+		<result column="USER_NAME" property="guideName" />
+		<result column="USER_GENDER" property="guideGender" />
+		<result column="GUIDE_NICKNAME" property="guideNickname" />
+		<result column="GUIDE_EXP_YN" property="guideExp" />
+		<result column="GUIDE_CAR_YN" property="guideCar" />
+		<result column="GUIDE_INTRO" property="guideIntro" />
 	</resultMap>
 	
 	<!-- 정산 리스트 -->
@@ -143,14 +153,28 @@
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
-        SELECT 
-               A.GUIDE_CODE
-             , C.USER_EMAIL
-             , C.USER_GUIDE_YN
-             , A.GUIDE_YN
-          FROM GUIDE A
-          JOIN USER C ON (A.USER_CODE = C.USER_CODE)
-         WHERE A.GUIDE_YN = 'N'
+	    SELECT 
+               A.USER_CODE
+             , A.USER_EMAIL
+             , A.USER_GUIDE_YN
+             , B.GUIDE_YN
+          FROM USER A
+          JOIN GUIDE B ON (A.USER_CODE = B.USER_CODE)
+         WHERE A.USER_GUIDE_YN = 'Y'
+           AND B.GUIDE_YN = 'N'
+	</select>
+	
+    <select id="selectEnrollDetail" resultMap="guideDetail" parameterType="_int">
+	         SELECT 
+	                B.USER_NAME
+	              , B.USER_GENDER
+	              , A.GUIDE_NICKNAME
+	              , A.GUIDE_EXP_YN
+	              , A.GUIDE_CAR_YN
+	              , A.GUIDE_INTRO
+	           FROM GUIDE A 
+	           JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	          WHERE A.GUIDE_CODE = #{ no } 
 	</select>
 	
 	<select id="selectCalculate" resultMap="calculateList">
@@ -195,7 +219,7 @@
 		<selectKey  resultType="ReportDTO" keyColumn="responseCode,requestCode" keyProperty="responseCode,requestCode" order="BEFORE">
 	        SELECT 
 	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	             , MAX(EXAMINE_REQUEST_CODE + 1)  as requestCode
+	             , MAX(EXAMINE_REQUEST_CODE)  as requestCode
 	          FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
