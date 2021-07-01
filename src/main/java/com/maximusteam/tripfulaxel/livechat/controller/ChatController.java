@@ -58,12 +58,12 @@ public class ChatController {
 		for(ChatRoomDTO room : roomList) {
 			System.out.println(room);
 			
-			for(String email : room.getUserEmailList()) {
-				System.out.println(email);
-			}
-			for(ChatMessageDTO message : room.getMessageList()) {
-				System.out.println(message);
-			}
+//			for(String email : room.getUserEmailList()) {
+//				System.out.println(email);
+//			}
+//			for(ChatMessageDTO message : room.getMessageList()) {
+//				System.out.println(message);
+//			}
 		}
 		
 		if(roomCode != 0 && userCode != 0) {

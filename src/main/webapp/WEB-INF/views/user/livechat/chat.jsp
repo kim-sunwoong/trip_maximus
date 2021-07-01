@@ -263,7 +263,7 @@ function disconnect() {
 
 function send() {
 	alert(1);
-    data = {'userCode' :userCode, 'userEmail' :sender, 'roomCode': ${room.roomCode},'messageContent': $("#message").val()};
+    data = {'userCode' :userCode, 'userEmail' :${sessionScope.email}, 'roomCode': ${room.roomCode},'messageContent': $("#message").val()};
     stompClient.send("/app/chat/send", {}, JSON.stringify(data));
     showMessage(data);
     $("#message").val('');

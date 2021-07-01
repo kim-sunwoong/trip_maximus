@@ -8,7 +8,7 @@
 		<result property="roomCode" column="CHAT_ROOM_CODE"/>
 		<result property="roomTitle" column="CHAT_ROOM_TITLE"/>
 	
-		<collection property="userEmailList" ofType="java.lang.String">
+		<collection property="userEmailList" ofType="java.lang.String" notNullColumn="USER_EMAIL">
 			<result column="USER_EMAIL"/>
 		</collection>
 		
@@ -25,7 +25,7 @@
 		SELECT DISTINCT
 			   cr.CHAT_ROOM_CODE,
 			   cr.CHAT_ROOM_TITLE
-		<if test="roomCode gt 0">
+		 <!-- <if test="roomCode gt 0">
 			 , m.USER_CODE,
 			   u.USER_EMAIL,
 			   m.MESSAGE_CODE,
@@ -41,10 +41,10 @@
 			   WHERE cr.CHAT_ROOM_CODE = #{roomCode}
 			</when>
 			<otherwise>
-				FROM CHAT_ROOM cr
 			</otherwise>
-		</choose>
+		</choose> -->
 		
+				FROM CHAT_ROOM cr
 	</select>
 	
 </mapper>
