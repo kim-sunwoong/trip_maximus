@@ -45,12 +45,7 @@
 		<beans:property name="maxUploadSize" value="10000000" />
 	</beans:bean>
 	
-	<websocket:handlers>
-		<websocket:mapping handler="chatHandler" path="/chat"/>
-		<websocket:sockjs></websocket:sockjs>
-	</websocket:handlers>
 	
-	<beans:bean id="chatHandler" class="com.maximusteam.tripfulaxel.livechat.controller.ChatHandler"></beans:bean>
 	
 <!-- 	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<beans:property name="exceptionMappings">
