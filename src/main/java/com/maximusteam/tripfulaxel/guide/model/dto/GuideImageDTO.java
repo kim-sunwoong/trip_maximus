@@ -2,7 +2,7 @@ package com.maximusteam.tripfulaxel.guide.model.dto;
 
 public class GuideImageDTO {
 
-	private int imageCode;
+	private int imageCode; // pk
 	private String savedName;
 	private int imageTypeCode;
 	private String originName;
