@@ -9,17 +9,32 @@ public class ChatMessageDTO {
 	private String messageContent;
 	private Date messageDate;
 	private int userCode;
+	private String userEmail;
 	
+
 	public ChatMessageDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public ChatMessageDTO(int messageCode, String messageContent, Date messageDate, int userCode) {
+	
+	
+	
+	public ChatMessageDTO(int messageCode, String messageContent, Date messageDate, int userCode, String userEmail) {
 		super();
 		this.messageCode = messageCode;
 		this.messageContent = messageContent;
 		this.messageDate = messageDate;
 		this.userCode = userCode;
+		this.userEmail = userEmail;
+	}
+
+
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
 	public int getMessageCode() {
@@ -54,11 +69,15 @@ public class ChatMessageDTO {
 		this.userCode = userCode;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "ChatMessage [messageCode=" + messageCode + ", messageContent=" + messageContent + ", messageDate="
-				+ messageDate + ", userCode=" + userCode + "]";
+		return "ChatMessageDTO [messageCode=" + messageCode + ", messageContent=" + messageContent + ", messageDate="
+				+ messageDate + ", userCode=" + userCode + ", userEmail=" + userEmail + "]";
 	}
+
+
 	
 	
 	

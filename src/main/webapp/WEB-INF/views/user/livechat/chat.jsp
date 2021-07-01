@@ -255,7 +255,7 @@ function connect() {
 }
 
 function send() {
-    data = {'chatRoomId': chatRoomId, 'sender' :nickname, 'receiver': receiver,'message': $("#message").val()};
+    data = {'chatRoomId': ${roomCode}, 'sender' :${sessionScope.userCode}, 'receiver': receiver,'message': $("#message").val()};
     stompClient.send("/app/chat/send", {}, JSON.stringify(data));
     showMessage(data);
     $("#message").val('');
@@ -440,7 +440,7 @@ function send() {
 				</li>
 				<li class="me">
 					<div class="entete">
-						<h3>10:12AM, Today</h3>
+						<h3>10:12AM</h3>
 						<h2>Vincent</h2>
 						<span class="status blue"></span>
 					</div>
@@ -451,10 +451,8 @@ function send() {
 				</li>
 			</ul>
 			<footer>
-				<textarea placeholder="Type your message"></textarea>
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
-				<a href="#">Send</a>
+				<textarea placeholder="Type your message" id="message"></textarea>
+				<a onclick="send()">Send</a>
 			</footer>
 		</main>
 	</div>

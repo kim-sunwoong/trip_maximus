@@ -5,9 +5,10 @@ import java.util.List;
 public class ChatRoomDTO {
 	
 	private int roomCode;
+	
 	private String roomTitle;
 	
-	private List<Integer> uroomUserList;
+	private List<String> userEmailList;
 	
 	private List<ChatMessageDTO> messageList;
 	
@@ -17,11 +18,11 @@ public class ChatRoomDTO {
 	}
 
 
-	public ChatRoomDTO(int roomCode, String roomTitle, List<Integer> uroomUserList, List<ChatMessageDTO> messageList) {
+	public ChatRoomDTO(int roomCode, String roomTitle, List<String> userEmailList, List<ChatMessageDTO> messageList) {
 		super();
 		this.roomCode = roomCode;
 		this.roomTitle = roomTitle;
-		this.uroomUserList = uroomUserList;
+		this.userEmailList = userEmailList;
 		this.messageList = messageList;
 	}
 
@@ -46,13 +47,13 @@ public class ChatRoomDTO {
 	}
 
 
-	public List<Integer> getUroomUserList() {
-		return uroomUserList;
+	public List<String> getUserEmailList() {
+		return userEmailList;
 	}
 
 
-	public void setUroomUserList(List<Integer> uroomUserList) {
-		this.uroomUserList = uroomUserList;
+	public void setUserEmailList(List<String> userEmailList) {
+		this.userEmailList = userEmailList;
 	}
 
 
@@ -68,10 +69,9 @@ public class ChatRoomDTO {
 
 	@Override
 	public String toString() {
-		return "ChatRoomDTO [roomCode=" + roomCode + ", roomTitle=" + roomTitle + ", uroomUserList=" + uroomUserList
+		return "ChatRoomDTO [roomCode=" + roomCode + ", roomTitle=" + roomTitle + ", userEmailList=" + userEmailList
 				+ ", messageList=" + messageList + "]";
 	}
-	
 	
 	
 

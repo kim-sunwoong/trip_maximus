@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.maximusteam.tripfulaxel.livechat.model.dao.ChatMapper">
+	
+	<resultMap type="com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO" id="chatRoom">
+		
+		<result property="roomCode" column="CHAT_ROOM_CODE"/>
+		<result property="roomTitle" column="CHAT_ROOM_TITLE"/>
+	
+		<!-- <collection property="userEmailList" ofType="java.lang.String">
+			<result column="USER_EMAIL"/>
+		</collection>
+		
+		<collection property="messageList" ofType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
+			<result property="messageContent" column="MESSAGE_CONTENT"/>
+			<result property="messageDate" column="MESSAGE_DATE"/>
+			<result property="userCode" column="USER_CODE"/>
+			<result property="userEmail" column="USER_EMAIL"/>
+		</collection>  -->
+		
+	</resultMap>
+	
+	<select id="selectChatRoomList" parameterType="Map" resultMap="chatRoom">
+		SELECT 
+			   cr.CHAT_ROOM_CODE,
+			   cr.CHAT_ROOM_TITLE
+		<if test="roomCode gt 0">
+			 , cj.USER_CODE,
+			   m.MESSAGE_CONTENT,
+			   m.MESSAGE_DATE,
+			   u.USER_EMAIL 
+		</if>
+		  FROM CHAT_ROOM cr
+		<if test="roomCode gt 0">
+		  JOIN CHAT_JOIN cj ON (cr.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
+		  JOIN MESSAGE m ON (cr.CHAT_ROOM_CODE = m.CHAT_ROOM_CODE)
+		  JOIN `USER` u ON (cj.USER_CODE = u.USER_CODE)
+		 WHERE cr.ROOM_CODE = #{roomCode} 
+		</if>
+	</select>
+	
+</mapper>
