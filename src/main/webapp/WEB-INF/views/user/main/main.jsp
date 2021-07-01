@@ -359,6 +359,8 @@ li.header_menu:hover {
 			</div>
 		</div>
 	</div>
+	
+	
 	<!-- //이메일(ID) 찾기 완료 팝업 끝-->
 	<!-- 이메일(ID) 찾기 팝업 -->
 	<div class="pop_bg pop_wrap">
@@ -367,7 +369,6 @@ li.header_menu:hover {
 			<span class="close_btn"></span>
 			<div class="member_wrap" style="width: 100%; padding: 0 5%;">
 				<h3 class="tit txt_bold">이메일(ID) 찾기</h3>
-				<!-- <p class="pop_sub_title txt_bs">트래블메이커 가입 시 입력했던 이름과 생년월일을 입력해주시면<br>아이디를 알려드립니다.</p> -->
 				<p class="pop_sub_title txt_bs" style="text-align: center;">
 					Tripful Axel 가입 시 입력했던 이름을 입력해주시면<br>이메일(ID)을 알려드립니다.<br>
 					<span>* 표시는 필수 입력입니다. <br>(생년월일 입력시에는 전체 다 입력해주세요)
@@ -376,43 +377,54 @@ li.header_menu:hover {
 				<form class="member_form">
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
+					
 						<input type="radio" id="find_gender1" name="find_gender"
 							value="남자"
-							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
+							style="display: none; margin-top: 0; vertical-align: 
+							middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender1" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> <span
-							class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> <input type="radio" id="find_gender2" name="find_gender"
-							value="여자"
+							style="margin-top: 10px; vertical-align: middle; height: 40px; 
+							display: inline-block; width: calc(50% - 5px);">
+							<i style="margin: 12px 9px;" class="floatL"></i> 
+							<span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
+						</label> 
+						
+						<input type="radio" id="find_gender2" name="find_gender" value="여자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender2" class="cf"
 							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i><span
-							class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
+							<i style="margin: 12px 9px;" class="floatL"></i>
+						<span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
+						
 					</div>
 					<div class="birth_select clearfix">
-						<input type="text" class="birth_year" placeholder="출생연도"
-							name="find_id_year"> <select name="find_id_mon">
-							<option value="0">월</option>
-						</select> <select name="find_id_day">
-							<option value="0">일</option>
-						</select>
+					 <input
+						type="text" id="userBday" name="userBday" value="19901129"
+						required class="frm_input half_input"
+						placeholder="* 출생연도(예:19900120)">
 					</div>
+					
+					
 					<button class="btnBgC txt_bs find_id_button submit" type="button"
 						value="이메일(ID) 찾기" style="margin-top: 3vh;">이메일(ID) 찾기</button>
 				</form>
+				
 				<ul class="find_signup clearfix">
 					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기</a></li>
 					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
+				
 			</div>
 		</div>
 	</div>
 	<!-- //이메일(ID) 찾기 팝업 끝-->
+	
+	
+	
+	
 	<!-- 비밀번호 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_password_fin_pop"
@@ -544,7 +556,6 @@ li.header_menu:hover {
    					if(data == 'success') {
    						isDuplicate = false;
    						alert("현재 이메일을 사용하셔도 됩니다.");
-   						gbl_data = 1;
    					}  else {
    						alert("중복된 이메일입니다. 다른 이메일을 사용해주세요.");
    						$("#userEmail").select();
