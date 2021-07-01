@@ -243,23 +243,49 @@ main footer a{
 <!-- stomp를 사용하기 위한 라이브러리 추가 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
+
 function connect() {
     var socket = new SockJS('/chat');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function () {
-        stompClient.subscribe('/topic/' + nickname, function (e) {
+        stompClient.subscribe('/topic/' + eamil, function (e) {
             showMessage(JSON.parse(e.body));
             alertClosing('comeMessage',2000);
         });
     });
 }
 
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+}
+
 function send() {
-    data = {'chatRoomId': ${roomCode}, 'sender' :${sessionScope.userCode}, 'receiver': receiver,'message': $("#message").val()};
+	alert(1);
+    data = {'userCode' :userCode, 'userEmail' :sender, 'roomCode': ${room.roomCode},'messageContent': $("#message").val()};
     stompClient.send("/app/chat/send", {}, JSON.stringify(data));
     showMessage(data);
     $("#message").val('');
     alertClosing('successMessage',2000);
+}
+
+function showMessage(e) {
+    space = document.getElementById("space");
+    space.innerHTML = "<div class='row'> <div class='col-lg-12'> <div class='media'> <div class='media-body'> <h4 class='media-heading'>" +
+        e.sender + "</h4><h4 class='small pull-right'>방금</h4> </div> <p>" +
+        e.message + "</p> </div> </div> </div> <hr>" + space.innerHTML;
+};
+window.onbeforeunload = function(e){
+    disconnect();
+}
+
+function alertClosing(selector, delay){
+    console.log(selector);
+    document.getElementById(selector).style.display = "block";
+    window.setTimeout(function(){
+        document.getElementById(selector).style.display = "none";
+    },delay);
 }
 
 </script>
@@ -271,19 +297,17 @@ function send() {
 				<input type="text" placeholder="search">
 			</header>
 			<ul>
-				<c:forEach var="email" items="${roomList[0].userEmailList }">
-					<li>
+				<c:forEach var="email" items="${ room.userEmailList}">
+					<li style="margin-left:20px;">
 						<div>
-							<h2>접속중 회원</h2>
+							<h2><c:out value="${email }"/></h2>
 							<h3>
-								<span class="status orange"></span>
-								<c:out value="${email}"/>
+								<span class="status green"></span>
+								접속중 입니다.
 							</h3>
 						</div>
 					</li>
-				
 				</c:forEach>
-				
 			</ul>
 		</aside>
 		<main>
@@ -365,7 +389,7 @@ function send() {
 			</ul>
 			<footer>
 				<textarea placeholder="Type your message" id="message"></textarea>
-				<a onclick="send()">Send</a>
+				<button onclick="send()">Send</button>
 			</footer>
 		</main>
 	</div>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,12 @@ public class ChatController {
 	public ChatController(ChatService chatService) {
 		this.chatService = chatService;
 	}
+	
+	@MessageMapping("/chat/send")
+	public void sendMsg(ChatMessageDTO message) {
+		System.out.println(message.getMessageContent());
+	}
+	
 	
 	@PostMapping("insert/chatRoom")
 	public String insertChatRoom(@RequestParam String userEmail) {

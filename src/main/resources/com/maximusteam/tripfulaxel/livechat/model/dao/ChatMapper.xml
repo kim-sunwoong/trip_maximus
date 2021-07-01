@@ -8,7 +8,7 @@
 		<result property="roomCode" column="CHAT_ROOM_CODE"/>
 		<result property="roomTitle" column="CHAT_ROOM_TITLE"/>
 	
-		<!-- <collection property="userEmailList" ofType="java.lang.String">
+		<collection property="userEmailList" ofType="java.lang.String">
 			<result column="USER_EMAIL"/>
 		</collection>
 		
@@ -17,27 +17,34 @@
 			<result property="messageDate" column="MESSAGE_DATE"/>
 			<result property="userCode" column="USER_CODE"/>
 			<result property="userEmail" column="USER_EMAIL"/>
-		</collection>  -->
+		</collection>
 		
 	</resultMap>
 	
 	<select id="selectChatRoom" parameterType="Map" resultMap="chatRoom">
-		SELECT 
+		SELECT DISTINCT
 			   cr.CHAT_ROOM_CODE,
 			   cr.CHAT_ROOM_TITLE
 		<if test="roomCode gt 0">
-			 , cj.USER_CODE,
-			   m.MESSAGE_CONTENT,
-			   m.MESSAGE_DATE,
-			   u.USER_EMAIL 
+			 , m.USER_CODE,
+			   u.USER_EMAIL,
+			   m.MESSAGE_CODE,
+			   m.MESSAGE_CONTENT,       
+			   m.MESSAGE_DATE 
 		</if>
-		  FROM CHAT_ROOM cr
-		<if test="roomCode gt 0">
-		  JOIN CHAT_JOIN cj ON (cr.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
-		  JOIN MESSAGE m ON (cr.CHAT_ROOM_CODE = m.CHAT_ROOM_CODE)
-		  JOIN `USER` u ON (cj.USER_CODE = u.USER_CODE)
-		 WHERE cr.CHAT_ROOM_CODE = #{roomCode} 
-		</if>
+		<choose>
+			<when test="roomCode gt 0">
+				FROM MESSAGE m
+			    JOIN CHAT_ROOM cr ON (m.CHAT_ROOM_CODE = cr.CHAT_ROOM_CODE)
+			    JOIN CHAT_JOIN cj ON (m.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
+			    JOIN `USER` u ON (m.USER_CODE = u.USER_CODE)
+			   WHERE cr.CHAT_ROOM_CODE = #{roomCode}
+			</when>
+			<otherwise>
+				FROM CHAT_ROOM cr
+			</otherwise>
+		</choose>
+		
 	</select>
 	
 </mapper>
