@@ -12,6 +12,6 @@
 		<typeAlias alias="TaxDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO"/>
   		<typeAlias alias="UserDTO" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO"/>	
   	</typeAliases>
-
+  	
  	
  </configuration>

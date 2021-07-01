@@ -1,25 +1,33 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
+import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
+
 @Controller
 @RequestMapping("/user/mypage/*")
 public class UserMyPageController {
 
-//	private final UserMypageServiceImpl userMypageService;
+	private final UserMypageService userMypageService;
 	
-//	@Autowired
-//	public UserMyPageController(UserMypageServiceImpl userMypageService) {
-//		this.userMypageService = userMypageService;
-//	}
+	@Autowired
+	public UserMyPageController(UserMypageServiceImpl userMypageService) {
+		this.userMypageService = userMypageService;
+	}
 	
 	@GetMapping(value = { "mypageTab1", "/"})
 	public String selectJoinList(Model model) {
 		
-//		List<>
+		List<MypageTripDTO> joinList = userMypageService.selectJoinList();
+		model.addAttribute("selectJoin",joinList);
 		
 		return "user/mypage/mypageTab1";
 	}

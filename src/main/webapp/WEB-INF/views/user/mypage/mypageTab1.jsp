@@ -22,6 +22,13 @@
 	
 	/* .card-body th {height: 30px !important;} */
 	</style>
+	<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        jQuery(function($){
+            $("#data-table").DataTable();
+        });
+    </script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -51,7 +58,7 @@
 
         <div id="detail_content">
             <div id="detail">
-                <table align="center" style="border-collapse: collapse; margin:0 auto;">
+                <table align="center" style="border-collapse: collapse; margin:0 auto;" id="data-table">
                     <!-- <div class="line" style="border: 1px solid black;"></div> -->
                     <thead>
                         <tr>

@@ -2,8 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper">
+<mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.UserMypageMapper">
 
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.MypageTripDTO" id="trip">
 	
@@ -90,11 +89,12 @@
 	<select id="selectJoinList" resultMap="trip">
 	SELECT
 		   TT.TRIP_TITLE,
-		   t.COUNT(t.TRIP_CODE),
+		   t.J_TRIP_CODE,
 		   jta.JOIN_TRIP_DATE
 	  FROM TRIP TT
 	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
-	  JOIN JOIN_TRIP_APPLY jta ON (t.TRIP_CODE = jta.JOIN_TRIP_APPLY_CODE)
+	  join trip_regist_list trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
+	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
 	</select>
 
 
