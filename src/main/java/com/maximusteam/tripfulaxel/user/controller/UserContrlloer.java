@@ -1,5 +1,6 @@
 package com.maximusteam.tripfulaxel.user.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.model.service.UserService;
+
+import net.sf.json.JSONObject;
 
 
 
@@ -177,18 +180,35 @@ public class UserContrlloer {
 	 * 이메일 찾기 
 	 * @param user
 	 * @return
+	 * @throws IOException 
 	 */
-	@PostMapping("/findEmail")
-	public String findEmail(@ModelAttribute UserDTO user ) {
-		
+    @RequestMapping(value = "findEmail", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+	public void findEmail(@ModelAttribute UserDTO user,HttpServletResponse response) throws IOException {
+		System.out.println(user);
 		System.out.println("사용자가 입력한 이름 : " + user.getUserName());
-		System.out.println("사용자가 입력한 생년월일" + user.getUserBday());
+		System.out.println("사용자가 입력한 전화번호 : " + user.getUserPhone());
+		System.out.println("사용자가 입력한 생년월일  : " + user.getUserBday());
 		
+		
+		PrintWriter out = response.getWriter();
 		UserDTO userdto = userService.findEmail(user);
 		
+		System.out.println("값을 가지고 왔는지 체크  " + userdto);
+		
+		JSONObject resMap = new JSONObject();
+		if(userdto != null) {
+			resMap.put("res", "success");
+			 resMap.put("email",userService.findEmail(user).getUserEmail());	
+		} else {
+			System.out.println("이메일 찾기 실패 !! ");
+			resMap.put("res", "fail");
+		
+		}
 		
 		
-		return "";
+		out.print(resMap);
+		
 	}
 	
 

@@ -70,6 +70,7 @@
 		     , USER_EMAIL
 		     , USER_REPORT_COUNT
 		     , USER_GUIDE_YN
+		     , USER_CODE
 		  FROM USER
 		  WHERE USER_EMAIL = #{ userEmail } 
 	<![CDATA[
@@ -77,12 +78,13 @@
 	     ]]>
 	</select>
 	
-	<select id="findEmail" resultMap="loginUserResult" parameterType="USerDTO">
+	<select id="findEmail" resultMap="userResult" parameterType="USerDTO">
 	     SELECT 
 	            USER_EMAIL
 	       FROM USER
 	      WHERE USER_NAME = #{ userName } 
-	        AND USER_BDAY = #{ userBday }  
+	        AND USER_PHONE = #{ userPhone }
+	        AND USER_BDAY = #{ userBday } 
 	</select>
 
 </mapper>

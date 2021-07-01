@@ -213,12 +213,10 @@ li.header_menu:hover {
 
 					<input type="password" id="userPwd" name="userPwd"
 						value="greedy1234" required class="frm_input half_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호">
-					 <input
+						minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
 						type="password" id="repassword" name="repassword" required
 						value="greedy1234" class="frm_input half_input right_input"
-						minlength="3" maxlength="20" placeholder="* 비밀번호 확인">
-					 <input
+						minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
 						type="text" id="userBday" name="userBday" value="19901129"
 						required class="frm_input half_input"
 						placeholder="* 출생연도(예:19900120)">
@@ -290,6 +288,7 @@ li.header_menu:hover {
 
 
 	<!-- 로그인 팝업 시작-->
+
 	<div class="pop_bg pop_wrap signup_pop">
 		<div class="member_pop_box close_wrap login_pop"
 			style="width: 90%; max-width: 500px;; padding: 5vh 0; max-height: 600px;">
@@ -303,19 +302,19 @@ li.header_menu:hover {
 					method="post" style="margin-top: 3vh">
 					<input type="email" name="userEmail" id="userEmail" required
 						class="id frm_input" size="30" maxLength="30" placeholder="이메일 주소"
-						style="margin: 0 auto; width: 60%; display: flex;">
-				   <input
+						style="margin: 0 auto; width: 60%; display: flex;"> <input
 						type="password" name="userPwd" id="userPwd" required
 						class="frm_input" size="30" maxLength="30" placeholder="비밀번호"
 						style="margin: 10px auto 0; width: 60%; display: flex;">
 					<button id="loginSubmit" class="btnBgC txt_bs submit" type="submit"
-						      style="margin: 10px auto 0; width: 60%; margin-left: 20%">로그인</button>
+						style="margin: 10px auto 0; width: 60%; margin-left: 20%">로그인</button>
 				</form>
 
 				<ul class="find_signup clearfix">
-					<li class="floatL"><a href="javascript:void(0);"
-						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> <a
-						href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID)
+					<li class="floatL">
+						<a href="javascript:void(0);"
+						class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> 
+						<a href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID)
 							찾기</a></li>
 					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
@@ -324,7 +323,7 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //로그인 팝업 끝-->
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			/* 로그인 실패 여부  */
@@ -336,9 +335,9 @@ li.header_menu:hover {
 		});
 	</script>
 
-	
 
-	
+
+
 	<!-- 이메일(ID) 찾기 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_id_pop"
@@ -347,64 +346,47 @@ li.header_menu:hover {
 			<div class="member_wrap" style="width: 100%; padding: 0 5%;">
 				<h3 class="tit txt_bold">이메일(ID) 찾기</h3>
 				<p class="pop_sub_title txt_bs" style="text-align: center;">
-					Tripful Axel 가입 시 입력했던 이름을 입력해주시면<br>이메일(ID)을 알려드립니다.<br>
+					Tripful Axel 가입 시 입력했던 이름 및 전화번호를 입력해주시면<br>이메일(ID)을 알려드립니다.<br>
 					<span>* 표시는 필수 입력입니다. <br>(생년월일 입력시에는 전체 다 입력해주세요)
 					</span>
 				</p>
-				<form class="member_form" 
-				  action="${ pageContext.servletContext.contextPath }/user/findEmail">
-					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
-					<div class="find_gender_wrap" style="height: 50px;">
-					
-						<input type="radio" id="gender1" name="userGender"
-							value="남자"
-							style="display: none; margin-top: 0; vertical-align: 
-							middle; outline: none; margin: 0; padding: 0; border: 0">
-						<label for="find_gender1" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; 
-							display: inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i> 
-							<span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
-						</label> 
-						
-						<input type="radio" id="gender2" name="userGender" value="여자"
-							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
-						<label for="find_gender2" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; display:
-							 inline-block; width: calc(50% - 5px);">
-							<i style="margin: 12px 9px;" class="floatL"></i>
-						<span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
-						</label>
-						
-					</div>
-					<div class="birth_select clearfix">
-					 <input
-						type="text" id="userBday" name="userBday" value="19901129"
+				<form class="member_form"
+					id ="findEmailForm"
+					>
+					<input type="text" placeholder="* 이름(예:홍길동)" value="김진수"
+						id="findUserName" name="userName"> <input type="text"
+						id="findUserPhone" name="userPhone" value="010-1234-5678" required
+						class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
+
+
+					<input type="text" id="findUserBday" name="userBday" value="19901129"
 						required class="frm_input half_input"
 						placeholder="* 출생연도(예:19900120)">
-					</div>
-		
-					
-					<button class="btnBgC txt_bs find_id_button submit" type="button"
+
+					<button onClick="findEmail(event)" class="btnBgC txt_bs find_id_button submit" type="submit"
 						value="이메일(ID) 찾기" style="margin-top: 3vh;">이메일(ID) 찾기</button>
 				</form>
-				
+
 				<ul class="find_signup clearfix">
 					<li class="floatL"><a href="javascript:void(0);"
 						class="find_password_link txt_sm txt_bold">비밀번호 찾기</a></li>
 					<li class="floatR"><a href="javascript:void(0);"
 						class="signup_link txt_sm txt_bold">회원가입</a></li>
 				</ul>
-				
+
 			</div>
 		</div>
 	</div>
 	<!-- //이메일(ID) 찾기 팝업 끝-->
+	<script>
 	
 	
+	
+	</script>
+
+
 	<!-- 이메일(ID) 찾기 완료 팝업 -->
-	<div class="pop_bg pop_wrap">
-		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
+	<div class="pop_bg pop_wrap" id="finded_email_parent" style="display: none;">
 		<div class="member_pop_box close_wrap find_id_fin_pop">
 			<span class="close_btn"></span>
 			<div class="member_wrap find_member_wrap">
@@ -412,9 +394,10 @@ li.header_menu:hover {
 				<p class="txt_bs txt_bold">- 조회 결과 입력하신 정보와 일치하는 이메일은 아래와 같습니다.</p>
 				<p class="txt_bs txt_bold">- 이름, 성별, 생년월일이 동일한 동명이인의 이메일이 함께 검색될
 					수 있습니다.</p>
-				<p class="txt_bs txt_bold">
-					이메일(ID)은 <span class="find_id">hongildong1234</span> 입니다.
-				</p>
+			<p class="txt_bs txt_bold">
+						이메일(ID)은 <input id="finded_email"></input> 입니다.
+					</p>
+
 				<a class="btnBgC txt_bs login_link submit"
 					href="javascript:void(0);"
 					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
@@ -422,9 +405,50 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //이메일(ID) 찾기 완료 팝업 끝-->
-	
-	
+
+<!-- 이메일 찾기 js -->
+	<script>
+
+	function findEmail(event){
+		event.preventDefault()
+   		
+    		var findUserName = $("#findUserName").val();
+   			var findUserPhone = $("#findUserPhone").val();
+   			var findUserBday = $("#findUserBday").val(); 
 			
+   			$.ajax({
+   				url:"${ pageContext.servletContext.contextPath }/user/findEmail",
+   				type : 'post',
+   				data : {
+   					userName: findUserName,
+   					userPhone : findUserPhone,
+   					userBday : findUserBday
+   				},
+   				success: function(data,textStatus,xhr) {
+   					
+   					if(data.res == 'fail') {
+   						//찻지못했다
+   					   
+   					 console.log("찾지못함")
+   						
+   					}  else {
+   						//찾았다
+   						const resData = JSON.parse(data);
+   						
+   							 console.log("찾음 : " + resData.email);
+   							$(".pop_wrap:visible").hide();
+   							document.getElementById("finded_email").value = resData.email;
+   							$(".find_id_fin_pop").parent(".pop_wrap").show();
+   					}
+   				},
+   				error : function(xhr,status,error) {
+   					console.log(error);
+   				}
+   			})
+   	}
+
+</script>
+
 	<!-- 비밀번호 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_password_fin_pop"
@@ -441,6 +465,8 @@ li.header_menu:hover {
 		</div>
 	</div>
 	<!-- //이메일(ID) 찾기 완료 팝업 끝-->
+
+
 	<!-- 비밀번호 찾기 팝업-->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_password_pop"
