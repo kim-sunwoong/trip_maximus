@@ -3,8 +3,10 @@ package com.maximusteam.tripfulaxel.admin.model.dao;
 import java.util.List;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.GuideEnrollDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
@@ -38,6 +40,16 @@ public interface AdminMapper {
 	int updateReportCount(ReportDTO report);
 
 	GuideDTO selectEnrollDetail(int no);
+
+	GuideEnrollDTO selectProfilePic(int no);
+
+	GuideEnrollDTO selectIdPic(int no);
+
+	List<AdminAnswerDTO> selectAnswer(AdminAnswerDTO type);
+
+	AdminAnswerDTO selectAnswerDetail(int no);
+
+	
 
 
 

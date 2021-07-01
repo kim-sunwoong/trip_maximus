@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
 
@@ -121,19 +122,31 @@ public class AdminController {
 		int insertReport = adminService.insertReport(report);
 		model.addAttribute("insertReport", insertReport);
 
-		if (insertReport > 0) {
-			adminService.updateReportStatus(report);
-			adminService.updateReportCount(report);
-		}
-
 		return "redirect:reportList";
 	}
-	
+
 	@GetMapping("enrollDetail")
 	public String selectEnrollDetail(@RequestParam("guideNo") int no, Model model) {
-
 		model.addAttribute("selectEnrollDetail", adminService.selectEnrollDetail(no));
+		model.addAttribute("selectProfilePic", adminService.selectProfilePic(no));
+		model.addAttribute("selectIdPic", adminService.selectIdPic(no));
 		return "admin/guideEnrollDetail";
 	}
+
+	@GetMapping("answerList")
+	public String selectMemberCategory(@RequestParam(value = "nt", defaultValue = "all") String type, Model model) {
+		AdminAnswerDTO no = new AdminAnswerDTO();
+		no.setAnswerType(type);
+		model.addAttribute("selectAnswer", adminService.selectMemberCategory(no));
+		return "admin/answerManagement";
+	}
+
+	
+	 @GetMapping("answerDetail") 
+	 public String selectAnswerDetail(@RequestParam("answerNo") int no, Model model) {
+	  model.addAttribute("selectAnswerDetail", adminService.selectAnswerDetail(no)); 
+	  return "admin/answerManagementDetail";
+	 }
+	 
 
 }

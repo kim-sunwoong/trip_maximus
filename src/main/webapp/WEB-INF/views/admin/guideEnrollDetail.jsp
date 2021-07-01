@@ -135,18 +135,28 @@
 
                                     <tr>
                                      <td>가이드 소개</td>
-                                     <td><input rows="10" cols="50" name="content" class="intro" value="${selectEnrollDetail.guideIntro}"></input></td>
+                                     <td>
+                                     	<input  type="text" name="content" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
+                                     </td>
                                     </tr>
 
                                                                     
                                     <tr>
-                                        <td>신분증 사진</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                        <td>프로필 사진</td>
+                                        <td>
+                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}.png">
+                                        	
+                                        </td>
                                     </tr>
 
                                     <tr>
-                                        <td>가이드 사진</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                        <td>신분증 사진</td>
+                                        <td>
+                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
+                                        	
+                                        </td>
                                     </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">

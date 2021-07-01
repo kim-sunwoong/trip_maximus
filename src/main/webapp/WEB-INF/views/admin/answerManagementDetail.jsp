@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,7 +14,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
             rel="stylesheet"/>
-
+        
 		<link href="/tripfulaxel/resources/admin/css/style.css" rel="stylesheet"/>
         <script src="/tripfulaxel/resources/admin/js/scripts.js"></script>
         <script src="/tripfulaxel/resources/admin/js/datatables-simple-demo.js"></script>
@@ -22,6 +22,7 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"></script>
+
         
     </head>
     <body class="sb-nav-fixed">
@@ -105,68 +106,44 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                	신고관리
+                                	문의내역 상세보기
                             </div>
 
-                            <div class="card-body">
-                               <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertReport">
-                                    <table class="table table">
-                                    <tr>
-                                     <td style="width: 10%;">제목</td>
-                                     <td>
-                                     	<input type="text"  class="form-control" name="reportTitle" value="${selectReportDetail.reportTitle}" readonly>
-                                     	<input type="hidden" name="requestCode" value="${selectReportDetail.requestCode}"/>
-                                     </td>
-                                    </tr>
-                                    <tr>
-                                     <td>신고 대상자</td>
-                                     <td>
-                                     	<input type="number"  class="form-control" name="reportTarget" value="${selectReportDetail.reportTarget}" readonly>
-                                     </td>
-                                    </tr>
-                                    <tr>
-                                     <td>신고 작성자</td>
-                                     <td>
-                                     	<input type="number"  class="form-control" name="reportWriter" value="${selectReportDetail.reportWriter}" readonly>
-                                     </td>
-                                    </tr>
-                                	
-                                    <tr>
-                                     <td>신고 내용</td>
-                                     <td>
-                                     	<!-- <textarea rows="10" cols="50" name="content" class="form-control" readonly></textarea> -->
-                                     	<input type="text"  class="form-control" name="reportContent" value="${selectReportDetail.reportTitle}" readonly>
-                                     </td>
-                                    </tr>
-
-									<tr>
+                            <div class="row" style="margin-top: 20px;margin-left: 10px;">
+                                <!-- <div class="col-md-2"></div> -->
+                                <div class="col-md-8">
+                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertAnswer"> 
+                                      <table class="table text-center">
+                                        <tr>
+                                            <td>작성자</td>
+                                            <td><input type="text"  class="form-control" name="writer" value="${selectAnswerDetail.userId}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>글내용</td>
+                                            <td>
+                                            	<input type="text"  class="form-control" name="content" value="${selectAnswerDetail.answerTitle}">
+                                            	<input type="hidden" name="noticeRequestCode" value="${selectAnswerDetail.answerNo}">
+                                            	<input type="hidden" name="anwserRequestCode" value="${selectAnswerDetail.anwserRequestFrom}">
+                                            </td>
+                                        </tr>
+									    <tr>
                                         <td>날짜</td>
                                         <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
-                                       </tr>
-                                     <tr> 
-                                    <tr>
+                                        </tr>
+                                        <tr> 
+                                        <tr>
                                         <td>답변 내용</td>
-                                        <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td>심사코드</td>
-                                        <td>
-                                        	<select name="examineCode" class="select-time">
-												<option value="2">승인</option>
-												<option value="3">반려</option>
-											</select>
-                                        </td>
-                                    </tr>
-                                     <tr> 
-                                     <td colspan="2"  class="text-center">
-                                      <button type="submit" class="btn btn-success">답변쓰기완료</button>
-                                      <!-- <input type="reset" value="취소" class="btn btn-warning">
-                                      <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
-                                     </td>
-                                    </tr>
-                                    
-                                    </table>
-                                    </form>
+                                        <td><textarea rows="10" cols="50" id="responseContent" name="responseContent" class="form-control"></textarea></td>
+                                    	</tr>
+                                        <tr>
+                                            <td colspan="2"  class="text-center">
+                                                <input type="submit" value="답변완료" class="btn btn-success">
+                                            </td>
+                                        </tr>
+                                      </table>
+                                  </form> 
+                                   
+                                </div>
                             </div>
 
                         </div>
