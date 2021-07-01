@@ -21,7 +21,7 @@
 		
 	</resultMap>
 	
-	<select id="selectChatRoomList" parameterType="Map" resultMap="chatRoom">
+	<select id="selectChatRoom" parameterType="Map" resultMap="chatRoom">
 		SELECT 
 			   cr.CHAT_ROOM_CODE,
 			   cr.CHAT_ROOM_TITLE
@@ -36,7 +36,7 @@
 		  JOIN CHAT_JOIN cj ON (cr.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
 		  JOIN MESSAGE m ON (cr.CHAT_ROOM_CODE = m.CHAT_ROOM_CODE)
 		  JOIN `USER` u ON (cj.USER_CODE = u.USER_CODE)
-		 WHERE cr.ROOM_CODE = #{roomCode} 
+		 WHERE cr.CHAT_ROOM_CODE = #{roomCode} 
 		</if>
 	</select>
 	

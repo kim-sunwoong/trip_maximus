@@ -20,8 +20,8 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatRoomDTO> selectChatRoomList(Map<String, Integer> parameter) {
-		return chatMapper.selectChatRoomList(parameter);
+	public List<ChatRoomDTO> selectChatRoom(Map<String, Integer> parameter) {
+		return chatMapper.selectChatRoom(parameter);
 	}
 
 

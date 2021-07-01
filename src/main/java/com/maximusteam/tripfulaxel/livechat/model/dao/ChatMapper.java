@@ -7,6 +7,6 @@ import com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO;
 
 public interface ChatMapper {
 
-	public List<ChatRoomDTO> selectChatRoomList(Map<String, Integer> parameter);
+	public List<ChatRoomDTO> selectChatRoom(Map<String, Integer> parameter);
 
 }

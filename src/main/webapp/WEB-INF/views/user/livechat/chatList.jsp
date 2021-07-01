@@ -62,7 +62,7 @@ function newRoom(){
     <th>채팅방 타이틀</th>
   </tr>
   <c:forEach var="room" items="${roomList }">
-	  <tr onclick="location.href='${pageContext.servletContext.contextPath}/share/select?userCode=${sessionScope.userCode}&roomCode=${roomList.roomCode}'">
+	  <tr onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?userCode=${sessionScope.userCode}&roomCode=${room.roomCode}'">
 	    <td><c:out value="${room.roomTitle }"/></td>
 	  </tr>
   </c:forEach>

@@ -34,29 +34,41 @@ public class ChatController {
 		return "user/livechat/chatList";
 	}
 	
-	@RequestMapping("select/chatRoomList")
-	public String selectChatRoomList(Model model, @RequestParam int roomCode) {
+	@RequestMapping("select/chatRoom")
+	public String selectChatRoomList(Model model, @RequestParam int roomCode, @RequestParam(required = false) int userCode) {
 		System.out.println("ffㄹㄹㄹㄹㄹㄹㄹㄹ룸코드");
 		System.out.println(roomCode);
+		System.out.println("asd");
+		System.out.println(userCode);
+		
+		
 		Map<String, Integer> parameter = new HashedMap();
 		parameter.put("roomCode", roomCode);
+		parameter.put("userCode", userCode);
 		
-		List<ChatRoomDTO> roomList = chatService.selectChatRoomList(parameter);
+		List<ChatRoomDTO> roomList = chatService.selectChatRoom(parameter);
 		
 		for(ChatRoomDTO room : roomList) {
 			System.out.println(room);
 			
-//			for(String email : room.getUserEmailList()) {
-//				System.out.println(email);
-//			}
-//			for(ChatMessageDTO message : room.getMessageList()) {
-//				System.out.println(message);
-//			}
+			for(String email : room.getUserEmailList()) {
+				System.out.println(email);
+			}
+			for(ChatMessageDTO message : room.getMessageList()) {
+				System.out.println(message);
+			}
 		}
 		
-		model.addAttribute("roomList", roomList);
-		
-		return "user/livechat/chatList";
+		if(roomCode != 0 && userCode != 0) {
+			ChatRoomDTO room = roomList.get(0);
+			model.addAttribute("room", room);
+			
+			return "user/livechat/chat";
+		} else {
+			model.addAttribute("roomList", roomList);
+			
+			return "user/livechat/chatList";
+		}
 	}
 	
 }

@@ -210,7 +210,7 @@
                     <span style="color:white; font-size: 20px;">여행 플래너</span></a>
                 </li>
                 <li class="floatL header_menu">
-                    <a href="${pageContext.servletContext.contextPath}/share/select/chatRoomList?roomCode=0" class="btnLineC txt_md" >
+                    <a href="${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
             </ul>
