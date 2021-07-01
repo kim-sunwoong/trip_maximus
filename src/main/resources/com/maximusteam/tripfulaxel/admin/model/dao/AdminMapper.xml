@@ -324,7 +324,7 @@
          WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
-<!-- 	<insert id="insertAnswer" parameterType="AdminAnswerDTO">
+	<insert id="insertAnswer" parameterType="AdminAnswerDTO">
 	
 		<selectKey  resultType="int" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
 	        SELECT 
@@ -359,5 +359,5 @@
   		   SET 
                EXAMINE_REQUEST_YN = 'Y'
          WHERE EXAMINE_REQUEST_FROM = #{ anwserRequestCode }
-	</update>  -->
+	</update> 
 </mapper>

@@ -12,11 +12,17 @@ public class AdminAnswerDTO {
     private String answerStatus;
     private String answerType;
     private int anwserRequestFrom;
+    private String responseContent;
+    private java.sql.Date responseDate;
+    private int responseCode;
+    private int noticeRequestCode;
+    private int anwserRequestCode;
 	
     public AdminAnswerDTO() {}
 
 	public AdminAnswerDTO(int answerNo, String userId, String answerTitle, Date answerDate, String answerStatus,
-			String answerType, int anwserRequestFrom) {
+			String answerType, int anwserRequestFrom, String responseContent, Date responseDate, int responseCode,
+			int noticeRequestCode, int anwserRequestCode) {
 		super();
 		this.answerNo = answerNo;
 		this.userId = userId;
@@ -25,6 +31,11 @@ public class AdminAnswerDTO {
 		this.answerStatus = answerStatus;
 		this.answerType = answerType;
 		this.anwserRequestFrom = anwserRequestFrom;
+		this.responseContent = responseContent;
+		this.responseDate = responseDate;
+		this.responseCode = responseCode;
+		this.noticeRequestCode = noticeRequestCode;
+		this.anwserRequestCode = anwserRequestCode;
 	}
 
 	public int getAnswerNo() {
@@ -83,12 +94,60 @@ public class AdminAnswerDTO {
 		this.anwserRequestFrom = anwserRequestFrom;
 	}
 
+	public String getResponseContent() {
+		return responseContent;
+	}
+
+	public void setResponseContent(String responseContent) {
+		this.responseContent = responseContent;
+	}
+
+	public java.sql.Date getResponseDate() {
+		return responseDate;
+	}
+
+	public void setResponseDate(java.sql.Date responseDate) {
+		this.responseDate = responseDate;
+	}
+
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	public int getNoticeRequestCode() {
+		return noticeRequestCode;
+	}
+
+	public void setNoticeRequestCode(int noticeRequestCode) {
+		this.noticeRequestCode = noticeRequestCode;
+	}
+
+	public int getAnwserRequestCode() {
+		return anwserRequestCode;
+	}
+
+	public void setAnwserRequestCode(int anwserRequestCode) {
+		this.anwserRequestCode = anwserRequestCode;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminAnswerDTO [answerNo=" + answerNo + ", userId=" + userId + ", answerTitle=" + answerTitle
 				+ ", answerDate=" + answerDate + ", answerStatus=" + answerStatus + ", answerType=" + answerType
-				+ ", anwserRequestFrom=" + anwserRequestFrom + "]";
+				+ ", anwserRequestFrom=" + anwserRequestFrom + ", responseContent=" + responseContent
+				+ ", responseDate=" + responseDate + ", responseCode=" + responseCode + ", noticeRequestCode="
+				+ noticeRequestCode + ", anwserRequestCode=" + anwserRequestCode + "]";
 	}
+
+	
+	
+	
+
+	
 
 	
 	

@@ -121,7 +121,6 @@ public class AdminController {
 
 		int insertReport = adminService.insertReport(report);
 		model.addAttribute("insertReport", insertReport);
-
 		return "redirect:reportList";
 	}
 
@@ -141,12 +140,18 @@ public class AdminController {
 		return "admin/answerManagement";
 	}
 
-	
 	 @GetMapping("answerDetail") 
 	 public String selectAnswerDetail(@RequestParam("answerNo") int no, Model model) {
 	  model.addAttribute("selectAnswerDetail", adminService.selectAnswerDetail(no)); 
 	  return "admin/answerManagementDetail";
 	 }
 	 
+	@PostMapping("insertAnswer")
+	public String insertAnswer(@ModelAttribute AdminAnswerDTO answer, Model model) {
+
+			int insertAnswer = adminService.insertAnswer(answer);
+			model.addAttribute("insertAnswer", insertAnswer);
+			return "redirect:answerList";
+	}
 
 }

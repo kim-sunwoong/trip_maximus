@@ -49,6 +49,10 @@ public interface AdminMapper {
 
 	AdminAnswerDTO selectAnswerDetail(int no);
 
+	int insertAnswer(AdminAnswerDTO answer);
+
+	int updateAnswerStatus(AdminAnswerDTO answer);
+
 	
 
 

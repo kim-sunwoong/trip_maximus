@@ -124,12 +124,23 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectAnswerDetail(no);
 	}
 
+	@Override
+	public int insertAnswer(AdminAnswerDTO answer) {
+		
+		if (mapper. insertAnswer(answer)> 0 ) {
+			updateAnswerStatus(answer);
+		}
+		return mapper.insertAnswer(answer);
+	}
 
-
-
-
+	@Override
+	public int updateAnswerStatus(AdminAnswerDTO answer) {
+		return mapper.updateAnswerStatus(answer);
+	}
 
 
 	
-	
+
+
+
 }
