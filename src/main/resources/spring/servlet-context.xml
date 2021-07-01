@@ -6,7 +6,7 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -46,11 +46,11 @@
 	</beans:bean>
 	
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/share/echo"/>
-		<websocket:sockjs />
+		<websocket:mapping handler="chatHandler" path="/chat"/>
+		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	
-	<beans:bean id="echoHandler" class="com.maximusteam.tripfulaxel.livechat.controller.EchoHandler"></beans:bean>
+	<beans:bean id="chatHandler" class="com.maximusteam.tripfulaxel.livechat.controller.ChatHandler"></beans:bean>
 	
 <!-- 	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<beans:property name="exceptionMappings">
