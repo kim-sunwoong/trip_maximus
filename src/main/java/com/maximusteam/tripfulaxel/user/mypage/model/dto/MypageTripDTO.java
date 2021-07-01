@@ -23,6 +23,8 @@ public class MypageTripDTO {
 	private List<ImageDTO> tripImgList;
 	private List<TripThemeDTO> tripThemeList;
 	private List<TripTransitDTO> tripTransitList;
+	private List<TripRegistListDTO> tripRegistList;
+//	private List<JoinTripApplyDTO> joinTripApply;
 	
 	/* 같이가요 */
 	private int joinTripCode;
@@ -45,9 +47,9 @@ public class MypageTripDTO {
 	public MypageTripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, Date tripEndDate,
 			String meetLocation, String include, String nInclude, List<TripCourseDTO> tripCourseList,
 			List<ImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
-			int joinTripCode, int joinTripMaximum, int guideTripCode, int payment, int guideTripMinimum,
-			int guideTripMaximum, int userTripCode, String userTripComentTitle, String userTripComent,
-			int userTripComentPoint) {
+			List<TripRegistListDTO> tripRegistList, int joinTripCode, int joinTripMaximum, int guideTripCode,
+			int payment, int guideTripMinimum, int guideTripMaximum, int userTripCode, String userTripComentTitle,
+			String userTripComent, int userTripComentPoint) {
 		super();
 		this.tripCode = tripCode;
 		this.tripTitle = tripTitle;
@@ -61,6 +63,7 @@ public class MypageTripDTO {
 		this.tripImgList = tripImgList;
 		this.tripThemeList = tripThemeList;
 		this.tripTransitList = tripTransitList;
+		this.tripRegistList = tripRegistList;
 		this.joinTripCode = joinTripCode;
 		this.joinTripMaximum = joinTripMaximum;
 		this.guideTripCode = guideTripCode;
@@ -169,6 +172,14 @@ public class MypageTripDTO {
 		this.tripTransitList = tripTransitList;
 	}
 
+	public List<TripRegistListDTO> getTripRegistList() {
+		return tripRegistList;
+	}
+
+	public void setTripRegistList(List<TripRegistListDTO> tripRegistList) {
+		this.tripRegistList = tripRegistList;
+	}
+
 	public int getJoinTripCode() {
 		return joinTripCode;
 	}
@@ -255,12 +266,14 @@ public class MypageTripDTO {
 				+ ", tripStartDate=" + tripStartDate + ", tripEndDate=" + tripEndDate + ", meetLocation=" + meetLocation
 				+ ", include=" + include + ", nInclude=" + nInclude + ", tripCourseList=" + tripCourseList
 				+ ", tripImgList=" + tripImgList + ", tripThemeList=" + tripThemeList + ", tripTransitList="
-				+ tripTransitList + ", joinTripCode=" + joinTripCode + ", joinTripMaximum=" + joinTripMaximum
-				+ ", guideTripCode=" + guideTripCode + ", payment=" + payment + ", guideTripMinimum=" + guideTripMinimum
-				+ ", guideTripMaximum=" + guideTripMaximum + ", userTripCode=" + userTripCode + ", userTripComentTitle="
-				+ userTripComentTitle + ", userTripComent=" + userTripComent + ", userTripComentPoint="
-				+ userTripComentPoint + "]";
+				+ tripTransitList + ", tripRegistList=" + tripRegistList + ", joinTripCode=" + joinTripCode
+				+ ", joinTripMaximum=" + joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment
+				+ ", guideTripMinimum=" + guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum
+				+ ", userTripCode=" + userTripCode + ", userTripComentTitle=" + userTripComentTitle
+				+ ", userTripComent=" + userTripComent + ", userTripComentPoint=" + userTripComentPoint + "]";
 	}
+
+
 	
 	
 	
