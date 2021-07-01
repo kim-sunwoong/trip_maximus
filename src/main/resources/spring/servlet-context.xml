@@ -47,7 +47,7 @@
 	
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo"/>
-		<websocket:sockjs />
+		<websocket:sockjs/>
 	</websocket:handlers>
 	
 	<beans:bean id="echoHandler" class="com.maximusteam.tripfulaxel.livechat.controller.EchoHandler"></beans:bean>

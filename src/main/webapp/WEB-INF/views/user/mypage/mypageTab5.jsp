@@ -25,6 +25,7 @@
         .exit {width: 70px; height: 30px; border: 1px solid black;}
         input {border:1px solid rgba(0,0,0,0.4) !important;}
         th, td {height: 40px !important;}
+        /* tbody tr {background-color: #F7FAFC !important;} */
     </style>
 </head>
 <body>
@@ -58,10 +59,10 @@
 
                 <table width="500" height="500" align="center" style="margin-top:100px; margin: 0 auto;">
                     <tr>
-                        <td colspan="2" height="80"><h3>회원정보 수정</h3></td>
+                        <td colspan="2" height="80" style=" background-color: #F7FAFC;"><h3>회원정보 수정</h3></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: white;">
                         <td></td>
                         <td></td>
                     </tr>
@@ -69,7 +70,7 @@
                         <td>이름</td>
                         <td><input type="text" name="name"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>생년월일</td>
                         <td><input type="text" name="birth"></td>
                     </tr>
@@ -77,31 +78,31 @@
                         <td>이메일</td>
                         <td><input type="text" name="email"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>연락처</td>
                         <td><input type="text" name="tel"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td colspan="2"></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>이전 비밀번호</td>
                         <td><input type="text" name="id"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호</td>
                         <td><input type="password" name="pass"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호 확인</td>
                         <td><input type="password" name="pass2"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: white;">
                         <td colspan="2"></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td align="center" colspan="2"><input type="submit" class="buttonset" value="변경하기" style="font-family: 'noto sans KR', serif; width: 80px;  height: 30px"></td>
                     </tr>
 					</table>

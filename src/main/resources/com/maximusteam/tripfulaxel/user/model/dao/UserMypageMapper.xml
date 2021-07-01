@@ -2,9 +2,47 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.UserMypageMapper">
+<mapper namespace="com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper">
 
 	<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.MypageTripDTO" id="trip">
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		
+		<!-- join trip 부분 -->		
+		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
+		<result property="joinTripCode" column="J_TRIP_CODE"/>
+		
+		<!-- guide trip 부분 -->
+		<result property="guideTripCode" column="G_TRIP_CODE"/>
+		<result property="payment" column="G_TRIP_PAYMENT"/>
+		<result property="guideTripMinimum" column="G_TRIP_MINIMUM"/>
+		<result property="guideTripMaximum" column="G_TRIP_MAXIMUM"/>
+		
+		<!-- user trip 부분 -->
+		<result property="userTripCode" column="U_TRIP_CODE"/>
+		<result property="userTripComentTitle" column="U_TRIP_COMENT_TITLE"/>
+		<result property="userTripComent" column="U_TRIP_COMENT_INFO"/>
+		<result property="userTripComentPoint" column="U_TRIP_COMENT_POINT"/>
+	</resultMap>
+	
+	<select id="selectJoinList" resultMap="trip">
+	SELECT
+		   TT.TRIP_TITLE,
+		   t.J_TRIP_CODE,
+		   jta.JOIN_TRIP_DATE
+	  FROM TRIP TT
+	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
+	  join trip_regist_list trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
+	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+	</select>
+
+<resultMap type="com.maximusteam.tripfulaxel.trip.model.dto.MypageTripDTO" id="trip">
 	
 		<result property="tripCode" column="TRIP_CODE"/>
 		<result property="tripTitle" column="TRIP_TITLE"/>
@@ -85,21 +123,8 @@
 		</collection>
 		
 	</resultMap>
-	
-	<select id="selectJoinList" resultMap="trip">
-	SELECT
-		   TT.TRIP_TITLE,
-		   t.J_TRIP_CODE,
-		   jta.JOIN_TRIP_DATE
-	  FROM TRIP TT
-	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
-	  join trip_regist_list trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
-	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-	</select>
 
-
-
-	<!-- 관리자리스트 -->
+	<!-- 관리자리스트 
 	<resultMap id="adminList" type="AdminDTO">
 		<id column="ADMIN_NO" property="adminNo" />
 		<result column="ADMIN_POSITION" property="adminPosition" />
@@ -108,7 +133,7 @@
 		<result column="ADMIN_HIRE_DATE" property="hireDate" />
 	</resultMap>
 
-	<!-- 회원리스트 -->
+	 회원리스트 
 	<resultMap id="memberList" type="MemberDTO">
 		<id column="USER_CODE" property="memberNo" />
 		<result column="USER_NAME" property="memberName" />
@@ -117,7 +142,7 @@
 		<result column="USER_REPORT_COUNT" property="count" />
 	</resultMap>
 	
-	<!-- 신고리스트 -->
+	 신고리스트 
 	<resultMap id="reportList" type="ReportDTO">
 		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
 		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
@@ -125,12 +150,12 @@
 		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
 	</resultMap>
 	
-	<!-- 가이드 리스트 -->
+	 가이드 리스트 
 	<resultMap id="guideList" type="GuideDTO">
 		<id column="GUIDE_CODE" property="guideNo" />
 		<result column="USER_EMAIL" property="guideId" />
 		<result column="USER_GUIDE_YN" property="guideEnrollStatus" />
 		<result column="GUIDE_YN" property="guideApproveStatus" />
-	</resultMap>
+	</resultMap> -->
 
 </mapper>

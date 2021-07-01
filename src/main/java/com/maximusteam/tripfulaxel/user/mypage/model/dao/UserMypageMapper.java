@@ -6,6 +6,6 @@ import com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO;
 
 public interface UserMypageMapper {
 
-	List<MypageTripDTO> selectJoin();
+	List<MypageTripDTO> selectJoinList();
 
 }

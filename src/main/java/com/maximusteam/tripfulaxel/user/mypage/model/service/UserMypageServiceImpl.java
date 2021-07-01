@@ -20,7 +20,7 @@ public class UserMypageServiceImpl implements UserMypageService{
 
 	@Override
 	public List<MypageTripDTO> selectJoinList() {
-		return mapper.selectJoin();
+		return mapper.selectJoinList();
 	}
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +31,12 @@
             $("#data-table").DataTable();
         });
     </script>
+    <style type="text/css">
+     #detail thead th {
+            text-align: center;
+            
+        }
+    </style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -58,7 +66,7 @@
 
         <div id="detail_content">
             <div id="detail">
-                <table align="center" style="border-collapse: collapse; margin:0 auto;" id="data-table">
+                <table align="center" style="border-collapse: collapse; margin:0 auto; text-align: center;">
                     <!-- <div class="line" style="border: 1px solid black;"></div> -->
                     <thead>
                         <tr>
@@ -69,13 +77,17 @@
                         </tr>
                     </thead>
                     <tbody style="padding-top: 20px;">
+                    	<c:forEach items="${ selectJoin }" var = "join">
                         <tr>
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                            <td>4/4</td>
-                            <td>여행완료</td>
+                            <td><c:out value="${join.tripTitle}"/></td>
+                            <td><c:out value="${join.joinTripCode}"/></td>
+                            <td><c:out value="${join.joinTripDate}"/></td>
                         </tr>
-                        <tr>
+                        </c:forEach>
+                        
+                        
+                        
+                        <!-- <tr>
                         	<td colspan="4">
                         		<div class="card w-100" style="border: none; padding: 20px;">
                         <div class="card-body">
@@ -122,49 +134,10 @@
                         </div>
                     </div>
                         	</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 가자미 투어</td>
-                            <td>2021/05/25</td>
-                            <td>5/6</td>
-                            <td>여행완료</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 갈치 투어</td>
-                            <td>2021/06/14</td>
-                            <td>2/3</td>
-                            <td>여행완료</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
+                        </tr> -->
+                        
+                        
+                        
                     </tbody>
 
                 </table>
