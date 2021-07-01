@@ -61,6 +61,7 @@
 	<select id="loginUser" resultMap="userResult" parameterType="UserDTO">
 		SELECT
 			   USER_NAME
+			 , USER_CODE
 			 , USER_PHONE
 			 , USER_PWD
 			 , USER_BDAY

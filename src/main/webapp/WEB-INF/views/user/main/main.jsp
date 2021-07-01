@@ -427,15 +427,15 @@ li.header_menu:hover {
    				success: function(data,textStatus,xhr) {
    					
    					if(data.res == 'fail') {
-   						//찻지못했다
+   						//찾지못함.
    					   
-   					 console.log("찾지못함")
+   					 console.log("값 찾지못함")
    						
    					}  else {
-   						//찾았다
+   						//찾음
    						const resData = JSON.parse(data);
    						
-   							 console.log("찾음 : " + resData.email);
+   							 console.log("값 찾음 : " + resData.email);
    							$(".pop_wrap:visible").hide();
    							document.getElementById("finded_email").value = resData.email;
    							$(".find_id_fin_pop").parent(".pop_wrap").show();

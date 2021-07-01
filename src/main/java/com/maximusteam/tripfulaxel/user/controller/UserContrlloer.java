@@ -185,7 +185,8 @@ public class UserContrlloer {
     @RequestMapping(value = "findEmail", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
 	public void findEmail(@ModelAttribute UserDTO user,HttpServletResponse response) throws IOException {
-		System.out.println(user);
+	
+    	System.out.println(user);
 		System.out.println("사용자가 입력한 이름 : " + user.getUserName());
 		System.out.println("사용자가 입력한 전화번호 : " + user.getUserPhone());
 		System.out.println("사용자가 입력한 생년월일  : " + user.getUserBday());
