@@ -11,6 +11,16 @@ public class GuideImageDTO {
 	public GuideImageDTO() {
 		super();
 	}
+	
+	public GuideImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, int refCode) {
+		super();
+		this.imageCode = imageCode;
+		this.savedName = savedName;
+		this.imageTypeCode = imageTypeCode;
+		this.originName = originName;
+		this.refCode = refCode;
+	}
+
 	public int getImageCode() {
 		return imageCode;
 	}
@@ -41,17 +51,12 @@ public class GuideImageDTO {
 	public void setRefCode(int refCode) {
 		this.refCode = refCode;
 	}
-	public GuideImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, int refCode) {
-		super();
-		this.imageCode = imageCode;
-		this.savedName = savedName;
-		this.imageTypeCode = imageTypeCode;
-		this.originName = originName;
-		this.refCode = refCode;
-	}
+
 	@Override
 	public String toString() {
 		return "GuideImageDTO [imageCode=" + imageCode + ", savedName=" + savedName + ", imageTypeCode=" + imageTypeCode
-				+ ", originName=" + originName + ", userCode=" + refCode + "]";
+				+ ", originName=" + originName + ", refCode=" + refCode + "]";
 	}
+
+	
 }

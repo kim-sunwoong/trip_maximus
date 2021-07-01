@@ -279,7 +279,7 @@
 					 	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
 					
-					<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
+					<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
 					<hr>
 				</div>
 			</div>
@@ -310,45 +310,15 @@
 								 +'	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;'
 								 +'		 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">'
 								
-								 +'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+								 +'<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
 								 +'<hr>'
 								 +'</div>');
 						
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
+							deletedCourse(e);
 						});
-						
-					
-						
 				    });
-				
-				
-				
-				<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
-				$('#submitButton').click(function(){
- 				        var formData = new FormData($('#insertGuideForm')[0]);
- 				        
-				        $.ajax({
-				            url : "${pageContext.request.contextPath}/guide/insert",
-				            type : 'post', 
-				            data : formData, 
-				            dataType : 'json',
-				            encType : 'multipart/form-data',
-				            contentType: false,
-				            processData: false,
-				            cache : false,
-				            async : false,
-				            success : function(data) {
-				                var jsonObj = JSON.parse(data);
-				                // 성공했을시
-				                // 실패했을시
-				            }, // success 
-				    
-				            error : function(xhr, status) {
-				                alert(xhr + " : " + status);
-				            }
-				       	 });
-					});
 				});
 			</script>			
 			<hr>
@@ -430,19 +400,16 @@
  </table>
 </form>
 <script>
+	var formMap = new Map();
+	var courseImage = new Array();
+	var formdata;
+	var totalData = {};
 
-/* $("document").ready(function(){
- */
+	<!-- 사진이 선택되었을때, 사진이 저장되고 그 정보값을 json으로 저장 -->
  	function selectedImage(e){
-	var formData;	
-	
-/*     $('input[type=file]').on("change", function(e) {
- */    	
-    	console.log(e.files);
-    	var formArray = {};
     	var fileList = e.files;
     	
-    	var formData = new FormData();	
+    	formData = new FormData();	
 
     	for(var i = 0; i < fileList.length; i ++){
     		var file = fileList[i];
@@ -462,23 +429,60 @@
             cache: false,           
             timeout: 600000,       
             success: function (data) { 
-            	alert("complete");           
-/*             	$("#btnSubmit").prop("disabled", false);      
+            	if(e.name == "imageCourse"){
+            		courseImage.push(JSON.parse(data.imageList));
+	            	formMap.set(e.name, courseImage);
+            	}else {
+	            	formMap.set(e.name, JSON.parse(data.imageList));
+            	}
+            	
+            	formMap.forEach((value, key) => {
+            		totalData[key] = value
+            	});
+            	
+/*             	console.log(JSON.stringify(totalData));
  */            },          
             error: function (e) {  
             	console.log("ERROR : ", e);     
-/*                 $("#btnSubmit").prop("disabled", false);    
- */                alert("fail");      
+                $("#btnSubmit").prop("disabled", false);    
+                alert("fail");      
              }     
     	});  
- 
- 	    
-    /*  }); */
-    
- }
-/* });
- */
-
+ 	}
+ 	
+ 	<!-- 코스여행을 추가했지만, 코스삭제했을때 해당 사진 DB 및 JSON에서 삭제 -->
+ 	function deletedCourse(e){
+ 		console.log(e);
+ 	}
+ 	
+ 	
+ 	<!-- REST API 사용을 위한 form에 작성한 값을 JSON으로 변환 후 Controller에 보내기 -->
+	$('#submitButton').click(function(){
+		    var totalFormData = new FormData($('#insertGuideForm')[0]);
+		        
+        	console.log(JSON.stringify(totalData));
+		    
+	        $.ajax({
+	            url : "${pageContext.request.contextPath}/api/guides",
+	            type : 'post', 
+	            data : totalFormData, 
+	            dataType : 'json',
+	            encType : 'multipart/form-data',
+	            contentType: false,
+	            processData: false,
+	            cache : false,
+	            async : false,
+	            success : function(data) {
+	                var jsonObj = JSON.parse(data);
+	                // 성공했을시
+	                // 실패했을시
+	            }, // success 
+	    
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+	       	 });
+		});
 </script>
 
 

@@ -889,65 +889,43 @@ li.header_menu:hover {
 		<!-- 		<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
  -->
 		<script>
-			$(document)
-					.ready(
-							function() {
-								console.log("gg");
-								$
-										.ajax({
-											url : "jeju",
-											success : function(data, status,
-													xhr) {
-												/* console.log(JSON.parse(data.jejuData));*/
-												/*     				h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
-												 *//* JSON.parse(data.jejuData).response.body.items.item[0] */
-												console
-														.log(JSON
-																.parse(data.jejuData).response.body.items);
-												$
-														.each(
-																JSON
-																		.parse(data.jejuData).response.body.items.item,
-																function(i,
-																		item) {
-																	console
-																			.log(item.galWebImageUrl);
-																	/* var aa ='<li style="text-align: center; display: none;">' +
-																	          '<a class="exhibition_href" href="#" target="_blank">' +
-																				'<div class="exhibition_img"' + 
-																	'style="width: 1070px; overflow: hidden; background: rgba(150, 150, 150, 0.3)' + 
-																	          'url('+ "'" +item.galWebImageUrl+ "'"+') no-repeat center/cover;">'+
-																	     '</div>' +
-																	'</a>' +
-																	'</li>'; */
+			$(document).ready(function() {
+				console.log("gg");
+					$.ajax({
+						url : "jeju",
+						success : function(data, status,xhr) {
+							/* console.log(JSON.parse(data.jejuData));*/
+							/*     				h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
+							 *//* JSON.parse(data.jejuData).response.body.items.item[0] */
+							console.log(JSON.parse(data.jejuData).response.body.items);
+							
+							 $.each(JSON.parse(data.jejuData).response.body.items.item,function(i, item) {
+								console.log(item.galWebImageUrl);
 
-																	var aa = '<div class="carousel-item">'
-																			+ '<img class="d-block w-100"'
-																			+ 'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'
-																			+ 'style=" width:800px; height:700px;"'
-																			+ 'src="'
-																			+ item.galWebImageUrl
-																			+ '"'
-																			+ 'data-holder-rendered="true">'
-																			+ '<div class="carousel-caption d-none d-md-block"' +
-							'style="bottom: 50px;">'
-																			+ '<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>'
-																			+ '<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>'
-																			+ '</div>'
-																			+ '</div>';
-																	/* 						var aa = "<p>" + "dddd" + "</p>";
-																	 */
-																	$(
-																			"#jejuData")
-																			.append(
-																					aa);
-																});
-											},
-											error : function(xhr, status, error) {
-												console.log(error);
-											}
-										});
+								var aa = '<div class="carousel-item">'
+									   + '<img class="d-block w-100"'
+									   + 'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'
+									   + 'style=" width:800px; height:700px;"'
+									   + 'src="'
+									   + item.galWebImageUrl
+									   + '"'
+									   + 'data-holder-rendered="true">'
+									   + '<div class="carousel-caption d-none d-md-block"' 
+									   + 'style="bottom: 50px;">'
+									   + '<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>'
+									   + '<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>'
+									   + '</div>'
+									   + '</div>';
+									   
+								
+								$("#jejuData").append(aa);
 							});
+						},
+						error : function(xhr, status, error) {
+							console.log(error);
+						}
+					});
+				});
 		</script>
 
 		<!-- <div class="application">

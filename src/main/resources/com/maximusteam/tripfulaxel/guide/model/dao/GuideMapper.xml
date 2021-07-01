@@ -5,6 +5,9 @@
 <mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper">
 
 	<insert id="insertGuideImage" parameterType="java.util.List">
+	    <selectKey resultType="int" keyProperty="imageCode" order="AFTER">
+	    	SELECT MAX(GUIDE_IMAGE_CODE) as imageCode FROM GUIDE_IMAGE
+	    </selectKey>
 	    INSERT INTO GUIDE_IMAGE
 	    (
 	    	  GUIDE_IMAGE_CODE
@@ -14,38 +17,34 @@
 	        , USER_CODE
 	    )
 	    VALUES
-	    <foreach collection="list" item="item" separator=",">
 	    (
 	          (SELECT IFNULL(MAX(b.GUIDE_IMAGE_CODE) + 1, 1) FROM GUIDE_IMAGE b)
-	        , #{item.savedName}
-	        , #{item.imageTypeCode}
-	        , #{item.originName}
-	        , #{item.refCode}
+	        , #{savedName}
+	        , #{imageTypeCode}
+	        , #{originName}
+	        , #{refCode}
 	    )
-	    </foreach>
 	</insert>
 	
-	<insert id="insertTripImage" parameterType="java.util.List">
+	<insert id="insertTripImage" parameterType="GuideImageDTO">
+		<selectKey resultType="int" keyProperty="imageCode" order="AFTER">
+	    	SELECT MAX(TRIP_IMAGE_CODE) as imageCode FROM TRIP_IMAGE
+	    </selectKey>
 	    INSERT INTO TRIP_IMAGE
 	    (
 	    	  TRIP_IMAGE_CODE
 	    	, TRIP_IMAGE_SAVED_NAME
 	    	, TRIP_IMAGE_TYPE_CODE
 	    	, TRIP_IMAGE_ORIGIN_NAME
-	    	, TRIP_CODE
 	    )
 	    VALUES
-		<foreach collection="list" item="item" separator=",">
 	    (
 	          (SELECT IFNULL(MAX(b.TRIP_IMAGE_CODE) + 1, 1) FROM TRIP_IMAGE b)
-	        , #{item.savedName}
-	        , #{item.imageTypeCode}
-	        , #{item.originName}
-	        , #{item.refCode}
+	        , #{savedName}
+	        , #{imageTypeCode}
+	        , #{originName}
 	    )
-	    </foreach>
 	</insert>
-	
 	
 </mapper>
     

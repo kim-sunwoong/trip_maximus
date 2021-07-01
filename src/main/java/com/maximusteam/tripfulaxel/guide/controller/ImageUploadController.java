@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
 
@@ -153,10 +154,20 @@ public class ImageUploadController {
 		if(guideService.insertImage(imageList, tableCode)) {
 			// DB에 사진저장 성공
 			System.out.println("성공");
+			System.out.println(imageList);
 		}else {
 			// DB에 사진저장 실패
 			System.out.println("실패");
 		}
+
+		/* JSON을 만들기위한 분기처리 */
+		Gson gson = new Gson();
+		if(imageList.size() > 1) {
+			mv.addObject("imageList", gson.toJson(imageList));
+		}else {
+			mv.addObject("imageList", gson.toJson(imageList.get(0)));
+		}
+		mv.setViewName("jsonView");
 		
 		return mv;
 	}

@@ -26,10 +26,14 @@ public class GuideServiceImpl implements GuideService {
 		
 		switch(tableCode) {
 		    case 1:
-				result = guideMapper.insertGuideImage(imageList);
-				break;
+		    	for(GuideImageDTO guideImageDTO : imageList) {
+					result += guideMapper.insertGuideImage(guideImageDTO);
+				}				
+		    	break;
 		    case 2:
-				result = guideMapper.insertTripImage(imageList);
+				for(GuideImageDTO tripImageDTO : imageList) {
+					result += guideMapper.insertTripImage(tripImageDTO);
+				}
 				break;
 		}
 		
