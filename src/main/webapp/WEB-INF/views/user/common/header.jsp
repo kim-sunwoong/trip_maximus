@@ -173,14 +173,19 @@ to {
 
 
 	<header style="display: contents;">
+	
 
 		<div class="pcWrap clearfix"
 			style="background-color: skyblue; width: 100%;">
 			<div class="floatL logo_area"></div>
 			<div class="floatR login_area" style="margin-right: 30px;">
+				
+			
 				<ul class="clearfix">
-					<li class="floatL"><a
-						href="${ pageContext.servletContext.contextPath }/insertGuide">
+						   
+				
+					<li class="floatL">
+					<a href="${ pageContext.servletContext.contextPath }/insertGuide">
 							<span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
 								등록</span>
 					</a></li>
@@ -198,8 +203,21 @@ to {
 					<a class="login_link"
 					href="${ pageContext.servletContext.contextPath }/user/logout"> 
 				<span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
+				    <li class="floatL">
+				    <a href="${ pageContext.servletContext.contextPath }/">
+				    <span style="color: white; font-size: 18px; font-weight: bold;">
+				              MyPage</span>
+					</a></li>
 					</c:if>
-
+					
+			  
+		     		<c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
+					  <li class="floatL">
+				    <a href="${ pageContext.servletContext.contextPath }/">
+				    <span style="color: white; font-size: 18px; font-weight: bold;">
+				              GuidePage</span>
+					</a></li>
+					</c:if>				
 
 					<li class="floatL"><a class="signup_link"
 						href="javascript:void(0);"> <span

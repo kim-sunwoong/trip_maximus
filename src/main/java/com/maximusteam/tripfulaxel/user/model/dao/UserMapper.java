@@ -14,4 +14,6 @@ public interface UserMapper {
 	int duplicationCheck(UserDTO user);
 
 	UserDTO loginUser(UserDTO user);
+
+	UserDTO findEmail(UserDTO user);
 }

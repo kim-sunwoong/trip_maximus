@@ -54,6 +54,17 @@ public class UserServiceImpl implements UserService {
 
 
 
+	/**
+	 * 이메일 찾기 메소드
+	 */
+	@Override
+	public UserDTO findEmail(UserDTO user) {
+		
+		return mapper.findEmail(user);
+	}
+
+
+
 
 
 }

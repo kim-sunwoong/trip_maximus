@@ -76,9 +76,14 @@
 		    AND USER_REPORT_COUNT < 3
 	     ]]>
 	</select>
-
-
-
+	
+	<select id="findEmail" resultMap="loginUserResult" parameterType="USerDTO">
+	     SELECT 
+	            USER_EMAIL
+	       FROM USER
+	      WHERE USER_NAME = #{ userName } 
+	        AND USER_BDAY = #{ userBday }  
+	</select>
 
 </mapper>
 

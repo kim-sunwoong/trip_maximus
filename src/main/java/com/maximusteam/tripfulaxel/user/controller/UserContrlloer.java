@@ -172,5 +172,24 @@ public class UserContrlloer {
 		
 		return "redirect:/";
 	}
+	
+	/**
+	 * 이메일 찾기 
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/findEmail")
+	public String findEmail(@ModelAttribute UserDTO user ) {
+		
+		System.out.println("사용자가 입력한 이름 : " + user.getUserName());
+		System.out.println("사용자가 입력한 생년월일" + user.getUserBday());
+		
+		UserDTO userdto = userService.findEmail(user);
+		
+		
+		
+		return "";
+	}
+	
 
 }

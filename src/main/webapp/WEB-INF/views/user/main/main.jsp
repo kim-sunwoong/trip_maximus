@@ -336,32 +336,9 @@ li.header_menu:hover {
 		});
 	</script>
 
+	
 
-	<!-- 이메일(ID) 찾기 완료 팝업 -->
-	<div class="pop_bg pop_wrap">
-		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
-		<div class="member_pop_box close_wrap find_id_fin_pop">
-			<span class="close_btn"></span>
-			<div class="member_wrap find_member_wrap">
-				<h3 class="tit txt_bold">이메일(ID) 찾기</h3>
-				<p class="txt_bs txt_bold">- 조회 결과 입력하신 정보와 일치하는 이메일은 아래와 같습니다.</p>
-				<p class="txt_bs txt_bold">- 이름, 성별, 생년월일이 동일한 동명이인의 이메일이 함께 검색될
-					수 있습니다.</p>
-				<p class="txt_bs txt_bold">
-					이메일(ID)은 <span class="find_id">hongildong1234</span> 입니다.
-				</p>
-				<!--           		<form class="member_form">
-                                                  <input class="btnBgC txt_bs login_link submit" type="submit" value="로그인">
-                              </form> -->
-				<a class="btnBgC txt_bs login_link submit"
-					href="javascript:void(0);"
-					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
-			</div>
-		</div>
-	</div>
 	
-	
-	<!-- //이메일(ID) 찾기 완료 팝업 끝-->
 	<!-- 이메일(ID) 찾기 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_id_pop"
@@ -374,11 +351,12 @@ li.header_menu:hover {
 					<span>* 표시는 필수 입력입니다. <br>(생년월일 입력시에는 전체 다 입력해주세요)
 					</span>
 				</p>
-				<form class="member_form">
+				<form class="member_form" 
+				  action="${ pageContext.servletContext.contextPath }/user/findEmail">
 					<input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
 					<div class="find_gender_wrap" style="height: 50px;">
 					
-						<input type="radio" id="find_gender1" name="find_gender"
+						<input type="radio" id="gender1" name="userGender"
 							value="남자"
 							style="display: none; margin-top: 0; vertical-align: 
 							middle; outline: none; margin: 0; padding: 0; border: 0">
@@ -389,10 +367,11 @@ li.header_menu:hover {
 							<span class="floatL" style="font-size: 14px; line-height: 38px;">남</span>
 						</label> 
 						
-						<input type="radio" id="find_gender2" name="find_gender" value="여자"
+						<input type="radio" id="gender2" name="userGender" value="여자"
 							style="display: none; margin-top: 0; vertical-align: middle; outline: none; margin: 0; padding: 0; border: 0">
 						<label for="find_gender2" class="cf"
-							style="margin-top: 10px; vertical-align: middle; height: 40px; display: inline-block; width: calc(50% - 5px);">
+							style="margin-top: 10px; vertical-align: middle; height: 40px; display:
+							 inline-block; width: calc(50% - 5px);">
 							<i style="margin: 12px 9px;" class="floatL"></i>
 						<span class="floatL" style="font-size: 14px; line-height: 38px;">여</span>
 						</label>
@@ -404,7 +383,7 @@ li.header_menu:hover {
 						required class="frm_input half_input"
 						placeholder="* 출생연도(예:19900120)">
 					</div>
-					
+		
 					
 					<button class="btnBgC txt_bs find_id_button submit" type="button"
 						value="이메일(ID) 찾기" style="margin-top: 3vh;">이메일(ID) 찾기</button>
@@ -423,8 +402,29 @@ li.header_menu:hover {
 	<!-- //이메일(ID) 찾기 팝업 끝-->
 	
 	
+	<!-- 이메일(ID) 찾기 완료 팝업 -->
+	<div class="pop_bg pop_wrap">
+		<!-- <div style="padding:35px 110px;" class="member_pop_box close_wrap find_id_fin_pop"> -->
+		<div class="member_pop_box close_wrap find_id_fin_pop">
+			<span class="close_btn"></span>
+			<div class="member_wrap find_member_wrap">
+				<h3 class="tit txt_bold">이메일(ID) 찾기</h3>
+				<p class="txt_bs txt_bold">- 조회 결과 입력하신 정보와 일치하는 이메일은 아래와 같습니다.</p>
+				<p class="txt_bs txt_bold">- 이름, 성별, 생년월일이 동일한 동명이인의 이메일이 함께 검색될
+					수 있습니다.</p>
+				<p class="txt_bs txt_bold">
+					이메일(ID)은 <span class="find_id">hongildong1234</span> 입니다.
+				</p>
+				<a class="btnBgC txt_bs login_link submit"
+					href="javascript:void(0);"
+					style="padding: 10px; margin-top: 30px; text-align: center; width: 100%;">로그인</a>
+			</div>
+		</div>
+	</div>
+	<!-- //이메일(ID) 찾기 완료 팝업 끝-->
 	
 	
+			
 	<!-- 비밀번호 찾기 완료 팝업 -->
 	<div class="pop_bg pop_wrap">
 		<div class="member_pop_box close_wrap find_password_fin_pop"
