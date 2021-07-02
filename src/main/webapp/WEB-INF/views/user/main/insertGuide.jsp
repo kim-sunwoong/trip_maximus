@@ -470,7 +470,8 @@
 			totalDataMap.forEach((value, key) => {
 				totalDataJson[key] = value
         	});
-		    
+			
+		    console.log("james");
 			console.log(JSON.stringify(totalDataJson));
 			
 	        $.ajax({
