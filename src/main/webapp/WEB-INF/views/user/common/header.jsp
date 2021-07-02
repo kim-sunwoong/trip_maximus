@@ -172,8 +172,50 @@ to {
 </style>
 
 
-   <header style="display: contents;">
-   
+  <header style="display: contents;">
+    
+        <div class="pcWrap clearfix"  style="background-color:skyblue; height: 170px; width: 100%;" >
+        <div class="floatL logo_area" >
+
+
+         </div>
+                <div class="floatR login_area" style="margin-right: 30px;">
+            		<ul class="clearfix">
+                        <li class="floatL">
+                          <a href="${ pageContext.servletContext.contextPath }/insertGuide" >
+                           <span style="color:white; font-size: 18px; font-weight: bold;">로컬가이드 등록</span>
+                          </a>
+                        </li>
+	                    <li class="floatL">
+	                       <a class="login_link" href="javascript:void(0);">
+                          <span style="color:white; font-size: 18px; font-weight: bold;">로그인</span>
+	                       
+	                       </a>
+	                    </li>
+	                    <li class="floatL">
+	                    <a class="signup_link" href="javascript:void(0);">
+                        <span style="color:white; font-size: 18px; font-weight: bold;">회원가입</span>
+	                    </a>
+	                    </li>
+	                    </li>
+	                    <li class="floatL">
+
+
+	                    <a class="" href="${ pageContext.servletContext.contextPath }/admin/">
+
+                        <span style="color:white; font-size: 18px; font-weight: bold;">admin</span>
+	                    </a>
+	                    </li>
+	                    <!-- 나중에 로그인된 사람만 보게 해야함 -->
+	                    <li class="floatL">
+		                    <a class="" href="${ pageContext.servletContext.contextPath }/user/mypage/">
+	                        <span style="color:white; font-size: 18px; font-weight: bold;">마이페이지</span>
+		                    </a>
+	                    </li>
+                    </ul>
+        		</div>
+
+        <article class="find_btn_area floatR " style="margin-right: 350px;">
 
       <div class="pcWrap clearfix"
          style="background-color: skyblue; width: 100%;">

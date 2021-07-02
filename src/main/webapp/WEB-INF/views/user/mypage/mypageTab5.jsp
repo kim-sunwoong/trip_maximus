@@ -12,7 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/main.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/common.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/style.css?ver=20210620">
