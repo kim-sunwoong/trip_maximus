@@ -20,7 +20,6 @@ import com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO;
 import com.maximusteam.tripfulaxel.livechat.model.service.ChatService;
 
 @Controller
-@RequestMapping("/share/*")
 public class ChatController {
 
 	private ChatService chatService;
@@ -30,25 +29,26 @@ public class ChatController {
 		this.chatService = chatService;
 	}
 	
-	@MessageMapping("/chat/send")
-	public void sendMsg(ChatMessageDTO message) {
+	@MessageMapping("/send")
+	@SendTo("/topic/{roomCode}")
+	public ChatMessageDTO sendMsg(ChatMessageDTO message) {
+		System.out.println("오긴하니..");
+		message.getRoomCode();
 		System.out.println(message.getMessageContent());
+		
+		return message;
 	}
 	
 	
-	@PostMapping("insert/chatRoom")
+	@PostMapping("/share/insert/chatRoom")
 	public String insertChatRoom(@RequestParam String userEmail) {
 		
 		
 		return "user/livechat/chatList";
 	}
 	
-	@RequestMapping("select/chatRoom")
+	@RequestMapping("/share/select/chatRoom")
 	public String selectChatRoomList(Model model, @RequestParam int roomCode, @RequestParam(required = false) int userCode) {
-		System.out.println("ffㄹㄹㄹㄹㄹㄹㄹㄹ룸코드");
-		System.out.println(roomCode);
-		System.out.println("asd");
-		System.out.println(userCode);
 		
 		
 		Map<String, Integer> parameter = new HashedMap();

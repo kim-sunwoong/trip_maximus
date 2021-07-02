@@ -250,7 +250,7 @@ window.onload = function connect() {
 	    var socket = new SockJS('/chat');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function () {
-	        stompClient.subscribe('/topic/' + nickname, function (e) {
+	        stompClient.subscribe('/topic/' + ${room.roomCode}, function (e) {
 	            showMessage(JSON.parse(e.body));
 	            alertClosing('comeMessage',2000);
 	        });
@@ -269,29 +269,37 @@ function send() {
  	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
  	alert(roomCode);
 	data = {'userCode' : userCode, 'roomCode': roomCode, 'messageContent' : $("#message").val()}; 
-    stompClient.send("/app/chat/send", {}, JSON.stringify(data));
+    stompClient.send("/app/send", {}, JSON.stringify(data));
     showMessage(data);
     $("#message").val('');
     alertClosing('successMessage',2000);
 }
 
 function showMessage(e) {
+	let today = new Date();
+	let hours = today.getHours(); // 시
+	let minutes = today.getMinutes();  // 분
+	let seconds = today.getSeconds(); // 초
+	let time = (hours + ':' + minutes + ':' + seconds);
+	alert(time);
     space = document.getElementById("space");
-    space.innerHTML = "<div class='row'> <div class='col-lg-12'> <div class='media'> <div class='media-body'> <h4 class='media-heading'>" +
-        e.userCode + "</h4><h4 class='small pull-right'>방금</h4> </div> <p>" +
-        e.messageContent + "</p> </div> </div> </div> <hr>" + space.innerHTML;
+    space.innerHTML = "<li class='me'> <div class='entete'> <h3>" + time + 
+    "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
+    e.messageContent + "</div> </li>" + space.innerHTML;
+    
+        
 };
 window.onbeforeunload = function(e){
     disconnect();
 }
 
-/* function alertClosing(selector, delay){
+ function alertClosing(selector, delay){
     console.log(selector);
     document.getElementById(selector).style.display = "block";
     window.setTimeout(function(){
         document.getElementById(selector).style.display = "none";
     },delay);
-} */
+} 
 
 </script>
 </head>
@@ -299,13 +307,15 @@ window.onbeforeunload = function(e){
 	<div id="container">
 		<aside>
 			<header>
-				<input type="text" placeholder="search">
+				<label style="color:white; font-size:15px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
+				<label style="color:white; font-size:20px;">현재 접속중 인원 입니다.</label>
 			</header>
+			
 			<ul>
 				<c:forEach var="email" items="${ room.joinUserList}">
 					<li style="margin-left:20px;">
 						<div>
-							<h2><c:out value="${email.userEmail }"/></h2>
+							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
 							<h3>
 								<span class="status green"></span>
 								접속중 입니다.
@@ -317,12 +327,10 @@ window.onbeforeunload = function(e){
 		</aside>
 		<main>
 			<header>
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
-				<div>
-					<h2>Chat with Vincent Porter</h2>
-					<h3>already 1902 messages</h3>
+				<div style="width:450px;">
+					<label style="font-size:25px; font:bold;">채팅방에 접속하셨습니다.</label><br>
+					<label style="font-size:30px; font:bold;"><c:out value="${room.roomTitle }"/></label>
 				</div>
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
 			</header>
 			<ul id="chat">
 			
