@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper">
+
+
+<!-- resultMap은 결과값을 받아주는곳이다 결과값을담아줄때의 규칙이 필요하기에 collection과 association을 사용한다.-->
+<!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO" id="trip">
+			<result property="tripTitle" column="TRIP_TITLE"/>
+</resultMap> -->
+
+<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO" id="trip">
+	
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		
+		<!-- join trip 부분 -->		
+		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
+		<result property="joinTripCode" column="J_TRIP_CODE"/>
+		
+		<!-- guide trip 부분 -->
+		<result property="guideTripCode" column="G_TRIP_CODE"/>
+		<result property="payment" column="G_TRIP_PAYMENT"/>
+		<result property="guideTripMinimum" column="G_TRIP_MINIMUM"/>
+		<result property="guideTripMaximum" column="G_TRIP_MAXIMUM"/>
+		
+		<!-- user trip 부분 -->
+		<result property="userTripCode" column="U_TRIP_CODE"/>
+		<result property="userTripComentTitle" column="U_TRIP_COMENT_TITLE"/>
+		<result property="userTripComent" column="U_TRIP_COMENT_INFO"/>
+		<result property="userTripComentPoint" column="U_TRIP_COMENT_POINT"/>
+		
+		<!-- course -->
+		<collection property="tripCourseList" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.TripCourseDTO">
+			<result property="courseCode" column="TRIP_COURSE_CODE"/>
+			<result property="courseName" column="TRIP_COURSE_NAME"/>
+			<result property="courseInfo" column="TRIP_COURSE_INFO"/>
+			<result property="image" column="TRIP_IMAGE_SAVED_NAME"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- image -->
+		<collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.ImageDTO">
+			<result property="code" column="TRIP_CODE"/>
+			<result property="saveName" column="TRIP_IMAGE_SAVED_NAME"/>
+			<result property="orignName" column="TRIP_IMAGE_ORIGIN_NAME"/>
+			<result property="imgType" column="TRIP_IMAGE_TYPE_CODE"/>
+		</collection>
+		
+		<!-- theme -->
+		<collection property="tripThemeList" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.TripThemeDTO">
+			<result property="themeDetail" column="THEME_DETAIL"/>
+			<result property="themeCode" column="THEME_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- transit -->
+		<collection property="tripTransitList" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.TripTransitDTO">
+			<result property="transitDetail" column="TRANSIT_DETAIL"/>
+			<result property="transitCode" column="TRANSIT_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+		</collection>
+		
+		<!-- tripRegistList -->
+		<collection property="tripRegistList" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.TripRegistListDTO">
+			<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+			<result property="userCode" column="USER_CODE"/>
+			<result property="tripTypeCode" column="TRIP_TYPE_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+			<result property="registTypeCode" column="REGIST_TYPE_CODE"/>
+		
+		</collection>
+		
+		
+	</resultMap>
+   
+   
+   <!-- tripRegistList -->
+		<resultMap id="tripRegistList" type="com.maximusteam.tripfulaxel.user.mypage.model.dto.TripRegistListDTO">
+			<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+			<result property="userCode" column="USER_CODE"/>
+			<result property="tripTypeCode" column="TRIP_TYPE_CODE"/>
+			<result property="tripCode" column="TRIP_CODE"/>
+			<result property="registTypeCode" column="REGIST_TYPE_CODE"/>
+		
+			<!-- join_trip_apply -->
+		<collection property="joinTripApply" ofType="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripApplyDTO">
+			<result property="joinTripApplyCode" column="JOIN_TRIP_APPLY_CODE"/>
+			<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+			<result property="joinTripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
+			<result property="joinTripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
+			<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+			<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+			<result property="userCode" column="USER_CODE"/>
+		</collection>
+		</resultMap>
+		
+		<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO" id="joinTripList">
+			<result property="tripTitle" column="TRIP_TITLE"/>
+			<result property="countUser" column="USER_CODE"/>
+			<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+			<result property="joinTripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
+			<result property="joinTripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
+		</resultMap>
+		
+	<select id="selectJoinList" resultMap="joinTripList">
+	SELECT
+		   TT.TRIP_TITLE,
+		   jta.USER_CODE,
+		   jta.JOIN_TRIP_DATE
+	  FROM TRIP TT
+	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
+	  JOIN TRIP_REGIST_LIST trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
+	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+	  WHERE jta.USER_CODE = #{userCode}
+	</select>
+
+	<!-- 관리자리스트 
+	<resultMap id="adminList" type="AdminDTO">
+		<id column="ADMIN_NO" property="adminNo" />
+		<result column="ADMIN_POSITION" property="adminPosition" />
+		<result column="ADMIN_NAME" property="adminName" />
+		<result column="ADMIN_EMAIL" property="adminEmail" />
+		<result column="ADMIN_HIRE_DATE" property="hireDate" />
+	</resultMap>
+
+	 회원리스트 
+	<resultMap id="memberList" type="MemberDTO">
+		<id column="USER_CODE" property="memberNo" />
+		<result column="USER_NAME" property="memberName" />
+		<result column="USER_EMAIL" property="memberId" />
+		<result column="USER_REGISTER_DAY" property="enrollDate" />
+		<result column="USER_REPORT_COUNT" property="count" />
+	</resultMap>
+	
+	 신고리스트 
+	<resultMap id="reportList" type="ReportDTO">
+		<id column="EXAMINE_REQUEST_CODE" property="reportNo" />
+		<result column="EXAMINE_REQUEST_REASON" property="reportTitle" />
+		<result column="EXAMINE_REQUEST_YN" property="reportStatus" />
+		<result column="EXAMINE_REQUEST_DATE" property="reportDate" />
+	</resultMap>
+	
+	 가이드 리스트 
+	<resultMap id="guideList" type="GuideDTO">
+		<id column="GUIDE_CODE" property="guideNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="USER_GUIDE_YN" property="guideEnrollStatus" />
+		<result column="GUIDE_YN" property="guideApproveStatus" />
+	</resultMap> -->
+
+</mapper>

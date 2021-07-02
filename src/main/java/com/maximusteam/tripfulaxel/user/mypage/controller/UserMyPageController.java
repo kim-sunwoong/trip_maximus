@@ -2,6 +2,7 @@ package com.maximusteam.tripfulaxel.user.mypage.controller;
 
 import java.util.List;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +25,16 @@ public class UserMyPageController {
 	}
 	
 	@GetMapping(value = { "mypageTab1", "/"})
-	public String selectJoinList(Model model) {
+	public String selectJoinList(Model model,Session session) {
 		
 		List<MypageTripDTO> joinList = userMypageService.selectJoinList();
+//		List<JoinTripListDTO> joinList = userMypageService.selectJoinList();
+//		for(int i = 0; i<joinList.size();i++) {
+//			System.out.println(joinList[i]);
+//		}
+//		현재 할려고하는것은 joinList[i].setJoinTripDate 하려고
+//		그 이유는 쿼리문에서 한번에 처리가 안되기 때문에 ,  TODO 쿼리문부터 질문할것
+		System.out.println(joinList);
 		model.addAttribute("selectJoin",joinList);
 		
 		return "user/mypage/mypageTab1";
@@ -36,6 +44,7 @@ public class UserMyPageController {
 	@GetMapping("mypageTab2")
 	public String selectGuideTripList(Model model) {
 		
+//		List<E>
 		
 		
 		return "user/mypage/mypageTab2";

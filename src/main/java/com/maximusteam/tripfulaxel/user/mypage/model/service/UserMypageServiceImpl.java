@@ -18,6 +18,7 @@ public class UserMypageServiceImpl implements UserMypageService{
 		this.mapper = mapper;
 	}
 
+//	public List<JoinTripListDTO> selectJoinList() {
 	@Override
 	public List<MypageTripDTO> selectJoinList() {
 		return mapper.selectJoinList();

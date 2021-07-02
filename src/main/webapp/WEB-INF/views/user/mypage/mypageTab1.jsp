@@ -77,11 +77,11 @@
                         </tr>
                     </thead>
                     <tbody style="padding-top: 20px;">
-                    	<c:forEach items="${ selectJoin }" var = "join">
+                    	<c:forEach items="${selectJoin}" var = "join">
                         <tr>
                             <td><c:out value="${join.tripTitle}"/></td>
-                            <td><c:out value="${join.joinTripCode}"/></td>
                             <td><c:out value="${join.joinTripDate}"/></td>
+                            <td><c:out value="${join.countUser}"/></td>
                         </tr>
                         </c:forEach>
                         

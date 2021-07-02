@@ -1,6 +1,6 @@
 package com.maximusteam.tripfulaxel.user.mypage.model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class JoinTripApplyDTO {
 	
@@ -12,7 +12,6 @@ public class JoinTripApplyDTO {
 	private int tripRegistListCode;
 	private int userCode;
 	public JoinTripApplyDTO() {
-		super();
 	}
 	public JoinTripApplyDTO(int joinTripApplyCode, Date joinTripDate, String joinTripCancelYN, String joinTripAttendYN,
 			String joinTripReason, int tripRegistListCode, int userCode) {

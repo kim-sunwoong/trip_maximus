@@ -14,10 +14,66 @@ public class TripRegistListDTO {
 	
 	
 	public TripRegistListDTO() {
-		super();
 	}
 
+//public TripRegistListDTO(int tripRegistListCode, int userCode, int tripTypeCode, int tripCode, int registTypeCode) {
+//	super();
+//	this.tripRegistListCode = tripRegistListCode;
+//	this.userCode = userCode;
+//	this.tripTypeCode = tripTypeCode;
+//	this.tripCode = tripCode;
+//	this.registTypeCode = registTypeCode;
+//}
+//
+//public int getTripRegistListCode() {
+//	return tripRegistListCode;
+//}
+//
+//public void setTripRegistListCode(int tripRegistListCode) {
+//	this.tripRegistListCode = tripRegistListCode;
+//}
+//
+//public int getUserCode() {
+//	return userCode;
+//}
+//
+//public void setUserCode(int userCode) {
+//	this.userCode = userCode;
+//}
+//
+//public int getTripTypeCode() {
+//	return tripTypeCode;
+//}
+//
+//public void setTripTypeCode(int tripTypeCode) {
+//	this.tripTypeCode = tripTypeCode;
+//}
+//
+//public int getTripCode() {
+//	return tripCode;
+//}
+//
+//public void setTripCode(int tripCode) {
+//	this.tripCode = tripCode;
+//}
+//
+//public int getRegistTypeCode() {
+//	return registTypeCode;
+//}
+//
+//public void setRegistTypeCode(int registTypeCode) {
+//	this.registTypeCode = registTypeCode;
+//}
+//
+//@Override
+//public String toString() {
+//	return "TripRegistListDTO [tripRegistListCode=" + tripRegistListCode + ", userCode=" + userCode + ", tripTypeCode="
+//			+ tripTypeCode + ", tripCode=" + tripCode + ", registTypeCode=" + registTypeCode + "]";
+//}
 
+	
+	
+	// private List<JoinTripApplyDTO> joinTripApply; 있는것
 	public TripRegistListDTO(int tripRegistListCode, int userCode, int tripTypeCode, int tripCode, int registTypeCode,
 			List<JoinTripApplyDTO> joinTripApply) {
 		super();
@@ -96,7 +152,6 @@ public class TripRegistListDTO {
 				+ ", tripTypeCode=" + tripTypeCode + ", tripCode=" + tripCode + ", registTypeCode=" + registTypeCode
 				+ ", joinTripApply=" + joinTripApply + "]";
 	}
-	
 	
 
 }
