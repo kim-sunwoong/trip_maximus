@@ -1,5 +1,6 @@
 package com.maximusteam.tripfulaxel.guide.controller;
 
+import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
 
 @RestController
@@ -58,7 +62,7 @@ public class userGuideController {
 		 *  
 		 * */
 		
-		// 1. GuideDTO
+		// 1-1 GuideDTO 생성
 		GuideDTO guideDTO = new GuideDTO();
 		guideDTO.setNickname((String)formDataMap.get("formData").get("guideNickname"));
 		guideDTO.setCarYn((String)formDataMap.get("formData").get("hasCar"));
@@ -69,12 +73,42 @@ public class userGuideController {
 		guideDTO.setGuideYn("N"); // 승인에 대한 내용, 등록시에는 N으로 기본값 설정
 		guideDTO.setLevelCode(1); // 가입시 레벨은 1로 초기화
 		
-		// 2. TripDTO
+		// 1-2 GUIDE 테이블에 INSERT
 		
 		
-		// 3. TripRegistListDTO
+		// 2-1 TripDTO
+		TripDTO tripDTO = new TripDTO();
+		tripDTO.setTripTitle((String)formDataMap.get("formData").get("tripName"));
+		tripDTO.setTripIntro((String)formDataMap.get("formData").get("tripIntro"));
+		tripDTO.setTripStartDate((Date)formDataMap.get("formData").get("peakStart"));
+		tripDTO.setTripEndDate((Date)formDataMap.get("formData").get("peakEnd"));
+		tripDTO.setInclude((String)formDataMap.get("formData").get("include"));
+		tripDTO.setExclude((String)formDataMap.get("formData").get("exclude"));
+		String meetLocation = (String)formDataMap.get("formData").get("address1") + " "
+							 + (String)formDataMap.get("formData").get("address2") + " "
+							 + (String)formDataMap.get("formData").get("zipCode");
+		tripDTO.setMeetLocation(meetLocation);
 		
-		// ExamineDTO 여행등록코드가 필요
+		// 2-2 TRIP 테이블에 INSERT
+
+		// 3-1 TripRegistListDTO
+		TripRegistListDTO tripRegistListDTO = new TripRegistListDTO();
+		tripRegistListDTO.setTripTypeCode(1);
+		tripRegistListDTO.setRegistTypeCode(1);
+		tripRegistListDTO.setUserCode((int)formDataMap.get("formData").get("userCode"));
+		tripRegistListDTO.setTripCode(tripDTO.getTripCode());
+		
+		// 3-2 TRIP_REGIST_LIST 테이블에 INSERT
+		
+		// 4-1 ExamineDTO
+		ExamineDTO examineDTO = new ExamineDTO();
+		examineDTO.setExamineRequestReason((String)formDataMap.get("formData").get("requestReason"));
+		examineDTO.setTypeCode(3); // 가이드 등록 심사코드 - 3
+		examineDTO.setExamineRequestYn("N"); // 심사등록시 기본값 N으로 등록
+		examineDTO.setExamineRequestFrom((int)formDataMap.get("formData").get("userCode"));
+		examineDTO.setExamineRequestTo(tripRegistListDTO.getRegistListCode());
+		
+		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
 		
 		return null;
 	}
