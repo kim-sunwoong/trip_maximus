@@ -249,6 +249,7 @@ window.onload = function connect() {
  	var userCode = ${sessionScope.loginUser.userCode};
 	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
+	    joinMember();
 	    stompClient.connect({}, function () {
 	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
@@ -289,7 +290,12 @@ function showMessage(e, time) {
     "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
     e.messageContent + "</div> </li>" + space.innerHTML;
     
-        
+};
+
+function joinMember() {
+	joinList = document.getElementById("joinList");
+	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'> ${sessionScope.loginUser.userEmail} "
+    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 };
 window.onbeforeunload = function(e){
     disconnect();
@@ -313,8 +319,8 @@ window.onbeforeunload = function(e){
 				<label style="color:white; font-size:20px;">현재 접속중 인원 입니다.</label>
 			</header>
 			
-			<ul>
-				<c:forEach var="email" items="${ room.joinUserList}">
+			<ul id="joinList">
+				<%-- <c:forEach var="email" items="${ room.joinUserList}">
 					<li style="margin-left:20px;">
 						<div>
 							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
@@ -324,7 +330,7 @@ window.onbeforeunload = function(e){
 							</h3>
 						</div>
 					</li>
-				</c:forEach>
+				</c:forEach> --%>
 			</ul>
 		</aside>
 		<main>
@@ -340,31 +346,42 @@ window.onbeforeunload = function(e){
 					<div id="space"></div>
 
 				</li>
+				<c:forEach var="chat" items="${room.messageList }">
+					
+					<c:choose>
+						<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
+							<li class="me">
+								<div class="entete">
+									<h3><c:out value="${chat.messageDate }"/></h3>
+									<h2><c:out value="${chat.userEmail }"/></h2>
+									<span class="status blue"></span>
+								</div>
+								<div class="triangle"></div>
+								<div class="message">
+									<c:out value="${chat.messageContent }"/>
+								</div>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="you">
+								<div class="entete">
+									<span class="status green"></span>
+									<h2><c:out value="${chat.userEmail }"/></h2>
+									<h3><c:out value="${chat.messageDate }"/></h3>
+								</div>
+								<div class="triangle"></div>
+								<div class="message">
+									<c:out value="${chat.messageContent }"/>
+								</div>
+							</li>
+						
+						</c:otherwise>
+						
+					</c:choose>
+				
+				</c:forEach>
 				
 				
-				<li class="you">
-					<div class="entete">
-						<span class="status green"></span>
-						<h2>Vincent</h2>
-						<h3>10:12AM, Today</h3>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
-				
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						OK
-					</div>
-				</li>
 			</ul>
 			<footer>
 				<textarea placeholder="Type your message" id="message"></textarea>

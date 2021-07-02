@@ -1,5 +1,6 @@
 package com.maximusteam.tripfulaxel.livechat.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +25,22 @@ import com.maximusteam.tripfulaxel.livechat.model.service.ChatService;
 public class ChatController {
 
 	private ChatService chatService;
+	SimpMessagingTemplate template;
 	
 	@Autowired
-	public ChatController(ChatService chatService) {
+	public ChatController(ChatService chatService, SimpMessagingTemplate template) {
 		this.chatService = chatService;
+		this.template = template;
 	}
 	
-	
+	@MessageMapping("/message")
+	public void chat(ChatMessageDTO message) {
+		
+		
+		
+		
+		this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+	}
 	
 	@PostMapping("/share/insert/chatRoom")
 	public String insertChatRoom(@RequestParam String userEmail) {
@@ -41,27 +52,32 @@ public class ChatController {
 	@RequestMapping("/share/select/chatRoom")
 	public String selectChatRoomList(Model model, @RequestParam int roomCode, @RequestParam(required = false) int userCode) {
 		
-		
 		Map<String, Integer> parameter = new HashedMap();
 		parameter.put("roomCode", roomCode);
 		parameter.put("userCode", userCode);
 		
 		List<ChatRoomDTO> roomList = chatService.selectChatRoom(parameter);
 		
-		for(ChatRoomDTO room : roomList) {
-			System.out.println(room);
-			
-//			for(String email : room.getUserEmailList()) {
-//				System.out.println(email);
-//			}
-//			for(ChatMessageDTO message : room.getMessageList()) {
-//				System.out.println(message);
-//			}
-		}
+//		내 채팅과 접속유저들의 채팅을 구분해서 나눔 처리
+		List<ChatMessageDTO> myChat = new ArrayList<ChatMessageDTO>();
+		List<ChatMessageDTO> youChat = new ArrayList<ChatMessageDTO>();
 		
 		if(roomCode != 0 && userCode != 0) {
+			
 			ChatRoomDTO room = roomList.get(0);
+			
+			for(ChatMessageDTO message : room.getMessageList()) {
+				
+				if(message.getUserCode() == userCode) {
+					myChat.add(message);
+				} else {
+					youChat.add(message);
+				}
+			}
+			
 			model.addAttribute("room", room);
+			model.addAttribute("myChat", myChat);
+			model.addAttribute("youChat", youChat);
 			
 			return "user/livechat/chat";
 		} else {
