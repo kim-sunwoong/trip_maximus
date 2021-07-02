@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.admin.model.dao.AdminMapper;
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.GuideEnrollDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
@@ -35,8 +37,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ReportDTO> selectReportList() {
-		return mapper.selectReport();
+	public List<ReportDTO> selectReportList(ReportDTO type) {
+		return mapper.selectReport(type);
 	}
 
 	@Override
@@ -78,6 +80,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int insertReport(ReportDTO report) {
+		
+		if (mapper.insertReport(report)> 0 && report.getExamineCode() == 2) {
+				updateReportStatus(report);
+				updateReportCount(report);
+		}
+		
 		return mapper.insertReport(report);
 	}
 
@@ -91,10 +99,48 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateReportCount(report);
 	}
 
+	@Override
+	public GuideDTO selectEnrollDetail(int no) {
+		return mapper.selectEnrollDetail(no);
+	}
 
+	@Override
+	public GuideEnrollDTO selectProfilePic(int no) {
+		return mapper.selectProfilePic(no);
+	}
 
+	@Override
+	public GuideEnrollDTO selectIdPic(int no) {
+		return mapper.selectIdPic(no);
+	}
+
+	@Override
+	public List<AdminAnswerDTO> selectMemberCategory(AdminAnswerDTO type) {
+		return mapper.selectAnswer(type);
+	}
+
+	@Override
+	public AdminAnswerDTO selectAnswerDetail(int no) {
+		return mapper.selectAnswerDetail(no);
+	}
+
+	@Override
+	public int insertAnswer(AdminAnswerDTO answer) {
+		
+		if (mapper. insertAnswer(answer)> 0 ) {
+			updateAnswerStatus(answer);
+		}
+		return mapper.insertAnswer(answer);
+	}
+
+	@Override
+	public int updateAnswerStatus(AdminAnswerDTO answer) {
+		return mapper.updateAnswerStatus(answer);
+	}
 
 
 	
-	
+
+
+
 }

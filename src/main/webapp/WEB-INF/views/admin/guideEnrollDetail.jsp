@@ -105,55 +105,59 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                가이드 가입
+                               		 가이드 가입
                             </div>
 
                             <div class="card-body">
                                 <table class="table table">
                                     <tr>
                                         <td style="width: 15%;">이름</td>
-                                        <td><input type="text"  class="form-control" name="writer"></td>
+                                        <td><input type="text"  class="form-control" name="name" value="${selectEnrollDetail.guideName}"></td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 15%;">성별</td>
-                                        <td><input type="text"  class="form-control" name="writer"></td>
+                                        <td><input type="text"  class="form-control" name="gender" value="${selectEnrollDetail.guideGender}"></td>
                                     </tr>
 
                                     <tr>
                                      <td style="width: 15%;">활동명</td>
-                                     <td><input type="text"  class="form-control" name="writer"></td>
+                                     <td><input type="text"  class="form-control" name="nickName" value="${selectEnrollDetail.guideNickname}"></td>
                                     </tr>
                                     <tr>
                                      <td>가이드 경험 여부</td>
-                                     <td><input type="text"  class="form-control" name="subject" value=></td>
+                                     <td><input type="text"  class="form-control" name="experience" value="${selectEnrollDetail.guideExp}"></td>
                                     </tr>
                                     <tr>
                                         <td>개인차량여부</td>
-                                        <td><input type="text"  class="form-control" name="subject" value=></td>
+                                        <td><input type="text"  class="form-control" name="car" value="${selectEnrollDetail.guideCar}"></td>
                                        </tr>
 
                                     <tr>
                                      <td>가이드 소개</td>
-                                     <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                     <td>
+                                     	<input  type="text" name="content" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
+                                     </td>
                                     </tr>
 
                                                                     
                                     <tr>
+                                        <td>프로필 사진</td>
+                                        <td>
+                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}.png">
+                                        	
+                                        </td>
+                                    </tr>
+
+                                    <tr>
                                         <td>신분증 사진</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+                                        <td>
+                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
+                                        	
+                                        </td>
                                     </tr>
-
-                                    <tr>
-                                        <td>가이드 사진</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>활동 사진</td>
-                                        <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
-                                    </tr>
-
                                      <tr> 
                                      <td colspan="2"  class="text-center">
                                      

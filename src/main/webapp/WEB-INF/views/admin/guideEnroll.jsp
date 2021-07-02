@@ -151,7 +151,7 @@
                                             <td><c:out value="${guide.guideEnrollStatus}"/></td>
                                             <td><c:out value="${guide.guideApproveStatus}"/></td>
                                             <td>
-                                                <button type="button" onclick="location.href='AdminGuideEnrollDetail.html'">
+                                                <button type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/enrollDetail?guideNo=${guide.guideNo}'">
                                                     	상세보기
                                                 </button>
                                             </td>

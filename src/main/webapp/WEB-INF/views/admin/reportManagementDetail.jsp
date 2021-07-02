@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>  
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -115,6 +115,7 @@
                                      <td style="width: 10%;">제목</td>
                                      <td>
                                      	<input type="text"  class="form-control" name="reportTitle" value="${selectReportDetail.reportTitle}" readonly>
+                                     	<input type="hidden" name="requestCode" value="${selectReportDetail.requestCode}"/>
                                      </td>
                                     </tr>
                                     <tr>
@@ -137,6 +138,7 @@
                                      	<input type="text"  class="form-control" name="reportContent" value="${selectReportDetail.reportTitle}" readonly>
                                      </td>
                                     </tr>
+
 									<tr>
                                         <td>날짜</td>
                                         <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
@@ -145,7 +147,16 @@
                                     <tr>
                                         <td>답변 내용</td>
                                         <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
-                                       </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>심사코드</td>
+                                        <td>
+                                        	<select name="examineCode" class="select-time">
+												<option value="2">승인</option>
+												<option value="3">반려</option>
+											</select>
+                                        </td>
+                                    </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">
                                       <button type="submit" class="btn btn-success">답변쓰기완료</button>

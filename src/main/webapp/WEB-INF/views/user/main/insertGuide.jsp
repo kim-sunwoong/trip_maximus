@@ -112,7 +112,7 @@
 					<!-- 닉네임 -->			
 					<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>닉네임  </span>
-				   	<input type="text" class="select-nomalsize" name="guideNickname" required="required">	
+				   	<input value="james" type="text" class="select-nomalsize" name="guideNickname" required="required">	
 					</div>
 					
 					<!-- 개인 차량 여부 -->
@@ -191,21 +191,21 @@
 				<td>
 				<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>신분증</span>
-                    <input type="file" name="imageID" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+                    <input type="file" name="imageID" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					  <p class="description" style="margin-bottom: 3px;">*신분증은 뒷번호를 가린 후 업로드 해주세요. </p>
 				</div>
 				
 				<!-- 프로필 사진  -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>프로필 사진</span>
-			      <input type="file" name="imageFace" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input type="file" name="imageFace" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*가이드 프로필 사진을 업로드 해주세요</p>
 				</div>
 
 			    <!-- 기타 첨부 서류 -->
 			    <div class="form-layer">						
 			      <span class="form-title" style="display:inline-block";>기타 첨부 서류</span>
-			      <input multiple="multiple" name="imageCerti" type="file" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+			      <input multiple="multiple" name="imageCerti" type="file" onchange="selectedImage(this)" class="btn btn-default btn_add[]" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                   <p class="description" style="margin-bottom: 3px;">*본인의 전문성을 증명할 수 있는 서류를 업로드 해주세요.</p>
                   <p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 				</div>
@@ -237,7 +237,7 @@
 			 <!-- 여행 제목  -->
 			 	<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>여행제목  </span>
-			 	    <input type="text" class="select-nomalsize" name="tripName" placeholder="해변에서 즐기는 해돋이 요가">
+			 	    <input value="여행소개" type="text" class="select-nomalsize" name="tripName" placeholder="해변에서 즐기는 해돋이 요가">
 			 	     <p class="description" style="margin-bottom: 3px;">*여행 테마, 본인 전문성을 강조한 제목을 입력해주세요. </p>
 				</div>
 				
@@ -249,7 +249,7 @@
 					</div>	
 
 					<div class="form-layer">
-						<input type="file"  name="imageTrip"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
+						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
 			 <hr>
@@ -260,7 +260,7 @@
 				 <div class="course">
 					 <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>코스 이름  </span>
-					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
+					 	<input value="코스이름" type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
 					</div>
 						
 					<!-- 코스 소개 -->
@@ -268,18 +268,18 @@
 						<span class="form-title" style="display:inline-block">코스 소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
-		                <input type="file" id="imageCourse" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+		                <input type="file" name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
 					</div>		
 					
 					<!-- 코스 일 차 -->
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>
-					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
+					 	<input value="1" type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
 					 	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
 							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
 					
-					<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
+					<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
 					<hr>
 				</div>
 			</div>
@@ -298,9 +298,11 @@
 								 +'<span class="form-title" style="display:inline-block">코스 소개</span>'
 								 +'<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>'
 								 +'<div class="maxText">(최대 500자)</div>'
-								 +'<input type="file"  name="imageCourse"  class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">'
+								 +'<input type="file"  name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">'
 								 +'</div>'		
-															
+										
+								 								 
+								 
 								 +'<div class="form-layer">'
 								 +'<span class="form-title" style="display:inline-block; width:200px !important;">몇째날 코스입니까?</span>'
 								 +'<input type="number" class="select-nomalsize" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>'
@@ -308,47 +310,15 @@
 								 +'	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;'
 								 +'		 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">'
 								
-								 +'<button type="button" class="btnRemove"  style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
+								 +'<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
 								 +'<hr>'
 								 +'</div>');
 						
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
+							deletedCourse(e);
 						});
 				    });
-				
-				
-				
-				<!-- REST API 사용을 위한 form에 작성한 값을 Controller에 보내기 -->
-				$('#submitButton').click(function(){
- 				        var formData = new FormData($('#insertGuideForm')[0]);
- 				        
- 				        /* for(var pair of formData.entries()){
- 				        	console.log(pair[0] + ", " + pair[1]);
- 				        }
- 				         */
- 				         
-				        $.ajax({
-				            url : "${pageContext.request.contextPath}/guide/insert",
-				            type : 'post', 
-				            data : formData, 
-				            dataType : 'json',
-				            encType : 'multipart/form-data',
-				            contentType: false,
-				            processData: false,
-				            cache : false,
-				            async : false,
-				            success : function(data) {
-				                var jsonObj = JSON.parse(data);
-				                // 성공했을시
-				                // 실패했을시
-				            }, // success 
-				    
-				            error : function(xhr, status) {
-				                alert(xhr + " : " + status);
-				            }
-				       	 });
-					});
 				});
 			</script>			
 			<hr>
@@ -356,12 +326,12 @@
 			 	<div class="form-layer">
 					<span class="form-title" style="display:inline-block";>만나는 장소  </span>
 				
-			         <input type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
+			         <input value="25401" type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
 					 <input type="button"  id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
 					 background-color:skyblue;" value=" 주소 검색 ">
-				     <input type="text" name="address1" id="address1" readonly style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
+				     <input value="낙성대" type="text" name="address1" id="address1" readonly style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요.">
-				     <input type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
+				     <input value="305호" type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요." value=""> 
 					 
 			 	     <p class="description" style="margin-bottom: 3px;">*여행을 진행하기 전에 어디서 만날 건지 여행자에게 알려주세요. <br> 예약완료 시 메시지를 통해 자세한 장소를 공유해주세요. </p>
@@ -385,25 +355,25 @@
 			   	 <!-- 최소인원   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>최소 인원  </span>
-			 	    <input type="number" class="select-nomalsize" name="minimum" placeholder="최소인원(1이상)을 입력해주세요." min="1">
+			 	    <input value="1" type="number" class="select-nomalsize" name="minimum" placeholder="최소인원(1이상)을 입력해주세요." min="1">
 				  </div>
 				  
 				  <!-- 최대인원   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block";>최대 인원  </span>
-			 	    <input type="number" class="select-nomalsize" name="maximum" placeholder="최대인원(1이상)을 입력해주세요." min="1">
+			 	    <input value="5" type="number" class="select-nomalsize" name="maximum" placeholder="최대인원(1이상)을 입력해주세요." min="1">
 				  </div>
 				  
 					 <!-- 1인당 가격   -->
 				      <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>1인당 가격  </span>
-				 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
+				 	    <input value="150000" type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
 					  </div>
 			   
 			   	 	<!-- 포함 사항    -->
 				      <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
-				 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
+				 	    <input value="식비" type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등" value="">
 				 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
 					  </div>
 			   
@@ -411,7 +381,7 @@
 		    		<!-- 불포함 사항    -->
 				      <div class="form-layer">
 						<span class="form-title" style="display:inline-block";>불포함 사항  </span>
-				 	    <input type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
+				 	    <input value="버스비" type="text" class="select-nomalsize" name="exclude" placeholder="예시) 식비 등 "  value="">
 					  </div> 
 				   
 				   </td>
@@ -430,19 +400,16 @@
  </table>
 </form>
 <script>
+	var formMap = new Map();
+	var courseImage = new Array();
+	var formdata;
+	var totalData = {};
 
-$("document").ready(function(){
-
-	var formData;	
-	
-    $('input[type=file]').change(function(e) {
+	<!-- 사진이 선택되었을때, 사진이 저장되고 그 정보값을 json으로 저장 -->
+ 	function selectedImage(e){
+    	var fileList = e.files;
     	
-    	console.log(e.target.files);
-    	
-    	var formArray = {};
-    	var fileList = e.target.files;
-    	
-    	var formData = new FormData();	
+    	formData = new FormData();	
 
     	for(var i = 0; i < fileList.length; i ++){
     		var file = fileList[i];
@@ -450,7 +417,7 @@ $("document").ready(function(){
     		formData.append('imageFile', file);
     	}
 
-    	formData.append('imageCategory', e.target.name)
+    	formData.append('imageCategory', e.name)
 
     	$.ajax({             
         	type: "POST",          
@@ -462,23 +429,93 @@ $("document").ready(function(){
             cache: false,           
             timeout: 600000,       
             success: function (data) { 
-            	alert("complete");           
-/*             	$("#btnSubmit").prop("disabled", false);      
+            	if(e.name == "imageCourse"){
+            		courseImage.push(JSON.parse(data.imageList));
+	            	formMap.set(e.name, courseImage);
+            	}else {
+	            	formMap.set(e.name, JSON.parse(data.imageList));
+            	}
+            	
+            	formMap.forEach((value, key) => {
+            		totalData[key] = value
+            	});
+            	
+/*             	console.log(JSON.stringify(totalData));
  */            },          
             error: function (e) {  
             	console.log("ERROR : ", e);     
-/*                 $("#btnSubmit").prop("disabled", false);    
- */                alert("fail");      
+                $("#btnSubmit").prop("disabled", false);    
+                alert("fail");      
              }     
     	});  
- 
- 	    
-     });
-    
-    
-});
+ 	}
+ 	
+ 	<!-- 코스여행을 추가했지만, 코스삭제했을때 해당 사진 DB 및 JSON에서 삭제 -->
+ 	function deletedCourse(e){
+ 		console.log(e);
+ 	}
+ 	
+ 	
+ 	<!-- REST API 사용을 위한 form에 작성한 값을 JSON으로 변환 후 Controller에 보내기 -->
+	$('#submitButton').click(function(){
+			var totalDataMap = new Map();
+			var totalDataJson = {};
+			var formData = $('#insertGuideForm').serializeObject();
+		   
+			totalDataMap.set("formData", JSON.stringify(formData));
+			totalDataMap.set("imageData", JSON.stringify(totalData));
+			
+			console.log(totalDataMap);
+			
+			totalDataMap.forEach((value, key) => {
+				totalDataJson[key] = value
+        	});
+			
+		    console.log("james");
+			console.log(JSON.stringify(totalDataJson));
+			
+	        $.ajax({
+	            url : "${pageContext.request.contextPath}/api/guides",
+	            type : 'post', 
+	            data : totalDataJson, 
+	            dataType : 'json',
+	            encType : 'application/json',
+	            contentType: false,
+	            processData: false,
+	            cache : false,
+	            async : false,
+	            success : function(data) {
+/* 	                var jsonObj = JSON.parse(data);
+ */	                // 성공했을시
+	                // 실패했을시
+	                console.log("success");
+	            }, // success 
+	    
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+	       	 });
+		});
+	
+	$.fn.serializeObject = function () {
+		  'use strict';
+		  var result = {};
+		  var extend = function (i, element) {
+		    var node = result[element.name];
+		    if ('undefined' !== typeof node && node !== null) {
+		      if ($.isArray(node)) {
+		        node.push(element.value);
+		      } else {
+		        result[element.name] = [node, element.value];
+		      }
+		    } else {
+		      result[element.name] = element.value;
+		    }
+		  };
 
-
+		  $.each(this.serializeArray(), extend);
+		  return result;
+		};
 </script>
 
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper">
+
+	<insert id="insertGuideImage" parameterType="GuideImageDTO">
+	    <selectKey resultType="int" keyProperty="imageCode" order="AFTER">
+	    	SELECT MAX(GUIDE_IMAGE_CODE) as imageCode FROM GUIDE_IMAGE
+	    </selectKey>
+	    INSERT INTO GUIDE_IMAGE
+	    (
+	    	  GUIDE_IMAGE_CODE
+	        , GUIDE_IMAGE_SAVED_NAME
+	        , GUIDE_IMAGE_TYPE_CODE
+	        , GUIDE_IMAGE_ORIGIN_NAME
+	        , USER_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_IMAGE_CODE) + 1, 1) FROM GUIDE_IMAGE b)
+	        , #{savedName}
+	        , #{imageTypeCode}
+	        , #{originName}
+	        , #{refCode}
+	    )
+	</insert>
+	
+	<insert id="insertTripImage" parameterType="GuideImageDTO">
+		<selectKey resultType="int" keyProperty="imageCode" order="AFTER">
+	    	SELECT MAX(TRIP_IMAGE_CODE) as imageCode FROM TRIP_IMAGE
+	    </selectKey>
+	    INSERT INTO TRIP_IMAGE
+	    (
+	    	  TRIP_IMAGE_CODE
+	    	, TRIP_IMAGE_SAVED_NAME
+	    	, TRIP_IMAGE_TYPE_CODE
+	    	, TRIP_IMAGE_ORIGIN_NAME
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_IMAGE_CODE) + 1, 1) FROM TRIP_IMAGE b)
+	        , #{savedName}
+	        , #{imageTypeCode}
+	        , #{originName}
+	    )
+	</insert>
+	
+</mapper>
+    

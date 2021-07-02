@@ -16,6 +16,8 @@ public interface UserService {
 	int duplicationCheck(UserDTO user);
 
 	UserDTO loginUser(UserDTO user);
+
+	UserDTO findEmail(UserDTO user);
 	
 
 
