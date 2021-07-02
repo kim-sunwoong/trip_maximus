@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.LevelUpDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
@@ -164,6 +165,14 @@ public class AdminController {
 	public String selectLevelUpDetail(@RequestParam("guideNo") int no, Model model) {
 		model.addAttribute("selectLevelUpDetail", adminService.selectLevelUpDetail(no));
 		return "admin/guideLevelUpDetail";
+	}
+	
+	@PostMapping("insertLevelUp")
+	public String insertLevelUp(@ModelAttribute LevelUpDTO levelUp , Model model) {
+
+		int insertLevelUp = adminService.insertLevelUp(levelUp);
+		model.addAttribute("insertLevelUp", insertLevelUp);
+		return "redirect:levelUpList";
 	}
 
 }

@@ -57,5 +57,11 @@ public interface AdminService {
 	List<LevelUpDTO> selectLevelUpList();
 
 	LevelUpDTO selectLevelUpDetail(int no);
+
+	int insertLevelUp(LevelUpDTO levelUp);
+	
+	int updateLevelStatus(LevelUpDTO levelUp);
+
+	int updateLevelUpCount(LevelUpDTO levelUp);
 	
 }

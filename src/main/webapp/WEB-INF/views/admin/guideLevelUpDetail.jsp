@@ -112,7 +112,7 @@
                             <div class="row" style="margin-top: 20px;margin-left: 10px;">
                                 <!-- <div class="col-md-2"></div> -->
                                 <div class="col-md-8">
-                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertAnswer"> 
+                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertLevelUp"> 
                                       <table class="table text-center">
                                         <tr>
                                             <td>신청내용</td>
@@ -128,7 +128,29 @@
                                         <td>댓글 개수</td>
                                         <td><input type="text" class="form-control" name="reviewCount" value="${selectLevelUpDetail.reviewCount}" readonly></td>
                                         </tr>
-                                        <tr> 
+                                        <tr>
+                                        <td>날짜</td>
+                                        <td>
+                                        	<input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control">
+                                        	<input type="hidden" name="requestCode" value="${selectLevelUpDetail.levelUpNo}">
+                                        	<input type="hidden" name="guideNo" value="${selectLevelUpDetail.guideNo}">
+                                        </td>
+                                       </tr>
+                                       <tr> 
+                                   	   <tr>
+                                         <td>답변 내용</td>
+                                         <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
+                                       </tr>
+                                       <tr>
+                                          <td>심사코드</td>
+                                          <td>
+                                        	<select name="examineCode" class="select-time">
+												<option value="2">승인</option>
+												<option value="3">반려</option>
+											</select>
+                                          </td>
+                                        </tr>
+                                       
                                         <tr>
                                             <td colspan="2"  class="text-center">
                                                 <input type="submit" value="답변완료" class="btn btn-success">

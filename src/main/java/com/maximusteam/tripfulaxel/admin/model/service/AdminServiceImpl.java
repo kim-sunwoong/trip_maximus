@@ -155,6 +155,30 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectLevelUpDetail(no);
 	}
 
+	@Override
+	public int insertLevelUp(LevelUpDTO levelUp) {
+		
+		int result = 0;
+		result = mapper.insertLevelUp(levelUp);
+		updateLevelStatus(levelUp);
+		
+		if( result > 0 && levelUp.getExamineCode() == 2 ) {
+			updateLevelUpCount(levelUp);
+		}
+		return result;
+	}
+
+	@Override
+	public int updateLevelStatus(LevelUpDTO levelUp) {
+		return mapper.updateLevelStatus(levelUp);
+	}
+
+	@Override
+	public int updateLevelUpCount(LevelUpDTO levelUp) {
+		return mapper.updateLevelUpCount(levelUp);
+	}
+
+
 
 	
 

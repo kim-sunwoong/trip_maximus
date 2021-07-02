@@ -58,6 +58,12 @@ public interface AdminMapper {
 
 	LevelUpDTO selectLevelUpDetail(int no);
 
+	int insertLevelUp(LevelUpDTO levelUp);
+
+	int updateLevelStatus(LevelUpDTO levelUp);
+
+	int updateLevelUpCount(LevelUpDTO levelUp);
+
 	
 
 
