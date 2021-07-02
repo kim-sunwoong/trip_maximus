@@ -244,16 +244,18 @@ main footer a{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
 
-function connect() {
-    var socket = new SockJS('/chat');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function () {
-        stompClient.subscribe('/topic/' + eamil, function (e) {
-            showMessage(JSON.parse(e.body));
-            alertClosing('comeMessage',2000);
-        });
-    });
-}
+window.onload = function connect() {
+	alert(1);
+ 	var userCode = ${sessionScope.loginUser.userCode};
+	    var socket = new SockJS('/chat');
+	    stompClient = Stomp.over(socket);
+	    stompClient.connect({}, function () {
+	        stompClient.subscribe('/topic/' + nickname, function (e) {
+	            showMessage(JSON.parse(e.body));
+	            alertClosing('comeMessage',2000);
+	        });
+	    });
+	}
 
 function disconnect() {
     if (stompClient !== null) {
@@ -262,8 +264,11 @@ function disconnect() {
 }
 
 function send() {
-	alert(1);
-    data = {'userCode' :userCode, 'userEmail' :${sessionScope.email}, 'roomCode': ${room.roomCode},'messageContent': $("#message").val()};
+ 	var userCode = ${sessionScope.loginUser.userCode};
+ 	var roomCode = ${room.roomCode};
+ 	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
+ 	alert(roomCode);
+	data = {'userCode' : userCode, 'roomCode': roomCode, 'messageContent' : $("#message").val()}; 
     stompClient.send("/app/chat/send", {}, JSON.stringify(data));
     showMessage(data);
     $("#message").val('');
@@ -273,20 +278,20 @@ function send() {
 function showMessage(e) {
     space = document.getElementById("space");
     space.innerHTML = "<div class='row'> <div class='col-lg-12'> <div class='media'> <div class='media-body'> <h4 class='media-heading'>" +
-        e.sender + "</h4><h4 class='small pull-right'>방금</h4> </div> <p>" +
-        e.message + "</p> </div> </div> </div> <hr>" + space.innerHTML;
+        e.userCode + "</h4><h4 class='small pull-right'>방금</h4> </div> <p>" +
+        e.messageContent + "</p> </div> </div> </div> <hr>" + space.innerHTML;
 };
 window.onbeforeunload = function(e){
     disconnect();
 }
 
-function alertClosing(selector, delay){
+/* function alertClosing(selector, delay){
     console.log(selector);
     document.getElementById(selector).style.display = "block";
     window.setTimeout(function(){
         document.getElementById(selector).style.display = "none";
     },delay);
-}
+} */
 
 </script>
 </head>
@@ -297,10 +302,10 @@ function alertClosing(selector, delay){
 				<input type="text" placeholder="search">
 			</header>
 			<ul>
-				<c:forEach var="email" items="${ room.userEmailList}">
+				<c:forEach var="email" items="${ room.joinUserList}">
 					<li style="margin-left:20px;">
 						<div>
-							<h2><c:out value="${email }"/></h2>
+							<h2><c:out value="${email.userEmail }"/></h2>
 							<h3>
 								<span class="status green"></span>
 								접속중 입니다.
@@ -320,17 +325,12 @@ function alertClosing(selector, delay){
 				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
 			</header>
 			<ul id="chat">
+			
 				<li class="you">
-					<div class="entete">
-						<span class="status green"></span>
-						<h2>Vincent</h2>
-						<h3>10:12AM, Today</h3>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
+					<div id="space"></div>
+
 				</li>
+				
 				<li class="me">
 					<div class="entete">
 						<h3>10:12AM, Today</h3>

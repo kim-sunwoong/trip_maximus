@@ -36,16 +36,6 @@
 <!-- stomp를 사용하기 위한 라이브러리 추가 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-function connect() {
-    var socket = new SockJS('/chat');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function () {
-        stompClient.subscribe('/topic/' + ${sessionScope.userEmail}, function (e) {
-            showMessage(JSON.parse(e.body));
-            alertClosing('comeMessage',2000);
-        });
-    });
-}
 
 function newRoom(){
 	
@@ -62,7 +52,7 @@ function newRoom(){
     <th>채팅방 타이틀</th>
   </tr>
   <c:forEach var="room" items="${roomList }">
-	  <tr onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?userCode=${sessionScope.userCode}&roomCode=${room.roomCode}'">
+	  <tr onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?userCode=${sessionScope.loginUser.userCode}&roomCode=${room.roomCode}'">
 	    <td><c:out value="${room.roomTitle }"/></td>
 	  </tr>
   </c:forEach>

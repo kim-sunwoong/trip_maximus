@@ -5,11 +5,12 @@
 	
 	<resultMap type="com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO" id="chatRoom">
 		
-		<result property="roomCode" column="CHAT_ROOM_CODE"/>
 		<result property="roomTitle" column="CHAT_ROOM_TITLE"/>
+		<result property="roomCode" column="CHAT_ROOM_CODE"/>
 	
-		<collection property="userEmailList" ofType="java.lang.String" notNullColumn="USER_EMAIL">
-			<result column="USER_EMAIL"/>
+		<collection property="joinUserList" ofType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO">
+			<result property="userCode" column="USER_CODE"/>
+			<result property="userEmail" column="USER_EMAIL"/>
 		</collection>
 		
 		<collection property="messageList" ofType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
@@ -25,13 +26,13 @@
 		SELECT DISTINCT
 			   cr.CHAT_ROOM_CODE,
 			   cr.CHAT_ROOM_TITLE
-		 <!-- <if test="roomCode gt 0">
+		 <if test="roomCode gt 0">
 			 , m.USER_CODE,
 			   u.USER_EMAIL,
 			   m.MESSAGE_CODE,
 			   m.MESSAGE_CONTENT,       
 			   m.MESSAGE_DATE 
-		</if>
+		 </if>
 		<choose>
 			<when test="roomCode gt 0">
 				FROM MESSAGE m
@@ -41,10 +42,10 @@
 			   WHERE cr.CHAT_ROOM_CODE = #{roomCode}
 			</when>
 			<otherwise>
-			</otherwise>
-		</choose> -->
-		
 				FROM CHAT_ROOM cr
+			</otherwise>
+		</choose>
+		
 	</select>
 	
 </mapper>

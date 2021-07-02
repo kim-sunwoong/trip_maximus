@@ -8,7 +8,7 @@ public class ChatRoomDTO {
 	
 	private String roomTitle;
 	
-	private List<String> userEmailList;
+	private List<ChatJoinUserDTO> joinUserList;
 	
 	private List<ChatMessageDTO> messageList;
 	
@@ -18,11 +18,12 @@ public class ChatRoomDTO {
 	}
 
 
-	public ChatRoomDTO(int roomCode, String roomTitle, List<String> userEmailList, List<ChatMessageDTO> messageList) {
+	public ChatRoomDTO(int roomCode, String roomTitle, List<ChatJoinUserDTO> joinUserList,
+			List<ChatMessageDTO> messageList) {
 		super();
 		this.roomCode = roomCode;
 		this.roomTitle = roomTitle;
-		this.userEmailList = userEmailList;
+		this.joinUserList = joinUserList;
 		this.messageList = messageList;
 	}
 
@@ -47,13 +48,13 @@ public class ChatRoomDTO {
 	}
 
 
-	public List<String> getUserEmailList() {
-		return userEmailList;
+	public List<ChatJoinUserDTO> getJoinUserList() {
+		return joinUserList;
 	}
 
 
-	public void setUserEmailList(List<String> userEmailList) {
-		this.userEmailList = userEmailList;
+	public void setJoinUserList(List<ChatJoinUserDTO> joinUserList) {
+		this.joinUserList = joinUserList;
 	}
 
 
@@ -69,9 +70,11 @@ public class ChatRoomDTO {
 
 	@Override
 	public String toString() {
-		return "ChatRoomDTO [roomCode=" + roomCode + ", roomTitle=" + roomTitle + ", userEmailList=" + userEmailList
+		return "ChatRoomDTO [roomCode=" + roomCode + ", roomTitle=" + roomTitle + ", joinUserList=" + joinUserList
 				+ ", messageList=" + messageList + "]";
 	}
+
+
 	
 	
 
