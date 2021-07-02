@@ -245,7 +245,6 @@ main footer a{
 <script>
 
 window.onload = function connect() {
-	alert(1);
  	var userCode = ${sessionScope.loginUser.userCode};
 	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
@@ -275,8 +274,6 @@ function send() {
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};
  	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
- 	alert(roomCode);
- 	alert(userCode);
 	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'messageDate':time, 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode}; 
     stompClient.send("/app/message", {}, JSON.stringify(data));
     showMessage(data, time);
@@ -286,17 +283,25 @@ function send() {
 
 function showMessage(e, time) {
     space = document.getElementById("space");
-    space.innerHTML = "<li class='me'> <div class='entete'> <h3>" + time + 
-    "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
-    e.messageContent + "</div> </li>" + space.innerHTML;
     
+    if(e.userCode == ${sessionScope.loginUser.userCode}){
+	    space.innerHTML = "<li class='me'> <div class='entete'> <h3>" + time + 
+	    "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
+	    e.messageContent + "</div> </li>" + space.innerHTML;
+    } else {
+	    space.innerHTML = "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
+	    "</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
+	    e.messageContent + "</div> </li>" + space.innerHTML;
+    	
+    }
 };
 
 function joinMember() {
 	joinList = document.getElementById("joinList");
-	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'> ${sessionScope.loginUser.userEmail} "
+	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'> ${sessionScope.loginUser.userEmail}"  
     + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 };
+
 window.onbeforeunload = function(e){
     disconnect();
 }
@@ -341,11 +346,13 @@ window.onbeforeunload = function(e){
 				</div>
 			</header>
 			<ul id="chat">
+				<div id="space">
 			
-				<li class="you">
+				<!-- <li class="you">
 					<div id="space"></div>
 
 				</li>
+ -->				
 				<c:forEach var="chat" items="${room.messageList }">
 					
 					<c:choose>
@@ -381,6 +388,7 @@ window.onbeforeunload = function(e){
 				
 				</c:forEach>
 				
+				</div>
 				
 			</ul>
 			<footer>
