@@ -1,7 +1,9 @@
 package com.maximusteam.tripfulaxel.guide.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -16,6 +18,7 @@ import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
 
 @RestController
@@ -28,16 +31,6 @@ public class userGuideController {
 		this.guideService = guideService;
 	}
 	
-//	@RequestMapping(value = "/api/guides", method = RequestMethod.POST)
-//	public GuideRegistFormDTO insertGuide(@RequestBody GuideRegistFormDTO formDataMap){
-//		
-//		System.out.println("come in controller");
-//		System.out.println(formDataMap.getFormData());
-//		System.out.println(formDataMap.getImageData());
-//		
-//		return null;
-//	}
-
 	@RequestMapping(value = "/api/guides", method = RequestMethod.POST)
 	public GuideRegistFormDTO insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
@@ -109,6 +102,27 @@ public class userGuideController {
 		examineDTO.setExamineRequestTo(tripRegistListDTO.getRegistListCode());
 		
 		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
+		
+		
+		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
+		int[] choiceTheme = (int[])formDataMap.get("formData").get("theme");
+		List<TripThemeChoiceDTO> themeList = new ArrayList<>();		
+				
+		for(int i = 0; i < choiceTheme.length; i++) {
+			TripThemeChoiceDTO tripThemeChoiceDTO = new TripThemeChoiceDTO();
+			tripThemeChoiceDTO.setTripCode(tripDTO.getTripCode());
+			tripThemeChoiceDTO.setThemeCode(choiceTheme[i]);
+			
+			themeList.add(tripThemeChoiceDTO);
+		}
+		
+		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
+		
+		
+		// 6-1 TripTransitChoice
+		int[] choiceTransit = (int[])formDataMap.get("formData").get("transit");
+		
+		
 		
 		return null;
 	}
