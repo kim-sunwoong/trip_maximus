@@ -36,10 +36,12 @@ public class ChatController {
 	@MessageMapping("/message")
 	public void chat(ChatMessageDTO message) {
 		
+		int result = chatService.insertMessage(message);
 		
-		
-		
-		this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+		if(result > 0) {
+			System.out.println("잘 들어갔다!!");
+			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+		}
 	}
 	
 	@PostMapping("/share/insert/chatRoom")

@@ -5,10 +5,13 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO;
 
 public interface ChatService {
 
 	public List<ChatRoomDTO> selectChatRoom(Map<String, Integer> parameter);
+	
+	public int insertMessage(ChatMessageDTO message);
 
 }

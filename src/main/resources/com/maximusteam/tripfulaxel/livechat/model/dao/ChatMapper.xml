@@ -45,7 +45,33 @@
 				FROM CHAT_ROOM cr
 			</otherwise>
 		</choose>
-		
 	</select>
+	
+	<insert id="insertMessage" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
+		
+		<selectKey keyProperty="messageMaxCode" resultType="int" order="BEFORE">
+			SELECT
+				   MAX(MESSAGE_CODE) + 1
+			  FROM MESSAGE
+		</selectKey>
+		
+		INSERT
+		  INTO MESSAGE
+		(
+		  MESSAGE_CODE
+		, MESSAGE_DATE
+		, CHAT_ROOM_CODE
+		, USER_CODE
+		, MESSAGE_CONTENT
+		)
+	    VALUES
+	    (
+	      #{messageMaxCode}
+	    , #{messageDate}
+	    , #{roomCode}
+	    , #{userCode}
+	    , #{messageContent}
+	    )
+	</insert>
 	
 </mapper>
