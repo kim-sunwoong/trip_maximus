@@ -29,15 +29,6 @@ public class ChatController {
 		this.chatService = chatService;
 	}
 	
-	@MessageMapping("/send")
-	@SendTo("/topic/{roomCode}")
-	public ChatMessageDTO sendMsg(ChatMessageDTO message) {
-		System.out.println("오긴하니..");
-		message.getRoomCode();
-		System.out.println(message.getMessageContent());
-		
-		return message;
-	}
 	
 	
 	@PostMapping("/share/insert/chatRoom")

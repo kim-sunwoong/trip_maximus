@@ -235,7 +235,7 @@ main footer a{
 }
 
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- SockJs를 사용하기 위한 라이브러리 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -247,15 +247,16 @@ main footer a{
 window.onload = function connect() {
 	alert(1);
  	var userCode = ${sessionScope.loginUser.userCode};
-	    var socket = new SockJS('/chat');
+	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function () {
-	        stompClient.subscribe('/topic/' + ${room.roomCode}, function (e) {
+	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
 	            alertClosing('comeMessage',2000);
 	        });
 	    });
 	}
+
 
 function disconnect() {
     if (stompClient !== null) {
@@ -264,24 +265,25 @@ function disconnect() {
 }
 
 function send() {
+	var today = new Date();
+	var hours = today.getHours(); // 시
+	var minutes = today.getMinutes();  // 분
+	var seconds = today.getSeconds(); // 초
+	var time = (hours + ':' + minutes + ':' + seconds);
+	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};
  	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
  	alert(roomCode);
-	data = {'userCode' : userCode, 'roomCode': roomCode, 'messageContent' : $("#message").val()}; 
-    stompClient.send("/app/send", {}, JSON.stringify(data));
-    showMessage(data);
+ 	alert(userCode);
+	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'messageDate':time, 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode}; 
+    stompClient.send("/app/message", {}, JSON.stringify(data));
+    showMessage(data, time);
     $("#message").val('');
-    alertClosing('successMessage',2000);
+    /* alertClosing('successMessage',2000); */
 }
 
-function showMessage(e) {
-	let today = new Date();
-	let hours = today.getHours(); // 시
-	let minutes = today.getMinutes();  // 분
-	let seconds = today.getSeconds(); // 초
-	let time = (hours + ':' + minutes + ':' + seconds);
-	alert(time);
+function showMessage(e, time) {
     space = document.getElementById("space");
     space.innerHTML = "<li class='me'> <div class='entete'> <h3>" + time + 
     "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
@@ -293,13 +295,13 @@ window.onbeforeunload = function(e){
     disconnect();
 }
 
- function alertClosing(selector, delay){
+/*  function alertClosing(selector, delay){
     console.log(selector);
     document.getElementById(selector).style.display = "block";
     window.setTimeout(function(){
         document.getElementById(selector).style.display = "none";
     },delay);
-} 
+}  */
 
 </script>
 </head>
@@ -339,28 +341,7 @@ window.onbeforeunload = function(e){
 
 				</li>
 				
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						OK
-					</div>
-				</li>
+				
 				<li class="you">
 					<div class="entete">
 						<span class="status green"></span>
@@ -372,17 +353,7 @@ window.onbeforeunload = function(e){
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
 					</div>
 				</li>
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
+				
 				<li class="me">
 					<div class="entete">
 						<h3>10:12AM</h3>
