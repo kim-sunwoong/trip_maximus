@@ -42,37 +42,6 @@
          </bean>
       </property>
    </bean>
-<<<<<<< HEAD
-	
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="find*" read-only="true" rollback-for="Exception" />
-			<tx:method name="search*" read-only="true" rollback-for="Exception" />
-			<tx:method name="select*" read-only="true" rollback-for="Exception" />
-			<tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
-			<tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
-			<tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
-		</tx:attributes>
-	</tx:advice> 
-	
-	<aop:config proxy-target-class="true">
-		<aop:pointcut id="serviceMethod"
-			expression="execution(* com.maximusteam.tripfulaxel..*ServiceImpl.*(..))" />
-		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod"
-			advice-ref="txAdvice" />
-	</aop:config>
-	
-	<!--  dao 추가해주어야 함 -->
-	<mybatis-spring:scan 
-		base-package="com.maximusteam.tripfulaxel.*.model.dao,com.maximusteam.tripfulaxel.*.*.model.dao"/> 
-		
-</beans>
-=======
    
    <bean id="transactionManager"
       class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -99,7 +68,6 @@
    
    <!--  dao 추가해주어야 함 -->
    <mybatis-spring:scan 
-      base-package="com.maximusteam.tripfulaxel.*.model.dao"/> 
+      base-package="com.maximusteam.tripfulaxel.*.model.dao,com.maximusteam.tripfulaxel.*.*.model.dao"/> 
       
 </beans>
->>>>>>> branch 'master' of https://github.com/maximusStrong/trip_maximus.git
