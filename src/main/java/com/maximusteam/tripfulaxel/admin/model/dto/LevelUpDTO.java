@@ -8,11 +8,15 @@ public class LevelUpDTO {
     private int starPoint;
     private String review;
     private String levelUpStatus;
+    private int guideNo;
+    
+	private int reviewCount;
+	private String requestContent;
 	
     public LevelUpDTO() {}
 
 	public LevelUpDTO(int levelUpNo, String guideId, String guideLevel, int starPoint, String review,
-			String levelUpStatus) {
+			String levelUpStatus, int guideNo, int reviewCount, String requestContent) {
 		super();
 		this.levelUpNo = levelUpNo;
 		this.guideId = guideId;
@@ -20,6 +24,9 @@ public class LevelUpDTO {
 		this.starPoint = starPoint;
 		this.review = review;
 		this.levelUpStatus = levelUpStatus;
+		this.guideNo = guideNo;
+		this.reviewCount = reviewCount;
+		this.requestContent = requestContent;
 	}
 
 	public int getLevelUpNo() {
@@ -70,11 +77,40 @@ public class LevelUpDTO {
 		this.levelUpStatus = levelUpStatus;
 	}
 
+	public int getGuideNo() {
+		return guideNo;
+	}
+
+	public void setGuideNo(int guideNo) {
+		this.guideNo = guideNo;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getRequestContent() {
+		return requestContent;
+	}
+
+	public void setRequestContent(String requestContent) {
+		this.requestContent = requestContent;
+	}
+
 	@Override
 	public String toString() {
 		return "LevelUpDTO [levelUpNo=" + levelUpNo + ", guideId=" + guideId + ", guideLevel=" + guideLevel
-				+ ", starPoint=" + starPoint + ", review=" + review + ", levelUpStatus=" + levelUpStatus + "]";
+				+ ", starPoint=" + starPoint + ", review=" + review + ", levelUpStatus=" + levelUpStatus + ", guideNo="
+				+ guideNo + ", reviewCount=" + reviewCount + ", requestContent=" + requestContent + "]";
 	}
+
+	
+
+
     
     
     

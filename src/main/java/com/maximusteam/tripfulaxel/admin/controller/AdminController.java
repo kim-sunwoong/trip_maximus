@@ -153,5 +153,17 @@ public class AdminController {
 			model.addAttribute("insertAnswer", insertAnswer);
 			return "redirect:answerList";
 	}
+	
+	@GetMapping("levelUpList")
+	public String selectLevelUpList(Model model) {
+		model.addAttribute("selectLevelUpList", adminService.selectLevelUpList());
+		return "admin/guideLevelUp";
+	}
+	
+	@GetMapping("levelUpDetail")
+	public String selectLevelUpDetail(@RequestParam("guideNo") int no, Model model) {
+		model.addAttribute("selectLevelUpDetail", adminService.selectLevelUpDetail(no));
+		return "admin/guideLevelUpDetail";
+	}
 
 }

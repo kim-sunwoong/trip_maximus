@@ -97,6 +97,19 @@
 		<result column="EXAMINE_REQUEST_YN" property="answerStatus" />
 		<result column="EXAMINE_REQUEST_FROM" property="anwserRequestFrom" />
 	</resultMap>
+
+	<!-- 등업리스트 -->
+	<resultMap id="levelUpList" type="LevelUpDTO">
+		<id column="EXAMINE_REQUEST_CODE" property="levelUpNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="GUIDE_LEVEL_DETAIL" property="guideLevel" />
+		<result column="TRIP_REVIEW_GRADE" property="starPoint" />
+		<result column="EXAMINE_REQUEST_YN" property="levelUpStatus" />
+		<result column="USER_CODE" property="guideNo" />
+		
+		<result column="EXAMINE_REQUEST_REASON" property="requestContent" />
+		<result column="REVIEW" property="reviewCount" />
+	</resultMap>
 	
 	<select id="selectAdmin" resultMap="adminList">
         SELECT 
@@ -320,7 +333,7 @@
              , A.EXAMINE_REQUEST_CODE
              , A.EXAMINE_REQUEST_FROM
           FROM EXAMINE A
-          JOIN  USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+          JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
          WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
@@ -360,4 +373,50 @@
                EXAMINE_REQUEST_YN = 'Y'
          WHERE EXAMINE_REQUEST_FROM = #{ anwserRequestCode }
 	</update> 
+	
+	<select id="selectLevelUpList" resultMap="levelUpList">
+        SELECT 
+     		   A.EXAMINE_REQUEST_CODE
+     		 , B.USER_EMAIL
+     		 , D.GUIDE_LEVEL_DETAIL
+    		 , G.TRIP_REVIEW_GRADE
+     		 , A.EXAMINE_REQUEST_YN
+     		 , B.USER_CODE
+		  FROM EXAMINE A 
+		  JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+		  JOIN GUIDE C ON (B.USER_CODE = C.USER_CODE)
+		  JOIN GUIDE_LEVEL D ON (C.GUIDE_LEVEL_CODE = D.GUIDE_LEVEL_CODE)
+		  JOIN TRIP_REGIST_LIST E ON (B.USER_CODE = E.USER_CODE)
+		  JOIN JOIN_TRIP_APPLY F ON (E.TRIP_REGIST_LIST_CODE = F.TRIP_REGIST_LIST_CODE)
+		  JOIN TRIP_REVIEW G ON (F.JOIN_TRIP_APPLY_CODE = G.JOIN_TRIP_APPLY_CODE)
+		  JOIN EXAMINE_TYPE H ON (A.TYPE_CODE = H.EXAMINE_TYPE_CODE)
+		 WHERE H.EXAMINE_TYPE_CODE = '7';
+	</select>
+	
+	<select id="selectLevelUpDetail" resultMap="levelUpList" parameterType="_int">
+        SELECT 
+     		   A.EXAMINE_REQUEST_REASON 
+    		 , G.TRIP_REVIEW_GRADE
+     		 , (	
+        	    SELECT 
+	    	     COUNT(TRIP_REPLY_DETAIL)
+	      	      FROM USER A
+	 	  		  JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
+	  	  	  	  JOIN JOIN_TRIP_APPLY C ON (B.TRIP_REGIST_LIST_CODE = C.TRIP_REGIST_LIST_CODE)
+	   	  		  JOIN TRIP_REVIEW D ON (C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+	 	  		  JOIN TRIP_REPLY E ON (D.TRIP_REVIEW_CODE = E.TRIP_REVIEW_CODE)
+	 	 		 WHERE A.USER_CODE = #{ no }
+	   		   ) AS REVIEW
+ 		  FROM EXAMINE A 
+ 		  JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+ 		  JOIN GUIDE C ON (B.USER_CODE = C.USER_CODE)
+ 		  JOIN GUIDE_LEVEL D ON (C.GUIDE_LEVEL_CODE = D.GUIDE_LEVEL_CODE)
+ 		  JOIN TRIP_REGIST_LIST E ON (B.USER_CODE = E.USER_CODE)
+ 		  JOIN JOIN_TRIP_APPLY F ON (E.TRIP_REGIST_LIST_CODE = F.TRIP_REGIST_LIST_CODE)
+ 		  JOIN TRIP_REVIEW G ON (F.JOIN_TRIP_APPLY_CODE = G.JOIN_TRIP_APPLY_CODE)
+ 		  JOIN EXAMINE_TYPE H ON (A.TYPE_CODE = H.EXAMINE_TYPE_CODE)
+ 		  JOIN TRIP_REPLY I ON (G.TRIP_REVIEW_CODE = I.TRIP_REVIEW_CODE)
+		 WHERE B.USER_CODE = #{ no }
+  		   AND H.EXAMINE_TYPE_CODE = '7'
+	</select>
 </mapper>

@@ -14,7 +14,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
             rel="stylesheet"/>
-   
+        
 		<link href="/tripfulaxel/resources/admin/css/style.css" rel="stylesheet"/>
         <script src="/tripfulaxel/resources/admin/js/scripts.js"></script>
         <script src="/tripfulaxel/resources/admin/js/datatables-simple-demo.js"></script>
@@ -22,12 +22,13 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"></script>
+
         
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axel</a>
+            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axcel</a>
             <!-- Sidebar Toggle-->
             <button
                 class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -92,7 +93,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">
-                            Copyright &copy; Tripful axel
+                            Copyright &copy; Tripful axcel
                         </div>
                     </div>
                 </nav>
@@ -105,68 +106,38 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                               		 가이드 가입
+                                	등업신청 상세보기
                             </div>
 
-                            <div class="card-body">
-                                <table class="table table">
-                                    <tr>
-                                        <td style="width: 15%;">이름</td>
-                                        <td><input type="text"  class="form-control" name="name" value="${selectEnrollDetail.guideName}"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 15%;">성별</td>
-                                        <td><input type="text"  class="form-control" name="gender" value="${selectEnrollDetail.guideGender}"></td>
-                                    </tr>
-
-                                    <tr>
-                                     <td style="width: 15%;">활동명</td>
-                                     <td><input type="text"  class="form-control" name="nickName" value="${selectEnrollDetail.guideNickname}"></td>
-                                    </tr>
-                                    <tr>
-                                     <td>가이드 경험 여부</td>
-                                     <td><input type="text"  class="form-control" name="experience" value="${selectEnrollDetail.guideExp}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>개인차량여부</td>
-                                        <td><input type="text"  class="form-control" name="car" value="${selectEnrollDetail.guideCar}"></td>
-                                       </tr>
-
-                                    <tr>
-                                     <td>가이드 소개</td>
-                                     <td>
-                                     	<input  type="text" name="content" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
-                                     </td>
-                                    </tr>
-
-                                                                    
-                                    <tr>
-                                        <td>프로필 사진</td>
-                                        <td>
-                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}.png">
-                                        	
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>신분증 사진</td>
-                                        <td>
-                                        	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
-                                        	
-                                        </td>
-                                    </tr>
-                                     <tr> 
-                                     <td colspan="2"  class="text-center">
-                                      <input type="submit" value="가입승인" class="btn btn-success">
-                                      <input type="reset" value="가입취소" class="btn btn-warning">
-                                      <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
-                                     </td>
-                                    </tr>
-                                    
-                                    </table>
+                            <div class="row" style="margin-top: 20px;margin-left: 10px;">
+                                <!-- <div class="col-md-2"></div> -->
+                                <div class="col-md-8">
+                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertAnswer"> 
+                                      <table class="table text-center">
+                                        <tr>
+                                            <td>신청내용</td>
+                                            <td><input type="text"  class="form-control" name="content" value="${selectLevelUpDetail.requestContent}" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td>평점</td>
+                                            <td>
+              									<input type="text"  class="form-control" name="starPoint" value="${selectLevelUpDetail.starPoint}" readonly>
+                                            </td>
+                                        </tr>
+									    <tr>
+                                        <td>댓글 개수</td>
+                                        <td><input type="text" class="form-control" name="reviewCount" value="${selectLevelUpDetail.reviewCount}" readonly></td>
+                                        </tr>
+                                        <tr> 
+                                        <tr>
+                                            <td colspan="2"  class="text-center">
+                                                <input type="submit" value="답변완료" class="btn btn-success">
+                                            </td>
+                                        </tr>
+                                      </table>
+                                  </form> 
+                                   
+                                </div>
                             </div>
 
                         </div>
