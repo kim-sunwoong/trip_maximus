@@ -316,8 +316,8 @@
 						
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
-							deletedCourse(e);
-						});
+/* 							deletedCourse(e);
+ */						});
 				    });
 				});
 			</script>			
@@ -440,8 +440,8 @@
             		totalData[key] = value
             	});
             	
-/*             	console.log(JSON.stringify(totalData));
- */            },          
+             	console.log(JSON.stringify(totalData));
+            },          
             error: function (e) {  
             	console.log("ERROR : ", e);     
                 $("#btnSubmit").prop("disabled", false);    
@@ -462,25 +462,22 @@
 			var totalDataJson = {};
 			var formData = $('#insertGuideForm').serializeObject();
 		   
-			totalDataMap.set("formData", JSON.stringify(formData));
-			totalDataMap.set("imageData", JSON.stringify(totalData));
-			
-			console.log(totalDataMap);
+			totalDataMap.set("formData", formData);
+			totalDataMap.set("imageData", totalData);
 			
 			totalDataMap.forEach((value, key) => {
 				totalDataJson[key] = value
         	});
 			
-		    console.log("james");
-			console.log(JSON.stringify(totalDataJson));
+			var sendData = JSON.stringify(totalDataJson);
+			console.log(sendData);
 			
 	        $.ajax({
 	            url : "${pageContext.request.contextPath}/api/guides",
 	            type : 'post', 
-	            data : totalDataJson, 
+	            data : sendData, 
 	            dataType : 'json',
-	            encType : 'application/json',
-	            contentType: false,
+	            contentType: 'application/json; charset=utf-8',
 	            processData: false,
 	            cache : false,
 	            async : false,
@@ -489,8 +486,7 @@
  */	                // 성공했을시
 	                // 실패했을시
 	                console.log("success");
-	            }, // success 
-	    
+	            }, 
 	            error : function(xhr, status) {
 	                alert(xhr + " : " + status);
 	            }
