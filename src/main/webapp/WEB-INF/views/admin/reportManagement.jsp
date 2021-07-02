@@ -132,7 +132,12 @@
                                 신고관리
                             </div>
 
-                            <div class="card-body">
+                         <div class="card-body">
+	                         <div class="btn-group btn-group-justified">
+	                          <a  href="${ pageContext.servletContext.contextPath }/admin/reportList?ut=all" class="btn btn-warning">전체 </a>
+	                          <a  href="${ pageContext.servletContext.contextPath }/admin/reportList?ut=guide" class="btn btn-warning">가이드</a>
+	                          <a  href="${ pageContext.servletContext.contextPath }/admin/reportList?ut=user" class="btn btn-warning">유저</a>
+	                         </div>
                                 <table id="datatablesSimple" class="table table">
                                     <thead>
                                         <tr>

@@ -245,23 +245,22 @@ to {
 
 
             <ul>
-                <li class="floatL header_menu">
-                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순" class="btnLineC txt_md" >
-                    <span style="color:white; font-size: 20px;" > 로컬가이드</span></a>
-                </li>
-                <li class="floatL header_menu">
-                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순" class="btnLineC txt_md" >
-                    <span style="color:white; font-size: 20px;" > 나만의 여행</span></a>
-                </li>
-                <li class="floatL header_menu">
-                    <a href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순" class="btnLineC txt_md">
-                    <span style="color:white; font-size: 20px;" > 같이가요 여행</span></a>
-                </li>
-                <li class="floatL header_menu">
-                    <a href="#" class="btnLineC txt_md">
-                    <span style="color:white; font-size: 20px;">여행 플래너</span></a>
-                </li>
-                <li class="floatL header_menu">
+               <li class="floatL header_menu"><a
+                  href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순"
+                  class="btnLineC txt_md"> <span
+                     style="color: white; font-size: 20px;"> 로컬가이드</span></a></li>
+               <li class="floatL header_menu"><a
+                  href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순"
+                  class="btnLineC txt_md"> <span
+                     style="color: white; font-size: 20px;"> 나만의 여행</span></a></li>
+               <li class="floatL header_menu"><a
+                  href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
+                  class="btnLineC txt_md"> <span
+                     style="color: white; font-size: 20px;"> 같이가요 여행</span></a></li>
+               <li class="floatL header_menu"><a href="#"
+                  class="btnLineC txt_md"> <span
+                     style="color: white; font-size: 20px;">여행 플래너</span></a></li>
+               <li class="floatL header_menu">
                     <a href="${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>

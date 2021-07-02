@@ -53,10 +53,25 @@
 	
 	<!-- 가이드 리스트 -->
 	<resultMap id="guideList" type="GuideDTO">
-		<id column="GUIDE_CODE" property="guideNo" />
+		<id column="USER_CODE" property="guideNo" />
 		<result column="USER_EMAIL" property="guideId" />
 		<result column="USER_GUIDE_YN" property="guideEnrollStatus" />
 		<result column="GUIDE_YN" property="guideApproveStatus" />
+	</resultMap>
+
+	<!-- 가이드 상세 -->
+	<resultMap id="guideDetail" type="GuideDTO">
+		<result column="USER_NAME" property="guideName" />
+		<result column="USER_GENDER" property="guideGender" />
+		<result column="GUIDE_NICKNAME" property="guideNickname" />
+		<result column="GUIDE_EXP_YN" property="guideExp" />
+		<result column="GUIDE_CAR_YN" property="guideCar" />
+		<result column="GUIDE_INTRO" property="guideIntro" />
+	</resultMap>
+	
+	<!-- 가이드 사진 -->
+	<resultMap id="guidePic" type="GuideEnrollDTO">
+		<result column="GUIDE_IMAGE_SAVED_NAME" property="guideEnrollImage" />
 	</resultMap>
 	
 	<!-- 정산 리스트 -->
@@ -71,6 +86,16 @@
 		<id column="BILL_REQUEST_CODE" property="taxNo" />
 		<result column="USER_EMAIL" property="guideId" />
 		<result column="BILL_REQUEST_DATE" property="taxDate" />
+	</resultMap>
+	
+	<!-- 문의리스트 -->
+	<resultMap id="answerList" type="AdminAnswerDTO">
+		<id column="EXAMINE_REQUEST_CODE" property="answerNo" />
+		<result column="USER_EMAIL" property="userId" />
+		<result column="EXAMINE_REQUEST_REASON" property="answerTitle" />
+		<result column="EXAMINE_REQUEST_DATE" property="answerDate" />
+		<result column="EXAMINE_REQUEST_YN" property="answerStatus" />
+		<result column="EXAMINE_REQUEST_FROM" property="anwserRequestFrom" />
 	</resultMap>
 	
 	<select id="selectAdmin" resultMap="adminList">
@@ -107,7 +132,7 @@
          WHERE USER_CODE = #{no}
 	</select>
 	
-	<select id="selectReport" resultMap="reportList">
+	<select id="selectReport" resultMap="reportList" parameterType="ReportDTO">
         SELECT 
                A.EXAMINE_REQUEST_CODE
              , A.EXAMINE_REQUEST_REASON
@@ -117,8 +142,16 @@
           FROM EXAMINE A
           JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
           JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
-         WHERE EXAMINE_TYPE_CODE = 1
+         <if test='userType.equals("all")'>
+	       WHERE EXAMINE_TYPE_CODE = 1
             OR EXAMINE_TYPE_CODE = 2
+	      </if>
+	      <if test='userType.equals("guide")'>
+	       WHERE EXAMINE_TYPE_CODE = 1
+	      </if>
+	      <if test='userType.equals("user")'>
+	       WHERE EXAMINE_TYPE_CODE = 2
+	      </if>
 	</select>
 	
 	<select id="selectReportDetail" resultMap="reportDetail" parameterType="_int">
@@ -135,15 +168,47 @@
 	</select>
 	
 	<select id="selectGuide" resultMap="guideList">
-        SELECT 
-               A.GUIDE_CODE
-             , C.USER_EMAIL
-             , C.USER_GUIDE_YN
-             , A.GUIDE_YN
-          FROM GUIDE A
-          JOIN USER C ON (A.USER_CODE = C.USER_CODE)
-         WHERE A.GUIDE_YN = 'N'
+	    SELECT 
+               A.USER_CODE
+             , A.USER_EMAIL
+             , A.USER_GUIDE_YN
+             , B.GUIDE_YN
+          FROM USER A
+          JOIN GUIDE B ON (A.USER_CODE = B.USER_CODE)
+         WHERE A.USER_GUIDE_YN = 'Y'
+           AND B.GUIDE_YN = 'N';
 	</select>
+	
+    <select id="selectEnrollDetail" resultMap="guideDetail" parameterType="_int">
+          	         SELECT 
+	                B.USER_NAME
+	              , B.USER_GENDER
+	              , A.GUIDE_NICKNAME
+	              , A.GUIDE_EXP_YN
+	              , A.GUIDE_CAR_YN
+	              , A.GUIDE_INTRO
+	           FROM USER B
+	           JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
+	          WHERE A.USER_CODE = #{ no }
+	</select>
+	
+ 	<select id="selectProfilePic" resultMap="guidePic" parameterType="_int">
+	         SELECT 
+	               A.GUIDE_IMAGE_SAVED_NAME
+	          FROM GUIDE_IMAGE A
+	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	         WHERE A.USER_CODE = #{ no }
+	           AND GUIDE_IMAGE_TYPE_CODE = 1;
+	</select>
+	
+	<select id="selectIdPic" resultMap="guidePic" parameterType="_int">
+	         SELECT 
+	               A.GUIDE_IMAGE_SAVED_NAME
+	          FROM GUIDE_IMAGE A
+	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	         WHERE A.USER_CODE = #{ no }
+	           AND GUIDE_IMAGE_TYPE_CODE = 3;
+	</select> 
 	
 	<select id="selectCalculate" resultMap="calculateList">
         SELECT 
@@ -151,7 +216,7 @@
              , E.USER_EMAIL
              , DATE_FORMAT(A.INVOICE_DATE, '%Y-%m-%d') AS INVOICE_DATE
           FROM INVOICE A
-          JOIN INVOICE_HISTORY B on (A.INVOICE_CODE = B.INVOICE_CODE)
+          JOIN INVOICE_HISTORY B ON (A.INVOICE_CODE = B.INVOICE_CODE)
           JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
           JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
           JOIN USER E ON ( D.USER_CODE = E.USER_CODE);	
@@ -184,10 +249,9 @@
 	
 	<insert id="insertReport" parameterType="ReportDTO">
 	
-		<selectKey  resultType="ReportDTO" keyColumn="responseCode,requestCode" keyProperty="responseCode,requestCode" order="BEFORE">
+		<selectKey  resultType="ReportDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
 	        SELECT 
 	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	             , MAX(EXAMINE_REQUEST_CODE + 1)  as requestCode
 	          FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
@@ -206,8 +270,8 @@
 		,#{responseContent}
 		,#{responseDate} 
 		,#{requestCode}
-		, 2
-		, 1
+		,#{examineCode}
+		,1
 		)
 	</insert>
 	
@@ -226,4 +290,74 @@
                a.USER_REPORT_COUNT = b.USER_REPORT_COUNT + 1
          WHERE a.USER_CODE = #{ reportTarget }	
 	</update>  
+	
+	<select id="selectAnswer" resultMap="answerList" parameterType="AdminAnswerDTO">
+        SELECT
+	           A.EXAMINE_REQUEST_CODE
+	         , C.USER_EMAIL
+	         , A.EXAMINE_REQUEST_REASON
+	         , DATE_FORMAT(A.EXAMINE_REQUEST_DATE, '%Y-%m-%d') AS EXAMINE_REQUEST_DATE
+	         , A.EXAMINE_REQUEST_YN
+	     FROM EXAMINE A
+	 	 JOIN EXAMINE_TYPE B ON (A.TYPE_CODE = B.EXAMINE_TYPE_CODE)
+	 	 JOIN USER C ON (A.EXAMINE_REQUEST_FROM = C.USER_CODE)
+         <if test='answerType.equals("all")'>
+		WHERE EXAMINE_TYPE_CODE = 5
+           OR EXAMINE_TYPE_CODE = 6;    
+	      </if>
+	      <if test='answerType.equals("guide")'>
+	    WHERE EXAMINE_TYPE_CODE = 5
+	      </if>
+	      <if test='answerType.equals("user")'>
+	    WHERE EXAMINE_TYPE_CODE = 6
+	      </if>
+	</select>
+	
+	<select id="selectAnswerDetail" resultMap="answerList" parameterType="_int">
+        SELECT 
+               B.USER_EMAIL
+             , A.EXAMINE_REQUEST_REASON
+             , A.EXAMINE_REQUEST_CODE
+             , A.EXAMINE_REQUEST_FROM
+          FROM EXAMINE A
+          JOIN  USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+         WHERE A.EXAMINE_REQUEST_CODE = #{ no }
+	</select>
+	
+	<insert id="insertAnswer" parameterType="AdminAnswerDTO">
+	
+		<selectKey  resultType="int" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
+	        SELECT 
+	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	          FROM EXAMINE_RESPONSE
+    	</selectKey>
+    	
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{noticeRequestCode}
+		,2
+		,1
+		)
+	</insert>
+	
+	<update id="updateAnswerStatus" parameterType="AdminAnswerDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_FROM = #{ anwserRequestCode }
+	</update> 
 </mapper>

@@ -1,5 +1,7 @@
 package com.maximusteam.tripfulaxel.admin.model.dto;
 
+import java.sql.Date;
+
 public class ReportDTO {
 
     private int reportNo; // 신고번호
@@ -12,13 +14,15 @@ public class ReportDTO {
     private String responseContent;
     private java.sql.Date responseDate;
     private int responseCode;
-    private int requestCode; 
+    private int requestCode;
+    private String userType;
+    private int examineCode;
 	
     public ReportDTO() {}
 
 	public ReportDTO(int reportNo, String reportTitle, String reportId, int reportWriter, int reportTarget,
-			String reportStatus, java.sql.Date reportDate, String responseContent, java.sql.Date responseDate,
-			int responseCode, int requestCode) {
+			String reportStatus, Date reportDate, String responseContent, Date responseDate, int responseCode,
+			int requestCode, String userType, int examineCode) {
 		super();
 		this.reportNo = reportNo;
 		this.reportTitle = reportTitle;
@@ -31,6 +35,8 @@ public class ReportDTO {
 		this.responseDate = responseDate;
 		this.responseCode = responseCode;
 		this.requestCode = requestCode;
+		this.userType = userType;
+		this.examineCode = examineCode;
 	}
 
 	public int getReportNo() {
@@ -121,28 +127,31 @@ public class ReportDTO {
 		this.requestCode = requestCode;
 	}
 
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public int getExamineCode() {
+		return examineCode;
+	}
+
+	public void setExamineCode(int examineCode) {
+		this.examineCode = examineCode;
+	}
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportTitle=" + reportTitle + ", reportId=" + reportId
 				+ ", reportWriter=" + reportWriter + ", reportTarget=" + reportTarget + ", reportStatus=" + reportStatus
 				+ ", reportDate=" + reportDate + ", responseContent=" + responseContent + ", responseDate="
-				+ responseDate + ", responseCode=" + responseCode + ", requestCode=" + requestCode + "]";
+				+ responseDate + ", responseCode=" + responseCode + ", requestCode=" + requestCode + ", userType="
+				+ userType + ", examineCode=" + examineCode + "]";
 	}
-
-	
-
-	
-	
-
-	
-
     
-
 	
-
-
-
-
 	
-    
 }
