@@ -38,27 +38,36 @@ public class userGuideController {
 	@RequestMapping(value = "/api/guides", method = RequestMethod.POST)
 	public GuideRegistFormDTO insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
-		System.out.println("come in controller1");
-		
+		/* JSON DATA 확인 */
 		System.out.println(formDataMap.get("formData").getClass().getName()); // LinkedHashMap
 		for (Map.Entry<String, Object> entry : formDataMap.get("formData").entrySet()) {
 			  System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
 		
-		
 		System.out.println(formDataMap.get("imageData").getClass().getName()); // LinkedHashMap
 		for (Map.Entry<String, Object> entry : formDataMap.get("imageData").entrySet()) {
 			  System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
-		System.out.println("imageTrip type check : ");
+
 		System.out.println(formDataMap.get("imageData").get("imageTrip").getClass().getName());
 		
-		/* JSON으로부터의 데이터를 알맞는 TABLE-DTO에 사용할 수 있도록 파싱한다. 
+		/* JSON 데이터를 알맞는 TABLE & DTO에 사용할 수 있도록 파싱한다. 
 		 * 
-		 * INSERT 목록&순서 
-		 *    테이블     DTO 
-		 * 1. GUIDE   GuideDTO
-		 *  
+		 * 				FORM DATA - INSERT 
+		 *    테이블     				DTO 
+		 * 1. GUIDE   				GuideDTO
+		 * 2. TRIP    				TripDTO
+		 * 3. TRIP_REGIST_LIST 		TripRegistListDTO
+		 * 4. EXAMINE				ExamineDTO
+		 * 5. TRIP_THEME_CHOICE		TripThemeChoiceDTO
+		 * 6. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
+		 * 7. GUIDE_TRIP			GuideTripDTO
+		 * 
+		 * 				IMAGE DATA - UPDATE(OPTIONAL)
+		 * 1. TRIP_IMAGE			TripImageDTO 
+		 * 
+		 * 				IMAGE DATA - INSERT(OPTIONAL)
+		 * 1. TRIP_COURSE			TripCourseDTO
 		 * */
 		
 		// 1-1 GuideDTO 생성
@@ -181,7 +190,8 @@ public class userGuideController {
 		// 7-2 GUIDE_TRIP 테이블에 INSERT
 		
 		
-		/* TRIP_IMAGE, COURSE_IMAGE  
+		/* OPTIONAL DATA 처리
+		 * TRIP_IMAGE, COURSE_IMAGE  
 		 * JSON으로 전달받은 데이터 중 imageForm을 사용
 		 * imageData경우, 사진을 선택했을 시 이미 DB에 저장이 되어있으므로
 		 * 저장한 사진의 pk를 가지고 UPDATE 진행한다.
@@ -190,15 +200,14 @@ public class userGuideController {
 		 * UPDATE 목록&순서 
 		 *    테이블         DTO 
 		 * 1. TRIP_IMAGE   TripImageDTO - 여행사진
-		 * 2. TRIP_IMAGE   TripImageDTO - 코스사진
 		 * 
 		 * INSERT 목록&순서
 		 *    테이블         DTO 
-		 * 3. TRIP_COURSE  TripCourseDTO - 코스사진정보
+		 * 1. TRIP_COURSE  TripCourseDTO - 코스사진정보
 		 */
 		
 		// 1 TripImageDTO - TRIP_IMAGE에 사용 - refCode:tripCode
-		// 8-1 imageTrip List타입이므로 for-loop을 통해 값 없데이트
+		// 1-1 imageTrip List타입이므로 for-loop을 통해 값 없데이트
 		List<TripImageDTO> tripImageList = new ArrayList<>();
 		
 		if(formDataMap.get("imageData").get("imageTrip") instanceof ArrayList) {
