@@ -327,7 +327,7 @@ li.header_menu:hover {
    <script type="text/javascript">
       $(document).ready(function(){
          /* 로그인 실패 여부  */
-            var login = '${ requestScope.login }';
+            var login = '${ requestScope.failLogin }';
             console.log("값 체크 :" +login);
             if (login != null && login != '') {
                alert(login);
@@ -395,8 +395,7 @@ li.header_menu:hover {
             <p class="txt_bs txt_bold">- 이름, 성별, 생년월일이 동일한 동명이인의 이메일이 함께 검색될
                수 있습니다.</p>
          <p class="txt_bs txt_bold">
-                  이메일(ID)은 <input id="finded_email"></input> 입니다.
-               </p>
+                  이메일(ID)은<br><input id="finded_email"></input><br>입니다.</p>
 
             <a class="btnBgC txt_bs login_link submit"
                href="javascript:void(0);"
@@ -449,6 +448,44 @@ li.header_menu:hover {
 
 </script>
 
+
+
+   <!-- 비밀번호 찾기 팝업-->
+   <div class="pop_bg pop_wrap">
+      <div class="member_pop_box close_wrap find_password_pop"
+         style="width: 90%; max-width: 500px;; max-height: none; padding: 5vh 0;">
+         <span class="close_btn"></span>
+         <div class="member_wrap" style="width: 100%; padding: 0 5%;">
+            <h3 class="tit txt_bold">비밀번호 찾기</h3>
+            <p class="txt_bs pop_sub_title">
+               Tripful Axel 가입시 작성한<br>이름, 이메일, 생년월일를 입력해주세요.<br>
+                                해당 메일 주소로 임시 비밀번호를 메일을 보내드립니다.
+            </p>
+            <form class="find_password_form member_form">
+            
+               <input type="text" placeholder="* 이름(예:홍길동)" id="serachUserName" name="userName">
+               <input type="email" placeholder="이메일 주소" id="serachUserEmail" name="userEmail">
+            
+               <input type="text" id="serachUserBday" name="userBday" value="19901129"
+                  required class="frm_input half_input"
+                  placeholder="* 출생연도(예:19900120)">
+
+               <button class="btnBgC txt_bs find_password_button submit"
+                  type="button" value="비밀번호 재설정 메일 보내기">비밀번호 재설정 메일 보내기</button>
+         <!--       <input class="btnBgC txt_bs submit" type="submit" value="비밀번호 재설정 메일 보내기">  -->
+            </form>
+            <ul class="find_signup clearfix">
+               <li class="floatL"><a href="javascript:void(0);"
+                  class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
+               <li class="floatR"><a href="javascript:void(0);"
+                  class="signup_link txt_sm txt_bold">회원가입</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <!-- //비밀번호 찾기 팝업 끝-->
+   
+
    <!-- 비밀번호 찾기 완료 팝업 -->
    <div class="pop_bg pop_wrap">
       <div class="member_pop_box close_wrap find_password_fin_pop"
@@ -465,48 +502,18 @@ li.header_menu:hover {
       </div>
    </div>
    <!-- //이메일(ID) 찾기 완료 팝업 끝-->
+   
+   
+<script>
 
 
-   <!-- 비밀번호 찾기 팝업-->
-   <div class="pop_bg pop_wrap">
-      <div class="member_pop_box close_wrap find_password_pop"
-         style="width: 90%; max-width: 500px;; max-height: none; padding: 5vh 0;">
-         <span class="close_btn"></span>
-         <div class="member_wrap" style="width: 100%; padding: 0 5%;">
-            <h3 class="tit txt_bold">비밀번호 찾기</h3>
-            <p class="txt_bs pop_sub_title">
-               Tripful Axel 가입시 작성한<br>이름, 이메일, 생년월일를 입력해주세요.<br> 해당 메일
-               주소로 임시 비밀번호를 메일을 보내드립니다.
-            </p>
-            <form class="find_password_form member_form">
-               <input type="text" placeholder="* 이름(예:홍길동)" name="find_id_name">
-               <input type="email" placeholder="이메일 주소" name="find_password_email">
-               <div class="birth_select clearfix">
-                  <input type="text" class="birth_year" placeholder="출생연도"
-                     name="find_id_year"> <select name="find_id_mon">
-                     <option value="0">월</option>
-                     <option value='1'>1월</option>
-                  </select> <select name="find_id_day">
-                     <option value="0">일</option>
-                     <option value='1'>1일</option>
-                  </select>
-               </div>
-               <button class="btnBgC txt_bs find_password_button submit"
-                  type="button" value="비밀번호 재설정 메일 보내기">비밀번호 재설정 메일 보내기</button>
-               <!-- <input class="btnBgC txt_bs submit" type="submit" value="비밀번호 재설정 메일 보내기"> -->
-            </form>
-            <ul class="find_signup clearfix">
-               <li class="floatL"><a href="javascript:void(0);"
-                  class="find_id_link txt_sm txt_bold">이메일(ID) 찾기</a></li>
-               <li class="floatR"><a href="javascript:void(0);"
-                  class="signup_link txt_sm txt_bold">회원가입</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <!-- //비밀번호 찾기 팝업 끝-->
 
-   <!-- 휴대폰 인증 팝업-->
+
+</script>   
+   
+   
+<!--    
+   휴대폰 인증 팝업
    <div class="pop_bg pop_wrap">
       <div class="member_pop_box close_wrap tel_certified_pop">
          <form class="member_form" style="margin-top: 0;">
@@ -550,12 +557,12 @@ li.header_menu:hover {
                   data-now="2" type="button"
                   style="display: none; width: 100%; padding: 11px 0; margin-top: 10px;">인증완료하기
                </button>
-               <!--<button class="btnBgC txt_bs find_id_button submit" type="button" value="인증 완료">인증 완료</button>-->
+               <button class="btnBgC txt_bs find_id_button submit" type="button" value="인증 완료">인증 완료</button>
             </div>
          </form>
       </div>
    </div>
-   <!-- 휴대폰 인증 팝업 끝-->
+   휴대폰 인증 팝업 끝 -->
 
 
 
