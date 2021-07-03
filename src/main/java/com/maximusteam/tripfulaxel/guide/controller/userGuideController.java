@@ -24,7 +24,7 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
-/*코스가 1개일때 리스트 처리안됨*/
+
 @RestController
 public class userGuideController {
 
@@ -118,31 +118,52 @@ public class userGuideController {
 		
 		
 		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
-		List<Object> choiceTheme = (List)formDataMap.get("formData").get("theme");
+		// 다중 선택 -> ArrayList / 단일 선택 -> String
+//		System.out.println("단일선택 객체 타입 확인 : " + formDataMap.get("formData").get("theme").getClass().getName());
 		List<TripThemeChoiceDTO> themeList = new ArrayList<>();		
+		
+		if(formDataMap.get("formData").get("theme") instanceof ArrayList) {
+			List<Object> choiceTheme = (List)formDataMap.get("formData").get("theme");
+					
+			for(int i = 0; i < choiceTheme.size(); i++) {
+				TripThemeChoiceDTO tripThemeChoiceDTO = new TripThemeChoiceDTO();
+				tripThemeChoiceDTO.setTripCode(tripDTO.getTripCode());
+				tripThemeChoiceDTO.setThemeCode(Integer.valueOf((String)choiceTheme.get(i)));
 				
-		for(int i = 0; i < choiceTheme.size(); i++) {
+				themeList.add(tripThemeChoiceDTO);
+			}
+		}else {
 			TripThemeChoiceDTO tripThemeChoiceDTO = new TripThemeChoiceDTO();
 			tripThemeChoiceDTO.setTripCode(tripDTO.getTripCode());
-			tripThemeChoiceDTO.setThemeCode(Integer.valueOf((String)choiceTheme.get(i)));
+			tripThemeChoiceDTO.setThemeCode(Integer.valueOf((String)formDataMap.get("formData").get("theme")));
 			
 			themeList.add(tripThemeChoiceDTO);
 		}
 		System.out.println("themeList" + themeList);
-
 		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
 		
 		
 		// 6-1 TripTransitChoiceDTO
-		List<Object> choiceTransit = (List)formDataMap.get("formData").get("transit");
+		// 다중 선택 -> ArrayList / 단일 선택 -> String
 		List<TripTransitChoiceDTO> transitList = new ArrayList<>();
 		
-		for(int i = 0; i < choiceTransit.size(); i++) {
+		if(formDataMap.get("formData").get("transit") instanceof ArrayList) {
+			List<Object> choiceTransit = (List)formDataMap.get("formData").get("transit");
+			
+			for(int i = 0; i < choiceTransit.size(); i++) {
+				TripTransitChoiceDTO tripTransitChoiceDTO = new TripTransitChoiceDTO();
+				tripTransitChoiceDTO.setTripCode(tripDTO.getTripCode());
+				tripTransitChoiceDTO.setTransitCode(Integer.valueOf((String)choiceTransit.get(i)));
+				
+				transitList.add(tripTransitChoiceDTO);
+			}
+		}else {
 			TripTransitChoiceDTO tripTransitChoiceDTO = new TripTransitChoiceDTO();
 			tripTransitChoiceDTO.setTripCode(tripDTO.getTripCode());
-			tripTransitChoiceDTO.setTransitCode(Integer.valueOf((String)choiceTransit.get(i)));
+			tripTransitChoiceDTO.setTransitCode(Integer.valueOf((String)formDataMap.get("formData").get("transit")));
 			
 			transitList.add(tripTransitChoiceDTO);
+
 		}
 		System.out.println("transitList" + transitList);
 
@@ -159,10 +180,6 @@ public class userGuideController {
 
 		// 7-2 GUIDE_TRIP 테이블에 INSERT
 		
-		/*
-		 *  imageID, imageFace, imageCerti(List)- TripImageDTO를 사용한다.
-		 *  json에서 바로 사용한다. parsing 불필요
- 		 * */
 		
 		/* TRIP_IMAGE, COURSE_IMAGE  
 		 * JSON으로 전달받은 데이터 중 imageForm을 사용
@@ -183,15 +200,31 @@ public class userGuideController {
 		// 1 TripImageDTO - TRIP_IMAGE에 사용 - refCode:tripCode
 		// 8-1 imageTrip List타입이므로 for-loop을 통해 값 없데이트
 		List<TripImageDTO> tripImageList = new ArrayList<>();
-		List<LinkedHashMap<String, Object>> tripImageListMap 
-			= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageTrip");
-		for(int i = 0; i < tripImageListMap.size(); i++) {
+		
+		if(formDataMap.get("imageData").get("imageTrip") instanceof ArrayList) {
+			List<LinkedHashMap<String, Object>> tripImageListMap 
+				= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageTrip");
+			for(int i = 0; i < tripImageListMap.size(); i++) {
+				TripImageDTO tripIdImageDTO = new TripImageDTO();
+				
+				tripIdImageDTO.setImageCode((Integer)tripImageListMap.get(i).get("imageCode"));
+				tripIdImageDTO.setSavedName((String)tripImageListMap.get(i).get("savedName"));
+				tripIdImageDTO.setImageTypeCode((Integer)tripImageListMap.get(i).get("imageTypeCode"));
+				tripIdImageDTO.setOriginName((String)tripImageListMap.get(i).get("originName"));
+				tripIdImageDTO.setRefCode(tripDTO.getTripCode());
+				
+				tripImageList.add(tripIdImageDTO);
+			}
+		}else {
+			LinkedHashMap<String, Object> tripImageListMap 
+			= (LinkedHashMap<String, Object>)formDataMap.get("imageData").get("imageTrip");
+			
 			TripImageDTO tripIdImageDTO = new TripImageDTO();
 			
-			tripIdImageDTO.setImageCode((Integer)tripImageListMap.get(i).get("imageCode"));
-			tripIdImageDTO.setSavedName((String)tripImageListMap.get(i).get("savedName"));
-			tripIdImageDTO.setImageTypeCode((Integer)tripImageListMap.get(i).get("imageTypeCode"));
-			tripIdImageDTO.setOriginName((String)tripImageListMap.get(i).get("originName"));
+			tripIdImageDTO.setImageCode((Integer)tripImageListMap.get("imageCode"));
+			tripIdImageDTO.setSavedName((String)tripImageListMap.get("savedName"));
+			tripIdImageDTO.setImageTypeCode((Integer)tripImageListMap.get("imageTypeCode"));
+			tripIdImageDTO.setOriginName((String)tripImageListMap.get("originName"));
 			tripIdImageDTO.setRefCode(tripDTO.getTripCode());
 			
 			tripImageList.add(tripIdImageDTO);
@@ -205,16 +238,27 @@ public class userGuideController {
 		List<LinkedHashMap<String, Object>> courseImageListMap 
 		= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageCourse");
 		
-		// 코스제목, 코스설명은 formData에 array형태로 JSON으로 만들어져있다.
-		List<String> courseTitleList = (List)formDataMap.get("formData").get("courseTitle");
-		List<String> courseIntroList = (List)formDataMap.get("formData").get("courseIntro");
-
-		for(int i = 0; i < courseImageListMap.size(); i++) {
+		// 다중선택 -> ArrayList / 단일선택 -> String
+		if(formDataMap.get("formData").get("courseTitle") instanceof ArrayList 
+				&& formDataMap.get("formData").get("courseIntro") instanceof ArrayList) {
+			List<String> courseTitleList = (List)formDataMap.get("formData").get("courseTitle");
+			List<String> courseIntroList = (List)formDataMap.get("formData").get("courseIntro");
+	
+			for(int i = 0; i < courseImageListMap.size(); i++) {
+				TripCourseDTO tripCourseDTO = new TripCourseDTO();
+				
+				tripCourseDTO.setTripImageCode((Integer)courseImageListMap.get(i).get("imageCode"));
+				tripCourseDTO.setCourseName(courseTitleList.get(i));
+				tripCourseDTO.setCourseInfo(courseIntroList.get(i));
+				
+				courseImageList.add(tripCourseDTO);
+			}
+		} else {
 			TripCourseDTO tripCourseDTO = new TripCourseDTO();
 			
-			tripCourseDTO.setTripImageCode((Integer)tripImageListMap.get(i).get("imageCode"));
-			tripCourseDTO.setCourseName(courseTitleList.get(i));
-			tripCourseDTO.setCourseInfo(courseIntroList.get(i));
+			tripCourseDTO.setTripImageCode((Integer)courseImageListMap.get(0).get("imageCode"));
+			tripCourseDTO.setCourseName((String)formDataMap.get("formData").get("courseTitle"));
+			tripCourseDTO.setCourseInfo((String)formDataMap.get("formData").get("courseIntro"));
 			
 			courseImageList.add(tripCourseDTO);
 		}

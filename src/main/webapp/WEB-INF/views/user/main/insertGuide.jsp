@@ -403,8 +403,8 @@
 <script>
 	var formMap = new Map();
 	var courseImage = new Array();
-	var tripImage = new Array();
-	var formdata;
+/* 	var tripImage = new Array();
+ */	var formdata;
 	var totalData = {};
 
 	<!-- 사진이 선택되었을때, 사진이 저장되고 그 정보값을 json으로 저장 -->
@@ -434,10 +434,10 @@
             	if(e.name == "imageCourse"){
             		courseImage.push(JSON.parse(data.imageList));
 	            	formMap.set(e.name, courseImage);
-            	}else if(e.name == "imageTrip"){
+            	}/* else if(e.name == "imageTrip"){
             		tripImage.push(JSON.parse(data.imageList));
             		formMap.set(e.name, tripImage);
-            	}else {
+            	} */else {
 	            	formMap.set(e.name, JSON.parse(data.imageList));
             	}
             	
