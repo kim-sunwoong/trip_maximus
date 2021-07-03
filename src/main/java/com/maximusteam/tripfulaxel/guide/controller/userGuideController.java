@@ -17,13 +17,14 @@ import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
-
+/*코스가 1개일때 리스트 처리안됨*/
 @RestController
 public class userGuideController {
 
@@ -158,7 +159,13 @@ public class userGuideController {
 
 		// 7-2 GUIDE_TRIP 테이블에 INSERT
 		
-		/* JSON으로 전달받은 데이터 중 imageForm을 사용
+		/*
+		 *  imageID, imageFace, imageCerti(List)- TripImageDTO를 사용한다.
+		 *  json에서 바로 사용한다. parsing 불필요
+ 		 * */
+		
+		/* TRIP_IMAGE, COURSE_IMAGE  
+		 * JSON으로 전달받은 데이터 중 imageForm을 사용
 		 * imageData경우, 사진을 선택했을 시 이미 DB에 저장이 되어있으므로
 		 * 저장한 사진의 pk를 가지고 UPDATE 진행한다.
 		 * (imageCourse경우에는 TRIP_COURSE에 INSERT 별도로 진행)
@@ -181,9 +188,9 @@ public class userGuideController {
 		for(int i = 0; i < tripImageListMap.size(); i++) {
 			TripImageDTO tripIdImageDTO = new TripImageDTO();
 			
-			tripIdImageDTO.setImageCode(Integer.valueOf((String)tripImageListMap.get(i).get("imageCode")));
+			tripIdImageDTO.setImageCode((Integer)tripImageListMap.get(i).get("imageCode"));
 			tripIdImageDTO.setSavedName((String)tripImageListMap.get(i).get("savedName"));
-			tripIdImageDTO.setImageTypeCode(Integer.valueOf((String)tripImageListMap.get(i).get("imageTypeCode")));
+			tripIdImageDTO.setImageTypeCode((Integer)tripImageListMap.get(i).get("imageTypeCode"));
 			tripIdImageDTO.setOriginName((String)tripImageListMap.get(i).get("originName"));
 			tripIdImageDTO.setRefCode(tripDTO.getTripCode());
 			
@@ -192,6 +199,27 @@ public class userGuideController {
 		System.out.println("tripImageList" + tripImageList);
 
 		// 8-2 
+		
+		// 9-1 TripCourseDTO
+		List<TripCourseDTO> courseImageList = new ArrayList<>();
+		List<LinkedHashMap<String, Object>> courseImageListMap 
+		= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageCourse");
+		
+		// 코스제목, 코스설명은 formData에 array형태로 JSON으로 만들어져있다.
+		List<String> courseTitleList = (List)formDataMap.get("formData").get("courseTitle");
+		List<String> courseIntroList = (List)formDataMap.get("formData").get("courseIntro");
+
+		for(int i = 0; i < courseImageListMap.size(); i++) {
+			TripCourseDTO tripCourseDTO = new TripCourseDTO();
+			
+			tripCourseDTO.setTripImageCode((Integer)tripImageListMap.get(i).get("imageCode"));
+			tripCourseDTO.setCourseName(courseTitleList.get(i));
+			tripCourseDTO.setCourseInfo(courseIntroList.get(i));
+			
+			courseImageList.add(tripCourseDTO);
+		}
+		System.out.println("courseImageList" + courseImageList);
+
 		
 		return null;
 	}
