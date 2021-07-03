@@ -53,7 +53,7 @@ public class UserContrlloer {
 	 * @return
 	 */
 
-	@PostMapping("/regist")
+	 @RequestMapping(value = "regist", method = {RequestMethod.GET, RequestMethod.POST})
 	public String registUser(@ModelAttribute UserDTO user, RedirectAttributes rttr) throws Exception {
 		
 		user.setUserPwd(passwordEncoder.encode(user.getUserPwd()));
@@ -104,7 +104,7 @@ public class UserContrlloer {
 	 * @param model
 	 * @return
 	 */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
 	public String loginUser(@ModelAttribute UserDTO user, HttpServletRequest request, RedirectAttributes rttr) {
 
 		System.out.println("회원이 입력한 이메일 " + user.getUserEmail());
@@ -137,7 +137,7 @@ public class UserContrlloer {
 					
 					// 신고 3회 이상 차단 
 					System.out.println("신고 횟수 누적 3회 이상 ");
-					rttr.addFlashAttribute("login", "차단당하셨습니다.");
+					rttr.addFlashAttribute("failLogin", "차단당하셨습니다.");
 					return "redirect:/";
 
 				}
@@ -146,7 +146,7 @@ public class UserContrlloer {
 				
 				// 비밀번호 매칭 실패 
 				System.out.println("비밀번호 매칭 실패 ");
-				rttr.addFlashAttribute("login", "비밀번호가 틀립니다.");
+				rttr.addFlashAttribute("failLogin", "비밀번호가 틀립니다.");
 				return "redirect:/";
 			}
 		} else {
@@ -154,7 +154,7 @@ public class UserContrlloer {
 			// 2-3. 조회결과 사용자가 정보가 없을 경우
 			// 해당하는 이메일이 없음.
 			System.out.println("해당하는 이메일이 없습니다. ");
-			rttr.addFlashAttribute("login", "해당하는 이메일이 없습니다.");
+			rttr.addFlashAttribute("failLogin", "해당하는 이메일이 없습니다.");
 			return "redirect:/";
 
 		}
