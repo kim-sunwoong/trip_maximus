@@ -119,7 +119,7 @@
 	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
 	  JOIN TRIP_REGIST_LIST trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
 	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-	  WHERE jta.USER_CODE = #{userCode}
+	  <!-- WHERE jta.USER_CODE = #{userCode} -->
 	</select>
 
 	<!-- 관리자리스트 

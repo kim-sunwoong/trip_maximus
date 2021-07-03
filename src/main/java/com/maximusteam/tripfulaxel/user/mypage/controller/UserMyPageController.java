@@ -2,14 +2,13 @@ package com.maximusteam.tripfulaxel.user.mypage.controller;
 
 import java.util.List;
 
-import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
 
@@ -25,14 +24,13 @@ public class UserMyPageController {
 	}
 	
 	@GetMapping(value = { "mypageTab1", "/"})
-	public String selectJoinList(Model model,Session session) {
+	public String selectJoinList(Model model) {
 		
-		List<MypageTripDTO> joinList = userMypageService.selectJoinList();
-//		List<JoinTripListDTO> joinList = userMypageService.selectJoinList();
+		List<JoinTripListDTO> joinList = userMypageService.selectJoinList();
 //		for(int i = 0; i<joinList.size();i++) {
-//			System.out.println(joinList[i]);
+//			System.out.println(joinList.get(i).set);
 //		}
-//		현재 할려고하는것은 joinList[i].setJoinTripDate 하려고
+//		현재 할려고하는것은 joinList[i].setJoinTripDate 하려고; 리스트는 get으로 꺼낸단다~~^^;;
 //		그 이유는 쿼리문에서 한번에 처리가 안되기 때문에 ,  TODO 쿼리문부터 질문할것
 		System.out.println(joinList);
 		model.addAttribute("selectJoin",joinList);

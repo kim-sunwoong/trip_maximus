@@ -204,7 +204,7 @@ to {
                href="${ pageContext.servletContext.contextPath }/user/logout"> 
             <span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
                 <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/">
+                <a href="${ pageContext.servletContext.contextPath }/user/mypage/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                           MyPage</span>
                </a></li>

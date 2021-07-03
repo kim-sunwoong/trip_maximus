@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper;
-import com.maximusteam.tripfulaxel.user.mypage.model.dto.MypageTripDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 
 @Service
 public class UserMypageServiceImpl implements UserMypageService{
@@ -18,9 +18,8 @@ public class UserMypageServiceImpl implements UserMypageService{
 		this.mapper = mapper;
 	}
 
-//	public List<JoinTripListDTO> selectJoinList() {
 	@Override
-	public List<MypageTripDTO> selectJoinList() {
+	public List<JoinTripListDTO> selectJoinList() {
 		return mapper.selectJoinList();
 	}
 	
