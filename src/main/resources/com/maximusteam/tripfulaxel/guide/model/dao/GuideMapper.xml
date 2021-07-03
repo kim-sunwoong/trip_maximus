@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper">
 
-	<insert id="insertGuideImage" parameterType="GuideImageDTO">
+	<insert id="insertGuideImage" parameterType="TripImageDTO">
 	    <selectKey resultType="int" keyProperty="imageCode" order="AFTER">
 	    	SELECT MAX(GUIDE_IMAGE_CODE) as imageCode FROM GUIDE_IMAGE
 	    </selectKey>
@@ -26,7 +26,7 @@
 	    )
 	</insert>
 	
-	<insert id="insertTripImage" parameterType="GuideImageDTO">
+	<insert id="insertTripImage" parameterType="TripImageDTO">
 		<selectKey resultType="int" keyProperty="imageCode" order="AFTER">
 	    	SELECT MAX(TRIP_IMAGE_CODE) as imageCode FROM TRIP_IMAGE
 	    </selectKey>

@@ -100,13 +100,14 @@
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
 				
-					<!-- 회원번호 (invisible) -->
-					<input id="userCode" name="userCode" value="${ requestScope.loginMember.userCode }"/ hidden="true">
 				
 					<!-- 성명 -->
 					<div class="form-layer">
+					
+					<!-- 회원번호 (invisible) -->
+					<input type="number" id="userCode" name="userCode" value="${ sessionScope.loginUser.userCode }"/ hidden="true">
 					<span class="form-title" style="display:inline-block";>성명  </span>
-				   	<input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
+				   	<input type="text" class="select-nomalsize" name="userName" value="${ sessionScope.loginUser.userName }" readonly="readonly">	
 					</div>
 				
 					<!-- 닉네임 -->			
@@ -316,8 +317,8 @@
 						
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
-							deletedCourse(e);
-						});
+/* 							deletedCourse(e);
+ */						});
 				    });
 				});
 			</script>			
@@ -402,6 +403,7 @@
 <script>
 	var formMap = new Map();
 	var courseImage = new Array();
+	var tripImage = new Array();
 	var formdata;
 	var totalData = {};
 
@@ -432,6 +434,9 @@
             	if(e.name == "imageCourse"){
             		courseImage.push(JSON.parse(data.imageList));
 	            	formMap.set(e.name, courseImage);
+            	}else if(e.name == "imageTrip"){
+            		tripImage.push(JSON.parse(data.imageList));
+            		formMap.set(e.name, tripImage);
             	}else {
 	            	formMap.set(e.name, JSON.parse(data.imageList));
             	}
@@ -440,8 +445,8 @@
             		totalData[key] = value
             	});
             	
-/*             	console.log(JSON.stringify(totalData));
- */            },          
+             	console.log(JSON.stringify(totalData));
+            },          
             error: function (e) {  
             	console.log("ERROR : ", e);     
                 $("#btnSubmit").prop("disabled", false);    
@@ -462,25 +467,22 @@
 			var totalDataJson = {};
 			var formData = $('#insertGuideForm').serializeObject();
 		   
-			totalDataMap.set("formData", JSON.stringify(formData));
-			totalDataMap.set("imageData", JSON.stringify(totalData));
-			
-			console.log(totalDataMap);
+			totalDataMap.set("formData", formData);
+			totalDataMap.set("imageData", totalData);
 			
 			totalDataMap.forEach((value, key) => {
 				totalDataJson[key] = value
         	});
 			
-		    console.log("james");
-			console.log(JSON.stringify(totalDataJson));
+			var sendData = JSON.stringify(totalDataJson);
+			console.log(sendData);
 			
 	        $.ajax({
 	            url : "${pageContext.request.contextPath}/api/guides",
 	            type : 'post', 
-	            data : totalDataJson, 
+	            data : sendData, 
 	            dataType : 'json',
-	            encType : 'application/json',
-	            contentType: false,
+	            contentType: 'application/json; charset=utf-8',
 	            processData: false,
 	            cache : false,
 	            async : false,
@@ -489,8 +491,7 @@
  */	                // 성공했을시
 	                // 실패했을시
 	                console.log("success");
-	            }, // success 
-	    
+	            }, 
 	            error : function(xhr, status) {
 	                alert(xhr + " : " + status);
 	            }

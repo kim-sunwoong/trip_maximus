@@ -67,6 +67,9 @@
 		<result column="GUIDE_EXP_YN" property="guideExp" />
 		<result column="GUIDE_CAR_YN" property="guideCar" />
 		<result column="GUIDE_INTRO" property="guideIntro" />
+		<result column="EXAMINE_REQUEST_REASON" property="guideTravel"/>
+		<result column="EXAMINE_REQUEST_CODE" property="requestCode"/>
+		<result column="GUIDE_CODE" property="guideCode"/>
 	</resultMap>
 	
 	<!-- 가이드 사진 -->
@@ -96,6 +99,19 @@
 		<result column="EXAMINE_REQUEST_DATE" property="answerDate" />
 		<result column="EXAMINE_REQUEST_YN" property="answerStatus" />
 		<result column="EXAMINE_REQUEST_FROM" property="anwserRequestFrom" />
+	</resultMap>
+
+	<!-- 등업리스트 -->
+	<resultMap id="levelUpList" type="LevelUpDTO">
+		<id column="EXAMINE_REQUEST_CODE" property="levelUpNo" />
+		<result column="USER_EMAIL" property="guideId" />
+		<result column="GUIDE_LEVEL_DETAIL" property="guideLevel" />
+		<result column="TRIP_REVIEW_GRADE" property="starPoint" />
+		<result column="EXAMINE_REQUEST_YN" property="levelUpStatus" />
+		<result column="USER_CODE" property="guideNo" />
+		
+		<result column="EXAMINE_REQUEST_REASON" property="requestContent" />
+		<result column="REVIEW" property="reviewCount" />
 	</resultMap>
 	
 	<select id="selectAdmin" resultMap="adminList">
@@ -180,34 +196,40 @@
 	</select>
 	
     <select id="selectEnrollDetail" resultMap="guideDetail" parameterType="_int">
-          	         SELECT 
-	                B.USER_NAME
-	              , B.USER_GENDER
-	              , A.GUIDE_NICKNAME
-	              , A.GUIDE_EXP_YN
-	              , A.GUIDE_CAR_YN
-	              , A.GUIDE_INTRO
-	           FROM USER B
-	           JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
-	          WHERE A.USER_CODE = #{ no }
+        SELECT 
+	           B.USER_NAME
+	         , B.USER_GENDER
+	         , A.GUIDE_NICKNAME
+	         , A.GUIDE_EXP_YN
+	         , A.GUIDE_CAR_YN
+	         , A.GUIDE_INTRO
+	         , C.EXAMINE_REQUEST_REASON 
+	         , C.EXAMINE_REQUEST_CODE 
+	         , A.GUIDE_CODE
+	      FROM USER B
+	      JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
+	      JOIN EXAMINE C ON (B.USER_CODE = C.EXAMINE_REQUEST_FROM)
+	      JOIN EXAMINE_TYPE D ON (C.TYPE_CODE = D.EXAMINE_TYPE_CODE)
+	     WHERE A.USER_CODE = #{ no }
+           AND D.EXAMINE_TYPE_CODE = 3; 
 	</select>
 	
  	<select id="selectProfilePic" resultMap="guidePic" parameterType="_int">
-	         SELECT 
-	               A.GUIDE_IMAGE_SAVED_NAME
-	          FROM GUIDE_IMAGE A
-	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
-	         WHERE A.USER_CODE = #{ no }
-	           AND GUIDE_IMAGE_TYPE_CODE = 1;
+        SELECT 
+	           A.GUIDE_IMAGE_SAVED_NAME
+	     FROM GUIDE_IMAGE A
+	     JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	    WHERE A.USER_CODE = #{ no }
+	      AND GUIDE_IMAGE_TYPE_CODE = 1;
 	</select>
 	
 	<select id="selectIdPic" resultMap="guidePic" parameterType="_int">
-	         SELECT 
-	               A.GUIDE_IMAGE_SAVED_NAME
-	          FROM GUIDE_IMAGE A
-	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
-	         WHERE A.USER_CODE = #{ no }
-	           AND GUIDE_IMAGE_TYPE_CODE = 3;
+	    SELECT 
+	           A.GUIDE_IMAGE_SAVED_NAME
+	      FROM GUIDE_IMAGE A
+	      JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	     WHERE A.USER_CODE = #{ no }
+	       AND GUIDE_IMAGE_TYPE_CODE = 3;
 	</select> 
 	
 	<select id="selectCalculate" resultMap="calculateList">
@@ -236,9 +258,9 @@
 	</select>	
 	
 	<delete id="deleteMember" parameterType="_int">
-       DELETE 
-         FROM USER
-        WHERE USER_CODE = #{ no } 
+        DELETE 
+          FROM USER
+         WHERE USER_CODE = #{ no } 
 	</delete>
 	
 	<delete id="deleteAdmin" parameterType="_int">
@@ -250,9 +272,9 @@
 	<insert id="insertReport" parameterType="ReportDTO">
 	
 		<selectKey  resultType="ReportDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
-	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	          FROM EXAMINE_RESPONSE
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
 		  INTO EXAMINE_RESPONSE
@@ -280,7 +302,7 @@
   	    EXAMINE
   		   SET 
                EXAMINE_REQUEST_YN = 'Y'
-         WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
+         WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
 	</update> 
 	
 	<update id="updateReportCount" parameterType="ReportDTO">
@@ -320,16 +342,16 @@
              , A.EXAMINE_REQUEST_CODE
              , A.EXAMINE_REQUEST_FROM
           FROM EXAMINE A
-          JOIN  USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+          JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
          WHERE A.EXAMINE_REQUEST_CODE = #{ no }
 	</select>
 	
 	<insert id="insertAnswer" parameterType="AdminAnswerDTO">
 	
 		<selectKey  resultType="int" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
-	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	          FROM EXAMINE_RESPONSE
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
     	</selectKey>
     	
 		INSERT 
@@ -358,6 +380,142 @@
   	    EXAMINE
   		   SET 
                EXAMINE_REQUEST_YN = 'Y'
-         WHERE EXAMINE_REQUEST_FROM = #{ anwserRequestCode }
+         WHERE EXAMINE_REQUEST_CODE = #{ anwserRequestCode }
+	</update> 
+	
+	<select id="selectLevelUpList" resultMap="levelUpList">
+        SELECT 
+     		   A.EXAMINE_REQUEST_CODE
+     		 , B.USER_EMAIL
+     		 , D.GUIDE_LEVEL_DETAIL
+    		 , G.TRIP_REVIEW_GRADE
+     		 , A.EXAMINE_REQUEST_YN
+     		 , B.USER_CODE
+		  FROM EXAMINE A 
+		  JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+		  JOIN GUIDE C ON (B.USER_CODE = C.USER_CODE)
+		  JOIN GUIDE_LEVEL D ON (C.GUIDE_LEVEL_CODE = D.GUIDE_LEVEL_CODE)
+		  JOIN TRIP_REGIST_LIST E ON (B.USER_CODE = E.USER_CODE)
+		  JOIN JOIN_TRIP_APPLY F ON (E.TRIP_REGIST_LIST_CODE = F.TRIP_REGIST_LIST_CODE)
+		  JOIN TRIP_REVIEW G ON (F.JOIN_TRIP_APPLY_CODE = G.JOIN_TRIP_APPLY_CODE)
+		  JOIN EXAMINE_TYPE H ON (A.TYPE_CODE = H.EXAMINE_TYPE_CODE)
+		 WHERE H.EXAMINE_TYPE_CODE = '7';
+	</select>
+	
+	<select id="selectLevelUpDetail" resultMap="levelUpList" parameterType="_int">
+        SELECT 
+     		   A.EXAMINE_REQUEST_REASON 
+    		  , G.TRIP_REVIEW_GRADE
+     		  , (	
+        	    SELECT 
+	    	     COUNT(TRIP_REPLY_DETAIL)
+	      	      FROM USER A
+	 	  		  JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
+	  	  	  	  JOIN JOIN_TRIP_APPLY C ON (B.TRIP_REGIST_LIST_CODE = C.TRIP_REGIST_LIST_CODE)
+	   	  		  JOIN TRIP_REVIEW D ON (C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+	 	  		  JOIN TRIP_REPLY E ON (D.TRIP_REVIEW_CODE = E.TRIP_REVIEW_CODE)
+	 	 		 WHERE A.USER_CODE = #{ no }
+	   		    ) AS REVIEW
+	   		   , A.EXAMINE_REQUEST_CODE 
+	   		   , B.USER_CODE
+ 		  FROM EXAMINE A 
+ 		  JOIN USER B ON (A.EXAMINE_REQUEST_FROM = B.USER_CODE)
+ 		  JOIN GUIDE C ON (B.USER_CODE = C.USER_CODE)
+ 		  JOIN GUIDE_LEVEL D ON (C.GUIDE_LEVEL_CODE = D.GUIDE_LEVEL_CODE)
+ 		  JOIN TRIP_REGIST_LIST E ON (B.USER_CODE = E.USER_CODE)
+ 		  JOIN JOIN_TRIP_APPLY F ON (E.TRIP_REGIST_LIST_CODE = F.TRIP_REGIST_LIST_CODE)
+ 		  JOIN TRIP_REVIEW G ON (F.JOIN_TRIP_APPLY_CODE = G.JOIN_TRIP_APPLY_CODE)
+ 		  JOIN EXAMINE_TYPE H ON (A.TYPE_CODE = H.EXAMINE_TYPE_CODE)
+ 		  JOIN TRIP_REPLY I ON (G.TRIP_REVIEW_CODE = I.TRIP_REVIEW_CODE)
+		 WHERE B.USER_CODE = #{ no }
+  		   AND H.EXAMINE_TYPE_CODE = '7'
+	</select>
+	
+	<insert id="insertLevelUp" parameterType="LevelUpDTO">
+	
+		<selectKey  resultType="LevelUpDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		,#{examineCode}
+		,1
+		)
+	</insert>
+	
+    <update id="updateLevelStatus" parameterType="LevelUpDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
+	</update> 
+	
+	<update id="updateLevelUpCount" parameterType="LevelUpDTO">
+        UPDATE 
+         GUIDE
+           SET
+              GUIDE_LEVEL_CODE = GUIDE_LEVEL_CODE + 1
+         WHERE USER_CODE = #{ guideNo } 
+	</update>  
+	
+	<insert id="insertGuideEnroll" parameterType="GuideDTO">
+	
+		<selectKey  resultType="GuideDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		,#{examineCode}
+		,1
+		)
+	</insert>
+	
+     <update id="updateEnrollRequestStatus" parameterType="GuideDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
+	</update> 
+	
+	<update id="updateEnrollGuideStatus" parameterType="GuideDTO">
+        UPDATE 
+         GUIDE
+           SET
+               GUIDE_YN = 'Y'
+         WHERE GUIDE_CODE = #{ guideCode } 
 	</update> 
 </mapper>

@@ -106,35 +106,51 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                	문의내역 상세보기
+                                	등업신청 상세보기
                             </div>
 
                             <div class="row" style="margin-top: 20px;margin-left: 10px;">
                                 <!-- <div class="col-md-2"></div> -->
                                 <div class="col-md-8">
-                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertAnswer"> 
-                                      <table class="table text-center">
+                                   <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertLevelUp"> 
+                                      <table class="table table">
                                         <tr>
-                                            <td>작성자</td>
-                                            <td><input type="text"  class="form-control" name="writer" value="${selectAnswerDetail.userId}"></td>
+                                            <td>신청내용</td>
+                                            <td><input type="text"  class="form-control" name="content" value="${selectLevelUpDetail.requestContent}" readonly></td>
                                         </tr>
                                         <tr>
-                                            <td>글내용</td>
+                                            <td>평점</td>
                                             <td>
-                                            	<input type="text"  class="form-control" name="content" value="${selectAnswerDetail.answerTitle}">
-                                            	<input type="hidden" name="noticeRequestCode" value="${selectAnswerDetail.answerNo}">
-                                            	<input type="hidden" name="anwserRequestCode" value="${selectAnswerDetail.anwserRequestCode}">
+              									<input type="text"  class="form-control" name="starPoint" value="${selectLevelUpDetail.starPoint}" readonly>
                                             </td>
                                         </tr>
 									    <tr>
-                                        <td>날짜</td>
-                                        <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
+                                        <td>댓글 개수</td>
+                                        <td><input type="text" class="form-control" name="reviewCount" value="${selectLevelUpDetail.reviewCount}" readonly></td>
                                         </tr>
-                                        <tr> 
                                         <tr>
-                                        <td>답변 내용</td>
-                                        <td><textarea rows="10" cols="50" id="responseContent" name="responseContent" class="form-control"></textarea></td>
-                                    	</tr>
+                                        <td>날짜</td>
+                                        <td>
+                                        	<input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control">
+                                        	<input type="hidden" name="requestCode" value="${selectLevelUpDetail.levelUpNo}">
+                                        	<input type="hidden" name="guideNo" value="${selectLevelUpDetail.guideNo}">
+                                        </td>
+                                       </tr>
+                                       <tr> 
+                                   	   <tr>
+                                         <td>답변 내용</td>
+                                         <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
+                                       </tr>
+                                       <tr>
+                                          <td>심사코드</td>
+                                          <td>
+                                        	<select name="examineCode" class="select-time">
+												<option value="2">승인</option>
+												<option value="3">반려</option>
+											</select>
+                                          </td>
+                                        </tr>
+                                       
                                         <tr>
                                             <td colspan="2"  class="text-center">
                                                 <input type="submit" value="답변완료" class="btn btn-success">

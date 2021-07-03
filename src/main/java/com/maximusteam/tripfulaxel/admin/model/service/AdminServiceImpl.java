@@ -11,6 +11,7 @@ import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideEnrollDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.LevelUpDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
@@ -81,12 +82,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int insertReport(ReportDTO report) {
 		
-		if (mapper.insertReport(report)> 0 && report.getExamineCode() == 2) {
-				updateReportStatus(report);
-				updateReportCount(report);
-		}
+		int result = 0; 
+		result = mapper.insertReport(report);
+		updateReportStatus(report);
 		
-		return mapper.insertReport(report);
+		if ( result > 0 && report.getExamineCode() == 2) {
+				updateReportCount(report);
+		} 
+		
+		return result;
 	}
 
 	@Override
@@ -126,17 +130,77 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int insertAnswer(AdminAnswerDTO answer) {
+		int result = 0; 
+		result = mapper.insertAnswer(answer);
 		
-		if (mapper. insertAnswer(answer)> 0 ) {
+		if (result > 0 ) {
 			updateAnswerStatus(answer);
 		}
-		return mapper.insertAnswer(answer);
+		
+		return result;
 	}
 
 	@Override
 	public int updateAnswerStatus(AdminAnswerDTO answer) {
 		return mapper.updateAnswerStatus(answer);
 	}
+
+	@Override
+	public List<LevelUpDTO> selectLevelUpList() {
+		return mapper.selectLevelUpList();
+	}
+
+	@Override
+	public LevelUpDTO selectLevelUpDetail(int no) {
+		return mapper.selectLevelUpDetail(no);
+	}
+
+	@Override
+	public int insertLevelUp(LevelUpDTO levelUp) {
+		
+		int result = 0;
+		result = mapper.insertLevelUp(levelUp);
+		updateLevelStatus(levelUp);
+		
+		if( result > 0 && levelUp.getExamineCode() == 2 ) {
+			updateLevelUpCount(levelUp);
+		}
+		return result;
+	}
+
+	@Override
+	public int updateLevelStatus(LevelUpDTO levelUp) {
+		return mapper.updateLevelStatus(levelUp);
+	}
+
+	@Override
+	public int updateLevelUpCount(LevelUpDTO levelUp) {
+		return mapper.updateLevelUpCount(levelUp);
+	}
+
+	@Override
+	public int insertGuideEnroll(GuideDTO guide) {
+		
+		int result = 0;
+		result = mapper.insertGuideEnroll(guide);
+		updateEnrollRequestStatus(guide);
+		
+		if( result > 0 && guide.getExamineCode() == 2) {
+			updateEnrollGuideStatus(guide);
+		}
+		return result;
+	}
+
+	@Override
+	public int updateEnrollRequestStatus(GuideDTO guide) {
+		return mapper.updateEnrollRequestStatus(guide);
+	}
+
+	@Override
+	public int updateEnrollGuideStatus(GuideDTO guide) {
+		return mapper.updateEnrollGuideStatus(guide);
+	}
+
 
 
 	

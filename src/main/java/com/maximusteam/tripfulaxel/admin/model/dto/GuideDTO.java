@@ -1,5 +1,7 @@
 package com.maximusteam.tripfulaxel.admin.model.dto;
 
+import java.sql.Date;
+
 public class GuideDTO {
 
     private int guideNo;
@@ -13,6 +15,14 @@ public class GuideDTO {
     private String guideExp;// 가이드 경험 여부
     private String guideCar;// 개인차량 여부
     private String guideIntro;// 가이드 소개
+    private String guideTravel; // 가이드 여행소개
+    private int requestCode; // 가이드 접수 요청번호
+	
+    private int responseCode;
+    private String responseContent;
+    private java.sql.Date responseDate;
+    private int examineCode;
+    private int guideCode;
     
 //    private String guideIdPicture;// 신분증 사진
 //    private String guidePicture;// 가이드 사진
@@ -21,7 +31,9 @@ public class GuideDTO {
     public GuideDTO() {}
 
 	public GuideDTO(int guideNo, String guideId, String guideEnrollStatus, String guideApproveStatus, String guideName,
-			String guideGender, String guideNickname, String guideExp, String guideCar, String guideIntro) {
+			String guideGender, String guideNickname, String guideExp, String guideCar, String guideIntro,
+			String guideTravel, int requestCode, int responseCode, String responseContent, Date responseDate,
+			int examineCode, int guideCode) {
 		super();
 		this.guideNo = guideNo;
 		this.guideId = guideId;
@@ -33,6 +45,13 @@ public class GuideDTO {
 		this.guideExp = guideExp;
 		this.guideCar = guideCar;
 		this.guideIntro = guideIntro;
+		this.guideTravel = guideTravel;
+		this.requestCode = requestCode;
+		this.responseCode = responseCode;
+		this.responseContent = responseContent;
+		this.responseDate = responseDate;
+		this.examineCode = examineCode;
+		this.guideCode = guideCode;
 	}
 
 	public int getGuideNo() {
@@ -115,14 +134,77 @@ public class GuideDTO {
 		this.guideIntro = guideIntro;
 	}
 
+	public String getGuideTravel() {
+		return guideTravel;
+	}
+
+	public void setGuideTravel(String guideTravel) {
+		this.guideTravel = guideTravel;
+	}
+
+	public int getRequestCode() {
+		return requestCode;
+	}
+
+	public void setRequestCode(int requestCode) {
+		this.requestCode = requestCode;
+	}
+
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	public String getResponseContent() {
+		return responseContent;
+	}
+
+	public void setResponseContent(String responseContent) {
+		this.responseContent = responseContent;
+	}
+
+	public java.sql.Date getResponseDate() {
+		return responseDate;
+	}
+
+	public void setResponseDate(java.sql.Date responseDate) {
+		this.responseDate = responseDate;
+	}
+
+	public int getExamineCode() {
+		return examineCode;
+	}
+
+	public void setExamineCode(int examineCode) {
+		this.examineCode = examineCode;
+	}
+
+	public int getGuideCode() {
+		return guideCode;
+	}
+
+	public void setGuideCode(int guideCode) {
+		this.guideCode = guideCode;
+	}
+
 	@Override
 	public String toString() {
 		return "GuideDTO [guideNo=" + guideNo + ", guideId=" + guideId + ", guideEnrollStatus=" + guideEnrollStatus
 				+ ", guideApproveStatus=" + guideApproveStatus + ", guideName=" + guideName + ", guideGender="
 				+ guideGender + ", guideNickname=" + guideNickname + ", guideExp=" + guideExp + ", guideCar=" + guideCar
-				+ ", guideIntro=" + guideIntro + "]";
+				+ ", guideIntro=" + guideIntro + ", guideTravel=" + guideTravel + ", requestCode=" + requestCode
+				+ ", responseCode=" + responseCode + ", responseContent=" + responseContent + ", responseDate="
+				+ responseDate + ", examineCode=" + examineCode + ", guideCode=" + guideCode + "]";
 	}
 
+	
+
+	
+	
+    
     
     
     

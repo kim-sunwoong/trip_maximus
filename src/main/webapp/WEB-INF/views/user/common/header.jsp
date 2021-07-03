@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -183,18 +184,20 @@ to {
          
             <ul class="clearfix">
                      
-            
+              <c:if test="${ sessionScope.loginUser.userGuideYN eq 'N' }">
                <li class="floatL">
                <a href="${ pageContext.servletContext.contextPath }/insertGuide">
                      <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
                         등록</span>
                </a></li>
+               </c:if>
 
 
                <c:if test="${ empty sessionScope.loginUser }">
-                  <li class="floatL"><a class="login_link"
-                     href="javascript:void(0);"> <span
-                        style="color: white; font-size: 18px; font-weight: bold;">로그인</span>
+                  <li class="floatL">
+                  <a class="login_link" 
+                   href="#">
+                   <span style="color: white; font-size: 18px; font-weight: bold;">로그인</span>
                   </a></li>
                </c:if>
 
@@ -220,7 +223,7 @@ to {
                </c:if>            
 
                <li class="floatL"><a class="signup_link"
-                  href="javascript:void(0);"> <span
+                 href="#"> <span
                      style="color: white; font-size: 18px; font-weight: bold;">회원가입</span>
                </a></li>
 
@@ -234,10 +237,10 @@ to {
          <article class="find_btn_area floatR " style="margin-right: 15%;">
 
             <div style="margin-top: 5px; margin-bottom: -10px;">
-               <a href="/"><img id="rotating_img"
+               <a href="${ pageContext.servletContext.contextPath }/main"><img id="rotating_img"
                   style="width: 90px; height: 99px; object-fit: cover;"
                   src="/tripfulaxel/resources/images/common/3.png" alt=""></a> <a
-                  href="/"><img style="width: 300px; height: 99px"
+                  href="${ pageContext.servletContext.contextPath }/main"><img style="width: 300px; height: 99px"
                   src="/tripfulaxel/resources/images/common/2.png" alt=""></a>
 
             </div>

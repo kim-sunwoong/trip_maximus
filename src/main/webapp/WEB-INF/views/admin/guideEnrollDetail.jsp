@@ -109,6 +109,7 @@
                             </div>
 
                             <div class="card-body">
+                             <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertGuideEnroll"> 
                                 <table class="table table">
                                     <tr>
                                         <td style="width: 15%;">이름</td>
@@ -136,10 +137,17 @@
                                     <tr>
                                      <td>가이드 소개</td>
                                      <td>
-                                     	<input  type="text" name="content" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
+                                     	<input  type="text" name="guideContent" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
                                      </td>
                                     </tr>
-
+          							<tr>
+                                     <td>가이드 여행소개</td>
+                                     <td>
+                                     	<input  type="text" name="travelContent" class="form-control" value="${selectEnrollDetail.guideTravel}" > 
+                                     	<input  type="hidden" name="requestCode" value="${selectEnrollDetail.requestCode}">
+                                     	<input  type="hidden" name="guideCode" value="${selectEnrollDetail.guideCode}">
+                                     </td>
+                                    </tr>
                                                                     
                                     <tr>
                                         <td>프로필 사진</td>
@@ -155,19 +163,33 @@
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
                                         	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
-                                        	
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>답변 내용</td>
+                                        <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
+                                    </tr>
+									<tr>
+                                        <td>날짜</td>
+                                        <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>심사코드</td>
+                                        <td>
+                                        	<select name="examineCode" class="select-time">
+												<option value="2">승인</option>
+												<option value="3">반려</option>
+											</select>
                                         </td>
                                     </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">
-                                     
-                                      <input type="submit" value="가입승인" class="btn btn-success">
-                                      <input type="reset" value="가입취소" class="btn btn-warning">
+                                      <input type="submit" value="완료" class="btn btn-success">
                                       <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
                                      </td>
                                     </tr>
-                                    
                                     </table>
+                                   </form>
                             </div>
 
                         </div>
