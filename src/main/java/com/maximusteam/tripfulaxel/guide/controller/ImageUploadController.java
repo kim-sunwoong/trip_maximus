@@ -148,7 +148,6 @@ public class ImageUploadController {
 				tripImageDTO.setRefCode(userCode);
 			}else {
 				tripImageDTO.setRefCode(null);
-
 			}
 			
 			tripImageDTO.setImageTypeCode(imageTypeCode);

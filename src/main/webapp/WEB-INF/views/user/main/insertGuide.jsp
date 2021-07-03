@@ -100,13 +100,14 @@
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
 				
-					<!-- 회원번호 (invisible) -->
-					<input id="userCode" name="userCode" value="${ requestScope.loginMember.userCode }"/ hidden="true">
 				
 					<!-- 성명 -->
 					<div class="form-layer">
+					
+					<!-- 회원번호 (invisible) -->
+					<input type="number" id="userCode" name="userCode" value="${ sessionScope.loginUser.userCode }"/ hidden="true">
 					<span class="form-title" style="display:inline-block";>성명  </span>
-				   	<input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
+				   	<input type="text" class="select-nomalsize" name="userName" value="${ sessionScope.loginUser.userName }" readonly="readonly">	
 					</div>
 				
 					<!-- 닉네임 -->			
@@ -402,6 +403,7 @@
 <script>
 	var formMap = new Map();
 	var courseImage = new Array();
+	var tripImage = new Array();
 	var formdata;
 	var totalData = {};
 
@@ -432,6 +434,9 @@
             	if(e.name == "imageCourse"){
             		courseImage.push(JSON.parse(data.imageList));
 	            	formMap.set(e.name, courseImage);
+            	}else if(e.name == "imageTrip"){
+            		tripImage.push(JSON.parse(data.imageList));
+            		formMap.set(e.name, tripImage);
             	}else {
 	            	formMap.set(e.name, JSON.parse(data.imageList));
             	}
