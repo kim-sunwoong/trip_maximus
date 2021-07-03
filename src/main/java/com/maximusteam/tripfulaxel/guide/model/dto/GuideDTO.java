@@ -1,7 +1,7 @@
 package com.maximusteam.tripfulaxel.guide.model.dto;
 
 public class GuideDTO {
-	private int guideCode;
+	private Integer guideCode;
 	private String carYn;
 	private String expYn;
 	private String nickname;

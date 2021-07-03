@@ -1,9 +1,9 @@
 package com.maximusteam.tripfulaxel.guide.model.dao;
 
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideImageDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 
 public interface GuideMapper {
 
-	int insertGuideImage(GuideImageDTO guideImageDTO); 
-	int insertTripImage(GuideImageDTO tripImageDTO); 
+	int insertGuideImage(TripImageDTO tripImageDTO); 
+	int insertTripImage(TripImageDTO tripImageDTO); 
 }

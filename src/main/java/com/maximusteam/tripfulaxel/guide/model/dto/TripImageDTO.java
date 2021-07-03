@@ -1,18 +1,18 @@
 package com.maximusteam.tripfulaxel.guide.model.dto;
 
-public class GuideImageDTO {
+public class TripImageDTO {
 
 	private int imageCode; // pk
 	private String savedName;
 	private int imageTypeCode;
 	private String originName;
-	private int refCode;
+	private Integer refCode; // userCode
 	
-	public GuideImageDTO() {
+	public TripImageDTO() {
 		super();
 	}
 	
-	public GuideImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, int refCode) {
+	public TripImageDTO(int imageCode, String savedName, int imageTypeCode, String originName, Integer refCode) {
 		super();
 		this.imageCode = imageCode;
 		this.savedName = savedName;
@@ -45,10 +45,10 @@ public class GuideImageDTO {
 	public void setOriginName(String originName) {
 		this.originName = originName;
 	}
-	public int getRefCode() {
+	public Integer getRefCode() {
 		return refCode;
 	}
-	public void setRefCode(int refCode) {
+	public void setRefCode(Integer refCode) {
 		this.refCode = refCode;
 	}
 

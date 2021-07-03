@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
 
 @RestController
@@ -46,6 +49,8 @@ public class userGuideController {
 		for (Map.Entry<String, Object> entry : formDataMap.get("imageData").entrySet()) {
 			  System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
+		System.out.println("imageTrip type check : ");
+		System.out.println(formDataMap.get("imageData").get("imageTrip").getClass().getName());
 		
 		/* JSON으로부터의 데이터를 알맞는 TABLE-DTO에 사용할 수 있도록 파싱한다. 
 		 * 
@@ -61,11 +66,12 @@ public class userGuideController {
 		guideDTO.setCarYn((String)formDataMap.get("formData").get("hasCar"));
 		guideDTO.setExpYn((String)formDataMap.get("formData").get("hasExp"));
 		guideDTO.setIntro((String)formDataMap.get("formData").get("intro"));
-		guideDTO.setUserCode((int)formDataMap.get("formData").get("userCode"));
-		guideDTO.setLevelCode((int)formDataMap.get("formData").get("intro"));
+		guideDTO.setUserCode(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
+		guideDTO.setPeriodCode(Integer.valueOf((String)formDataMap.get("formData").get("periodCode")));
 		guideDTO.setGuideYn("N"); // 승인에 대한 내용, 등록시에는 N으로 기본값 설정
 		guideDTO.setLevelCode(1); // 가입시 레벨은 1로 초기화
 		
+		System.out.println("guideDTO" + guideDTO);
 		// 1-2 GUIDE 테이블에 INSERT
 		
 		
@@ -73,8 +79,8 @@ public class userGuideController {
 		TripDTO tripDTO = new TripDTO();
 		tripDTO.setTripTitle((String)formDataMap.get("formData").get("tripName"));
 		tripDTO.setTripIntro((String)formDataMap.get("formData").get("tripIntro"));
-		tripDTO.setTripStartDate((Date)formDataMap.get("formData").get("peakStart"));
-		tripDTO.setTripEndDate((Date)formDataMap.get("formData").get("peakEnd"));
+		tripDTO.setTripStartDate(Date.valueOf((String)formDataMap.get("formData").get("peakStart")));
+		tripDTO.setTripEndDate(Date.valueOf((String)formDataMap.get("formData").get("peakEnd")));
 		tripDTO.setInclude((String)formDataMap.get("formData").get("include"));
 		tripDTO.setExclude((String)formDataMap.get("formData").get("exclude"));
 		String meetLocation = (String)formDataMap.get("formData").get("address1") + " "
@@ -82,15 +88,19 @@ public class userGuideController {
 							 + (String)formDataMap.get("formData").get("zipCode");
 		tripDTO.setMeetLocation(meetLocation);
 		
+		System.out.println("tripDTO" + tripDTO);
+
 		// 2-2 TRIP 테이블에 INSERT
 
 		// 3-1 TripRegistListDTO
 		TripRegistListDTO tripRegistListDTO = new TripRegistListDTO();
 		tripRegistListDTO.setTripTypeCode(1);
 		tripRegistListDTO.setRegistTypeCode(1);
-		tripRegistListDTO.setUserCode((int)formDataMap.get("formData").get("userCode"));
+		tripRegistListDTO.setUserCode(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
 		tripRegistListDTO.setTripCode(tripDTO.getTripCode());
 		
+		System.out.println("tripRegistListDTO" + tripRegistListDTO);
+
 		// 3-2 TRIP_REGIST_LIST 테이블에 INSERT
 		
 		// 4-1 ExamineDTO
@@ -98,31 +108,90 @@ public class userGuideController {
 		examineDTO.setExamineRequestReason((String)formDataMap.get("formData").get("requestReason"));
 		examineDTO.setTypeCode(3); // 가이드 등록 심사코드 - 3
 		examineDTO.setExamineRequestYn("N"); // 심사등록시 기본값 N으로 등록
-		examineDTO.setExamineRequestFrom((int)formDataMap.get("formData").get("userCode"));
+		examineDTO.setExamineRequestFrom(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
 		examineDTO.setExamineRequestTo(tripRegistListDTO.getRegistListCode());
 		
+		System.out.println("examineDTO" + examineDTO);
+
 		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
 		
 		
 		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
-		int[] choiceTheme = (int[])formDataMap.get("formData").get("theme");
+		List<Object> choiceTheme = (List)formDataMap.get("formData").get("theme");
 		List<TripThemeChoiceDTO> themeList = new ArrayList<>();		
 				
-		for(int i = 0; i < choiceTheme.length; i++) {
+		for(int i = 0; i < choiceTheme.size(); i++) {
 			TripThemeChoiceDTO tripThemeChoiceDTO = new TripThemeChoiceDTO();
 			tripThemeChoiceDTO.setTripCode(tripDTO.getTripCode());
-			tripThemeChoiceDTO.setThemeCode(choiceTheme[i]);
+			tripThemeChoiceDTO.setThemeCode(Integer.valueOf((String)choiceTheme.get(i)));
 			
 			themeList.add(tripThemeChoiceDTO);
 		}
-		
+		System.out.println("themeList" + themeList);
+
 		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
 		
 		
-		// 6-1 TripTransitChoice
-		int[] choiceTransit = (int[])formDataMap.get("formData").get("transit");
+		// 6-1 TripTransitChoiceDTO
+		List<Object> choiceTransit = (List)formDataMap.get("formData").get("transit");
+		List<TripTransitChoiceDTO> transitList = new ArrayList<>();
 		
+		for(int i = 0; i < choiceTransit.size(); i++) {
+			TripTransitChoiceDTO tripTransitChoiceDTO = new TripTransitChoiceDTO();
+			tripTransitChoiceDTO.setTripCode(tripDTO.getTripCode());
+			tripTransitChoiceDTO.setTransitCode(Integer.valueOf((String)choiceTransit.get(i)));
+			
+			transitList.add(tripTransitChoiceDTO);
+		}
+		System.out.println("transitList" + transitList);
+
+		// 6-2 TRANSIT_CHOICE 테이블에 INSERT
 		
+		// 7-1 GuideTripDTO
+		GuideTripDTO guideTripDTO = new GuideTripDTO();
+		guideTripDTO.setPayment(Integer.valueOf((String)formDataMap.get("formData").get("price")));
+		guideTripDTO.setMinimum(Integer.valueOf((String)formDataMap.get("formData").get("minimum")));
+		guideTripDTO.setMaximum(Integer.valueOf((String)formDataMap.get("formData").get("maximum")));
+		guideTripDTO.setTripCode(tripDTO.getTripCode());
+		
+		System.out.println("guideTripDTO" + guideTripDTO);
+
+		// 7-2 GUIDE_TRIP 테이블에 INSERT
+		
+		/* JSON으로 전달받은 데이터 중 imageForm을 사용
+		 * imageData경우, 사진을 선택했을 시 이미 DB에 저장이 되어있으므로
+		 * 저장한 사진의 pk를 가지고 UPDATE 진행한다.
+		 * (imageCourse경우에는 TRIP_COURSE에 INSERT 별도로 진행)
+		 * 
+		 * UPDATE 목록&순서 
+		 *    테이블         DTO 
+		 * 1. TRIP_IMAGE   TripImageDTO - 여행사진
+		 * 2. TRIP_IMAGE   TripImageDTO - 코스사진
+		 * 
+		 * INSERT 목록&순서
+		 *    테이블         DTO 
+		 * 3. TRIP_COURSE  TripCourseDTO - 코스사진정보
+		 */
+		
+		// 1 TripImageDTO - TRIP_IMAGE에 사용 - refCode:tripCode
+		// 8-1 imageTrip List타입이므로 for-loop을 통해 값 없데이트
+		List<TripImageDTO> tripImageList = new ArrayList<>();
+		List<LinkedHashMap<String, Object>> tripImageListMap 
+			= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageTrip");
+		for(int i = 0; i < tripImageListMap.size(); i++) {
+			TripImageDTO tripIdImageDTO = new TripImageDTO();
+			
+			tripIdImageDTO.setImageCode(Integer.valueOf((String)tripImageListMap.get(i).get("imageCode")));
+			tripIdImageDTO.setSavedName((String)tripImageListMap.get(i).get("savedName"));
+			tripIdImageDTO.setImageTypeCode(Integer.valueOf((String)tripImageListMap.get(i).get("imageTypeCode")));
+			tripIdImageDTO.setOriginName((String)tripImageListMap.get(i).get("originName"));
+			tripIdImageDTO.setRefCode(tripDTO.getTripCode());
+			
+			tripImageList.add(tripIdImageDTO);
+		}
+		System.out.println("tripImageList" + tripImageList);
+
+		// 8-2 
 		
 		return null;
 	}
