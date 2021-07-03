@@ -64,6 +64,14 @@ public interface AdminMapper {
 
 	int updateLevelUpCount(LevelUpDTO levelUp);
 
+	int insertGuideEnroll(GuideDTO guide);
+
+	int updateEnrollRequestStatus(GuideDTO guide);
+
+	int updateEnrollGuideStatus(GuideDTO guide);
+
+	
+
 	
 
 

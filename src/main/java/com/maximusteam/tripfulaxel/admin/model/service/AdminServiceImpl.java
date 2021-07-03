@@ -178,6 +178,29 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateLevelUpCount(levelUp);
 	}
 
+	@Override
+	public int insertGuideEnroll(GuideDTO guide) {
+		
+		int result = 0;
+		result = mapper.insertGuideEnroll(guide);
+		updateEnrollRequestStatus(guide);
+		
+		if( result > 0 && guide.getExamineCode() == 2) {
+			updateEnrollGuideStatus(guide);
+		}
+		return result;
+	}
+
+	@Override
+	public int updateEnrollRequestStatus(GuideDTO guide) {
+		return mapper.updateEnrollRequestStatus(guide);
+	}
+
+	@Override
+	public int updateEnrollGuideStatus(GuideDTO guide) {
+		return mapper.updateEnrollGuideStatus(guide);
+	}
+
 
 
 	

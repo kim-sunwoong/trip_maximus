@@ -123,7 +123,7 @@
                                             <td>
                                             	<input type="text"  class="form-control" name="content" value="${selectAnswerDetail.answerTitle}">
                                             	<input type="hidden" name="noticeRequestCode" value="${selectAnswerDetail.answerNo}">
-                                            	<input type="hidden" name="anwserRequestCode" value="${selectAnswerDetail.anwserRequestFrom}">
+                                            	<input type="hidden" name="anwserRequestCode" value="${selectAnswerDetail.anwserRequestCode}">
                                             </td>
                                         </tr>
 									    <tr>

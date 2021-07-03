@@ -67,6 +67,9 @@
 		<result column="GUIDE_EXP_YN" property="guideExp" />
 		<result column="GUIDE_CAR_YN" property="guideCar" />
 		<result column="GUIDE_INTRO" property="guideIntro" />
+		<result column="EXAMINE_REQUEST_REASON" property="guideTravel"/>
+		<result column="EXAMINE_REQUEST_CODE" property="requestCode"/>
+		<result column="GUIDE_CODE" property="guideCode"/>
 	</resultMap>
 	
 	<!-- 가이드 사진 -->
@@ -193,34 +196,40 @@
 	</select>
 	
     <select id="selectEnrollDetail" resultMap="guideDetail" parameterType="_int">
-          	         SELECT 
-	                B.USER_NAME
-	              , B.USER_GENDER
-	              , A.GUIDE_NICKNAME
-	              , A.GUIDE_EXP_YN
-	              , A.GUIDE_CAR_YN
-	              , A.GUIDE_INTRO
-	           FROM USER B
-	           JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
-	          WHERE A.USER_CODE = #{ no }
+        SELECT 
+	           B.USER_NAME
+	         , B.USER_GENDER
+	         , A.GUIDE_NICKNAME
+	         , A.GUIDE_EXP_YN
+	         , A.GUIDE_CAR_YN
+	         , A.GUIDE_INTRO
+	         , C.EXAMINE_REQUEST_REASON 
+	         , C.EXAMINE_REQUEST_CODE 
+	         , A.GUIDE_CODE
+	      FROM USER B
+	      JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
+	      JOIN EXAMINE C ON (B.USER_CODE = C.EXAMINE_REQUEST_FROM)
+	      JOIN EXAMINE_TYPE D ON (C.TYPE_CODE = D.EXAMINE_TYPE_CODE)
+	     WHERE A.USER_CODE = #{ no }
+           AND D.EXAMINE_TYPE_CODE = 3; 
 	</select>
 	
  	<select id="selectProfilePic" resultMap="guidePic" parameterType="_int">
-	         SELECT 
-	               A.GUIDE_IMAGE_SAVED_NAME
-	          FROM GUIDE_IMAGE A
-	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
-	         WHERE A.USER_CODE = #{ no }
-	           AND GUIDE_IMAGE_TYPE_CODE = 1;
+        SELECT 
+	           A.GUIDE_IMAGE_SAVED_NAME
+	     FROM GUIDE_IMAGE A
+	     JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	    WHERE A.USER_CODE = #{ no }
+	      AND GUIDE_IMAGE_TYPE_CODE = 1;
 	</select>
 	
 	<select id="selectIdPic" resultMap="guidePic" parameterType="_int">
-	         SELECT 
-	               A.GUIDE_IMAGE_SAVED_NAME
-	          FROM GUIDE_IMAGE A
-	          JOIN USER B ON (A.USER_CODE = B.USER_CODE)
-	         WHERE A.USER_CODE = #{ no }
-	           AND GUIDE_IMAGE_TYPE_CODE = 3;
+	    SELECT 
+	           A.GUIDE_IMAGE_SAVED_NAME
+	      FROM GUIDE_IMAGE A
+	      JOIN USER B ON (A.USER_CODE = B.USER_CODE)
+	     WHERE A.USER_CODE = #{ no }
+	       AND GUIDE_IMAGE_TYPE_CODE = 3;
 	</select> 
 	
 	<select id="selectCalculate" resultMap="calculateList">
@@ -249,9 +258,9 @@
 	</select>	
 	
 	<delete id="deleteMember" parameterType="_int">
-       DELETE 
-         FROM USER
-        WHERE USER_CODE = #{ no } 
+        DELETE 
+          FROM USER
+         WHERE USER_CODE = #{ no } 
 	</delete>
 	
 	<delete id="deleteAdmin" parameterType="_int">
@@ -263,9 +272,9 @@
 	<insert id="insertReport" parameterType="ReportDTO">
 	
 		<selectKey  resultType="ReportDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
-	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	          FROM EXAMINE_RESPONSE
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
 		  INTO EXAMINE_RESPONSE
@@ -293,7 +302,7 @@
   	    EXAMINE
   		   SET 
                EXAMINE_REQUEST_YN = 'Y'
-         WHERE EXAMINE_REQUEST_FROM = #{ reportWriter }
+         WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
 	</update> 
 	
 	<update id="updateReportCount" parameterType="ReportDTO">
@@ -340,9 +349,9 @@
 	<insert id="insertAnswer" parameterType="AdminAnswerDTO">
 	
 		<selectKey  resultType="int" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
-	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	          FROM EXAMINE_RESPONSE
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
     	</selectKey>
     	
 		INSERT 
@@ -371,7 +380,7 @@
   	    EXAMINE
   		   SET 
                EXAMINE_REQUEST_YN = 'Y'
-         WHERE EXAMINE_REQUEST_FROM = #{ anwserRequestCode }
+         WHERE EXAMINE_REQUEST_CODE = #{ anwserRequestCode }
 	</update> 
 	
 	<select id="selectLevelUpList" resultMap="levelUpList">
@@ -425,9 +434,9 @@
 	<insert id="insertLevelUp" parameterType="LevelUpDTO">
 	
 		<selectKey  resultType="LevelUpDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
-	        SELECT 
-	               MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
-	          FROM EXAMINE_RESPONSE
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
     	</selectKey>
 		INSERT 
 		  INTO EXAMINE_RESPONSE
@@ -466,7 +475,35 @@
          WHERE USER_CODE = #{ guideNo } 
 	</update>  
 	
-<!--     <update id="updateEnrollRequestStatus" parameterType="">
+	<insert id="insertGuideEnroll" parameterType="GuideDTO">
+	
+		<selectKey  resultType="GuideDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		,#{examineCode}
+		,1
+		)
+	</insert>
+	
+     <update id="updateEnrollRequestStatus" parameterType="GuideDTO">
         UPDATE 
   	    EXAMINE
   		   SET 
@@ -474,11 +511,11 @@
          WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
 	</update> 
 	
-	<update id="updateEnrollGuideStatus" parameterType="">
+	<update id="updateEnrollGuideStatus" parameterType="GuideDTO">
         UPDATE 
          GUIDE
            SET
-              GUIDE_YN = 'Y'
-         WHERE GUIDE_CODE = #{ guideNo } 
-	</update>  -->
+               GUIDE_YN = 'Y'
+         WHERE GUIDE_CODE = #{ guideCode } 
+	</update> 
 </mapper>

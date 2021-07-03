@@ -63,5 +63,11 @@ public interface AdminService {
 	int updateLevelStatus(LevelUpDTO levelUp);
 
 	int updateLevelUpCount(LevelUpDTO levelUp);
+
+	int insertGuideEnroll(GuideDTO guide);
+	
+	int updateEnrollRequestStatus(GuideDTO guide);
+
+	int updateEnrollGuideStatus(GuideDTO guide);
 	
 }

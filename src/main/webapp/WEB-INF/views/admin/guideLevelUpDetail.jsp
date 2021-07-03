@@ -113,7 +113,7 @@
                                 <!-- <div class="col-md-2"></div> -->
                                 <div class="col-md-8">
                                    <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertLevelUp"> 
-                                      <table class="table text-center">
+                                      <table class="table table">
                                         <tr>
                                             <td>신청내용</td>
                                             <td><input type="text"  class="form-control" name="content" value="${selectLevelUpDetail.requestContent}" readonly></td>
