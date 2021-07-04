@@ -36,7 +36,7 @@ public class userGuideController {
 		this.guideService = guideService;
 	}
 	
-	@RequestMapping(value = "/api/guides", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST)
 	public String insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
 		/* JSON DATA 확인 */

@@ -497,7 +497,7 @@
 			console.log(sendData);
 			
 	        $.ajax({
-	            url : "${pageContext.request.contextPath}/api/guides",
+	            url : "${pageContext.request.contextPath}/api/insert/guide",
 	            type : 'post', 
 	            data : sendData, 
 	            dataType : 'json',
