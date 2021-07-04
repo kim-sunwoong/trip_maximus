@@ -175,6 +175,12 @@
 						 <textarea class="form-control textarea-layer" rows="9" name="intro" placeholder="당신을 소개해주세요"></textarea>
                           <div class="maxText">(최대 1000자)</div>
 					</div>
+					
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>가이드 소개</span>
+						 <textarea class="form-control textarea-layer" rows="9" name="reason" placeholder="신청이유 또는 회원님만의 특색을 어필해주세요"></textarea>
+                          <div class="maxText">(최대 1000자)</div>
+					</div>
 				</td>
 			</tr>
 			<!-- 기본 정보 텍스트 부분 끝   -->

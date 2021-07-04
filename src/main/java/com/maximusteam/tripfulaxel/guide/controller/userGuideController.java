@@ -150,7 +150,7 @@ public class userGuideController {
 		
 		// 4-1 ExamineDTO
 		ExamineDTO examineDTO = new ExamineDTO();
-		examineDTO.setExamineRequestReason((String)formDataMap.get("formData").get("requestReason"));
+		examineDTO.setExamineRequestReason((String)formDataMap.get("formData").get("reason"));
 		examineDTO.setTypeCode(3); // 가이드 등록 심사코드 - 3
 		examineDTO.setExamineRequestYn("N"); // 심사등록시 기본값 N으로 등록
 		examineDTO.setExamineRequestFrom(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
