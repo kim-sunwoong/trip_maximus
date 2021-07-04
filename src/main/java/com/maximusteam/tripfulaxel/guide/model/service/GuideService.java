@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
@@ -18,6 +19,8 @@ public interface GuideService {
 
 	boolean insertGuide(GuideDTO guideDTO);
 
+	boolean insertGuideStyleChoice(List<GuideStyleChoiceDTO> styleList);
+	
 	boolean insertTrip(TripDTO tripDTO);
 
 	boolean insertTripRegistList(TripRegistListDTO tripRegistListDTO);

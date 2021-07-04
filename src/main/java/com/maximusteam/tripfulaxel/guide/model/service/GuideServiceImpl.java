@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
@@ -58,6 +59,18 @@ public class GuideServiceImpl implements GuideService {
 		return result > 0 ? true : false;
 	}
 
+	@Override
+	public boolean insertGuideStyleChoice(List<GuideStyleChoiceDTO> styleList) {
+
+		int result = 0;
+		
+		for(int i = 0; i < styleList.size(); i++) {
+			result += guideMapper.insertGuideStyleChoice(styleList.get(i));
+		}
+		
+		return styleList.size() == result ? true : false;
+	}
+	
 	@Override
 	public boolean insertTrip(TripDTO tripDTO) {
 		
@@ -137,4 +150,5 @@ public class GuideServiceImpl implements GuideService {
 		
 		return tripCourseList.size() == result ? true : false;
 	}
+
 }

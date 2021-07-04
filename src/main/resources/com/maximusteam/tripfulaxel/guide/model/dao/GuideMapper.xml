@@ -77,6 +77,26 @@
 	    )
 	</insert>
 	
+	<!-- INSERT GUIDE_STYLE_CHOICE -->
+	<insert id="insertGuideStyleChoice" parameterType="GuideStyleChoiceDTO">
+		<selectKey resultType="int" keyProperty="guideStyleChoiceCode" order="AFTER">
+	    	SELECT MAX(GUIDE_STYLE_CHOICE_CODE) as guideStyleChoiceCode FROM GUIDE_STYLE_CHOICE
+	    </selectKey>
+	    INSERT INTO GUIDE_STYLE_CHOICE
+	    (
+	    	   GUIDE_STYLE_CHOICE_CODE
+			 , GUIDE_CODE
+			 , GUIDE_STYLE_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_STYLE_CHOICE_CODE) + 1, 1) FROM GUIDE_STYLE_CHOICE b)
+	        , #{guideCode}
+	        , #{guideStyleCode}
+	    )
+	</insert>
+	
+	
 	<!-- INSERT TRIP -->
 	<insert id="insertTrip" parameterType="TripDTO">
 		<selectKey resultType="int" keyProperty="tripCode" order="AFTER">

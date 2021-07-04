@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
 //import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
@@ -56,12 +57,13 @@ public class userGuideController {
 		 * 				FORM DATA - INSERT 
 		 *    테이블     				DTO 
 		 * 1. GUIDE   				GuideDTO
-		 * 2. TRIP    				TripDTO
-		 * 3. TRIP_REGIST_LIST 		TripRegistListDTO
-		 * 4. EXAMINE				ExamineDTO
-		 * 5. TRIP_THEME_CHOICE		TripThemeChoiceDTO
-		 * 6. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
-		 * 7. GUIDE_TRIP			GuideTripDTO
+		 * 2. GUIDE_STYLE_CHOICE    GuideStyleChoiceDTO
+		 * 3. TRIP    				TripDTO
+		 * 4. TRIP_REGIST_LIST 		TripRegistListDTO
+		 * 5. EXAMINE				ExamineDTO
+		 * 6. TRIP_THEME_CHOICE		TripThemeChoiceDTO
+		 * 7. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
+		 * 8. GUIDE_TRIP			GuideTripDTO
 		 * 
 		 * 				IMAGE DATA - UPDATE(OPTIONAL)
 		 * 1. TRIP_IMAGE			TripImageDTO 
@@ -85,6 +87,32 @@ public class userGuideController {
 		// 1-2 GUIDE 테이블에 INSERT
 		if(!guideService.insertGuide(guideDTO)) {
 			System.out.println("insert guide error");
+		}
+		
+		// 2-1
+		List<GuideStyleChoiceDTO> styleList = new ArrayList<>();
+
+		if(formDataMap.get("formData").get("guideStyle") instanceof ArrayList) {
+			List<Object> choiceStyle = (List)formDataMap.get("formData").get("guideStyle");
+					
+			for(int i = 0; i < choiceStyle.size(); i++) {
+				GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
+				guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
+				guideStyleChoiceDTO.setGuideStyleChoiceCode(Integer.valueOf((String)choiceStyle.get(i)));
+				
+				styleList.add(guideStyleChoiceDTO);
+			}
+		}else {
+			GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
+			guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
+			guideStyleChoiceDTO.setGuideStyleChoiceCode(Integer.valueOf((String)formDataMap.get("formData").get("guideStyle")));
+			
+			styleList.add(guideStyleChoiceDTO);
+		}
+		System.out.println("styleList" + styleList);
+		// 2-2 GUIDE_STYLE_CHOICE 테이블에 INSERT
+		if(!guideService.insertGuideStyleChoice(styleList)) {
+			System.out.println("insert GuideStyleChoice error");
 		}
 		
 		// 2-1 TripDTO

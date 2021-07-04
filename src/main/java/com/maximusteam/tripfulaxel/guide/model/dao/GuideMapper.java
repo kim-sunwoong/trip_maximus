@@ -2,6 +2,7 @@ package com.maximusteam.tripfulaxel.guide.model.dao;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
@@ -15,11 +16,12 @@ public interface GuideMapper {
 	int insertGuideImage(TripImageDTO tripImageDTO); 
 	int insertTripImage(TripImageDTO tripImageDTO);
 	int insertGuide(GuideDTO guideDTO);
+	int insertGuideStyleChoice(GuideStyleChoiceDTO guideStyleChoiceDTO); 
 	int insertTrip(TripDTO tripDTO);
 	int insertTripRegistList(TripRegistListDTO tripRegistListDTO);
 	int insertExamine(ExamineDTO examineDTO);
 	int insertGuideTrip(GuideTripDTO guideTripDTO);
 	int insertTheme(TripThemeChoiceDTO tripThemeChoiceDTO);
 	int insertTransit(TripTransitChoiceDTO tripTransitChoiceDTO);
-	int insertTripCourse(TripCourseDTO tripCourseDTO); 
+	int insertTripCourse(TripCourseDTO tripCourseDTO);
 }
