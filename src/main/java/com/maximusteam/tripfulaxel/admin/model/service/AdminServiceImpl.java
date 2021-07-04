@@ -201,6 +201,11 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateEnrollGuideStatus(guide);
 	}
 
+	@Override
+	public int insertWorkerEnroll(AdminDTO admin) {
+		return mapper.insertWorkerEnroll(admin);
+	}
+
 
 
 	

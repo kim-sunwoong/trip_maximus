@@ -11,6 +11,7 @@
 		<result column="ADMIN_NAME" property="adminName" />
 		<result column="ADMIN_EMAIL" property="adminEmail" />
 		<result column="ADMIN_HIRE_DATE" property="hireDate" />
+		<result column="ADMIN_PWD" property="adminPwd" />
 	</resultMap>
 	
 	<!-- 회원리스트 -->
@@ -518,4 +519,26 @@
                GUIDE_YN = 'Y'
          WHERE GUIDE_CODE = #{ guideCode } 
 	</update> 
+	
+	<insert id="insertWorkerEnroll" parameterType="AdminDTO">
+		INSERT 
+		  INTO ADMIN
+		(
+			ADMIN_HIRE_DATE
+		,	ADMIN_NO
+		,	ADMIN_NAME
+		,	ADMIN_EMAIL
+		,	ADMIN_POSITION
+		,	ADMIN_PWD
+		)
+		VALUES
+		(
+		 #{ hireDate }
+		,#{ adminNo }
+		,#{ adminName } 
+		,#{ adminEmail }
+		,#{ adminPosition }
+		,#{ adminPwd } 
+		)
+	</insert>
 </mapper>
