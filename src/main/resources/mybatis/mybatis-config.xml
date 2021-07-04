@@ -16,8 +16,7 @@
 		<typeAlias alias="AdminAnswerDTO" type="com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO"/>
   		<typeAlias alias="UserDTO" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO"/>	
   		<typeAlias alias="EmailDTO" type="com.maximusteam.tripfulaxel.user.model.dto.EmailDTO"/>
-  		<typeAlias alias="GuideDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO"/>	
-  		<typeAlias alias="GuideRegistFormDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO"/>	
+  		<typeAlias alias="GuideDTO_" type="com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO"/>	
   		<typeAlias alias="GuideTripDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO"/>	
   		<typeAlias alias="TripCourseDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO"/>	
   		<typeAlias alias="TripDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripDTO"/>	

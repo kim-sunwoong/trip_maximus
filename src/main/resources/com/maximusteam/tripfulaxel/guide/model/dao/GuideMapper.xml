@@ -47,7 +47,7 @@
 	</insert>
 	
 	<!-- INSERT GUIDE -->
-	<insert id="insertGuide" parameterType="GuideDTO">
+	<insert id="insertGuide" parameterType="GuideDTO_">
 		<selectKey resultType="int" keyProperty="guideCode" order="AFTER">
 	    	SELECT MAX(GUIDE_CODE) as guideCode FROM GUIDE
 	    </selectKey>

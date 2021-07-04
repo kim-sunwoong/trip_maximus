@@ -146,11 +146,12 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 스타일</span>
 						<div class="guidetitle">
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="guideStyle">액티비티를 즐기는 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="guideStyle">여행분야의 전문성이 높은 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="guideStyle">인생샷을 남겨주는 스냅 전문 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="guideStyle">함께 신나게 놀 수 있는 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="guideStyle">로컬 방방곡곡 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="6" name="guideStyle">먹거리 전문 먹짱 가이드</label>
 						</div>
 					</div>
 					
@@ -233,6 +234,18 @@
 						<label><input type="date" name="peakStart"></label>
 						<span>~</span>
 						<label><input type="date" name="peakEnd"></label>
+					</div>
+			 
+			 <!-- 여행 테마  -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>여행 테마</span>
+						<div class="guidetitle">
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
+						</div>
 					</div>
 			 
 			 <!-- 여행 제목  -->
