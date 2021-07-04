@@ -98,14 +98,14 @@ public class userGuideController {
 			for(int i = 0; i < choiceStyle.size(); i++) {
 				GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
 				guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
-				guideStyleChoiceDTO.setGuideStyleChoiceCode(Integer.valueOf((String)choiceStyle.get(i)));
+				guideStyleChoiceDTO.setGuideStyleCode(Integer.valueOf((String)choiceStyle.get(i)));
 				
 				styleList.add(guideStyleChoiceDTO);
 			}
 		}else {
 			GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
 			guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
-			guideStyleChoiceDTO.setGuideStyleChoiceCode(Integer.valueOf((String)formDataMap.get("formData").get("guideStyle")));
+			guideStyleChoiceDTO.setGuideStyleCode(Integer.valueOf((String)formDataMap.get("formData").get("guideStyle")));
 			
 			styleList.add(guideStyleChoiceDTO);
 		}

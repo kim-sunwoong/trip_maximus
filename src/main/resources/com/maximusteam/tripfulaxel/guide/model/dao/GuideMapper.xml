@@ -170,16 +170,16 @@
 	         , NOW()
 	         , #{examineRequestReason}
 	         , #{typeCode}
-	         , #{examineRequestYn}
 	         , #{examineRequestFrom}
+	         , #{examineRequestYn}
 	         , #{examineRequestTo}
 	    )
 	</insert>
 	
 	<!-- GUIDE_TRIP INSERT -->
 	<insert id="insertGuideTrip" parameterType="GuideTripDTO">
-		<selectKey resultType="int" keyProperty="G_TRIP_CODE" order="AFTER">
-	    	SELECT MAX(G_TRIP_CODE) as examineRequestCode FROM GUIDE_TRIP
+		<selectKey resultType="int" keyProperty="guideTripCode" order="AFTER">
+	    	SELECT MAX(G_TRIP_CODE) as guideTripCode FROM GUIDE_TRIP
 	    </selectKey>
 	    INSERT INTO GUIDE_TRIP
 	    (
