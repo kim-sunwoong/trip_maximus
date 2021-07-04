@@ -84,7 +84,7 @@
 	    </selectKey>
 	    INSERT INTO TRIP
 	    (
-	    	 , TRIP_CODE
+	    	   TRIP_CODE
 			 , TRIP_TITLE
 			 , TRIP_INTRO
 			 , TRIP_START_DATE
@@ -113,7 +113,7 @@
 	    </selectKey>
 	    INSERT INTO TRIP_REGIST_LIST
 	    (
-	    	 , TRIP_REGIST_LIST_CODE
+	    	   TRIP_REGIST_LIST_CODE
 			 , USER_CODE
 			 , TRIP_TYPE_CODE
 			 , TRIP_CODE
@@ -136,7 +136,7 @@
 	    </selectKey>
 	    INSERT INTO EXAMINE
 	    (
-	    	 , EXAMINE_REQUEST_CODE
+	    	   EXAMINE_REQUEST_CODE
 			 , EXAMINE_REQUEST_DATE
 			 , EXAMINE_REQUEST_REASON
 			 , TYPE_CODE
@@ -163,7 +163,7 @@
 	    </selectKey>
 	    INSERT INTO GUIDE_TRIP
 	    (
-	    	 , G_TRIP_CODE
+	    	   G_TRIP_CODE
 			 , G_TRIP_PAYMENT
 			 , G_TRIP_MINIMUM
 			 , G_TRIP_MAXIMUM
@@ -186,7 +186,7 @@
 	    </selectKey>
 	    INSERT INTO TRIP_THEME_CHOICE
 	    (
-	    	 , THEME_CHOICE_CODE
+	    	   THEME_CHOICE_CODE
 			 , THEME_CODE
 			 , TRIP_CODE
 	    )
@@ -203,9 +203,9 @@
 		<selectKey resultType="int" keyProperty="transitChoiceCode" order="AFTER">
 	    	SELECT MAX(TRANSIT_CHOICE_CODE) as transitChoiceCode FROM TRANSIT_CHOICE
 	    </selectKey>
-	    INSERT INTO TRIP_THEME_CHOICE
+	    INSERT INTO TRANSIT_CHOICE
 	    (
-	    	 , TRANSIT_CHOICE_CODE
+	    	   TRANSIT_CHOICE_CODE
 			 , TRANSIT_CODE
 			 , TRIP_CODE
 	    )
@@ -218,21 +218,23 @@
 	</insert>
 	
 	<!-- TRIP_COURSE INSERT -->
-	<insert id="insertTripCourse" parameterType="TripTransitChoiceDTO">
-		<selectKey resultType="int" keyProperty="transitChoiceCode" order="AFTER">
-	    	SELECT MAX(TRANSIT_CHOICE_CODE) as transitChoiceCode FROM TRANSIT_CHOICE
+	<insert id="insertTripCourse" parameterType="TripCourseDTO">
+		<selectKey resultType="int" keyProperty="courseCode" order="AFTER">
+	    	SELECT MAX(TRIP_COURSE_CODE) as courseCode FROM TRIP_COURSE
 	    </selectKey>
-	    INSERT INTO TRIP_THEME_CHOICE
+	    INSERT INTO TRIP_COURSE
 	    (
-	    	 , TRANSIT_CHOICE_CODE
-			 , TRANSIT_CODE
-			 , TRIP_CODE
+ 	    	   TRIP_COURSE_CODE
+			 , TRIP_COURSE_NAME
+			 , TRIP_COURSE_INFO
+			 , TRIP_IMAGE_CODE
 	    )
 	    VALUES
 	    (
-	           (SELECT IFNULL(MAX(b.TRANSIT_CHOICE_CODE) + 1, 1) FROM TRANSIT_CHOICE b)
-	         , #{transitCode}
-	         , #{tripCode}
+	           (SELECT IFNULL(MAX(b.TRIP_COURSE_CODE) + 1, 1) FROM TRIP_COURSE b)
+	         , #{courseName}
+	         , #{courseInfo}
+	         , #{tripImageCode}
 	    )
 	</insert>
 </mapper>
