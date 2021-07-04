@@ -46,5 +46,73 @@
 	    )
 	</insert>
 	
+	<!-- INSERT GUIDE -->
+	<insert id="insertGuide" parameterType="GuideDTO">
+		<selectKey resultType="int" keyProperty="guideCode" order="AFTER">
+	    	SELECT MAX(GUIDE_CODE) as guideCode FROM GUIDE
+	    </selectKey>
+	    INSERT INTO GUIDE
+	    (
+	    	  GUIDE_CODE
+	    	, GUIDE_CAR_YN
+			, GUIDE_EXP_YN
+			, GUIDE_NICKNAME
+			, GUIDE_INTRO
+			, USER_CODE
+			, GUIDE_YN
+			, GUIDE_LEVEL_CODE
+			, RESIDENCE_PERIOD_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_CODE) + 1, 1) FROM GUIDE b)
+	        , #{carYn}
+	        , #{expYn}
+	        , #{nickname}
+	        , #{intro}
+	        , #{userCode}
+	        , #{guideYn}
+	        , #{levelCode}
+	        , #{periodCode}
+	    )
+	</insert>
+	
+	<!-- INSERT TRIP -->
+	<insert id="insertTrip" parameterType="TripDTO">
+		<selectKey resultType="int" keyProperty="tripCode" order="AFTER">
+	    	SELECT MAX(TRIP_CODE) as tripCode FROM TRIP
+	    </selectKey>
+	    INSERT INTO GUIDE
+	    (
+	    	 , TRIP_CODE
+			 , TRIP_TITLE
+			 , TRIP_INTRO
+			 , TRIP_START_DATE
+			 , TRIP_MEET_LOCATION
+			 , TRIP_INCLUDE
+			 , TRIP_N_INCLUDE
+			 , TRIP_END_DATE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
+	        , #{carYn}
+	        , #{expYn}
+	        , #{nickname}
+	        , #{intro}
+	        , #{userCode}
+	        , #{guideYn}
+	        , #{levelCode}
+	        , #{periodCode}
+	    )
+	</insert>
+	<!-- int insertTrip(TripDTO tripDTO);
+	int insertTripRegistList(TripRegistListDTO tripRegistListDTO);
+	int insertExamine(ExamineDTO examineDTO);
+	int insertGuideTrip(GuideTripDTO guideTripDTO);
+	int insertTheme(TripThemeChoiceDTO tripThemeChoiceDTO);
+	int insertTransit(TripTransitChoiceDTO tripTransitChoiceDTO);
+	int insertCourseImage(TripCourseDTO tripCourseDTO); 
+	 -->
 </mapper>
     

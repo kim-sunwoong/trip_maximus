@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
+//import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
@@ -36,7 +36,7 @@ public class userGuideController {
 	}
 	
 	@RequestMapping(value = "/api/guides", method = RequestMethod.POST)
-	public GuideRegistFormDTO insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
+	public String insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
 		/* JSON DATA 확인 */
 		System.out.println(formDataMap.get("formData").getClass().getName()); // LinkedHashMap
@@ -83,7 +83,9 @@ public class userGuideController {
 		
 		System.out.println("guideDTO" + guideDTO);
 		// 1-2 GUIDE 테이블에 INSERT
-		
+		if(!guideService.insertGuide(guideDTO)) {
+			System.out.println("insert guide error");
+		}
 		
 		// 2-1 TripDTO
 		TripDTO tripDTO = new TripDTO();
@@ -99,9 +101,11 @@ public class userGuideController {
 		tripDTO.setMeetLocation(meetLocation);
 		
 		System.out.println("tripDTO" + tripDTO);
-
 		// 2-2 TRIP 테이블에 INSERT
-
+		if(!guideService.insertTrip(tripDTO)) {
+			System.out.println("insert Trip error");
+		}
+		
 		// 3-1 TripRegistListDTO
 		TripRegistListDTO tripRegistListDTO = new TripRegistListDTO();
 		tripRegistListDTO.setTripTypeCode(1);
@@ -112,6 +116,9 @@ public class userGuideController {
 		System.out.println("tripRegistListDTO" + tripRegistListDTO);
 
 		// 3-2 TRIP_REGIST_LIST 테이블에 INSERT
+		if(!guideService.insertTripRegistList(tripRegistListDTO)) {
+			System.out.println("insert TripRegistList error");
+		}
 		
 		// 4-1 ExamineDTO
 		ExamineDTO examineDTO = new ExamineDTO();
@@ -124,7 +131,9 @@ public class userGuideController {
 		System.out.println("examineDTO" + examineDTO);
 
 		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
-		
+		if(!guideService.insertExamine(examineDTO)) {
+			System.out.println("insert Examine error");
+		}
 		
 		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
 		// 다중 선택 -> ArrayList / 단일 선택 -> String
@@ -150,7 +159,9 @@ public class userGuideController {
 		}
 		System.out.println("themeList" + themeList);
 		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
-		
+		if(!guideService.insertTheme(themeList)) {
+			System.out.println("insert Theme error");
+		}
 		
 		// 6-1 TripTransitChoiceDTO
 		// 다중 선택 -> ArrayList / 단일 선택 -> String
@@ -177,6 +188,9 @@ public class userGuideController {
 		System.out.println("transitList" + transitList);
 
 		// 6-2 TRANSIT_CHOICE 테이블에 INSERT
+		if(!guideService.insertTransit(transitList)) {
+			System.out.println("insert Transit error");
+		}
 		
 		// 7-1 GuideTripDTO
 		GuideTripDTO guideTripDTO = new GuideTripDTO();
@@ -188,9 +202,12 @@ public class userGuideController {
 		System.out.println("guideTripDTO" + guideTripDTO);
 
 		// 7-2 GUIDE_TRIP 테이블에 INSERT
-		
+		if(!guideService.insertGuideTrip(guideTripDTO)) {
+			System.out.println("insert GuideTrip error");
+		}
 		
 		/* OPTIONAL DATA 처리
+		 * 
 		 * TRIP_IMAGE, COURSE_IMAGE  
 		 * JSON으로 전달받은 데이터 중 imageForm을 사용
 		 * imageData경우, 사진을 선택했을 시 이미 DB에 저장이 되어있으므로
@@ -200,6 +217,7 @@ public class userGuideController {
 		 * UPDATE 목록&순서 
 		 *    테이블         DTO 
 		 * 1. TRIP_IMAGE   TripImageDTO - 여행사진
+		 * 2. TRIP_IMAGE   TripImageDTO - 코스사진
 		 * 
 		 * INSERT 목록&순서
 		 *    테이블         DTO 
@@ -207,7 +225,7 @@ public class userGuideController {
 		 */
 		
 		// 1 TripImageDTO - TRIP_IMAGE에 사용 - refCode:tripCode
-		// 1-1 imageTrip List타입이므로 for-loop을 통해 값 없데이트
+		// 1-1 imageTrip 
 		List<TripImageDTO> tripImageList = new ArrayList<>();
 		
 		if(formDataMap.get("imageData").get("imageTrip") instanceof ArrayList) {
@@ -238,13 +256,32 @@ public class userGuideController {
 			
 			tripImageList.add(tripIdImageDTO);
 		}
+		
+		// 1-2 imageCourse
+		List<LinkedHashMap<String, Object>> courseImageListMap 
+		= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageCourse");
+		for(int i = 0; i < courseImageListMap.size(); i++) {
+			TripImageDTO tripIdImageDTO = new TripImageDTO();
+			
+			tripIdImageDTO.setImageCode((Integer)courseImageListMap.get(i).get("imageCode"));
+			tripIdImageDTO.setSavedName((String)courseImageListMap.get(i).get("savedName"));
+			tripIdImageDTO.setImageTypeCode((Integer)courseImageListMap.get(i).get("imageTypeCode"));
+			tripIdImageDTO.setOriginName((String)courseImageListMap.get(i).get("originName"));
+			tripIdImageDTO.setRefCode(tripDTO.getTripCode());
+			
+			tripImageList.add(tripIdImageDTO);
+		}
+		
 		System.out.println("tripImageList" + tripImageList);
 
-		// 8-2 
+		// 1-3 TRIP_IMAGE 테이블에 UPDATE
+		if(!guideService.insertTripImage(tripImageList)) {
+			System.out.println("insert TripImage error");
+		}
 		
-		// 9-1 TripCourseDTO
+		// 2-1 TripCourseDTO
 		List<TripCourseDTO> courseImageList = new ArrayList<>();
-		List<LinkedHashMap<String, Object>> courseImageListMap 
+		List<LinkedHashMap<String, Object>> courseImageMap 
 		= (List<LinkedHashMap<String, Object>>)formDataMap.get("imageData").get("imageCourse");
 		
 		// 다중선택 -> ArrayList / 단일선택 -> String
@@ -253,10 +290,10 @@ public class userGuideController {
 			List<String> courseTitleList = (List)formDataMap.get("formData").get("courseTitle");
 			List<String> courseIntroList = (List)formDataMap.get("formData").get("courseIntro");
 	
-			for(int i = 0; i < courseImageListMap.size(); i++) {
+			for(int i = 0; i < courseImageMap.size(); i++) {
 				TripCourseDTO tripCourseDTO = new TripCourseDTO();
 				
-				tripCourseDTO.setTripImageCode((Integer)courseImageListMap.get(i).get("imageCode"));
+				tripCourseDTO.setTripImageCode((Integer)courseImageMap.get(i).get("imageCode"));
 				tripCourseDTO.setCourseName(courseTitleList.get(i));
 				tripCourseDTO.setCourseInfo(courseIntroList.get(i));
 				
@@ -265,7 +302,7 @@ public class userGuideController {
 		} else {
 			TripCourseDTO tripCourseDTO = new TripCourseDTO();
 			
-			tripCourseDTO.setTripImageCode((Integer)courseImageListMap.get(0).get("imageCode"));
+			tripCourseDTO.setTripImageCode((Integer)courseImageMap.get(0).get("imageCode"));
 			tripCourseDTO.setCourseName((String)formDataMap.get("formData").get("courseTitle"));
 			tripCourseDTO.setCourseInfo((String)formDataMap.get("formData").get("courseIntro"));
 			
@@ -273,6 +310,11 @@ public class userGuideController {
 		}
 		System.out.println("courseImageList" + courseImageList);
 
+		// 2-2 TRIP_COURSE 테이블에 INSERT
+		if(!guideService.insertCourseImage(courseImageList)) {
+			System.out.println("insert CourseImage error");
+		}
+		
 		
 		return null;
 	}
