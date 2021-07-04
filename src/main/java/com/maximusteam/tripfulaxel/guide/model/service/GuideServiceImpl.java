@@ -127,14 +127,14 @@ public class GuideServiceImpl implements GuideService {
 	}
 
 	@Override
-	public boolean insertCourseImage(List<TripCourseDTO> courseImageList) {
+	public boolean insertTripCourse(List<TripCourseDTO> tripCourseList) {
 
 		int result = 0;
 		
-		for(int i = 0; i < courseImageList.size(); i++) {
-			result += guideMapper.insertCourseImage(courseImageList.get(i));
+		for(int i = 0; i < tripCourseList.size(); i++) {
+			result += guideMapper.insertTripCourse(tripCourseList.get(i));
 		}
 		
-		return courseImageList.size() == result ? true : false;
+		return tripCourseList.size() == result ? true : false;
 	}
 }

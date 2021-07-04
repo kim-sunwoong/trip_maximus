@@ -21,5 +21,5 @@ public interface GuideMapper {
 	int insertGuideTrip(GuideTripDTO guideTripDTO);
 	int insertTheme(TripThemeChoiceDTO tripThemeChoiceDTO);
 	int insertTransit(TripTransitChoiceDTO tripTransitChoiceDTO);
-	int insertCourseImage(TripCourseDTO tripCourseDTO); 
+	int insertTripCourse(TripCourseDTO tripCourseDTO); 
 }
