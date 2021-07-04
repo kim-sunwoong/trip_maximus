@@ -37,19 +37,22 @@ public class ChatController {
 	
 	@MessageMapping("/message")
 	public void chat(ChatMessageDTO message) {
-		int result = chatService.insertMessage(message);
+		int result = 0;
+		
+		if(message.getMessageType().equals("join")) {
+			
+			String joinMessage = message.getUserEmail() + " 님이 입장 하셨습니다.";
+			message.setMessageContent(joinMessage);
+			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+			
+		} else {
+			
+			result = chatService.insertMessage(message);
+		}
 		if(result > 0) {
 			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
 		}
 	}
-	
-	@MessageMapping("/message/join")
-	public void chatJoin(ChatMessageDTO message) {
-		System.out.println("조인 들어옴??");
-		String joinMessage = message.getUserEmail() + " 님이 입장 하셨습니다.";
-		this.template.convertAndSend("/topic/group/" + message.getRoomCode(), joinMessage);
-	}
-	
 	
 	@RequestMapping("/share/insert/chatRoom")
 	public String insertChatRoom(Model model, @RequestParam String roomTitle, int userCode) {

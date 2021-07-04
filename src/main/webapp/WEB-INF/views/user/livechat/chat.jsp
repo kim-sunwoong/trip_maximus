@@ -248,11 +248,11 @@ window.onload = function connect() {
  		var userCode = ${sessionScope.loginUser.userCode};
 	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
-	    joinMember();
 	    stompClient.connect({}, function () {
 	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
 	        });
+	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
 	    });
 	    
 	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
@@ -271,7 +271,7 @@ function send() {
 	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};
-	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode}; 
+	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode, 'messageType':'message'}; 
     stompClient.send("/app/message", {}, JSON.stringify(data));
     /* showMessage(data, time); */
     $("#message").val('');
@@ -291,23 +291,36 @@ function showMessage(e, time) {
 	
     var space = document.getElementById("chatting");
     
-    if(e.userCode == ${sessionScope.loginUser.userCode}){
-	    space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
-	    "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
-	    e.messageContent + "</div> </li>";
+    if(e.messageType == 'join'){
+    	space.innerHTML = space.innerHTML + "<li align='center'><h2>" + e.messageContent + "</h2></li>";
 	    space.scrollTop = space.scrollHeight;
-
-    } else {
-	    space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
-	    "</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
-	    e.messageContent + "</div> </li>";
-	    space.scrollTop = space.scrollHeight;
+	    
+	    joinMember(e.userEmail);
     }
+    
+    if(e.messageType == 'message'){
+    	
+	    if(e.userCode == ${sessionScope.loginUser.userCode}){
+	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
+	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
+	    	e.messageContent + "</div> </li>";
+	    	space.scrollTop = space.scrollHeight;
+	
+	    } else {
+	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
+	    	"</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
+	    	e.messageContent + "</div> </li>";
+	    	space.scrollTop = space.scrollHeight;
+	    }
+    }
+    	
+    
+    
 };
 
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
-	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'> ${sessionScope.loginUser.userEmail}"  
+	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
     + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 };
 

@@ -9,6 +9,7 @@ public class ChatMessageDTO {
 	private int userCode;
 	private int roomCode;
 	private String userEmail;
+	private String messageType;
 	
 
 	public ChatMessageDTO() {
@@ -17,7 +18,7 @@ public class ChatMessageDTO {
 
 
 	public ChatMessageDTO(int messageCode, String messageContent, String messageDate, int userCode, int roomCode,
-			String userEmail) {
+			String userEmail, String messageType) {
 		super();
 		this.messageCode = messageCode;
 		this.messageContent = messageContent;
@@ -25,6 +26,7 @@ public class ChatMessageDTO {
 		this.userCode = userCode;
 		this.roomCode = roomCode;
 		this.userEmail = userEmail;
+		this.messageType = messageType;
 	}
 
 
@@ -88,11 +90,24 @@ public class ChatMessageDTO {
 	}
 
 
+	public String getMessageType() {
+		return messageType;
+	}
+
+
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ChatMessageDTO [messageCode=" + messageCode + ", messageContent=" + messageContent + ", messageDate="
-				+ messageDate + ", userCode=" + userCode + ", roomCode=" + roomCode + ", userEmail=" + userEmail + "]";
+				+ messageDate + ", userCode=" + userCode + ", roomCode=" + roomCode + ", userEmail=" + userEmail
+				+ ", messageType=" + messageType + "]";
 	}
+
+
 	
 	
 
