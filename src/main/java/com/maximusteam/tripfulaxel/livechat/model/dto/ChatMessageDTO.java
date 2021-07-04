@@ -3,6 +3,7 @@ package com.maximusteam.tripfulaxel.livechat.model.dto;
 
 public class ChatMessageDTO {
 	
+	private int messageCode;
 	private String messageContent;
 	private String messageDate;
 	private int userCode;
@@ -15,13 +16,25 @@ public class ChatMessageDTO {
 	}
 
 
-	public ChatMessageDTO(String messageContent, String messageDate, int userCode, int roomCode, String userEmail) {
+	public ChatMessageDTO(int messageCode, String messageContent, String messageDate, int userCode, int roomCode,
+			String userEmail) {
 		super();
+		this.messageCode = messageCode;
 		this.messageContent = messageContent;
 		this.messageDate = messageDate;
 		this.userCode = userCode;
 		this.roomCode = roomCode;
 		this.userEmail = userEmail;
+	}
+
+
+	public int getMessageCode() {
+		return messageCode;
+	}
+
+
+	public void setMessageCode(int messageCode) {
+		this.messageCode = messageCode;
 	}
 
 
@@ -77,14 +90,12 @@ public class ChatMessageDTO {
 
 	@Override
 	public String toString() {
-		return "ChatMessageDTO [messageContent=" + messageContent + ", messageDate=" + messageDate + ", userCode="
-				+ userCode + ", roomCode=" + roomCode + ", userEmail=" + userEmail + "]";
+		return "ChatMessageDTO [messageCode=" + messageCode + ", messageContent=" + messageContent + ", messageDate="
+				+ messageDate + ", userCode=" + userCode + ", roomCode=" + roomCode + ", userEmail=" + userEmail + "]";
 	}
+	
+	
 
-	
-
-	
-	
 	
 	
 }

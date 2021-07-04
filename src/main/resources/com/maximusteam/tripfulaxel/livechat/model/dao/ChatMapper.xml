@@ -49,11 +49,12 @@
 	
 	<insert id="insertMessage" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
 		
-		<selectKey keyProperty="messageMaxCode" resultType="int" order="BEFORE">
-			SELECT
-				   MAX(MESSAGE_CODE) + 1 as messageMaxCode
-			  FROM MESSAGE
-		</selectKey>
+	<selectKey keyProperty="messageCode" resultType="int" order="BEFORE">
+		SELECT
+		       MAX(MESSAGE_CODE) + 1
+		  FROM MESSAGE
+	
+	</selectKey>
 		
 		INSERT
 		  INTO MESSAGE
@@ -66,7 +67,7 @@
 		)
 	    VALUES
 	    (
-	      #{messageMaxCode}
+	      #{messageCode}
 	    , DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')
 	    , #{roomCode}
 	    , #{userCode}
