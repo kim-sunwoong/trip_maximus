@@ -97,7 +97,7 @@ public class ImageUploadController {
 				savedName = simpleDateFormat.format(calendar.getTime()) + ext;
 				
 				try {
-					multipartFiles.get(i).transferTo(new File(filePath + File.separator + savedName + ext));
+					multipartFiles.get(i).transferTo(new File(filePath + File.separator + savedName));
 				} catch (IOException e) {
 					e.printStackTrace();
 					
