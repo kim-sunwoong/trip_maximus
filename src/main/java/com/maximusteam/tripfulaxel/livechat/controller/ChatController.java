@@ -37,7 +37,7 @@ public class ChatController {
 	public void chat(ChatMessageDTO message) {
 		
 		int result = chatService.insertMessage(message);
-		
+		System.out.println(result);
 		if(result > 0) {
 			System.out.println("잘 들어갔다!!");
 			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);

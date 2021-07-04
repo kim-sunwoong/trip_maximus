@@ -27,6 +27,7 @@ public class ChatServiceImpl implements ChatService{
 
 	@Override
 	public int insertMessage(ChatMessageDTO message) {
+		System.out.println("여기도 오징?");
 		return chatMapper.insertMessage(message);
 	}
 

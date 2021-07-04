@@ -49,9 +49,9 @@
 	
 	<insert id="insertMessage" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
 		
-		<selectKey keyProperty="messageMaxCode" resultType="int" order="BEFORE">
+		<selectKey keyColumn="messageMaxCode" keyProperty="messageMaxCode" resultType="int" order="BEFORE">
 			SELECT
-				   MAX(MESSAGE_CODE) + 1
+				   MAX(MESSAGE_CODE) + 1 as messageMaxCode
 			  FROM MESSAGE
 		</selectKey>
 		
@@ -67,10 +67,10 @@
 	    VALUES
 	    (
 	      #{messageMaxCode}
-	    , #{messageDate}
-	    , #{roomCode}
-	    , #{userCode}
-	    , #{messageContent}
+	    , #{message.messageDate}
+	    , #{message.roomCode}
+	    , #{message.userCode}
+	    , #{message.messageContent}
 	    )
 	</insert>
 	
