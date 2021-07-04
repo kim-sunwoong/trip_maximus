@@ -37,19 +37,35 @@ public class ChatController {
 	
 	@MessageMapping("/message")
 	public void chat(ChatMessageDTO message) {
-		int result = 0;
+		int messageResult = 0;
+		int joinResult = 0;
 		
 		if(message.getMessageType().equals("join")) {
 			
-			String joinMessage = message.getUserEmail() + " 님이 입장 하셨습니다.";
-			message.setMessageContent(joinMessage);
-			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+			ChatJoinUserDTO user = new ChatJoinUserDTO();
+			
+			user.setRoomCode(message.getRoomCode());
+			user.setUserCode(message.getUserCode());
+			
+			joinResult = chatService.insertChatJoin(user);
+			
+//			user chatroom 접속시 접속 데이터 저장
+			if(joinResult > 0) {
+				
+				String joinMessage = message.getUserEmail() + " 님이 입장 하셨습니다.";
+				message.setMessageContent(joinMessage);
+				
+				this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+			} else {
+				System.out.println("유저 채팅 접속 실패!!!");
+			}
+			
 			
 		} else {
 			
-			result = chatService.insertMessage(message);
+			messageResult = chatService.insertMessage(message);
 		}
-		if(result > 0) {
+		if(messageResult > 0) {
 			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
 		}
 	}

@@ -252,7 +252,7 @@ window.onload = function connect() {
 	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
 	        });
-	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
+	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
 	    });
 	    
 	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
