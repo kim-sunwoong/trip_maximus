@@ -267,6 +267,14 @@ to {
                     <a href="${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
+               <li class="floatL header_menu">
+                    <a href="${pageContext.servletContext.contextPath}/user/mypage/mypageTab1" class="btnLineC txt_md" >
+                    <span style="color:white; font-size: 20px;">마이페이지</span></a>
+                </li>
+               <li class="floatL header_menu">
+                    <a href="${pageContext.servletContext.contextPath}/user/mypage/test2" class="btnLineC txt_md" >
+                    <span style="color:white; font-size: 20px;">test</span></a>
+                </li>
             </ul>
          </article>
       </div>

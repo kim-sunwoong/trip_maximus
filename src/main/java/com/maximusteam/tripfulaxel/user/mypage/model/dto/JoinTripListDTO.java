@@ -7,10 +7,12 @@ public class JoinTripListDTO {
 	private String tripTitle;
 	private int countUser;
 	private Date joinTripDate;
+	
 	private String joinTripCancelYN;
 	private String joinTripAttendYN;
 	private Date tripEndDate;
 	private int reviewCode;
+	
 	public JoinTripListDTO() {
 	}
 	public JoinTripListDTO(String tripTitle, int countUser, Date joinTripDate, String joinTripCancelYN,

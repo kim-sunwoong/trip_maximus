@@ -90,6 +90,6 @@
    
    <!--  dao 추가해주어야 함 -->
    <mybatis-spring:scan 
-      base-package="com.maximusteam.tripfulaxel.*.model.dao , com.maximusteam.tripfulaxel.*.*.model.dao"/> 
+      base-package="com.maximusteam.tripfulaxel.*.model.dao,com.maximusteam.tripfulaxel.*.*.model.dao"/> 
       
 </beans>
