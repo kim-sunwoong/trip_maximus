@@ -261,7 +261,7 @@
 	<update id="updateTripImage" parameterType="TripImageDTO">
 		UPDATE TRIP_IMAGE
 		   SET TRIP_CODE = #{refCode}
-		 WHERE TRIP_IMAGE_CODE = #{tripImageCode}
+		 WHERE TRIP_IMAGE_CODE = #{imageCode}
 	</update>
 </mapper>
     
