@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.livechat.model.dao.ChatMapper;
+import com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO;
 
@@ -27,8 +28,15 @@ public class ChatServiceImpl implements ChatService{
 
 	@Override
 	public int insertMessage(ChatMessageDTO message) {
-		System.out.println("여기도 오징?");
 		return chatMapper.insertMessage(message);
+	}
+
+	public int insertRoom(ChatRoomDTO room) {
+		return chatMapper.insertRoom(room);
+	}
+
+	public int insertChatJoin(ChatJoinUserDTO user) {
+		return chatMapper.insertChatJoin(user);
 	}
 
 

@@ -145,7 +145,7 @@ main header h3{
 	color:#7e818a;
 }
 
-#chat{
+#chatting{
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
@@ -154,21 +154,21 @@ main header h3{
 	border-top:2px solid #fff;
 	border-bottom:2px solid #fff;
 }
-#chat li{
+#chatting li{
 	padding:10px 30px;
 }
-#chat h2,#chat h3{
+#chatting h2,#chatting h3{
 	display:inline-block;
 	font-size:13px;
 	font-weight:normal;
 }
-#chat h3{
+#chatting h3{
 	color:#bbb;
 }
-#chat .entete{
+#chatting .entete{
 	margin-bottom:5px;
 }
-#chat .message{
+#chatting .message{
 	padding:20px;
 	color:#fff;
 	line-height:25px;
@@ -177,26 +177,26 @@ main header h3{
 	text-align:left;
 	border-radius:5px;
 }
-#chat .me{
+#chatting .me{
 	text-align:right;
 }
-#chat .you .message{
+#chatting .you .message{
 	background-color:#58b666;
 }
-#chat .me .message{
+#chatting .me .message{
 	background-color:#6fbced;
 }
-#chat .triangle{
+#chatting .triangle{
 	width: 0;
 	height: 0;
 	border-style: solid;
 	border-width: 0 10px 10px 10px;
 }
-#chat .you .triangle{
+#chatting .you .triangle{
 		border-color: transparent transparent #58b666 transparent;
 		margin-left:15px;
 }
-#chat .me .triangle{
+#chatting .me .triangle{
 		border-color: transparent transparent #6fbced transparent;
 		margin-left:375px;
 }
@@ -245,16 +245,19 @@ main footer a{
 <script>
 
 window.onload = function connect() {
- 	var userCode = ${sessionScope.loginUser.userCode};
+ 		var userCode = ${sessionScope.loginUser.userCode};
 	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
 	    joinMember();
 	    stompClient.connect({}, function () {
 	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
-	            alertClosing('comeMessage',2000);
 	        });
 	    });
+	    
+	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
+	    stompClient.send("/app/message/join", {}, JSON.stringify(data));
+	    joinMember(data); */
 	}
 
 
@@ -265,6 +268,18 @@ function disconnect() {
 }
 
 function send() {
+	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
+ 	var userCode = ${sessionScope.loginUser.userCode};
+ 	var roomCode = ${room.roomCode};
+	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode}; 
+    stompClient.send("/app/message", {}, JSON.stringify(data));
+    /* showMessage(data, time); */
+    $("#message").val('');
+    /* alertClosing('successMessage',2000); */
+}
+
+function showMessage(e, time) {
+	
 	var today = new Date();
 	var year = today.getFullYear(); // 년도
 	var month = today.getMonth() + 1;  // 월
@@ -273,33 +288,24 @@ function send() {
 	var minutes = today.getMinutes();  // 분
 	var seconds = today.getSeconds(); // 초
 	var time = (year + '-'+ month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds);
-	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
- 	var userCode = ${sessionScope.loginUser.userCode};
- 	var roomCode = ${room.roomCode};
- 	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
-	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'messageDate':time, 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode}; 
-    stompClient.send("/app/message", {}, JSON.stringify(data));
-    showMessage(data, time);
-    $("#message").val('');
-    /* alertClosing('successMessage',2000); */
-}
-
-function showMessage(e, time) {
-    space = document.getElementById("space");
+	
+    var space = document.getElementById("chatting");
     
     if(e.userCode == ${sessionScope.loginUser.userCode}){
-	    space.innerHTML = "<li class='me'> <div class='entete'> <h3>" + time + 
+	    space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
 	    "</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
-	    e.messageContent + "</div> </li>" + space.innerHTML;
+	    e.messageContent + "</div> </li>";
+	    space.scrollTop = space.scrollHeight;
+
     } else {
-	    space.innerHTML = "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
+	    space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
 	    "</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
-	    e.messageContent + "</div> </li>" + space.innerHTML;
-    	
+	    e.messageContent + "</div> </li>";
+	    space.scrollTop = space.scrollHeight;
     }
 };
 
-function joinMember() {
+function joinMember(data) {
 	joinList = document.getElementById("joinList");
 	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'> ${sessionScope.loginUser.userEmail}"  
     + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
@@ -309,13 +315,6 @@ window.onbeforeunload = function(e){
     disconnect();
 }
 
-/*  function alertClosing(selector, delay){
-    console.log(selector);
-    document.getElementById(selector).style.display = "block";
-    window.setTimeout(function(){
-        document.getElementById(selector).style.display = "none";
-    },delay);
-}  */
 
 </script>
 </head>
@@ -348,52 +347,47 @@ window.onbeforeunload = function(e){
 					<label style="font-size:30px; font:bold;"><c:out value="${room.roomTitle }"/></label>
 				</div>
 			</header>
-			<ul id="chat">
-				<div id="space">
-			
-				<!-- <li class="you">
-					<div id="space"></div>
-
-				</li>
- -->				
-				<c:forEach var="chat" items="${room.messageList }">
+			<!-- <div id="space"> -->
+				<ul id="chatting">
+							
+					<c:forEach var="chat" items="${room.messageList }">
+						
+						<c:choose>
+							<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
+								<li class="me">
+									<div class="entete">
+										<h3><c:out value="${chat.messageDate }"/></h3>
+										<h2><c:out value="${chat.userEmail }"/></h2>
+										<span class="status blue"></span>
+									</div>
+									<div class="triangle"></div>
+									<div class="message">
+										<c:out value="${chat.messageContent }"/>
+									</div>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="you">
+									<div class="entete">
+										<span class="status green"></span>
+										<h2><c:out value="${chat.userEmail }"/></h2>
+										<h3><c:out value="${chat.messageDate }"/></h3>
+									</div>
+									<div class="triangle"></div>
+									<div class="message">
+										<c:out value="${chat.messageContent }"/>
+									</div>
+								</li>
+							
+							</c:otherwise>
+							
+						</c:choose>
 					
-					<c:choose>
-						<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
-							<li class="me">
-								<div class="entete">
-									<h3><c:out value="${chat.messageDate }"/></h3>
-									<h2><c:out value="${chat.userEmail }"/></h2>
-									<span class="status blue"></span>
-								</div>
-								<div class="triangle"></div>
-								<div class="message">
-									<c:out value="${chat.messageContent }"/>
-								</div>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="you">
-								<div class="entete">
-									<span class="status green"></span>
-									<h2><c:out value="${chat.userEmail }"/></h2>
-									<h3><c:out value="${chat.messageDate }"/></h3>
-								</div>
-								<div class="triangle"></div>
-								<div class="message">
-									<c:out value="${chat.messageContent }"/>
-								</div>
-							</li>
-						
-						</c:otherwise>
-						
-					</c:choose>
+					</c:forEach>
 				
-				</c:forEach>
+				</ul>
+			<!-- </div>  -->
 				
-				</div>
-				
-			</ul>
 			<footer>
 				<textarea placeholder="Type your message" id="message"></textarea>
 				<button onclick="send()">Send</button>
