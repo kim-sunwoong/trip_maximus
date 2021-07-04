@@ -461,7 +461,8 @@ li.header_menu:hover {
                Tripful Axel 가입시 작성한<br>이름, 이메일, 생년월일를 입력해주세요.<br>
                                 해당 메일 주소로 임시 비밀번호를 메일을 보내드립니다.
             </p>
-            <form class="find_password_form member_form">
+            <form class="find_password_form member_form"
+               >
             
                <input type="text" placeholder="* 이름(예:홍길동)" id="serachUserName" name="userName">
                <input type="email" placeholder="이메일 주소" id="serachUserEmail" name="userEmail">
@@ -470,9 +471,8 @@ li.header_menu:hover {
                   required class="frm_input half_input"
                   placeholder="* 출생연도(예:19900120)">
 
-               <button class="btnBgC txt_bs find_password_button submit"
+               <button class="btnBgC txt_bs find_password_button submit" onClick = "findPassword(event)"
                   type="button" value="비밀번호 재설정 메일 보내기">비밀번호 재설정 메일 보내기</button>
-         <!--       <input class="btnBgC txt_bs submit" type="submit" value="비밀번호 재설정 메일 보내기">  -->
             </form>
             <ul class="find_signup clearfix">
                <li class="floatL"><a href="javascript:void(0);"
@@ -485,7 +485,45 @@ li.header_menu:hover {
    </div>
    <!-- //비밀번호 찾기 팝업 끝-->
    
+<!-- 비밀번호   찾기  -->
+   <script>
 
+   function findPassword(event){
+      event.preventDefault()
+         
+          var serachUserName = $("#serachUserName").val();
+            var serachUserEmail = $("#serachUserEmail").val();
+            var serachUserBday = $("#serachUserBday").val(); 
+         
+            $.ajax({
+               url:"${ pageContext.servletContext.contextPath }/user/searchPwd",
+               type : 'post',
+               data : {
+                  userName: serachUserName,
+                  userEmail : serachUserEmail,
+                  userBday : serachUserBday
+               },
+               success: function(data,textStatus,xhr) {
+                  
+                  if(data == 'fail') {
+                   alert("입력하신 이메일로 전송이 불가능합니다. 고객센터로 확인해주세요.")
+                     
+                  }  else {
+                
+                     console.log("이메일 전송 완료")
+                     
+                     $("html").addClass("pop");
+                     $(".pop_wrap:visible").hide();
+                     $(".find_password_fin_pop").parent(".pop_wrap").show();
+                  }
+               },
+               error : function(xhr,status,error) {
+                  console.log(error);
+               }
+            })
+      }
+
+</script>
    <!-- 비밀번호 찾기 완료 팝업 -->
    <div class="pop_bg pop_wrap">
       <div class="member_pop_box close_wrap find_password_fin_pop"
