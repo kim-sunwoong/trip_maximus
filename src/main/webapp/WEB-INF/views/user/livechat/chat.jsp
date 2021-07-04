@@ -266,10 +266,13 @@ function disconnect() {
 
 function send() {
 	var today = new Date();
+	var year = today.getFullYear(); // 년도
+	var month = today.getMonth() + 1;  // 월
+	var date = today.getDate();  // 날짜
 	var hours = today.getHours(); // 시
 	var minutes = today.getMinutes();  // 분
 	var seconds = today.getSeconds(); // 초
-	var time = (hours + ':' + minutes + ':' + seconds);
+	var time = (year + '-'+ month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds);
 	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};

@@ -20,24 +20,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO;
 import com.maximusteam.tripfulaxel.livechat.model.service.ChatService;
+import com.maximusteam.tripfulaxel.livechat.model.service.ChatServiceImpl;
 
 @Controller
 public class ChatController {
 
-	private ChatService chatService;
+	private ChatServiceImpl chatService;
 	SimpMessagingTemplate template;
 	
 	@Autowired
-	public ChatController(ChatService chatService, SimpMessagingTemplate template) {
+	public ChatController(ChatServiceImpl chatService, SimpMessagingTemplate template) {
 		this.chatService = chatService;
 		this.template = template;
 	}
 	
 	@MessageMapping("/message")
 	public void chat(ChatMessageDTO message) {
-		
+		System.out.println("메세지!" + message);
 		int result = chatService.insertMessage(message);
-		System.out.println(result);
+		System.out.println("result : " + result);
 		if(result > 0) {
 			System.out.println("잘 들어갔다!!");
 			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
