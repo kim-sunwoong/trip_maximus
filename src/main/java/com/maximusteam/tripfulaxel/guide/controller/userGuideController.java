@@ -8,11 +8,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.maximusteam.tripfulaxel.ApiException;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
@@ -87,6 +89,7 @@ public class userGuideController {
 		// 1-2 GUIDE 테이블에 INSERT
 		if(!guideService.insertGuide(guideDTO)) {
 			System.out.println("insert guide error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드 정보가 부족합니다");
 		}
 		
 		// 2-1
@@ -113,6 +116,7 @@ public class userGuideController {
 		// 2-2 GUIDE_STYLE_CHOICE 테이블에 INSERT
 		if(!guideService.insertGuideStyleChoice(styleList)) {
 			System.out.println("insert GuideStyleChoice error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드스타일정보가 부족합니다");
 		}
 		
 		// 2-1 TripDTO
@@ -132,6 +136,7 @@ public class userGuideController {
 		// 2-2 TRIP 테이블에 INSERT
 		if(!guideService.insertTrip(tripDTO)) {
 			System.out.println("insert Trip error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 기본정보가 부족합니다");
 		}
 		
 		// 3-1 TripRegistListDTO
@@ -146,6 +151,7 @@ public class userGuideController {
 		// 3-2 TRIP_REGIST_LIST 테이블에 INSERT
 		if(!guideService.insertTripRegistList(tripRegistListDTO)) {
 			System.out.println("insert TripRegistList error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "여행등록내역 추가할 정보가 부족합니다");
 		}
 		
 		// 4-1 ExamineDTO
@@ -161,6 +167,7 @@ public class userGuideController {
 		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
 		if(!guideService.insertExamine(examineDTO)) {
 			System.out.println("insert Examine error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드등록을 심사에 정보가 부족합니다");
 		}
 		
 		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
@@ -189,6 +196,7 @@ public class userGuideController {
 		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
 		if(!guideService.insertTheme(themeList)) {
 			System.out.println("insert Theme error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 테마 정보가 부족합니다");
 		}
 		
 		// 6-1 TripTransitChoiceDTO
@@ -218,6 +226,7 @@ public class userGuideController {
 		// 6-2 TRANSIT_CHOICE 테이블에 INSERT
 		if(!guideService.insertTransit(transitList)) {
 			System.out.println("insert Transit error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 이동방식 정보가 부족합니다");
 		}
 		
 		// 7-1 GuideTripDTO
@@ -232,6 +241,7 @@ public class userGuideController {
 		// 7-2 GUIDE_TRIP 테이블에 INSERT
 		if(!guideService.insertGuideTrip(guideTripDTO)) {
 			System.out.println("insert GuideTrip error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드 여행정보가 부족합니다");
 		}
 		
 		/* OPTIONAL DATA 처리
@@ -305,6 +315,7 @@ public class userGuideController {
 		// 1-3 TRIP_IMAGE 테이블에 UPDATE
 		if(!guideService.updateTripImage(tripImageList)) {
 			System.out.println("update TripImage error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "코스 등록정가 부족합니다");
 		}
 		
 		// 2-1 TripCourseDTO
@@ -341,6 +352,7 @@ public class userGuideController {
 		// 2-2 TRIP_COURSE 테이블에 INSERT
 		if(!guideService.insertTripCourse(tripCourseList)) {
 			System.out.println("insert tripCourse error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "코스 등록정보가 부족합니다");
 		}
 		
 		

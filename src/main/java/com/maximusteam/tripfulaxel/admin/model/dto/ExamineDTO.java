@@ -2,9 +2,12 @@ package com.maximusteam.tripfulaxel.admin.model.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ExamineDTO {
 
 	private int examineRequestCode;
+	@JsonFormat(pattern = "yyyyMMdd")
 	private Date examineRequestDate; // 등록당시 날짜
 	private String examineRequestReason;
 	private int typeCode; // 1	가이드->유저 신고
