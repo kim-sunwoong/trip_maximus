@@ -36,5 +36,7 @@ public interface GuideService {
 	boolean insertTripImage(List<TripImageDTO> tripImageList);
 
 	boolean insertTripCourse(List<TripCourseDTO> tripCourseList);
+
+	boolean updateTripImage(List<TripImageDTO> tripImageList);
 	
 }

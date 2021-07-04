@@ -257,5 +257,11 @@
 	         , #{tripImageCode}
 	    )
 	</insert>
+	
+	<update id="updateTripImage" parameterType="TripImageDTO">
+		UPDATE TRIP_IMAGE
+		   SET TRIP_CODE = #{refCode}
+		 WHERE TRIP_IMAGE_CODE = #{tripImageCode}
+	</update>
 </mapper>
     

@@ -303,9 +303,9 @@ public class userGuideController {
 		System.out.println("tripImageList" + tripImageList);
 
 		// 1-3 TRIP_IMAGE 테이블에 UPDATE
-//		if(!guideService.insertTripImage(tripImageList)) {
-//			System.out.println("insert TripImage error");
-//		}
+		if(!guideService.updateTripImage(tripImageList)) {
+			System.out.println("update TripImage error");
+		}
 		
 		// 2-1 TripCourseDTO
 		List<TripCourseDTO> tripCourseList = new ArrayList<>();

@@ -151,4 +151,16 @@ public class GuideServiceImpl implements GuideService {
 		return tripCourseList.size() == result ? true : false;
 	}
 
+	@Override
+	public boolean updateTripImage(List<TripImageDTO> tripImageList) {
+
+		int result = 0;
+		
+		for(int i = 0; i < tripImageList.size(); i++) {
+			result += guideMapper.updateTripImage(tripImageList.get(i));
+		}
+		
+		return tripImageList.size() == result ? true : false;
+	}
+
 }
