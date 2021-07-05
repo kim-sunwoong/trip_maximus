@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +40,13 @@ public class userGuideController {
 	}
 	
 	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST)
-	public String insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
+	public ResponseEntity<Object> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
+		if(formDataMap == null) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
+		}
+		if(formDataMap.size() == 0) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
+		}
 		
 		/* JSON DATA 확인 */
 		System.out.println(formDataMap.get("formData").getClass().getName()); // LinkedHashMap
@@ -51,8 +58,11 @@ public class userGuideController {
 		for (Map.Entry<String, Object> entry : formDataMap.get("imageData").entrySet()) {
 			  System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
-
-		System.out.println(formDataMap.get("imageData").get("imageTrip").getClass().getName());
+		if(formDataMap.get("imageData") == null) {
+			System.out.println(formDataMap.get("imageData").get("imageTrip").getClass().getName());
+		}else {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
+		}
 		
 		/* JSON 데이터를 알맞는 TABLE & DTO에 사용할 수 있도록 파싱한다. 
 		 * 
@@ -355,7 +365,7 @@ public class userGuideController {
 			throw new ApiException(HttpStatus.BAD_REQUEST, "코스 등록정보가 부족합니다");
 		}
 		
-		
-		return null;
+		/* 어떤것으로 JSON을 표현할지 생각 */
+		return ResponseEntity.ok(null);
 	}
 }
