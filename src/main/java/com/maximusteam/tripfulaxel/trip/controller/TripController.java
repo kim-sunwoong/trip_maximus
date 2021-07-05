@@ -13,6 +13,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
@@ -168,5 +170,11 @@ public class TripController {
 		} else {
 			System.out.println("여행 문의 등록 실패!");
 		}
+	}
+	
+	@GetMapping("payment")
+	public String payment(@ModelAttribute TripPaymentDTO pay, Model model) {
+		model.addAttribute("pay", pay);
+		return "user/main/payment";
 	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -14,6 +16,7 @@
 <!-- 웹 폰트 확인 후 변경 -->
 <link rel="stylesheet"
 	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
+<scropt src="http://code.jquery.com/jquery-3.6.0.min.js"/>
 
 <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
@@ -60,7 +63,7 @@
 			<!-- clearfix -->
 			<div class="floatL payment_prod">
 				<div class="thumb">
-					<img  src="../../../resources/user/images/common/jejujuyoung.jpg"
+					<img  src="${pageContext.servletContext.contextPath }/resources/images/trip/guidetrip/${pay.saveName}"
 						alt="test">
 				</div>
 				<div class="prod_info_wrap">
@@ -72,19 +75,19 @@
 								<li class="clearfix">
 									<p class="floatL">여행일</p>
 									<p class="floatR">
-										<span>2021-06-26</span>
+										<span><c:out value="${pay.tripDay }"/></span>
 									</p>
 								</li>
 								<li class="clearfix">
 									<p class="floatL">여행인원</p>
 									<p class="floatR">
-										<span>5</span>명
+										<span><c:out value="${pay.amount }"/></span> 명
 									</p>
 								</li>
 								<li class="clearfix">
 									<p class="floatL">1인당</p>
 									<p class="floatR">
-										<span>100,000</span>원
+										<span><fmt:formatNumber type="number" maxFractionDigits="0" value="${pay.totalPay/pay.amount }" /></span> 원
 									</p>
 								</li>
 							</ul>
@@ -92,7 +95,7 @@
 						<div class="payment_total clearfix txt_md" style="padding-left: 0px; padding-right: 0px;">
 							<p class="floatL txtC">최종결제 금액</p>
 							<p class="floatR txtC">
-								<span>500,000</span>원
+								<span><c:out value="${pay.totalPay }"/></span> 원
 							</p>
 						</div>
 					</div>
@@ -103,29 +106,26 @@
 				<ul class="payment_info">
 					<li>
 						<h3 class="txt_big">여행자 이름</h3> 
-						  <label class="clearfix subm_wrap">
-						<input type="text" class="floatL input_mid" value="정주영" style="width: 100%;"> 
-					
+						<label class="clearfix subm_wrap" style="font-size:23px;">
+								<c:out value="${sessionScope.loginUser.userName }" />
 					    </label>
 					</li>
 					<li>
 						<h3 class="txt_big">여행자 연락처</h3> 
-						<label class="clearfix subm_wrap">
-					     <input type="text" class="floatL input_mid" value="010-2775-3242" style="width: 100%;"> 
+						<label class="clearfix subm_wrap" style="font-size:23px;">
+						    	<c:out value="${sessionScope.loginUser.userPhone }" />
+					    </label>
 					</li>
 					<!-- <li>
 						<h3 class="txt_big">요청사항</h3> 
 						<textarea class="wishtext" placeholder="TM에게 요청하고 싶은 내용을 입력해주세요 :)" name="wish"></textarea>
 					</li> -->
 					<li>
-						<h3 class="txt_big">결제수단</h3>
-						<ul class="payment_select txt_md">
-							<li><label for="pay-01"> 
-							 <span class="pay_txt">카카오페이</span>
-							</label></li>
-			
+						<h3 class="txt_big">결제 수단</h3> 
+						<label class="clearfix subm_wrap" style="font-size:23px;">
+							카카오페이
+					    </label>
 				
-						</ul>
 					</li>
 					<li>
 						<h3 class="txt_big">이용약관</h3>

@@ -79,6 +79,17 @@
 							
 						}
  						
+ 						function payment() {
+ 							
+ 							var amountList = document.getElementById("amountList");
+							var amount = amountList.options[amountList.selectedIndex].value;
+							var saveName = "${trip[0].tripImgList[0].saveName }"
+							var totalPay = ${trip[0].payment } * amount;
+ 							alert(saveName);
+							location.href="${pageContext.servletContext.contextPath}/trip/payment?userCode=${sessionScope.loginUser.userCode}&totalPay="
+									+ totalPay + "&amount=" + amount + "&tripRegistCode=${trip[0].tripRegistCode}&tripDay=${trip[0].tripStartDate}&saveName=" + saveName;
+						}
+ 						
  						
  						function inquiry(){
  						    
@@ -479,7 +490,7 @@
  						</div>
  					</div>
  					<button class="btn btnBgC btnFull txt_md"
- 						onclick="" style="background:skyblue;">예약하기</button>
+ 						onclick="payment()" style="background:skyblue;">예약하기</button>
  					
  				</div>
  					<!-- 예약하기 끝  -->
