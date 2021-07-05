@@ -283,9 +283,6 @@ public class UserContrlloer {
 					         " <div style=\"margin:30px auto;width:600px;border:10px solid #f7f7f7\">\r\n" + 
 					         " <div style=\"border:1px solid #dedede\">\r\n" + 
 					         " <h1 style=\"padding:30px 30px 0;background:#f7f7f7;color:#555;font-size:1.4em\">회원정보 찾기 안내</h1>\r\n" + 
-					         " <span style=\"display:block;padding:10px 30px 30px;background:#f7f7f7;text-align:right\">\r\n" + 
-					         " <a href=\"https://www.travelmaker.co.kr\" target=\"_blank\" rel=\"noreferrer noopener\">트리풀악셀</a>\r\n" + 
-					         " </span>\r\n" + 
 					         " <p style=\"margin:20px 0 0;padding:30px 30px 30px;border-bottom:1px solid #eee;line-height:1.7em\">" + user.getUserName()  + "회원님은\r\n" + 
 				             " 회원정보 찾기 요청을 하셨습니다.<br>저희는 임시\r\n" + 
 					         " 비밀번호를 생성하여 안내 해드리고 있습니다.<br>아래에서 변경될 비밀번호를 확인하신 후,\r\n" + 
