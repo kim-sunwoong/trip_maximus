@@ -31,12 +31,24 @@ public class ChatServiceImpl implements ChatService{
 		return chatMapper.insertMessage(message);
 	}
 
+	@Override
 	public int insertRoom(ChatRoomDTO room) {
 		return chatMapper.insertRoom(room);
 	}
 
+	@Override
 	public int insertChatJoin(ChatJoinUserDTO user) {
 		return chatMapper.insertChatJoin(user);
+	}
+
+	@Override
+	public int deleteJoinUser(ChatJoinUserDTO user) {
+		return chatMapper.deleteJoinUser(user);
+	}
+
+	@Override
+	public List<ChatJoinUserDTO> selectJoinList(Map<String, Integer> parameter) {
+		return chatMapper.selectJoinList(parameter);
 	}
 
 

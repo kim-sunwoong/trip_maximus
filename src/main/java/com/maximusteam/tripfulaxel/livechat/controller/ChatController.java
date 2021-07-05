@@ -39,6 +39,7 @@ public class ChatController {
 	public void chat(ChatMessageDTO message) {
 		int messageResult = 0;
 		int joinResult = 0;
+		int deleteJoinResult = 0;
 		
 		if(message.getMessageType().equals("join")) {
 			
@@ -61,9 +62,28 @@ public class ChatController {
 			}
 			
 			
-		} else {
+		} else if(message.getMessageType().equals("out")){
 			
+			String outMessage = message.getUserEmail() + " 님이 퇴장 하셨습니다.";
+			message.setMessageContent(outMessage);
+			
+			ChatJoinUserDTO user = new ChatJoinUserDTO();
+			
+			user.setRoomCode(message.getRoomCode());
+			user.setUserCode(message.getUserCode());
+			
+			deleteJoinResult = chatService.deleteJoinUser(user);
+			
+			if(deleteJoinResult > 0) {
+				this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
+				
+			} else {
+				System.out.println("채팅방 퇴장에 실패 하셨습니다.");
+			}
+			
+		} else {
 			messageResult = chatService.insertMessage(message);
+			
 		}
 		if(messageResult > 0) {
 			this.template.convertAndSend("/topic/group/" + message.getRoomCode(), message);
@@ -117,6 +137,10 @@ public class ChatController {
 		if(roomCode != 0 && userCode != 0) {
 			
 			ChatRoomDTO room = roomList.get(0);
+			
+			List<ChatJoinUserDTO> joinList = chatService.selectJoinList(parameter);
+			
+			room.setJoinUserList(joinList);
 			
 			for(ChatMessageDTO message : room.getMessageList()) {
 				

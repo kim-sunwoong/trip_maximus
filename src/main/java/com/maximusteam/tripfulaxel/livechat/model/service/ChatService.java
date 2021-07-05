@@ -19,4 +19,8 @@ public interface ChatService {
 	
 	public int insertChatJoin(ChatJoinUserDTO user);
 
+	public int deleteJoinUser(ChatJoinUserDTO user);
+
+	public List<ChatJoinUserDTO> selectJoinList(Map<String, Integer> parameter);
+
 }

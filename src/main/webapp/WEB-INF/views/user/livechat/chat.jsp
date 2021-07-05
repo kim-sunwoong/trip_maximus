@@ -260,9 +260,13 @@ window.onload = function connect() {
 	    joinMember(data); */
 	}
 
+window.onbeforeunload = function(e){
+    disconnect();
+}
 
 function disconnect() {
     if (stompClient !== null) {
+    	stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'out'}));
         stompClient.disconnect();
     }
 }
@@ -295,12 +299,15 @@ function showMessage(e, time) {
     	space.innerHTML = space.innerHTML + "<li align='center'><h2>" + e.messageContent + "</h2></li>";
 	    space.scrollTop = space.scrollHeight;
 	    
-	    joinMember(e.userEmail);
-    }
-    
-    if(e.messageType == 'message'){
+	    joinMember(e);
+    } else if(e.messageType == 'out'){
+    	space.innerHTML = space.innerHTML + "<li align='center'><h2>" + e.messageContent + "</h2></li>";
+	    space.scrollTop = space.scrollHeight;
+	    
+	    joinMember(e);
+    } else if(e.messageType == 'message'){
     	
-	    if(e.userCode == ${sessionScope.loginUser.userCode}){
+    	if(e.userCode == ${sessionScope.loginUser.userCode}){
 	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
 	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
 	    	e.messageContent + "</div> </li>";
@@ -313,21 +320,30 @@ function showMessage(e, time) {
 	    	space.scrollTop = space.scrollHeight;
 	    }
     }
-    	
-    
     
 };
 
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
-	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
-    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	
+	if(data.messageType == 'join'){
+		
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
+	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	    
+	} else if(data.messageType == 'out'){
+		
+		const joins = joinList.getElementsById('joinUser');
+		
+		for(let i = 0; i < join.length; i++){
+			
+		}
+
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
+	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	}
+	
 };
-
-window.onbeforeunload = function(e){
-    disconnect();
-}
-
 
 </script>
 </head>
@@ -340,8 +356,8 @@ window.onbeforeunload = function(e){
 			</header>
 			
 			<ul id="joinList">
-				<%-- <c:forEach var="email" items="${ room.joinUserList}">
-					<li style="margin-left:20px;">
+				<c:forEach var="email" items="${ room.joinUserList}">
+					<li style="margin-left:20px;" id="joinUser">
 						<div>
 							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
 							<h3>
@@ -350,7 +366,7 @@ window.onbeforeunload = function(e){
 							</h3>
 						</div>
 					</li>
-				</c:forEach> --%>
+				</c:forEach>
 			</ul>
 		</aside>
 		<main>
