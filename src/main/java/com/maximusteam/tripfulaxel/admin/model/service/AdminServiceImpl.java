@@ -212,6 +212,31 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateEnrollUserStatus(guide);
 	}
 
+	@Override
+	public List<GuideDTO> selectGuideInforamtionList() {
+		return mapper.selectGuideInforamtionList();
+	}
+
+	@Override
+	public GuideDTO selectGuideInformationDetail(int no) {
+		return mapper.selectGuideInformationDetail(no);
+	}
+
+	@Override
+	public int insertGuideInformationFix(GuideDTO guide) {
+		
+		int result = 0;
+		result = mapper.insertGuideInformationFix(guide);
+		updateGuideInformationRequestStatus(guide);
+		
+		return result;
+	}
+
+	@Override
+	public int updateGuideInformationRequestStatus(GuideDTO guide) {
+		return mapper.updateGuideInformationRequestStatus(guide);
+	}
+
 
 
 	

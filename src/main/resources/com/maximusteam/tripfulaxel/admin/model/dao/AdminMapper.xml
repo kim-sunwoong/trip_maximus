@@ -551,4 +551,74 @@
 		,#{ adminPwd } 
 		)
 	</insert>
+	
+	<select id="selectGuideInforamtionList" resultMap="guideList">
+        SELECT 
+               A.USER_CODE
+             , A.USER_EMAIL
+             , A.USER_GUIDE_YN
+             , B.GUIDE_YN
+          FROM USER A
+          JOIN GUIDE B ON (A.USER_CODE = B.USER_CODE)
+          JOIN EXAMINE C ON (A.USER_CODE = C.EXAMINE_REQUEST_FROM)
+         WHERE A.USER_GUIDE_YN = 'Y'
+           AND B.GUIDE_YN = 'Y'
+           AND C.TYPE_CODE = 4;
+	</select>
+
+    <select id="selectGuideInformationDetail" resultMap="guideDetail" parameterType="_int">
+        SELECT 
+	           B.USER_NAME
+	         , B.USER_GENDER
+	         , A.GUIDE_NICKNAME
+	         , A.GUIDE_EXP_YN
+	         , A.GUIDE_CAR_YN
+	         , A.GUIDE_INTRO
+	         , C.EXAMINE_REQUEST_REASON 
+	         , C.EXAMINE_REQUEST_CODE 
+	         , A.GUIDE_CODE
+	         , B.USER_CODE
+	      FROM USER B
+	      JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
+	      JOIN EXAMINE C ON (B.USER_CODE = C.EXAMINE_REQUEST_FROM)
+	      JOIN EXAMINE_TYPE D ON (C.TYPE_CODE = D.EXAMINE_TYPE_CODE)
+	     WHERE B.USER_CODE = #{ no }
+           AND C.TYPE_CODE = 4; 
+	</select>
+	
+	<insert id="insertGuideInformationFix" parameterType="GuideDTO">
+	
+		<selectKey  resultType="GuideDTO" keyColumn="responseCode" keyProperty="responseCode" order="BEFORE">
+        SELECT 
+	           MAX(EXAMINE_RESPONSE_CODE + 1)  as responseCode
+	      FROM EXAMINE_RESPONSE
+    	</selectKey>
+		INSERT 
+		  INTO EXAMINE_RESPONSE
+		(
+			EXAMINE_RESPONSE_CODE
+		,	EXAMINE_RESPONSE_REASON
+		,	EXAMINE_RESPONSE_DATE
+		,	EXAMINE_REQUEST_CODE
+		,	EXAMINE_JUDGE_CODE
+		,	ADMIN_NO
+		)
+		VALUES
+		(
+		 #{responseCode}
+		,#{responseContent}
+		,#{responseDate} 
+		,#{requestCode}
+		,#{examineCode}
+		,1
+		)
+	</insert>
+	
+	<update id="updateGuideInformationRequestStatus" parameterType="GuideDTO">
+        UPDATE 
+  	    EXAMINE
+  		   SET 
+               EXAMINE_REQUEST_YN = 'Y'
+         WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
+	</update> 
 </mapper>
