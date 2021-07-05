@@ -101,6 +101,7 @@ public class UserContrlloer {
 
 		out.print(str);
 	}
+	
 
 	/**
 	 * 로그인용 메소드
@@ -278,9 +279,26 @@ public class UserContrlloer {
 			
 			// 메일 제목, 내용
 			String subject = "[트리풀악셀] 요청하신 회원정보 찾기 안내 메일입니다 ";
-			String content = "안녕하세요 회원님 요청하신 임시 비밀번호 발송 드립니다." 
-			                 + "로그인하여 마이페이지에서 원하시는 이메일로 변경하시면 됩니다."
-					         + "비밀번호는 " + newPwd + "입니다.";
+			String content = "<div id=\"readFrame\">\r\n" + 
+					         " <div style=\"margin:30px auto;width:600px;border:10px solid #f7f7f7\">\r\n" + 
+					         " <div style=\"border:1px solid #dedede\">\r\n" + 
+					         " <h1 style=\"padding:30px 30px 0;background:#f7f7f7;color:#555;font-size:1.4em\">회원정보 찾기 안내</h1>\r\n" + 
+					         " <span style=\"display:block;padding:10px 30px 30px;background:#f7f7f7;text-align:right\">\r\n" + 
+					         " <a href=\"https://www.travelmaker.co.kr\" target=\"_blank\" rel=\"noreferrer noopener\">트리풀악셀</a>\r\n" + 
+					         " </span>\r\n" + 
+					         " <p style=\"margin:20px 0 0;padding:30px 30px 30px;border-bottom:1px solid #eee;line-height:1.7em\">" + user.getUserName()  + "회원님은\r\n" + 
+				             " 회원정보 찾기 요청을 하셨습니다.<br>저희는 임시\r\n" + 
+					         " 비밀번호를 생성하여 안내 해드리고 있습니다.<br>아래에서 변경될 비밀번호를 확인하신 후,\r\n" + 
+					         "<span style=\"color:#ff3061\">\r\n" + 
+				             " <br> 홈페이지에서 이메일(ID)과 변경된 비밀번호를 입력하시고 로그인 하십시오.<br>로그인 후에는 마이페이지에서 새로운 비밀번호로\r\n" + 
+					         "  변경해 주십시오.</p>\r\n" + 
+					         " <p style=\"margin:0;padding:30px 30px 30px;border-bottom:1px solid #eee;line-height:1.7em\">\r\n" + 
+					         " <span style=\"display:inline-block;width:100px\">변경될 비밀번호</span>\r\n" + 
+				             " <strong style=\"color:#ff3061\"> "+ newPwd +"</strong>\r\n" + 
+					         "  </p>\r\n" + 
+					         "  </div>\r\n" + 
+					         " </div>\r\n" + 
+					         "</div>";
 			
 			// 보내는 사람
 			String from = mailSender.getUsername();
@@ -295,14 +313,16 @@ public class UserContrlloer {
 				// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
 				MimeMessage mail = mailSender.createMimeMessage();
 				MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true,"UTF-8");
-				/* mail.setContent(content, "text/html"); */
+				
 				
 				// 메일 내용을 채워줌
 				mailHelper.setFrom(from);	// 보내는 사람 셋팅
 				mailHelper.setTo(to);		// 받는 사람 셋팅
 				mailHelper.setSubject(subject);	// 제목 셋팅
-				mailHelper.setText(content);	// 내용 셋팅
-				
+				mail.setContent(content, "text/html;charset=utf-8"); 
+				/*
+				 * mailHelper.setText(content); // 내용 셋팅
+				 */				
 				
 				// 메일 전송
 				mailSender.send(mail);
