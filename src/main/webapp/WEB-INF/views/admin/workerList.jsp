@@ -74,46 +74,48 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                
+ 					<div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link collapsed" href="AdminNoticeManagement.html">
-                                공지사항
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
+                                	공지사항
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminReportManagement.html">
-                                신고처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/reportList">
+                              		  신고처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideEnroll.html">
-                                가이드 가입 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideList">
+                                	가이드 가입 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideLevelUp.html">
-                                가이드 등업 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/levelUpList">
+                               	 	가이드 등업 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideCalculate.html">
-                                가이드 정산 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/calculateList">
+                                	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminTax.html">
-                                세금계산서 발행
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
+                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminAnswerManagement.html">
-                                문의 내역
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
+                                	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminWorkerManagement.html">
-                                사원 관리
+                            <a class="nav-link collapsed"  href="${ pageContext.servletContext.contextPath }/admin/workerList">
+                                	사원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminMemberManagement.html">
-                                회원 관리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/memberList">
+                              		  회원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                         </div>
                     </div>
+                    
                     <div class="sb-sidenav-footer">
                         <div class="small">
                             Copyright &copy; Tripful axcel
@@ -160,8 +162,7 @@
 	                                    </tbody>
 	                                </table>
 	                            </div>
-	                            <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">등록</button>
-	                          <!--   <button class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">삭제</button> -->
+	                            <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/adminEnroll'" class="btn btn-outline-info text-dark" style="width: 100px; margin: 0 auto;">등록</button>
                         	</div>
                     	</div>
                 	</main>

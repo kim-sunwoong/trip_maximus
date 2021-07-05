@@ -41,7 +41,7 @@ function newRoom(){
 	
 	const roomTitle = document.getElementById("roomTitle").value; 
 	
-	location.href="${pageContext.servletContext.contextPath}/share/insertRoom?userCode=${sessionScope.userCode}&roomTitle=" + roomTitle;
+	location.href="${pageContext.servletContext.contextPath}/share/insert/chatRoom?roomTitle=" + roomTitle + "&userCode=${sessionScope.loginUser.userCode}";
 }
 </script>
 </head>
@@ -61,7 +61,7 @@ function newRoom(){
   </tr>
   <tr>
   	<th>
-  		채팅방 제목 : <input type="text" id="roomTitle" style="width:350px; height:30px;"> <button id = "newRoom()" style="width:70px; height:30px;">만들기</button>
+  		채팅방 제목 : <input type="text" id="roomTitle" style="width:350px; height:30px;"> <button onclick = "newRoom()" style="width:70px; height:30px;">만들기</button>
   	</th>
   </tr>
 </table>

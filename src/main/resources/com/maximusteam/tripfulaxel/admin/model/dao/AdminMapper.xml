@@ -11,6 +11,7 @@
 		<result column="ADMIN_NAME" property="adminName" />
 		<result column="ADMIN_EMAIL" property="adminEmail" />
 		<result column="ADMIN_HIRE_DATE" property="hireDate" />
+		<result column="ADMIN_PWD" property="adminPwd" />
 	</resultMap>
 	
 	<!-- 회원리스트 -->
@@ -70,6 +71,7 @@
 		<result column="EXAMINE_REQUEST_REASON" property="guideTravel"/>
 		<result column="EXAMINE_REQUEST_CODE" property="requestCode"/>
 		<result column="GUIDE_CODE" property="guideCode"/>
+		<result column="USER_CODE" property="userCode"/>
 	</resultMap>
 	
 	<!-- 가이드 사진 -->
@@ -191,7 +193,7 @@
              , B.GUIDE_YN
           FROM USER A
           JOIN GUIDE B ON (A.USER_CODE = B.USER_CODE)
-         WHERE A.USER_GUIDE_YN = 'Y'
+         WHERE A.USER_GUIDE_YN = 'N'
            AND B.GUIDE_YN = 'N';
 	</select>
 	
@@ -206,6 +208,7 @@
 	         , C.EXAMINE_REQUEST_REASON 
 	         , C.EXAMINE_REQUEST_CODE 
 	         , A.GUIDE_CODE
+	         , B.USER_CODE
 	      FROM USER B
 	      JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
 	      JOIN EXAMINE C ON (B.USER_CODE = C.EXAMINE_REQUEST_FROM)
@@ -518,4 +521,34 @@
                GUIDE_YN = 'Y'
          WHERE GUIDE_CODE = #{ guideCode } 
 	</update> 
+
+	<update id="updateEnrollUserStatus" parameterType="GuideDTO">
+        UPDATE 
+          USER
+           SET
+               USER_GUIDE_YN = 'Y'
+         WHERE USER_CODE = #{ userCode } 
+	</update> 
+	
+	<insert id="insertWorkerEnroll" parameterType="AdminDTO">
+		INSERT 
+		  INTO ADMIN
+		(
+			ADMIN_HIRE_DATE
+		,	ADMIN_NO
+		,	ADMIN_NAME
+		,	ADMIN_EMAIL
+		,	ADMIN_POSITION
+		,	ADMIN_PWD
+		)
+		VALUES
+		(
+		 #{ hireDate }
+		,#{ adminNo }
+		,#{ adminName } 
+		,#{ adminEmail }
+		,#{ adminPosition }
+		,#{ adminPwd } 
+		)
+	</insert>
 </mapper>

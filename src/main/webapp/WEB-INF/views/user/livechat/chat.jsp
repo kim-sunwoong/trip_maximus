@@ -145,7 +145,7 @@ main header h3{
 	color:#7e818a;
 }
 
-#chat{
+#chatting{
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
@@ -154,21 +154,21 @@ main header h3{
 	border-top:2px solid #fff;
 	border-bottom:2px solid #fff;
 }
-#chat li{
+#chatting li{
 	padding:10px 30px;
 }
-#chat h2,#chat h3{
+#chatting h2,#chatting h3{
 	display:inline-block;
 	font-size:13px;
 	font-weight:normal;
 }
-#chat h3{
+#chatting h3{
 	color:#bbb;
 }
-#chat .entete{
+#chatting .entete{
 	margin-bottom:5px;
 }
-#chat .message{
+#chatting .message{
 	padding:20px;
 	color:#fff;
 	line-height:25px;
@@ -177,26 +177,26 @@ main header h3{
 	text-align:left;
 	border-radius:5px;
 }
-#chat .me{
+#chatting .me{
 	text-align:right;
 }
-#chat .you .message{
+#chatting .you .message{
 	background-color:#58b666;
 }
-#chat .me .message{
+#chatting .me .message{
 	background-color:#6fbced;
 }
-#chat .triangle{
+#chatting .triangle{
 	width: 0;
 	height: 0;
 	border-style: solid;
 	border-width: 0 10px 10px 10px;
 }
-#chat .you .triangle{
+#chatting .you .triangle{
 		border-color: transparent transparent #58b666 transparent;
 		margin-left:15px;
 }
-#chat .me .triangle{
+#chatting .me .triangle{
 		border-color: transparent transparent #6fbced transparent;
 		margin-left:375px;
 }
@@ -235,7 +235,7 @@ main footer a{
 }
 
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- SockJs를 사용하기 위한 라이브러리 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -245,53 +245,105 @@ main footer a{
 <script>
 
 window.onload = function connect() {
-	alert(1);
- 	var userCode = ${sessionScope.loginUser.userCode};
-	    var socket = new SockJS('/chat');
+ 		var userCode = ${sessionScope.loginUser.userCode};
+	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function () {
-	        stompClient.subscribe('/topic/' + nickname, function (e) {
+	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {
 	            showMessage(JSON.parse(e.body));
-	            alertClosing('comeMessage',2000);
 	        });
+	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
 	    });
+	    
+	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
+	    stompClient.send("/app/message/join", {}, JSON.stringify(data));
+	    joinMember(data); */
 	}
+
+window.onbeforeunload = function(e){
+    disconnect();
+}
 
 function disconnect() {
     if (stompClient !== null) {
+    	stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'out'}));
         stompClient.disconnect();
     }
 }
 
 function send() {
+	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};
- 	/* const userEmail = ${sessionScope.loginUser.userEmail}; */
- 	alert(roomCode);
-	data = {'userCode' : userCode, 'roomCode': roomCode, 'messageContent' : $("#message").val()}; 
-    stompClient.send("/app/chat/send", {}, JSON.stringify(data));
-    showMessage(data);
+	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode, 'messageType':'message'}; 
+    stompClient.send("/app/message", {}, JSON.stringify(data));
+    /* showMessage(data, time); */
     $("#message").val('');
-    alertClosing('successMessage',2000);
+    /* alertClosing('successMessage',2000); */
 }
 
-function showMessage(e) {
-    space = document.getElementById("space");
-    space.innerHTML = "<div class='row'> <div class='col-lg-12'> <div class='media'> <div class='media-body'> <h4 class='media-heading'>" +
-        e.userCode + "</h4><h4 class='small pull-right'>방금</h4> </div> <p>" +
-        e.messageContent + "</p> </div> </div> </div> <hr>" + space.innerHTML;
+function showMessage(e, time) {
+	
+	var today = new Date();
+	var year = today.getFullYear(); // 년도
+	var month = today.getMonth() + 1;  // 월
+	var date = today.getDate();  // 날짜
+	var hours = today.getHours(); // 시
+	var minutes = today.getMinutes();  // 분
+	var seconds = today.getSeconds(); // 초
+	var time = (year + '-'+ month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds);
+	
+    var space = document.getElementById("chatting");
+    
+    if(e.messageType == 'join'){
+    	space.innerHTML = space.innerHTML + "<li align='center'><h2>" + e.messageContent + "</h2></li>";
+	    space.scrollTop = space.scrollHeight;
+	    
+	    joinMember(e);
+    } else if(e.messageType == 'out'){
+    	space.innerHTML = space.innerHTML + "<li align='center'><h2>" + e.messageContent + "</h2></li>";
+	    space.scrollTop = space.scrollHeight;
+	    
+	    joinMember(e);
+    } else if(e.messageType == 'message'){
+    	
+    	if(e.userCode == ${sessionScope.loginUser.userCode}){
+	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
+	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
+	    	e.messageContent + "</div> </li>";
+	    	space.scrollTop = space.scrollHeight;
+	
+	    } else {
+	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
+	    	"</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
+	    	e.messageContent + "</div> </li>";
+	    	space.scrollTop = space.scrollHeight;
+	    }
+    }
+    
 };
-window.onbeforeunload = function(e){
-    disconnect();
-}
 
-/* function alertClosing(selector, delay){
-    console.log(selector);
-    document.getElementById(selector).style.display = "block";
-    window.setTimeout(function(){
-        document.getElementById(selector).style.display = "none";
-    },delay);
-} */
+function joinMember(data) {
+	joinList = document.getElementById("joinList");
+	
+	if(data.messageType == 'join'){
+		
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
+	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	    
+	} else if(data.messageType == 'out'){
+		
+		const joins = joinList.getElementsById('joinUser');
+		
+		for(let i = 0; i < join.length; i++){
+			
+		}
+
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
+	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	}
+	
+};
 
 </script>
 </head>
@@ -299,13 +351,15 @@ window.onbeforeunload = function(e){
 	<div id="container">
 		<aside>
 			<header>
-				<input type="text" placeholder="search">
+				<label style="color:white; font-size:15px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
+				<label style="color:white; font-size:20px;">현재 접속중 인원 입니다.</label>
 			</header>
-			<ul>
+			
+			<ul id="joinList">
 				<c:forEach var="email" items="${ room.joinUserList}">
-					<li style="margin-left:20px;">
+					<li style="margin-left:20px;" id="joinUser">
 						<div>
-							<h2><c:out value="${email.userEmail }"/></h2>
+							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
 							<h3>
 								<span class="status green"></span>
 								접속중 입니다.
@@ -317,76 +371,52 @@ window.onbeforeunload = function(e){
 		</aside>
 		<main>
 			<header>
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
-				<div>
-					<h2>Chat with Vincent Porter</h2>
-					<h3>already 1902 messages</h3>
+				<div style="width:450px;">
+					<label style="font-size:25px; font:bold;">채팅방에 접속하셨습니다.</label><br>
+					<label style="font-size:30px; font:bold;"><c:out value="${room.roomTitle }"/></label>
 				</div>
-				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
 			</header>
-			<ul id="chat">
-			
-				<li class="you">
-					<div id="space"></div>
-
-				</li>
+			<!-- <div id="space"> -->
+				<ul id="chatting">
+							
+					<c:forEach var="chat" items="${room.messageList }">
+						
+						<c:choose>
+							<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
+								<li class="me">
+									<div class="entete">
+										<h3><c:out value="${chat.messageDate }"/></h3>
+										<h2><c:out value="${chat.userEmail }"/></h2>
+										<span class="status blue"></span>
+									</div>
+									<div class="triangle"></div>
+									<div class="message">
+										<c:out value="${chat.messageContent }"/>
+									</div>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="you">
+									<div class="entete">
+										<span class="status green"></span>
+										<h2><c:out value="${chat.userEmail }"/></h2>
+										<h3><c:out value="${chat.messageDate }"/></h3>
+									</div>
+									<div class="triangle"></div>
+									<div class="message">
+										<c:out value="${chat.messageContent }"/>
+									</div>
+								</li>
+							
+							</c:otherwise>
+							
+						</c:choose>
+					
+					</c:forEach>
 				
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						OK
-					</div>
-				</li>
-				<li class="you">
-					<div class="entete">
-						<span class="status green"></span>
-						<h2>Vincent</h2>
-						<h3>10:12AM, Today</h3>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM, Today</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-					</div>
-				</li>
-				<li class="me">
-					<div class="entete">
-						<h3>10:12AM</h3>
-						<h2>Vincent</h2>
-						<span class="status blue"></span>
-					</div>
-					<div class="triangle"></div>
-					<div class="message">
-						OK
-					</div>
-				</li>
-			</ul>
+				</ul>
+			<!-- </div>  -->
+				
 			<footer>
 				<textarea placeholder="Type your message" id="message"></textarea>
 				<button onclick="send()">Send</button>

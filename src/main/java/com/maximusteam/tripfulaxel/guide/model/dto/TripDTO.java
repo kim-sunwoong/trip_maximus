@@ -2,15 +2,19 @@ package com.maximusteam.tripfulaxel.guide.model.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TripDTO {
 
 	private int tripCode;
 	private String tripTitle;
 	private String tripIntro;
+	@JsonFormat(pattern = "yyyyMMdd")
 	private Date tripStartDate;
 	private String meetLocation;
 	private String include;
 	private String exclude;
+	@JsonFormat(pattern = "yyyyMMdd")
 	private Date tripEndDate;
 	
 	public TripDTO() {

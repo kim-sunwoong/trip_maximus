@@ -46,5 +46,222 @@
 	    )
 	</insert>
 	
+	<!-- INSERT GUIDE -->
+	<insert id="insertGuide" parameterType="GuideDTO_">
+		<selectKey resultType="int" keyProperty="guideCode" order="AFTER">
+	    	SELECT MAX(GUIDE_CODE) as guideCode FROM GUIDE
+	    </selectKey>
+	    INSERT INTO GUIDE
+	    (
+	    	  GUIDE_CODE
+	    	, GUIDE_CAR_YN
+			, GUIDE_EXP_YN
+			, GUIDE_NICKNAME
+			, GUIDE_INTRO
+			, USER_CODE
+			, GUIDE_YN
+			, GUIDE_LEVEL_CODE
+			, RESIDENCE_PERIOD_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_CODE) + 1, 1) FROM GUIDE b)
+	        , #{carYn}
+	        , #{expYn}
+	        , #{nickname}
+	        , #{intro}
+	        , #{userCode}
+	        , #{guideYn}
+	        , #{levelCode}
+	        , #{periodCode}
+	    )
+	</insert>
+	
+	<!-- INSERT GUIDE_STYLE_CHOICE -->
+	<insert id="insertGuideStyleChoice" parameterType="GuideStyleChoiceDTO">
+		<selectKey resultType="int" keyProperty="guideStyleChoiceCode" order="AFTER">
+	    	SELECT MAX(GUIDE_STYLE_CHOICE_CODE) as guideStyleChoiceCode FROM GUIDE_STYLE_CHOICE
+	    </selectKey>
+	    INSERT INTO GUIDE_STYLE_CHOICE
+	    (
+	    	   GUIDE_STYLE_CHOICE_CODE
+			 , GUIDE_CODE
+			 , GUIDE_STYLE_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.GUIDE_STYLE_CHOICE_CODE) + 1, 1) FROM GUIDE_STYLE_CHOICE b)
+	        , #{guideCode}
+	        , #{guideStyleCode}
+	    )
+	</insert>
+	
+	
+	<!-- INSERT TRIP -->
+	<insert id="insertTrip" parameterType="TripDTO">
+		<selectKey resultType="int" keyProperty="tripCode" order="AFTER">
+	    	SELECT MAX(TRIP_CODE) as tripCode FROM TRIP
+	    </selectKey>
+	    INSERT INTO TRIP
+	    (
+	    	   TRIP_CODE
+			 , TRIP_TITLE
+			 , TRIP_INTRO
+			 , TRIP_START_DATE
+			 , TRIP_MEET_LOCATION
+			 , TRIP_INCLUDE
+			 , TRIP_N_INCLUDE
+			 , TRIP_END_DATE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
+	        , #{tripTitle}
+	        , #{tripIntro}
+	        , #{tripStartDate}
+	        , #{meetLocation}
+	        , #{include}
+	        , #{exclude}
+	        , #{tripEndDate}
+	    )
+	</insert>
+	
+	<!-- TripRegistList INSERT -->
+	<insert id="insertTripRegistList" parameterType="TripRegistListDTO">
+		<selectKey resultType="int" keyProperty="registListCode" order="AFTER">
+	    	SELECT MAX(TRIP_REGIST_LIST_CODE) as registListCode FROM TRIP_REGIST_LIST
+	    </selectKey>
+	    INSERT INTO TRIP_REGIST_LIST
+	    (
+	    	   TRIP_REGIST_LIST_CODE
+			 , USER_CODE
+			 , TRIP_TYPE_CODE
+			 , TRIP_CODE
+			 , REGIST_TYPE_CODE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_REGIST_LIST_CODE) + 1, 1) FROM TRIP_REGIST_LIST b)
+	        , #{userCode}
+	        , #{tripTypeCode}
+	        , #{tripCode}
+	        , #{registTypeCode}
+	    )
+	</insert>
+	
+	<!-- EXAMINE INSERT -->
+	<insert id="insertExamine" parameterType="ExamineDTO">
+		<selectKey resultType="int" keyProperty="examineRequestCode" order="AFTER">
+	    	SELECT MAX(EXAMINE_REQUEST_CODE) as examineRequestCode FROM EXAMINE
+	    </selectKey>
+	    INSERT INTO EXAMINE
+	    (
+	    	   EXAMINE_REQUEST_CODE
+			 , EXAMINE_REQUEST_DATE
+			 , EXAMINE_REQUEST_REASON
+			 , TYPE_CODE
+			 , EXAMINE_REQUEST_FROM
+			 , EXAMINE_REQUEST_YN
+			 , EXAMINE_REQUEST_TO
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.EXAMINE_REQUEST_CODE) + 1, 1) FROM EXAMINE b)
+	         , NOW()
+	         , #{examineRequestReason}
+	         , #{typeCode}
+	         , #{examineRequestFrom}
+	         , #{examineRequestYn}
+	         , #{examineRequestTo}
+	    )
+	</insert>
+	
+	<!-- GUIDE_TRIP INSERT -->
+	<insert id="insertGuideTrip" parameterType="GuideTripDTO">
+		<selectKey resultType="int" keyProperty="guideTripCode" order="AFTER">
+	    	SELECT MAX(G_TRIP_CODE) as guideTripCode FROM GUIDE_TRIP
+	    </selectKey>
+	    INSERT INTO GUIDE_TRIP
+	    (
+	    	   G_TRIP_CODE
+			 , G_TRIP_PAYMENT
+			 , G_TRIP_MINIMUM
+			 , G_TRIP_MAXIMUM
+			 , TRIP_CODE
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.G_TRIP_CODE) + 1, 1) FROM GUIDE_TRIP b)
+	         , #{payment}
+	         , #{minimum}
+	         , #{maximum}
+	         , #{tripCode}
+	    )
+	</insert>
+	
+	<!-- TRIP_THME_CHOICE INSERT -->
+	<insert id="insertTheme" parameterType="TripThemeChoiceDTO">
+		<selectKey resultType="int" keyProperty="themeChoiceCode" order="AFTER">
+	    	SELECT MAX(THEME_CHOICE_CODE) as themeChoiceCode FROM TRIP_THEME_CHOICE
+	    </selectKey>
+	    INSERT INTO TRIP_THEME_CHOICE
+	    (
+	    	   THEME_CHOICE_CODE
+			 , THEME_CODE
+			 , TRIP_CODE
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.THEME_CHOICE_CODE) + 1, 1) FROM TRIP_THEME_CHOICE b)
+	         , #{themeCode}
+	         , #{tripCode}
+	    )
+	</insert>
+	
+	<!-- TRANSIT_CHOICE INSERT -->
+	<insert id="insertTransit" parameterType="TripTransitChoiceDTO">
+		<selectKey resultType="int" keyProperty="transitChoiceCode" order="AFTER">
+	    	SELECT MAX(TRANSIT_CHOICE_CODE) as transitChoiceCode FROM TRANSIT_CHOICE
+	    </selectKey>
+	    INSERT INTO TRANSIT_CHOICE
+	    (
+	    	   TRANSIT_CHOICE_CODE
+			 , TRANSIT_CODE
+			 , TRIP_CODE
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.TRANSIT_CHOICE_CODE) + 1, 1) FROM TRANSIT_CHOICE b)
+	         , #{transitCode}
+	         , #{tripCode}
+	    )
+	</insert>
+	
+	<!-- TRIP_COURSE INSERT -->
+	<insert id="insertTripCourse" parameterType="TripCourseDTO">
+		<selectKey resultType="int" keyProperty="courseCode" order="AFTER">
+	    	SELECT MAX(TRIP_COURSE_CODE) as courseCode FROM TRIP_COURSE
+	    </selectKey>
+	    INSERT INTO TRIP_COURSE
+	    (
+ 	    	   TRIP_COURSE_CODE
+			 , TRIP_COURSE_NAME
+			 , TRIP_COURSE_INFO
+			 , TRIP_IMAGE_CODE
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.TRIP_COURSE_CODE) + 1, 1) FROM TRIP_COURSE b)
+	         , #{courseName}
+	         , #{courseInfo}
+	         , #{tripImageCode}
+	    )
+	</insert>
+	
+	<update id="updateTripImage" parameterType="TripImageDTO">
+		UPDATE TRIP_IMAGE
+		   SET TRIP_CODE = #{refCode}
+		 WHERE TRIP_IMAGE_CODE = #{imageCode}
+	</update>
 </mapper>
     
