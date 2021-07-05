@@ -326,9 +326,6 @@ function showMessage(e, time) {
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
 	
-	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data.userEmail  
-	+ "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
-	    
 	if(data.messageType == 'out'){
 		
 		const joins = joinList.getElementsByTagName('li');
@@ -340,6 +337,9 @@ function joinMember(data) {
 				joins[i].remove();
 			}
 		}
+	} else {
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data.userEmail  
+		+ "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 	}
 };
 
@@ -355,15 +355,17 @@ function joinMember(data) {
 			
 			<ul id="joinList">
 				<c:forEach var="email" items="${ room.joinUserList}">
-					<li style="margin-left:20px;" id="joinUser">
-						<div>
-							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
-							<h3>
-								<span class="status green"></span>
-								접속중 입니다.
-							</h3>
-						</div>
-					</li>
+					<c:if test="${email != sessionScope.loginUser.userEmail }">
+						<li style="margin-left:20px;" id="joinUser">
+							<div>
+								<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
+								<h3>
+									<span class="status green"></span>
+									접속중 입니다.
+								</h3>
+							</div>
+						</li>
+					</c:if>
 				</c:forEach>
 			</ul>
 		</aside>
