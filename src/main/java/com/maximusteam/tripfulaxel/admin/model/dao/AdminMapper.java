@@ -74,6 +74,8 @@ public interface AdminMapper {
 
 	int updateEnrollUserStatus(GuideDTO guide);
 
+	AdminDTO selectLogin(AdminDTO admin);
+
 	
 
 	

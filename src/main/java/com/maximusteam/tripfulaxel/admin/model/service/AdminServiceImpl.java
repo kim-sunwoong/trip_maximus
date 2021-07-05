@@ -212,6 +212,15 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.updateEnrollUserStatus(guide);
 	}
 
+	/**
+	 * 로그인용 메소드 
+	 */
+	@Override
+	public AdminDTO selectLogin(AdminDTO admin) {
+	
+		return mapper.selectLogin(admin);
+	}
+
 
 
 	

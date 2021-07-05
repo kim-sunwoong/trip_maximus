@@ -73,5 +73,7 @@ public interface AdminService {
 	int updateEnrollUserStatus(GuideDTO guide);
 
 	int insertWorkerEnroll(AdminDTO admin);
+
+	AdminDTO selectLogin(AdminDTO admin);
 	
 }
