@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.LevelUpDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
@@ -153,5 +155,45 @@ public class AdminController {
 			model.addAttribute("insertAnswer", insertAnswer);
 			return "redirect:answerList";
 	}
+	
+	@GetMapping("levelUpList")
+	public String selectLevelUpList(Model model) {
+		model.addAttribute("selectLevelUpList", adminService.selectLevelUpList());
+		return "admin/guideLevelUp";
+	}
+	
+	@GetMapping("levelUpDetail")
+	public String selectLevelUpDetail(@RequestParam("guideNo") int no, Model model) {
+		model.addAttribute("selectLevelUpDetail", adminService.selectLevelUpDetail(no));
+		return "admin/guideLevelUpDetail";
+	}
+	
+	@PostMapping("insertLevelUp")
+	public String insertLevelUp(@ModelAttribute LevelUpDTO levelUp , Model model) {
 
+		int insertLevelUp = adminService.insertLevelUp(levelUp);
+		model.addAttribute("insertLevelUp", insertLevelUp);
+		return "redirect:levelUpList";
+	}
+	
+	@PostMapping("insertGuideEnroll")
+	public String insertGuideEnroll(@ModelAttribute GuideDTO guide , Model model) {
+
+		int insertGuideEnroll = adminService.insertGuideEnroll(guide);
+		model.addAttribute("insertGuideEnroll", insertGuideEnroll);
+		return "redirect:guideList";
+	}
+	
+	@GetMapping("adminEnroll")
+	public String adminEnroll(Model model) {
+		return "admin/workerEnroll";
+	}
+
+	@PostMapping("insertWorkerEnroll")
+	public String insertWorkerEnroll(@ModelAttribute AdminDTO admin , Model model) {
+
+		int insertWorkerEnroll = adminService.insertWorkerEnroll(admin);
+		model.addAttribute("insertWorkerEnroll", insertWorkerEnroll);
+		return "redirect:workerList";
+	}
 }

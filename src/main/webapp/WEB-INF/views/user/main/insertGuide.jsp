@@ -100,13 +100,14 @@
 				
 				<!-- 기본정보 텍스트 부분 시작  -->
 				
-					<!-- 회원번호 (invisible) -->
-					<input id="userCode" name="userCode" value="${ requestScope.loginMember.userCode }"/ hidden="true">
 				
 					<!-- 성명 -->
 					<div class="form-layer">
+					
+					<!-- 회원번호 (invisible) -->
+					<input type="number" id="userCode" name="userCode" value="${ sessionScope.loginUser.userCode }"/ hidden="true">
 					<span class="form-title" style="display:inline-block";>성명  </span>
-				   	<input type="text" class="select-nomalsize" name="userName" value="${ requestScope.loginMember.userName }" readonly="readonly">	
+				   	<input type="text" class="select-nomalsize" name="userName" value="${ sessionScope.loginUser.userName }" readonly="readonly">	
 					</div>
 				
 					<!-- 닉네임 -->			
@@ -145,11 +146,12 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 스타일</span>
 						<div class="guidetitle">
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="guideStyle">액티비티를 즐기는 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="guideStyle">여행분야의 전문성이 높은 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="guideStyle">인생샷을 남겨주는 스냅 전문 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="guideStyle">함께 신나게 놀 수 있는 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="guideStyle">로컬 방방곡곡 가이드</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="6" name="guideStyle">먹거리 전문 먹짱 가이드</label>
 						</div>
 					</div>
 					
@@ -171,6 +173,12 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>가이드 소개</span>
 						 <textarea class="form-control textarea-layer" rows="9" name="intro" placeholder="당신을 소개해주세요"></textarea>
+                          <div class="maxText">(최대 1000자)</div>
+					</div>
+					
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>가이드 신청이유 또는 특색</span>
+						 <textarea class="form-control textarea-layer" rows="9" name="reason" placeholder="신청이유 또는 회원님만의 특색을 어필해주세요"></textarea>
                           <div class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -232,6 +240,18 @@
 						<label><input type="date" name="peakStart"></label>
 						<span>~</span>
 						<label><input type="date" name="peakEnd"></label>
+					</div>
+			 
+			 <!-- 여행 테마  -->
+					<div class="form-layer">
+						<span class="form-title" style="display:inline-block";>여행 테마</span>
+						<div class="guidetitle">
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
+						</div>
 					</div>
 			 
 			 <!-- 여행 제목  -->
@@ -316,8 +336,8 @@
 						
 						$('.btnRemove').on('click', function(e){
 							$(e.target).parent().remove();
-							deletedCourse(e);
-						});
+/* 							deletedCourse(e);
+ */						});
 				    });
 				});
 			</script>			
@@ -402,7 +422,8 @@
 <script>
 	var formMap = new Map();
 	var courseImage = new Array();
-	var formdata;
+/* 	var tripImage = new Array();
+ */	var formdata;
 	var totalData = {};
 
 	<!-- 사진이 선택되었을때, 사진이 저장되고 그 정보값을 json으로 저장 -->
@@ -432,7 +453,10 @@
             	if(e.name == "imageCourse"){
             		courseImage.push(JSON.parse(data.imageList));
 	            	formMap.set(e.name, courseImage);
-            	}else {
+            	}/* else if(e.name == "imageTrip"){
+            		tripImage.push(JSON.parse(data.imageList));
+            		formMap.set(e.name, tripImage);
+            	} */else {
 	            	formMap.set(e.name, JSON.parse(data.imageList));
             	}
             	
@@ -440,8 +464,8 @@
             		totalData[key] = value
             	});
             	
-/*             	console.log(JSON.stringify(totalData));
- */            },          
+             	console.log(JSON.stringify(totalData));
+            },          
             error: function (e) {  
             	console.log("ERROR : ", e);     
                 $("#btnSubmit").prop("disabled", false);    
@@ -462,25 +486,22 @@
 			var totalDataJson = {};
 			var formData = $('#insertGuideForm').serializeObject();
 		   
-			totalDataMap.set("formData", JSON.stringify(formData));
-			totalDataMap.set("imageData", JSON.stringify(totalData));
-			
-			console.log(totalDataMap);
+			totalDataMap.set("formData", formData);
+			totalDataMap.set("imageData", totalData);
 			
 			totalDataMap.forEach((value, key) => {
 				totalDataJson[key] = value
         	});
 			
-		    console.log("james");
-			console.log(JSON.stringify(totalDataJson));
+			var sendData = JSON.stringify(totalDataJson);
+			console.log(sendData);
 			
 	        $.ajax({
-	            url : "${pageContext.request.contextPath}/api/guides",
+	            url : "${pageContext.request.contextPath}/api/insert/guide",
 	            type : 'post', 
-	            data : totalDataJson, 
+	            data : sendData, 
 	            dataType : 'json',
-	            encType : 'application/json',
-	            contentType: false,
+	            contentType: 'application/json; charset=utf-8',
 	            processData: false,
 	            cache : false,
 	            async : false,
@@ -489,8 +510,7 @@
  */	                // 성공했을시
 	                // 실패했을시
 	                console.log("success");
-	            }, // success 
-	    
+	            }, 
 	            error : function(xhr, status) {
 	                alert(xhr + " : " + status);
 	            }

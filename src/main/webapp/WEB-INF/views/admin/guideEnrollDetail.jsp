@@ -50,46 +50,48 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                
+					<div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link collapsed" href="AdminNoticeManagement.html">
-                                공지사항
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
+                                	공지사항
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminReportManagement.html">
-                                신고처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/reportList">
+                              		  신고처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideEnroll.html">
-                                가이드 가입 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideList">
+                                	가이드 가입 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideLevelUp.html">
-                                가이드 등업 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/levelUpList">
+                               	 	가이드 등업 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminGuideCalculate.html">
-                                가이드 정산 처리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/calculateList">
+                                	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminTax.html">
-                                세금계산서 발행
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
+                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminAnswerManagement.html">
-                                문의 내역
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
+                                	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminWorkerManagement.html">
-                                사원 관리
+                            <a class="nav-link collapsed"  href="${ pageContext.servletContext.contextPath }/admin/workerList">
+                                	사원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="AdminMemberManagement.html">
-                                회원 관리
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/memberList">
+                              		  회원 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                         </div>
                     </div>
+                    
                     <div class="sb-sidenav-footer">
                         <div class="small">
                             Copyright &copy; Tripful axel
@@ -109,6 +111,7 @@
                             </div>
 
                             <div class="card-body">
+                             <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertGuideEnroll"> 
                                 <table class="table table">
                                     <tr>
                                         <td style="width: 15%;">이름</td>
@@ -136,16 +139,24 @@
                                     <tr>
                                      <td>가이드 소개</td>
                                      <td>
-                                     	<input  type="text" name="content" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
+                                     	<input  type="text" name="guideContent" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
                                      </td>
                                     </tr>
-
+          							<tr>
+                                     <td>가이드 여행소개</td>
+                                     <td>
+                                     	<input  type="text" name="travelContent" class="form-control" value="${selectEnrollDetail.guideTravel}" > 
+                                     	<input  type="hidden" name="requestCode" value="${selectEnrollDetail.requestCode}">
+                                     	<input  type="hidden" name="guideCode" value="${selectEnrollDetail.guideCode}">
+                                     	<input  type="hidden" name="userCode" value="${selectEnrollDetail.userCode}">
+                                     </td>
+                                    </tr>
                                                                     
                                     <tr>
                                         <td>프로필 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}.png">
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}">
                                         	
                                         </td>
                                     </tr>
@@ -154,20 +165,34 @@
                                         <td>신분증 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
-                                        	
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>답변 내용</td>
+                                        <td><textarea rows="10" cols="50" id="content" name="responseContent" class="form-control"></textarea></td>
+                                    </tr>
+									<tr>
+                                        <td>날짜</td>
+                                        <td><input type="date" rows="10" cols="50" id="date" name="responseDate" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>심사코드</td>
+                                        <td>
+                                        	<select name="examineCode" class="select-time">
+												<option value="2">승인</option>
+												<option value="3">반려</option>
+											</select>
                                         </td>
                                     </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">
-                                     
-                                      <input type="submit" value="가입승인" class="btn btn-success">
-                                      <input type="reset" value="가입취소" class="btn btn-warning">
+                                      <input type="submit" value="완료" class="btn btn-success">
                                       <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
                                      </td>
                                     </tr>
-                                    
                                     </table>
+                                   </form>
                             </div>
 
                         </div>

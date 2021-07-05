@@ -7,6 +7,7 @@ import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.CalculateDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideEnrollDTO;
+import com.maximusteam.tripfulaxel.admin.model.dto.LevelUpDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.MemberDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.TaxDTO;
@@ -52,5 +53,25 @@ public interface AdminService {
 	int insertAnswer(AdminAnswerDTO answer);
 
 	int updateAnswerStatus(AdminAnswerDTO answer);
+
+	List<LevelUpDTO> selectLevelUpList();
+
+	LevelUpDTO selectLevelUpDetail(int no);
+
+	int insertLevelUp(LevelUpDTO levelUp);
+	
+	int updateLevelStatus(LevelUpDTO levelUp);
+
+	int updateLevelUpCount(LevelUpDTO levelUp);
+
+	int insertGuideEnroll(GuideDTO guide);
+	
+	int updateEnrollRequestStatus(GuideDTO guide);
+
+	int updateEnrollGuideStatus(GuideDTO guide);
+	
+	int updateEnrollUserStatus(GuideDTO guide);
+
+	int insertWorkerEnroll(AdminDTO admin);
 	
 }

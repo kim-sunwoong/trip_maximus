@@ -20,8 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideImageDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
+import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 
 @Controller
 @RequestMapping("/imageUpload/*")
@@ -43,7 +44,7 @@ public class ImageUploadController {
 			@RequestParam("imageCategory") String imageCategory
 			) {
 		
-		List<GuideImageDTO> imageList = new ArrayList<>();
+		List<TripImageDTO> imageList = new ArrayList<>();
 		
 		// 서버에 사진 저장
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -96,7 +97,7 @@ public class ImageUploadController {
 				savedName = simpleDateFormat.format(calendar.getTime()) + ext;
 				
 				try {
-					multipartFiles.get(i).transferTo(new File(filePath + File.separator + savedName + ext));
+					multipartFiles.get(i).transferTo(new File(filePath + File.separator + savedName));
 				} catch (IOException e) {
 					e.printStackTrace();
 					
@@ -107,15 +108,9 @@ public class ImageUploadController {
 			}
 			
 			// 파일정보를 DB에 저장 -> DTO -> List<DTO>
-			GuideImageDTO guideImage = new GuideImageDTO();
-			guideImage.setSavedName(savedName);
-			guideImage.setOriginName(originFileName);
-			
-			// session에 저장되어있는 유저정보에서 pk를 사용
-//			int userCode = ((UserDTO)session.getAttribute("loginUser")).getCode();
-//			guideImage.setUserCode(userCode);
-			
-			guideImage.setRefCode(6);// test for usercode 6
+			TripImageDTO tripImageDTO = new TripImageDTO();
+			tripImageDTO.setSavedName(savedName);
+			tripImageDTO.setOriginName(originFileName);
 			
 			/* 매개변수로 받아온 category를 통해 imagetype code 설정
 			 * 코드가 겹치는것을 허용, 
@@ -146,8 +141,17 @@ public class ImageUploadController {
 					break;
 			}
 			
-			guideImage.setImageTypeCode(imageTypeCode);
-			imageList.add(guideImage);
+			// tableCode=1 -> GUIDE_IMAGE는 session에 저장되어있는 유저정보에서 pk를 대입
+			// tableCode=2 -> TRIP_IMAGE는 tripCode가 생성 전이므로 null 대입
+			if(tableCode == 1) {
+				int userCode = ((UserDTO)session.getAttribute("loginUser")).getUserCode();
+				tripImageDTO.setRefCode(userCode);
+			}else {
+				tripImageDTO.setRefCode(null);
+			}
+			
+			tripImageDTO.setImageTypeCode(imageTypeCode);
+			imageList.add(tripImageDTO);
 			System.out.println(imageList);
 		}
 		
@@ -160,7 +164,7 @@ public class ImageUploadController {
 			System.out.println("실패");
 		}
 
-		/* JSON을 만들기위한 분기처리 */
+		/* JSON을 만들기 위한 분기처리 */
 		Gson gson = new Gson();
 		if(imageList.size() > 1) {
 			mv.addObject("imageList", gson.toJson(imageList));
