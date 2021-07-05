@@ -16,4 +16,9 @@ public interface UserMapper {
 	UserDTO loginUser(UserDTO user);
 
 	UserDTO findEmail(UserDTO user);
+
+	UserDTO searchPwd(UserDTO user);
+
+	int updateUser(UserDTO user);
+
 }
