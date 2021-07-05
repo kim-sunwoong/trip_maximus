@@ -114,13 +114,14 @@ $(".find_id_button").click(function () {
         $(".pop_wrap:visible").hide();
         $(".find_id_fin_pop").parent(".pop_wrap").show();*/
 });
-
+/*
 $(".find_password_button").click(function () {
     $("html").addClass("pop");
     $(".pop_wrap:visible").hide();
+    console.log("????");
     $(".find_password_fin_pop").parent(".pop_wrap").show();
 });
-
+*/
 $(".pop_wrap").click(function (e) {
     e.stopPropagation();
     $(this).hide();

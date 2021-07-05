@@ -77,7 +77,7 @@
 	     ]]>
 	</select>
 	
-	<select id="findEmail" resultMap="userResult" parameterType="USerDTO">
+	<select id="findEmail" resultMap="userResult" parameterType="UserDTO">
 	     SELECT 
 	            USER_EMAIL
 	       FROM USER
@@ -85,6 +85,26 @@
 	        AND USER_PHONE = #{ userPhone }
 	        AND USER_BDAY = #{ userBday } 
 	</select>
+	
+	<select id="searchPwd" resultMap="userResult" parameterType="UserDTO">
+		SELECT
+		        USER_EMAIL
+		      , USER_NAME
+		      , USER_BDAY
+		  FROM USER
+		 WHERE USER_NAME = #{ userName } 
+		   AND USER_EMAIL = #{ userEmail }
+		   AND USER_BDAY = #{ userBday }
+		
+	</select>
+	
+	<update id="updateUser"  parameterType="UserDTO">
+        UPDATE 
+  	    	   USER
+  		   SET 
+               USER_PWD = #{ userPwd }
+         WHERE USER_EMAIL = #{ userEmail }
+	</update> 
 
 </mapper>
 

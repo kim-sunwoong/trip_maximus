@@ -18,6 +18,10 @@ public interface UserService {
 	UserDTO loginUser(UserDTO user);
 
 	UserDTO findEmail(UserDTO user);
+
+	UserDTO searchPwd(UserDTO user);
+
+	boolean updateUser(UserDTO user);
 	
 
 

@@ -65,6 +65,34 @@ public class UserServiceImpl implements UserService {
 
 
 
+	/**
+	 * 비밀번호 찾기 메소드 
+	 */
+	@Override
+	public UserDTO searchPwd(UserDTO user) {
+	
+		return mapper.searchPwd(user);
+	}
+
+
+
+	/**
+	 * 비밀번호 업데이트 메소드
+	 */
+	@Override
+	public boolean updateUser(UserDTO user) {
+		
+		int result = mapper.updateUser(user);
+		
+		return result > 0? true : false;
+	}
+
+
+
+
+
+
+
 
 
 }

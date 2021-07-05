@@ -15,9 +15,12 @@ public class UserDTO {
 	private int userReportCount;
 	private String userGuideYN;
 	
+	
 	public UserDTO() {
 		super();
+	
 	}
+
 
 	public UserDTO(int userCode, String userName, String userPhone, String userPwd, String userBday, String userGender,
 			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN) {
@@ -34,85 +37,109 @@ public class UserDTO {
 		this.userGuideYN = userGuideYN;
 	}
 
+
+	
+	
+	
 	public int getUserCode() {
 		return userCode;
 	}
+
 
 	public void setUserCode(int userCode) {
 		this.userCode = userCode;
 	}
 
+
 	public String getUserName() {
 		return userName;
 	}
+
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+
 	public String getUserPhone() {
 		return userPhone;
 	}
+
 
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
 
+
 	public String getUserPwd() {
 		return userPwd;
 	}
+
 
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
 
+
 	public String getUserBday() {
 		return userBday;
 	}
+
 
 	public void setUserBday(String userBday) {
 		this.userBday = userBday;
 	}
 
+
 	public String getUserGender() {
 		return userGender;
 	}
+
 
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
 
+
 	public String getUserEmail() {
 		return userEmail;
 	}
+
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
 
+
 	public String getUserRegisterDay() {
 		return userRegisterDay;
 	}
+
 
 	public void setUserRegisterDay(String userRegisterDay) {
 		this.userRegisterDay = userRegisterDay;
 	}
 
+
 	public int getUserReportCount() {
 		return userReportCount;
 	}
+
 
 	public void setUserReportCount(int userReportCount) {
 		this.userReportCount = userReportCount;
 	}
 
+
 	public String getUserGuideYN() {
 		return userGuideYN;
 	}
 
+
 	public void setUserGuideYN(String userGuideYN) {
 		this.userGuideYN = userGuideYN;
 	}
+
 
 	@Override
 	public String toString() {
@@ -121,4 +148,11 @@ public class UserDTO {
 				+ ", userRegisterDay=" + userRegisterDay + ", userReportCount=" + userReportCount + ", userGuideYN="
 				+ userGuideYN + "]";
 	}
+
+	
+
+	
+	
+	
+	
 }

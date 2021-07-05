@@ -183,5 +183,17 @@ public class AdminController {
 		model.addAttribute("insertGuideEnroll", insertGuideEnroll);
 		return "redirect:guideList";
 	}
+	
+	@GetMapping("adminEnroll")
+	public String adminEnroll(Model model) {
+		return "admin/workerEnroll";
+	}
 
+	@PostMapping("insertWorkerEnroll")
+	public String insertWorkerEnroll(@ModelAttribute AdminDTO admin , Model model) {
+
+		int insertWorkerEnroll = adminService.insertWorkerEnroll(admin);
+		model.addAttribute("insertWorkerEnroll", insertWorkerEnroll);
+		return "redirect:workerList";
+	}
 }

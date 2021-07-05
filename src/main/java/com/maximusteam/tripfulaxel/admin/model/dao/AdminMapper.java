@@ -70,6 +70,10 @@ public interface AdminMapper {
 
 	int updateEnrollGuideStatus(GuideDTO guide);
 
+	int insertWorkerEnroll(AdminDTO admin);
+
+	int updateEnrollUserStatus(GuideDTO guide);
+
 	
 
 	

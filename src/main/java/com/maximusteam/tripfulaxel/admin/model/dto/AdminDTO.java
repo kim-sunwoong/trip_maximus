@@ -9,16 +9,19 @@ public class AdminDTO {
 	private String adminName;
 	private String adminEmail;
 	private java.sql.Date hireDate;
+	private int adminPwd;
 	
 	public AdminDTO() {}
 
-	public AdminDTO(int adminNo, String adminPosition, String adminName, String adminEmail, java.sql.Date hireDate) {
+	public AdminDTO(int adminNo, String adminPosition, String adminName, String adminEmail, java.sql.Date hireDate,
+			int adminPwd) {
 		super();
 		this.adminNo = adminNo;
 		this.adminPosition = adminPosition;
 		this.adminName = adminName;
 		this.adminEmail = adminEmail;
 		this.hireDate = hireDate;
+		this.adminPwd = adminPwd;
 	}
 
 	public int getAdminNo() {
@@ -61,12 +64,21 @@ public class AdminDTO {
 		this.hireDate = hireDate;
 	}
 
+	public int getAdminPwd() {
+		return adminPwd;
+	}
+
+	public void setAdminPwd(int adminPwd) {
+		this.adminPwd = adminPwd;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminDTO [adminNo=" + adminNo + ", adminPosition=" + adminPosition + ", adminName=" + adminName
-				+ ", adminEmail=" + adminEmail + ", hireDate=" + hireDate + "]";
+				+ ", adminEmail=" + adminEmail + ", hireDate=" + hireDate + ", adminPwd=" + adminPwd + "]";
 	}
 
+	
 	
 	
 
