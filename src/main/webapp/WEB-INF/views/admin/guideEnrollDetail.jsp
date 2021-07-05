@@ -148,6 +148,7 @@
                                      	<input  type="text" name="travelContent" class="form-control" value="${selectEnrollDetail.guideTravel}" > 
                                      	<input  type="hidden" name="requestCode" value="${selectEnrollDetail.requestCode}">
                                      	<input  type="hidden" name="guideCode" value="${selectEnrollDetail.guideCode}">
+                                     	<input  type="hidden" name="userCode" value="${selectEnrollDetail.userCode}">
                                      </td>
                                     </tr>
                                                                     
@@ -155,7 +156,7 @@
                                         <td>프로필 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}.png">
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}">
                                         	
                                         </td>
                                     </tr>
@@ -164,7 +165,7 @@
                                         <td>신분증 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}.png">
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}">
                                         </td>
                                     </tr>
                                     <tr>

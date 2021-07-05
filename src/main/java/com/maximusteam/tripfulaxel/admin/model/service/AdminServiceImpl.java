@@ -187,6 +187,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		if( result > 0 && guide.getExamineCode() == 2) {
 			updateEnrollGuideStatus(guide);
+			updateEnrollUserStatus(guide);
 		}
 		return result;
 	}
@@ -204,6 +205,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int insertWorkerEnroll(AdminDTO admin) {
 		return mapper.insertWorkerEnroll(admin);
+	}
+
+	@Override
+	public int updateEnrollUserStatus(GuideDTO guide) {
+		return mapper.updateEnrollUserStatus(guide);
 	}
 
 

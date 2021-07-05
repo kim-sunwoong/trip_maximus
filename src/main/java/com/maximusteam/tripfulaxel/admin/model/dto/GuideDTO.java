@@ -23,6 +23,7 @@ public class GuideDTO {
     private java.sql.Date responseDate;
     private int examineCode;
     private int guideCode;
+    private int userCode;
     
 //    private String guideIdPicture;// 신분증 사진
 //    private String guidePicture;// 가이드 사진
@@ -33,7 +34,7 @@ public class GuideDTO {
 	public GuideDTO(int guideNo, String guideId, String guideEnrollStatus, String guideApproveStatus, String guideName,
 			String guideGender, String guideNickname, String guideExp, String guideCar, String guideIntro,
 			String guideTravel, int requestCode, int responseCode, String responseContent, Date responseDate,
-			int examineCode, int guideCode) {
+			int examineCode, int guideCode, int userCode) {
 		super();
 		this.guideNo = guideNo;
 		this.guideId = guideId;
@@ -52,6 +53,7 @@ public class GuideDTO {
 		this.responseDate = responseDate;
 		this.examineCode = examineCode;
 		this.guideCode = guideCode;
+		this.userCode = userCode;
 	}
 
 	public int getGuideNo() {
@@ -190,6 +192,14 @@ public class GuideDTO {
 		this.guideCode = guideCode;
 	}
 
+	public int getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(int userCode) {
+		this.userCode = userCode;
+	}
+
 	@Override
 	public String toString() {
 		return "GuideDTO [guideNo=" + guideNo + ", guideId=" + guideId + ", guideEnrollStatus=" + guideEnrollStatus
@@ -197,8 +207,11 @@ public class GuideDTO {
 				+ guideGender + ", guideNickname=" + guideNickname + ", guideExp=" + guideExp + ", guideCar=" + guideCar
 				+ ", guideIntro=" + guideIntro + ", guideTravel=" + guideTravel + ", requestCode=" + requestCode
 				+ ", responseCode=" + responseCode + ", responseContent=" + responseContent + ", responseDate="
-				+ responseDate + ", examineCode=" + examineCode + ", guideCode=" + guideCode + "]";
+				+ responseDate + ", examineCode=" + examineCode + ", guideCode=" + guideCode + ", userCode=" + userCode
+				+ "]";
 	}
+
+	
 
 	
 

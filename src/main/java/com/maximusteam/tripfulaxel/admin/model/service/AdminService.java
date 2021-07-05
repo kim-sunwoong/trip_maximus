@@ -69,6 +69,8 @@ public interface AdminService {
 	int updateEnrollRequestStatus(GuideDTO guide);
 
 	int updateEnrollGuideStatus(GuideDTO guide);
+	
+	int updateEnrollUserStatus(GuideDTO guide);
 
 	int insertWorkerEnroll(AdminDTO admin);
 	
