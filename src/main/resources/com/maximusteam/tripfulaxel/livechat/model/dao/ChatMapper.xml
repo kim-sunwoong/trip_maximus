@@ -22,6 +22,14 @@
 		
 	</resultMap>
 	
+	<resultMap type="com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO" id="joinList">
+		<result property="joinCode" column="CHAT_JOIN_CODE"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="userEmail" column="USER_EMAIL"/>
+		<result property="roomCode" column="CHAT_ROOM_CODE"/>
+	
+	</resultMap>
+	
 	<select id="selectChatRoom" parameterType="Map" resultMap="chatRoom">
 		SELECT DISTINCT
 			   cr.CHAT_ROOM_CODE,
@@ -33,19 +41,102 @@
 			   m.MESSAGE_CONTENT,       
 			   m.MESSAGE_DATE 
 		 </if>
-		<choose>
-			<when test="roomCode gt 0">
-				FROM MESSAGE m
-			    JOIN CHAT_ROOM cr ON (m.CHAT_ROOM_CODE = cr.CHAT_ROOM_CODE)
-			    JOIN CHAT_JOIN cj ON (m.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
-			    JOIN `USER` u ON (m.USER_CODE = u.USER_CODE)
-			   WHERE cr.CHAT_ROOM_CODE = #{roomCode}
-			</when>
-			<otherwise>
-				FROM CHAT_ROOM cr
-			</otherwise>
-		</choose>
+		 FROM CHAT_ROOM cr
+		 <if test="roomCode gt 0">
+			  LEFT JOIN MESSAGE m ON (m.CHAT_ROOM_CODE = cr.CHAT_ROOM_CODE)
+			  LEFT JOIN CHAT_JOIN cj ON (m.CHAT_ROOM_CODE = cj.CHAT_ROOM_CODE)
+			  LEFT JOIN `USER` u ON (m.USER_CODE = u.USER_CODE)
+			 WHERE cr.CHAT_ROOM_CODE = #{roomCode}
+		 </if>
+	</select>
+	
+	<insert id="insertMessage" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO">
 		
+	<selectKey keyProperty="messageCode" resultType="int" order="BEFORE">
+		SELECT
+		       IFNULL(MAX(MESSAGE_CODE) + 1, 1)
+		  FROM MESSAGE
+	
+	</selectKey>
+		
+		INSERT
+		  INTO MESSAGE
+		(
+		  MESSAGE_CODE
+		, MESSAGE_DATE
+		, CHAT_ROOM_CODE
+		, USER_CODE
+		, MESSAGE_CONTENT
+		)
+	    VALUES
+	    (
+	      #{messageCode}
+	    , DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')
+	    , #{roomCode}
+	    , #{userCode}
+	    , #{messageContent}
+	    )
+	</insert>
+	
+	<insert id="insertRoom" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatRoomDTO">
+		<selectKey keyProperty="roomCode" resultType="int" order="BEFORE">
+			SELECT
+		           IFNULL(MAX(CHAT_ROOM_CODE) + 1, 1)
+		      FROM CHAT_ROOM
+		</selectKey>
+		INSERT
+		  INTO CHAT_ROOM
+		(
+		  CHAT_ROOM_CODE
+		, CHAT_ROOM_TITLE
+		)
+		VALUES
+		(
+		  #{roomCode}
+		, #{roomTitle}
+		)
+	</insert>
+	
+	<insert id="insertChatJoin" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO">
+		<selectKey keyProperty="joinCode" resultType="int" order="BEFORE">
+			SELECT
+		           IFNULL(MAX(CHAT_JOIN_CODE) + 1, 1)
+		      FROM CHAT_JOIN
+		</selectKey> 
+		
+		INSERT
+		  INTO CHAT_JOIN
+		(
+		  CHAT_JOIN_CODE
+		, USER_CODE
+		, CHAT_ROOM_CODE
+		)
+		VALUES
+		(
+		  #{joinCode}
+		, #{userCode}
+		, #{roomCode}
+		)
+	
+	</insert>
+	
+	<delete id="deleteJoinUser" parameterType="com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO">
+		DELETE
+		  FROM CHAT_JOIN
+		WHERE USER_CODE = #{userCode}
+		  AND CHAT_ROOM_CODE = #{roomCode}
+	</delete>
+	
+	<select id="selectJoinList" parameterType="Map" resultMap="joinList">
+		SELECT 
+			   CHAT_JOIN_CODE, 
+			   cj.USER_CODE,
+			   CHAT_ROOM_CODE,
+			   u.USER_EMAIL
+		  FROM CHAT_JOIN cj
+		  JOIN `USER` u ON ( cj.USER_CODE = u.USER_CODE )
+		 WHERE cj.CHAT_ROOM_CODE = #{roomCode}
+	
 	</select>
 	
 </mapper>
