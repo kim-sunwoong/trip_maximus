@@ -45,6 +45,16 @@ public class userGuideController {
 	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
+		// 1depth JSON DATA 확인
+		if(formDataMap == null) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "전송받은 데이터가 전혀 없습니다.");
+		}
+		
+		// 2depth JSON DATA 확인
+		if(formDataMap.get("formData") == null) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "전송받은 form 데이터가 없습니다.");
+		}
+		
 		/* JSON DATA 확인 */
 		System.out.println(formDataMap.get("formData").getClass().getName()); // LinkedHashMap
 		for (Map.Entry<String, Object> entry : formDataMap.get("formData").entrySet()) {
