@@ -366,6 +366,6 @@ public class userGuideController {
 		}
 		
 		/* 어떤것으로 JSON을 표현할지 생각 */
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(new String("성공~!!"));
 	}
 }
