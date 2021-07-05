@@ -326,23 +326,21 @@ function showMessage(e, time) {
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
 	
-	if(data.messageType == 'join'){
-		
-		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
-	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data.userEmail  
+	+ "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 	    
-	} else if(data.messageType == 'out'){
+	if(data.messageType == 'out'){
 		
-		const joins = joinList.getElementsById('joinUser');
-		
-		for(let i = 0; i < join.length; i++){
-			
+		const joins = joinList.getElementsByTagName('li');
+		for(let i = 0; i < joins.length; i++){
+			let join = joins[i].innerText;
+			let email = join.split(" ");
+			let reEmail = email[0].trim();
+			if(reEmail == data.userEmail){
+				joins[i].remove();
+			}
 		}
-
-		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
-	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 	}
-	
 };
 
 </script>
