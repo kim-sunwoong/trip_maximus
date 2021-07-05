@@ -67,6 +67,7 @@
 		, CHAT_ROOM_CODE
 		, USER_CODE
 		, MESSAGE_CONTENT
+		, MESSAGE_IMAGE
 		)
 	    VALUES
 	    (
@@ -75,6 +76,7 @@
 	    , #{roomCode}
 	    , #{userCode}
 	    , #{messageContent}
+	    , #{messageImage}
 	    )
 	</insert>
 	
