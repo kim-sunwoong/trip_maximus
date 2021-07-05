@@ -18,6 +18,7 @@
 			<result property="messageDate" column="MESSAGE_DATE"/>
 			<result property="userCode" column="USER_CODE"/>
 			<result property="userEmail" column="USER_EMAIL"/>
+			<result property="messageImage" column="MESSAGE_IMAGE"/>
 		</collection>
 		
 	</resultMap>
@@ -39,7 +40,8 @@
 			   u.USER_EMAIL,
 			   m.MESSAGE_CODE,
 			   m.MESSAGE_CONTENT,       
-			   m.MESSAGE_DATE 
+			   m.MESSAGE_DATE,
+			   m.MESSAGE_IMAGE
 		 </if>
 		 FROM CHAT_ROOM cr
 		 <if test="roomCode gt 0">

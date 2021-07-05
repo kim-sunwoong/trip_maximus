@@ -319,7 +319,7 @@ function showMessage(e, time) {
 	    joinMember(e);
     } else {
     	
-    	if(e.messageType == 'image'){
+    	if(e.messageImage != ''){
     		
     		if(e.userCode == ${sessionScope.loginUser.userCode}){
     	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
@@ -335,8 +335,9 @@ function showMessage(e, time) {
     	    	+ "' style='width:120px; height:120px; object-fit:cover;'> </div> </li> ";
     	    	space.scrollTop = space.scrollHeight;
     	    }
-    		
-    	} else if (e.messageType == 'message'){
+    	}
+    	
+    	if(e.messageContent != ''){
     		
     		if(e.userCode == ${sessionScope.loginUser.userCode}){
     	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
@@ -345,8 +346,8 @@ function showMessage(e, time) {
     	    	space.scrollTop = space.scrollHeight;
     	
     	    } else {
-    	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
-    	    	"</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
+    	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h2>" + e.userEmail + 
+    	    	"</h2> <h3>" + time + "</h3> </div> <div class='triangle'></div> <div class='message'>" +
     	    	e.messageContent + "</div> </li>";
     	    	space.scrollTop = space.scrollHeight;
     	    }
@@ -409,7 +410,7 @@ function imgView(data) {
 	
 }
 
-var messageImage;
+var messageImage = '';
 
 function uploadFile(){
     
@@ -468,35 +469,76 @@ function uploadFile(){
 			</header>
 			<!-- <div id="space"> -->
 				<ul id="chatting">
-							
+				
 					<c:forEach var="chat" items="${room.messageList }">
 						
 						<c:choose>
 							<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
-								<li class="me">
-									<div class="entete">
-										<h3><c:out value="${chat.messageDate }"/></h3>
-										<h2><c:out value="${chat.userEmail }"/></h2>
-										<span class="status blue"></span>
-									</div>
-									<div class="triangle"></div>
-									<div class="message">
-										<c:out value="${chat.messageContent }"/>
-									</div>
-								</li>
+										
+								<c:if test="${chat.messageImage != ''}">
+								
+									<li class="me">
+										<div class="entete">
+											<h3><c:out value="${chat.messageDate }"/></h3>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<span class="status blue"></span>
+										</div>
+										<div>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+										</div>
+									</li>
+									
+								</c:if>
+										
+								<c:if test="${chat.messageImage == null}">
+									
+									<li class="me">
+										<div class="entete">
+											<h3><c:out value="${chat.messageDate }"/></h3>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<span class="status blue"></span>
+										</div>
+										<div class="triangle"></div>
+										<div class="message">
+											<c:out value="${chat.messageContent }"/>
+										</div>
+									</li>
+									
+								</c:if>		
+									
 							</c:when>
 							<c:otherwise>
-								<li class="you">
-									<div class="entete">
-										<span class="status green"></span>
-										<h2><c:out value="${chat.userEmail }"/></h2>
-										<h3><c:out value="${chat.messageDate }"/></h3>
-									</div>
-									<div class="triangle"></div>
-									<div class="message">
-										<c:out value="${chat.messageContent }"/>
-									</div>
-								</li>
+							
+								<c:if test="${chat.messageImage != ''}">
+								
+									<li class="you">
+										<div class="entete">
+											<span class="status green"></span>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<h3><c:out value="${chat.messageDate }"/></h3>
+										</div>
+										<div>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+										</div>
+									</li>
+								
+								</c:if>
+								
+								<c:if test="${chat.messageImage == 'null'}">
+								
+									<li class="you">
+										<div class="entete">
+											<span class="status green"></span>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<h3><c:out value="${chat.messageDate }"/></h3>
+										</div>
+										<div class="triangle"></div>
+										<div class="message">
+											<c:out value="${chat.messageContent }"/>
+										</div>
+									</li>
+								
+								</c:if>
 							
 							</c:otherwise>
 							

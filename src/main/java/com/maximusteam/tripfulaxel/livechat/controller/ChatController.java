@@ -47,6 +47,7 @@ public class ChatController {
 		int messageResult = 0;
 		int joinResult = 0;
 		int deleteJoinResult = 0;
+		System.out.println("message insert field test : " + message.getMessageImage());
 		
 		if(message.getMessageType().equals("join")) {
 			
@@ -184,11 +185,6 @@ public class ChatController {
 		
 		List<ChatRoomDTO> roomList = chatService.selectChatRoom(parameter);
 		
-		System.out.println(roomList);
-//		내 채팅과 접속유저들의 채팅을 구분해서 나눔 처리
-		List<ChatMessageDTO> myChat = new ArrayList<ChatMessageDTO>();
-		List<ChatMessageDTO> youChat = new ArrayList<ChatMessageDTO>();
-		
 		if(roomCode != 0 && userCode != 0) {
 			
 			ChatRoomDTO room = roomList.get(0);
@@ -197,18 +193,7 @@ public class ChatController {
 			
 			room.setJoinUserList(joinList);
 			
-			for(ChatMessageDTO message : room.getMessageList()) {
-				
-				if(message.getUserCode() == userCode) {
-					myChat.add(message);
-				} else {
-					youChat.add(message);
-				}
-			}
-			
 			model.addAttribute("room", room);
-			model.addAttribute("myChat", myChat);
-			model.addAttribute("youChat", youChat);
 			
 			return "user/livechat/chat";
 		} else {
