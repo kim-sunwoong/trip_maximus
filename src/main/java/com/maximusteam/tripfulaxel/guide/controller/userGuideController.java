@@ -10,12 +10,15 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.ApiException;
+import com.maximusteam.tripfulaxel.ApiResponse;
+import com.maximusteam.tripfulaxel.testGuide;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
@@ -39,14 +42,8 @@ public class userGuideController {
 		this.guideService = guideService;
 	}
 	
-	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST)
-	public ResponseEntity<Object> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
-		if(formDataMap == null) {
-			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
-		}
-		if(formDataMap.size() == 0) {
-			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
-		}
+	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
 		/* JSON DATA 확인 */
 		System.out.println(formDataMap.get("formData").getClass().getName()); // LinkedHashMap
@@ -57,11 +54,6 @@ public class userGuideController {
 		System.out.println(formDataMap.get("imageData").getClass().getName()); // LinkedHashMap
 		for (Map.Entry<String, Object> entry : formDataMap.get("imageData").entrySet()) {
 			  System.out.println(entry.getKey() + ":" + entry.getValue());
-		}
-		if(formDataMap.get("imageData") == null) {
-			System.out.println(formDataMap.get("imageData").get("imageTrip").getClass().getName());
-		}else {
-			throw new ApiException(HttpStatus.BAD_REQUEST, "입력받은 정보가 없습니다");
 		}
 		
 		/* JSON 데이터를 알맞는 TABLE & DTO에 사용할 수 있도록 파싱한다. 
@@ -366,6 +358,14 @@ public class userGuideController {
 		}
 		
 		/* 어떤것으로 JSON을 표현할지 생각 */
-		return ResponseEntity.ok(new String("성공~!!"));
+	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "가이드 등록신청 완료"), HttpStatus.OK);
+	}
+	
+
+	/* 응답성공 */
+	@RequestMapping(value = "/api/insert/test/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public ResponseEntity<?> testGuide(@PathVariable int id){
+		System.out.println("test");
+	    return new ResponseEntity<testGuide>(new testGuide(id, "JAMES"), HttpStatus.OK);
 	}
 }
