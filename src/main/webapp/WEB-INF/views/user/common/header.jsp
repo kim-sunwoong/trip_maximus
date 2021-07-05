@@ -170,14 +170,9 @@ li.header_menu:hover {
    -webkit-animation: rotation 2s infinite linear;
 }
 
-@
--webkit-keyframes rotation {
-   from {-webkit-transform: rotate(359deg);
-}
-
-to {
-   -webkit-transform: rotate(0deg);
-}
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(359deg);}
+    to   {-webkit-transform: rotate(0deg);}
 }
 </style>
 
