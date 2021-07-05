@@ -1,16 +1,20 @@
 package com.maximusteam.tripfulaxel.trip.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +22,7 @@ import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
@@ -145,5 +150,23 @@ public class TripController {
 			return "user/trip/myTripList";
 		}
 		
+	}
+	
+	@PostMapping("insert/inquiry")
+	public void insertTripInquiry(@ModelAttribute TripInquiryDTO inquiry,  HttpServletResponse response) {
+		
+		
+		int result = tripService.insertTripInquiry(inquiry);
+		response.setCharacterEncoding("UTF-8");
+		
+		if(result > 0) {
+			try {
+				response.getWriter().print("여행 문의가 등록 되었습니다.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("여행 문의 등록 실패!");
+		}
 	}
 }

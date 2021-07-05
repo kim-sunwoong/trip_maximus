@@ -11,6 +11,7 @@ import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
 
 @Service
 public class TripServiceImpl implements TripService{
@@ -38,6 +39,10 @@ public class TripServiceImpl implements TripService{
 	public GuideDTO selectGuide(int tripCode) {
 		
 		return tripMapper.selectGuide(tripCode);
+	}
+
+	public int insertTripInquiry(TripInquiryDTO inquiry) {
+		return tripMapper.insertTripInquiry(inquiry);
 	}
 
 }
