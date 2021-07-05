@@ -524,7 +524,7 @@ function uploadFile(){
 								
 								</c:if>
 								
-								<c:if test="${chat.messageImage == 'null'}">
+								<c:if test="${chat.messageImage == null}">
 								
 									<li class="you">
 										<div class="entete">
