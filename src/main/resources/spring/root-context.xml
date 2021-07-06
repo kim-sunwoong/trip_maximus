@@ -33,9 +33,9 @@
 	<bean id="rdataSource" class="org.apache.commons.dbcp.BasicDataSource"
       destroy-method="close">
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-      <property name="url" value="jdbc:mysql://localhost/TRIPFULAXEL?" />
-      <property name="username" value="sunwoong" />
-      <property name="password" value="sunwoong" />
+      <property name="url" value="jdbc:mysql://13.209.158.238:3306/tripfulaxel__?" />
+      <property name="username" value="tripfulaxel" />
+      <property name="password" value="maximusTeam" />
       <property name="defaultAutoCommit" value="false" />
    </bean>
 	

@@ -560,7 +560,6 @@
 		)
 	</insert>
 	
-<<<<<<< HEAD
 	<select id="selectGuideInforamtionList" resultMap="guideList">
         SELECT 
                A.USER_CODE
