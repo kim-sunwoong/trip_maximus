@@ -560,6 +560,7 @@
 		)
 	</insert>
 	
+<<<<<<< HEAD
 	<select id="selectGuideInforamtionList" resultMap="guideList">
         SELECT 
                A.USER_CODE
@@ -637,4 +638,15 @@
                REGIST_TYPE_CODE = #{ registTypeCode }
          WHERE USER_CODE = #{ userCode }
 	</update>
+	
+	<select id="selectLogin" resultMap="adminList" parameterType="AdminDTO">
+		SELECT 
+		        ADMIN_NO
+		      , ADMIN_POSITION
+		      , ADMIN_NAME
+		      , ADMIN_EMAIL
+		      , ADMIN_PWD
+		 FROM ADMIN
+		WHERE  ADMIN_EMAIL = #{ adminEmail }
+	</select>
 </mapper>

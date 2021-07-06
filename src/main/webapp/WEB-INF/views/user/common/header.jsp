@@ -37,6 +37,8 @@
    href="/tripfulaxel/resources/user/css/html/main.css?ver=20210620">
 <link rel="stylesheet"
    href="/tripfulaxel/resources/user/css/html/common.css?ver=20210620">
+   <link rel="stylesheet"
+   href="/tripfulaxel/resources/user/css/html/common2.css?ver=20210620">
 <link rel="stylesheet"
    href="/tripfulaxel/resources/user/css/html/style.css?ver=20210620">
 
@@ -211,19 +213,19 @@ li.header_menu:hover {
                <!-- 히든 중복체크를 위한 것  -->
                <input type="hidden" id="check" name="check" value="fail">
 
-               <input type="text" id="userName" name="userName" value="홍길동"
+               <input type="text" id="userName" name="userName" value=""
                   required class="frm_input half_input" size="3"
                   placeholder="* 이름(예:홍길동)"> <input type="text"
-                  id="userPhone" name="userPhone" value="010-1234-5678" required
+                  id="userPhone" name="userPhone" value="" required
                   class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
 
                <input type="password" id="userPwd" name="userPwd"
-                  value="greedy1234" required class="frm_input half_input"
+                  value="" required class="frm_input half_input"
                   minlength="3" maxlength="20" placeholder="* 비밀번호"> <input
                   type="password" id="repassword" name="repassword" required
-                  value="greedy1234" class="frm_input half_input right_input"
+                  value="" class="frm_input half_input right_input"
                   minlength="3" maxlength="20" placeholder="* 비밀번호 확인"> <input
-                  type="text" id="userBday" name="userBday" value="19901129"
+                  type="text" id="userBday" name="userBday" value=""
                   required class="frm_input half_input"
                   placeholder="* 출생연도(예:19900120)">
 
@@ -245,7 +247,7 @@ li.header_menu:hover {
                <p class="checkbox_wrap">
                   <input type="checkbox" id="agree_all"> <label
                      for="agree_all"> <i id="agree_all_i"></i> <span>아래
-                        약관에 모두 동의합니다.</span>
+                                           약관에 모두 동의합니다.</span>
                   </label>
                </p>
 
@@ -321,9 +323,9 @@ li.header_menu:hover {
                   <a href="javascript:void(0);"
                   class="find_password_link txt_sm txt_bold">비밀번호 찾기/</a> 
                   <a href="javascript:void(0);" class="find_id_link txt_sm txt_bold">이메일(ID)
-                     찾기</a></li>
-               <li class="floatR"><a href="javascript:void(0);"
-                  class="signup_link txt_sm txt_bold">회원가입</a></li>
+                                         찾기</a></li>
+               <li class="floatR"><a href="${ pageContext.servletContext.contextPath }/admin/loginpage"
+                  class="txt_bold">관리자 로그인</a></li>
             </ul>
          </div>
       </div>
@@ -693,7 +695,7 @@ li.header_menu:hover {
          // 약관동의 체크
          if ($("#agree_1").is(":checked") !== true
                || $("#agree_2").is(":checked") !== true) {
-            alert("서비스 이용약관에 동의하세요.");
+            alert("회원가입 및 운영약관 , 개인정보 수집 및 이용에 동의하십시오.");
             return false;
          }
 
@@ -761,43 +763,43 @@ li.header_menu:hover {
                    href="javascript:void(0)">
                    <span style="color: white; font-size: 18px; font-weight: bold;">로그인</span>
                   </a></li>
+                  
+                  <li class="floatL"><a class="signup_link"
+                 href="javascript:void(0)"> <span
+                 style="color: white; font-size: 18px; font-weight: bold;">회원가입</span>
+                  </a></li>
+                  
                </c:if>
 
                <c:if test="${ !empty sessionScope.loginUser }">
                <li class="floatL">
-               <a class="login_link"
-               href="javascript:void(0)"> 
-            <span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
+               <a class="logout_link"
+               href="${ pageContext.servletContext.contextPath }/user/logout"> 
+               <span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
+            	
+            	
                 <li class="floatL">
                 <a href="${ pageContext.servletContext.contextPath }/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
-                                     마이페이지</span>
+                                          마이페이지</span>
                </a></li>
                </c:if>
+               
                
            
                  <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
                  <li class="floatL">
                 <a href="${ pageContext.servletContext.contextPath }/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
-                                   가이드페이지</span>
+                                       가이드페이지</span>
                </a></li>
-               </c:if>            
-
-               <li class="floatL"><a class="signup_link"
-                 href="javascript:void(0)"> <span
-                     style="color: white; font-size: 18px; font-weight: bold;">회원가입</span>
-               </a></li>
-
-               <li class="floatL"><a class=""
-                  href="${ pageContext.servletContext.contextPath }/admin/"> <span
-                     style="color: white; font-size: 18px; font-weight: bold;">admin</span>
-               </a></li>
+               </c:if>           
             </ul>
          </div>
-
-         <article class="find_btn_area floatR " style="margin-right: 15%;">
-
+		
+		
+         <article class="find_btn_area floatR " style="margin-right: 21%;margin-left: 10%; ">
+			<div class="category">
             <div style="margin-top: 5px; margin-bottom: -10px;">
                <a href="${ pageContext.servletContext.contextPath }/main"><img id="rotating_img"
                   style="width: 90px; height: 99px; object-fit: cover;"
@@ -826,15 +828,29 @@ li.header_menu:hover {
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;">여행 플래너</span></a></li>
       		
-      		  
+      		   <c:if test="${ empty sessionScope.loginUser }">
+               <li class="floatL header_menu" >
+                    <a class="btnLineC txt_md" href="javascript:alert('로그인 후 이용해주세요');">
+                    <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
+                </li>
+                </c:if>
+          
+                
+               <c:if test="${ !empty sessionScope.loginUser }">
                <li class="floatL header_menu">
                     <a href="${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0" class="btnLineC txt_md" >
                     <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
                 </li>
+                </c:if>
+                
                 
             </ul>
+            </div>
          </article>
-      </div>
+         </div>
+     
    </header>
+ 
+   
 </body>
 </html>

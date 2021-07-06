@@ -85,11 +85,8 @@ public interface AdminMapper {
 	int updateEnrollRegistStatus(GuideDTO guide);
 
 	int updateGuideInformationRegistStatus(GuideDTO guide);
-
 	
-
-	
-
+	AdminDTO selectLogin(AdminDTO admin);
 
 
 }
