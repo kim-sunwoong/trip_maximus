@@ -150,8 +150,7 @@
                                         <td>프로필 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}">
-                                        	
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}" style="width:400px; height:400px;">
                                         </td>
                                     </tr>
 
@@ -159,7 +158,7 @@
                                         <td>신분증 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}">
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}" style="width:400px; height:400px;">
                                         </td>
                                     </tr>
                                     <tr>
@@ -188,12 +187,12 @@
 											</select>
                                         </td>
                                     </tr>
-                                     <tr> 
-                                     <td colspan="2"  class="text-center">
-                                      <input type="submit" value="완료" class="btn btn-success">
-                                      <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
-                                     </td>
-                                    </tr>
+                                      <tr> 
+                                        <td colspan="2"  class="text-center">
+                                          <input type="submit" value="완료" class="btn btn-success">
+                                          <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
+                                        </td>
+                                      </tr>
                                     </table>
                                    </form>
                             </div>
