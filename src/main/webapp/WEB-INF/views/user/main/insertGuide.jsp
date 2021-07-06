@@ -506,13 +506,15 @@
 	            cache : false,
 	            async : false,
 	            success : function(data) {
-/* 	                var jsonObj = JSON.parse(data);
- */	                // 성공했을시
-	                // 실패했을시
-	                console.log("success");
-	            }, 
-	            error : function(xhr, status) {
-	                alert(xhr + " : " + status);
+	                if(data.httpStatus == "OK"){
+	                	alert("가이드 신청이 정상으로 완료되었습니다!\n상단의 가이드페이지에서 심사현황을 확인할 수 있습니다 ");
+	                }else if(data.httpStatus == ){
+	                	alert("가이드 신청 중 알수없는 에러가 발생하였습니다\n 다시 시도해주세요! ");
+	                }
+					 window.location.href = "${pageContext.request.contextPath}/"
+	            },
+	            error : function(xhr, status, error) {
+	                alert(error);
 	            }
 	       	 });
 		});

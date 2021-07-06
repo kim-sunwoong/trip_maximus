@@ -25,6 +25,6 @@
   		<typeAlias alias="TripThemeChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO"/>	
   		<typeAlias alias="TripTransitChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO"/>	
   	</typeAliases>
-
+  	
  	
  </configuration>
