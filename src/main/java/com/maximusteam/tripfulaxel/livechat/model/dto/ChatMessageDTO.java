@@ -10,6 +10,7 @@ public class ChatMessageDTO {
 	private int roomCode;
 	private String userEmail;
 	private String messageType;
+	private String messageImage;
 	
 
 	public ChatMessageDTO() {
@@ -18,7 +19,7 @@ public class ChatMessageDTO {
 
 
 	public ChatMessageDTO(int messageCode, String messageContent, String messageDate, int userCode, int roomCode,
-			String userEmail, String messageType) {
+			String userEmail, String messageType, String messageImage) {
 		super();
 		this.messageCode = messageCode;
 		this.messageContent = messageContent;
@@ -27,6 +28,7 @@ public class ChatMessageDTO {
 		this.roomCode = roomCode;
 		this.userEmail = userEmail;
 		this.messageType = messageType;
+		this.messageImage = messageImage;
 	}
 
 
@@ -100,17 +102,25 @@ public class ChatMessageDTO {
 	}
 
 
+	public String getMessageImage() {
+		return messageImage;
+	}
+
+
+	public void setMessageImage(String messageImage) {
+		this.messageImage = messageImage;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ChatMessageDTO [messageCode=" + messageCode + ", messageContent=" + messageContent + ", messageDate="
 				+ messageDate + ", userCode=" + userCode + ", roomCode=" + roomCode + ", userEmail=" + userEmail
-				+ ", messageType=" + messageType + "]";
+				+ ", messageType=" + messageType + ", messageImage=" + messageImage + "]";
 	}
 
 
 	
-	
-
 	
 	
 }

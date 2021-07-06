@@ -14,6 +14,7 @@ public class TripDTO {
 	private String include;
 	private String nInclude;
 	private Date tripEndDate;
+	private int tripRegistCode;
 	
 	private List<TripCourseDTO> tripCourseList;
 	private List<ImageDTO> tripImgList;
@@ -41,11 +42,12 @@ public class TripDTO {
 	}
 
 	public TripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, String meetLocation,
-			String include, String nInclude, Date tripEndDate, List<TripCourseDTO> tripCourseList,
+			String include, String nInclude, Date tripEndDate, int tripRegistCode, List<TripCourseDTO> tripCourseList,
 			List<ImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
 			int joinTripCode, int joinTripMaximum, int guideTripCode, int payment, int guideTripMinimum,
 			int guideTripMaximum, int userTripCode, String userTripComentTitle, String userTripComent,
 			int userTripComentPoint) {
+		super();
 		this.tripCode = tripCode;
 		this.tripTitle = tripTitle;
 		this.tripIntro = tripIntro;
@@ -54,6 +56,7 @@ public class TripDTO {
 		this.include = include;
 		this.nInclude = nInclude;
 		this.tripEndDate = tripEndDate;
+		this.tripRegistCode = tripRegistCode;
 		this.tripCourseList = tripCourseList;
 		this.tripImgList = tripImgList;
 		this.tripThemeList = tripThemeList;
@@ -132,6 +135,14 @@ public class TripDTO {
 
 	public void setTripEndDate(Date tripEndDate) {
 		this.tripEndDate = tripEndDate;
+	}
+
+	public int getTripRegistCode() {
+		return tripRegistCode;
+	}
+
+	public void setTripRegistCode(int tripRegistCode) {
+		this.tripRegistCode = tripRegistCode;
 	}
 
 	public List<TripCourseDTO> getTripCourseList() {
@@ -250,14 +261,15 @@ public class TripDTO {
 	public String toString() {
 		return "TripDTO [tripCode=" + tripCode + ", tripTitle=" + tripTitle + ", tripIntro=" + tripIntro
 				+ ", tripStartDate=" + tripStartDate + ", meetLocation=" + meetLocation + ", include=" + include
-				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", tripCourseList=" + tripCourseList
-				+ ", tripImgList=" + tripImgList + ", tripThemeList=" + tripThemeList + ", tripTransitList="
-				+ tripTransitList + ", joinTripCode=" + joinTripCode + ", joinTripMaximum=" + joinTripMaximum
-				+ ", guideTripCode=" + guideTripCode + ", payment=" + payment + ", guideTripMinimum=" + guideTripMinimum
-				+ ", guideTripMaximum=" + guideTripMaximum + ", userTripCode=" + userTripCode + ", userTripComentTitle="
-				+ userTripComentTitle + ", userTripComent=" + userTripComent + ", userTripComentPoint="
-				+ userTripComentPoint + "]";
+				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", tripRegistCode=" + tripRegistCode
+				+ ", tripCourseList=" + tripCourseList + ", tripImgList=" + tripImgList + ", tripThemeList="
+				+ tripThemeList + ", tripTransitList=" + tripTransitList + ", joinTripCode=" + joinTripCode
+				+ ", joinTripMaximum=" + joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment
+				+ ", guideTripMinimum=" + guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum
+				+ ", userTripCode=" + userTripCode + ", userTripComentTitle=" + userTripComentTitle
+				+ ", userTripComent=" + userTripComent + ", userTripComentPoint=" + userTripComentPoint + "]";
 	}
 
+    
 	
 }

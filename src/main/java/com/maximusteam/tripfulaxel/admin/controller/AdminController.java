@@ -2,24 +2,31 @@ package com.maximusteam.tripfulaxel.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.AdminDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.LevelUpDTO;
-import com.maximusteam.tripfulaxel.admin.model.dto.AdminAnswerDTO;
 import com.maximusteam.tripfulaxel.admin.model.dto.ReportDTO;
 import com.maximusteam.tripfulaxel.admin.model.service.AdminService;
 
 @Controller
 @RequestMapping("/admin/*")
+@SessionAttributes("loginAdmin")
 public class AdminController {
 
 	private final AdminService adminService;
@@ -219,5 +226,39 @@ public class AdminController {
 		int insertGuideInformationFix = adminService.insertGuideInformationFix(guide);
 		model.addAttribute("insertGuideInformationFix", insertGuideInformationFix);
 		return "redirect:guideInforamtionList";
+	}
+	/**
+	 * 로그인용 메소드
+	 * @param admin
+	 * @return
+	 */
+	@PostMapping("login")
+	public String selectLogin(@ModelAttribute AdminDTO admin,HttpServletRequest request ,Model model) {
+		
+		System.out.println("관리자가 입력한 이메일 " + admin.getAdminEmail());
+		System.out.println("관리자가 입력한 비밀번호 " + admin.getAdminPwd());
+		
+		AdminDTO admindto = adminService.selectLogin(admin);
+		System.out.println("입력한 정보 : " + admindto);
+		
+		if(admindto != null ) {
+			
+			System.out.println(" 관리자 로그인 성공 ");
+			HttpSession session = request.getSession();
+			session.setAttribute("LoginAdmin", adminService.selectLogin(admin));
+			
+			return "admin/mainPage";
+		} else {
+			
+			System.out.println("관리자 로그인 실패 ");
+			
+			return "admin/login";
+		}
+		
+	}
+	
+	@GetMapping("loginpage")
+	public String loginpage() {
+		return "admin/login";
 	}
 }

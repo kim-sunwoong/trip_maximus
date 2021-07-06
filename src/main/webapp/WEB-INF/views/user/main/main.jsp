@@ -173,11 +173,11 @@ li.header_menu:hover {
    <jsp:include page="../common/header.jsp"></jsp:include>
 
 
-
+<body>
    <!-- 본문 영역 시작 -->
    <div class="index">
 
-      <div class="bd-example" style="width: 1070px !important; margin: auto">
+       <div class="bd-example" style="width: 1070px !important; margin: auto">
          <div id="carouselExampleCaptions" class="carousel slide"
             data-ride="carousel">
 
@@ -189,7 +189,7 @@ li.header_menu:hover {
                   AXEL</h2>
                <p class="txtG txt_md">: 당신의 여행에 가속을</p>
 
-            </div>
+            </div>  
 
             <ol class="carousel-indicators">
                <li data-target="#carouselExampleCaptions" data-slide-to="0"
@@ -470,10 +470,9 @@ li.header_menu:hover {
       }
    </script>
    <!-- //본문 영역 끝 -->
-
    <jsp:include page="../common/footer.jsp"></jsp:include>
-
-
+ 
+</body>
    <style>
 .best_list .info {
    height: 120px;

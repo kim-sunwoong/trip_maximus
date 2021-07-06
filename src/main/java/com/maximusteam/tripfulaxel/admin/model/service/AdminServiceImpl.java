@@ -273,6 +273,14 @@ public class AdminServiceImpl implements AdminService {
 	public int updateGuideInformationRegistStatus(GuideDTO guide) {
 		return mapper.updateGuideInformationRegistStatus(guide);
 	}
+	/**
+	 * 로그인용 메소드 
+	 */
+	@Override
+	public AdminDTO selectLogin(AdminDTO admin) {
+	
+		return mapper.selectLogin(admin);
+	}
 
 
 

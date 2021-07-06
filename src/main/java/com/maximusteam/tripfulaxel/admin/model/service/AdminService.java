@@ -79,6 +79,8 @@ public interface AdminService {
 	GuideDTO selectGuideInformationDetail(int no);
 
 	int insertGuideInformationFix(GuideDTO guide);
+
+	AdminDTO selectLogin(AdminDTO admin);
 	
 	int updateGuideInformationRequestStatus(GuideDTO guide);
 	

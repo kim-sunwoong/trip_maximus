@@ -1,9 +1,15 @@
 package com.maximusteam.tripfulaxel.livechat.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -16,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatJoinUserDTO;
 import com.maximusteam.tripfulaxel.livechat.model.dto.ChatMessageDTO;
@@ -40,6 +47,7 @@ public class ChatController {
 		int messageResult = 0;
 		int joinResult = 0;
 		int deleteJoinResult = 0;
+		System.out.println("message insert field test : " + message.getMessageImage());
 		
 		if(message.getMessageType().equals("join")) {
 			
@@ -90,6 +98,54 @@ public class ChatController {
 		}
 	}
 	
+	@PostMapping("share/insert/imgMessage")
+	public void insertImgMessage(Model model, 
+			@RequestParam(name="imgMessage", required=false) MultipartFile imgMessage, 
+			HttpServletResponse response, HttpServletRequest request) {
+		
+		/*
+		 * multipart로 전송된 request에 대한 인코딩 처리를 해주어야 하는데 일반 인코딩 필터보다 구현하기 힘들다.
+		 * 스프링에서 인코딩 필터를 제공한다. --> web.xml에 필터를 등록
+		 */
+		System.out.println("imgMessage : " + imgMessage);
+		
+		/*
+		 * 파일을 저장할 경로 설 
+		 */
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		System.out.println("root : " + root);
+		
+		String filePath = root + "/images/message";
+		
+		// 객체 생성할때 경로가 있나 확인
+		File mkdir = new File(filePath);
+		if(!mkdir.exists()) {
+			mkdir.mkdir();
+		}
+		
+		// 파일명 변경 처리
+		String orignFileName = imgMessage.getOriginalFilename();
+		String ext = orignFileName.substring(orignFileName.lastIndexOf("."));
+		String saveName = UUID.randomUUID().toString().replace("-", "") + ext;
+		
+		// 파일을 저장한다.
+		
+		try {
+			imgMessage.transferTo(new File(filePath + "/" + saveName));
+			
+			model.addAttribute("message", "파일 업로드 성공!!");
+			
+			response.getWriter().print(saveName);
+			
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+			
+//			실패시 파일 삭제
+			new File(filePath + "/" + saveName).delete();
+		}
+		
+	}
+	
 	@RequestMapping("/share/insert/chatRoom")
 	public String insertChatRoom(Model model, @RequestParam String roomTitle, int userCode) {
 		
@@ -129,11 +185,6 @@ public class ChatController {
 		
 		List<ChatRoomDTO> roomList = chatService.selectChatRoom(parameter);
 		
-		System.out.println(roomList);
-//		내 채팅과 접속유저들의 채팅을 구분해서 나눔 처리
-		List<ChatMessageDTO> myChat = new ArrayList<ChatMessageDTO>();
-		List<ChatMessageDTO> youChat = new ArrayList<ChatMessageDTO>();
-		
 		if(roomCode != 0 && userCode != 0) {
 			
 			ChatRoomDTO room = roomList.get(0);
@@ -142,18 +193,7 @@ public class ChatController {
 			
 			room.setJoinUserList(joinList);
 			
-			for(ChatMessageDTO message : room.getMessageList()) {
-				
-				if(message.getUserCode() == userCode) {
-					myChat.add(message);
-				} else {
-					youChat.add(message);
-				}
-			}
-			
 			model.addAttribute("room", room);
-			model.addAttribute("myChat", myChat);
-			model.addAttribute("youChat", youChat);
 			
 			return "user/livechat/chat";
 		} else {

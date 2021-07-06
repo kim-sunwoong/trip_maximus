@@ -63,6 +63,7 @@
 		<result property="include" column="TRIP_INCLUDE"/>
 		<result property="nInclude" column="TRIP_N_INCLUDE"/>
 		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		<result property="tripRegistCode" column="TRIP_REGIST_LIST_CODE"/>
 		
 		<!-- join trip 부분 -->		
 		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
@@ -143,6 +144,7 @@
 		   THEME_CHOICE_CODE,
 		   t2.THEME_CODE,
 		   t.TRIP_CODE,
+		   TRIP_REGIST_LIST_CODE,
 		   
 		<if test="condition.sortCondition eq '인기순'.toString()">
 		 	IFNULL(iv.CNT, 0) as rvcnt,
@@ -292,5 +294,32 @@
  	    JOIN GUIDE_IMAGE gi ON (g.GUIDE_CODE = gi.GUIDE_CODE)
  	   WHERE trl.TRIP_CODE = #{tripCode}
 	</select>
+	
+	<insert id="insertTripInquiry" parameterType="com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO">
+		
+		<selectKey keyProperty="inquiryCode" resultType="int" order="BEFORE">
+			SELECT
+ 				   IFNULL(MAX(ti.TRIP_INQUIRY_CODE) + 1, 1)
+ 			  FROM TRIP_INQUIRY ti
+		</selectKey>
+		INSERT 
+		  INTO TRIP_INQUIRY
+		(
+		  TRIP_INQUIRY_CODE
+		, INQUIRY_REASON
+		, INQUIRY_YN
+		, TRIP_REGIST_LIST_CODE
+		, USER_CODE
+		)
+		VALUES
+		(
+		  #{inquiryCode}
+		, #{inquiryContent}
+		, 'N'
+		, #{tripRegistCode}
+		, #{userCode}
+		)
+		
+	</insert>
 	
 </mapper>
