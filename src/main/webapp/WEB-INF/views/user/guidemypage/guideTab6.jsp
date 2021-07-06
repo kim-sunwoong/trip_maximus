@@ -17,9 +17,19 @@
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/common.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/style.css?ver=20210620">
 <!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
-    	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/html/joonho_new.css">
+    	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
     <style type="text/css">
     button {background: none;}
+        #detail thead th {
+            text-align: center;
+
+        }
+
+        #detail tbody th {
+            text-align: center;
+        }
+
+        /* #detail_content thead { width: 50%; height: 70px;} */
     </style>
 </head>
 <body>

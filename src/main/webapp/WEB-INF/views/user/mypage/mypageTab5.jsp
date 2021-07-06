@@ -25,6 +25,7 @@
         .exit {width: 70px; height: 30px; border: 1px solid black;}
         input {border:1px solid rgba(0,0,0,0.4) !important;}
         th, td {height: 40px !important;}
+        /* tbody tr {background-color: #F7FAFC !important;} */
     </style>
 </head>
 <body>
@@ -44,8 +45,8 @@
             <div class="tabList" style="margin: 0 auto;">
                 <div class="tabb" ><a class="pic1" href="${pageContext.request.contextPath}/user/mypage/mypageTab1">같이가요 신청내역</a></div>
                 <div class="tabb" ><a class="pic2" href="${pageContext.request.contextPath}/user/mypage/mypageTab2">가이드여행 신청내역</a></div>
-                <div class="tabb" style="width: 270px;"><a class="pic3" href="${pageContext.request.contextPath}/user/mypage/mypageTab3">나만의 여행후기</a></div>
-                <div class="tabb" style="width: 270px;"><a class="pic4" href="${pageContext.request.contextPath}/user/mypage/mypageTab4">나만의 같이가요</a></div>
+                <div class="tabb" style="width: 270px;"><a class="pic3" href="${pageContext.request.contextPath}/user/mypage/mypageTab3">나만의 같이가요</a></div>
+                <div class="tabb" style="width: 270px;"><a class="pic4" href="${pageContext.request.contextPath}/user/mypage/mypageTab4">나만의 여행후기</a></div>
                 <div class="tabb" style="border: 3px solid blue;"><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
@@ -54,14 +55,13 @@
 
         <div id="detail_content">
             <div id="detail">
-                <!-- <div class="exit">회원탈퇴</div> -->
 
                 <table width="500" height="500" align="center" style="margin-top:100px; margin: 0 auto;">
                     <tr>
-                        <td colspan="2" height="80"><h3>회원정보 수정</h3></td>
+                        <td colspan="2" height="80" style=" background-color: #F7FAFC;"><h3>회원정보 수정</h3></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: white;">
                         <td></td>
                         <td></td>
                     </tr>
@@ -69,7 +69,7 @@
                         <td>이름</td>
                         <td><input type="text" name="name"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>생년월일</td>
                         <td><input type="text" name="birth"></td>
                     </tr>
@@ -77,31 +77,31 @@
                         <td>이메일</td>
                         <td><input type="text" name="email"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>연락처</td>
                         <td><input type="text" name="tel"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td colspan="2"></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>이전 비밀번호</td>
                         <td><input type="text" name="id"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호</td>
                         <td><input type="password" name="pass"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호 확인</td>
                         <td><input type="password" name="pass2"></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: white;">
                         <td colspan="2"></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #F7FAFC;">
                         <td align="center" colspan="2"><input type="submit" class="buttonset" value="변경하기" style="font-family: 'noto sans KR', serif; width: 80px;  height: 30px"></td>
                     </tr>
 					</table>
