@@ -183,12 +183,24 @@ public class AdminServiceImpl implements AdminService {
 		
 		int result = 0;
 		result = mapper.insertGuideEnroll(guide);
-		updateEnrollRequestStatus(guide);
+		result += updateEnrollRequestStatus(guide);
 		
-		if( result > 0 && guide.getExamineCode() == 2) {
-			updateEnrollGuideStatus(guide);
-			updateEnrollUserStatus(guide);
-		}
+		if( result > 1 && guide.getExamineCode() == 2 && guide.getRegistTypeCode() == 3) {
+			result += updateEnrollGuideStatus(guide);
+			result += updateEnrollUserStatus(guide);
+			result += updateEnrollRegistStatus(guide);
+			
+			if(result > 4) {
+				return result;
+			}
+		} else if ( result > 1 && guide.getExamineCode() == 3 && guide.getRegistTypeCode() == 4) {
+			result += updateEnrollRegistStatus(guide);
+			
+			if(result > 2) {
+				return result;
+			}
+		} 
+		
 		return result;
 	}
 
@@ -210,6 +222,56 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int updateEnrollUserStatus(GuideDTO guide) {
 		return mapper.updateEnrollUserStatus(guide);
+	}
+
+	@Override
+	public List<GuideDTO> selectGuideInforamtionList() {
+		return mapper.selectGuideInforamtionList();
+	}
+
+	@Override
+	public GuideDTO selectGuideInformationDetail(int no) {
+		return mapper.selectGuideInformationDetail(no);
+	}
+
+	
+	@Override
+	public int insertGuideInformationFix(GuideDTO guide) {
+		
+		int result = 0;
+		result = mapper.insertGuideInformationFix(guide);
+		updateGuideInformationRequestStatus(guide);
+				
+		if( result > 1 && guide.getRegistTypeCode() == 3) {
+			updateGuideInformationRegistStatus(guide);
+			
+			if(result > 2) {
+				return result;
+			}
+		} else if (result > 1 && guide.getRegistTypeCode() == 2) {
+			updateGuideInformationRegistStatus(guide);
+			
+			if(result > 2) {
+				return result;
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int updateGuideInformationRequestStatus(GuideDTO guide) {
+		return mapper.updateGuideInformationRequestStatus(guide);
+	}
+
+	@Override
+	public int updateEnrollRegistStatus(GuideDTO guide) {
+		return mapper.updateEnrollRegistStatus(guide);
+	}
+
+	@Override
+	public int updateGuideInformationRegistStatus(GuideDTO guide) {
+		return mapper.updateGuideInformationRegistStatus(guide);
 	}
 
 

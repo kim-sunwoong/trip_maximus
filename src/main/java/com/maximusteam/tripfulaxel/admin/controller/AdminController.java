@@ -196,4 +196,28 @@ public class AdminController {
 		model.addAttribute("insertWorkerEnroll", insertWorkerEnroll);
 		return "redirect:workerList";
 	}
+	
+	@GetMapping("guideInforamtionList")
+	public String selectGuideInforamtionList(Model model) {
+
+		model.addAttribute("selectGuideInforamtionList", adminService.selectGuideInforamtionList());
+
+		return "admin/guideInfromationFix";
+	}
+	
+	@GetMapping("guideInformationDetail")
+	public String selectGuideInformationDetail(@RequestParam("guideNo") int no, Model model) {
+		model.addAttribute("selectGuideInformationDetail", adminService.selectGuideInformationDetail(no));
+		model.addAttribute("selectProfilePic", adminService.selectProfilePic(no));
+		model.addAttribute("selectIdPic", adminService.selectIdPic(no));
+		return "admin/guideInformationFixDetail";
+	}
+	
+	@PostMapping("insertGuideInformationFix")
+	public String insertGuideInformationFix(@ModelAttribute GuideDTO guide , Model model) {
+
+		int insertGuideInformationFix = adminService.insertGuideInformationFix(guide);
+		model.addAttribute("insertGuideInformationFix", insertGuideInformationFix);
+		return "redirect:guideInforamtionList";
+	}
 }

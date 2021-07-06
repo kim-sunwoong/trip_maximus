@@ -111,44 +111,44 @@
                             </div>
 
                             <div class="card-body">
-                             <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertGuideEnroll"> 
+                             <form method="post" action="${ pageContext.servletContext.contextPath }/admin/insertGuideInformationFix"> 
                                 <table class="table table">
                                     <tr>
                                         <td style="width: 15%;">이름</td>
-                                        <td><input type="text"  class="form-control" name="name" value="${selectEnrollDetail.guideName}"></td>
+                                        <td><input type="text"  class="form-control" name="name" value="${selectGuideInformationDetail.guideName}"></td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 15%;">성별</td>
-                                        <td><input type="text"  class="form-control" name="gender" value="${selectEnrollDetail.guideGender}"></td>
+                                        <td><input type="text"  class="form-control" name="gender" value="${selectGuideInformationDetail.guideGender}"></td>
                                     </tr>
 
                                     <tr>
                                      <td style="width: 15%;">활동명</td>
-                                     <td><input type="text"  class="form-control" name="nickName" value="${selectEnrollDetail.guideNickname}"></td>
+                                     <td><input type="text"  class="form-control" name="nickName" value="${selectGuideInformationDetail.guideNickname}"></td>
                                     </tr>
                                     <tr>
                                      <td>가이드 경험 여부</td>
-                                     <td><input type="text"  class="form-control" name="experience" value="${selectEnrollDetail.guideExp}"></td>
+                                     <td><input type="text"  class="form-control" name="experience" value="${selectGuideInformationDetail.guideExp}"></td>
                                     </tr>
                                     <tr>
                                         <td>개인차량여부</td>
-                                        <td><input type="text"  class="form-control" name="car" value="${selectEnrollDetail.guideCar}"></td>
+                                        <td><input type="text"  class="form-control" name="car" value="${selectGuideInformationDetail.guideCar}"></td>
                                        </tr>
 
                                     <tr>
                                      <td>가이드 소개</td>
                                      <td>
-                                     	<input  type="text" name="guideContent" class="form-control" value="${selectEnrollDetail.guideIntro}" > 
+                                     	<input  type="text" name="guideContent" class="form-control" value="${selectGuideInformationDetail.guideIntro}"> 
                                      </td>
                                     </tr>
           							<tr>
                                      <td>가이드 여행소개</td>
                                      <td>
-                                     	<input  type="text" name="travelContent" class="form-control" value="${selectEnrollDetail.guideTravel}" > 
-                                     	<input  type="hidden" name="requestCode" value="${selectEnrollDetail.requestCode}">
-                                     	<input  type="hidden" name="guideCode" value="${selectEnrollDetail.guideCode}">
-                                     	<input  type="hidden" name="userCode" value="${selectEnrollDetail.userCode}">
+                                     	<input  type="text" name="travelContent" class="form-control" value="${selectGuideInformationDetail.guideTravel}"> 
+                                     	<input  type="hidden" name="requestCode" value="${selectGuideInformationDetail.requestCode}">
+                                     	<input  type="hidden" name="guideCode" value="${selectGuideInformationDetail.guideCode}">
+                                     	<input  type="hidden" name="userCode" value="${selectGuideInformationDetail.userCode}">
                                      </td>
                                     </tr>
                                                                     
@@ -190,7 +190,7 @@
                                         <td>
                                         	<select name="registTypeCode" class="select-time">
 												<option value="3">게시중</option>
-												<option value="4">게시안함</option>
+												<option value="2">수정중</option>
 											</select>
                                         </td>
                                     </tr>
