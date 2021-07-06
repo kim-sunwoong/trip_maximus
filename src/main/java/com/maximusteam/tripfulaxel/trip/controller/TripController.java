@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
@@ -60,17 +61,9 @@ public class TripController {
 			}
 		}
 		
-		for(TripDTO t : trip) {
-			System.out.println(t);
-		}
-		
 		if(condition.getTripType() != 3) {
 			
 			List<ReviewDTO> reviewList = tripService.selectReviewList(tripCode);
-			
-			for(ReviewDTO review : reviewList) {
-				System.out.println(review);
-			}
 			
 			model.addAttribute("reviewList", reviewList);
 			
@@ -79,12 +72,16 @@ public class TripController {
 		if(condition.getTripType() == 1) {
 			
 			GuideDTO guide = tripService.selectGuide(tripCode);
-			System.out.println("가이드");
-			System.out.println(guide);
 			model.addAttribute("guide", guide);
 		}
 		
 		model.addAttribute("trip", trip);
+		
+		System.out.println("trip Image list");
+		for(ImageDTO img : trip.get(0).getTripImgList()) {
+			System.out.println();
+			System.out.println(img);
+		}
 		
 		if(condition.getTripType() == 2) {
 			return "user/trip/joinTripDetail";

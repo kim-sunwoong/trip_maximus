@@ -24,7 +24,7 @@
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: skyblue;
   color: white;
 }
 </style>
@@ -45,9 +45,12 @@ function newRoom(){
 }
 </script>
 </head>
-<body>
 
-<table id="customers" align="center" style="width:700px;">
+<body>
+<jsp:include page="../common/header.jsp"></jsp:include>
+<div style="height:1300px;">
+<table id="customers" style="width:800px; margin-left: 25%;">
+<h1 style="font-color:skyblue;">실시간 정보공유 채팅방 리스트</h1>
   <tr>
     <th>채팅방 타이틀</th>
   </tr>
@@ -65,6 +68,8 @@ function newRoom(){
   	</th>
   </tr>
 </table>
+</div>
+<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>
 
