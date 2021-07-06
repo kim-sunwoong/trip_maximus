@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 
 public interface UserMypageMapper {
@@ -19,6 +20,8 @@ public interface UserMypageMapper {
 	
 	List<JoinTripListDTO> selectMyJoinList();
 	List<JoinTripListDTO> selectMyJoinList2();
+	
+	List<ReqListDTO> selectRequestList();
 
 
 }

@@ -20,7 +20,12 @@
 <!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/mytripreviewmodal.css">
-    <style type="text/css">button {background: none; border:none !important;}</style>
+    <style type="text/css">button {background: none; border:none !important;}
+    #detail thead th {
+            text-align: center;
+            
+        }
+        #detail tbody th {text-align: center;}</style>
     <script>
         function PopUp(){
     var pop1 = document.querySelector(".bg");
@@ -77,10 +82,11 @@ function cancel(){
                         <tr>
                             <th>여행제목</th>
                             <th>신청일자</th>
-                            <th>여행진행상태</th>
                             <th>가이드</th>
                             <th>1인당 가격</th>
                             <th>결제금액</th>
+                            <th>취소여부</th>
+                            <th>진행상태</th>
                         </tr>
                     </thead>
                     <tbody style="margin-top: 20px;">
@@ -88,54 +94,22 @@ function cancel(){
                         <tr>
                             <td><c:out value="${g.gTripTitle}"/></td>
                             <td><c:out value="${g.gTripDate}"/></td>
-                            <td></td>           
                             <td><c:out value="${g.gName}"/></td>
                             <td><c:out value="${g.price}"/></td>
                             <td><c:out value="${g.payment}"/></td>
+                            <td><c:out value="${j.status.TripCancelYN}"/></td>
+                            <c:set var="today" value="<%= new java.util.Date() %>"/>
+                            <c:set var="endDate" value="${j.status.tripEndDate}"/>
+                            <c:choose>
+                            <c:when test="endDate > today"><td>참여</td></c:when>
+                            <c:when test="endDate < today && ${j.status.reviewCode == null}"><td>후기쓰러가기</td></c:when>
+                            <c:when test="${j.status.reviewCode != null}"><td>후기보러가기</td></c:when>
+                            <c:otherwise><td>불참</td></c:otherwise>
+                            </c:choose>
                         </tr>
                         </c:forEach>
                         
                     
-                        <!-- <tr>
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                            <td>후기작성완료</td>
-                            <td>홍길동</td>
-                            <td>25000</td>
-                            <td>4/4</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 오징어 투어</td>
-                            <td>2021/04/19</td>
-                            <td>불참</td>
-                            <td>홍길동</td>
-                            <td>25000</td>
-                            <td>4/4</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 김치 투어</td>
-                            <td>2021/05/15</td>
-                            <td onclick="PopUp();"><button style="border: 1px solid blue; font-weight: 600;">후기쓰러가기</button></td>
-                            <td>홍길동</td>
-                            <td>25000</td>
-                            <td>4/4</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 꽁치 투어</td>
-                            <td>2021/06/21</td>
-                            <td>참석</td>
-                            <td>홍길동</td>
-                            <td>25000</td>
-                            <td>4/4</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 꽁치 투어</td>
-                            <td>2021/07/21</td>
-                            <td>신청완료</td>
-                            <td>홍길동</td>
-                            <td>25000</td>
-                            <td>4/4</td>
-                        </tr> -->
                     </tbody>
 
                 </table>

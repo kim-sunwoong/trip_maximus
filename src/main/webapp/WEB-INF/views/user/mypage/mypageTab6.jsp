@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +34,9 @@
 	href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/user/css/mypage/tab7menu.css">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
 <style>
 /* #detail thead th {border-top: 3px solid rgba(0, 0, 0, 0.7);} */
 #contact-area {
@@ -72,34 +78,45 @@
 
 		<div id="detail_content">
 			<div id="detail">
+			
+				<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; width: 50%; margin:0 auto;">
+				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">관리자 문의 내역</label>
+				
+				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">여행 문의 내역</label>
+				
+				</div>
+			
 				<table align="center" class="detailTable"
-					style="border-collapse: collapse;">
-
+					style="border-collapse: collapse; margin: 0 auto; table-layout: fixed;">
 
 					<thead>
 						<tr>
-							<th>관리자 문의 내용</th>
-							<th style="width: 4%;">문의 대상</th>
-							<th style="width: 4%;">문의 진행상황</th>
-							<th style="width: 4%;">문의 날짜</th>
+							<th style="width:200px; padding:0 5px; text-align: center;">문의 제목</th>
+							<th style="width: 24%; text-align: center;">문의 진행상황</th>
+							<th style="width: 24%; text-align: center;">문의 날짜</th>
 						</tr>
 					</thead>
 
 
 					<tbody style="margin-top: 20px;" onclick="hide();">
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>관리자</td>
-							<td>처리완료</td>
-							<td>2021/03/21</td>
-						</tr>
-					</tbody>
+					
+					<c:forEach items="${reqList}" var="q">
+						<%-- <c:set var="str" value="${q.reqReason}"/> --%>
+                        <tr>
+                            <td style="width:300px; display:block; overflow : hidden;text-overflow : ellipsis; height : auto; white-space: nowrap; margin: 0 auto; padding-top: 7%;">
+                            <c:out value="${q.reqReason}"/></td>
+                            <%-- <c:out value="${ fn:substring(str,0,17) }"/>...</td> --%>
+                            <td><c:out value="${q.reqYN}"/></td>
+                            <td><c:out value="${q.reqDate}"/></td>
+                        </tr>
+                        </c:forEach>
 
 
 
 
 
-					<tbody>
 						<tr>
 							<td colspan="4">
 								<div id="contact-area" style="margin: 0 auto; clear: both;">
@@ -145,77 +162,11 @@
 								</div>
 							</td>
 						</tr>
-					</tbody>
 
 
 
 
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>가이드여행</td>
-							<td>처리중</td>
-							<td>2021/06/21</td>
-						</tr>
-					</tbody>
-
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>관리자</td>
-							<td>처리완료</td>
-							<td>2021/03/21</td>
-						</tr>
-					</tbody>
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>가이드여행</td>
-							<td>처리중</td>
-							<td>2021/06/21</td>
-						</tr>
-					</tbody>
-
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>관리자</td>
-							<td>처리완료</td>
-							<td>2021/03/21</td>
-						</tr>
-					</tbody>
-
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>가이드여행</td>
-							<td>처리중</td>
-							<td>2021/06/21</td>
-						</tr>
-					</tbody>
-
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>관리자</td>
-							<td>처리완료</td>
-							<td>2021/03/21</td>
-						</tr>
-					</tbody>
-
-
-					<tbody>
-						<tr>
-							<td>저속한언어로 사이트를 혼란시키고 있습니다.</td>
-							<td>가이드여행</td>
-							<td>처리중</td>
-							<td>2021/06/21</td>
-						</tr>
+					
 					</tbody>
 
 				</table>

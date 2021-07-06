@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +80,7 @@
                             <th>여행제목</th>
                             <th>신청일자</th>
                             <th>인원현황</th>
+                            <!-- <th>취소여부</th> -->
                             <th>진행상태</th>
                         </tr>
                     </thead>
@@ -88,9 +90,19 @@
                             <td><c:out value="${mj.tripTitle}"/></td>
                             <td><c:out value="${mj.joinTripDate}"/></td>
                             <td><c:out value="${mj.countUser}"/></td>
+                            <%-- <td><c:out value="${mj.status.tripCancelYN}"/></td> --%>
+                            <c:set var="today" value="<%= new java.util.Date() %>"/>
+                            <c:set var="endDate" value="${mj.status.tripEndDate}"/>
+                            <c:choose>
+                            <c:when test="endDate lt today"><td>여행완료</td></c:when>
+                            <c:otherwise><td>진행중</td></c:otherwise>
+                            </c:choose>
                         </tr>
                         </c:forEach>
-                        <!-- <tr>
+                        
+                        
+                        
+                         <!-- <tr>
                         	<td colspan="4">
                         		<div class="card w-100" style="border: none;">
                         <div class="card-body">
@@ -137,51 +149,8 @@
                         </div>
                     </div>
                         	</td>
-                        </tr>
-                        
-                        
-                        <tr>
-                            <td>제주도 가자미 투어</td>
-                            <td>2021/05/25</td>
-                            <td>5/6</td>
-                            <td>여행완료</td>
-                        </tr>
-                        <tr>
-                            <td>제주도 갈치 투어</td>
-                            <td>2021/06/14</td>
-                            <td>2/3</td>
-                            <td>여행완료</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
-                        </tr>
-                        <tr>
-                            <td>둘레길 가자</td>
-                            <td>2021/07/14</td>
-                            <td>1/5</td>
-                            <td>모집중</td>
                         </tr> -->
+                        
                     </tbody>
 
                 </table>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,11 @@
 <!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
 	<style type="text/css">
-	
+	#detail thead th {
+            text-align: center;
+            
+        }
+        #detail tbody th {text-align: center;}
 	/* .card-body th {height: 30px !important;} */
 	</style>
 	<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
@@ -73,6 +78,7 @@
                             <th>여행제목</th>
                             <th>신청일자</th>
                             <th>인원현황</th>
+                            <th>취소여부</th>
                             <th>진행상태</th>
                         </tr>
                     </thead>
@@ -82,6 +88,15 @@
                             <td><c:out value="${j.tripTitle}"/></td>
                             <td><c:out value="${j.joinTripDate}"/></td>
                             <td><c:out value="${j.countUser}"/></td>
+                            <td><c:out value="${j.status.tripCancelYN}"/></td>
+                            <c:set var="today" value="<%= new java.util.Date() %>"/>
+                            <c:set var="endDate" value="${j.status.tripEndDate}"/>
+                            <c:choose>
+                            <c:when test="endDate > today"><td>참여</td></c:when>
+                            <c:when test="endDate < today && ${j.status.reviewCode == null}"><td>후기쓰러가기</td></c:when>
+                            <c:when test="${j.status.reviewCode != null}"><td>후기보러가기</td></c:when>
+                            <c:otherwise><td>불참</td></c:otherwise>
+                            </c:choose>
                         </tr>
                         </c:forEach>
                         

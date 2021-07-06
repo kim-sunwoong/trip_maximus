@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
     <style type="text/css">
     #detail_content {width:70%;}
+    #detail thead th {
+            text-align: center;
+            
+        }
+        #detail tbody th {text-align: center;}
     </style>
 
 </head>

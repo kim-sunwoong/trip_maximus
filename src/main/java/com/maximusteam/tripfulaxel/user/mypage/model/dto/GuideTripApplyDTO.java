@@ -7,10 +7,7 @@ public class GuideTripApplyDTO {
 	private String gTripTitle;
 	private Date gTripDate;
 	
-	private String gTripCancelYN;
-	private String gTripAttendYN;
-	private Date gtripEndDate;
-	private int reviewCode;
+	private StatusDTO status;
 	
 	private String gName;
 	private int price;
@@ -19,15 +16,12 @@ public class GuideTripApplyDTO {
 	public GuideTripApplyDTO() {
 	}
 
-	public GuideTripApplyDTO(String gTripTitle, Date gTripDate, String gTripCancelYN, String gTripAttendYN,
-			Date gtripEndDate, int reviewCode, String gName, int price, int payment) {
+	public GuideTripApplyDTO(String gTripTitle, Date gTripDate, StatusDTO status, String gName, int price,
+			int payment) {
 		super();
 		this.gTripTitle = gTripTitle;
 		this.gTripDate = gTripDate;
-		this.gTripCancelYN = gTripCancelYN;
-		this.gTripAttendYN = gTripAttendYN;
-		this.gtripEndDate = gtripEndDate;
-		this.reviewCode = reviewCode;
+		this.status = status;
 		this.gName = gName;
 		this.price = price;
 		this.payment = payment;
@@ -49,36 +43,12 @@ public class GuideTripApplyDTO {
 		this.gTripDate = gTripDate;
 	}
 
-	public String getgTripCancelYN() {
-		return gTripCancelYN;
+	public StatusDTO getStatus() {
+		return status;
 	}
 
-	public void setgTripCancelYN(String gTripCancelYN) {
-		this.gTripCancelYN = gTripCancelYN;
-	}
-
-	public String getgTripAttendYN() {
-		return gTripAttendYN;
-	}
-
-	public void setgTripAttendYN(String gTripAttendYN) {
-		this.gTripAttendYN = gTripAttendYN;
-	}
-
-	public Date getGtripEndDate() {
-		return gtripEndDate;
-	}
-
-	public void setGtripEndDate(Date gtripEndDate) {
-		this.gtripEndDate = gtripEndDate;
-	}
-
-	public int getReviewCode() {
-		return reviewCode;
-	}
-
-	public void setReviewCode(int reviewCode) {
-		this.reviewCode = reviewCode;
+	public void setStatus(StatusDTO status) {
+		this.status = status;
 	}
 
 	public String getgName() {
@@ -97,24 +67,18 @@ public class GuideTripApplyDTO {
 		this.price = price;
 	}
 
-	public int getpayment() {
+	public int getPayment() {
 		return payment;
 	}
 
-	public void setpayment(int payment) {
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
 
 	@Override
 	public String toString() {
-		return "GuideTripApplyDTO [gTripTitle=" + gTripTitle + ", gTripDate=" + gTripDate + ", gTripCancelYN="
-				+ gTripCancelYN + ", gTripAttendYN=" + gTripAttendYN + ", gtripEndDate=" + gtripEndDate
-				+ ", reviewCode=" + reviewCode + ", gName=" + gName + ", price=" + price + ", payment=" + payment
-				+ "]";
+		return "GuideTripApplyDTO [gTripTitle=" + gTripTitle + ", gTripDate=" + gTripDate + ", status=" + status
+				+ ", gName=" + gName + ", price=" + price + ", payment=" + payment + "]";
 	}
-	
-	
-	
-	
-	
+
 }
