@@ -55,7 +55,6 @@
 
         <div id="detail_content">
             <div id="detail">
-                <!-- <div class="exit">회원탈퇴</div> -->
 
                 <table width="500" height="500" align="center" style="margin-top:100px; margin: 0 auto;">
                     <tr>

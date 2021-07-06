@@ -11,18 +11,18 @@
 			 , t.TRIP_END_DATE
 			 , tr.TRIP_REVIEW_CODE    -->
 		
-		<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO" id="joinTripList">
-			<result property="tripTitle" column="TRIP_TITLE"/>
-			<result property="countUser" column="COUNT_USER"/>
-			<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
-			<association property="status" resultMap="statuss"/>
-		</resultMap> 
-		<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.StatusDTO" id="statuss">
-			<result property="tripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
-			<result property="tripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
-			<result property="tripEndDate" column="TRIP_END_DATE"/>
-			<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
-		</resultMap>
+	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO" id="joinTripList">
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="countUser" column="COUNT_USER"/>
+		<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+		<association property="status" resultMap="status"/>
+	</resultMap> 
+	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.StatusDTO" id="status">
+		<result property="tripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
+		<result property="tripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+	</resultMap>
 		
 	<select id="selectJoinList" resultMap="joinTripList">
 	SELECT
@@ -139,6 +139,45 @@
 	 <!-- WHERE e.EXAMINE_REQUEST_TO ? -->
 	 
 	 
+	 <!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO" id="selectInquiry">
+	 	<result property="inquiryTitle" column=""/>
+	 </resultMap> -->
+	 
+	 
+	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ExamineDTO" id="selectExamineList">
+	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
+	 	<result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
+	 	<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
+	 	<result property="reqType" column="TYPE_CODE"/>
+	 	<result property="reqFrom" column="EXAMINE_REQUEST_FROM"/>
+	 	<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
+	 	<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+	 	<collection property="reqImage" resultMap="reqImagedto"/>
+	 </resultMap>              
+	 
+	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
+	 	<result property="repSaveImg" column="REPORT_IMAGE_SAVED_NAME"/>
+	 	<result property="repOriImg" column="REPORT_IMAGE_ORIGIN_NAME"/>
+	 </resultMap>                 
+	 
+	 <insert id="insertExamine">
+		<selectKey keyProperty=".code" order="BEFORE" resultType="_int">
+	 		SELECT
+	 			   .CURRVAL
+	 		  FROM DUAL
+	 	</selectKey>
+	 	 INSERT
+	 	   INTO 
+	 	 (
+	 	   EXAMINE_REQUEST_CODE
+		 , DATE_FORMAT(now(),'%Y-%m-%d')
+		 , EXAMINE_REQUEST_REASON		(페이지에서 받은 값)
+		 , #{TYPE_CODE}					(페이지에서 선택된 값)
+		 , #{EXAMINE_REQUEST_FROM}		(세션에서 받아오는 값)
+		 , 'N'							(기본값)
+		 , EXAMINE_REQUEST_TO			(페이지에서 받아줄 값)
+	 	 )
+	 </insert>
 	 
 	
 	

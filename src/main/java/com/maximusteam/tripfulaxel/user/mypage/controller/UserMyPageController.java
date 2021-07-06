@@ -15,7 +15,6 @@ import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
-import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
 
 @Controller
 @RequestMapping("/user/mypage/*")
@@ -24,7 +23,7 @@ public class UserMyPageController {
 	private final UserMypageService userMypageService;
 	
 	@Autowired
-	public UserMyPageController(UserMypageServiceImpl userMypageService) {
+	public UserMyPageController(UserMypageService userMypageService) {
 		this.userMypageService = userMypageService;
 	}
 	
