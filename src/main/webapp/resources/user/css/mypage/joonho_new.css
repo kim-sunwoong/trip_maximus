@@ -23,9 +23,9 @@ html, body{ font-weight: 400 !important;
     width: 14% !important;
     text-align: center;
     border: 1px solid #a3a3a3;
-    border-bottom-color: #ff7358;}
+   }
     
-.tabList .tabb:hover {border:3px solid blue !important;}
+.tabList .tabb:hover {border:3px solid skyblue !important;}
 .tabList .tabb {width:auto;height:auto;}
 
 #detail_content {width: 70%; height: auto; margin: 0 auto; margin-top: 100px;}

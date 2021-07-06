@@ -22,8 +22,9 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
-	
         <div class="clearbothsite" style="clear:both; width:1px; height: 1px;" ></div>
+        
+        
 	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
