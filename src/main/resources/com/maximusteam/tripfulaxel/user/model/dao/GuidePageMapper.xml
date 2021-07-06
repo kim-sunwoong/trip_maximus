@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.GuidePageMapper">
+ 
+ 	<resultMap type="TripReviewDTO" id="tripReviewResult">
+ 	<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+ 	<result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
+ 	<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+ 	<result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
+ 	<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+ 	<result property="tripApply" column="TRIP_REVIEW_CODE"/>
+ 	<result property="reviewImg" column="REVIEW_IMAGE_CODE"/>
+ 	<result property="reviewsaved" column="REVIEW_IMAGE_SAVED_NAME"/>
+ 	<result property="reviewOrigin" column="REVIEW_IMAGE_ORIGIN_NAME"/>
+ 	<result property="replycode" column="TRIP_REPLY_CODE"/>
+ 	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
+ 	<result property="replyDate" column="TRIP_REPLY_DATE"/>
+ 	</resultMap>
+ 	
+ 	<select id="selectGuideReview" resultMap="tripReviewResult" parameterType="TripReviewDTO">
+ 		SELECT 
+                A.TRIP_REVIEW_TITLE 
+              , A.TRIP_REVIEW_CONTENT
+              , A.TRIP_REVIEW_DATE
+              , A.TRIP_REVIEW_GRADE
+              , A.JOIN_TRIP_APPLY_CODE
+              , B.USER_CODE
+              , C.USER_NAME
+              , D.REVIEW_IMAGE_CODE
+              , D.REVIEW_IMAGE_SAVED_NAME
+        FROM TRIP_REVIEW A , JOIN_TRIP_APPLY B , USER C , REVIEW_IMAGE D
+        WHERE A.JOIN_TRIP_APPLY_CODE = B.JOIN_TRIP_APPLY_CODE
+        AND B.USER_CODE = C.USER_CODE
+        AND A.TRIP_REVIEW_CODE = D.TRIP_REVIEW_CODE
+ 	</select>
+ 	
+ 	
+ </mapper>

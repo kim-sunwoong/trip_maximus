@@ -789,7 +789,7 @@ li.header_menu:hover {
            
                  <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
                  <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/user/guidemypage/">
+                <a href="${ pageContext.servletContext.contextPath }/user/guidepage/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                                        가이드페이지</span>
                </a></li>
