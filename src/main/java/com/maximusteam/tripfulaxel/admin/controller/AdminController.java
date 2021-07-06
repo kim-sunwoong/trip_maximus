@@ -227,6 +227,7 @@ public class AdminController {
 		model.addAttribute("insertGuideInformationFix", insertGuideInformationFix);
 		return "redirect:guideInforamtionList";
 	}
+	
 	/**
 	 * 로그인용 메소드
 	 * @param admin

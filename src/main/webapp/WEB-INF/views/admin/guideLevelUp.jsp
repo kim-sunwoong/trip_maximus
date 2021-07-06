@@ -75,7 +75,7 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 
-					<div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
                                 	공지사항
@@ -87,6 +87,10 @@
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideList">
                                 	가이드 가입 처리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideInforamtionList">
+                                	가이드 정보 수정 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/levelUpList">
