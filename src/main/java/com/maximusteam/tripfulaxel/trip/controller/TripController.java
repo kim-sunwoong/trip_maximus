@@ -177,4 +177,20 @@ public class TripController {
 		model.addAttribute("pay", pay);
 		return "user/main/payment";
 	}
+	
+	@PostMapping("payment")
+	public void insertPayment(@ModelAttribute TripPaymentDTO pay, HttpServletResponse response) {
+		
+		int joinResult = tripService.insertTripJoin(pay);
+		int payResult = tripService.insertPayment(pay);
+		response.setCharacterEncoding("utf-8");
+		
+		try {
+			if((joinResult + payResult) > 1) {
+				response.getWriter().print("결제가 완료 되었습니다. 감사합니다.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

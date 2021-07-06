@@ -255,9 +255,6 @@ window.onload = function connect() {
 	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
 	    });
 	    
-	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
-	    stompClient.send("/app/message/join", {}, JSON.stringify(data));
-	    joinMember(data); */
 	}
 
 window.onbeforeunload = function(e){
@@ -446,18 +443,18 @@ function uploadFile(){
 			
 			<ul id="joinList">
 				<c:forEach var="email" items="${ room.joinUserList}">
-					<c:if test="${email != sessionScope.loginUser.userEmail }">
-						<li style="margin-left:20px;" id="joinUser">
-							<div>
-								<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
-								<h3>
-									<span class="status green"></span>
-									접속중 입니다.
-								</h3>
-							</div>
-						</li>
-					</c:if>
-				</c:forEach>
+							<c:if test="${email.userEmail != sessionScope.loginUser.userEmail }">
+								<li style="margin-left:20px;" id="joinUser">
+									<div>
+										<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
+										<h3>
+											<span class="status green"></span>
+											접속중 입니다.
+										</h3>
+									</div>
+								</li>
+							</c:if>
+					</c:forEach>
 			</ul>
 		</aside>
 		<main>

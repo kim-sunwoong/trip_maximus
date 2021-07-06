@@ -41,7 +41,7 @@ function newRoom(){
 	
 	const roomTitle = document.getElementById("roomTitle").value; 
 	
-	location.href="${pageContext.servletContext.contextPath}/share/insert/chatRoom?roomTitle=" + roomTitle + "&userCode=${sessionScope.loginUser.userCode}";
+	location.href="${pageContext.servletContext.contextPath}/share/insert/chatRoom?roomTitle=" + roomTitle + "&userCode=${sessionScope.loginUser.userCode}&userEmail=${sessionScope.loginUser.userEmail}";
 }
 </script>
 </head>

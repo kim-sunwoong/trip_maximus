@@ -8,6 +8,7 @@ import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO;
 
 public interface TripMapper {
 
@@ -18,4 +19,8 @@ public interface TripMapper {
 	GuideDTO selectGuide(int tripCode);
 
 	int insertTripInquiry(TripInquiryDTO inquiry);
+
+	int insertTripJoin(TripPaymentDTO pay);
+
+	int insertPayment(TripPaymentDTO pay);
 }

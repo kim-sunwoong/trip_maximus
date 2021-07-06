@@ -6,6 +6,9 @@ public class TripPaymentDTO {
 
 	private int userCode;
 	private int tripRegistCode;
+	private int tripJoinCode;
+	private int tripCode;
+	private int payCode;
 	private int amount;
 	private int totalPay;
 	private Date tripDay;
@@ -15,10 +18,14 @@ public class TripPaymentDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TripPaymentDTO(int userCode, int tripRegistCode, int amount, int totalPay, Date tripDay, String saveName) {
+	public TripPaymentDTO(int userCode, int tripRegistCode, int tripJoinCode, int tripCode, int payCode, int amount,
+			int totalPay, Date tripDay, String saveName) {
 		super();
 		this.userCode = userCode;
 		this.tripRegistCode = tripRegistCode;
+		this.tripJoinCode = tripJoinCode;
+		this.tripCode = tripCode;
+		this.payCode = payCode;
 		this.amount = amount;
 		this.totalPay = totalPay;
 		this.tripDay = tripDay;
@@ -39,6 +46,30 @@ public class TripPaymentDTO {
 
 	public void setTripRegistCode(int tripRegistCode) {
 		this.tripRegistCode = tripRegistCode;
+	}
+
+	public int getTripJoinCode() {
+		return tripJoinCode;
+	}
+
+	public void setTripJoinCode(int tripJoinCode) {
+		this.tripJoinCode = tripJoinCode;
+	}
+
+	public int getTripCode() {
+		return tripCode;
+	}
+
+	public void setTripCode(int tripCode) {
+		this.tripCode = tripCode;
+	}
+
+	public int getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(int payCode) {
+		this.payCode = payCode;
 	}
 
 	public int getAmount() {
@@ -75,10 +106,14 @@ public class TripPaymentDTO {
 
 	@Override
 	public String toString() {
-		return "TripPaymentDTO [userCode=" + userCode + ", tripRegistCode=" + tripRegistCode + ", amount=" + amount
+		return "TripPaymentDTO [userCode=" + userCode + ", tripRegistCode=" + tripRegistCode + ", tripJoinCode="
+				+ tripJoinCode + ", tripCode=" + tripCode + ", payCode=" + payCode + ", amount=" + amount
 				+ ", totalPay=" + totalPay + ", tripDay=" + tripDay + ", saveName=" + saveName + "]";
 	}
 
+	
+	
+	
 	
 	
 	
