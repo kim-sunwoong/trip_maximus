@@ -78,6 +78,38 @@
 							total.innerHTML = totalPay;
 							
 						}
+ 						
+ 						function payment() {
+ 							
+ 							var amountList = document.getElementById("amountList");
+							var amount = amountList.options[amountList.selectedIndex].value;
+							var saveName = "${trip[0].tripImgList[0].saveName }"
+							var totalPay = ${trip[0].payment } * amount;
+ 							alert(saveName);
+							location.href="${pageContext.servletContext.contextPath}/trip/payment?userCode=${sessionScope.loginUser.userCode}&totalPay="
+									+ totalPay + "&amount=" + amount + "&tripRegistCode=${trip[0].tripRegistCode}&tripDay=${trip[0].tripStartDate}&saveName=" + saveName;
+						}
+ 						
+ 						
+ 						function inquiry(){
+ 						    
+ 						    var inquiryContent = $("#sendContent").val();
+ 						    var tripRegistCode = ${trip[0].tripRegistCode};
+ 						    var userCode = ${sessionScope.loginUser.userCode};
+ 						 
+ 						    $.ajax({
+ 						        type: "POST",
+ 						        url: "insert/inquiry",
+ 						        data: {"inquiryContent":inquiryContent, "tripRegistCode":tripRegistCode, "userCode":userCode  },
+ 						        success: function (data) {
+ 						        	alert(data);
+ 						        	$("#sendContent").val("");
+ 						        },
+ 						        error: function (e) {
+ 						            alert('fail');
+ 						        }
+ 						    });
+ 						}
  	</script>
  </head>
  <body>
@@ -458,7 +490,7 @@
  						</div>
  					</div>
  					<button class="btn btnBgC btnFull txt_md"
- 						onclick="" style="background:skyblue;">예약하기</button>
+ 						onclick="payment()" style="background:skyblue;">예약하기</button>
  					
  				</div>
  					<!-- 예약하기 끝  -->
@@ -481,8 +513,8 @@
                             <p><c:out value="${guide.nickName }"/></p>
                         </div>
                     </div>
-                    <textarea name="sendcontent" id="" placeholder="내용을 입력하세요."></textarea>
-                    <button class="btn btnBgC btnFull txt_md" onclick="" style="background:skyblue;">메시지 전송</button>
+	                    <textarea name="sendcontent" id="sendContent" placeholder="내용을 입력하세요."></textarea>
+	                    <button class="btn btnBgC btnFull txt_md" onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
                    </div>
  				</div>
  				<!-- 문의하기 끝  -->

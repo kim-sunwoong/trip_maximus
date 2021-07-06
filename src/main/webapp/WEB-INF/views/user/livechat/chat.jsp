@@ -16,7 +16,7 @@ body{
 }
 #container{
 	width:750px;
-	height:800px;
+	height:860px;
 	background:#eff3f7;
 	margin:0 auto;
 	font-size:0;
@@ -25,7 +25,7 @@ body{
 }
 aside{
 	width:260px;
-	height:800px;
+	height:860px;
 	background-color:#3b3e49;
 	display:inline-block;
 	font-size:15px;
@@ -33,7 +33,7 @@ aside{
 }
 main{
 	width:490px;
-	height:800px;
+	height:860px;
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
@@ -150,7 +150,7 @@ main header h3{
 	margin:0;
 	list-style-type:none;
 	overflow-y:scroll;
-	height:535px;
+	height:600px;
 	border-top:2px solid #fff;
 	border-bottom:2px solid #fff;
 }
@@ -275,10 +275,22 @@ function send() {
 	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
  	var roomCode = ${room.roomCode};
-	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode, 'messageType':'message'}; 
+ 	var messageType;
+ 	if(messageImage == ''){
+ 		messageType = "message";
+ 	} else {
+ 		messageType = "image";
+ 	}
+	data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': roomCode, 'messageContent' : $("#message").val(), 'userCode' : userCode, 'messageType': messageType, 'messageImage': messageImage}; 
     stompClient.send("/app/message", {}, JSON.stringify(data));
     /* showMessage(data, time); */
-    $("#message").val('');
+    
+    if(messageImage != ''){
+	    messageImage = '';
+	    $("#imgMessage").val("");
+	    imgView();
+    }
+	    $("#message").val('');
     /* alertClosing('successMessage',2000); */
 }
 
@@ -305,20 +317,43 @@ function showMessage(e, time) {
 	    space.scrollTop = space.scrollHeight;
 	    
 	    joinMember(e);
-    } else if(e.messageType == 'message'){
+    } else {
     	
-    	if(e.userCode == ${sessionScope.loginUser.userCode}){
-	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
-	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
-	    	e.messageContent + "</div> </li>";
-	    	space.scrollTop = space.scrollHeight;
-	
-	    } else {
-	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h3>" + time + 
-	    	"</h3> <h2>" + e.userEmail + "</h2> </div> <div class='triangle'></div> <div class='message'>" +
-	    	e.messageContent + "</div> </li>";
-	    	space.scrollTop = space.scrollHeight;
-	    }
+    	if(e.messageImage != ''){
+    		
+    		if(e.userCode == ${sessionScope.loginUser.userCode}){
+    	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
+    	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div>" 
+    	    	+ "<img src='${pageContext.servletContext.contextPath}/resources/images/message/" + e.messageImage 
+    	    	+ "' style='width:120px; height:120px; object-fit:cover;'> </div> </li> ";
+    	    	space.scrollTop = space.scrollHeight;
+    	
+    	    } else {
+    	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h2>" + e.userEmail + 
+    	    	"</h2> <h3>" + time + "</h3> </div> <div>" 
+    	    	+ "<img src='${pageContext.servletContext.contextPath}/resources/images/message/" + e.messageImage 
+    	    	+ "' style='width:120px; height:120px; object-fit:cover;'> </div> </li> ";
+    	    	space.scrollTop = space.scrollHeight;
+    	    }
+    	}
+    	
+    	if(e.messageContent != ''){
+    		
+    		if(e.userCode == ${sessionScope.loginUser.userCode}){
+    	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
+    	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div class='triangle'></div> <div class='message'>" +
+    	    	e.messageContent + "</div> </li>";
+    	    	space.scrollTop = space.scrollHeight;
+    	
+    	    } else {
+    	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h2>" + e.userEmail + 
+    	    	"</h2> <h3>" + time + "</h3> </div> <div class='triangle'></div> <div class='message'>" +
+    	    	e.messageContent + "</div> </li>";
+    	    	space.scrollTop = space.scrollHeight;
+    	    }
+    		
+    	}
+    	
     }
     
 };
@@ -326,24 +361,78 @@ function showMessage(e, time) {
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
 	
-	if(data.messageType == 'join'){
+	if(data.messageType == 'out'){
 		
-		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
-	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
-	    
-	} else if(data.messageType == 'out'){
-		
-		const joins = joinList.getElementsById('joinUser');
-		
-		for(let i = 0; i < join.length; i++){
-			
+		const joins = joinList.getElementsByTagName('li');
+		for(let i = 0; i < joins.length; i++){
+			let join = joins[i].innerText;
+			let email = join.split(" ");
+			let reEmail = email[0].trim();
+			if(reEmail == data.userEmail){
+				joins[i].remove();
+			}
 		}
+	} else {
+		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data.userEmail  
+		+ "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+	}
+};
 
-		joinList.innerHTML = "<li style='margin-left:20px;'> <div> <h2 style='font-size:16px;'>" + data  
-	    + "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
+
+function imgView(data) {
+	var imgDiv = document.getElementById("imgDiv");
+	
+	if(imgDiv.style.display == 'none'){
+		
+		imgDiv.style.display = 'block';
+		
+		$('#chatting').height(520);
+		
+		var img = $("#img");
+		img.attr("src", "${pageContext.servletContext.contextPath}/resources/images/message/" + data);
+		
+		var space = document.getElementById("chatting");
+	    space.scrollTop = space.scrollHeight;
+	    
+	} else if(imgDiv.style.display == 'block'){
+		
+		imgDiv.style.display = 'none';
+		
+		$('#chatting').height(600);
+		
+		var img = $("#img");
+		img.attr("src", "");
+		
+		var space = document.getElementById("chatting");
+	    space.scrollTop = space.scrollHeight;
+		
 	}
 	
-};
+}
+
+var messageImage = '';
+
+function uploadFile(){
+    
+    var form = new FormData();
+    form.append( "imgMessage", $("#imgMessage")[0].files[0] );
+ 
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "${pageContext.servletContext.contextPath}/share/insert/imgMessage",
+        data: form,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+        	imgView(data)
+        	messageImage = data;
+        },
+        error: function (e) {
+            alert('fail');
+        }
+    });
+}
 
 </script>
 </head>
@@ -357,15 +446,17 @@ function joinMember(data) {
 			
 			<ul id="joinList">
 				<c:forEach var="email" items="${ room.joinUserList}">
-					<li style="margin-left:20px;" id="joinUser">
-						<div>
-							<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
-							<h3>
-								<span class="status green"></span>
-								접속중 입니다.
-							</h3>
-						</div>
-					</li>
+					<c:if test="${email != sessionScope.loginUser.userEmail }">
+						<li style="margin-left:20px;" id="joinUser">
+							<div>
+								<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
+								<h3>
+									<span class="status green"></span>
+									접속중 입니다.
+								</h3>
+							</div>
+						</li>
+					</c:if>
 				</c:forEach>
 			</ul>
 		</aside>
@@ -378,51 +469,95 @@ function joinMember(data) {
 			</header>
 			<!-- <div id="space"> -->
 				<ul id="chatting">
-							
+				
 					<c:forEach var="chat" items="${room.messageList }">
 						
 						<c:choose>
 							<c:when test="${chat.userCode == sessionScope.loginUser.userCode }">
-								<li class="me">
-									<div class="entete">
-										<h3><c:out value="${chat.messageDate }"/></h3>
-										<h2><c:out value="${chat.userEmail }"/></h2>
-										<span class="status blue"></span>
-									</div>
-									<div class="triangle"></div>
-									<div class="message">
-										<c:out value="${chat.messageContent }"/>
-									</div>
-								</li>
+										
+								<c:if test="${chat.messageImage != ''}">
+								
+									<li class="me">
+										<div class="entete">
+											<h3><c:out value="${chat.messageDate }"/></h3>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<span class="status blue"></span>
+										</div>
+										<div>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+										</div>
+									</li>
+									
+								</c:if>
+										
+								<c:if test="${chat.messageImage == null || chat.messageImage == ''}">
+									
+									<li class="me">
+										<div class="entete">
+											<h3><c:out value="${chat.messageDate }"/></h3>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<span class="status blue"></span>
+										</div>
+										<div class="triangle"></div>
+										<div class="message">
+											<c:out value="${chat.messageContent }"/>
+										</div>
+									</li>
+									
+								</c:if>		
+									
 							</c:when>
 							<c:otherwise>
-								<li class="you">
-									<div class="entete">
-										<span class="status green"></span>
-										<h2><c:out value="${chat.userEmail }"/></h2>
-										<h3><c:out value="${chat.messageDate }"/></h3>
-									</div>
-									<div class="triangle"></div>
-									<div class="message">
-										<c:out value="${chat.messageContent }"/>
-									</div>
-								</li>
+							
+								<c:if test="${chat.messageImage != ''}">
+								
+									<li class="you">
+										<div class="entete">
+											<span class="status green"></span>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<h3><c:out value="${chat.messageDate }"/></h3>
+										</div>
+										<div>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+										</div>
+									</li>
+								
+								</c:if>
+								
+								<c:if test="${chat.messageImage == null || chat.messageImage == ''}">
+								
+									<li class="you">
+										<div class="entete">
+											<span class="status green"></span>
+											<h2><c:out value="${chat.userEmail }"/></h2>
+											<h3><c:out value="${chat.messageDate }"/></h3>
+										</div>
+										<div class="triangle"></div>
+										<div class="message">
+											<c:out value="${chat.messageContent }"/>
+										</div>
+									</li>
+								
+								</c:if>
 							
 							</c:otherwise>
 							
 						</c:choose>
 					
 					</c:forEach>
+						
 				
 				</ul>
-			<!-- </div>  -->
-				
+					<div id="imgDiv" style="width:80px; height:80px; display:none;">
+						<img id="img" style="object-fit:cover; width:80px; height:80px; margin-left:15px; margin-top:10px; border-style:solid; border-color:black;">
+					</div>
 			<footer>
 				<textarea placeholder="Type your message" id="message"></textarea>
 				<button onclick="send()">Send</button>
+				<input id="imgMessage" type="file" onchange="uploadFile()"/>
 			</footer>
 		</main>
 	</div>
 </body>
-
 </html>
+

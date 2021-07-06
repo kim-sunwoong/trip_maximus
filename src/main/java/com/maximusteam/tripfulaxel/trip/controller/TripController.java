@@ -1,14 +1,27 @@
 package com.maximusteam.tripfulaxel.trip.controller;
 
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+import java.util.ArrayList;
+>>>>>>> branch 'master' of https://github.com/maximusStrong/trip_maximus.git
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.collections.map.HashedMap;
+>>>>>>> branch 'master' of https://github.com/maximusStrong/trip_maximus.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +31,13 @@ import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
+<<<<<<< HEAD
+=======
+import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
+>>>>>>> branch 'master' of https://github.com/maximusStrong/trip_maximus.git
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;
 import com.maximusteam.tripfulaxel.trip.model.service.TripServiceImpl;
@@ -143,5 +163,29 @@ public class TripController {
 			return "user/trip/myTripList";
 		}
 		
+	}
+	
+	@PostMapping("insert/inquiry")
+	public void insertTripInquiry(@ModelAttribute TripInquiryDTO inquiry,  HttpServletResponse response) {
+		
+		
+		int result = tripService.insertTripInquiry(inquiry);
+		response.setCharacterEncoding("UTF-8");
+		
+		if(result > 0) {
+			try {
+				response.getWriter().print("여행 문의가 등록 되었습니다.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("여행 문의 등록 실패!");
+		}
+	}
+	
+	@GetMapping("payment")
+	public String payment(@ModelAttribute TripPaymentDTO pay, Model model) {
+		model.addAttribute("pay", pay);
+		return "user/main/payment";
 	}
 }

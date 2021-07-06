@@ -24,6 +24,7 @@ public class GuideDTO {
     private int examineCode;
     private int guideCode;
     private int userCode;
+    private int registTypeCode;
     
 //    private String guideIdPicture;// 신분증 사진
 //    private String guidePicture;// 가이드 사진
@@ -34,7 +35,7 @@ public class GuideDTO {
 	public GuideDTO(int guideNo, String guideId, String guideEnrollStatus, String guideApproveStatus, String guideName,
 			String guideGender, String guideNickname, String guideExp, String guideCar, String guideIntro,
 			String guideTravel, int requestCode, int responseCode, String responseContent, Date responseDate,
-			int examineCode, int guideCode, int userCode) {
+			int examineCode, int guideCode, int userCode, int registTypeCode) {
 		super();
 		this.guideNo = guideNo;
 		this.guideId = guideId;
@@ -54,6 +55,7 @@ public class GuideDTO {
 		this.examineCode = examineCode;
 		this.guideCode = guideCode;
 		this.userCode = userCode;
+		this.registTypeCode = registTypeCode;
 	}
 
 	public int getGuideNo() {
@@ -200,6 +202,14 @@ public class GuideDTO {
 		this.userCode = userCode;
 	}
 
+	public int getRegistTypeCode() {
+		return registTypeCode;
+	}
+
+	public void setRegistTypeCode(int registTypeCode) {
+		this.registTypeCode = registTypeCode;
+	}
+
 	@Override
 	public String toString() {
 		return "GuideDTO [guideNo=" + guideNo + ", guideId=" + guideId + ", guideEnrollStatus=" + guideEnrollStatus
@@ -208,9 +218,10 @@ public class GuideDTO {
 				+ ", guideIntro=" + guideIntro + ", guideTravel=" + guideTravel + ", requestCode=" + requestCode
 				+ ", responseCode=" + responseCode + ", responseContent=" + responseContent + ", responseDate="
 				+ responseDate + ", examineCode=" + examineCode + ", guideCode=" + guideCode + ", userCode=" + userCode
-				+ "]";
+				+ ", registTypeCode=" + registTypeCode + "]";
 	}
 
+	
 	
 
 	

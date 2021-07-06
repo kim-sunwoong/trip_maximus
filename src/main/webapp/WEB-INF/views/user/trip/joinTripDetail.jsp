@@ -86,7 +86,29 @@
 
 
 </style>
+<script>
+function inquiry(){
+	    
+	    var inquiryContent = $("#sendContent").val();
+	    var tripRegistCode = ${trip[0].tripRegistCode};
+	    var userCode = ${sessionScope.loginUser.userCode};
+	 
+	    $.ajax({
+	        type: "POST",
+	        url: "insert/inquiry",
+	        data: {"inquiryContent":inquiryContent, "tripRegistCode":tripRegistCode, "userCode":userCode  },
+	        success: function (data) {
+	        	alert(data);
+	        	$("#sendContent").val("");
+	        },
+	        error: function (e) {
+	            alert('fail');
+	        }
+	    });
+	}
 
+
+</script>
 
 </head>
 <body>
@@ -468,9 +490,9 @@
 								<p>여행 방장님~</p>
 							</div>
 						</div>
-						<textarea name="sendcontent" id="" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="sendcontent" id="sendContent" placeholder="내용을 입력하세요."></textarea>
 						<button class="btn btnBgC btnFull txt_md"
-							onclick="" style="background:skyblue;">메시지 전송</button>
+							onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
 					</div>
 				</div>
 

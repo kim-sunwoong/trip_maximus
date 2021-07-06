@@ -640,60 +640,46 @@
     }
 </style>
 
-<footer class="Footer_container flex-container" style="background-color:white;">
-    <div class="flex-container-inner">
-
-      
-        
-        <div class="Footer_tm w3-col l4 m12 s12">
-            <div class="travelMakerNaming FS_15 FW_bold FC_black900">약관 및 방침</div>
-            <div style="font-size: 18px; color:gray;">
-            <a href="javascript:void(0)">이용약관</a></div>
-            <div style="font-size: 18px; color:gray; line-height: 30px;">
-            <a href="${ pageContext.servletContext.contextPath }/user/personalInfo">개인정보 및 처리방침</a></div>
-            <div style="font-size: 18px; color:gray; line-height: 20px;">
-            <a href="${ pageContext.servletContext.contextPath }/user/payment">취소환불규정</a></div>
-        </div>
-       <!--  /tripfulaxel/WEB-INF/views/user/main/provision -->
-        
-
-        <div class="Footer_tm w3-col l4 m12 s12">
-            <div class="tmtitle FS_15 FC_black800 FW_bold ">로컬가이드</div>
-            <div class="travelMakerJobOffer FS_14 FW_normal FC_black500 LS_-1" style="font-size: 18px; color:gray;">
-            <a href="#">로컬가이드 지원하기</a>
+    <footer>
+        <div class="canteen">
+            <div class="row justify-content-center" style="margin-left:10%">
+                <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px !important; padding:10px; margin-left:0px;">
+                    <h3 style="font-family: BME; font-size: 24px; color: black; margin: 15px;">약관 및 방침</h3>
+                    <ul style="font-family: icomoon; font-size: 14px; list-style: none; padding-left:0px; color: black; line-height:30px; ">
+                        <li><a>이용약관</a></li>
+                        <li><a>개인정보 및 처리방침</a></li>
+                        <li><a>취소환불규정</a></li>
+                      
+                      
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
+                    <h3 style="font-size: 24px; color: black; margin: 15px;">로컬가이드</h3>
+                    <ul style="font-size: 14px; list-style: none; padding-left:0px; color: black;">
+                        <li style="margin-left: 15px;"><a>로컬가이드 지원하기</a></li>
+                      	<li style="margin-left: 15px;"><a>로컬가이드 목록보기</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
+                    <h3 style="font-size: 24px; color: black; margin: 15px;">고객센터</h3>
+                    <ul style="font-size: 14px; list-style: none; padding-left:0px; color: black; line-height:30px;">
+                    
+                        <li style="margin-left: 15px;">이메일 : admin@greedy.com</li>
+                        <li style="margin-left: 15px;">고객센터 :  02-1234-5678</li>
+                        <li style="margin-left: 15px;">업무시간 : 10:00 ~ 16:00 (주말/공휴일 휴무)</li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
+                    <h3 style="font-size: 24px; color: black; margin: 15px;">회사소개</h3>
+                    <ul style="list-style: none; padding-left:0px;">
+                        <li style="margin-left: 15px;">대표 : 유승제</li>
+                        <li style="margin-left: 15px;">주소 : 서울시 서초구 강남대로 441 5층</li>
+                        <li style="margin-left: 15px;">이메일문의 : tripful_axel@kakao.com</li>
+                        <li style="margin-left: 15px;">사업자등록번호 : 123-45-67890</li>
+                    </ul>
+                </div>
             </div>
-            <div class="travelMakerJobBlog FS_14 FW_normal FC_black500 LS_-1" style="font-size: 18px; color:gray;" >
-                <a href="#" target="_blank">로컬가이드 목록 보기</a>
-            </div>
         </div>
-        
-        
-        <div class="Footer_tm w3-col l4 m12 s12">
-            <div class="tmtitle FS_15 FC_black800 FW_bold ">고객센터</div>
-            <div class="travelMakerJobOffer FS_14 FW_normal FC_black500 LS_-1" style="font-size: 18px; color:gray;">
-                                  이메일 : admin@greedy.com
-                                  고객센터 :  02-1234-5678
-                                  업무시간 : 10:00 ~ 16:00 <br>(주말/공휴일 휴무)
-            </div>
-         </div>  
-         
-         <div class="Footer_content w3-col l8 m12 s12" style="float:left;">
-            <div class="infoTel"><b>회사명</b> Tripful Axel</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-            <div class="companyRepresentative"><b>대표</b> 유승제</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-            <div class=""><b>사업자등록번호</b> 123-45-67890</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-            <div class=""><b>주소</b> 서울시 서초구 강남대로 441 5층</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-
-            <div class=""><b>통신판매업신고번호</b> 2020-서울서초구-1234</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-            <div class="infoEmail"><b>이메일문의</b> tripful_axel@kakao.com</div><div style="padding: 1px 5px 7px 5px;font-size: 8px;"> &#124;</div>
-            <div class="infoB2BEmail"><b>비지니스 이메일문의</b> b_tripful_axel@kakao.com</div>
-            <div class="infoExplanation" style="line-height: 19px;"><br><b>TripfulAxel</b>은 통신판매중개자이며 통신판매의 당사자가 아닙니다.
-                <br>따라서 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.<br><p>&copy;Tripful Axel - 2021</p></div>
-        </div>
-   
-    </div>
-    
-    
-    
-</footer>
+    </footer>
 </body>
 </html>

@@ -48,6 +48,10 @@
                                 	가이드 가입 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideInforamtionList">
+                                	가이드 정보 수정 처리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/levelUpList">
                                	 	가이드 등업 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
