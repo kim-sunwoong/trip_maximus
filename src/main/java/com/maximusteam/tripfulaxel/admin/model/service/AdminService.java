@@ -81,4 +81,8 @@ public interface AdminService {
 	int insertGuideInformationFix(GuideDTO guide);
 	
 	int updateGuideInformationRequestStatus(GuideDTO guide);
+	
+	int updateEnrollRegistStatus(GuideDTO guide);
+	
+	int updateGuideInformationRegistStatus(GuideDTO guide);
 }

@@ -185,6 +185,15 @@
 											</select>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>등록코드</td>
+                                        <td>
+                                        	<select name="registTypeCode" class="select-time">
+												<option value="3">게시중</option>
+												<option value="4">게시안함</option>
+											</select>
+                                        </td>
+                                    </tr>
                                      <tr> 
                                      <td colspan="2"  class="text-center">
                                       <input type="submit" value="완료" class="btn btn-success">

@@ -529,6 +529,14 @@
                USER_GUIDE_YN = 'Y'
          WHERE USER_CODE = #{ userCode } 
 	</update> 
+		
+	<update id="updateEnrollRegistStatus" parameterType="GuideDTO">
+        UPDATE 
+        TRIP_REGIST_LIST
+           SET
+               REGIST_TYPE_CODE = #{ registTypeCode }
+         WHERE USER_CODE = #{ userCode } 
+	</update>
 	
 	<insert id="insertWorkerEnroll" parameterType="AdminDTO">
 		INSERT 
@@ -621,4 +629,12 @@
                EXAMINE_REQUEST_YN = 'Y'
          WHERE EXAMINE_REQUEST_CODE = #{ requestCode }
 	</update> 
+	
+	<update id="updateGuideInformationRegistStatus" parameterType="GuideDTO">
+        UPDATE 
+        TRIP_REGIST_LIST
+           SET
+               REGIST_TYPE_CODE = #{ registTypeCode }
+         WHERE USER_CODE = #{ userCode }
+	</update>
 </mapper>
