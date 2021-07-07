@@ -144,6 +144,7 @@ public class UserMyPageController {
 //		int result = userMypageService.insertRequest(model);
 		
 		
+		
 		/* 파일을 저장할 경로 설정 */
 		/* RootContext : request.getSession().getServletContext() + getRealPath("이 부분을 찾는다.") */
 		String root = request.getSession().getServletContext().getRealPath("resources");
