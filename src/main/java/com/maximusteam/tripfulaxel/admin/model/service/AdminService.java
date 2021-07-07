@@ -87,4 +87,6 @@ public interface AdminService {
 	int updateEnrollRegistStatus(GuideDTO guide);
 	
 	int updateGuideInformationRegistStatus(GuideDTO guide);
+
+	List<CalculateDTO> selectCalculateDetail(int no);
 }

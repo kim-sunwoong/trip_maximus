@@ -240,16 +240,16 @@ public class AdminServiceImpl implements AdminService {
 		
 		int result = 0;
 		result = mapper.insertGuideInformationFix(guide);
-		updateGuideInformationRequestStatus(guide);
+		result += updateGuideInformationRequestStatus(guide);
 				
-		if( result > 1 && guide.getRegistTypeCode() == 3) {
-			updateGuideInformationRegistStatus(guide);
+		if( result > 1 && guide.getExamineCode() == 2 && guide.getRegistTypeCode() == 3) {
+			result += updateGuideInformationRegistStatus(guide);
 			
 			if(result > 2) {
 				return result;
 			}
-		} else if (result > 1 && guide.getRegistTypeCode() == 2) {
-			updateGuideInformationRegistStatus(guide);
+		} else if (result > 1 && guide.getExamineCode() == 3 && guide.getRegistTypeCode() == 2) {
+			result += updateGuideInformationRegistStatus(guide);
 			
 			if(result > 2) {
 				return result;
@@ -280,6 +280,11 @@ public class AdminServiceImpl implements AdminService {
 	public AdminDTO selectLogin(AdminDTO admin) {
 	
 		return mapper.selectLogin(admin);
+	}
+
+	@Override
+	public List<CalculateDTO> selectCalculateDetail(int no) {
+		return mapper.selectCalculateDetail(no);
 	}
 
 
