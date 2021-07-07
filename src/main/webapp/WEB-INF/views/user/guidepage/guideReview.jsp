@@ -91,66 +91,66 @@
 		</div>
 
 		<div id="detail_content">
-			<div id="detail">
+
+			<div class="card mb-3" style="width: 90%; margin: 0 auto;">
+				<div class="card-img-top"
+					style="width: 97%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
+
+					<img
+						src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}.jpg"
+						class="card-img1" alt="" width="32%" height="200px">
+
+				</div>
 
 
-				<c:forEach var="GuideReview" items="${ selectGuideReview }">
-					<div class="card mb-3" style="width: 90%; margin: 0 auto;">
-						<div class="card-img-top"
-							style="width: 97%; margin: 0 auto; display: flex; 
-							justify-content: space-between; padding-top: 20px;">
-							
-							<c:forEach var="img" items="${GuideReview.reviewImg }">
-							<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}.jpg" 
-							 class="card-img1" alt="" width="32%" height="200px"> 
-							</c:forEach>
-						</div>
+				<div class="card-body">
+					<!-- 여행제목 -->
+					<h5 class="card-title" style="margin-top: 20px;">행복한 추억</h5>
+					<br>
+					<p class="card-text">
+						<!-- 여행후기 -->
+						즐거웠어요
+					</p>
+					<br>
+					<!-- 별점 -->
+
+					<img src="/tripfulaxel/resources/images/common/star.png"
+						style="width: 20px; height: 20px;">
 
 
-						<div class="card-body">
-							<!-- 여행제목 -->
-							<h5 class="card-title" style="margin-top: 20px;">
-					          <c:out value="${GuideReview.reviewTitle } "/>
-							</h5>
-							<br>
-							<p class="card-text">
-							<!-- 여행후기 -->
-							<c:out value="${GuideReview.reviewContent }"/> 
-							</p>
-							<br>
-							<!-- 별점 -->
-						    <c:forEach var="grade" begin="1" end="${GuideReview.reviewGrade }"> 
-							<img src="/tripfulaxel/resources/images/common/star.png" style="width: 20px; height: 20px;">
-							</c:forEach>
-							
-							<p class="card-text">
-								<small class="text-muted">작성자: <c:out value="${GuideReview.reviewContent }"/>  </small> <br> 
-								
-								<small class="text-muted">
-								 <c:out value="${review.reviewDate } "/> 
-								</small>
-							</p>
-						</div>
-					</div>
-					</c:forEach>
+					<p class="card-text">
+						<small class="text-muted">작성자: 정주영 </small>
+						  <br>
+						 <small class="text-muted"> 감사합니다. </small>
+					</p>
+				</div>
+				
+				
+				<div class="guide-text">
+					<textarea readonly style="float: right; width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
+					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"> 고마웠습니다.</textarea>
+				</div>
+				
+			</div>
+			<!-- card mb-3 div 끝  -->
 
 
-
-					<div class="reviewdepth" style="width: 90%">
-
-
-						<textarea name="Message" id="Message"
-							style="float: right; width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
-							placeholder="답글을 작성해보세요">
+			<div class="reviewdepth" style="width: 90%">
+				<textarea name="Message" id="Message"
+					style=" width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
+					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
+					placeholder="답글을 작성해보세요">
                 </textarea>
 
-						<input type="submit" class="buttonset" value="작성하기"
-							style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; float: right; margin-top: 10px;">
-					</div>
-
-					<p>
+				<input type="submit" class="buttonset" value="작성하기"
+				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; float: right; margin-top: 10px;">
 			</div>
+
+			<p>
 		</div>
+		<!-- detail_content div 끝 -->
+
+
 	</div>
 
 

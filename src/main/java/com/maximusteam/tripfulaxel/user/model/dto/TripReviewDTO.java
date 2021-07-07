@@ -42,14 +42,24 @@ public class TripReviewDTO {
 	//여행코드
 	//게시타입코드 
 	
-
-	public TripReviewDTO() {
-		super();
+	/* 여행 신청 내역 */
 	
+	private int joinTripcode; // 여행신청내역코드
+	private Date joinTripDate; // 신청일자
+	private String joinTripCancel; // 취소여부
+	private String joinTripAttend; // 참석여부
+	private String joinTripReason; // 신청사유
+	// 신청회원코드
+	
+	
+	
+	public TripReviewDTO() {
+
 	}
 	public TripReviewDTO(int reviewCode, String reviewTitle, String reviewContent, Date reviewDate, int reviewGrade,
 			int tripApply, int reviewImg, String reviewsaved, String reviewOrigin, int replycode, String replyDetail,
-			Date replyDate, int tripRegistListCode) {
+			Date replyDate, int tripRegistListCode, int joinTripcode, Date joinTripDate, String joinTripCancel,
+			String joinTripAttend, String joinTripReason) {
 		super();
 		this.reviewCode = reviewCode;
 		this.reviewTitle = reviewTitle;
@@ -64,9 +74,12 @@ public class TripReviewDTO {
 		this.replyDetail = replyDetail;
 		this.replyDate = replyDate;
 		this.tripRegistListCode = tripRegistListCode;
+		this.joinTripcode = joinTripcode;
+		this.joinTripDate = joinTripDate;
+		this.joinTripCancel = joinTripCancel;
+		this.joinTripAttend = joinTripAttend;
+		this.joinTripReason = joinTripReason;
 	}
-	
-	
 	
 	
 	
@@ -148,16 +161,49 @@ public class TripReviewDTO {
 	public void setTripRegistListCode(int tripRegistListCode) {
 		this.tripRegistListCode = tripRegistListCode;
 	}
+	public int getJoinTripcode() {
+		return joinTripcode;
+	}
+	public void setJoinTripcode(int joinTripcode) {
+		this.joinTripcode = joinTripcode;
+	}
+	public Date getJoinTripDate() {
+		return joinTripDate;
+	}
+	public void setJoinTripDate(Date joinTripDate) {
+		this.joinTripDate = joinTripDate;
+	}
+	public String getJoinTripCancel() {
+		return joinTripCancel;
+	}
+	public void setJoinTripCancel(String joinTripCancel) {
+		this.joinTripCancel = joinTripCancel;
+	}
+	public String getJoinTripAttend() {
+		return joinTripAttend;
+	}
+	public void setJoinTripAttend(String joinTripAttend) {
+		this.joinTripAttend = joinTripAttend;
+	}
+	public String getJoinTripReason() {
+		return joinTripReason;
+	}
+	public void setJoinTripReason(String joinTripReason) {
+		this.joinTripReason = joinTripReason;
+	}
 	@Override
 	public String toString() {
 		return "TripReviewDTO [reviewCode=" + reviewCode + ", reviewTitle=" + reviewTitle + ", reviewContent="
 				+ reviewContent + ", reviewDate=" + reviewDate + ", reviewGrade=" + reviewGrade + ", tripApply="
 				+ tripApply + ", reviewImg=" + reviewImg + ", reviewsaved=" + reviewsaved + ", reviewOrigin="
 				+ reviewOrigin + ", replycode=" + replycode + ", replyDetail=" + replyDetail + ", replyDate="
-				+ replyDate + ", tripRegistListCode=" + tripRegistListCode + "]";
+				+ replyDate + ", tripRegistListCode=" + tripRegistListCode + ", joinTripcode=" + joinTripcode
+				+ ", joinTripDate=" + joinTripDate + ", joinTripCancel=" + joinTripCancel + ", joinTripAttend="
+				+ joinTripAttend + ", joinTripReason=" + joinTripReason + "]";
 	}
-	
 
 	
+	
+
 	
 }

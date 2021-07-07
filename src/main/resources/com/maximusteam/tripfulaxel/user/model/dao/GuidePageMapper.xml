@@ -18,6 +18,20 @@
  	<result property="replycode" column="TRIP_REPLY_CODE"/>
  	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
  	<result property="replyDate" column="TRIP_REPLY_DATE"/>
+ 	
+ 	<collection property="userResult" ofType="UserDTO">
+	  <result column="USER_CODE" property="userCode" />
+      <result column="USER_NAME" property="userName" />
+      <result column="USER_PHONE" property="userPhone" />
+      <result column="USER_PWD" property="userPwd" />
+      <result column="USER_BDAY" property="userBday" />
+      <result column="USER_GENDER" property="userGender" />
+      <result column="USER_EMAIL" property="userEmail" />
+      <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+      <result column="USER_REPORT_COUNT" property="userReportCount" />
+      <result column="USER_GUIDE_YN" property="userGuideYN" />
+	</collection>
+ 	
  	</resultMap>
  	
  	<select id="selectGuideReview" resultMap="tripReviewResult" parameterType="TripReviewDTO">
