@@ -89,39 +89,39 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<c:forEach var="GuideReview" items="${ selectGuideReview }">
 		<div id="detail_content">
-
 			<div class="card mb-3" style="width: 90%; margin: 0 auto;">
+			
+			<c:forEach var="img" items="${GuideReview.reviewImg }">
 				<div class="card-img-top"
 					style="width: 97%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
-
-					<img
-						src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}.jpg"
+					<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}.jpg"
 						class="card-img1" alt="" width="32%" height="200px">
-
 				</div>
+				    </c:forEach>
 
 
 				<div class="card-body">
 					<!-- 여행제목 -->
-					<h5 class="card-title" style="margin-top: 20px;">행복한 추억</h5>
+					<h5 class="card-title" style="margin-top: 20px;"><c:out value="${GuideReview.reviewTitle } "/></h5>
 					<br>
 					<p class="card-text">
 						<!-- 여행후기 -->
-						즐거웠어요
+					<c:out value="${GuideReview.reviewContent }"/> 즐거웠어요
 					</p>
 					<br>
 					<!-- 별점 -->
-
+					<c:forEach var="grade" begin="1" end="${GuideReview.reviewGrade }"> 
 					<img src="/tripfulaxel/resources/images/common/star.png"
 						style="width: 20px; height: 20px;">
-
+					</c:forEach>
 
 					<p class="card-text">
-						<small class="text-muted">작성자: 정주영 </small>
+						<small class="text-muted">작성자: <c:out value="${GuideReview.userResult.userName }"/> </small>
 						  <br>
-						 <small class="text-muted"> 감사합니다. </small>
+						 <small class="text-muted">  <c:out value="${review.reviewDate } "/> </small>
 					</p>
 				</div>
 				
@@ -148,6 +148,7 @@
 
 			<p>
 		</div>
+	</c:forEach>
 		<!-- detail_content div 끝 -->
 
 

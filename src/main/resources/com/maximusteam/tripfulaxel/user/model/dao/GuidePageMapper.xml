@@ -18,8 +18,14 @@
  	<result property="replycode" column="TRIP_REPLY_CODE"/>
  	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
  	<result property="replyDate" column="TRIP_REPLY_DATE"/>
- 	
- 	<collection property="userResult" ofType="UserDTO">
+ 	<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+ 	<result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
+ 	<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+ 	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
+ 	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
+ 	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+<!--  	
+ <collection property="GuideResult" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
 	  <result column="USER_CODE" property="userCode" />
       <result column="USER_NAME" property="userName" />
       <result column="USER_PHONE" property="userPhone" />
@@ -30,7 +36,7 @@
       <result column="USER_REGISTER_DAY" property="userRegisterDay" />
       <result column="USER_REPORT_COUNT" property="userReportCount" />
       <result column="USER_GUIDE_YN" property="userGuideYN" />
-	</collection>
+	</collection>  -->
  	
  	</resultMap>
  	
