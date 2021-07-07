@@ -21,7 +21,31 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
 		 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	
+	<script>
+    				     function from(){
+							var a = document.getElementById("btnradio2");
+
+							if(a.checked === true){
+								document.getElementById("AddFrom").style.display = '';
+							}
+							
+    					}; 
+    					function fromdel(){
+    						var a = document.getElementById("btnradio2");
+    						if(a.checked === false){
+								document.getElementById("AddFrom").style.display = 'none';
+							}
+    					}
+    				    /* (function(){
+							var a = document.getElementById("btnradio2");
+
+							if(a.checked == true){
+								document.getElementById("AddFrom").style.display = '';
+							} else {
+								document.getElementById("AddFrom").style.display = 'none';
+							}
+    					})(); */
+	</script>
     <style>
        /*  #detail thead th {border-top: 3px solid rgba(0, 0, 0, 0.7);} */
 
@@ -55,16 +79,7 @@
         
         table *{color : rgba(0,0,0,0.3);}
     </style>
-    <script type="text/javascript">
-    					(function(){
-							const a = document.querySelector("#btnradio2");
-							if(a.checked === true){
-								document.querySelector("#AddFrom").style.diplay = 'block';
-							} else {
-								document.querySelector("#AddFrom").style.diplay = 'none';
-							}
-    					})();
-				</script>
+    
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -104,15 +119,16 @@
   
   
   
-               <form action="${ pageContext.servletContext.contextPath }/insert/examine" method="post" enctype="multipart/form-data">
+               <form action="${ pageContext.servletContext.contextPath }/user/mypage/insert/Request" method="post" enctype="multipart/form-data">
                
                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; margin:0 auto;">
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onchange="fromdel()" autocomplete="off" checked value="5">
 				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">일반 문의하기</label>
 				
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onchange="from()" autocomplete="off" value="2">
 				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">신고하기</label>
-				
+					<script>
+	</script>
 				</div>
 				
                 <div id="contact-area" style="margin: 0 auto; clear: both; margin-top: 50px; ">
@@ -123,7 +139,7 @@
                     				<th colspan="2"></th>
             					</tr>
                     			<tr id="AddFrom" style="display: none;">
-                    				<th>신고대상자</th>
+                    				<th>신고 대상 : </th>
                     				<th><input type="text" name="From" id="From" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
                     			</tr>
                     			<tr>
