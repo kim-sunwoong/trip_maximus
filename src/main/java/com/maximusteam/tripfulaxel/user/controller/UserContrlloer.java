@@ -341,6 +341,15 @@ public class UserContrlloer {
     	
     }
     
+    @GetMapping("tripAlone")
+    public String tripAlone() {
+    	return "/user/main/insertTripAlone";
+    }
+    
+    @GetMapping("tripTogetger")
+    public String tripTogether() {
+    	return "/user/main/insertTripTogether";
+    }
 
 
 
