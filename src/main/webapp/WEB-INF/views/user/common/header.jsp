@@ -752,7 +752,7 @@ li.header_menu:hover {
                <li class="floatL">
                <a href="${ pageContext.servletContext.contextPath }/insertGuide">
                      <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
-                        등록</span>
+                                              등록</span>
                </a></li>
                </c:if>
 
