@@ -162,6 +162,7 @@
        <result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
     </resultMap>                 
     
+    
     <insert id="insertExamine">
       <selectKey keyProperty="examine.code" order="BEFORE" resultType="_int">
           SELECT
