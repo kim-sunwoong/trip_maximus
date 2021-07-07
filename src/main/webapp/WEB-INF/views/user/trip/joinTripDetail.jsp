@@ -72,7 +72,7 @@
 #head {
 	position: fixed;
 	margin-right: 400px;
-	margin-top: 5%
+	margin-top: 2%;
 }
 
 .topimg img {
