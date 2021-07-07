@@ -421,8 +421,8 @@ function uploadFile(){
 	<div id="container">
 		<aside>
 			<header>
-				<label style="color:white; font-size:15px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
-				<label style="color:white; font-size:20px;">현재 접속중 인원 입니다.</label>
+				<label style="color:white; font-size:14px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
+				<label style="color:white; font-size:22px;">현재 접속중 인원 입니다.</label>
 			</header>
 			
 			<ul id="joinList">
@@ -533,9 +533,9 @@ function uploadFile(){
 						<img id="img" style="object-fit:cover; width:80px; height:80px; margin-left:15px; margin-top:10px; border-style:solid; border-color:black;">
 					</div>
 			<footer>
-				<textarea placeholder="Type your message" id="message"></textarea>
-				<button onclick="send()">Send</button>
-				<input id="imgMessage" type="file" onchange="uploadFile()"/>
+				<textarea placeholder="TripfulAxel 유저들과 실시간으로 여행 정보를 공유해 보세요!!" id="message"></textarea>
+				<button onclick="send()" style="font-size:17px;">Send</button>
+				<input id="imgMessage" type="file" onchange="uploadFile()" />
 			</footer>
 		</main>
 	</div>
