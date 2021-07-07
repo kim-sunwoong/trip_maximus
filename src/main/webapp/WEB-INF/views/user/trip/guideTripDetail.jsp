@@ -55,7 +55,7 @@
  	<style>
  	#head { position: fixed; 
  		margin-right: 400px;
- 		margin-top: 5%
+ 		/* margin-top: 5% */
  	} 
  	
  	.topimg img {
@@ -113,6 +113,9 @@
  	</script>
  </head>
  <body>
+ <jsp:include page="../common/header.jsp"></jsp:include>
+
+<br>
 
  	<section class="container pcWrap">
 
@@ -134,15 +137,15 @@
 
  				<div class="offerNav">
  					<ul class="clearfix offerNavList" style="background:skyblue; color:white">
- 						<li class="floatL" data-id="offerMaker"><a
+ 						<li class="floatL" data-id="offerMaker"><a style="color:white;"
  							href="#offerMaker">로컬가이드</a></li>
- 						<li class="floatL" data-id="offerTravel"><a
+ 						<li class="floatL" data-id="offerTravel"><a style="color:white;"
  							href="#offerTravel">여행 소개</a></li>
- 						<li class="floatL" data-id="Course"><a href="#Course">코스
+ 						<li class="floatL" data-id="Course"><a style="color:white;" href="#Course">코스
  								안내</a></li>
- 						<li class="floatL" data-id="offerInfo"><a href="#offerInfo">안내
+ 						<li class="floatL" data-id="offerInfo"><a style="color:white;" href="#offerInfo">안내
  								사항</a></li>
- 						<li class="floatL" data-id="offerReview"><a
+ 						<li class="floatL" data-id="offerReview"><a style="color:white;"
  							href="#offerReview">후기</a></li>
  					</ul>
  				</div>
