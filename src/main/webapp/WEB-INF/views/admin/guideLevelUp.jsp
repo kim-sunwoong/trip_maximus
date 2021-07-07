@@ -129,9 +129,10 @@
                             </div>
 
                             <div class="card-body">
-                                <table id="datatablesSimple" class="table table">
+                                <table id="datatablesSimple" class="table table" >
                                     <thead>
                                         <tr>
+                                            <th>번호</th>
                                             <th>가입 등업 신청 번호</th>
                                             <th>가이드 아이디</th>
                                             <th>현재 레벨</th>
@@ -140,9 +141,12 @@
                                             <th>상세보기</th>
                                         </tr>
                                     </thead>
-                              <c:forEach items="${selectLevelUpList}" var = "level">
+                              <c:forEach items="${selectLevelUpList}" var = "level" varStatus="status">
                                     <tbody>
                                         <tr>
+                                            <td>
+                                            	<c:out value="${status.count}"/>
+                                            </td>
                                             <td><c:out value="${level.levelUpNo}"/></td>
                                             <td><c:out value="${level.guideId}"/></td>
                                             <td><c:out value="${level.guideLevel}"/></td>

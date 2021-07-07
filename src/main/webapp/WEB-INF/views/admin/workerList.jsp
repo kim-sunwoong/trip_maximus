@@ -132,6 +132,7 @@
 	                                <table id="datatablesSimple" class="table table">
 	                                    <thead>
 	                                        <tr>
+	                                            <th>번호</th>
 	                                            <th>관리자 사원번호</th>
 	                                            <th>직책</th>
 	                                            <th>이름</th>
@@ -141,8 +142,11 @@
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-	                                      <c:forEach items="${selectAdmin}" var = "list">
+	                                      <c:forEach items="${selectAdmin}" var = "list" varStatus="status">
 	                                        <tr>
+	                                           	<td>
+                                            	<c:out value="${status.count}"/>
+                                           		</td>
 	                                            <td><c:out value="${list.adminNo}"/></td>
 	                                            <td><c:out value="${list.adminPosition}"/></td>
 	                                            <td><c:out value="${list.adminName}"/></td>

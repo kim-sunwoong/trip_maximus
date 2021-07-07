@@ -132,6 +132,7 @@
                                 <table id="datatablesSimple"  class="table table">
                                     <thead>
                                         <tr>
+                                            <th>번호</th>
                                             <th>회원번호</th>
                                             <th>이름</th>
                                             <th>아이디</th>
@@ -141,8 +142,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                   		<c:forEach items="${selectMember}" var = "member">
+                                   		<c:forEach items="${selectMember}" var = "member" varStatus="status">
                                         <tr>
+                                            <td>
+                                            	<c:out value="${status.count}"/>
+                                            </td>
 	                                        <td><c:out value="${member.memberNo}"/></td>
 	                                        <td><c:out value="${member.memberName}"/></td>
 	                                        <td><c:out value="${member.memberId}"/></td>

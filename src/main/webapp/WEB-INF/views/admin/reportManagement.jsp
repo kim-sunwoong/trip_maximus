@@ -137,7 +137,8 @@
                                 <table id="datatablesSimple" class="table table">
                                     <thead>
                                         <tr>
-                                            <th>신고번호</th>
+                                            <th>번호</th>
+                                            <th>신고 번호</th>
                                             <th>신고 제목</th>
                                             <th>신고작성자</th>
                                             <th>처리여부</th>
@@ -150,8 +151,8 @@
                                         <tr>
                                             <td>
                                             	<c:out value="${status.count}"/>
-                                            	<input type="hidden" value="${report.reportNo}"/>
                                             </td>
+                                            <td><c:out value="${report.reportNo}"/></td>
                                             <td><c:out value="${report.reportTitle}"/></td>
                                             <td><c:out value="${report.reportId}"/></td>
                                             <td><c:out value="${report.reportStatus}"/></td>

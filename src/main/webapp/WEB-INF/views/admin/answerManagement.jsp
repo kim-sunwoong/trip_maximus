@@ -141,6 +141,7 @@
                                 <table id="datatablesSimple" class="table table">
                                     <thead>
                                         <tr>
+                                            <th>번호</th>
                                             <th>문의번호</th>
                                             <th>아이디</th>
                                             <th>제목</th>
@@ -152,6 +153,9 @@
                                     <tbody>
                                     	<c:forEach items="${selectAnswer}" var = "answer" varStatus="status">
                                         <tr>
+                                            <td>
+                                            	<c:out value="${status.count}"/>
+                                            </td>
                                             <td><c:out value="${answer.answerNo}"/></td>
                                             <td><c:out value="${answer.userId}"/></td>
                                             <td><c:out value="${answer.answerTitle}"/></td>
