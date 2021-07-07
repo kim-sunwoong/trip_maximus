@@ -36,17 +36,7 @@
                 href="#!">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Navbar-->
-            <ul style="padding: 20px 0px 0px 1260px;">
-                <a
-                    class="sb-nav-link-icon"
-                    id="navbarDropdown"
-                    href="CustomerLogin.html"
-                    role="button"
-                    style="background-color: gray; width: 50px; height: 50px;">
-                    <img src="./pic/log-in.png" style="width: 30px; height: 30px;">
-                </a>
-            </ul>
+
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -127,7 +117,7 @@
                                         <tr>
                                            <td><c:out value="${calculateDetail.calculateDate}"/></td>
                                            <td><c:out value="${calculateDetail.payment}"/></td>
-                                           <td><c:out value="${calculateDetail.payment}"/></td>
+                                           <td><c:out value="${calculateDetail.payment div 10}"/></td>
                                            <td><c:out value="${calculateDetail.payment}"/></td>
                                            <td><c:out value="${calculateDetail.payment}"/></td>
                                            <td><c:out value="${calculateDetail.payment}"/></td>
