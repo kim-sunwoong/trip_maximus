@@ -12,9 +12,6 @@
  	<result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
  	<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
  	<result property="tripApply" column="TRIP_REVIEW_CODE"/>
- 	<result property="reviewImg" column="REVIEW_IMAGE_CODE"/>
- 	<result property="reviewsaved" column="REVIEW_IMAGE_SAVED_NAME"/>
- 	<result property="reviewOrigin" column="REVIEW_IMAGE_ORIGIN_NAME"/>
  	<result property="replycode" column="TRIP_REPLY_CODE"/>
  	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
  	<result property="replyDate" column="TRIP_REPLY_DATE"/>
@@ -24,8 +21,9 @@
  	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
  	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
  	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
-<!--  	
- <collection property="GuideResult" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
+ 	
+ 	
+  <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
 	  <result column="USER_CODE" property="userCode" />
       <result column="USER_NAME" property="userName" />
       <result column="USER_PHONE" property="userPhone" />
@@ -36,7 +34,14 @@
       <result column="USER_REGISTER_DAY" property="userRegisterDay" />
       <result column="USER_REPORT_COUNT" property="userReportCount" />
       <result column="USER_GUIDE_YN" property="userGuideYN" />
-	</collection>  -->
+	</collection> 
+	
+	
+	<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.user.model.dto.ReviewImgDTO">
+	<result column="REVIEW_IMAGE_CODE" property="reviewImgCode"/>
+	<result column="REVIEW_IMAGE_SAVED_NAME" property="reviewsaved"/>
+	<result column="REVIEW_IMAGE_ORIGIN_NAME" property="reviewOrigin"/>
+	</collection>
  	
  	</resultMap>
  	
