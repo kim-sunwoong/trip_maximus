@@ -65,7 +65,7 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 
-                     <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
                                 	공지사항
@@ -91,10 +91,6 @@
                                 	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
                                 	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -109,7 +105,7 @@
                             </a>
                         </div>
                     </div>
-                    	
+                    
                     <div class="sb-sidenav-footer">
                         <div class="small">
                             Copyright &copy; Tripful axcel
