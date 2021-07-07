@@ -815,7 +815,7 @@ li.header_menu:hover {
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
-                     style="color: white; font-size: 20px;"> 로컬가이드</span></a></li>
+                     style="color: white; font-size: 20px;"> 로컬가이드 여행</span></a></li>
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
@@ -824,7 +824,7 @@ li.header_menu:hover {
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;"> 같이가요 여행</span></a></li>
-               <li class="floatL header_menu"><a href="#"
+               <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;">여행 플래너</span></a></li>
       		

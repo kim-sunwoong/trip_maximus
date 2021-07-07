@@ -23,12 +23,7 @@
             <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axcel</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar-->
-            <ul style="padding: 20px 0px 0px 1260px;">
-                <a class="sb-nav-link-icon" id="navbarDropdown" href="CustomerLogin.html" role="button" style="background-color: gray; width: 50px; height: 50px;">
-                    <img src="./pic/log-in.png" style="width: 30px; height: 30px;">
-                </a>
-            </ul>
+
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">

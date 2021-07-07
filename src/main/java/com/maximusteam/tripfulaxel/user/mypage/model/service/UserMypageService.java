@@ -2,6 +2,8 @@ package com.maximusteam.tripfulaxel.user.mypage.model.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
@@ -22,6 +24,8 @@ public interface UserMypageService {
 	List<JoinTripListDTO> selectMyJoinList2();
 	
 	List<ReqListDTO> selectRequestList();
+	
+	int insertRequest(Model model);
 
 
 	

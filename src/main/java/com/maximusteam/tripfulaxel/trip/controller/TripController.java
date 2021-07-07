@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
@@ -24,7 +25,8 @@ import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
-import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripJoinDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentAndJoinDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;
 import com.maximusteam.tripfulaxel.trip.model.service.TripServiceImpl;
@@ -60,17 +62,9 @@ public class TripController {
 			}
 		}
 		
-		for(TripDTO t : trip) {
-			System.out.println(t);
-		}
-		
 		if(condition.getTripType() != 3) {
 			
 			List<ReviewDTO> reviewList = tripService.selectReviewList(tripCode);
-			
-			for(ReviewDTO review : reviewList) {
-				System.out.println(review);
-			}
 			
 			model.addAttribute("reviewList", reviewList);
 			
@@ -79,12 +73,16 @@ public class TripController {
 		if(condition.getTripType() == 1) {
 			
 			GuideDTO guide = tripService.selectGuide(tripCode);
-			System.out.println("가이드");
-			System.out.println(guide);
 			model.addAttribute("guide", guide);
 		}
 		
 		model.addAttribute("trip", trip);
+		
+		System.out.println("trip Image list");
+		for(ImageDTO img : trip.get(0).getTripImgList()) {
+			System.out.println();
+			System.out.println(img);
+		}
 		
 		if(condition.getTripType() == 2) {
 			return "user/trip/joinTripDetail";
@@ -171,8 +169,38 @@ public class TripController {
 	}
 	
 	@GetMapping("payment")
-	public String payment(@ModelAttribute TripPaymentDTO pay, Model model) {
+	public String payment(@ModelAttribute TripPaymentAndJoinDTO pay, Model model) {
 		model.addAttribute("pay", pay);
 		return "user/main/payment";
+	}
+	
+	@PostMapping("payment")
+	public void insertPayment(@ModelAttribute TripPaymentAndJoinDTO pay, HttpServletResponse response) {
+		
+		
+		int joinResult = tripService.insertTripJoin(pay);
+		int payResult = tripService.insertPayment(pay);
+		response.setCharacterEncoding("utf-8");
+		
+		try {
+			if((joinResult + payResult) > 1) {
+				response.getWriter().print("결제가 완료 되었습니다. 감사합니다.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("insert/join")
+	public void insertTripJoin(@ModelAttribute TripPaymentAndJoinDTO join, HttpServletResponse response) {
+		int joinResult = tripService.insertTripJoin(join);
+		try {
+			if(joinResult > 0) {
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print("여행 참가 신청이 완료 되었습니다.");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

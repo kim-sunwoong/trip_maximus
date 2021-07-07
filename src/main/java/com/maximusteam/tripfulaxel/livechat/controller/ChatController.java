@@ -147,10 +147,11 @@ public class ChatController {
 	}
 	
 	@RequestMapping("/share/insert/chatRoom")
-	public String insertChatRoom(Model model, @RequestParam String roomTitle, int userCode) {
+	public String insertChatRoom(Model model, @RequestParam String roomTitle, int userCode, String userEmail) {
 		
 		ChatJoinUserDTO user = new ChatJoinUserDTO();
 		user.setUserCode(userCode);
+		user.setUserEmail(userEmail);
 		
 		List<ChatJoinUserDTO> joinUser = new ArrayList<ChatJoinUserDTO>();
 		joinUser.add(user);
@@ -163,11 +164,7 @@ public class ChatController {
 		
 		user.setRoomCode(room.getRoomCode());
 		
-		int insertChatJoinResult = 0;
 		if(insertRoomResult > 0) {
-			insertChatJoinResult = chatService.insertChatJoin(user);
-		}
-		if(insertChatJoinResult > 0) {
 			model.addAttribute("room", room);
 			return "user/livechat/chat";
 		} else {
@@ -196,6 +193,7 @@ public class ChatController {
 			model.addAttribute("room", room);
 			
 			return "user/livechat/chat";
+			
 		} else {
 			model.addAttribute("roomList", roomList);
 			
