@@ -33,11 +33,11 @@
  	<div id="arrows" style="width:100%; height:200px;">
  		
  	</div>
-	<div id="images" style="width:100%; height:1000px;">
+	<div id="images" style="width:100%; height:1000px;" align="center">
 			
-			<img src="${pageContext.servletContext.contextPath}/resources/images/common/selfTrip.jpg" class="rounded float-start">
+			<img src="${pageContext.servletContext.contextPath}/resources/images/common/selfTrip2.jpg" class="rounded float-start">
 			
-			<img src="${pageContext.servletContext.contextPath}/resources/images/common/friendsTrip.jpg" class="rounded float-end" alt="...">
+			<img src="${pageContext.servletContext.contextPath}/resources/images/common/friendsTrip2.jpg" class="rounded float-end" alt="...">
 		</div>
 
 	</div>
