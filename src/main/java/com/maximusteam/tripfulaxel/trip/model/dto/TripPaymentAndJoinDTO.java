@@ -2,11 +2,12 @@ package com.maximusteam.tripfulaxel.trip.model.dto;
 
 import java.sql.Date;
 
-public class TripPaymentDTO {
+public class TripPaymentAndJoinDTO {
 
 	private int userCode;
 	private int tripRegistCode;
 	private int tripJoinCode;
+	private String joinReason;
 	private int tripCode;
 	private int payCode;
 	private int amount;
@@ -14,16 +15,17 @@ public class TripPaymentDTO {
 	private Date tripDay;
 	private String saveName;
 	
-	public TripPaymentDTO() {
+	public TripPaymentAndJoinDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TripPaymentDTO(int userCode, int tripRegistCode, int tripJoinCode, int tripCode, int payCode, int amount,
-			int totalPay, Date tripDay, String saveName) {
+	public TripPaymentAndJoinDTO(int userCode, int tripRegistCode, int tripJoinCode, String joinReason, int tripCode,
+			int payCode, int amount, int totalPay, Date tripDay, String saveName) {
 		super();
 		this.userCode = userCode;
 		this.tripRegistCode = tripRegistCode;
 		this.tripJoinCode = tripJoinCode;
+		this.joinReason = joinReason;
 		this.tripCode = tripCode;
 		this.payCode = payCode;
 		this.amount = amount;
@@ -54,6 +56,14 @@ public class TripPaymentDTO {
 
 	public void setTripJoinCode(int tripJoinCode) {
 		this.tripJoinCode = tripJoinCode;
+	}
+
+	public String getJoinReason() {
+		return joinReason;
+	}
+
+	public void setJoinReason(String joinReason) {
+		this.joinReason = joinReason;
 	}
 
 	public int getTripCode() {
@@ -106,15 +116,12 @@ public class TripPaymentDTO {
 
 	@Override
 	public String toString() {
-		return "TripPaymentDTO [userCode=" + userCode + ", tripRegistCode=" + tripRegistCode + ", tripJoinCode="
-				+ tripJoinCode + ", tripCode=" + tripCode + ", payCode=" + payCode + ", amount=" + amount
-				+ ", totalPay=" + totalPay + ", tripDay=" + tripDay + ", saveName=" + saveName + "]";
+		return "TripPaymentAndJoinDTO [userCode=" + userCode + ", tripRegistCode=" + tripRegistCode + ", tripJoinCode="
+				+ tripJoinCode + ", joinReason=" + joinReason + ", tripCode=" + tripCode + ", payCode=" + payCode
+				+ ", amount=" + amount + ", totalPay=" + totalPay + ", tripDay=" + tripDay + ", saveName=" + saveName
+				+ "]";
 	}
 
-	
-	
-	
-	
 	
 	
 }

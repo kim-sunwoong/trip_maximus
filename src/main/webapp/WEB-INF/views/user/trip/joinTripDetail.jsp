@@ -18,10 +18,8 @@
 <script src="/tripfulaxel/resources/user/js/wrest.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/placeholders.min.js"></script>
 
-<!-- 웹 폰트 확인 후 변경 -->
-<link rel="stylesheet"
-	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ 	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
 
@@ -43,8 +41,6 @@
 	href="/tripfulaxel/resources/user/css/html/style.css?ver=20210620">
 
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"
@@ -107,6 +103,28 @@ function inquiry(){
 	        }
 	    });
 	}
+	
+function tripJoin() {
+	var joinReason = $("#joinReason").val();
+	
+	var tripCode = ${trip[0].tripCode};
+	var userCode = ${sessionScope.loginUser.userCode};
+	var tripRegistCode = ${trip[0].tripRegistCode};
+	
+	$.ajax({
+        type: "POST",
+        url: "insert/join",
+        data: {"tripCode":tripCode, "userCode":userCode, "tripRegistCode":tripRegistCode, "joinReason": joinReason  },
+        success: function (data) {
+        	alert(data);
+        	$("#joinReason").val("");
+        },
+        error: function (e) {
+            alert('fail');
+        }
+    });
+}
+
 
 
 </script>
@@ -499,7 +517,7 @@ function inquiry(){
 							<li>
 								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
 							</li>
-							<li><select name="reser_Per">
+							<li><select id="amount" name="reser_Per">
 									<option value="1">1 명</option>
 									<option value="2">2 명</option>
 									<option value="3">3 명</option>
@@ -507,12 +525,13 @@ function inquiry(){
 							</select>
 						</ul>
 						<div class="offerPrice">
-							<div class="clearfix2">
-								<span class="txtG">여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
+							<div class="clearfix2 msgCont">
+								<span class="txtG">총 여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
+								<textarea name="sendcontent" id="joinReason" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
 							</div>
 						</div>
 						<button class="btn btnBgC btnFull txt_md"
-							onclick="" style="background:skyblue;">여행 참가하기</button>
+							onclick="tripJoin()" style="background:skyblue;">여행 참가하기</button>
 
 					</div>
 					

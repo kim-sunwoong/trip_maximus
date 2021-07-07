@@ -322,7 +322,7 @@
 		
 	</insert>
 	
-	<insert id="insertTripJoin" parameterType="com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO">
+	<insert id="insertTripJoin" parameterType="com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentAndJoinDTO">
 		<selectKey keyProperty="tripJoinCode" resultType="int" order="BEFORE">
 			SELECT
  				   IFNULL(MAX(ti.JOIN_TRIP_APPLY_CODE) + 1, 1)
@@ -346,7 +346,7 @@
 		, NOW()
 		, 'N'
 		, 'Y'
-		, ''
+		, #{joinReason}
 		, #{tripRegistCode}
 		, #{userCode}
 		)

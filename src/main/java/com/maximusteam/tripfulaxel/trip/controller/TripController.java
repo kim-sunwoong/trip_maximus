@@ -25,7 +25,8 @@ import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
-import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripJoinDTO;
+import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentAndJoinDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;
 import com.maximusteam.tripfulaxel.trip.model.service.TripServiceImpl;
@@ -168,13 +169,14 @@ public class TripController {
 	}
 	
 	@GetMapping("payment")
-	public String payment(@ModelAttribute TripPaymentDTO pay, Model model) {
+	public String payment(@ModelAttribute TripPaymentAndJoinDTO pay, Model model) {
 		model.addAttribute("pay", pay);
 		return "user/main/payment";
 	}
 	
 	@PostMapping("payment")
-	public void insertPayment(@ModelAttribute TripPaymentDTO pay, HttpServletResponse response) {
+	public void insertPayment(@ModelAttribute TripPaymentAndJoinDTO pay, HttpServletResponse response) {
+		
 		
 		int joinResult = tripService.insertTripJoin(pay);
 		int payResult = tripService.insertPayment(pay);
@@ -185,6 +187,19 @@ public class TripController {
 				response.getWriter().print("결제가 완료 되었습니다. 감사합니다.");
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("insert/join")
+	public void insertTripJoin(@ModelAttribute TripPaymentAndJoinDTO join, HttpServletResponse response) {
+		int joinResult = tripService.insertTripJoin(join);
+		try {
+			if(joinResult > 0) {
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print("여행 참가 신청이 완료 되었습니다.");
+			}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

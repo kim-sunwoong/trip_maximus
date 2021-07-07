@@ -25,8 +25,6 @@
      <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
      <!-- 파비콘 이미지 변경 -->
- 	<link rel="icon" type="image/png" sizes="16x16" href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
-
 
  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
