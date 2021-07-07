@@ -11,16 +11,15 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78304428f671ff1c62a722e41af4bfc6&libraries=services"></script>
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/wrest.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/placeholders.min.js"></script>
 
-<!-- 웹 폰트 확인 후 변경 -->
-<link rel="stylesheet"
-	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ 	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
 
@@ -42,8 +41,6 @@
 	href="/tripfulaxel/resources/user/css/html/style.css?ver=20210620">
 
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"
@@ -75,7 +72,6 @@
 #head {
 	position: fixed;
 	margin-right: 400px;
-	margin-top: 5%
 }
 
 .topimg img {
@@ -106,12 +102,36 @@ function inquiry(){
 	        }
 	    });
 	}
+	
+function tripJoin() {
+	var joinReason = $("#joinReason").val();
+	
+	var tripCode = ${trip[0].tripCode};
+	var userCode = ${sessionScope.loginUser.userCode};
+	var tripRegistCode = ${trip[0].tripRegistCode};
+	
+	$.ajax({
+        type: "POST",
+        url: "insert/join",
+        data: {"tripCode":tripCode, "userCode":userCode, "tripRegistCode":tripRegistCode, "joinReason": joinReason  },
+        success: function (data) {
+        	alert(data);
+        	$("#joinReason").val("");
+        },
+        error: function (e) {
+            alert('fail');
+        }
+    });
+}
+
 
 
 </script>
 
 </head>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
+<br>
 
 	<section class="container pcWrap">
 
@@ -123,7 +143,7 @@ function inquiry(){
 					<div class="offer_main_slider">
 						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}.jpg">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
 					</div>
@@ -134,15 +154,15 @@ function inquiry(){
 
 				<div class="offerNav">
 					<ul class="clearfix offerNavList" style="background:skyblue; color:white">
-						<li class="floatL" data-id="offerMaker"><a
+						<li class="floatL" data-id="offerMaker"><a style="color:white;"
 							href="#offerMaker">같이가요!</a></li>
-						<li class="floatL" data-id="offerTravel"><a
+						<li class="floatL" data-id="offerTravel"><a style="color:white;"
 							href="#offerTravel">여행 소개</a></li>
-						<li class="floatL" data-id="Course"><a href="#Course">코스
+						<li class="floatL" data-id="Course"><a style="color:white;" href="#Course">코스
 								안내</a></li>
-						<li class="floatL" data-id="offerInfo"><a href="#offerInfo">안내
+						<li class="floatL" data-id="offerInfo"><a  style="color:white;" href="#offerInfo">안내
 								사항</a></li>
-						<li class="floatL" data-id="offerReview"><a
+						<li class="floatL" data-id="offerReview"><a style="color:white;"
 							href="#offerReview">후기</a></li>
 					</ul>
 				</div>
@@ -213,15 +233,14 @@ function inquiry(){
 						</div>
 						<div class="offerBox">
 							<h4 class="txt_big">
-								코스 안내<span class=""> &#40;총 <span>05</span>시간 <span>00</span>분
-									소요&#41;
+								코스 안내<span class="">
 								</span>
 							</h4>
 							<div class="corseWrap">
 								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}.jpg">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -245,11 +264,53 @@ function inquiry(){
 						</div>
 						<div class="offerBox">
 							<h4 class="txt_big">만나는 장소</h4>
-							<div class="offerMap">
-								<iframe
-									src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-									style="width: 100%; height: 100%;"></iframe>
-							</div>
+ 							<div id="meetMap" style="width:770px; height:500px;">
+ 							
+ 							
+ 							
+ 							</div>
+ 							<c:out value="${trip[0].meetLocation}"/>
+ 							<script>
+							 	var container = document.getElementById('meetMap');
+								var mapOption = {
+									center: new kakao.maps.LatLng(33.450701, 126.570667),
+									level: 3
+								};
+							
+								var map = new kakao.maps.Map(container, mapOption);
+								
+								map.setDraggable(false); 
+								map.setZoomable(false);
+							 	
+								// 주소-좌표 변환 객체를 생성합니다
+								var geocoder = new kakao.maps.services.Geocoder();
+
+								// 주소로 좌표를 검색합니다
+								geocoder.addressSearch('${trip[0].meetLocation}', function(result, status) {
+
+								    // 정상적으로 검색이 완료됐으면 
+								     if (status === kakao.maps.services.Status.OK) {
+
+								        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+								        // 결과값으로 받은 위치를 마커로 표시합니다
+								        var marker = new kakao.maps.Marker({
+								            map: map,
+								            position: coords
+								        });
+
+								        // 인포윈도우로 장소에 대한 설명을 표시합니다
+								        var infowindow = new kakao.maps.InfoWindow({
+								            content: '<div style="width:150px;text-align:center;padding:6px 0;">만나는 장소</div>'
+								        });
+								        infowindow.open(map, marker);
+
+								        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								        map.setCenter(coords);
+								    } 
+								});    
+								
+							 </script>
 						</div>
 					</div>
 				</div>
@@ -337,7 +398,7 @@ function inquiry(){
 										<div class="reviewimage">
 											<div class="imageone">
 												<c:forEach var="img" items="${reviewList[0].reviewImgList }">
-													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.saveName}" alt="">
 												</c:forEach>
 											</div>
 											
@@ -390,7 +451,7 @@ function inquiry(){
 										<div class="reviewimage">
 											<div class="imageone">
 												<c:forEach var="img" items="${review.reviewImgList }">
-													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.saveName}.jpg" alt="">
+													<img style="width: 250px; height: 130px" src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.saveName}" alt="">
 												</c:forEach>
 											</div>
 											
@@ -456,7 +517,7 @@ function inquiry(){
 							<li>
 								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
 							</li>
-							<li><select name="reser_Per">
+							<li><select id="amount" name="reser_Per">
 									<option value="1">1 명</option>
 									<option value="2">2 명</option>
 									<option value="3">3 명</option>
@@ -464,12 +525,13 @@ function inquiry(){
 							</select>
 						</ul>
 						<div class="offerPrice">
-							<div class="clearfix2">
-								<span class="txtG">여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
+							<div class="clearfix2 msgCont">
+								<span class="txtG">총 여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
+								<textarea name="sendcontent" id="joinReason" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
 							</div>
 						</div>
 						<button class="btn btnBgC btnFull txt_md"
-							onclick="" style="background:skyblue;">여행 참가하기</button>
+							onclick="tripJoin()" style="background:skyblue;">여행 참가하기</button>
 
 					</div>
 					

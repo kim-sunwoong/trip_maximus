@@ -88,5 +88,7 @@ public interface AdminMapper {
 	
 	AdminDTO selectLogin(AdminDTO admin);
 
+	List<CalculateDTO> selectCalculateDetail(int no);
+
 
 }

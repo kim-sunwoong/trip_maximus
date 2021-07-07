@@ -255,9 +255,6 @@ window.onload = function connect() {
 	        stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'join'}));
 	    });
 	    
-	    /* data = {'userEmail': ("${sessionScope.loginUser.userEmail}"), 'roomCode': ${room.roomCode} }; 
-	    stompClient.send("/app/message/join", {}, JSON.stringify(data));
-	    joinMember(data); */
 	}
 
 window.onbeforeunload = function(e){
@@ -325,14 +322,14 @@ function showMessage(e, time) {
     	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
     	    	"</h3> <h2> ${sessionScope.loginUser.userEmail} </h2> <span class='status blue'></span> </div> <div>" 
     	    	+ "<img src='${pageContext.servletContext.contextPath}/resources/images/message/" + e.messageImage 
-    	    	+ "' style='width:120px; height:120px; object-fit:cover;'> </div> </li> ";
+    	    	+ "' style='width:130px; height:130px; object-fit:cover;'> </div> </li> ";
     	    	space.scrollTop = space.scrollHeight;
     	
     	    } else {
     	    	space.innerHTML = space.innerHTML + "<li class='you'> <div class='entete'> <span class='status green'></span><h2>" + e.userEmail + 
     	    	"</h2> <h3>" + time + "</h3> </div> <div>" 
     	    	+ "<img src='${pageContext.servletContext.contextPath}/resources/images/message/" + e.messageImage 
-    	    	+ "' style='width:120px; height:120px; object-fit:cover;'> </div> </li> ";
+    	    	+ "' style='width:130px; height:130px; object-fit:cover;'> </div> </li> ";
     	    	space.scrollTop = space.scrollHeight;
     	    }
     	}
@@ -437,6 +434,7 @@ function uploadFile(){
 </script>
 </head>
 <body>
+
 	<div id="container">
 		<aside>
 			<header>
@@ -446,18 +444,18 @@ function uploadFile(){
 			
 			<ul id="joinList">
 				<c:forEach var="email" items="${ room.joinUserList}">
-					<c:if test="${email != sessionScope.loginUser.userEmail }">
-						<li style="margin-left:20px;" id="joinUser">
-							<div>
-								<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
-								<h3>
-									<span class="status green"></span>
-									접속중 입니다.
-								</h3>
-							</div>
-						</li>
-					</c:if>
-				</c:forEach>
+							<c:if test="${email.userEmail != sessionScope.loginUser.userEmail }">
+								<li style="margin-left:20px;" id="joinUser">
+									<div>
+										<h2 style="font-size:16px;"><c:out value="${email.userEmail }"/></h2>
+										<h3>
+											<span class="status green"></span>
+											접속중 입니다.
+										</h3>
+									</div>
+								</li>
+							</c:if>
+					</c:forEach>
 			</ul>
 		</aside>
 		<main>
@@ -484,13 +482,13 @@ function uploadFile(){
 											<span class="status blue"></span>
 										</div>
 										<div>
-											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:130px; height:130px; object-fit:cover;'>
 										</div>
 									</li>
 									
 								</c:if>
 										
-								<c:if test="${chat.messageImage == null || chat.messageImage == ''}">
+								<c:if test="${chat.messageContent != null && chat.messageContent != ''}">
 									
 									<li class="me">
 										<div class="entete">
@@ -518,13 +516,13 @@ function uploadFile(){
 											<h3><c:out value="${chat.messageDate }"/></h3>
 										</div>
 										<div>
-											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:120px; height:120px; object-fit:cover;'>
+											<img src="${pageContext.servletContext.contextPath}/resources/images/message/${chat.messageImage}" style='width:130px; height:130px; object-fit:cover;'>
 										</div>
 									</li>
 								
 								</c:if>
 								
-								<c:if test="${chat.messageImage == null || chat.messageImage == ''}">
+								<c:if test="${chat.messageContent != null || chat.messageContent != ''}">
 								
 									<li class="you">
 										<div class="entete">
@@ -558,6 +556,8 @@ function uploadFile(){
 			</footer>
 		</main>
 	</div>
+	
+	
 </body>
 </html>
 

@@ -103,6 +103,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
 
 	<section id="speakers">
 		<div class="container" data-aos="fade-up">
@@ -170,5 +171,6 @@
 
 	</section>
 
+<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

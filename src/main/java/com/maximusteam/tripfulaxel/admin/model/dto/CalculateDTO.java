@@ -4,17 +4,20 @@ import java.util.Date;
 
 public class CalculateDTO {
 
-	private int calculateNo;
+	private int calculateNo; // 정산코드
 	private String userId;
-	private java.sql.Date calculateDate;
+	private java.sql.Date calculateDate; // 정산 날짜 
+	
+	private int payment; // 가격
 	
 	public CalculateDTO() {	}
 
-	public CalculateDTO(int calculateNo, String userId, java.sql.Date calculateDate) {
+	public CalculateDTO(int calculateNo, String userId, java.sql.Date calculateDate, int payment) {
 		super();
 		this.calculateNo = calculateNo;
 		this.userId = userId;
 		this.calculateDate = calculateDate;
+		this.payment = payment;
 	}
 
 	public int getCalculateNo() {
@@ -41,13 +44,20 @@ public class CalculateDTO {
 		this.calculateDate = calculateDate;
 	}
 
+	public int getPayment() {
+		return payment;
+	}
+
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
+
 	@Override
 	public String toString() {
 		return "CalculateDTO [calculateNo=" + calculateNo + ", userId=" + userId + ", calculateDate=" + calculateDate
-				+ "]";
+				+ ", payment=" + payment + "]";
 	}
 
-	
 	
 	
 	 
