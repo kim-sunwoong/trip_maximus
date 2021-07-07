@@ -1,14 +1,24 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
@@ -105,7 +115,7 @@ public class UserMyPageController {
 	@GetMapping("mypageTab7")
 	public String insertRequest(Model model,HttpSession session) {
 		
-		session.getAttribute("loginUser");
+//		session.getAttribute("loginUser");
 		
 		
 		return "user/mypage/mypageTab7";
@@ -119,6 +129,74 @@ public class UserMyPageController {
 		model.addAttribute("test",test);
 		
 		return "user/mypage/test2";
+	}
+	
+	@PostMapping("insert/Request")
+	public String insertRequest(@RequestParam List<MultipartFile> multiFiles, HttpServletRequest request, Model model,HttpSession session,@ModelAttribute("req") ReqListDTO req) {
+		
+		System.out.println(req);
+		System.out.println(session.getAttribute("loginUser"));
+		
+		
+		model.addAttribute("req",req);
+		model.addAttribute("id",session.getAttribute("loginUser"));
+		
+//		int result = userMypageService.insertRequest(model);
+		
+		
+		/* 파일을 저장할 경로 설정 */
+		/* RootContext : request.getSession().getServletContext() + getRealPath("이 부분을 찾는다.") */
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles";
+		
+		 // 폴더경로만들어주기 자동생성
+		File mkdir = new File(filePath);
+		if(!mkdir.exists()) {
+			mkdir.mkdirs();
+		}
+		
+		List<Map<String,String>> files = new ArrayList<>();
+		for(int i = 0 ; i<multiFiles.size();i++) {
+			
+			/* 파일명 변경 처리 */
+			String originFileName = multiFiles.get(i).getOriginalFilename();
+			String ext = originFileName.substring(originFileName.lastIndexOf("."));
+			String saveName = UUID.randomUUID().toString().replace("-", "") + ext;
+			
+			/* 파일에 관한 정보 추출 후 보관*/
+			Map<String, String> file = new HashMap<String, String>();
+			file.put("originFileName", originFileName);
+			file.put("saveName", saveName);
+			file.put("filePath", filePath);
+			
+			files.add(file);
+		}
+		
+		/* 파일을 저장한다. */
+		try {
+			for(int i = 0; i<multiFiles.size(); i++) {
+				
+				Map<String, String> file = files.get(i);
+				
+				multiFiles.get(i).transferTo(new File(filePath + "\\" + file.get("saveName")));
+				
+			}
+			model.addAttribute("message","파일 업로드 성공!~!!!!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			/* 실패시 파일 삭제 */
+			for(int i = 0; i<multiFiles.size(); i++) {
+			
+			Map<String, String> file = files.get(i);
+			
+			new File(filePath + "\\" + file.get("saveName")).delete();
+			}
+			model.addAttribute("message","파일 업로드 실패!!");
+		}
+		
+		return "user/mypage/mypageTab7";
 	}
 	
 	
