@@ -4,197 +4,199 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper">
 
-		
-		
-		<!-- , jta.JOIN_TRIP_CANCEL_YN
-			 , jta.JOIN_TRIP_ATTEND_YN
-			 , t.TRIP_END_DATE
-			 , tr.TRIP_REVIEW_CODE    -->
-		
-	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO" id="joinTripList">
-		<result property="tripTitle" column="TRIP_TITLE"/>
-		<result property="countUser" column="COUNT_USER"/>
-		<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
-		<association property="status" resultMap="status"/>
-	</resultMap> 
-	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.StatusDTO" id="status">
-		<result property="tripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
-		<result property="tripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
-		<result property="tripEndDate" column="TRIP_END_DATE"/>
-		<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
-	</resultMap>
-		
-	<select id="selectJoinList" resultMap="joinTripList">
-	SELECT
-		   TT.TRIP_TITLE,
-		   jta.JOIN_TRIP_DATE
-		 , jta.JOIN_TRIP_CANCEL_YN
-		 , jta.JOIN_TRIP_ATTEND_YN
-		 , TT.TRIP_END_DATE        
-		 , tr.TRIP_REVIEW_CODE    
-	  FROM TRIP TT
-	  JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
-	  JOIN TRIP_REGIST_LIST trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
-	  JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-	  JOIN TRIP_REVIEW tr ON(jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE)
-	 WHERE trl.TRIP_TYPE_CODE = '2'
-	</select>
-	
-	<select id="selectJoinList2" resultMap="joinTripList">
-		SELECT
-		 	    <!-- t2.TRIP_TITLE , -->
-		 		COUNT(jta2.USER_CODE) as COUNT_USER
-		  FROM JOIN_TRIP_APPLY jta2
-			   JOIN TRIP_REGIST_LIST trl2 ON(jta2.TRIP_REGIST_LIST_CODE = trl2.TRIP_REGIST_LIST_CODE)
-			   JOIN TRIP t2 ON(trl2.TRIP_CODE = t2.TRIP_CODE)
-		 WHERE trl2.TRIP_TYPE_CODE = '2'
-	 	 GROUP BY t2.TRIP_TITLE
-	</select>
-	  <!-- WHERE jta.USER_CODE = #{userCode} -->
-	
-	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO" id="guideTripList">
-			<result property="gTripTitle" column="TRIP_TITLE"/>
-			<result property="gTripDate" column="JOIN_TRIP_DATE"/>
-			
-			<result property="gName" column="USER_NAME"/>
-			<result property="price" column="G_TRIP_PAYMENT"/>
-			<result property="payment" column="PAYMENT"/>
-			
-			<association property="status" resultMap="status"/>
-		</resultMap>
-	
-	<select id="selectguideTripList" resultMap="guideTripList">
-		SELECT
-			   TT.TRIP_TITLE
-			 , jta.JOIN_TRIP_DATE
-			 , u.USER_NAME
-			 , gt.G_TRIP_PAYMENT
-			 , pa.PAYMENT
-			 , jta.JOIN_TRIP_CANCEL_YN
-			 , jta.JOIN_TRIP_ATTEND_YN
-			 , TT.TRIP_END_DATE        
-			 <!-- , tr.TRIP_REVIEW_CODE     -->
-		  FROM TRIP TT
-		  JOIN GUIDE_TRIP gt ON(TT.TRIP_CODE = gt.TRIP_CODE)
-		  JOIN TRIP_REGIST_LIST trl ON(TT.TRIP_CODE = trl.TRIP_CODE)
-		  JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-		  JOIN PAY_APPLY pa ON(jta.JOIN_TRIP_APPLY_CODE = pa.JOIN_TRIP_APPLY_CODE)
-		  <!-- JOIN TRIP_REVIEW tr ON(jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE) -->
-		  JOIN `USER` u ON(trl.USER_CODE = u.USER_CODE)
-		 WHERE trl.TRIP_TYPE_CODE = '1'
-	</select>
-	
-	
-	<select id="selectMyTripReviewList" resultMap="guideTripList">
-		SELECT
-			   TT.TRIP_TITLE
-			 , jta.JOIN_TRIP_DATE
-		  FROM TRIP TT
-		  JOIN GUIDE_TRIP gt ON(TT.TRIP_CODE = gt.TRIP_CODE)
-		  JOIN TRIP_REGIST_LIST trl ON(TT.TRIP_CODE = trl.TRIP_CODE)
-		  JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-	</select>
-		 <!-- WHERE trl.TRIP_TYPE_CODE = '3' -->
-		 
-		 
-		 <select id="selectMyJoinList" resultMap="joinTripList">
-			SELECT
-				   t.TRIP_TITLE
-				 , jta.JOIN_TRIP_DATE
-				 , jta.JOIN_TRIP_CANCEL_YN
-				 , jta.JOIN_TRIP_ATTEND_YN
-				 , t.TRIP_END_DATE        
-			  FROM TRIP_REGIST_LIST trl
-			  JOIN TRIP t ON(trl.TRIP_CODE=t.TRIP_CODE)
-			  JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
-			 WHERE trl.TRIP_TYPE_CODE ='2'
-	</select>
-	
-	<select id="selectMyJoinList2" resultMap="joinTripList">
-			 SELECT 
-			 	    t2.TRIP_TITLE ,
-		 	        COUNT(jta2.USER_CODE) as COUNT_USER
-			   FROM JOIN_TRIP_APPLY jta2
-			 	    JOIN TRIP_REGIST_LIST trl2 ON(jta2.TRIP_REGIST_LIST_CODE = trl2.TRIP_REGIST_LIST_CODE)
-			 	    JOIN TRIP t2 ON(trl2.TRIP_CODE = t2.TRIP_CODE)
-			  WHERE trl2.TRIP_TYPE_CODE = '2'
-		 	  GROUP BY t2.TRIP_TITLE
-	</select>
-	
-	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectRequestList">
-			<result property="reqDate" column="EXAMINE_REQUEST_DATE"/>	
-			<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
-			<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
-			<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
-	</resultMap>                       
-	
-	<select id="selectRequestList" resultMap="selectRequestList">
-	SELECT
-		   e.EXAMINE_REQUEST_REASON 
-		 , e.EXAMINE_REQUEST_YN
-		 , e.EXAMINE_REQUEST_DATE
-	  FROM EXAMINE e 
-	 WHERE e.TYPE_CODE IN (2,5)
-	</select>
-	 <!-- WHERE e.EXAMINE_REQUEST_TO ? -->
-	 
-	 
-	 <!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO" id="selectInquiry">
-	 	<result property="inquiryTitle" column=""/>
-	 </resultMap> -->
-	 
-	 
-<!-- 	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ExamineDTO" id="selectExamineList">
-	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
-	 	<result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
-	 	<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
-	 	<result property="reqType" column="TYPE_CODE"/>
-	 	<result property="reqFrom" column="EXAMINE_REQUEST_FROM"/>
-	 	<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
-	 	<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
-	 	<collection property="reqImage" resultMap="reqImagedto"/>
-	 </resultMap>     -->          
-	 
-	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
-	 	<result property="repSaveImg" column="REPORT_IMAGE_SAVED_NAME"/>
-	 	<result property="repOriImg" column="REPORT_IMAGE_ORIGIN_NAME"/>
-	 </resultMap>                 
-	 
-<!-- 	 <insert id="insertExamine">
-		<selectKey keyProperty=".code" order="BEFORE" resultType="_int">
-	 		SELECT
-	 			   .CURRVAL
-	 		  FROM DUAL
-	 	</selectKey>
-	 	 INSERT
-	 	   INTO 
-	 	 (
-	 	   EXAMINE_REQUEST_CODE
-		 , DATE_FORMAT(now(),'%Y-%m-%d')
-		 , EXAMINE_REQUEST_REASON		(페이지에서 받은 값)
-		 , #{TYPE_CODE}					(페이지에서 선택된 값)
-		 , #{EXAMINE_REQUEST_FROM}		(세션에서 받아오는 값)
-		 , 'N'							(기본값)
-		 , EXAMINE_REQUEST_TO			(페이지에서 받아줄 값)
-	 	 )
-	 </insert> -->
-	 
-	
-	
-	
-	<!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO" id="test">
-		<result property="userCode" column="USER_CODE"/>
-		<result property="tripCode" column="TRIP_CODE"/>
-	</resultMap> -->
-	
-	<!-- <select id="test" resultMap="test">
-	 SELECT 
-	 	   trl.USER_CODE,
-	 	   t.TRIP_CODE 
-	   FROM TRIP_REGIST_LIST trl
-	   JOIN TRIP t ON (trl.TRIP_CODE = t.TRIP_CODE)
-	   </select> -->
-	
+      
+      
+      <!-- , jta.JOIN_TRIP_CANCEL_YN
+          , jta.JOIN_TRIP_ATTEND_YN
+          , t.TRIP_END_DATE
+          , tr.TRIP_REVIEW_CODE    -->
+      
+   <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO" id="joinTripList">
+      <result property="tripTitle" column="TRIP_TITLE"/>
+      <result property="countUser" column="COUNT_USER"/>
+      <result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+      <association property="status" resultMap="status"/>
+   </resultMap> 
+   <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.StatusDTO" id="status">
+      <result property="tripCancelYN" column="JOIN_TRIP_CANCEL_YN"/>
+      <result property="tripAttendYN" column="JOIN_TRIP_ATTEND_YN"/>
+      <result property="tripEndDate" column="TRIP_END_DATE"/>
+      <result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+   </resultMap>
+      
+   <select id="selectJoinList" resultMap="joinTripList">
+   SELECT
+         TT.TRIP_TITLE,
+         jta.JOIN_TRIP_DATE
+       , jta.JOIN_TRIP_CANCEL_YN
+       , jta.JOIN_TRIP_ATTEND_YN
+       , TT.TRIP_END_DATE        
+       , tr.TRIP_REVIEW_CODE    
+     FROM TRIP TT
+     JOIN JOIN_TRIP t ON (TT.TRIP_CODE = t.J_TRIP_CODE)
+     JOIN TRIP_REGIST_LIST trl ON (TT.TRIP_CODE = trl.TRIP_CODE)
+     JOIN JOIN_TRIP_APPLY jta ON (trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+     JOIN TRIP_REVIEW tr ON(jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE)
+    WHERE trl.TRIP_TYPE_CODE = '2'
+   </select>
+   
+   <select id="selectJoinList2" resultMap="joinTripList">
+      SELECT
+              <!-- t2.TRIP_TITLE , -->
+             COUNT(jta2.USER_CODE) as COUNT_USER
+        FROM JOIN_TRIP_APPLY jta2
+            JOIN TRIP_REGIST_LIST trl2 ON(jta2.TRIP_REGIST_LIST_CODE = trl2.TRIP_REGIST_LIST_CODE)
+            JOIN TRIP t2 ON(trl2.TRIP_CODE = t2.TRIP_CODE)
+       WHERE trl2.TRIP_TYPE_CODE = '2'
+        GROUP BY t2.TRIP_TITLE
+   </select>
+     <!-- WHERE jta.USER_CODE = #{userCode} -->
+   
+   <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO" id="guideTripList">
+         <result property="gTripTitle" column="TRIP_TITLE"/>
+         <result property="gTripDate" column="JOIN_TRIP_DATE"/>
+         
+         <result property="gName" column="USER_NAME"/>
+         <result property="price" column="G_TRIP_PAYMENT"/>
+         <result property="payment" column="PAYMENT"/>
+         
+         <association property="status" resultMap="status"/>
+      </resultMap>
+   
+   <select id="selectguideTripList" resultMap="guideTripList">
+      SELECT
+            TT.TRIP_TITLE
+          , jta.JOIN_TRIP_DATE
+          , u.USER_NAME
+          , gt.G_TRIP_PAYMENT
+          , pa.PAYMENT
+          , jta.JOIN_TRIP_CANCEL_YN
+          , jta.JOIN_TRIP_ATTEND_YN
+          , TT.TRIP_END_DATE        
+          <!-- , tr.TRIP_REVIEW_CODE     -->
+        FROM TRIP TT
+        JOIN GUIDE_TRIP gt ON(TT.TRIP_CODE = gt.TRIP_CODE)
+        JOIN TRIP_REGIST_LIST trl ON(TT.TRIP_CODE = trl.TRIP_CODE)
+        JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+        JOIN PAY_APPLY pa ON(jta.JOIN_TRIP_APPLY_CODE = pa.JOIN_TRIP_APPLY_CODE)
+        <!-- JOIN TRIP_REVIEW tr ON(jta.JOIN_TRIP_APPLY_CODE = tr.JOIN_TRIP_APPLY_CODE) -->
+        JOIN `USER` u ON(trl.USER_CODE = u.USER_CODE)
+       WHERE trl.TRIP_TYPE_CODE = '1'
+   </select>
+   
+   
+   <select id="selectMyTripReviewList" resultMap="guideTripList">
+      SELECT
+            TT.TRIP_TITLE
+          , jta.JOIN_TRIP_DATE
+        FROM TRIP TT
+        JOIN GUIDE_TRIP gt ON(TT.TRIP_CODE = gt.TRIP_CODE)
+        JOIN TRIP_REGIST_LIST trl ON(TT.TRIP_CODE = trl.TRIP_CODE)
+        JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+   </select>
+       <!-- WHERE trl.TRIP_TYPE_CODE = '3' -->
+       
+       
+       <select id="selectMyJoinList" resultMap="joinTripList">
+         SELECT
+               t.TRIP_TITLE
+             , jta.JOIN_TRIP_DATE
+             , jta.JOIN_TRIP_CANCEL_YN
+             , jta.JOIN_TRIP_ATTEND_YN
+             , t.TRIP_END_DATE        
+           FROM TRIP_REGIST_LIST trl
+           JOIN TRIP t ON(trl.TRIP_CODE=t.TRIP_CODE)
+           JOIN JOIN_TRIP_APPLY jta ON(trl.TRIP_REGIST_LIST_CODE = jta.TRIP_REGIST_LIST_CODE)
+          WHERE trl.TRIP_TYPE_CODE ='2'
+   </select>
+   
+   <select id="selectMyJoinList2" resultMap="joinTripList">
+          SELECT 
+                 t2.TRIP_TITLE ,
+                  COUNT(jta2.USER_CODE) as COUNT_USER
+            FROM JOIN_TRIP_APPLY jta2
+                 JOIN TRIP_REGIST_LIST trl2 ON(jta2.TRIP_REGIST_LIST_CODE = trl2.TRIP_REGIST_LIST_CODE)
+                 JOIN TRIP t2 ON(trl2.TRIP_CODE = t2.TRIP_CODE)
+           WHERE trl2.TRIP_TYPE_CODE = '2'
+            GROUP BY t2.TRIP_TITLE
+   </select>
+   
+   <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectRequestList">
+         <result property="reqDate" column="EXAMINE_REQUEST_DATE"/>   
+         <result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
+         <result property="reqYN" column="EXAMINE_REQUEST_YN"/>
+         <result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+   </resultMap>                       
+   
+   <select id="selectRequestList" resultMap="selectRequestList">
+   SELECT
+         e.EXAMINE_REQUEST_REASON 
+       , e.EXAMINE_REQUEST_YN
+       , e.EXAMINE_REQUEST_DATE
+     FROM EXAMINE e 
+    WHERE e.TYPE_CODE IN (2,5)
+   </select>
+    <!-- WHERE e.EXAMINE_REQUEST_TO ? -->
+    
+    
+    <!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO" id="selectInquiry">
+       <result property="inquiryTitle" column=""/>
+    </resultMap> -->
+    
+    
+    <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectExamineList">
+       <result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
+       <result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
+       <result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
+       <result property="reqType" column="TYPE_CODE"/>
+       <result property="reqFrom" column="EXAMINE_REQUEST_FROM"/>
+       <result property="reqYN" column="EXAMINE_REQUEST_YN"/>
+       <result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+       <collection property="reqImage" resultMap="reqImagedto"/>
+    </resultMap>              
+    
+    <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
+       <result property="code" column="REPORT_IMAGE_CODE"/>
+       <result property="saveName" column="REPORT_IMAGE_SAVED_NAME"/>
+       <result property="orignName" column="REPORT_IMAGE_ORIGIN_NAME"/>
+       <result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
+    </resultMap>                 
+    
+    <insert id="insertExamine">
+      <selectKey keyProperty="examine.code" order="BEFORE" resultType="_int">
+          SELECT
+               MAX(EXAMINE_REQUEST_CODE) as code FROM EXAMINE
+            FROM DUAL
+       </selectKey>
+        INSERT
+          INTO EXAMINE
+        (
+          #{examine.code}
+       , DATE_FORMAT(now(),'%Y-%m-%d')
+       , #{req.reqReason}      
+       , 2
+       , #{id}      
+       , 'N'                     
+       , null   
+        )
+    </insert>
+    
+   
+   
+   
+   <!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO" id="test">
+      <result property="userCode" column="USER_CODE"/>
+      <result property="tripCode" column="TRIP_CODE"/>
+   </resultMap> -->
+   
+   <!-- <select id="test" resultMap="test">
+    SELECT 
+          trl.USER_CODE,
+          t.TRIP_CODE 
+      FROM TRIP_REGIST_LIST trl
+      JOIN TRIP t ON (trl.TRIP_CODE = t.TRIP_CODE)
+      </select> -->
+   
 
 
 </mapper>

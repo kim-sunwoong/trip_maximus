@@ -8,7 +8,16 @@ public class ReqListDTO {
 	private int reqCode;
 	private Date reqDate;
 	private String reqReason;
+	
 	private int reqType;
+	// 1	가이드->유저 신고      
+	// 2	유저->가이드 신고      
+	// 3	등록심사            
+	// 4	수정심사            
+	// 5	유저 -> 관리자한테 문의  
+	// 6	가이드 -> 관리자한테 문의 
+	// 7	등업신청심사          
+	
 	private String reqFrom;
 	private String reqYN;
 	private String reqTo;

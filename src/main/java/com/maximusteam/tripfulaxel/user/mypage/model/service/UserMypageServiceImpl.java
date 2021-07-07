@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
@@ -59,6 +60,15 @@ public class UserMypageServiceImpl implements UserMypageService{
 	@Override
 	public List<ReqListDTO> selectRequestList() {
 		return mapper.selectRequestList();
+	}
+
+	@Override
+	public int insertRequest(Model model) {
+		
+		ReqListDTO req = (ReqListDTO) model.getAttribute("req");
+		String id = (String) model.getAttribute("id");
+		
+		return mapper.insertRequest(req, id);
 	}
 
 	
