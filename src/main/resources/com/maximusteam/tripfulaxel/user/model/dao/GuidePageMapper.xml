@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.GuidePageMapper">
+ 
+ 	<resultMap type="TripReviewDTO" id="tripReviewResult">
+ 	<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+ 	<result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
+ 	<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+ 	<result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
+ 	<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+ 	<result property="tripApply" column="TRIP_REVIEW_CODE"/>
+ 	<result property="replycode" column="TRIP_REPLY_CODE"/>
+ 	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
+ 	<result property="replyDate" column="TRIP_REPLY_DATE"/>
+ 	<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+ 	<result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
+ 	<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+ 	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
+ 	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
+ 	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+ 	
+ 	
+  <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
+	  <result column="USER_CODE" property="userCode" />
+      <result column="USER_NAME" property="userName" />
+      <result column="USER_PHONE" property="userPhone" />
+      <result column="USER_PWD" property="userPwd" />
+      <result column="USER_BDAY" property="userBday" />
+      <result column="USER_GENDER" property="userGender" />
+      <result column="USER_EMAIL" property="userEmail" />
+      <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+      <result column="USER_REPORT_COUNT" property="userReportCount" />
+      <result column="USER_GUIDE_YN" property="userGuideYN" />
+	</collection> 
+	
+	
+	<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.user.model.dto.ReviewImgDTO">
+	<result column="REVIEW_IMAGE_CODE" property="reviewImgCode"/>
+	<result column="REVIEW_IMAGE_SAVED_NAME" property="reviewsaved"/>
+	<result column="REVIEW_IMAGE_ORIGIN_NAME" property="reviewOrigin"/>
+	</collection>
+ 	
+ 	</resultMap>
+ 	
+ 	<select id="selectGuideReview" resultMap="tripReviewResult" parameterType="TripReviewDTO">
+ 		SELECT 
+                A.TRIP_REVIEW_TITLE 
+              , A.TRIP_REVIEW_CONTENT
+              , A.TRIP_REVIEW_DATE
+              , A.TRIP_REVIEW_GRADE
+              , A.JOIN_TRIP_APPLY_CODE
+              , B.USER_CODE
+              , C.USER_NAME
+              , D.REVIEW_IMAGE_CODE
+              , D.REVIEW_IMAGE_SAVED_NAME
+        FROM TRIP_REVIEW A , JOIN_TRIP_APPLY B , USER C , REVIEW_IMAGE D
+        WHERE A.JOIN_TRIP_APPLY_CODE = B.JOIN_TRIP_APPLY_CODE
+        AND B.USER_CODE = C.USER_CODE
+        AND A.TRIP_REVIEW_CODE = D.TRIP_REVIEW_CODE
+ 	</select>
+ 	
+ 	
+ </mapper>

@@ -23,6 +23,7 @@
 			<result property="guideStyle" column="GUIDE_STYLE_DETAIL"/>
 			<result property="styleCode" column="GUIDE_STYLE_CODE"/>
 		</collection>
+		
 		<collection property="guideImageList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO">
 			<result property="code" column="GUIDE_CODE"/>		
 			<result property="saveName" column="GUIDE_IMAGE_SAVED_NAME"/>		

@@ -752,7 +752,7 @@ li.header_menu:hover {
                <li class="floatL">
                <a href="${ pageContext.servletContext.contextPath }/insertGuide">
                      <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
-                        등록</span>
+                                              등록</span>
                </a></li>
                </c:if>
 
@@ -783,18 +783,13 @@ li.header_menu:hover {
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                                           마이페이지</span>
                </a></li>
-               <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/user/guidemypage/">
-                <span style="color: white; font-size: 18px; font-weight: bold;">
-                                   가이드페이지</span>
-               </a></li>
                </c:if>
                
                
            
                  <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
                  <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/guide/mypage/">
+                <a href="${ pageContext.servletContext.contextPath }/user/guidepage/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                                        가이드페이지</span>
                </a></li>

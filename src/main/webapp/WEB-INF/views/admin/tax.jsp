@@ -125,7 +125,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                세금 계산서 발급
+                                                                               세금 계산서 발급
                             </div>
 
                             <div class="card-body">
@@ -146,7 +146,7 @@
                                             <td><c:out value="${tax.taxDate}"/></td>
                                             <td>
                                                 <button type="button" onclick="location.href='AdminTaxDetail.html'">
-                                                    발급
+                                                                                                                 발급
                                                 </button>
                                             </td>
                                         </tr>
