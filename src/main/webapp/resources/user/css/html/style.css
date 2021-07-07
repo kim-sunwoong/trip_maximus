@@ -966,7 +966,7 @@ dl.default dd.ellipsis {
 
 .payment_info input:checked + .check_ico {
     border: 1px solid #ff7358;
-    background: url(/img/html/imgs/icons/icon_check.png) no-repeat center;
+    background: url(/tripfulaxel/resources/images/common/icon_check.png) no-repeat center;
     background-size: 10px 8px;
 }
 
