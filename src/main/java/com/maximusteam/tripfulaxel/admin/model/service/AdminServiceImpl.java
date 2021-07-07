@@ -282,6 +282,11 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectLogin(admin);
 	}
 
+	@Override
+	public List<CalculateDTO> selectCalculateDetail(int no) {
+		return mapper.selectCalculateDetail(no);
+	}
+
 
 
 	

@@ -89,6 +89,13 @@ public class AdminController {
 		model.addAttribute("selectCalculate", adminService.selectCalculateList());
 		return "admin/guideCalculate";
 	}
+	
+	@GetMapping("calculateDetail")
+	public String selectCalculateDetail(@RequestParam("calculateNo") int no, Model model) {
+
+		model.addAttribute("selectCalculateDetail", adminService.selectCalculateDetail(no));
+		return "admin/guideCalculateDetail";
+	}
 
 	@GetMapping("taxList")
 	public String selectTaxList(Model model) {
