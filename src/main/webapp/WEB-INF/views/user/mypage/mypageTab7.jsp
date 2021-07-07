@@ -55,7 +55,16 @@
         
         table *{color : rgba(0,0,0,0.3);}
     </style>
-    
+    <script type="text/javascript">
+    					(function(){
+							const a = document.querySelector("#btnradio2");
+							if(a.checked === true){
+								document.querySelector("#AddFrom").style.diplay = 'block';
+							} else {
+								document.querySelector("#AddFrom").style.diplay = 'none';
+							}
+    					})();
+				</script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -72,7 +81,7 @@
             <br>
             <br>
             <div class="tabList" style="margin: 0 auto;">
-                <div class="tabb" ><a class="pic1" href="${pageContext.request.contextPath}/user/mypage/mypageTab1">같이가요 신청내역</a></div>
+                <div class="tabb" onclick="location.href='${pageContext.request.contextPath}/user/mypage/mypageTab1'" style="cursor: pointer;"><a class="pic1">같이가요 신청내역</a></div>
                 <div class="tabb" ><a class="pic2" href="${pageContext.request.contextPath}/user/mypage/mypageTab2">가이드여행 신청내역</a></div>
                 <div class="tabb" style="width: 270px;"><a class="pic3" href="${pageContext.request.contextPath}/user/mypage/mypageTab3">나만의 같이가요</a></div>
                 <div class="tabb" style="width: 270px;"><a class="pic4" href="${pageContext.request.contextPath}/user/mypage/mypageTab4">나만의 여행후기</a></div>
@@ -92,57 +101,55 @@
                
            <!--     <div style="width: 90% ; margin : 0 auto; display: flex; justify-content: center;"><h2 style="display: block;
   font-size: 1.17em;  margin-top: 1em;  margin-bottom: 3em;font-weight: bold;">문의 답변하기</h2></div> -->
+  
+  
+  
+               <form action="${ pageContext.servletContext.contextPath }/insert/examine" method="post" enctype="multipart/form-data">
                
                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; margin:0 auto;">
 				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 300px;">일반 문의하기</label>
+				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">일반 문의하기</label>
 				
 				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 300px;">신고 문의하기</label>
+				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">신고하기</label>
 				
 				</div>
 				
                 <div id="contact-area" style="margin: 0 auto; clear: both; margin-top: 50px; ">
 			
-                    <form>
                     	<table>
                     	<tbody>
                     			<tr>
                     				<th colspan="2"></th>
-            				</tr>
-            				</tbody>
-                    		<tbody>
+            					</tr>
+                    			<tr id="AddFrom" style="display: none;">
+                    				<th>신고대상자</th>
+                    				<th><input type="text" name="From" id="From" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
+                    			</tr>
                     			<tr>
                     				<th>제목 : &nbsp;&nbsp;</th>
                     				<th><input type="text" name="Name" id="Name" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
                     			</tr>
-                    		</tbody>
-                    		<tbody>
                     			<tr>
                     				<th>건의 내용 : &nbsp;&nbsp;</th>
                     				<th><textarea name="Message" id="Message"  style="height: 200px; border: 1px solid rgba(0,0,0,0.3);"></textarea></th>
                     			</tr>
-                    		</tbody>
-                    		<tbody>
                     			<tr>
                     				<th></th>
                     				<th><input type="file"><p><input type="file"></th>
                    				</tr>
-                			</tbody>
-						<tbody>
 							<tr>
 								<th></th>
-								<th><button type="button" class="btn btn-info" style="margin-right: 40px;">제출하기</button></th>
+								<th><button type="submit" class="btn btn-info" style="margin-right: 40px;">제출하기</button></th>
 							</tr>
 						</tbody>
                         
                         </table>
-                    </form>
-                    
+                    </div>
                     <div style="clear: both;"></div>
                     
-                </div>
-
+                 </form>
+                 
             </div>
         </div>
     </div>

@@ -22,6 +22,8 @@ public interface UserMypageMapper {
 	List<JoinTripListDTO> selectMyJoinList2();
 	
 	List<ReqListDTO> selectRequestList();
+	
+	int insertRequest(ReqListDTO req, String id);
 
 
 }

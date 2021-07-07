@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
@@ -105,7 +107,7 @@ public class UserMyPageController {
 	@GetMapping("mypageTab7")
 	public String insertRequest(Model model,HttpSession session) {
 		
-		session.getAttribute("loginUser");
+//		session.getAttribute("loginUser");
 		
 		
 		return "user/mypage/mypageTab7";
@@ -119,6 +121,20 @@ public class UserMyPageController {
 		model.addAttribute("test",test);
 		
 		return "user/mypage/test2";
+	}
+	
+	@PostMapping("insertRequest")
+	public String insertRequest(Model model,HttpSession session,@ModelAttribute("req") ReqListDTO req) {
+		
+		System.out.println(req);
+		System.out.println(session.getAttribute("loginUser"));
+		
+		model.addAttribute("req",req);
+		model.addAttribute("id",session.getAttribute("loginUser"));
+		
+		int result = userMypageService.insertRequest(model);
+		
+		return "user/mypage/mypageTab7";
 	}
 	
 	
