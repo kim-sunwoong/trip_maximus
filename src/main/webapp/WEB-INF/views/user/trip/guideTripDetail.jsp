@@ -86,7 +86,6 @@
 							var amount = amountList.options[amountList.selectedIndex].value;
 							var saveName = "${trip[0].tripImgList[0].saveName }"
 							var totalPay = ${trip[0].payment } * amount;
- 							alert(saveName);
 							location.href="${pageContext.servletContext.contextPath}/trip/payment?tripCode=${trip[0].tripCode}&userCode=${sessionScope.loginUser.userCode}&totalPay="
 									+ totalPay + "&amount=" + amount + "&tripRegistCode=${trip[0].tripRegistCode}&tripDay=${trip[0].tripStartDate}&saveName=" + saveName;
 						}

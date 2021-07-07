@@ -232,8 +232,7 @@ function tripJoin() {
 						</div>
 						<div class="offerBox">
 							<h4 class="txt_big">
-								코스 안내<span class=""> &#40;총 <span>05</span>시간 <span>00</span>분
-									소요&#41;
+								코스 안내<span class="">
 								</span>
 							</h4>
 							<div class="corseWrap">
