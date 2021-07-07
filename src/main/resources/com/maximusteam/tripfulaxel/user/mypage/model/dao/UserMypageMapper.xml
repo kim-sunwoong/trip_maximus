@@ -144,7 +144,7 @@
 	 </resultMap> -->
 	 
 	 
-	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ExamineDTO" id="selectExamineList">
+	 <!-- <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ExamineDTO" id="selectExamineList">
 	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
 	 	<result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
 	 	<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
@@ -153,7 +153,7 @@
 	 	<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
 	 	<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
 	 	<collection property="reqImage" resultMap="reqImagedto"/>
-	 </resultMap>              
+	 </resultMap>       -->        
 	 
 	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
 	 	<result property="repSaveImg" column="REPORT_IMAGE_SAVED_NAME"/>
@@ -194,7 +194,5 @@
 	   FROM TRIP_REGIST_LIST trl
 	   JOIN TRIP t ON (trl.TRIP_CODE = t.TRIP_CODE)
 	   </select> -->
-	
-
 
 </mapper>
