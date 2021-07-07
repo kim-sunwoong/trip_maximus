@@ -138,10 +138,6 @@ public class UserMyPageController {
 		System.out.println(session.getAttribute("loginUser"));
 		
 		
-		System.out.println(request.getParameter("btnradio"));
-		System.out.println("==================================================");
-		System.out.println(model.getAttribute("btnradio"));
-		
 		model.addAttribute("req",req);
 		model.addAttribute("id",session.getAttribute("loginUser"));
 		

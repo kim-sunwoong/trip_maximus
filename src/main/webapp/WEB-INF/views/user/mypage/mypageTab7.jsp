@@ -122,10 +122,10 @@
                <form action="${ pageContext.servletContext.contextPath }/user/mypage/insert/Request" method="post" enctype="multipart/form-data">
                
                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; margin:0 auto;">
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onchange="fromdel()" autocomplete="off" checked value="5">
+				  <input type="radio" class="btn-check" name="reqType" id="btnradio1" onchange="fromdel()" autocomplete="off" checked value="5">
 				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">일반 문의하기</label>
 				
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onchange="from()" autocomplete="off" value="2">
+				  <input type="radio" class="btn-check" name="reqType" id="btnradio2" onchange="from()" autocomplete="off" value="2">
 				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">신고하기</label>
 					<script>
 	</script>
@@ -140,15 +140,11 @@
             					</tr>
                     			<tr id="AddFrom" style="display: none;">
                     				<th>신고 대상 : </th>
-                    				<th><input type="text" name="From" id="From" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
-                    			</tr>
-                    			<tr>
-                    				<th>제목 : &nbsp;&nbsp;</th>
-                    				<th><input type="text" name="Name" id="Name" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
+                    				<th><input type="text" name="reqTo" id="From" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
                     			</tr>
                     			<tr>
                     				<th>건의 내용 : &nbsp;&nbsp;</th>
-                    				<th><textarea name="Message" id="Message"  style="height: 200px; border: 1px solid rgba(0,0,0,0.3);"></textarea></th>
+                    				<th><textarea name="reqReason" id="Message"  style="height: 200px; border: 1px solid rgba(0,0,0,0.3);"></textarea></th>
                     			</tr>
                     			<tr>
                     				<th></th>
