@@ -35,23 +35,13 @@
                 href="#!">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Navbar-->
-            <ul style="padding: 20px 0px 0px 1260px;">
-                <a
-                    class="sb-nav-link-icon"
-                    id="navbarDropdown"
-                    href="CustomerLogin.html"
-                    role="button"
-                    style="background-color: gray; width: 50px; height: 50px;">
-                    <img src="./pic/log-in.png" style="width: 30px; height: 30px;">
-                </a>
-            </ul>
+
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 
-					<div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
                                 	공지사항
@@ -63,6 +53,10 @@
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideList">
                                 	가이드 가입 처리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/guideInforamtionList">
+                                	가이드 정보 수정 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/levelUpList">
@@ -156,8 +150,7 @@
                                         <td>프로필 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}">
-                                        	
+                                         		<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectProfilePic.guideEnrollImage}" style="width:400px; height:400px;">
                                         </td>
                                     </tr>
 
@@ -165,7 +158,7 @@
                                         <td>신분증 사진</td>
                                         <td>
                                         	<!-- <textarea rows="10" cols="50" name="content" class="form-control"></textarea> -->
-                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}">
+                                        	 	<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${selectIdPic.guideEnrollImage}" style="width:400px; height:400px;">
                                         </td>
                                     </tr>
                                     <tr>
@@ -194,12 +187,12 @@
 											</select>
                                         </td>
                                     </tr>
-                                     <tr> 
-                                     <td colspan="2"  class="text-center">
-                                      <input type="submit" value="완료" class="btn btn-success">
-                                      <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
-                                     </td>
-                                    </tr>
+                                      <tr> 
+                                        <td colspan="2"  class="text-center">
+                                          <input type="submit" value="완료" class="btn btn-success">
+                                          <!-- <input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기"> -->
+                                        </td>
+                                      </tr>
                                     </table>
                                    </form>
                             </div>

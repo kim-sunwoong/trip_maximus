@@ -84,6 +84,7 @@
 		<id column="INVOICE_CODE" property="calculateNo" />
 		<result column="USER_EMAIL" property="userId" />
 		<result column="INVOICE_DATE" property="calculateDate" />
+		<result column="PAYMENT" property="payment" />
 	</resultMap>
 	
 	<!-- 세금 리스트 -->
@@ -648,4 +649,18 @@
 		 FROM ADMIN
 		WHERE  ADMIN_EMAIL = #{ adminEmail }
 	</select>
+	
+	<select id="selectCalculateDetail" resultMap="calculateList">
+        SELECT 
+               D.PAYMENT
+             , F.INVOICE_DATE 
+          FROM USER A 
+          JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
+          JOIN JOIN_TRIP_APPLY C ON (B.USER_CODE = C.USER_CODE)
+          JOIN PAY_APPLY D ON (C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+          JOIN INVOICE_HISTORY E ON (D.PAY_APPLY_CODE = E.PAY_APPLY_CODE)
+          JOIN INVOICE F ON (E.INVOICE_CODE = F.INVOICE_CODE)
+         WHERE D.PAY_YN = 'Y'
+           AND F.INVOICE_CODE = #{ no }
+    </select>	
 </mapper>

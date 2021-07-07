@@ -153,14 +153,14 @@
 	 	<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
 	 	<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
 	 	<collection property="reqImage" resultMap="reqImagedto"/>
-	 </resultMap>              
+	 </resultMap>          
 	 
 	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
 	 	<result property="repSaveImg" column="REPORT_IMAGE_SAVED_NAME"/>
 	 	<result property="repOriImg" column="REPORT_IMAGE_ORIGIN_NAME"/>
 	 </resultMap>                 
 	 
-	 <insert id="insertExamine">
+<!-- 	 <insert id="insertExamine">
 		<selectKey keyProperty=".code" order="BEFORE" resultType="_int">
 	 		SELECT
 	 			   .CURRVAL
@@ -177,7 +177,7 @@
 		 , 'N'							(기본값)
 		 , EXAMINE_REQUEST_TO			(페이지에서 받아줄 값)
 	 	 )
-	 </insert>
+	 </insert> -->
 	 
 	
 	
