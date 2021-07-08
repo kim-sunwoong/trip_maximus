@@ -53,7 +53,6 @@
                 <div class="tabb"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
-                <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/guidepage/guideGradeup">등업신청</a></div>
             </div>
         </div>
 

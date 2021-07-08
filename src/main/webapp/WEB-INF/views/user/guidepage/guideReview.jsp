@@ -83,10 +83,6 @@
 					<a class="pic6"
 						href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a>
 				</div>
-				<div class="tabb">
-					<a class="pic7"
-						href="${pageContext.request.contextPath}/user/guidepage/guideGradeup">등업신청</a>
-				</div>
 			</div>
 		</div>
 
@@ -122,7 +118,7 @@
 					<p class="card-text">
 						  <br>
 						 <small class="text-muted"> 작성날짜 :  <c:out value="${ GuideReview.reviewDate } "/></small>
-						 <small class="text-muted"> 작성자 :  <c:out value="${ GuideReview.guideList[0].userName }"/></small>
+						 <small class="text-muted"> 작성자 :  <c:out value="${ GuideReview.guideList[0].applyName }"/></small>
 					</p>
 				</div>
 				
@@ -139,7 +135,7 @@
 	
 			<c:if test="${ empty GuideReview.replyDetail }">
 			<form name="replyGuide" 
-			      action="${pageContext.request.contextPath}/user/guidepage/guideReply"
+			      action="${pageContext.servletContext.contextPath}/user/guidepage/guideReviewReply"
 			      method="post">
 			 <div class="reviewdepth" style="width: 90%">
 				<textarea name="replyDetail" id="replyDetail"
@@ -147,6 +143,8 @@
 					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
 					placeholder="답글을 작성해보세요">
                 </textarea>
+                
+                <input type="hidden" name="reviewCode" value="${ GuideReview.reviewCode }">
 			</div>
 				<input type="submit" class="buttonset" value="작성하기"
 				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; margin-top: 10px;">

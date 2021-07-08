@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO;
+import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.model.service.GuidePageService;
 
 /**
@@ -25,19 +25,40 @@ import com.maximusteam.tripfulaxel.user.model.service.GuidePageService;
 @RequestMapping("user/guidepage/*")
 public class GuidePageController {
 
-
-	private final GuidePageService GuidePageService;
+	private final GuidePageService guidePageService;
 	
 	@Autowired
-	public GuidePageController(GuidePageService guideService) {
-		this.GuidePageService = guideService;
+	public GuidePageController(GuidePageService guidePageService) {
+		this.guidePageService = guidePageService;
 	}
 	
+	/**
+	 * 내 여행상품 정보 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = { "guideGoods", "/"})
-	public String select(Model model) {
+	public String selectMyGoods(@ModelAttribute TripReviewDTO tripreview, Model model,HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+
+		List<TripReviewDTO> myGoods = guidePageService.selectMyGoods(guideCode);
+		System.out.println("내 여행상품 : " + myGoods);
+		model.addAttribute("myGoods", myGoods);
+
+		int goodsCount = guidePageService.selectCount(guideCode);
+		System.out.println("내 총 리뷰수 : " + goodsCount);
+		model.addAttribute("goodsCount", goodsCount);
+
+		int reviewStar = guidePageService.selectStar(guideCode);
+		System.out.println("내 평균별점 : " + reviewStar);
+		model.addAttribute("reviewStar", reviewStar);
+
 		return "user/guidepage/guideGoods";
 	}
+	
 	@GetMapping("guideTab2")
 	public String select2(Model model) {
 		
@@ -60,32 +81,35 @@ public class GuidePageController {
 	 */
 	@GetMapping("guideReview")
 	public String selectGuideReview(@ModelAttribute TripReviewDTO tripreview ,Model model, HttpServletRequest request) {
-		
-		
-		  // 로그인한 세선에 담긴 사람것만 가져와야함 ? 쿼리에서 어떻게 처리해야하지 ?
-			/*
-			 * HttpSession session = request.getSession(); int guideCode =
-			 * (Integer)session.getAttribute("userCode"); System.out.println("로그인한 사람의 코드 :"
-			 * + guideCode);
-			 */
-		 
-		
-		List<TripReviewDTO> tripReviewdto = GuidePageService.selectGuideReview(tripreview);
+			
+	
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+
+		List<TripReviewDTO> tripReviewdto = guidePageService.selectGuideReview(guideCode);
 		System.out.println(" 리스트에 담긴 값  : " + tripReviewdto);
-		
-		model.addAttribute("selectGuideReview" ,tripReviewdto );
-		
+
+		model.addAttribute("selectGuideReview", tripReviewdto);
+
 		return "user/guidepage/guideReview";
 	}
 	
-	@RequestMapping(value = "guideReply", method = RequestMethod.POST)
-	public String insertReply(@ModelAttribute TripReviewDTO tripreview, Model model) {
+	/**
+	 * 후기 댓글
+	 * @param tripreview
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "guideReviewReply", method = RequestMethod.POST)
+	public String insertReply(@ModelAttribute TripReviewDTO tripreview) {
+
+		System.out.println("가이드가 입력한 댓글   : " + tripreview.getReplyDetail());
+		System.out.println("가이드의 여행코드 : " + tripreview.getReplycode());
 		
-		System.out.println("가이드의 댓글  : " + tripreview.getReplyDetail());
-		
-		boolean insertGuideReply = GuidePageService.insertReply(tripreview);
-		model.addAttribute("insertGuideReply", insertGuideReply);
-		
+		guidePageService.insertReply(tripreview);
+	
 		return "redirect:/";
 	}
 	
@@ -97,11 +121,6 @@ public class GuidePageController {
 		
 		
 		return "user/guidepage/guideTax";
-	}
-	@GetMapping("guideGradeup")
-	public String select7(Model model) {
-		
-		return "user/guidepage/guideGradeup";
 	}
 	
 }
