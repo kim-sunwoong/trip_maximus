@@ -36,7 +36,6 @@
       <result column="USER_GUIDE_YN" property="userGuideYN" />
 	</collection> 
 	
-	
 	<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.user.model.dto.ReviewImgDTO">
 	<result column="REVIEW_IMAGE_CODE" property="reviewImgCode"/>
 	<result column="REVIEW_IMAGE_SAVED_NAME" property="reviewsaved"/>
@@ -45,22 +44,43 @@
  	
  	</resultMap>
  	
+ 	<!-- 후기 SELECT   -->
  	<select id="selectGuideReview" resultMap="tripReviewResult" parameterType="TripReviewDTO">
  		SELECT 
                 A.TRIP_REVIEW_TITLE 
               , A.TRIP_REVIEW_CONTENT
               , A.TRIP_REVIEW_DATE
               , A.TRIP_REVIEW_GRADE
-              , A.JOIN_TRIP_APPLY_CODE
-              , B.USER_CODE
               , C.USER_NAME
-              , D.REVIEW_IMAGE_CODE
               , D.REVIEW_IMAGE_SAVED_NAME
-        FROM TRIP_REVIEW A , JOIN_TRIP_APPLY B , USER C , REVIEW_IMAGE D
+              , E.TRIP_REPLY_DETAIL
+        FROM TRIP_REVIEW A  LEFT JOIN TRIP_REPLY E ON A.TRIP_REVIEW_CODE = E.TRIP_REVIEW_CODE ,
+        JOIN_TRIP_APPLY B , USER C , REVIEW_IMAGE D
         WHERE A.JOIN_TRIP_APPLY_CODE = B.JOIN_TRIP_APPLY_CODE
         AND B.USER_CODE = C.USER_CODE
         AND A.TRIP_REVIEW_CODE = D.TRIP_REVIEW_CODE
  	</select>
+ 	
+ 	<!-- 후기 댓글  -->
+    <insert id="insertReply" parameterType="com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO">
+	 <selectKey resultType="int"  keyProperty="replyCode" order="BEFORE">
+	 	SELECT MAX(TRIP_REPLY_CODE) + 1 FROM TRIP_REPLY
+	 </selectKey>
+	 	INSERT INTO TRIP_REPLY
+	 	(
+	 	    TRIP_REPLY_CODE
+	 	  , TRIP_REPLY_DETAIL
+	 	  , TRIP_REPLY_DATE
+	 	)
+	 	VALUES
+	 	(
+	 		 #{replyCode}
+	 	   , #{replyDetail}
+	 	   , NOW()
+	 	)
+	 	
+	 
+   </insert>
  	
  	
  </mapper>

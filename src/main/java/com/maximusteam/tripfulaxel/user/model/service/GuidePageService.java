@@ -15,4 +15,6 @@ public interface GuidePageService {
 
 	List<TripReviewDTO> selectGuideReview(TripReviewDTO tripreview);
 
+	boolean insertReply(TripReviewDTO tripreview);
+
 }

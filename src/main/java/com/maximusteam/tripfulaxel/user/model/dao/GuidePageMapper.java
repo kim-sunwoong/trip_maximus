@@ -8,4 +8,6 @@ public interface GuidePageMapper {
 
 	List<TripReviewDTO> selectGuideReview(TripReviewDTO tripreview);
 
+	int insertReply(TripReviewDTO tripreview);
+
 }

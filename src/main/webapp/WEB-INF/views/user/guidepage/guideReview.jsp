@@ -89,16 +89,16 @@
 				</div>
 			</div>
 		</div>
-		
+
 	 <c:forEach var="GuideReview" items="${ selectGuideReview }"> 
 		<div id="detail_content">
 			<div class="card mb-3" style="width: 90%; margin: 0 auto;">
 			
 				<div class="card-img-top"
-					style="width: 97%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
+					style="width: 100%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
 					
 			    <c:forEach var="img" items="${GuideReview.reviewImgList }"> 
-					<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}"
+					<img src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.reviewsaved}"
 						class="card-img1" alt="" width="32%" height="200px">
 				   </c:forEach> 
 				</div>
@@ -110,45 +110,52 @@
 					<br>
 					<p class="card-text">
 						<!-- 여행후기 -->
-					 <c:out value="${GuideReview.reviewContent }"/> 즐거웠어요
+					 <c:out value="${GuideReview.reviewContent }"/> 
 					</p>
 					<br>
 					<!-- 별점 -->
-					 <c:forEach var="grade" begin="1" end="${GuideReview.reviewGrade }">  
+				   <c:forEach var="grade" begin="1" end="${ GuideReview.reviewGrade }">  
 					<img src="/tripfulaxel/resources/images/common/star.png"
 						style="width: 20px; height: 20px;">
-				 	</c:forEach> 
-
+				 	</c:forEach>
+				 	
 					<p class="card-text">
-						<small class="text-muted">작성자: <%--  <c:out value="${GuideReview.guideList.userName }"/>  --%> </small>
 						  <br>
-						 <small class="text-muted">   <c:out value="${GuideReview.reviewDate } "/>  </small>
+						 <small class="text-muted"> 작성날짜 :  <c:out value="${ GuideReview.reviewDate } "/></small>
+						 <small class="text-muted"> 작성자 :  <c:out value="${ GuideReview.guideList[0].userName }"/></small>
 					</p>
 				</div>
 				
-				
+				<c:if test="${ !empty GuideReview.replyDetail }">
 				<div class="guide-text">
-					<textarea readonly style="float: right; width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
-					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"> 고마웠습니다.</textarea>
+					<textarea readonly style="width: 100%; height: 100px; margin-top: 50px; margin: 0 auto; background: #80808029; 
+					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"><c:out value="${ GuideReview.replyDetail }"/> </textarea>
 				</div>
+				</c:if>
 				
 			</div>
 			<!-- card mb-3 div 끝  -->
-
-
-			<div class="reviewdepth" style="width: 90%">
-				<textarea name="Message" id="Message"
+			
+	
+			<c:if test="${ empty GuideReview.replyDetail }">
+			<form name="replyGuide" 
+			      action="${pageContext.request.contextPath}/user/guidepage/guideReply"
+			      method="post">
+			 <div class="reviewdepth" style="width: 90%">
+				<textarea name="replyDetail" id="replyDetail"
 					style=" width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
 					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
 					placeholder="답글을 작성해보세요">
                 </textarea>
-
-				<input type="submit" class="buttonset" value="작성하기"
-				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; float: right; margin-top: 10px;">
 			</div>
+				<input type="submit" class="buttonset" value="작성하기"
+				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; margin-top: 10px;">
+		   </form>
+		   </c:if>
+		  
 
 			<p>
-		</div>
+	  	</div>
 	 </c:forEach> 
 		<!-- detail_content div 끝 -->
 

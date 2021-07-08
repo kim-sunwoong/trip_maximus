@@ -28,6 +28,17 @@ public class GuidePageServiceImpl implements GuidePageService {
 		
 		return mapper.selectGuideReview(tripreview);
 	}
+
+	
+	
+	/**
+	 * 후기 댓글 
+	 */
+	@Override
+	public boolean insertReply(TripReviewDTO tripreview) {
+		
+		return mapper.insertReply(tripreview) > 0? true:false;
+	}
 	
 	
 	
