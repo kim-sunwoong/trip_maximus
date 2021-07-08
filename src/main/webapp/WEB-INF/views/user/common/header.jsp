@@ -829,9 +829,20 @@ li.header_menu:hover {
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;"> 같이가요 여행</span></a></li>
-               <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
+               
+               <c:if test="${ empty sessionScope.loginUser }">
+                <li class="floatL header_menu" >
+                    <a class="btnLineC txt_md" href="javascript:alert('로그인 후 이용해주세요');">
+                    <span style="color:white; font-size: 20px;">여행 플래너</span></a>
+                </li>
+      			</c:if>
+               
+                <c:if test="${ !empty sessionScope.loginUser }">
+                <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;">여행 플래너</span></a></li>
+      			</c:if>
+      			
       		
       		   <c:if test="${ empty sessionScope.loginUser }">
                <li class="floatL header_menu" >
