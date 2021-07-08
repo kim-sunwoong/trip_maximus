@@ -23,20 +23,20 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO;
-import com.maximusteam.tripfulaxel.guide.model.service.UserTripAloneService;
+import com.maximusteam.tripfulaxel.guide.model.dto.UserTripTogetherDTO;
+import com.maximusteam.tripfulaxel.guide.model.service.UserTripTogetherService;
 
 @RestController
-public class userTripAloneController {
+public class userTripTogetherController {
 
 	@Inject
-	private final UserTripAloneService tripInsertService;
+	private final UserTripTogetherService tripInsertService;
 	
-	public userTripAloneController(UserTripAloneService tripInsertService) {
+	public userTripTogetherController(UserTripTogetherService tripInsertService) {
 		this.tripInsertService = tripInsertService;
 	}
 	
-	@RequestMapping(value = "/api/insert/tripAlone", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/api/insert/tripTogether", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
 		// 1depth JSON DATA 확인
@@ -66,7 +66,7 @@ public class userTripAloneController {
 		 *    테이블     				DTO 
 		 * 1. TRIP    				TripDTO
 		 * 2. TRIP_REGIST_LIST 		TripRegistListDTO
-		 * 3. USER_TRIP				UserTripAloneDTO
+		 * 3. JOIN_TRIP				UserTripTogetherDTO
 		 * 3. TRIP_THEME_CHOICE		TripThemeChoiceDTO
 		 * 4. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
 		 * 
@@ -100,7 +100,7 @@ public class userTripAloneController {
 		
 		// 2-1 TripRegistListDTO
 		TripRegistListDTO tripRegistListDTO = new TripRegistListDTO();
-		tripRegistListDTO.setTripTypeCode(3);
+		tripRegistListDTO.setTripTypeCode(2);
 		tripRegistListDTO.setRegistTypeCode(3);
 		tripRegistListDTO.setUserCode(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
 		tripRegistListDTO.setTripCode(tripDTO.getTripCode());
@@ -113,18 +113,21 @@ public class userTripAloneController {
 			throw new ApiException(HttpStatus.BAD_REQUEST, "여행등록내역 추가할 정보가 부족합니다");
 		}
 		
-		// 3-1 UserTripAloneDTO
-		UserTripAloneDTO userTripAloneDTO = new UserTripAloneDTO();
-		userTripAloneDTO.setUserTripCommentTitle((String)formDataMap.get("formData").get("commentTitle"));
-		userTripAloneDTO.setUserTripCommentInfo((String)formDataMap.get("formData").get("commentInfo"));
-		userTripAloneDTO.setUserTripCommentPoint(Integer.valueOf((String)formDataMap.get("formData").get("commentPoint")));
-		userTripAloneDTO.setUserTripPrice(Integer.valueOf((String)formDataMap.get("formData").get("price")));
-		userTripAloneDTO.setTripCode(tripDTO.getTripCode());
-
-		// 3-2 USER_TRIP 테이블에 INSERT
-		if(!tripInsertService.insertUserTrip(userTripAloneDTO)) {
-			System.out.println("insert userTripAloneDTO error");
-			throw new ApiException(HttpStatus.BAD_REQUEST, "나만의 여행에 추가할 정보가 부족합니다");
+		// 3-1 UserTripTogetherDTO
+		UserTripTogetherDTO userTripTogetherDTO = new UserTripTogetherDTO();
+		userTripTogetherDTO.setJoinTripInfo((String)formDataMap.get("formData").get("tripInfo"));
+		userTripTogetherDTO.setMaximum(Integer.valueOf((String)formDataMap.get("formData").get("maximum")));
+		userTripTogetherDTO.setPrice(Integer.valueOf((String)formDataMap.get("formData").get("price")));
+		userTripTogetherDTO.setTripCode(tripDTO.getTripCode());
+		
+		LinkedHashMap<String, Object> imageFaceMap 
+		= (LinkedHashMap<String, Object>)formDataMap.get("imageData").get("imageFace");
+		userTripTogetherDTO.setSavedHostImageName((String)imageFaceMap.get("savedName"));
+		
+		// 3-2 JOIN_TRIP 테이블에 INSERT
+		if(!tripInsertService.insertJoinTrip(userTripTogetherDTO)) {
+			System.out.println("insert userTripTogetherDTO error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "같이가요 여행에 추가할 정보가 부족합니다");
 		}
 		
 		
@@ -300,8 +303,6 @@ public class userTripAloneController {
 		}
 		
 		/* 어떤것으로 JSON을 표현할지 생각 */
-	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "나만의 여행신청 완료"), HttpStatus.OK);
+	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "가이드 등록신청 완료"), HttpStatus.OK);
 	}
-
-
 }

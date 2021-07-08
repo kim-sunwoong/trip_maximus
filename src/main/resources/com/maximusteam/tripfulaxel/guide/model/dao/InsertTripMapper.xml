@@ -290,7 +290,29 @@
 	    )
 	</insert>
 	
-	
-	
+	<!-- JOIN_TRIP INSERT -->
+	<insert id="insertTripTogether" parameterType="UserTripTogetherDTO">
+		<selectKey resultType="int" keyProperty="joinTripCode" order="AFTER">
+	    	SELECT MAX(J_TRIP_CODE) as joinTripCode FROM JOIN_TRIP
+	    </selectKey>
+	    INSERT INTO JOIN_TRIP
+	    (
+ 	    	   J_TRIP_CODE
+ 	    	 , J_TRIP_MAXIMIM
+			 , TRIP_CODE
+			 , J_TRIP_PRICE
+			 , J_TRIP_INFO
+			 , J_TRIP_HOST_SAVED_IMAGE_NAME 
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.J_TRIP_CODE) + 1, 1) FROM JOIN_TRIP b)
+	         , #{maximum}
+	         , #{tripCode}
+	         , #{price}
+	         , #{joinTripInfo}
+	         , #{savedHostImageName}
+	    )
+	</insert>
 </mapper>
     
