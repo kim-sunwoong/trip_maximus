@@ -144,14 +144,21 @@ public class UserMyPageController {
 		
 		System.out.println("----------------------------------");
 		System.out.println(multiFiles);
-//		if(multiFiles.size() == 0) {
-//			UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
-//			int id = userdto.getUserCode();
-//			System.out.println(id);
-//			req.setReqFrom(id);
-//			int result = userMypageService.insertRequest(req, id);
-//		}
-//		else if(multiFiles.size() != 0) {
+		System.out.println(req);
+		if(req.getReqImage()==null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
+			int id = userdto.getUserCode();
+			System.out.println(id);
+			req.setReqFrom(id);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("req", req);
+			map.put("id", id);
+			
+			int result = userMypageService.insertRequest(map);
+		}
+		else {
 		/* 파일을 저장할 경로 설정 */
 		/* RootContext : request.getSession().getServletContext() + getRealPath("이 부분을 찾는다.") */
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -252,7 +259,7 @@ public class UserMyPageController {
 			}
 			model.addAttribute("message","파일 업로드 실패!!");
 		}
-//		}
+		}
 		return "user/mypage/mypageTab7";
 	}
 	
