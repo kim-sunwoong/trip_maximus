@@ -1,6 +1,7 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
@@ -29,7 +33,7 @@ import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
 @Controller
 @RequestMapping("/user/mypage/*")
 public class UserMyPageController {
-
+	
 	private final UserMypageService userMypageService;
 	
 	@Autowired
@@ -97,9 +101,14 @@ public class UserMyPageController {
 	}
 	
 	@GetMapping("mypageTab6")
-	public String selectRequestList(Model model) {
+	public String selectRequestList(Model model, HttpSession session) {
 		
-		List<ReqListDTO> reqList = userMypageService.selectRequestList();
+
+		UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
+		int id = userdto.getUserCode();
+		System.out.println(id);
+		
+		List<ReqListDTO> reqList = userMypageService.selectRequestList(id);
 		for(int i = 0; i<reqList.size();i++) {
 			if(reqList.get(i).getReqYN().equals("N")){
 				reqList.get(i).setReqYN("처리중");
@@ -115,9 +124,6 @@ public class UserMyPageController {
 	@GetMapping("mypageTab7")
 	public String insertRequest(Model model,HttpSession session) {
 		
-//		session.getAttribute("loginUser");
-		
-		
 		return "user/mypage/mypageTab7";
 	}
 	
@@ -131,20 +137,21 @@ public class UserMyPageController {
 		return "user/mypage/test2";
 	}
 	
+	
 	@PostMapping("insert/Request")
-	public String insertRequest(@RequestParam List<MultipartFile> multiFiles, HttpServletRequest request, Model model,HttpSession session,@ModelAttribute("req") ReqListDTO req) {
+	public String insertRequest(@RequestParam List<MultipartFile> multiFiles, HttpServletResponse response,
+				HttpServletRequest request, Model model,HttpSession session,@ModelAttribute("req") ReqListDTO req) {
 		
-		System.out.println(req);
-		System.out.println(session.getAttribute("loginUser"));
-		
-		
-		model.addAttribute("req",req);
-		model.addAttribute("id",session.getAttribute("loginUser"));
-		
-//		int result = userMypageService.insertRequest(model);
-		
-		
-		
+		System.out.println("----------------------------------");
+		System.out.println(multiFiles);
+//		if(multiFiles.size() == 0) {
+//			UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
+//			int id = userdto.getUserCode();
+//			System.out.println(id);
+//			req.setReqFrom(id);
+//			int result = userMypageService.insertRequest(req, id);
+//		}
+//		else if(multiFiles.size() != 0) {
 		/* 파일을 저장할 경로 설정 */
 		/* RootContext : request.getSession().getServletContext() + getRealPath("이 부분을 찾는다.") */
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -176,12 +183,61 @@ public class UserMyPageController {
 		
 		/* 파일을 저장한다. */
 		try {
+			System.out.println("=================================================");
+			UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
+			int id = userdto.getUserCode();
+			System.out.println(id);
+			req.setReqFrom(id);
+			
+			System.out.println("=================================================");
+			System.out.println(req);
+			
+			System.out.println(files);
+			System.out.println(files.size());
+			
+			if(req.getReqTo() == 0) {
+				req.setReqType(5);
+			}
+			
+			List<ReqImageDTO> reqimglist = new ArrayList<ReqImageDTO>();
+			for(int i = 0; i<files.size(); i++) {
+				ReqImageDTO reqimgdto = new ReqImageDTO();
+				reqimgdto.setSaveName(files.get(i).get("saveName"));
+				reqimgdto.setOrignName(files.get(i).get("originFileName"));
+				
+				reqimglist.add(reqimgdto);
+			}
+			req.setReqImage(reqimglist);
+			
+			System.out.println(req);
+			
+			/* 넘겨줄때는 무조건 한개의 매개변수만 가능하다 맵 또는 리스트를 활용하자 */
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("req", req);
+			map.put("id", id);
+			
+			int result = userMypageService.insertRequest(map);
+			
+			if(result > 0) {
+				try {
+					response.setCharacterEncoding("UTF-8");
+					response.getWriter().print("여행 문의가 등록 되었습니다.");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("여행 문의 등록 실패!");
+			}
+			
+			
 			for(int i = 0; i<multiFiles.size(); i++) {
 				
 				Map<String, String> file = files.get(i);
 				
 				multiFiles.get(i).transferTo(new File(filePath + "\\" + file.get("saveName")));
-				
+
 			}
 			model.addAttribute("message","파일 업로드 성공!~!!!!");
 		} catch (Exception e) {
@@ -196,7 +252,7 @@ public class UserMyPageController {
 			}
 			model.addAttribute("message","파일 업로드 실패!!");
 		}
-		
+//		}
 		return "user/mypage/mypageTab7";
 	}
 	

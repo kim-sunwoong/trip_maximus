@@ -1,6 +1,7 @@
 package com.maximusteam.tripfulaxel.user.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
@@ -21,9 +22,9 @@ public interface UserMypageMapper {
 	List<JoinTripListDTO> selectMyJoinList();
 	List<JoinTripListDTO> selectMyJoinList2();
 	
-	List<ReqListDTO> selectRequestList();
+	List<ReqListDTO> selectRequestList(int id);
 	
-	int insertRequest(ReqListDTO req, String id);
+	int insertRequest(Map<String, Object> map);
 
 
 }

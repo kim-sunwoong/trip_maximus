@@ -140,7 +140,7 @@
             					</tr>
                     			<tr id="AddFrom" style="display: none;">
                     				<th>신고 대상 : </th>
-                    				<th><input type="text" name="reqTo" id="From" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
+                    				<th><input type="text" name="reqTo" id="From" value="0" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
                     			</tr>
                     			<tr>
                     				<th>건의 내용 : &nbsp;&nbsp;</th>
@@ -148,7 +148,7 @@
                     			</tr>
                     			<tr>
                     				<th></th>
-                    				<th><input type="file"><p><input type="file"></th>
+                    				<th><input type="file" multiple="multiple" name="multiFiles"></th>
                    				</tr>
 							<tr>
 								<th></th>

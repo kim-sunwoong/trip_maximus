@@ -5,11 +5,12 @@ import java.util.List;
 
 public class ReqListDTO {
 	
+	private int reqType;
+	private int reqTo;
+	private String reqReason;
 	private int reqCode;
 	private Date reqDate;
-	private String reqReason;
 	
-	private int reqType;
 	// 1	가이드->유저 신고      
 	// 2	유저->가이드 신고      
 	// 3	등록심사            
@@ -18,17 +19,16 @@ public class ReqListDTO {
 	// 6	가이드 -> 관리자한테 문의 
 	// 7	등업신청심사          
 	
-	private String reqFrom;
+	private int reqFrom;
 	private String reqYN;
-	private String reqTo;
 	
 	List<ReqImageDTO> reqImage;
 	
 	public ReqListDTO() {
 	}
 
-	public ReqListDTO(int reqCode, Date reqDate, String reqReason, int reqType, String reqFrom, String reqYN,
-			String reqTo, List<ReqImageDTO> reqImage) {
+	public ReqListDTO(int reqCode, Date reqDate, String reqReason, int reqType, int reqFrom, String reqYN, int reqTo,
+			List<ReqImageDTO> reqImage) {
 		super();
 		this.reqCode = reqCode;
 		this.reqDate = reqDate;
@@ -72,11 +72,11 @@ public class ReqListDTO {
 		this.reqType = reqType;
 	}
 
-	public String getReqFrom() {
+	public int getReqFrom() {
 		return reqFrom;
 	}
 
-	public void setReqFrom(String reqFrom) {
+	public void setReqFrom(int reqFrom) {
 		this.reqFrom = reqFrom;
 	}
 
@@ -88,11 +88,11 @@ public class ReqListDTO {
 		this.reqYN = reqYN;
 	}
 
-	public String getReqTo() {
+	public int getReqTo() {
 		return reqTo;
 	}
 
-	public void setReqTo(String reqTo) {
+	public void setReqTo(int reqTo) {
 		this.reqTo = reqTo;
 	}
 
@@ -110,6 +110,7 @@ public class ReqListDTO {
 				+ reqType + ", reqFrom=" + reqFrom + ", reqYN=" + reqYN + ", reqTo=" + reqTo + ", reqImage=" + reqImage
 				+ "]";
 	}
+
 	
 	
 }
