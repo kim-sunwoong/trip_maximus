@@ -20,6 +20,10 @@ public interface GuidePageService {
 	int selectCount(int guideCode);
 
 	int selectStar(int guideCode);
+
+	int updateStopSell(int guideCode);
+
+	int updateStartSell(int guideCode);
 	
 		
 

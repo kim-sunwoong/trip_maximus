@@ -29,7 +29,6 @@
             text-align: center;
         }
 
-        /* #detail_content thead { width: 50%; height: 70px;} */
     </style>
 </head>
 <body>
@@ -48,7 +47,7 @@
             <br>
             <div class="tabList" style="margin: 0 auto;">
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/guideTab2">내 정보수정</a></div>
+                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내 정보수정</a></div>
                 <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
@@ -84,18 +83,54 @@
 								<p class="card-text">${myGoods.tripList[0].tripIntro } </p>
 								<p class="card-text">
 									<small class="text-muted"
-										style="height: 40px; line-height: 1.5rem;"> 상품 총 리뷰수 : <a>${ goodsCount }</a>개
+										style="height: 40px; line-height: 1.5rem; font-size: 13px;"> 상품 총 리뷰수 : <a>${ goodsCount }</a>개
 									</small>
 								</p>
 								<p class="card-text">
 								   <small class="text-muted"
-										style="height: 40px; line-height: 1.5rem;"> 평균별점 : <a>${ reviewStar }</a>점
+										style="height: 40px; line-height: 1.5rem; font-size: 13px;"> 평균별점 : <a>${ reviewStar }</a>점
 									</small>
 								</p>
 								<br>
-								<button type="button" class="btn btn-outline-info">판매중지</button>
-								<button type="button" class="btn btn-outline-info">등업요청</button>
-								<button type="button" class="btn btn-outline-info">수정하기</button>
+								<button type="button" id="btnStopSell" 
+								onClick="onClickStopSell()" 
+								class="btn btn-outline-info" style="width: 139px;">판매중지</button>
+					<!-- 	<button type="button" class="btn btn-outline-info">등업요청</button> -->
+						    	<button type="button" class="btn btn-outline-info" id="btnUpdateGoods"
+						    	onClick="onClickUpdateGoods()">수정하기</button> 
+								
+								
+								
+ 	<script>
+		var isClickStopSell = true;
+		function onClickStopSell() {
+			console.log(isClickStopSell)
+			if (isClickStopSell) {
+				document.getElementById("btnStopSell").innerText = "판매게시";
+				 		$.ajax({
+						    url: "${ pageContext.servletContext.contextPath }/user/guidepage/stopSell",
+						    type : 'get'
+						}); 
+
+			} else {
+				document.getElementById("btnStopSell").innerText = "판매중지";
+				$.ajax({
+				    url: "${ pageContext.servletContext.contextPath }/user/guidepage/startSell",
+				    type : 'get'
+				}); 
+			}
+			isClickStopSell = !isClickStopSell;
+
+		}
+		
+		function onClickUpdateGoods() {
+			$.ajax({
+			    url: "${ pageContext.servletContext.contextPath }/user/guidepage/updateSell",
+			    type : 'get'
+			}); 
+		}
+	</script> 
+								
 							</div>
 						</div>
 					</div>
@@ -106,5 +141,7 @@
 	</div>
         <div class="clearbothsite" style="clear:both; width:100%; height: 1px;margin-top: 150px;"></div>
 	<jsp:include page="../common/footer.jsp"/>
+
+
 </body>
 </html>

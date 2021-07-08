@@ -86,7 +86,7 @@
          AND A.USER_CODE = #{guideCode}
  	</select>
  	
- 	 	<!-- 후기 댓글  -->
+ 	<!-- 후기 댓글  -->
     <insert id="insertReply" parameterType="com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO">
 	 <selectKey resultType="int"  keyProperty="guideReplyCode" order="BEFORE">
 	 	SELECT MAX(TRIP_REPLY_CODE) + 1 FROM TRIP_REPLY
@@ -143,5 +143,22 @@
          WHERE D.USER_CODE = #{guideCode}       
   </select>
  	
+ 	<!-- 판매 중지  -->
+ 	<update id="updateStopSell"  parameterType="TripReviewDTO">
+        UPDATE   
+               TRIP_REGIST_LIST A
+          JOIN USER C ON(A.USER_CODE = C.USER_CODE)
+           SET A.REGIST_TYPE_CODE = 4
+         WHERE C.USER_CODE = #{guideCode}      
+	</update> 	
+  
+  <!-- 판매 게시   -->
+   	<update id="updateStartSell"  parameterType="TripReviewDTO">
+        UPDATE   
+               TRIP_REGIST_LIST A
+          JOIN USER C ON(A.USER_CODE = C.USER_CODE)
+           SET A.REGIST_TYPE_CODE = 3
+         WHERE C.USER_CODE = #{guideCode}      
+	</update> 	
  	
  </mapper>

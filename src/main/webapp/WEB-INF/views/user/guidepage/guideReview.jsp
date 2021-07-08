@@ -64,7 +64,7 @@
 				</div>
 				<div class="tabb">
 					<a class="pic2"
-						href="${pageContext.request.contextPath}/user/guidepage/guideTab2">내
+						href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내
 						정보수정</a>
 				</div>
 				<div class="tabb">

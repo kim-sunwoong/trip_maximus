@@ -17,4 +17,8 @@ public interface GuidePageMapper {
 
 	int selectCount(int guideCode);
 
+	int updateStopSell(int guideCode);
+
+	int updateStartSell(int guideCode);
+
 }

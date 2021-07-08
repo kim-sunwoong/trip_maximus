@@ -67,6 +67,24 @@ public class GuidePageServiceImpl implements GuidePageService {
 		return mapper.selectStar(guideCode);
 	}
 
+	/**
+	 * 판매 중지
+	 */
+	@Override
+	public int updateStopSell(int guideCode) {
+		
+		return mapper.updateStopSell(guideCode);
+	}
+
+	/**
+	 * 판매 게시 
+	 */
+	@Override
+	public int updateStartSell(int guideCode) {
+		
+		return mapper.updateStartSell(guideCode);
+	}
+
 
 	
 	

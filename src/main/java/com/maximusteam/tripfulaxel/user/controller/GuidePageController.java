@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO;
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
@@ -59,39 +60,60 @@ public class GuidePageController {
 		return "user/guidepage/guideGoods";
 	}
 	
-	@GetMapping("guideTab2")
-	public String select2(Model model) {
+	/**
+	 * 판매 중지 
+	 * @param tripreview
+	 * @param model
+	 * @param request
+	 */
+	@GetMapping("stopSell")
+	@ResponseBody
+	public void updateStopSell(HttpServletRequest request) {
 		
-		return "user/guidepage/guideTab2";
-	}
-	@GetMapping("guideParticipants")
-	public String select3(Model model) {
+		System.out.println("판매중지 update");
 		
-		return "user/guidepage/guideParticipants";
-	}
-	@GetMapping("guideContact")
-	public String select4(Model model) {
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+	
+	   guidePageService.updateStopSell(guideCode);
+	
 		
-		return "user/guidepage/guideContact";
 	}
+	
+	@GetMapping("startSell")
+	@ResponseBody
+	public void updateStartSell(HttpServletRequest request) {
+		
+		System.out.println("판매게시  update");
+		
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+	
+		 guidePageService.updateStartSell(guideCode);
+	
+		
+	}
+	
 	/**
 	 * 후기관리 
 	 * @param model
 	 * @return
 	 */
 	@GetMapping("guideReview")
-	public String selectGuideReview(@ModelAttribute TripReviewDTO tripreview ,Model model, HttpServletRequest request) {
-			
-	
+	public String selectGuideReview(@ModelAttribute TripReviewDTO tripreview ,
+			Model model, HttpServletRequest request) {
+		
 		HttpSession session = request.getSession();
 		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
 		System.out.println("로그인한 사람의 코드 :  " + guideCode);
-
+		
 		List<TripReviewDTO> tripReviewdto = guidePageService.selectGuideReview(guideCode);
 		System.out.println(" 리스트에 담긴 값  : " + tripReviewdto);
-
+		
 		model.addAttribute("selectGuideReview", tripReviewdto);
-
+		
 		return "user/guidepage/guideReview";
 	}
 	
@@ -104,16 +126,37 @@ public class GuidePageController {
 	 */
 	@RequestMapping(value = "guideReviewReply", method = RequestMethod.POST)
 	public String insertReply(@ModelAttribute TripReviewDTO tripreview) {
-
+		
 		System.out.println("가이드가 입력한 댓글   : " + tripreview.getReplyDetail());
 		System.out.println("가이드의 여행코드 : " + tripreview.getReplycode());
 		
 		guidePageService.insertReply(tripreview);
-	
+		
 		return "redirect:/";
 	}
 	
+	/**
+	 * 내 정보 수정
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("updateSell")
+	public String select2(Model model) {
+		System.out.println("내정보수정");
+		return "redirect:/updateGuide";
+	}
 	
+	
+	@GetMapping("guideParticipants")
+	public String select3(Model model) {
+		
+		return "user/guidepage/guideParticipants";
+	}
+	@GetMapping("guideContact")
+	public String select4(Model model) {
+		
+		return "user/guidepage/guideContact";
+	}
 	
 	
 	@GetMapping("guideTax")
