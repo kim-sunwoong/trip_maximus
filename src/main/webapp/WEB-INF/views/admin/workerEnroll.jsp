@@ -98,7 +98,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                	사원관리
+                                	사원등록
                             </div>
 
                             <div class="card-body">
