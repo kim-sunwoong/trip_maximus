@@ -258,10 +258,39 @@
 	    )
 	</insert>
 	
+	<!-- TRIP_IMAGE UPDATE -->
 	<update id="updateTripImage" parameterType="TripImageDTO">
 		UPDATE TRIP_IMAGE
 		   SET TRIP_CODE = #{refCode}
 		 WHERE TRIP_IMAGE_CODE = #{imageCode}
 	</update>
+	
+	<!-- USER_TRIP INSERT -->
+	<insert id="insertTripAlone" parameterType="UserTripAloneDTO">
+		<selectKey resultType="int" keyProperty="userTripCode" order="AFTER">
+	    	SELECT MAX(U_TRIP_CODE) as userTripCode FROM USER_TRIP
+	    </selectKey>
+	    INSERT INTO USER_TRIP
+	    (
+ 	    	   U_TRIP_CODE
+			 , U_TRIP_COMENT_TITLE
+			 , U_TRIP_COMENT_INFO
+			 , U_TRIP_COMENT_POINT
+			 , TRIP_CODE
+			 , U_TRIP_PRICE  
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.U_TRIP_CODE) + 1, 1) FROM USER_TRIP b)
+	         , #{userTripCommentTitle}
+	         , #{userTripCommentInfo}
+	         , #{userTripCommentPoint}
+	         , #{tripCode}
+	         , #{userTripPrice}
+	    )
+	</insert>
+	
+	
+	
 </mapper>
     

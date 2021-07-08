@@ -10,6 +10,7 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
+import com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO;
 
 public interface InsertTripMapper {
 
@@ -25,6 +26,8 @@ public interface InsertTripMapper {
 	int insertTransit(TripTransitChoiceDTO tripTransitChoiceDTO);
 	int insertTripCourse(TripCourseDTO tripCourseDTO);
 	int updateTripImage(TripImageDTO tripImageDTO);
+	
+	int insertTripAlone(UserTripAloneDTO userTripAloneDTO);
 	
 	
 }

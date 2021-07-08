@@ -18,14 +18,14 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 public class TripCommonServiceImpl implements TripCommonService{
 
 	@Inject
-	private InsertTripMapper guideMapper;
+	private InsertTripMapper insertTripMapper;
 	
 	public TripCommonServiceImpl() {
 		super();
 	}
 
-	public TripCommonServiceImpl(InsertTripMapper guideMapper) {
-		this.guideMapper = guideMapper;
+	public TripCommonServiceImpl(InsertTripMapper insertTripMapper) {
+		this.insertTripMapper = insertTripMapper;
 	}
 	
 	@Override
@@ -37,13 +37,13 @@ public class TripCommonServiceImpl implements TripCommonService{
 		    case 1:
 		    	// 가이드 개인 사진 관련 INSERT - ID, PROFILE, CERTIFICATIONS
 		    	for(TripImageDTO tripImageDTO : imageList) {
-					result += guideMapper.insertGuideImage(tripImageDTO);
+					result += insertTripMapper.insertGuideImage(tripImageDTO);
 				}				
 		    	break;
 		    case 2:
 		    	// 가이드 여행 관련 사진 INSERT - TRIP, COURSE
 				for(TripImageDTO tripImageDTO : imageList) {
-					result += guideMapper.insertTripImage(tripImageDTO);
+					result += insertTripMapper.insertTripImage(tripImageDTO);
 				}
 				break;
 		}
@@ -57,7 +57,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 		int result = 0;
 		
 		for(int i = 0; i < tripImageList.size(); i++) {
-			result += guideMapper.insertTripImage(tripImageList.get(i));
+			result += insertTripMapper.insertTripImage(tripImageList.get(i));
 		}
 		
 		return tripImageList.size() == result ? true : false;
@@ -69,7 +69,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 		int result = 0;
 		
 		for(int i = 0; i < tripImageList.size(); i++) {
-			result += guideMapper.updateTripImage(tripImageList.get(i));
+			result += insertTripMapper.updateTripImage(tripImageList.get(i));
 		}
 		
 		return tripImageList.size() == result ? true : false;
@@ -78,7 +78,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 	@Override
 	public boolean insertTrip(TripDTO tripDTO) {
 		
-		int result = guideMapper.insertTrip(tripDTO);
+		int result = insertTripMapper.insertTrip(tripDTO);
 		
 		return result > 0 ? true : false;
 	}
@@ -86,7 +86,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 	@Override
 	public boolean insertTripRegistList(TripRegistListDTO tripRegistListDTO) {
 		
-		int result = guideMapper.insertTripRegistList(tripRegistListDTO);
+		int result = insertTripMapper.insertTripRegistList(tripRegistListDTO);
 		
 		return result > 0 ? true : false;
 	}
@@ -97,7 +97,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 		int result = 0;
 		
 		for(int i = 0; i < themeList.size(); i++) {
-			result += guideMapper.insertTheme(themeList.get(i));
+			result += insertTripMapper.insertTheme(themeList.get(i));
 		}
 		
 		return themeList.size() == result ? true : false;
@@ -109,7 +109,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 		int result = 0;
 		
 		for(int i = 0; i < transitList.size(); i++) {
-			result += guideMapper.insertTransit(transitList.get(i));
+			result += insertTripMapper.insertTransit(transitList.get(i));
 		}
 		
 		return transitList.size() == result ? true : false;
@@ -121,7 +121,7 @@ public class TripCommonServiceImpl implements TripCommonService{
 		int result = 0;
 		
 		for(int i = 0; i < tripCourseList.size(); i++) {
-			result += guideMapper.insertTripCourse(tripCourseList.get(i));
+			result += insertTripMapper.insertTripCourse(tripCourseList.get(i));
 		}
 		
 		return tripCourseList.size() == result ? true : false;

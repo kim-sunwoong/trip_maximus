@@ -22,16 +22,16 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 public class GuideTripServiceImpl extends TripCommonServiceImpl implements GuideTripService {
 
 	@Inject
-	private final InsertTripMapper guideMapper;
+	private final InsertTripMapper insertTripMapper;
 	
-	public GuideTripServiceImpl(InsertTripMapper guideMapper) {
-		this.guideMapper = guideMapper;
+	public GuideTripServiceImpl(InsertTripMapper insertTripMapper) {
+		this.insertTripMapper = insertTripMapper;
 	}
 
 	@Override
 	public boolean insertGuide(GuideDTO guideDTO) {
 
-		int result = guideMapper.insertGuide(guideDTO);
+		int result = insertTripMapper.insertGuide(guideDTO);
 		
 		return result > 0 ? true : false;
 	}
@@ -42,7 +42,7 @@ public class GuideTripServiceImpl extends TripCommonServiceImpl implements Guide
 		int result = 0;
 		
 		for(int i = 0; i < styleList.size(); i++) {
-			result += guideMapper.insertGuideStyleChoice(styleList.get(i));
+			result += insertTripMapper.insertGuideStyleChoice(styleList.get(i));
 		}
 		
 		return styleList.size() == result ? true : false;
@@ -52,7 +52,7 @@ public class GuideTripServiceImpl extends TripCommonServiceImpl implements Guide
 	@Override
 	public boolean insertExamine(ExamineDTO examineDTO) {
 		
-		int result = guideMapper.insertExamine(examineDTO);
+		int result = insertTripMapper.insertExamine(examineDTO);
 		
 		return result > 0 ? true : false;
 	}
@@ -60,7 +60,7 @@ public class GuideTripServiceImpl extends TripCommonServiceImpl implements Guide
 	@Override
 	public boolean insertGuideTrip(GuideTripDTO guideTripDTO) {
 		
-		int result = guideMapper.insertGuideTrip(guideTripDTO);
+		int result = insertTripMapper.insertGuideTrip(guideTripDTO);
 		
 		return result > 0 ? true : false;
 	}

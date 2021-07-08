@@ -57,7 +57,7 @@
 						<div class="transit" style="width:600px !important;">
 							<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="transit"/>도보</label>
 							<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="transit"/>버스</label>
-							<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="transit"/>본인자가용</label>
+							<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="transit"/>자가용(렌트카)</label>
 							<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="transit"/>자전거</label>
 							<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="transit"/>스쿠터</label>
 						</div>
@@ -93,7 +93,7 @@
 						<div class="guidetitle">
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
-						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">가이드만 알고 있는 시크릿 스팟 여행</label>
+						<label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="theme">회원님만 알고 있는 시크릿 스팟 여행</label>
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="theme">이 곳에서만 맛 볼 수 있는 로컬 맛집/카페</label>
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="theme">인생샷을 건지는 스냅</label>
 						</div>
@@ -107,13 +107,13 @@
 				
 			<!-- 여정 소개 -->
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block">여행 소개</span>
+						<span class="form-title" style="display:inline-block">여행소개</span>
 						 <textarea class="form-control textarea-layer" rows="9" name="tripIntro" placeholder="다른회원들에게 회원님의 여행을 뽐내주세요!"></textarea>
                           <div class="maxText">(최대 1000자)</div>
 					</div>	
 
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>사진공유</span>
+						<span class="form-title" style="display:inline-block">사진공유</span>
 						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
@@ -124,13 +124,13 @@
 			 <div class="courseContainer">
 				 <div class="course">
 					 <div class="form-layer">
-						<span class="form-title" style="display:inline-block">코스 이름  </span>
+						<span class="form-title" style="display:inline-block">코스이름  </span>
 					 	<input type="text" id="courseTitle" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">
 					</div>
 						
 					<!-- 코스 소개 -->
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block">코스 소개</span>
+						<span class="form-title" style="display:inline-block">코스소개</span>
 						<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>
 		                <div class="maxText">(최대 500자)</div>
 		                <input type="file" name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
@@ -156,11 +156,11 @@
 
 					$(e.target).parent().after('<div class="course"  name="lastcourse">'
 								 +'<div class="form-layer">'
-								 +'<span class="form-title" style="display:inline-block";>코스 이름  </span>'
+								 +'<span class="form-title" style="display:inline-block";>코스이름  </span>'
 								 +'<input type="text" class="select-nomalsize" name="courseTitle" placeholder="여행의 첫 시작 ! 애월 ">'
 								 +'</div>'
 								 +'<div class="form-layer">'
-								 +'<span class="form-title" style="display:inline-block">코스 소개</span>'
+								 +'<span class="form-title" style="display:inline-block">코스소개</span>'
 								 +'<textarea class="form-control textarea-layer" rows="9" name="courseIntro" placeholder="이 코스에서 무엇을 할 수 있는지 상세하게 적어주세요"></textarea>'
 								 +'<div class="maxText">(최대 500자)</div>'
 								 +'<input type="file"  name="imageCourse" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">'
@@ -217,14 +217,15 @@
 			   	<p class="description" style="margin-bottom: 3px;">*회원님의 여행에 대한 소감 및 평가를 남겨주세요 </p>
 			   	 <!-- 평가 제목   -->
 			      <div class="form-layer">
-					<span class="form-title" style="display:inline-block">소감 또는 평가 제목  </span>
+					<span class="form-title" style="display:inline-block">평가 제목 </span>
 			 	    <input type="text" class="select-nomalsize" name="commentTitle" placeholder="먹거리가 완벽했던 제주여행" required>
 				  </div>
 				  
 				  <!-- 평가 내용   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block">자세한 내용  </span>
-			 	    <input type="text" class="select-nomalsize" name="commentInfo" placeholder="예상비용보다 초과되어 입장권을 구입하는게 부담되었어요">
+			 	    <textarea class="form-control textarea-layer" rows="9" name="commentInfo" placeholder="예상비용보다 초과되어 입장권을 구입하는게 부담되었어요"></textarea>
+		            <div class="maxText">(최대 500자)</div>
 				  </div>
 				  
 				  <!-- 평가 별점   -->
@@ -353,11 +354,11 @@
 	            async : false,
 	            success : function(data) {
 	                if(data.httpStatus == "OK"){
-	                	alert("가이드 신청이 정상으로 완료되었습니다!\n상단의 가이드페이지에서 심사현황을 확인할 수 있습니다 ");
-					 	window.location.href = "${pageContext.request.contextPath}/"
+	                	alert("나만의 여행 등록이 정상으로 완료되었습니다!\n상단의 나만의여행에서 확인할 수 있습니다\n 소중한 경험을 공유해주셔서 감사합니다 ");
+					 	window.location.href = "${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순"
 
 	                }else if(data.httpStatus == "400"){
-	                	alert("가이드 신청 중 알수없는 에러가 발생하였습니다\n 다시 시도해주세요! ");
+	                	alert("나만의 여행 등록 중 알수없는 에러가 발생하였습니다\n 다시 시도해주세요! ");
 					 	window.location.href = "${pageContext.request.contextPath}/"
 	                }
 	            },
