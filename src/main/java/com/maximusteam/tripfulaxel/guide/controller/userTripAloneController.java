@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,30 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.ApiException;
 import com.maximusteam.tripfulaxel.ApiResponse;
-import com.maximusteam.tripfulaxel.testGuide;
-import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
-import com.maximusteam.tripfulaxel.guide.model.service.GuideTripService;
+import com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO;
+import com.maximusteam.tripfulaxel.guide.model.service.UserTripAloneServiceImpl;
 
 @RestController
-public class userGuideController {
+public class userTripAloneController {
 
 	@Inject
-	private final GuideTripService guideService;
+	private final UserTripAloneServiceImpl tripInsertService;
 	
-	public userGuideController(GuideTripService guideService) {
-		this.guideService = guideService;
+	public userTripAloneController(UserTripAloneServiceImpl tripInsertService) {
+		this.tripInsertService = tripInsertService;
 	}
 	
-	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/api/insert/tripAlone", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
 		// 1depth JSON DATA 확인
@@ -69,14 +64,11 @@ public class userGuideController {
 		 * 
 		 * 				FORM DATA - INSERT 
 		 *    테이블     				DTO 
-		 * 1. GUIDE   				GuideDTO
-		 * 2. GUIDE_STYLE_CHOICE    GuideStyleChoiceDTO
-		 * 3. TRIP    				TripDTO
-		 * 4. TRIP_REGIST_LIST 		TripRegistListDTO
-		 * 5. EXAMINE				ExamineDTO
-		 * 6. TRIP_THEME_CHOICE		TripThemeChoiceDTO
-		 * 7. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
-		 * 8. GUIDE_TRIP			GuideTripDTO
+		 * 1. TRIP    				TripDTO
+		 * 2. TRIP_REGIST_LIST 		TripRegistListDTO
+		 * 3. USER_TRIP				UserTripAloneDTO
+		 * 3. TRIP_THEME_CHOICE		TripThemeChoiceDTO
+		 * 4. TRIP_TRANSIT_CHOICE	TripTransitChoiceDTO
 		 * 
 		 * 				IMAGE DATA - UPDATE(OPTIONAL)
 		 * 1. TRIP_IMAGE			TripImageDTO 
@@ -85,52 +77,8 @@ public class userGuideController {
 		 * 1. TRIP_COURSE			TripCourseDTO
 		 * */
 		
-		// 1-1 GuideDTO 생성
-		GuideDTO guideDTO = new GuideDTO();
-		guideDTO.setNickname((String)formDataMap.get("formData").get("guideNickname"));
-		guideDTO.setCarYn((String)formDataMap.get("formData").get("hasCar"));
-		guideDTO.setExpYn((String)formDataMap.get("formData").get("hasExp"));
-		guideDTO.setIntro((String)formDataMap.get("formData").get("intro"));
-		guideDTO.setUserCode(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
-		guideDTO.setPeriodCode(Integer.valueOf((String)formDataMap.get("formData").get("periodCode")));
-		guideDTO.setGuideYn("N"); // 승인에 대한 내용, 등록시에는 N으로 기본값 설정
-		guideDTO.setLevelCode(1); // 가입시 레벨은 1로 초기화
 		
-		System.out.println("guideDTO" + guideDTO);
-		// 1-2 GUIDE 테이블에 INSERT
-		if(!guideService.insertGuide(guideDTO)) {
-			System.out.println("insert guide error");
-			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드 정보가 부족합니다");
-		}
-		
-		// 2-1
-		List<GuideStyleChoiceDTO> styleList = new ArrayList<>();
-
-		if(formDataMap.get("formData").get("guideStyle") instanceof ArrayList) {
-			List<Object> choiceStyle = (List)formDataMap.get("formData").get("guideStyle");
-					
-			for(int i = 0; i < choiceStyle.size(); i++) {
-				GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
-				guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
-				guideStyleChoiceDTO.setGuideStyleCode(Integer.valueOf((String)choiceStyle.get(i)));
-				
-				styleList.add(guideStyleChoiceDTO);
-			}
-		}else {
-			GuideStyleChoiceDTO guideStyleChoiceDTO = new GuideStyleChoiceDTO();
-			guideStyleChoiceDTO.setGuideCode(guideDTO.getGuideCode());
-			guideStyleChoiceDTO.setGuideStyleCode(Integer.valueOf((String)formDataMap.get("formData").get("guideStyle")));
-			
-			styleList.add(guideStyleChoiceDTO);
-		}
-		System.out.println("styleList" + styleList);
-		// 2-2 GUIDE_STYLE_CHOICE 테이블에 INSERT
-		if(!guideService.insertGuideStyleChoice(styleList)) {
-			System.out.println("insert GuideStyleChoice error");
-			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드스타일정보가 부족합니다");
-		}
-		
-		// 2-1 TripDTO
+		// 1-1 TripDTO
 		TripDTO tripDTO = new TripDTO();
 		tripDTO.setTripTitle((String)formDataMap.get("formData").get("tripName"));
 		tripDTO.setTripIntro((String)formDataMap.get("formData").get("tripIntro"));
@@ -144,44 +92,43 @@ public class userGuideController {
 		tripDTO.setMeetLocation(meetLocation);
 		
 		System.out.println("tripDTO" + tripDTO);
-		// 2-2 TRIP 테이블에 INSERT
-		if(!guideService.insertTrip(tripDTO)) {
+		// 1-2 TRIP 테이블에 INSERT
+		if(!tripInsertService.insertTrip(tripDTO)) {
 			System.out.println("insert Trip error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 기본정보가 부족합니다");
 		}
 		
-		// 3-1 TripRegistListDTO
+		// 2-1 TripRegistListDTO
 		TripRegistListDTO tripRegistListDTO = new TripRegistListDTO();
-		tripRegistListDTO.setTripTypeCode(1);
-		tripRegistListDTO.setRegistTypeCode(1);
+		tripRegistListDTO.setTripTypeCode(3);
+		tripRegistListDTO.setRegistTypeCode(3);
 		tripRegistListDTO.setUserCode(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
 		tripRegistListDTO.setTripCode(tripDTO.getTripCode());
 		
 		System.out.println("tripRegistListDTO" + tripRegistListDTO);
 
-		// 3-2 TRIP_REGIST_LIST 테이블에 INSERT
-		if(!guideService.insertTripRegistList(tripRegistListDTO)) {
+		// 2-2 TRIP_REGIST_LIST 테이블에 INSERT
+		if(!tripInsertService.insertTripRegistList(tripRegistListDTO)) {
 			System.out.println("insert TripRegistList error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "여행등록내역 추가할 정보가 부족합니다");
 		}
 		
-		// 4-1 ExamineDTO
-		ExamineDTO examineDTO = new ExamineDTO();
-		examineDTO.setExamineRequestReason((String)formDataMap.get("formData").get("reason"));
-		examineDTO.setTypeCode(3); // 가이드 등록 심사코드 - 3
-		examineDTO.setExamineRequestYn("N"); // 심사등록시 기본값 N으로 등록
-		examineDTO.setExamineRequestFrom(Integer.valueOf((String)formDataMap.get("formData").get("userCode")));
-		examineDTO.setExamineRequestTo(tripRegistListDTO.getRegistListCode());
-		
-		System.out.println("examineDTO" + examineDTO);
+		// 3-1 UserTripAloneDTO
+		UserTripAloneDTO userTripAloneDTO = new UserTripAloneDTO();
+		userTripAloneDTO.setUserTripCommentTitle((String)formDataMap.get("formData").get("commentTitle"));
+		userTripAloneDTO.setUserTripCommentInfo((String)formDataMap.get("formData").get("commentInfo"));
+		userTripAloneDTO.setUserTripCommentPoint(Integer.valueOf((String)formDataMap.get("formData").get("commentPoint")));
+		userTripAloneDTO.setUserTripPrice(Integer.valueOf((String)formDataMap.get("formData").get("price")));
+		userTripAloneDTO.setTripCode(tripDTO.getTripCode());
 
-		// 4-2 EXAMINE 테이블에 INSERT - requestDate는 query의 now()함수 이용예정
-		if(!guideService.insertExamine(examineDTO)) {
-			System.out.println("insert Examine error");
-			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드등록을 심사에 정보가 부족합니다");
+		// 3-2 USER_TRIP 테이블에 INSERT
+		if(!tripInsertService.insertUserTrip(userTripAloneDTO)) {
+			System.out.println("insert userTripAloneDTO error");
+			throw new ApiException(HttpStatus.BAD_REQUEST, "나만의 여행에 추가할 정보가 부족합니다");
 		}
 		
-		// 5-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
+		
+		// 4-1 TripThemeChoiceDTO - BRIDGE 테이블에 사용된다.
 		// 다중 선택 -> ArrayList / 단일 선택 -> String
 //		System.out.println("단일선택 객체 타입 확인 : " + formDataMap.get("formData").get("theme").getClass().getName());
 		List<TripThemeChoiceDTO> themeList = new ArrayList<>();		
@@ -204,13 +151,13 @@ public class userGuideController {
 			themeList.add(tripThemeChoiceDTO);
 		}
 		System.out.println("themeList" + themeList);
-		// 5-2 TRIP_THEME_CHOICE 테이블에 INSERT
-		if(!guideService.insertTheme(themeList)) {
+		// 4-2 TRIP_THEME_CHOICE 테이블에 INSERT
+		if(!tripInsertService.insertTheme(themeList)) {
 			System.out.println("insert Theme error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 테마 정보가 부족합니다");
 		}
 		
-		// 6-1 TripTransitChoiceDTO
+		// 5-1 TripTransitChoiceDTO
 		// 다중 선택 -> ArrayList / 단일 선택 -> String
 		List<TripTransitChoiceDTO> transitList = new ArrayList<>();
 		
@@ -234,26 +181,12 @@ public class userGuideController {
 		}
 		System.out.println("transitList" + transitList);
 
-		// 6-2 TRANSIT_CHOICE 테이블에 INSERT
-		if(!guideService.insertTransit(transitList)) {
+		// 5-2 TRANSIT_CHOICE 테이블에 INSERT
+		if(!tripInsertService.insertTransit(transitList)) {
 			System.out.println("insert Transit error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "여행 이동방식 정보가 부족합니다");
 		}
 		
-		// 7-1 GuideTripDTO
-		GuideTripDTO guideTripDTO = new GuideTripDTO();
-		guideTripDTO.setPayment(Integer.valueOf((String)formDataMap.get("formData").get("price")));
-		guideTripDTO.setMinimum(Integer.valueOf((String)formDataMap.get("formData").get("minimum")));
-		guideTripDTO.setMaximum(Integer.valueOf((String)formDataMap.get("formData").get("maximum")));
-		guideTripDTO.setTripCode(tripDTO.getTripCode());
-		
-		System.out.println("guideTripDTO" + guideTripDTO);
-
-		// 7-2 GUIDE_TRIP 테이블에 INSERT
-		if(!guideService.insertGuideTrip(guideTripDTO)) {
-			System.out.println("insert GuideTrip error");
-			throw new ApiException(HttpStatus.BAD_REQUEST, "가이드 여행정보가 부족합니다");
-		}
 		
 		/* OPTIONAL DATA 처리
 		 * 
@@ -324,7 +257,7 @@ public class userGuideController {
 		System.out.println("tripImageList" + tripImageList);
 
 		// 1-3 TRIP_IMAGE 테이블에 UPDATE
-		if(!guideService.updateTripImage(tripImageList)) {
+		if(!tripInsertService.updateTripImage(tripImageList)) {
 			System.out.println("update TripImage error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "코스 등록정가 부족합니다");
 		}
@@ -361,7 +294,7 @@ public class userGuideController {
 		System.out.println("tripCourseList" + tripCourseList);
 
 		// 2-2 TRIP_COURSE 테이블에 INSERT
-		if(!guideService.insertTripCourse(tripCourseList)) {
+		if(!tripInsertService.insertTripCourse(tripCourseList)) {
 			System.out.println("insert tripCourse error");
 			throw new ApiException(HttpStatus.BAD_REQUEST, "코스 등록정보가 부족합니다");
 		}
@@ -369,12 +302,6 @@ public class userGuideController {
 		/* 어떤것으로 JSON을 표현할지 생각 */
 	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "가이드 등록신청 완료"), HttpStatus.OK);
 	}
-	
 
-	/* 응답성공 */
-	@RequestMapping(value = "/api/insert/test/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
-	public ResponseEntity<?> testGuide(@PathVariable int id){
-		System.out.println("test");
-	    return new ResponseEntity<testGuide>(new testGuide(id, "JAMES"), HttpStatus.OK);
-	}
+
 }

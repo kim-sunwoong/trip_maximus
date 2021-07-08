@@ -6,11 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
-import com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
-import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
+import com.maximusteam.tripfulaxel.guide.model.dao.InsertTripMapper;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
@@ -19,15 +15,19 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
 
 @Service
-public class GuideServiceImpl implements GuideService {
+public class TripCommonServiceImpl implements TripCommonService{
 
 	@Inject
-	private final GuideMapper guideMapper;
+	private InsertTripMapper guideMapper;
 	
-	public GuideServiceImpl(GuideMapper guideMapper) {
-		this.guideMapper = guideMapper;
+	public TripCommonServiceImpl() {
+		super();
 	}
 
+	public TripCommonServiceImpl(InsertTripMapper guideMapper) {
+		this.guideMapper = guideMapper;
+	}
+	
 	@Override
 	public boolean insertImage(List<TripImageDTO> imageList, int tableCode) {
 
@@ -52,25 +52,29 @@ public class GuideServiceImpl implements GuideService {
 	}
 
 	@Override
-	public boolean insertGuide(GuideDTO guideDTO) {
-
-		int result = guideMapper.insertGuide(guideDTO);
+	public boolean insertTripImage(List<TripImageDTO> tripImageList) {
 		
-		return result > 0 ? true : false;
+		int result = 0;
+		
+		for(int i = 0; i < tripImageList.size(); i++) {
+			result += guideMapper.insertTripImage(tripImageList.get(i));
+		}
+		
+		return tripImageList.size() == result ? true : false;
 	}
 
 	@Override
-	public boolean insertGuideStyleChoice(List<GuideStyleChoiceDTO> styleList) {
+	public boolean updateTripImage(List<TripImageDTO> tripImageList) {
 
 		int result = 0;
 		
-		for(int i = 0; i < styleList.size(); i++) {
-			result += guideMapper.insertGuideStyleChoice(styleList.get(i));
+		for(int i = 0; i < tripImageList.size(); i++) {
+			result += guideMapper.updateTripImage(tripImageList.get(i));
 		}
 		
-		return styleList.size() == result ? true : false;
+		return tripImageList.size() == result ? true : false;
 	}
-	
+
 	@Override
 	public boolean insertTrip(TripDTO tripDTO) {
 		
@@ -83,22 +87,6 @@ public class GuideServiceImpl implements GuideService {
 	public boolean insertTripRegistList(TripRegistListDTO tripRegistListDTO) {
 		
 		int result = guideMapper.insertTripRegistList(tripRegistListDTO);
-		
-		return result > 0 ? true : false;
-	}
-
-	@Override
-	public boolean insertExamine(ExamineDTO examineDTO) {
-		
-		int result = guideMapper.insertExamine(examineDTO);
-		
-		return result > 0 ? true : false;
-	}
-
-	@Override
-	public boolean insertGuideTrip(GuideTripDTO guideTripDTO) {
-		
-		int result = guideMapper.insertGuideTrip(guideTripDTO);
 		
 		return result > 0 ? true : false;
 	}
@@ -126,19 +114,7 @@ public class GuideServiceImpl implements GuideService {
 		
 		return transitList.size() == result ? true : false;
 	}
-
-	@Override
-	public boolean insertTripImage(List<TripImageDTO> tripImageList) {
-		
-		int result = 0;
-		
-		for(int i = 0; i < tripImageList.size(); i++) {
-			result += guideMapper.insertTripImage(tripImageList.get(i));
-		}
-		
-		return tripImageList.size() == result ? true : false;
-	}
-
+	
 	@Override
 	public boolean insertTripCourse(List<TripCourseDTO> tripCourseList) {
 
@@ -149,18 +125,6 @@ public class GuideServiceImpl implements GuideService {
 		}
 		
 		return tripCourseList.size() == result ? true : false;
-	}
-
-	@Override
-	public boolean updateTripImage(List<TripImageDTO> tripImageList) {
-
-		int result = 0;
-		
-		for(int i = 0; i < tripImageList.size(); i++) {
-			result += guideMapper.updateTripImage(tripImageList.get(i));
-		}
-		
-		return tripImageList.size() == result ? true : false;
 	}
 
 }

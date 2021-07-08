@@ -25,7 +25,7 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
 <h5 align="center" style="color:skyblue; margin-top:20px;">*나만의 여행 등록은 과거에 회원님이 다녀온 여행을 기록하여 다른 회원들과 정보를 나눌 수 있습니다</h5>
-<form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
+<form id="insertTripAloneForm" name="insertTripAloneForm" method="post" enctype="multipart/form-data">
 
 <table id="registTb" class="table table-bordered">
 	<thead></thead>
@@ -81,7 +81,7 @@
 			 
 			 <!--여행 날짜  -->
 			 	<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>여행 날짜</span>
+						<span class="form-title" style="display:inline-block">여행 날짜</span>
 						<label><input type="date" name="peakStart"></label>
 						<span>~</span>
 						<label><input type="date" name="peakEnd"></label>
@@ -89,7 +89,7 @@
 			 
 			 <!-- 여행 테마  -->
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>여행 테마</span>
+						<span class="form-title" style="display:inline-block">여행 테마</span>
 						<div class="guidetitle">
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="theme">직접 체험하는 액티비티</label>
 						<label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="theme">온몸으로 느끼는 자연</label>
@@ -101,19 +101,19 @@
 			 
 			 <!-- 여행 제목  -->
 			 	<div class="form-layer">
-					<span class="form-title" style="display:inline-block";>여행제목  </span>
+					<span class="form-title" style="display:inline-block">여행제목  </span>
 			 	    <input type="text" class="select-nomalsize" name="tripName" placeholder="회원님이 나중에라도 기억할 수 있게 명확하게 작성해주세요">
 				</div>
 				
 			<!-- 여정 소개 -->
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>여행 소개</span>
+						<span class="form-title" style="display:inline-block">여행 소개</span>
 						 <textarea class="form-control textarea-layer" rows="9" name="tripIntro" placeholder="다른회원들에게 회원님의 여행을 뽐내주세요!"></textarea>
-                          <div remain-traffic_info" class="maxText">(최대 1000자)</div>
+                          <div class="maxText">(최대 1000자)</div>
 					</div>	
 
 					<div class="form-layer">
-						<span class="form-title" style="display:inline-block";>사진으로도 더욱 생생하게 공유해주세요</span>
+						<span class="form-title" style="display:inline-block";>사진공유</span>
 						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
@@ -142,7 +142,7 @@
 					 	<input type="number" class="select-nomalsize" id="tripDay" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>
 					</div>
 					 	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;
-							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">
+							 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="코스추가">
 					
 					<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>
 					<hr>
@@ -173,7 +173,7 @@
 								 +'<input type="number" class="select-nomalsize" name="courseDay" min="1" style="width:50px !important; margin-left:70px;"/><br>'
 								 +'</div>'
 								 +'	<input type="button" name="addTripCourse" style=" border-radius: 0px; box-shadow: none;'
-								 +'		 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="여행추가">'
+								 +'		 background-color:skyblue; color:white; width: 100px !important; height: 40px !important;" value="코스추가">'
 								
 								 +'<button type="button" class="btnRemove" value="" style=" border-radius: 0px; box-shadow: none; background-color:red; color:white; width: 100px !important; height: 40px !important;">삭제</button>'
 								 +'<hr>'
@@ -187,9 +187,9 @@
 				});
 			</script>			
 			<hr>
-			<!-- 만나는 장소  -->
+			<!-- 출발 장소  -->
 			 	<div class="form-layer">
-					<span class="form-title" style="display:inline-block";>만나는 장소  </span>
+					<span class="form-title" style="display:inline-block">출발 장소</span>
 				
 			         <input type="text" name="zipCode" id="zipCode" readonly class="select-nomalsize"  style="margin-bottom: 8px;"  placeholder="만나는 장소를 입력해주새요" value="">
 					 <input type="button"  id="searchZipCode" style="margin-left: 10px;  border-radius: 0px; box-shadow: none;
@@ -199,7 +199,6 @@
 				     <input type="text" name="address2" id="address2" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize"
 				      name="adrDetail" placeholder="나머지 주소를 입력하세요." value=""> 
 					 
-			 	     <p class="description" style="margin-bottom: 3px;">*여행을 진행하기 전에 어디서 만날 건지 여행자에게 알려주세요. <br> 예약완료 시 메시지를 통해 자세한 장소를 공유해주세요. </p>
 					 <br>
 				</div>
 			 </td>
@@ -219,7 +218,7 @@
 			   	 <!-- 평가 제목   -->
 			      <div class="form-layer">
 					<span class="form-title" style="display:inline-block">소감 또는 평가 제목  </span>
-			 	    <input type="text" class="select-nomalsize" name="commentTitle" placeholder="볼거리가 아쉬웠던 제주여행" required>
+			 	    <input type="text" class="select-nomalsize" name="commentTitle" placeholder="먹거리가 완벽했던 제주여행" required>
 				  </div>
 				  
 				  <!-- 평가 내용   -->
@@ -228,15 +227,22 @@
 			 	    <input type="text" class="select-nomalsize" name="commentInfo" placeholder="예상비용보다 초과되어 입장권을 구입하는게 부담되었어요">
 				  </div>
 				  
+				  <!-- 평가 별점   -->
+			      <div class="form-layer">
+					<span class="form-title" style="display:inline-block">별점  </span>
+			 	    <input type="number" class="select-nomalsize" name="commentPoint" min="1" max="5" style="width:40px;"/>
+			 	    <span class="form-title" style="display:inline-block">/ 5  </span>
+				  </div>
+				  
 					 <!-- 1인당 가격   -->
 				      <div class="form-layer">
-						<span class="form-title" style="display:inline-block">1인당 가격  </span>
+						<span class="form-title" style="display:inline-block">여행에 쓰인<br> 총 금액  </span>
 				 	    <input type="number" class="select-nomalsize" name="price" placeholder="1인당 가격  ex)150,000">
 					  </div>
 			   
 			   	 	<!-- 포함 사항    -->
 				      <div class="form-layer">
-						<span class="form-title" style="display:inline-block";>가격 포함<br>(포함 사항)  </span>
+						<span class="form-title" style="display:inline-block">가격 포함<br>(포함 사항)  </span>
 				 	    <input type="text" class="select-nomalsize" name="include" placeholder="예시) 여행 관련 모든 비용, 식비, 교통비, 입장권 등">
 				 	     <p class="description" style="margin-bottom: 3px;">*여행 가격에 포함되어 있는 모든 항목을 적어주세요. </p>
 					  </div>
@@ -324,7 +330,7 @@
 	$('#submitButton').click(function(){
 			var totalDataMap = new Map();
 			var totalDataJson = {};
-			var formData = $('#insertGuideForm').serializeObject();
+			var formData = $('#insertTripAloneForm').serializeObject();
 		   
 			totalDataMap.set("formData", formData);
 			totalDataMap.set("imageData", totalData);
@@ -337,7 +343,7 @@
 			console.log(sendData);
 			
 	        $.ajax({
-	            url : "${pageContext.request.contextPath}/api/insert/guide",
+	            url : "${pageContext.request.contextPath}/api/insert/tripAlone",
 	            type : 'post', 
 	            data : sendData, 
 	            dataType : 'json',
