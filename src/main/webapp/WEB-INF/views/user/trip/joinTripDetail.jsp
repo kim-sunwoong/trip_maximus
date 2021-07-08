@@ -534,16 +534,15 @@ function tripJoin() {
 					  
 					<div class="msgCont">
 						<div class="clearfix">
-							<br>
 							<div class="msgImg floatL">
 								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="floatL txt_bold">
-								<p>To.</p>
-								<p>여행 방장님~</p>
+								To.<br>
+								여행 방장님~
 							</div>
 						</div>
-						<textarea name="sendcontent" id="sendContent" style="height:100px;" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="sendcontent" id="sendContent" style="height:130px;" placeholder="내용을 입력하세요."></textarea>
 						<button class="btn btnBgC btnFull txt_md"
 							onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
 					</div>
