@@ -513,21 +513,12 @@ function tripJoin() {
 							<span class=" txtC" style="font-size: 16px;">즐거운 추억 만들어
 								보아요!</span>
 						</div>
-						<ul class="inputLabel">
-							<li>
 								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
-							</li>
-							<li><select id="amount" name="reser_Per">
-									<option value="1">1 명</option>
-									<option value="2">2 명</option>
-									<option value="3">3 명</option>
-									<option value="4">4 명</option>
-							</select>
-						</ul>
+							
 						<div class="offerPrice">
 							<div class="clearfix2 msgCont">
 								<span class="txtG">총 여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
-								<textarea name="sendcontent" id="joinReason" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
+								<textarea name="sendcontent" id="joinReason" style="height:100px;" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
 							</div>
 						</div>
 						<button class="btn btnBgC btnFull txt_md"
@@ -543,16 +534,15 @@ function tripJoin() {
 					  
 					<div class="msgCont">
 						<div class="clearfix">
-							<br>
 							<div class="msgImg floatL">
 								<img src="/tripfulaxel/resources/images/trip/guide1.png">
 							</div>
 							<div class="floatL txt_bold">
-								<p>To.</p>
-								<p>여행 방장님~</p>
+								To.<br>
+								여행 방장님~
 							</div>
 						</div>
-						<textarea name="sendcontent" id="sendContent" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="sendcontent" id="sendContent" style="height:130px;" placeholder="내용을 입력하세요."></textarea>
 						<button class="btn btnBgC btnFull txt_md"
 							onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
 					</div>

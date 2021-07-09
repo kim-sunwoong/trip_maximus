@@ -38,7 +38,6 @@ main{
 	font-size:15px;
 	vertical-align:top;
 }
-
 aside header{
 	padding:30px 20px;
 }
@@ -96,7 +95,6 @@ aside li h3{
 	color:#7e818a;
 	font-weight:normal;
 }
-
 .status{
 	width:8px;
 	height:8px;
@@ -115,7 +113,6 @@ aside li h3{
 	margin-right:0;
 	margin-left:7px;
 }
-
 main header{
 	height:110px;
 	padding:30px 20px 30px 40px;
@@ -144,7 +141,6 @@ main header h3{
 	font-weight:normal;
 	color:#7e818a;
 }
-
 #chatting{
 	padding-left:0;
 	margin:0;
@@ -200,7 +196,6 @@ main header h3{
 		border-color: transparent transparent #6fbced transparent;
 		margin-left:375px;
 }
-
 main footer{
 	height:155px;
 	padding:20px 30px 10px 20px;
@@ -233,7 +228,6 @@ main footer a{
 	margin-top:5px;
 	display:inline-block;
 }
-
 </style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -243,7 +237,6 @@ main footer a{
 <!-- stomp를 사용하기 위한 라이브러리 추가 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-
 window.onload = function connect() {
  		var userCode = ${sessionScope.loginUser.userCode};
 	    var socket = new SockJS('http://localhost:8080/tripfulaxel/chat');
@@ -256,18 +249,15 @@ window.onload = function connect() {
 	    });
 	    
 	}
-
 window.onbeforeunload = function(e){
     disconnect();
 }
-
 function disconnect() {
     if (stompClient !== null) {
     	stompClient.send("/app/message", {}, JSON.stringify({'roomCode': ${room.roomCode},'userCode': ${sessionScope.loginUser.userCode}, 'userEmail' : "${sessionScope.loginUser.userEmail}", 'messageType' : 'out'}));
         stompClient.disconnect();
     }
 }
-
 function send() {
 	var userName = ("${sessionScope.loginUser.userEmail}").split('@');
  	var userCode = ${sessionScope.loginUser.userCode};
@@ -290,7 +280,6 @@ function send() {
 	    $("#message").val('');
     /* alertClosing('successMessage',2000); */
 }
-
 function showMessage(e, time) {
 	
 	var today = new Date();
@@ -316,7 +305,7 @@ function showMessage(e, time) {
 	    joinMember(e);
     } else {
     	
-    	if(e.messageImage != ''){
+    	if(e.messageImage != '' && e.messageImage != null){
     		
     		if(e.userCode == ${sessionScope.loginUser.userCode}){
     	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
@@ -334,7 +323,7 @@ function showMessage(e, time) {
     	    }
     	}
     	
-    	if(e.messageContent != ''){
+    	if(e.messageContent != '' && e.messageContent != null){
     		
     		if(e.userCode == ${sessionScope.loginUser.userCode}){
     	    	space.innerHTML = space.innerHTML + "<li class='me'> <div class='entete'> <h3>" + time + 
@@ -354,7 +343,6 @@ function showMessage(e, time) {
     }
     
 };
-
 function joinMember(data) {
 	joinList = document.getElementById("joinList");
 	
@@ -374,8 +362,6 @@ function joinMember(data) {
 		+ "</h2> <h3> <span class='status green'></span> 접속중 입니다. </h3> </div> </li>" + joinList.innerHTML;
 	}
 };
-
-
 function imgView(data) {
 	var imgDiv = document.getElementById("imgDiv");
 	
@@ -406,9 +392,7 @@ function imgView(data) {
 	}
 	
 }
-
 var messageImage = '';
-
 function uploadFile(){
     
     var form = new FormData();
@@ -430,7 +414,6 @@ function uploadFile(){
         }
     });
 }
-
 </script>
 </head>
 <body>
@@ -438,8 +421,8 @@ function uploadFile(){
 	<div id="container">
 		<aside>
 			<header>
-				<label style="color:white; font-size:15px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
-				<label style="color:white; font-size:20px;">현재 접속중 인원 입니다.</label>
+				<label style="color:white; font-size:14px;"><c:out value="${sessionScope.loginUser.userEmail }"/> 님 환영 합니다!</label>
+				<label style="color:white; font-size:22px;">현재 접속중 인원 입니다.</label>
 			</header>
 			
 			<ul id="joinList">
@@ -461,7 +444,7 @@ function uploadFile(){
 		<main>
 			<header>
 				<div style="width:450px;">
-					<label style="font-size:25px; font:bold;">채팅방에 접속하셨습니다.</label><br>
+					<label style="font-size:25px; font:bold;">채팅방에 접속하셨습니다.</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<button style="width:80px; height:30px;" onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0'"><h2>뒤로가기</h2></button><br>
 					<label style="font-size:30px; font:bold;"><c:out value="${room.roomTitle }"/></label>
 				</div>
 			</header>
@@ -522,7 +505,7 @@ function uploadFile(){
 								
 								</c:if>
 								
-								<c:if test="${chat.messageContent != null || chat.messageContent != ''}">
+								<c:if test="${chat.messageContent != null && chat.messageContent != ''}">
 								
 									<li class="you">
 										<div class="entete">
@@ -550,9 +533,9 @@ function uploadFile(){
 						<img id="img" style="object-fit:cover; width:80px; height:80px; margin-left:15px; margin-top:10px; border-style:solid; border-color:black;">
 					</div>
 			<footer>
-				<textarea placeholder="Type your message" id="message"></textarea>
-				<button onclick="send()">Send</button>
-				<input id="imgMessage" type="file" onchange="uploadFile()"/>
+				<textarea placeholder="TripfulAxel 유저들과 실시간으로 여행 정보를 공유해 보세요!!" id="message"></textarea>
+				<button onclick="send()" style="font-size:17px;">Send</button>
+				<input id="imgMessage" type="file" onchange="uploadFile()" />
 			</footer>
 		</main>
 	</div>
@@ -560,4 +543,3 @@ function uploadFile(){
 	
 </body>
 </html>
-

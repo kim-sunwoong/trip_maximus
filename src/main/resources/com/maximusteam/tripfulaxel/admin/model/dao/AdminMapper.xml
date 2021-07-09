@@ -256,7 +256,6 @@
           JOIN PAY_APPLY C ON ( B.PAY_APPLY_CODE = C.PAY_APPLY_CODE)
           JOIN JOIN_TRIP_APPLY D ON ( C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
           JOIN USER E ON ( D.USER_CODE = E.USER_CODE)
-         WHERE E.USER_GUIDE_YN = 'Y'
 	</select>	
 	
 	<delete id="deleteMember" parameterType="_int">

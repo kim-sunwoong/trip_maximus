@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/common.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/style.css?ver=20210620">
 <!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/html/joonho_new.css">
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
 	<style>
 	        #detail thead th {border-top: 3px solid rgba(0, 0, 0, 0.7);}
 	
@@ -38,13 +39,13 @@
             <br>
             <br>
             <div class="tabList">
-                <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidemypage/guideTab1">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidemypage/guideTab2">내 정보수정</a></div>
-                <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidemypage/guideTab3">참가인원보기</a></div>
-                <div class="tabb" style="border: 3px solid blue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidemypage/guideTab4">문의관리</a></div>
-                <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidemypage/guideTab5">후기관리</a></div>
-                <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidemypage/guideTab6">정산관리</a></div>
-                <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/guidemypage/guideTab7">등업신청</a></div>
+                <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
+                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/guideTab2">내 정보수정</a></div>
+                <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
+                <div class="tabb" style="border: 3px solid skyblue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
+                <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
+                <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
+                <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/guidepage/guideGradeup">등업신청</a></div>
             </div>
         </div>
 
