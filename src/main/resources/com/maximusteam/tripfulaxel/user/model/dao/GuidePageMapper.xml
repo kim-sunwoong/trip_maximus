@@ -51,9 +51,8 @@
 		<result property="tripStartDate" column="TRIP_START_DATE"/>
 		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
 		<result property="include" column="TRIP_INCLUDE"/>
-		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="exclude" column="TRIP_N_INCLUDE"/>
 		<result property="tripEndDate" column="TRIP_END_DATE"/>
-		<result property="tripRegistCode" column="TRIP_REGIST_LIST_CODE"/>
 	</collection>
 	
 	
