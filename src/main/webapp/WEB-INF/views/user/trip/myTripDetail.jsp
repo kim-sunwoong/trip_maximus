@@ -80,7 +80,7 @@
  					<div class="offer_main_slider">
  						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
 
@@ -185,7 +185,7 @@
  								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">

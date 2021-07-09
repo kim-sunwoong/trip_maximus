@@ -143,7 +143,7 @@ function tripJoin() {
 					<div class="offer_main_slider">
 						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
 					</div>
@@ -237,7 +237,7 @@ function tripJoin() {
 								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -533,7 +533,7 @@ function tripJoin() {
 					<div class="msgCont">
 						<div class="clearfix">
 							<div class="msgImg floatL">
-								<img src="/tripfulaxel/resources/images/trip/guide1.png">
+								<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${trip[0].joinTripImg}">
 							</div>
 							<div class="floatL txt_bold">
 								To.<br>
