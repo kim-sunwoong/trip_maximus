@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
-import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
+import com.maximusteam.tripfulaxel.guide.model.service.GuideTripService;
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 
 @Controller
@@ -29,9 +29,9 @@ import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 public class ImageUploadController {
 
 	@Inject
-	private final GuideService guideService;
+	private final GuideTripService guideService;
 	
-	public ImageUploadController(GuideService guideService) {
+	public ImageUploadController(GuideTripService guideService) {
 		this.guideService = guideService;
 	}
 	

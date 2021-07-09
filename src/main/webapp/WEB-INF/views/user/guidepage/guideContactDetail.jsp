@@ -65,12 +65,11 @@
             <br>
             <div class="tabList">
                 <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/guideTab2">내 정보수정</a></div>
+                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내 정보수정</a></div>
                 <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
-                <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/guidepage/guideGradeup">등업신청</a></div>
             </div>
         </div>
 
@@ -89,8 +88,10 @@
                     	<table>
                     		<tbody>
                     			<tr>
-                    				<th colspan="2"><div style="width: 90% ; margin : 0 auto;"><h2 style="display: block;
-  font-size: 1.17em;  margin-top: 1em;  margin-bottom: 1em;  margin-left: 0;  margin-right: 0;  font-weight: bold;">문의 답변하기</h2></div></th>
+                    				<th colspan="2">
+                    				 <div style="width: 90% ; margin : 0 auto;">
+                    				  <h2 style="display: block;
+                                       font-size: 1.17em;  margin-top: 1em;  margin-bottom: 1em;  margin-left: 0;  margin-right: 0;  font-weight: bold;">문의 답변하기</h2></div></th>
             				</tr>
             				</tbody>
             				<tbody>

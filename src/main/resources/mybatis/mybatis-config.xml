@@ -23,8 +23,11 @@
   		<typeAlias alias="TripImageDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO"/>	
   		<typeAlias alias="TripRegistListDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO"/>	
   		<typeAlias alias="TripThemeChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO"/>	
-  		<typeAlias alias="TripTransitChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO"/>
-  		<typeAlias alias="TripReviewDTO" type="com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO"/>		
+  		<typeAlias alias="TripReviewDTO" type="com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO"/>	
+  		<typeAlias alias="ReviewImgDTO" type="com.maximusteam.tripfulaxel.user.model.dto.ReviewImgDTO"/>
+  		<typeAlias alias="TripTransitChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO"/>	
+  		<typeAlias alias="UserTripAloneDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO"/>	
+  		<typeAlias alias="UserTripTogetherDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripTogetherDTO"/>	
   	</typeAliases>
   	
  	

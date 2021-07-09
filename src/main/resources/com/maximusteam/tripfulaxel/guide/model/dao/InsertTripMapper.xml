@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.GuideMapper">
+<mapper namespace="com.maximusteam.tripfulaxel.guide.model.dao.InsertTripMapper">
 
 	<insert id="insertGuideImage" parameterType="TripImageDTO">
 	    <selectKey resultType="int" keyProperty="imageCode" order="AFTER">
@@ -258,10 +258,61 @@
 	    )
 	</insert>
 	
+	<!-- TRIP_IMAGE UPDATE -->
 	<update id="updateTripImage" parameterType="TripImageDTO">
 		UPDATE TRIP_IMAGE
 		   SET TRIP_CODE = #{refCode}
 		 WHERE TRIP_IMAGE_CODE = #{imageCode}
 	</update>
+	
+	<!-- USER_TRIP INSERT -->
+	<insert id="insertTripAlone" parameterType="UserTripAloneDTO">
+		<selectKey resultType="int" keyProperty="userTripCode" order="AFTER">
+	    	SELECT MAX(U_TRIP_CODE) as userTripCode FROM USER_TRIP
+	    </selectKey>
+	    INSERT INTO USER_TRIP
+	    (
+ 	    	   U_TRIP_CODE
+			 , U_TRIP_COMENT_TITLE
+			 , U_TRIP_COMENT_INFO
+			 , U_TRIP_COMENT_POINT
+			 , TRIP_CODE
+			 , U_TRIP_PRICE  
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.U_TRIP_CODE) + 1, 1) FROM USER_TRIP b)
+	         , #{userTripCommentTitle}
+	         , #{userTripCommentInfo}
+	         , #{userTripCommentPoint}
+	         , #{tripCode}
+	         , #{userTripPrice}
+	    )
+	</insert>
+	
+	<!-- JOIN_TRIP INSERT -->
+	<insert id="insertTripTogether" parameterType="UserTripTogetherDTO">
+		<selectKey resultType="int" keyProperty="joinTripCode" order="AFTER">
+	    	SELECT MAX(J_TRIP_CODE) as joinTripCode FROM JOIN_TRIP
+	    </selectKey>
+	    INSERT INTO JOIN_TRIP
+	    (
+ 	    	   J_TRIP_CODE
+ 	    	 , J_TRIP_MAXIMIM
+			 , TRIP_CODE
+			 , J_TRIP_PRICE
+			 , J_TRIP_INFO
+			 , J_TRIP_HOST_SAVED_IMAGE_NAME 
+	    )
+	    VALUES
+	    (
+	           (SELECT IFNULL(MAX(b.J_TRIP_CODE) + 1, 1) FROM JOIN_TRIP b)
+	         , #{maximum}
+	         , #{tripCode}
+	         , #{price}
+	         , #{joinTripInfo}
+	         , #{savedHostImageName}
+	    )
+	</insert>
 </mapper>
     

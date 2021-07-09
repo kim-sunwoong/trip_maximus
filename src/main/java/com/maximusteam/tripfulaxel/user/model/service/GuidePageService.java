@@ -2,17 +2,29 @@ package com.maximusteam.tripfulaxel.user.model.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO;
 
 /**
  * @author JJY
  *
  */
-@Service
+
 public interface GuidePageService {
 
-	List<TripReviewDTO> selectGuideReview(TripReviewDTO tripreview);
+	List<TripReviewDTO> selectGuideReview(int guideCode);
+
+	 int insertReply(TripReviewDTO tripreview);
+
+	List<TripReviewDTO> selectMyGoods(int guideCode);
+
+	int selectCount(int guideCode);
+
+	int selectStar(int guideCode);
+
+	int updateStopSell(int guideCode);
+
+	int updateStartSell(int guideCode);
+	
+		
 
 }
