@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
@@ -48,13 +49,13 @@ public class UserMypageServiceImpl implements UserMypageService{
 	}
 
 	@Override
-	public List<JoinTripListDTO> selectMyJoinList() {
-		return mapper.selectMyJoinList();
+	public List<JoinTripListDTO> selectMyJoinList(int id) {
+		return mapper.selectMyJoinList(id);
 	}
 
 	@Override
-	public List<JoinTripListDTO> selectMyJoinList2() {
-		return mapper.selectMyJoinList2();
+	public List<JoinTripListDTO> selectMyJoinList2(int id) {
+		return mapper.selectMyJoinList2(id);
 	}
 
 	@Override
@@ -65,6 +66,16 @@ public class UserMypageServiceImpl implements UserMypageService{
 	@Override
 	public int insertRequest(Map<String, Object> map) {
 		return mapper.insertRequest(map);
+	}
+
+	@Override
+	public List<InquiryDTO> selectInquiry(int id) {
+		return mapper.selectInquiry(id);
+	}
+
+	@Override
+	public int insertReview(Map<String, Object> map) {
+		return mapper.insertReview(map);
 	}
 
 	

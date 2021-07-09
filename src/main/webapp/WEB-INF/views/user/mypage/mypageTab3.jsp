@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -55,6 +56,7 @@
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
             </div>
         </div>
 
@@ -91,8 +93,11 @@
                             <td><c:out value="${mj.joinTripDate}"/></td>
                             <td><c:out value="${mj.countUser}"/></td>
                             <%-- <td><c:out value="${mj.status.tripCancelYN}"/></td> --%>
+                            <%-- <c:set var="today" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>"/> --%>
                             <c:set var="today" value="<%= new java.util.Date() %>"/>
                             <c:set var="endDate" value="${mj.status.tripEndDate}"/>
+                            <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy.MM.dd"/>
+                            <fmt:parseDate var="endDate" value="${endDate}" pattern="yyyy.MM.dd"/>
                             <c:choose>
                             <c:when test="endDate lt today"><td>여행완료</td></c:when>
                             <c:otherwise><td>진행중</td></c:otherwise>

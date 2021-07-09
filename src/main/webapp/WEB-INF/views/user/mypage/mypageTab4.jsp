@@ -51,6 +51,7 @@
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
             </div>
         </div>
 
@@ -71,22 +72,6 @@
 	                            <td><c:out value="${r.gTripDate}"/></td>
 	                        </tr>
 	                        </c:forEach>
-                        <!-- <tr>
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                        </tr> 
-                        <tr>  
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                        </tr> 
-                        <tr>  
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                        </tr> 
-                        <tr>  
-                            <td>제주도 항아리 투어</td>
-                            <td>2021/03/15</td>
-                        </tr> -->
                     </tbody>
 
                 </table>

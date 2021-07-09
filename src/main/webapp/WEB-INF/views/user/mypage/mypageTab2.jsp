@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,33 @@
 <!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/mytripreviewmodal.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/thumbnail.css">
+    
     <style type="text/css">button {background: none; border:none !important;}
+    
+    
+    
+    #multiple-container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.image {
+    display: block;
+    width:100px;
+	height:80px;
+	text-align:center;
+}
+.image-label {
+    position: relative;
+    bottom: 22px;
+    left: 5px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    display: none;
+} 
+    
+    
+    
     #detail thead th {
             text-align: center;
             
@@ -72,6 +100,7 @@ function cancel(){
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
             </div>
         </div>
 
@@ -97,13 +126,15 @@ function cancel(){
                             <td><c:out value="${g.gName}"/></td>
                             <td><c:out value="${g.price}"/></td>
                             <td><c:out value="${g.payment}"/></td>
-                            <td><c:out value="${j.status.TripCancelYN}"/></td>
+                            <td><c:out value="${g.status.tripCancelYN}"/></td>
                             <c:set var="today" value="<%= new java.util.Date() %>"/>
-                            <c:set var="endDate" value="${j.status.tripEndDate}"/>
+                            <%-- <c:set var="endDate" value="${g.status.tripEndDate}"/> --%>
+                            <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy-MM-dd"/>
+                            <fmt:parseDate var="endDate" value="${g.status.tripEndDate}" pattern="yyyy-MM-dd"/>
                             <c:choose>
-                            <c:when test="endDate > today"><td>참여</td></c:when>
-                            <c:when test="endDate < today && ${j.status.reviewCode == null}"><td>후기쓰러가기</td></c:when>
-                            <c:when test="${j.status.reviewCode != null}"><td>후기보러가기</td></c:when>
+                            <c:when test="endDate le now"><td>참여</td></c:when>
+                            <c:when test="endDate ge now && ${g.status.reviewCode == null}"><td>후기쓰러가기</td></c:when>
+                            <c:when test="${g.status.reviewCode != null}"><td>후기보러가기</td></c:when>
                             <c:otherwise><td>불참</td></c:otherwise>
                             </c:choose>
                         </tr>
@@ -137,9 +168,10 @@ function cancel(){
   margin-right: 0;
 
   font-weight: bold;">가이드 리뷰 작성하기</h2>
+  <form action="${ pageContext.servletContext.contextPath }/user/mypage/insert/review" method="post" enctype="multipart/form-data" >
         <div class="startRadio" >
             <label class="startRadio__box">
-              <input type="radio" name="star" id="">
+              <input type="radio" name="star" id="" value="1">
               <span class="startRadio__img"><span class="blind">별 1개</span></span>
             </label>
            <!--  <label class="startRadio__box">
@@ -147,7 +179,7 @@ function cancel(){
               <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
             </label> -->
             <label class="startRadio__box">
-              <input type="radio" name="star" id="">
+              <input type="radio" name="star" id="" value="2">
               <span class="startRadio__img"><span class="blind">별 2개</span></span>
             </label>
             <!-- <label class="startRadio__box">
@@ -155,7 +187,7 @@ function cancel(){
               <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
             </label> -->
             <label class="startRadio__box">
-              <input type="radio" name="star" id="">
+              <input type="radio" name="star" id="" value="3">
               <span class="startRadio__img"><span class="blind">별 3개</span></span>
             </label>
             <!-- <label class="startRadio__box">
@@ -163,7 +195,7 @@ function cancel(){
               <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
             </label> -->
             <label class="startRadio__box">
-              <input type="radio" name="star" id="">
+              <input type="radio" name="star" id="" value="4">
               <span class="startRadio__img"><span class="blind">별 4개</span></span>
             </label>
             <!-- <label class="startRadio__box">
@@ -171,7 +203,7 @@ function cancel(){
               <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
             </label> -->
             <label class="startRadio__box">
-              <input type="radio" name="star" id="">
+              <input type="radio" name="star" id="" value="5">
               <span class="startRadio__img"><span class="blind">별 5개</span></span>
             </label>
             <!-- <label class="startRadio__box">
@@ -179,20 +211,141 @@ function cancel(){
               <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
             </label> -->
           </div>
-        <input type="file">
-        <textarea name="mytripreview" id="mytripreview" cols="30" rows="10" style="border: 1px solid rgba(0, 0, 0, 0.3);"></textarea>
-        <div class="thumblist" style="width: 45%; height: 70px; display: flex; margin-top: 20px; float: left; justify-content: space-between;">
-            <div class="thumb1" style="width: 32%; height: 100%; background-color: gray;"></div>
-            <div class="thumb2" style="width: 32%; height: 100%; background-color: gray;"></div>
-            <div class="thumb3" style="width: 32%; height: 100%; background-color: gray;"></div>
+        <textarea name="reviewInfo" id="mytripreview" cols="30" rows="10" style="border: 1px solid rgba(0, 0, 0, 0.3);"></textarea>
+        <div class="thumblist" style="width: 45%; height: 70px; display: flex; margin-top: 10px; float: left; justify-content: space-between;">
+        
+        <div class="thumbview"  style="width: 320px; height: 120px; float: left">
+        <input style="display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple="multiple" name="multiFiles">
+		<div id="multiple-container">
+		</div>
         </div>
-        <div class="modalbutton" style="margin-top: 20px;">
-        <button onclick="cancel();">취소</button>
-        <button onclick="cancel();">확인</button>
-        </div>
+        
+        
+        
+        
+        <!-- <div class="thumbnail-insert-area">
+				<table align="center">
+					<tr>
+						<td>
+							<div class="content-img-area1" id="contentImgArea1" style="border:none;">
+								<img id="contentImg1" width="100" height="80">
+							</div>
+							<div class="content-img-area2" id="contentImgArea2" style="border:none;">
+								<img id="contentImg2" width="100" height="80">
+							</div>
+							<div class="content-img-area3" id="ImgArea3" style="border:none;">
+								<img id="contentImgcontent3" width="100" height="80">
+							</div>
+						</td>
+						
+					</tr>
+				</table>
+				<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="MultipartFile" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="MultipartFile" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg3" name="MultipartFile" onchange="loadImg(this,3)">
+				</div>
+			</div> -->
+			
+			
+			
+			
+			</div>
+        <div class="modalbutton" style="margin-top: 40px;">
+        <button onclick="cancel();" style="background: rgba(0,0,0,0.3);">취소</button>
+        <button type="submit" style="background : rgba(0,0,0,0.3);">확인</button>
+        </div></form>
     </div>
     </div>
+    <!-- <script>
+			
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
+			const $contentImgArea3 = document.getElementById("contentImgArea3");
+			
+			
+			$contentImgArea1.onclick = function() {
+				document.getElementById("thumbnailImg1").click();
+			}
+			
+			$contentImgArea2.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
+			}
+			
+			$contentImgArea3.onclick = function() {
+				document.getElementById("thumbnailImg3").click();
+			}
+			
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 1:
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 2:
+							document.getElementById("contentImg2").src = e.target.result;
+							break;
+						case 3:
+							document.getElementById("contentImg3").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script> -->
+		<script>
+		function readMultipleImage(input) {
+    const multipleContainer = document.getElementById("multiple-container");
     
+    // 인풋 태그에 파일들이 있는 경우
+    if(input.files) {
+        // 이미지 파일 검사 (생략)
+        console.log(input.files);
+        // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
+        const fileArr = Array.from(input.files);
+        const $colDiv1 = document.createElement("div");
+        const $colDiv2 = document.createElement("div");
+        $colDiv1.classList.add("column")
+        $colDiv2.classList.add("column")
+        fileArr.forEach((file, index) => {
+            const reader = new FileReader()
+            const $imgDiv = document.createElement("div")   
+            const $img = document.createElement("img")
+            $img.classList.add("image")
+            const $label = document.createElement("label")
+            $label.classList.add("image-label")
+            $label.textContent = file.name
+            $imgDiv.appendChild($img)
+            $imgDiv.appendChild($label)
+            reader.onload = e => {
+                $img.src = e.target.result;
+                
+                $imgDiv.style.width = ($img.naturalWidth) * 0.5 + "px";
+                $imgDiv.style.height = ($img.naturalHeight) * 0.5 + "px";
+            }
+            
+            console.log(file.name)
+            if(index % 2 == 0) {
+                $colDiv1.appendChild($imgDiv)
+            } else {
+                $colDiv2.appendChild($imgDiv)
+            }
+            
+            reader.readAsDataURL(file)
+        })
+        multipleContainer.appendChild($colDiv1)
+        multipleContainer.appendChild($colDiv2)
+    }
+}
+const inputMultipleImage = document.getElementById("input-multiple-image");
+inputMultipleImage.addEventListener("change", e => {
+    readMultipleImage(e.target);
+})
+</script>
     
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@
 		 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script>
-    				     function from(){
+    				     /* function from(){
 							var a = document.getElementById("btnradio2");
 
 							if(a.checked === true){
@@ -35,7 +37,7 @@
     						if(a.checked === false){
 								document.getElementById("AddFrom").style.display = 'none';
 							}
-    					}
+    					} */
     				    /* (function(){
 							var a = document.getElementById("btnradio2");
 
@@ -77,7 +79,13 @@
         }
         tr {background:none !important;}
         
-        table *{color : rgba(0,0,0,0.3);}
+        
+         #detail_content {width:70%;}
+    #detail thead th {
+            text-align: center;
+            
+        }
+        #detail tbody th {text-align: center;}
     </style>
     
 </head>
@@ -102,66 +110,38 @@
                 <div class="tabb" style="width: 270px;"><a class="pic4" href="${pageContext.request.contextPath}/user/mypage/mypageTab4">나만의 여행후기</a></div>
                 <div class="tabb" ><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb" ><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
-                <div class="tabb" style="border: 3px solid blue;"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
-                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
+                <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb" style="border: 3px solid blue;"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
             </div>
         </div>
 
         <div id="detail_content">
             <div id="detail">
-                
-                <!-- <div class="select" style="margin: 0 auto; with: 30%; display: flex; margin-bottom: 50px; justify-content: center; border:none;">
-                    <input type="radio" id="select" name="shop"><label for="select">관리자에게 문의하기</label>
-                    <input type="radio" id="select2" name="shop" style="margin-left: -56px;"><label for="select2">여행 문의하기</label>
-               </div> -->
+            
                
-           <!--     <div style="width: 90% ; margin : 0 auto; display: flex; justify-content: center;"><h2 style="display: block;
-  font-size: 1.17em;  margin-top: 1em;  margin-bottom: 3em;font-weight: bold;">문의 답변하기</h2></div> -->
-  
-  
-  
-               <form action="${ pageContext.servletContext.contextPath }/user/mypage/insert/Request" method="post" enctype="multipart/form-data">
-               
-               <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; margin:0 auto;">
-				  <input type="radio" class="btn-check" name="reqType" id="btnradio1" onchange="fromdel()" autocomplete="off" checked value="5">
-				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">일반 문의하기</label>
-				
-				  <input type="radio" class="btn-check" name="reqType" id="btnradio2" onchange="from()" autocomplete="off" value="2">
-				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">신고하기</label>
-					<script>
-	</script>
-				</div>
 				
                 <div id="contact-area" style="margin: 0 auto; clear: both; margin-top: 50px; ">
 			
-                    	<table>
-                    	<tbody>
-                    			<tr>
-                    				<th colspan="2"></th>
-            					</tr>
-                    			<tr id="AddFrom" style="display: none;">
-                    				<th>신고 대상 : </th>
-                    				<th><input type="text" name="reqTo" id="From" value="0" style="border: 1px solid rgba(0,0,0,0.3);"/></th>
-                    			</tr>
-                    			<tr>
-                    				<th>건의 내용 : &nbsp;&nbsp;</th>
-                    				<th><textarea name="reqReason" id="Message"  style="height: 200px; border: 1px solid rgba(0,0,0,0.3);"></textarea></th>
-                    			</tr>
-                    			<tr>
-                    				<th></th>
-                    				<th><input type="file" multiple="multiple" name="multiFiles"></th>
-                   				</tr>
-							<tr>
-								<th></th>
-								<th><button type="submit" class="btn btn-info" style="margin-right: 40px;">제출하기</button></th>
-							</tr>
-						</tbody>
-                        
-                        </table>
+				<table align="center" style="border-collapse: collapse; margin:0 auto;">
+				
+                    <thead>
+                        <tr>
+                            <th>문의 내용</th>
+                            <th>문의 진행상황</th>
+                        </tr>
+                    </thead>
+                    <tbody style="padding-top: 20px;">
+                    <c:forEach items="${inqdto}" var="id">
+                        <tr>
+                            <td><c:out value="${id.inqReason}"/></td>
+                            <td><c:out value="${id.inqYN}"/></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
                     </div>
                     <div style="clear: both;"></div>
                     
-                 </form>
                  
             </div>
         </div>

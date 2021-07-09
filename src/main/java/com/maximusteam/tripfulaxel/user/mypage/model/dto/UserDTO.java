@@ -1,6 +1,8 @@
 package com.maximusteam.tripfulaxel.user.mypage.model.dto;
 
-import java.sql.Date;
+import java.util.List;
+
+import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
 
 public class UserDTO {
 	
@@ -15,15 +17,15 @@ public class UserDTO {
 	private int userReportCount;
 	private String userGuideYN;
 	
+	private List<TripInquiryDTO> inqdto;
 	
 	public UserDTO() {
 		super();
-	
 	}
 
-
 	public UserDTO(int userCode, String userName, String userPhone, String userPwd, String userBday, String userGender,
-			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN) {
+			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN,
+			List<TripInquiryDTO> inqdto) {
 		super();
 		this.userCode = userCode;
 		this.userName = userName;
@@ -35,12 +37,9 @@ public class UserDTO {
 		this.userRegisterDay = userRegisterDay;
 		this.userReportCount = userReportCount;
 		this.userGuideYN = userGuideYN;
+		this.inqdto = inqdto;
 	}
 
-
-	
-	
-	
 	public int getUserCode() {
 		return userCode;
 	}
@@ -141,16 +140,25 @@ public class UserDTO {
 	}
 
 
+	public List<TripInquiryDTO> getInqdto() {
+		return inqdto;
+	}
+
+
+	public void setInqdto(List<TripInquiryDTO> inqdto) {
+		this.inqdto = inqdto;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserDTO [userCode=" + userCode + ", userName=" + userName + ", userPhone=" + userPhone + ", userPwd="
 				+ userPwd + ", userBday=" + userBday + ", userGender=" + userGender + ", userEmail=" + userEmail
 				+ ", userRegisterDay=" + userRegisterDay + ", userReportCount=" + userReportCount + ", userGuideYN="
-				+ userGuideYN + "]";
+				+ userGuideYN + ", inqdto=" + inqdto + "]";
 	}
 
 	
-
 	
 	
 	

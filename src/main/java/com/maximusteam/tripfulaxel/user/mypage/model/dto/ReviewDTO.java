@@ -1,4 +1,4 @@
-package com.maximusteam.tripfulaxel.trip.model.dto;
+package com.maximusteam.tripfulaxel.user.mypage.model.dto;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ public class ReviewDTO {
 	private String reviewTitle;
 	private String reviewInfo;
 	private Date reviewDate;
-	private int reviewPoint;
+	private int star;
 	
 	private List<ImageDTO> reviewImgList;
 	
@@ -18,14 +18,14 @@ public class ReviewDTO {
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int reviewPoint,
+	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int star,
 			List<ImageDTO> reviewImgList, ReviewComentDTO reviewComent) {
 		super();
 		this.reviewCode = reviewCode;
 		this.reviewTitle = reviewTitle;
 		this.reviewInfo = reviewInfo;
 		this.reviewDate = reviewDate;
-		this.reviewPoint = reviewPoint;
+		this.star = star;
 		this.reviewImgList = reviewImgList;
 		this.reviewComent = reviewComent;
 	}
@@ -62,12 +62,12 @@ public class ReviewDTO {
 		this.reviewDate = reviewDate;
 	}
 
-	public int getReviewPoint() {
-		return reviewPoint;
+	public int getstar() {
+		return star;
 	}
 
-	public void setReviewPoint(int reviewPoint) {
-		this.reviewPoint = reviewPoint;
+	public void setstar(int star) {
+		this.star = star;
 	}
 
 	public List<ImageDTO> getReviewImgList() {
@@ -89,7 +89,7 @@ public class ReviewDTO {
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewCode=" + reviewCode + ", reviewTitle=" + reviewTitle + ", reviewInfo=" + reviewInfo
-				+ ", reviewDate=" + reviewDate + ", reviewPoint=" + reviewPoint + ", reviewImgList=" + reviewImgList
+				+ ", reviewDate=" + reviewDate + ", star=" + star + ", reviewImgList=" + reviewImgList
 				+ ", reviewComent=" + reviewComent + "]";
 	}
 	
