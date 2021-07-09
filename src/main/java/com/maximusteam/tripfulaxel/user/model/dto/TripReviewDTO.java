@@ -34,8 +34,7 @@ public class TripReviewDTO {
 	//등록회원코드
 	//여행타입코드
 	//여행코드
-	//게시타입코드 
-	
+	private int  registTypeCode; // 게시타입 코드 
 	/***********************************************************/
 	
 	/* 여행 신청 내역 */
@@ -55,14 +54,14 @@ public class TripReviewDTO {
 	
 	public TripReviewDTO() {
 		super();
-		
+	
 	}
 
 
 	public TripReviewDTO(int reviewCode, String reviewTitle, String reviewContent, Date reviewDate, int reviewGrade,
 			int tripApply, int guideReplyCode, int replycode, String replyDetail, Date replyDate,
-			int tripRegistListCode, int joinTripcode, Date joinTripDate, String joinTripCancel, String joinTripAttend,
-			String joinTripReason, List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList,
+			int tripRegistListCode, int registTypeCode, int joinTripcode, Date joinTripDate, String joinTripCancel,
+			String joinTripAttend, String joinTripReason, List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList,
 			List<TripImageDTO> tripImgList, List<TripDTO> tripList) {
 		super();
 		this.reviewCode = reviewCode;
@@ -76,6 +75,7 @@ public class TripReviewDTO {
 		this.replyDetail = replyDetail;
 		this.replyDate = replyDate;
 		this.tripRegistListCode = tripRegistListCode;
+		this.registTypeCode = registTypeCode;
 		this.joinTripcode = joinTripcode;
 		this.joinTripDate = joinTripDate;
 		this.joinTripCancel = joinTripCancel;
@@ -87,6 +87,8 @@ public class TripReviewDTO {
 		this.tripList = tripList;
 	}
 
+	
+	
 
 	public int getReviewCode() {
 		return reviewCode;
@@ -198,6 +200,16 @@ public class TripReviewDTO {
 	}
 
 
+	public int getRegistTypeCode() {
+		return registTypeCode;
+	}
+
+
+	public void setRegistTypeCode(int registTypeCode) {
+		this.registTypeCode = registTypeCode;
+	}
+
+
 	public int getJoinTripcode() {
 		return joinTripcode;
 	}
@@ -294,12 +306,12 @@ public class TripReviewDTO {
 				+ reviewContent + ", reviewDate=" + reviewDate + ", reviewGrade=" + reviewGrade + ", tripApply="
 				+ tripApply + ", guideReplyCode=" + guideReplyCode + ", replycode=" + replycode + ", replyDetail="
 				+ replyDetail + ", replyDate=" + replyDate + ", tripRegistListCode=" + tripRegistListCode
-				+ ", joinTripcode=" + joinTripcode + ", joinTripDate=" + joinTripDate + ", joinTripCancel="
-				+ joinTripCancel + ", joinTripAttend=" + joinTripAttend + ", joinTripReason=" + joinTripReason
-				+ ", guideList=" + guideList + ", reviewImgList=" + reviewImgList + ", tripImgList=" + tripImgList
-				+ ", tripList=" + tripList + "]";
+				+ ", registTypeCode=" + registTypeCode + ", joinTripcode=" + joinTripcode + ", joinTripDate="
+				+ joinTripDate + ", joinTripCancel=" + joinTripCancel + ", joinTripAttend=" + joinTripAttend
+				+ ", joinTripReason=" + joinTripReason + ", guideList=" + guideList + ", reviewImgList=" + reviewImgList
+				+ ", tripImgList=" + tripImgList + ", tripList=" + tripList + "]";
 	}
-
+	
 
 	
 	

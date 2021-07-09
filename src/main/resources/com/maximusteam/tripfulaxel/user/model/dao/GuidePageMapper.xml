@@ -16,6 +16,7 @@
  	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
  	<result property="replyDate" column="TRIP_REPLY_DATE"/>
  	<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+ 	<result property="registTypeCode" column="REGIST_TYPE_CODE"/>
  	<result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
  	<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
  	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
@@ -113,6 +114,7 @@
               E.TRIP_TITLE 
             , E.TRIP_INTRO 
             , F.TRIP_IMAGE_SAVED_NAME 
+            , B.REGIST_TYPE_CODE
         FROM USER A
         JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
         JOIN TRIP E ON(B.TRIP_CODE = E.TRIP_CODE)

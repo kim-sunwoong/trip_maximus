@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
 <link rel="stylesheet" href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
     <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -65,14 +65,12 @@
 
 				<div class="card mb-3" style="width: 70%; margin: 0 auto;">
 					
-			  <c:forEach var="myGoods" items="${ myGoods }"> 
+			  
 					<div class="row g-0">
 						<div class="col-md-7">
-						 <c:forEach var="img" items="${myGoods.tripImgList }"> 
 							<img
-								src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${img.savedName}"
+								src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${myGoods.tripImgList[0].savedName }"
 								class="card-img-top" alt="...">
-						  </c:forEach>
 						</div>
 						<div class="col-md-4" style="margin-left: 30px;">
 							<div class="card-body">
@@ -92,19 +90,29 @@
 									</small>
 								</p>
 								<br>
+								
+								<c:if test="${ myGoods.registTypeCode  == 3 }">
 								<button type="button" id="btnStopSell" 
 								onClick="onClickStopSell()" 
 								class="btn btn-outline-info" style="width: 139px;">판매중지</button>
-					<!-- 	<button type="button" class="btn btn-outline-info">등업요청</button> -->
+								</c:if>
+								
+							    <c:if test="${ myGoods.registTypeCode  == 4 }">
+								<button type="button" id="btnStopSell" 
+								onClick="onClickStopSell()" 
+								class="btn btn-outline-info" style="width: 139px;">판매게시</button>
+								</c:if>
+								
 						    	<button type="button" class="btn btn-outline-info" id="btnUpdateGoods"
 						    	onClick="onClickUpdateGoods()">수정하기</button> 
+					<!-- 	<button type="button" class="btn btn-outline-info">등업요청</button> -->
 								
 								
 								
  	<script>
 		var isClickStopSell = true;
 		function onClickStopSell() {
-			console.log(isClickStopSell)
+			console.log(onClickStopSell)
 			if (isClickStopSell) {
 				document.getElementById("btnStopSell").innerText = "판매게시";
 				 		$.ajax({
@@ -123,18 +131,12 @@
 
 		}
 		
-		function onClickUpdateGoods() {
-			$.ajax({
-			    url: "${ pageContext.servletContext.contextPath }/user/guidepage/updateSell",
-			    type : 'get'
-			}); 
-		}
 	</script> 
 								
 							</div>
 						</div>
 					</div>
-		  </c:forEach> 
+		  
 				</div>
 			</div>
 		</div>
