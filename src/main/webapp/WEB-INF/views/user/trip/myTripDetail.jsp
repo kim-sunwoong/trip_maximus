@@ -104,17 +104,14 @@
  					</ul>
  				</div>
  				<div class="offerArea clearfix" id="offerMaker">
- 					<h3 class="txt_tit" style="padding-bottom: 20px;">제가 계획했어요!</h3>
+ 					<h3 class="txt_tit" style="padding-bottom: 20px;">이번 여행은요~</h3>
  					<div class="clearfix2 offer_tm_profile">
  						<div class="profile_details clearfix">
- 							<div class="pfImg floatL">
- 								<img src="/tripfulaxel/resources/images/trip/guide1.png">
- 							</div>
  							<div class="tm_info floatL" style="font-size: 18px;">
  								<h3 class="nick">
  								</h3>
  								<p class="txt_md">
- 									지역 : 서울
+ 									지역 : 제주
  								</p>
 	
  								<p style="width: 100%;" class="txt_md">
@@ -125,6 +122,9 @@
  									<c:forEach var="cnt" begin="1" end="${trip[0].userTripComentPoint}">
  										<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
  									</c:forEach>
+ 								</p>
+ 								<p style="width: 100%;" class="txt_md">
+ 									지출비용 : <c:out value="${trip[0].userTripPrice }"/>
  								</p>
  							</div>
  						</div>
@@ -359,16 +359,13 @@
                     
                         
                     </div>
-                    <div style="width:340px; height:250px; border:1px">
+                    <!-- <div style="width:340px; height:250px; border:1px">
                     <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
-                    </div>
+                    </div> -->
                 </div>
- 						<div class="msgCont">
+				<div class="msgCont">
                     <div class="clearfix">
-                        <div class="msgImg floatL" style="width:50px; height:50px;">
-                            <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
-                        </div>
-                        <span class=" txtC" style="font-size: 17px; color:black; margin-top:10px;">나만의 여행 후기</span>
+                        <span class=" txtC" style="font-size: 21px; color:black; margin-top:10px;">나만의 여행 후기</span>
                     </div>
                     <div style="width:340px; height:250px; border:1px solid #E2E2E2">
                     <label style="font-size: 16px; color:black; margin-left:10px;"> <c:out value="${trip[0].userTripComent }"/></label></div>
