@@ -136,14 +136,62 @@ public class GuidePageController {
 		return "redirect:/";
 	}
 	
+	
+	/**
+	 * 문의관리
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@GetMapping("guideContact")
+	public String selectGuideContact(@ModelAttribute TripReviewDTO tripreview,Model model,HttpServletRequest request) {
+		
+		System.out.println("문의관리");
+		
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+		
+		List<TripReviewDTO> guideContact = guidePageService.selectGuideContact(guideCode);
+		System.out.println("문의관리 select : " + guideContact);
+		
+		model.addAttribute("guideContact" , guideContact);
+		
+		
+		return "user/guidepage/guideContact";
+	}
+	
+	
+	/**
+	 * 문의 디테일 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("guideContactDetail")
+	public String insertGuideDetail(@ModelAttribute TripReviewDTO tripreview,HttpServletRequest request, Model model) {
+		
+
+		System.out.println("문의코드 : " + tripreview.getTripInquiryCode());
+		
+		HttpSession session = request.getSession();
+		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
+		System.out.println("로그인한 사람의 코드 :  " + guideCode);
+		
+		
+		return "user/guidepage/guideContactDetail";
+	}
+	
+	
 	/**
 	 * 내 정보 수정
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("UpdateGoods")
+	@GetMapping("updateGuide")
 	public String select2(Model model) {
 		System.out.println("내정보수정");
+		
+		
 		
 		return "user/guidepage/updateGuide";
 	}
@@ -154,11 +202,7 @@ public class GuidePageController {
 		
 		return "user/guidepage/guideParticipants";
 	}
-	@GetMapping("guideContact")
-	public String select4(Model model) {
-		
-		return "user/guidepage/guideContact";
-	}
+
 	
 	
 	@GetMapping("guideTax")

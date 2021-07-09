@@ -5,25 +5,29 @@
   
  <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.GuidePageMapper">
  
-    <resultMap type="TripReviewDTO" id="tripReviewResult">
-    <result property="reviewCode" column="TRIP_REVIEW_CODE"/>
-    <result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
-    <result property="reviewDate" column="TRIP_REVIEW_DATE"/>
-    <result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
-    <result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
-    <result property="tripApply" column="TRIP_REVIEW_CODE"/>
-    <result property="replycode" column="TRIP_REPLY_CODE"/>
-    <result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
-    <result property="replyDate" column="TRIP_REPLY_DATE"/>
-    <result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
-    <result property="registTypeCode" column="REGIST_TYPE_CODE"/>
-    <result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
-    <result property="joinTripDate" column="JOIN_TRIP_DATE"/>
-    <result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
-    <result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
-    <result property="joinTripReason" column="JOIN_TRIP_REASON"/>
-    
-    
+ 	<resultMap type="TripReviewDTO" id="tripReviewResult">
+ 	<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+ 	<result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
+ 	<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+ 	<result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
+ 	<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+ 	<result property="tripApply" column="TRIP_REVIEW_CODE"/>
+ 	<result property="replycode" column="TRIP_REPLY_CODE"/>
+ 	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
+ 	<result property="replyDate" column="TRIP_REPLY_DATE"/>
+ 	<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+ 	<result property="registTypeCode" column="REGIST_TYPE_CODE"/>
+ 	<result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
+ 	<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+ 	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
+ 	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
+ 	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+ 	<result property="tripInquiryCode" column="TRIP_INQUIRY_CODE"/>
+ 	<result property="inquiryReason" column="INQUIRY_REASON"/>
+ 	<result property="inquiryYn" column="INQUIRY_YN"/>
+ 	
+ 	
+
   <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
      <result column="USER_CODE" property="userCode" />
       <result column="USER_NAME" property="userName" />
@@ -160,6 +164,24 @@
           JOIN USER C ON(A.USER_CODE = C.USER_CODE)
            SET A.REGIST_TYPE_CODE = 3
          WHERE C.USER_CODE = #{guideCode}      
-   </update>    
+	</update> 
+	
+	
+	<!-- 문의관리  -->
+	<select id="selectGuideContact" resultMap="tripReviewResult" parameterType="_int">
+		SELECT  
+		       A.TRIP_INQUIRY_CODE
+             , A.INQUIRY_REASON 
+             , A.INQUIRY_YN 
+	         ,(SELECT USER_NAME FROM USER U WHERE U.USER_CODE = A.USER_CODE) AS APPLYNAME
+        FROM TRIP_INQUIRY A
+        JOIN TRIP_REGIST_LIST B ON(A.TRIP_REGIST_LIST_CODE = B.TRIP_REGIST_LIST_CODE)
+        JOIN USER C ON(B.USER_CODE = C.USER_CODE)
+       WHERE C.USER_CODE = #{guideCode} 
+	</select>
+ 	
+
+  
     
+
  </mapper>

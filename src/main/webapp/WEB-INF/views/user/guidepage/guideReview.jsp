@@ -63,11 +63,6 @@
 						여행상품</a>
 				</div>
 				<div class="tabb">
-					<a class="pic2"
-						href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내
-						정보수정</a>
-				</div>
-				<div class="tabb">
 					<a class="pic3"
 						href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a>
 				</div>

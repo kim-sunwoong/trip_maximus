@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/main.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/common.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/style.css?ver=20210620">
-<!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/html/tab7menu.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/html/joonho_new.css">
     <style>
@@ -53,35 +52,10 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<div id="wrapp">
-         <div id="tabwrap">
-         <div style="width: 90% ; margin : 0 auto;"><h2 style="display: block;
-            font-size: 1.5em;
-            margin-block-start: 0.83em;
-            margin-block-end: 0.83em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold; margin-left: 1rem;">가이드 마이페이지</h2></div>
-            <br>
-            <br>
-            <div class="tabList">
-                <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내 정보수정</a></div>
-                <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
-                <div class="tabb" style="border: 3px solid skyblue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
-                <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
-                <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
-            </div>
-        </div>
 
         <div id="detail_content">
             <div id="detail">
                 
-                <!-- <div class="select" style="margin: 0 auto; with: 30%; display: flex; margin-bottom: 50px;">
-                    <input type="radio" id="select" name="shop"><label for="select">관리자에게 문의하기</label>
-                    <input type="radio" id="select2" name="shop"><label for="select2">여행 문의하기</label>
-               </div>d -->
-
-
                 <div id="contact-area" style="margin: 0 auto; clear: both;">
 			
                     <form style="background-color: #f7fafc;">
@@ -118,7 +92,6 @@
 								<th></th>
 								<th>
 								<input type="submit" name="submit" value="제출하기" class="submit-button" style=" height: 30px; font-size: 1.0rem; font-weight: normal;"/>
-								<input type="button" name="back" value="뒤로가기" class="submit-button" style="margin-right: 10px; height: 30px; font-size: 1.0rem; font-weight: normal; "/>
 								</th>
 							</tr>
 						</tbody>
