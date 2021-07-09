@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.GuidePageMapper">
+ 
+ 	<resultMap type="TripReviewDTO" id="tripReviewResult">
+ 	<result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+ 	<result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
+ 	<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+ 	<result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
+ 	<result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+ 	<result property="tripApply" column="TRIP_REVIEW_CODE"/>
+ 	<result property="replycode" column="TRIP_REPLY_CODE"/>
+ 	<result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
+ 	<result property="replyDate" column="TRIP_REPLY_DATE"/>
+ 	<result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+ 	<result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
+ 	<result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+ 	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
+ 	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
+ 	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+ 	
+ 	
+  <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
+	  <result column="USER_CODE" property="userCode" />
+      <result column="USER_NAME" property="userName" />
+      <result column="USER_PHONE" property="userPhone" />
+      <result column="USER_PWD" property="userPwd" />
+      <result column="USER_BDAY" property="userBday" />
+      <result column="USER_GENDER" property="userGender" />
+      <result column="USER_EMAIL" property="userEmail" />
+      <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+      <result column="USER_REPORT_COUNT" property="userReportCount" />
+      <result column="USER_GUIDE_YN" property="userGuideYN" />
+      <result column="APPLYNAME" property="applyName"/>
+	</collection> 
+	
+	<collection property="reviewImgList" ofType="com.maximusteam.tripfulaxel.user.model.dto.ReviewImgDTO">
+	    <result column="REVIEW_IMAGE_CODE" property="reviewImgCode"/>
+	    <result column="REVIEW_IMAGE_SAVED_NAME" property="reviewsaved"/>
+	    <result column="REVIEW_IMAGE_ORIGIN_NAME" property="reviewOrigin"/>
+	</collection>
+	
+	<collection property="tripList" ofType="com.maximusteam.tripfulaxel.user.model.dto.TripDTO" >
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="nInclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+		<result property="tripRegistCode" column="TRIP_REGIST_LIST_CODE"/>
+	</collection>
+	
+	
+	 <collection property="tripImgList" ofType="com.maximusteam.tripfulaxel.user.model.dto.TripImageDTO" >
+			<result property="imageCode" column="TRIP_IMAGE_CODE"/>
+			<result property="savedName" column="TRIP_IMAGE_SAVED_NAME"/>
+			<result property="imageTypeCode" column="TRIP_IMAGE_TYPE_CODE"/>
+			<result property="originName" column="TRIP_IMAGE_ORIGIN_NAME"/>
+   </collection>
+ 	</resultMap>
+ 	
+ 	<!-- 후기 SELECT   -->
+ 	<select id="selectGuideReview" resultMap="tripReviewResult" parameterType="_int">
+ 	  SELECT 
+             D.TRIP_REVIEW_TITLE 
+           , D.TRIP_REVIEW_CONTENT 
+           , D.TRIP_REVIEW_DATE
+           , D.TRIP_REVIEW_GRADE
+           , A.USER_NAME
+           , F.REVIEW_IMAGE_SAVED_NAME
+           , E.TRIP_REPLY_DETAIL
+           , D.TRIP_REVIEW_CODE
+           , (SELECT USER_NAME FROM USER U WHERE U.USER_CODE = C.USER_CODE) AS APPLYNAME
+        FROM USER A
+        JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
+        JOIN JOIN_TRIP_APPLY C ON (B.TRIP_REGIST_LIST_CODE = C.TRIP_REGIST_LIST_CODE)
+        JOIN TRIP_REVIEW D ON(C.JOIN_TRIP_APPLY_CODE = D.JOIN_TRIP_APPLY_CODE)
+        JOIN REVIEW_IMAGE F ON(D.TRIP_REVIEW_CODE = F.TRIP_REVIEW_CODE)
+        LEFT JOIN TRIP_REPLY E ON(D.TRIP_REVIEW_CODE = E.TRIP_REVIEW_CODE)
+       WHERE A.USER_GUIDE_YN = 'Y'
+         AND A.USER_CODE = #{guideCode}
+ 	</select>
+ 	
+ 	<!-- 후기 댓글  -->
+    <insert id="insertReply" parameterType="com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO">
+	 <selectKey resultType="int"  keyProperty="guideReplyCode" order="BEFORE">
+	 	SELECT MAX(TRIP_REPLY_CODE) + 1 FROM TRIP_REPLY
+	 </selectKey>
+	 	INSERT INTO TRIP_REPLY
+	 	(
+	 	    TRIP_REPLY_CODE
+	 	  , TRIP_REPLY_DETAIL
+	 	  , TRIP_REPLY_DATE
+	 	  , TRIP_REVIEW_CODE
+	 	)
+	 	VALUES
+	 	(
+	 		 #{ guideReplyCode }
+	 	   , #{ replyDetail }
+	 	   , NOW()
+	 	   , #{ reviewCode } 
+		)	 	
+   </insert>
+  
+  <!--  내 여행상품 -->
+  <select id="selectMyGoods" resultMap="tripReviewResult" parameterType="_int">
+  	   SELECT 
+              E.TRIP_TITLE 
+            , E.TRIP_INTRO 
+            , F.TRIP_IMAGE_SAVED_NAME 
+        FROM USER A
+        JOIN TRIP_REGIST_LIST B ON (A.USER_CODE = B.USER_CODE)
+        JOIN TRIP E ON(B.TRIP_CODE = E.TRIP_CODE)
+        JOIN TRIP_IMAGE F ON (E.TRIP_CODE = F.TRIP_CODE)
+       WHERE A.USER_GUIDE_YN = 'Y'
+         AND A.USER_CODE = #{guideCode}
+  </select>
+  
+  <!-- 총 리뷰수  -->
+  <select id="selectCount" resultType="int" parameterType="TripReviewDTO">
+  	  SELECT 
+             COUNT(*) 
+        FROM TRIP_REVIEW A 
+        JOIN JOIN_TRIP_APPLY B ON(A.JOIN_TRIP_APPLY_CODE = B.JOIN_TRIP_APPLY_CODE)
+        JOIN TRIP_REGIST_LIST C ON (B.TRIP_REGIST_LIST_CODE = C.TRIP_REGIST_LIST_CODE) 
+        JOIN USER D ON(C.USER_CODE = D.USER_CODE)
+       WHERE D.USER_CODE = #{guideCode}
+  </select>
+  
+  <!-- 총별점  -->
+  <select id="selectStar" resultType="int" parameterType="TripReviewDTO">
+     	SELECT 
+               AVG(A.TRIP_REVIEW_GRADE)
+          FROM TRIP_REVIEW A 
+          JOIN JOIN_TRIP_APPLY B ON(A.JOIN_TRIP_APPLY_CODE = B.JOIN_TRIP_APPLY_CODE)
+          JOIN TRIP_REGIST_LIST C ON (B.TRIP_REGIST_LIST_CODE = C.TRIP_REGIST_LIST_CODE) 
+          JOIN USER D ON(C.USER_CODE = D.USER_CODE)
+         WHERE D.USER_CODE = #{guideCode}       
+  </select>
+ 	
+ 	<!-- 판매 중지  -->
+ 	<update id="updateStopSell"  parameterType="TripReviewDTO">
+        UPDATE   
+               TRIP_REGIST_LIST A
+          JOIN USER C ON(A.USER_CODE = C.USER_CODE)
+           SET A.REGIST_TYPE_CODE = 4
+         WHERE C.USER_CODE = #{guideCode}      
+	</update> 	
+  
+  <!-- 판매 게시   -->
+   	<update id="updateStartSell"  parameterType="TripReviewDTO">
+        UPDATE   
+               TRIP_REGIST_LIST A
+          JOIN USER C ON(A.USER_CODE = C.USER_CODE)
+           SET A.REGIST_TYPE_CODE = 3
+         WHERE C.USER_CODE = #{guideCode}      
+	</update> 	
+ 	
+ </mapper>

@@ -42,7 +42,7 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 
-                     <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/notice">
                                 	공지사항
@@ -66,10 +66,6 @@
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/calculateList">
                                 	가이드 정산 처리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">

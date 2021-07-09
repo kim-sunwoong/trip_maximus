@@ -51,7 +51,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">트리플 악셀</a>
+            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axcel</a>
             <!-- Sidebar Toggle-->
             <button
                 class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -125,7 +125,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                세금 계산서 발급
+                                                                               세금 계산서 발급
                             </div>
 
                             <div class="card-body">
@@ -146,7 +146,7 @@
                                             <td><c:out value="${tax.taxDate}"/></td>
                                             <td>
                                                 <button type="button" onclick="location.href='AdminTaxDetail.html'">
-                                                    발급
+                                                                                                                 발급
                                                 </button>
                                             </td>
                                         </tr>

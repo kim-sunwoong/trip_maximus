@@ -419,7 +419,7 @@ li.header_menu:hover {
    function findEmail(event){
       event.preventDefault()
          
-          var findUserName = $("#findUserName").val();
+           var findUserName = $("#findUserName").val();
             var findUserPhone = $("#findUserPhone").val();
             var findUserBday = $("#findUserBday").val(); 
          
@@ -435,14 +435,12 @@ li.header_menu:hover {
                   
                   if(data.res == 'fail') {
                      //찾지못함.
-                     
                    console.log("값 찾지못함")
                      
                   }  else {
                      //찾음
                      const resData = JSON.parse(data);
-                     
-                         console.log("값 찾음 : " + resData.email);
+                        console.log("값 찾음 : " + resData.email);
                         $(".pop_wrap:visible").hide();
                         document.getElementById("finded_email").value = resData.email;
                         $(".find_id_fin_pop").parent(".pop_wrap").show();
@@ -519,7 +517,6 @@ li.header_menu:hover {
                   }  else {
                 
                      console.log("이메일 전송 완료")
-                     
                      $("html").addClass("pop");
                      $(".pop_wrap:visible").hide();
                      $(".find_password_fin_pop").parent(".pop_wrap").show();
@@ -752,7 +749,7 @@ li.header_menu:hover {
                <li class="floatL">
                <a href="${ pageContext.servletContext.contextPath }/insertGuide">
                      <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
-                        등록</span>
+                                              등록</span>
                </a></li>
                </c:if>
 
@@ -783,18 +780,13 @@ li.header_menu:hover {
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                                           마이페이지</span>
                </a></li>
-               <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/user/guidemypage/">
-                <span style="color: white; font-size: 18px; font-weight: bold;">
-                                   가이드페이지</span>
-               </a></li>
                </c:if>
                
                
            
                  <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
                  <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/guide/mypage/">
+                <a href="${ pageContext.servletContext.contextPath }/user/guidepage/">
                 <span style="color: white; font-size: 18px; font-weight: bold;">
                                        가이드페이지</span>
                </a></li>
@@ -829,9 +821,20 @@ li.header_menu:hover {
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;"> 같이가요 여행</span></a></li>
-               <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
+               
+               <c:if test="${ empty sessionScope.loginUser }">
+                <li class="floatL header_menu" >
+                    <a class="btnLineC txt_md" href="javascript:alert('로그인 후 이용해주세요');">
+                    <span style="color:white; font-size: 20px;">여행 플래너</span></a>
+                </li>
+      			</c:if>
+               
+                <c:if test="${ !empty sessionScope.loginUser }">
+                <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
                   class="btnLineC txt_md"> <span
                      style="color: white; font-size: 20px;">여행 플래너</span></a></li>
+      			</c:if>
+      			
       		
       		   <c:if test="${ empty sessionScope.loginUser }">
                <li class="floatL header_menu" >

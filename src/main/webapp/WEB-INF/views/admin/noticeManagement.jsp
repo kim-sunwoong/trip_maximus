@@ -90,10 +90,6 @@
                                 	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
                                 	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -124,7 +120,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                공지사항
+                                	공지사항
                             </div>
 
                             <div class="card-body">
@@ -140,15 +136,114 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>강사</td>
-                                            <td>이해승</td>
+                                            <td></td>
+                                            <td>2021-06-25</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
                                                     	상세보기
                                                 </button>
                                             </td>
                                         </tr>
-
+                                         <tr>
+                                            <td>2</td>
+                                            <td></td>
+                                            <td>2021-06-26</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td></td>
+                                            <td>2021-06-27</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td></td>
+                                            <td>2021-06-28</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td></td>
+                                            <td>2021-06-29</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td></td>
+                                            <td>2021-06-30</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td></td>
+                                            <td>2021-07-01</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td></td>
+                                            <td>2021-07-02</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td></td>
+                                            <td>2021-07-03</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td></td>
+                                            <td>2021-07-04</td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td>2021-07-05</td>
+                                            <td></td>
+                                            <td>
+                                                <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
+                                                    	상세보기
+                                                </button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

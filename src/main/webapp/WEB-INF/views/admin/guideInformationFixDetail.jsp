@@ -67,10 +67,6 @@
                                 	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
                                 	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -101,7 +97,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                               		 가이드 가입
+                               		 가이드  정보 수정
                             </div>
 
                             <div class="card-body">

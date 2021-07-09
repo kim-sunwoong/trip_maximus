@@ -279,7 +279,7 @@ public class UserContrlloer {
 			
 			// 메일 제목, 내용
 			String subject = "[트리풀악셀] 요청하신 회원정보 찾기 안내 메일입니다 ";
-			String content = "<div id=\"readFrame\">\r\n" + 
+			String content = " <div id=\"readFrame\">\r\n" + 
 					         " <div style=\"margin:30px auto;width:600px;border:10px solid #f7f7f7\">\r\n" + 
 					         " <div style=\"border:1px solid #dedede\">\r\n" + 
 					         " <h1 style=\"padding:30px 30px 0;background:#f7f7f7;color:#555;font-size:1.4em\">회원정보 찾기 안내</h1>\r\n" + 
@@ -341,6 +341,15 @@ public class UserContrlloer {
     	
     }
     
+    @GetMapping("tripAlone")
+    public String tripAlone() {
+    	return "/user/main/insertTripAlone";
+    }
+    
+    @GetMapping("tripTogetger")
+    public String tripTogether() {
+    	return "/user/main/insertTripTogether";
+    }
 
 
 

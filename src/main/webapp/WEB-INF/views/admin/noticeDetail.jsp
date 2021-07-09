@@ -76,10 +76,6 @@
                                 	가이드 정산 처리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">
                                 	문의 내역
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -110,7 +106,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                공지사항
+                               		 공지사항
                             </div>
                            
                             <div class="card-body">
@@ -131,7 +127,7 @@
                                             </td>
                                             <td style=" width: 10%;" scope="row" style="text-align: center;">작성일</td>
                                             <td>
-                                                <input type="text"; style="width: 40%;" readonly value="21.04.29">
+                                                <input type="text"; style="width: 40%;" readonly value="2021-06-25">
                                                 </input>
                                             </td>
                                         </tr>
