@@ -75,7 +75,14 @@ public class UserMypageServiceImpl implements UserMypageService{
 
 	@Override
 	public int insertReview(Map<String, Object> map) {
-		return mapper.insertReview(map);
+		int result = mapper.insertReview(map);
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public int insertrevImg(Map<String, Object> map) {
+		return mapper.insertrevImg(map);
 	}
 
 	

@@ -10,6 +10,7 @@ public class ReviewDTO {
 	private String reviewInfo;
 	private Date reviewDate;
 	private int star;
+	private int jtaCode;
 	
 	private List<ImageDTO> reviewImgList;
 	
@@ -18,7 +19,7 @@ public class ReviewDTO {
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int star,
+	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int star, int jtaCode,
 			List<ImageDTO> reviewImgList, ReviewComentDTO reviewComent) {
 		super();
 		this.reviewCode = reviewCode;
@@ -26,6 +27,7 @@ public class ReviewDTO {
 		this.reviewInfo = reviewInfo;
 		this.reviewDate = reviewDate;
 		this.star = star;
+		this.jtaCode = jtaCode;
 		this.reviewImgList = reviewImgList;
 		this.reviewComent = reviewComent;
 	}
@@ -62,12 +64,20 @@ public class ReviewDTO {
 		this.reviewDate = reviewDate;
 	}
 
-	public int getstar() {
+	public int getStar() {
 		return star;
 	}
 
-	public void setstar(int star) {
+	public void setStar(int star) {
 		this.star = star;
+	}
+
+	public int getJtaCode() {
+		return jtaCode;
+	}
+
+	public void setJtaCode(int jtaCode) {
+		this.jtaCode = jtaCode;
 	}
 
 	public List<ImageDTO> getReviewImgList() {
@@ -89,9 +99,10 @@ public class ReviewDTO {
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewCode=" + reviewCode + ", reviewTitle=" + reviewTitle + ", reviewInfo=" + reviewInfo
-				+ ", reviewDate=" + reviewDate + ", star=" + star + ", reviewImgList=" + reviewImgList
-				+ ", reviewComent=" + reviewComent + "]";
+				+ ", reviewDate=" + reviewDate + ", star=" + star + ", jtaCode=" + jtaCode + ", reviewImgList="
+				+ reviewImgList + ", reviewComent=" + reviewComent + "]";
 	}
+
 	
 	
 	

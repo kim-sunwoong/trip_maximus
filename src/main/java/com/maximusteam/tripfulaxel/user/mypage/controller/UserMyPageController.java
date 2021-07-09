@@ -321,7 +321,7 @@ public class UserMyPageController {
 			map.put("review", review);
 			map.put("id", id);
 			
-//			int result = userMypageService.insertReview(map);
+			int result = userMypageService.insertReview(map);
 		}
 		else {
 		/* 파일을 저장할 경로 설정 */
@@ -373,14 +373,22 @@ public class UserMyPageController {
 			map.put("review", review);
 			map.put("id", id);
 			
-//			int result = userMypageService.insertReview(map);
-//			
-//			if(result>0) {
-//				
-//			} else {
-//				
-//			}
+			int result = userMypageService.insertReview(map);
 			
+			System.out.println("=======================================================================");
+			System.out.println("result : "+result);
+			
+			System.out.println("========================================================================");
+			
+			
+			if(result>0) {
+				
+//				int result2 = userMypageService.selectRevPK(map);
+				int result3 = userMypageService.insertrevImg(map);
+				System.out.println("result2 : "+result3);
+				
+			}
+			System.out.println("========================================================================");
 			try {
 			for(int i = 0; i<multiFiles.size(); i++) {
 				

@@ -30,6 +30,7 @@ public interface UserMypageMapper {
 	List<InquiryDTO> selectInquiry(int id);
 	
 	int insertReview(Map<String, Object> map);
+	int insertrevImg(Map<String, Object> map);
 
 
 }

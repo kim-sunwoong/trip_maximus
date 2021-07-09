@@ -174,8 +174,8 @@
 		<selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
 	 		SELECT
 	 			  MAX(EXAMINE_REQUEST_CODE)+1 FROM EXAMINE
+	 			  
 	 	</selectKey>
-	 	
 	 	 INSERT
 	 	   INTO EXAMINE
 	 	   (
@@ -238,6 +238,7 @@
 		<result property="reviewInfo" column="TRIP_REVIEW_CONTENT"/>
 		<result property="reviewDate" column="TRIP_REVIEW_DATE"/>
 		<result property="star" column="TRIP_REVIEW_GRADE"/>
+		<result property="jtaCode" column="JOIN_TRIP_APPLY_CODE"/>
 		
 		<association property="reviewComent" javaType="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewComentDTO">
 			<result property="replyCode" column="TRIP_REPLY_CODE"/>
@@ -250,13 +251,62 @@
 			<result property="saveName" column="REVIEW_IMAGE_SAVED_NAME"/>
 			<result property="orignName" column="REVIEW_IMAGE_ORIGIN_NAME"/>
 			<result property="code" column="TRIP_REVIEW_CODE"/>
+			<result property="imgType" column="REVIEW_IMAGE_CODE"/>
 		</collection>
 		</resultMap>
 		
-		<!-- <insert id="insertReview">
+		<insert id="insertReview" >
+				<selectKey keyProperty="reviewCode" order="BEFORE" resultType="_int">
+			 		SELECT
+			 			  MAX(TRIP_REVIEW_CODE)+1 FROM TRIP_REVIEW
+			 	</selectKey>
+			INSERT 
+		  INTO TRIP_REVIEW 
+		  (
+		  TRIP_REVIEW_CODE
+	      , TRIP_REVIEW_TITLE
+	      , TRIP_REVIEW_CONTENT
+	      , TRIP_REVIEW_DATE
+	      , TRIP_REVIEW_GRADE
+	      , JOIN_TRIP_APPLY_CODE
+	      )
+	      VALUES
+	      (
+	      #{reviewCode}
+	      , #{review.reviewTitle}
+	      , #{review.reviewInfo}
+	      , now()
+	      , #{review.star}
+	      , 11
+	      )
+		</insert>
 		
+		<select id="selectRevPK">
+					SELECT
+			 			  MAX(REVIEW_IMAGE_CODE) FROM REVIEW_IMAGE
+		</select>
 		
-		</insert> -->
+		<insert id="insertrevImg" >
+			 	<selectKey keyProperty="code" order="BEFORE" resultType="_int">
+			 		SELECT
+			 			  MAX(TRIP_REVIEW_CODE) FROM TRIP_REVIEW
+			 	</selectKey>
+			INSERT
+	        INTO REVIEW_IMAGE 
+	        (
+	          REVIEW_IMAGE_CODE
+	        , REVIEW_IMAGE_SAVED_NAME
+		    , REVIEW_IMAGE_ORIGIN_NAME
+		    , TRIP_REVIEW_CODE
+	        )
+	      VALUES
+	      ( 
+	      , #{review.reviewImgList.imgType}
+	      , #{review.reviewImgList.saveName}
+	      , #{review.reviewImgList.orignName}
+	      , #{code}
+	      )
+		</insert>
 	 
 	 <!-- <select id="selectInquiryGuide" resultMap="selectInquiry">
 	 

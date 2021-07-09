@@ -8,7 +8,6 @@ public class ImageDTO {
 	private int code;
 	
 	public ImageDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ImageDTO(String saveName, String orignName, int imgType, int code) {
