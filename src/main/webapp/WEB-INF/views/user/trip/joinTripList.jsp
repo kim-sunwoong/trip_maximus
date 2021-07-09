@@ -146,7 +146,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="speaker" data-aos="fade-up" data-aos-delay="100" style="width:360px; height:270px;"
 					onclick="location.href='${pageContext.servletContext.contextPath}/trip/select?tripCode=${trip.tripCode }&tripType=2'">
-						<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${trip.tripImgList[0].saveName}"
+						<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${trip.tripImgList[0].saveName}"
 							alt="Speaker 1" class="img-fluid" style="object-fit:cover; width:100%; height:100%;">
 						<div class="details">
 							<h3>

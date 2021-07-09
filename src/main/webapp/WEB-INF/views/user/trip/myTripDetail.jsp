@@ -80,7 +80,7 @@
  					<div class="offer_main_slider">
  						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
 
@@ -100,21 +100,18 @@
  						<li class="floatL" data-id="offerInfo"><a style="color:white;" href="#offerInfo">안내
  								사항</a></li>
  						<li class="floatL" data-id="offerReview"><a style="color:white;"
- 							href="#offerReview">후기</a></li>
+ 							>후기</a></li>
  					</ul>
  				</div>
  				<div class="offerArea clearfix" id="offerMaker">
- 					<h3 class="txt_tit" style="padding-bottom: 20px;">제가 계획했어요!</h3>
+ 					<h3 class="txt_tit" style="padding-bottom: 20px;">이번 여행은요~</h3>
  					<div class="clearfix2 offer_tm_profile">
  						<div class="profile_details clearfix">
- 							<div class="pfImg floatL">
- 								<img src="/tripfulaxel/resources/images/trip/guide1.png">
- 							</div>
  							<div class="tm_info floatL" style="font-size: 18px;">
  								<h3 class="nick">
  								</h3>
  								<p class="txt_md">
- 									지역 : 서울
+ 									지역 : 제주
  								</p>
 	
  								<p style="width: 100%;" class="txt_md">
@@ -125,6 +122,9 @@
  									<c:forEach var="cnt" begin="1" end="${trip[0].userTripComentPoint}">
  										<img src="/tripfulaxel/resources/images/common/star.png" style="width:20px; height:20px;">
  									</c:forEach>
+ 								</p>
+ 								<p style="width: 100%;" class="txt_md">
+ 									지출비용 : <c:out value="${trip[0].userTripPrice }"/>
  								</p>
  							</div>
  						</div>
@@ -166,7 +166,7 @@
  				<div class="offerArea" id="Course">
  					<div class="">
  						<div class="">
- 							<h4 class="txt_big" style="margin-bottom: 20px;">로컬 포인트</h4>
+ 							<h4 class="txt_big" style="margin-bottom: 20px;">여행 포인트</h4>
  							<ul class="textP ">
  								<li class="WhiteSpacing text_cut_expand1"
  									style="width: 100%; word-break: break-all;">중국 하면 로컬음식!
@@ -185,7 +185,7 @@
  								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/usertrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -204,11 +204,7 @@
  							</div>
  						</div>
  						<div class="offerBox">
- 							<h4 class="txt_big">만나는 시간</h4>
- 							<p>여행자와 상의 후 결정</p>
- 						</div>
- 						<div class="offerBox">
- 							<h4 class="txt_big">만나는 장소</h4>
+ 							<h4 class="txt_big">여행 시작 장소</h4>
  							<div id="meetMap" style="width:770px; height:500px;">
  							
  							
@@ -262,26 +258,6 @@
  				<div class="offerArea floatL" style="margin-bottom: 0px"
  					id="offerInfo">
  					<div style="width: 770px;">
- 						<div>
- 							<h4 class="txt_big" style="margin-bottom: 20px;">로컬가이드 한마디</h4>
- 							<ul class="textP">
- 								<li id="text_cut_expand3"
- 									class="WhiteSpacing offerWhiteSpacing text_cut_expand3">1.
- 									중국 여행비자 중국을 여행하기에 앞서 제일 중요한 건 비자 발급이에요. 여행을 오시기 최소 2주 전에 반드시!
- 									비자를 발급받아야 한다는 점 명심해주세요! 비자는 마트에서 쉽게 볼 수 있는 여행사 부스에서도 발급할 수
- 									있는데요, 가격은 10만 원 안팎의 가격이며 (보통 현금 혹은 계좌이체만 가능) , 여권, 비자 사진( 여권
- 									사진과 다르며 촬영 시기가 3개월이 넘지 않는 흰색 배경의 사진, 흰옷 금지) 을 준비해주시면 된답니다! 중국
- 									비자센터에 직접 방문하신다면 조금 더 저렴한 가격으로 발급을 받으실 수도 있어요. 2. 필수 애플리케이션 다운받기
- 									(VPN) 중국은 카카오톡의 일부 기능, 페이스북, 인스타그램과 같은 SNS 및 인터넷 검색이 막혀있어요. 이
- 									때문에 앱스토어에서 VPN이라는 애플리케이션을 다운받아 오셔야 불편함 없이 여행을 즐기실 수 있습니다! (상하이
- 									지하철 노선도) 상하이는 우리나라처럼 대중교통이 발달되어 있고 요금이 굉장히 저렴해요. 지하철 노선도를 다운받아
- 									오신다면 더욱더 순조로운 여행이 되실 거에요. *지하철역에서 원데이 패스를 구매하신다면 18위안 (약 3천 원)의
- 									가격으로 발급 시부터 24시간 이용 가능하다는 점도 참고해 주세요! 3. USIM칩 / 포켓 와이파이 대여
- 									현지에서 구매한 USIM 칩은 국내 휴대전화와 호환되지 않는 경우가 있으니 국내에서 미리 구매해 오시거나,
- 									공항에서 포켓 와이파이를 대여해 오시는 것을 추천해 드려요. 4.지하철 이용이 어려우신 분들의 경우 우버 택시와
- 									비슷한 디디추싱을 이용하게 될 거예요. 택시 이용 시엔 트래블 비용이 추가됩니다:)</li>
- 							</ul>
- 						</div>
  						<c:if test="${trip[0].include ne ''} ">
  						
 	 						<div class="offerBox">
@@ -305,26 +281,6 @@
 	 						</div>
  						
  						</c:if>
- 						<div class="offerBox">
- 							<h4 class="txt_big">취소 및 환불 규정</h4>
- 							<ul class="textP text_cut_expand2">
- 								<li class="txtG">- 여행시작 30일전까지 통보시: 여행 요금 전액 환불, 여행자 부담 없음</li>
- 								<li class="txtG">- 여행시작 20일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
- 									10%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="txtG">- 여행시작 6일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
- 									15%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="txtG">- 여행시작 1일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
- 									20%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="txtG" style="margin-bottom: 10px;">- 여행시작 시간 기준
- 									24시간 이내 통보시: 여행요금에서 “트래블메이커” 요금의 50%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="">* “여행자”가 여행요금을 결제(지급)한 때로부터 24시간 이내에 여행계약을
- 									취소(철회)하는 경우와 “여행자”가 트래블 예약 후 TM이 여행 확정하기 전에 취소(철회)하는 경우는 여행요금을
- 									전액 환불합니다. 단, “여행자”가 여행요금을 결제하였다고 하더라도 해당 시점으로부터 24시간 이내 여행이 시작될
- 									경우는 전액 환불 대상에서 제외합니다.</li>
- 								<li class="">* 취소(철회) 통보 시점은, ‘취소 요청서가 “회사” 플랫폼에 접수된 시간’ 또는
- 									“회사” 공식 카카오 상담센터를 통하여 취소(철회) 통보한 내용이 기록된 시간’을 기준으로 합니다.</li>
- 							</ul>
- 						</div>
  					</div>
  				</div>
  				<div class="clearfix"></div>
@@ -359,16 +315,13 @@
                     
                         
                     </div>
-                    <div style="width:340px; height:250px; border:1px">
+                    <!-- <div style="width:340px; height:250px; border:1px">
                     <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
-                    </div>
+                    </div> -->
                 </div>
- 						<div class="msgCont">
+				<div class="msgCont">
                     <div class="clearfix">
-                        <div class="msgImg floatL" style="width:50px; height:50px;">
-                            <img src="/tripfulaxel/resources/images/trip/guide1.png" style="object-fit:cover; width:100%; height:100%">
-                        </div>
-                        <span class=" txtC" style="font-size: 17px; color:black; margin-top:10px;">나만의 여행 후기</span>
+                        <span class=" txtC" style="font-size: 21px; color:black; margin-top:10px;">나만의 여행 후기</span>
                     </div>
                     <div style="width:340px; height:250px; border:1px solid #E2E2E2">
                     <label style="font-size: 16px; color:black; margin-left:10px;"> <c:out value="${trip[0].userTripComent }"/></label></div>

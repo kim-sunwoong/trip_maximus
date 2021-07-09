@@ -24,6 +24,9 @@ public class TripDTO {
 //	같이가요
 	private int joinTripCode;
 	private int joinTripMaximum;
+	private int joinTripPrice;
+	private String joinTripInfo;
+	private String joinTripImg;
 	
 //	가이드
 	private int guideTripCode;
@@ -36,6 +39,7 @@ public class TripDTO {
 	private String userTripComentTitle;
 	private String userTripComent;
 	private int userTripComentPoint;
+	private int userTripPrice;
 	
     public TripDTO() {
 		// TODO Auto-generated constructor stub
@@ -44,9 +48,9 @@ public class TripDTO {
 	public TripDTO(int tripCode, String tripTitle, String tripIntro, Date tripStartDate, String meetLocation,
 			String include, String nInclude, Date tripEndDate, int tripRegistCode, List<TripCourseDTO> tripCourseList,
 			List<ImageDTO> tripImgList, List<TripThemeDTO> tripThemeList, List<TripTransitDTO> tripTransitList,
-			int joinTripCode, int joinTripMaximum, int guideTripCode, int payment, int guideTripMinimum,
-			int guideTripMaximum, int userTripCode, String userTripComentTitle, String userTripComent,
-			int userTripComentPoint) {
+			int joinTripCode, int joinTripMaximum, int joinTripPrice, String joinTripInfo, String joinTripImg,
+			int guideTripCode, int payment, int guideTripMinimum, int guideTripMaximum, int userTripCode,
+			String userTripComentTitle, String userTripComent, int userTripComentPoint, int userTripPrice) {
 		super();
 		this.tripCode = tripCode;
 		this.tripTitle = tripTitle;
@@ -63,6 +67,9 @@ public class TripDTO {
 		this.tripTransitList = tripTransitList;
 		this.joinTripCode = joinTripCode;
 		this.joinTripMaximum = joinTripMaximum;
+		this.joinTripPrice = joinTripPrice;
+		this.joinTripInfo = joinTripInfo;
+		this.joinTripImg = joinTripImg;
 		this.guideTripCode = guideTripCode;
 		this.payment = payment;
 		this.guideTripMinimum = guideTripMinimum;
@@ -71,6 +78,7 @@ public class TripDTO {
 		this.userTripComentTitle = userTripComentTitle;
 		this.userTripComent = userTripComent;
 		this.userTripComentPoint = userTripComentPoint;
+		this.userTripPrice = userTripPrice;
 	}
 
 	public int getTripCode() {
@@ -193,6 +201,30 @@ public class TripDTO {
 		this.joinTripMaximum = joinTripMaximum;
 	}
 
+	public int getJoinTripPrice() {
+		return joinTripPrice;
+	}
+
+	public void setJoinTripPrice(int joinTripPrice) {
+		this.joinTripPrice = joinTripPrice;
+	}
+
+	public String getJoinTripInfo() {
+		return joinTripInfo;
+	}
+
+	public void setJoinTripInfo(String joinTripInfo) {
+		this.joinTripInfo = joinTripInfo;
+	}
+
+	public String getJoinTripImg() {
+		return joinTripImg;
+	}
+
+	public void setJoinTripImg(String joinTripImg) {
+		this.joinTripImg = joinTripImg;
+	}
+
 	public int getGuideTripCode() {
 		return guideTripCode;
 	}
@@ -257,6 +289,14 @@ public class TripDTO {
 		this.userTripComentPoint = userTripComentPoint;
 	}
 
+	public int getUserTripPrice() {
+		return userTripPrice;
+	}
+
+	public void setUserTripPrice(int userTripPrice) {
+		this.userTripPrice = userTripPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "TripDTO [tripCode=" + tripCode + ", tripTitle=" + tripTitle + ", tripIntro=" + tripIntro
@@ -264,12 +304,15 @@ public class TripDTO {
 				+ ", nInclude=" + nInclude + ", tripEndDate=" + tripEndDate + ", tripRegistCode=" + tripRegistCode
 				+ ", tripCourseList=" + tripCourseList + ", tripImgList=" + tripImgList + ", tripThemeList="
 				+ tripThemeList + ", tripTransitList=" + tripTransitList + ", joinTripCode=" + joinTripCode
-				+ ", joinTripMaximum=" + joinTripMaximum + ", guideTripCode=" + guideTripCode + ", payment=" + payment
-				+ ", guideTripMinimum=" + guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum
+				+ ", joinTripMaximum=" + joinTripMaximum + ", joinTripPrice=" + joinTripPrice + ", joinTripInfo="
+				+ joinTripInfo + ", joinTripImg=" + joinTripImg + ", guideTripCode=" + guideTripCode + ", payment="
+				+ payment + ", guideTripMinimum=" + guideTripMinimum + ", guideTripMaximum=" + guideTripMaximum
 				+ ", userTripCode=" + userTripCode + ", userTripComentTitle=" + userTripComentTitle
-				+ ", userTripComent=" + userTripComent + ", userTripComentPoint=" + userTripComentPoint + "]";
+				+ ", userTripComent=" + userTripComent + ", userTripComentPoint=" + userTripComentPoint
+				+ ", userTripPrice=" + userTripPrice + "]";
 	}
 
+    
     
 	
 }
