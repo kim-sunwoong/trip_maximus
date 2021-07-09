@@ -46,6 +46,14 @@ public class TripReviewDTO {
 	private String joinTripReason; // 신청사유
 	// 신청회원코드
 	
+	/* 문의 관리 */
+	
+	private int tripInquiryCode; //여행상품문의코드
+	private String inquiryReason; // 문의내용
+	private String inquiryYn; // 답변여부
+	private String inquiryResponse; // 문의답변
+	
+	
 	List<UserDTO> guideList;
 	List<ReviewImgDTO> reviewImgList;
 	List<TripImageDTO> tripImgList;
@@ -61,7 +69,8 @@ public class TripReviewDTO {
 	public TripReviewDTO(int reviewCode, String reviewTitle, String reviewContent, Date reviewDate, int reviewGrade,
 			int tripApply, int guideReplyCode, int replycode, String replyDetail, Date replyDate,
 			int tripRegistListCode, int registTypeCode, int joinTripcode, Date joinTripDate, String joinTripCancel,
-			String joinTripAttend, String joinTripReason, List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList,
+			String joinTripAttend, String joinTripReason, int tripInquiryCode, String inquiryReason, String inquiryYn,
+			String inquiryResponse, List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList,
 			List<TripImageDTO> tripImgList, List<TripDTO> tripList) {
 		super();
 		this.reviewCode = reviewCode;
@@ -81,14 +90,16 @@ public class TripReviewDTO {
 		this.joinTripCancel = joinTripCancel;
 		this.joinTripAttend = joinTripAttend;
 		this.joinTripReason = joinTripReason;
+		this.tripInquiryCode = tripInquiryCode;
+		this.inquiryReason = inquiryReason;
+		this.inquiryYn = inquiryYn;
+		this.inquiryResponse = inquiryResponse;
 		this.guideList = guideList;
 		this.reviewImgList = reviewImgList;
 		this.tripImgList = tripImgList;
 		this.tripList = tripList;
 	}
 
-	
-	
 
 	public int getReviewCode() {
 		return reviewCode;
@@ -260,6 +271,46 @@ public class TripReviewDTO {
 	}
 
 
+	public int getTripInquiryCode() {
+		return tripInquiryCode;
+	}
+
+
+	public void setTripInquiryCode(int tripInquiryCode) {
+		this.tripInquiryCode = tripInquiryCode;
+	}
+
+
+	public String getInquiryReason() {
+		return inquiryReason;
+	}
+
+
+	public void setInquiryReason(String inquiryReason) {
+		this.inquiryReason = inquiryReason;
+	}
+
+
+	public String getInquiryYn() {
+		return inquiryYn;
+	}
+
+
+	public void setInquiryYn(String inquiryYn) {
+		this.inquiryYn = inquiryYn;
+	}
+
+
+	public String getInquiryResponse() {
+		return inquiryResponse;
+	}
+
+
+	public void setInquiryResponse(String inquiryResponse) {
+		this.inquiryResponse = inquiryResponse;
+	}
+
+
 	public List<UserDTO> getGuideList() {
 		return guideList;
 	}
@@ -308,11 +359,12 @@ public class TripReviewDTO {
 				+ replyDetail + ", replyDate=" + replyDate + ", tripRegistListCode=" + tripRegistListCode
 				+ ", registTypeCode=" + registTypeCode + ", joinTripcode=" + joinTripcode + ", joinTripDate="
 				+ joinTripDate + ", joinTripCancel=" + joinTripCancel + ", joinTripAttend=" + joinTripAttend
-				+ ", joinTripReason=" + joinTripReason + ", guideList=" + guideList + ", reviewImgList=" + reviewImgList
-				+ ", tripImgList=" + tripImgList + ", tripList=" + tripList + "]";
+				+ ", joinTripReason=" + joinTripReason + ", tripInquiryCode=" + tripInquiryCode + ", inquiryReason="
+				+ inquiryReason + ", inquiryYn=" + inquiryYn + ", inquiryResponse=" + inquiryResponse + ", guideList="
+				+ guideList + ", reviewImgList=" + reviewImgList + ", tripImgList=" + tripImgList + ", tripList="
+				+ tripList + "]";
 	}
 	
 
-	
 	
 }

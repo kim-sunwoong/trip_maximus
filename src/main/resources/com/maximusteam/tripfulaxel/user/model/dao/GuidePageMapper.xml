@@ -22,6 +22,9 @@
  	<result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
  	<result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
  	<result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+ 	<result property="tripInquiryCode" column="TRIP_INQUIRY_CODE"/>
+ 	<result property="inquiryReason" column="INQUIRY_REASON"/>
+ 	<result property="inquiryYn" column="INQUIRY_YN"/>
  	
  	
   <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
@@ -160,6 +163,20 @@
           JOIN USER C ON(A.USER_CODE = C.USER_CODE)
            SET A.REGIST_TYPE_CODE = 3
          WHERE C.USER_CODE = #{guideCode}      
-	</update> 	
+	</update> 
+	
+	
+	<!-- 문의관리  -->
+	<select id="selectGuideContact" resultMap="tripReviewResult" parameterType="_int">
+		SELECT  
+		       A.TRIP_INQUIRY_CODE
+             , A.INQUIRY_REASON 
+             , A.INQUIRY_YN 
+	         ,(SELECT USER_NAME FROM USER U WHERE U.USER_CODE = A.USER_CODE) AS APPLYNAME
+        FROM TRIP_INQUIRY A
+        JOIN TRIP_REGIST_LIST B ON(A.TRIP_REGIST_LIST_CODE = B.TRIP_REGIST_LIST_CODE)
+        JOIN USER C ON(B.USER_CODE = C.USER_CODE)
+       WHERE C.USER_CODE = #{guideCode} 
+	</select>
  	
  </mapper>

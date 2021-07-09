@@ -22,4 +22,6 @@ public interface GuidePageMapper {
 
 	int updateStartSell(int guideCode);
 
+	List<TripReviewDTO> selectGuideContact(int guideCode);
+
 }

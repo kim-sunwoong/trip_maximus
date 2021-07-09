@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,6 @@
             <br>
             <div class="tabList">
                 <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내 정보수정</a></div>
                 <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
@@ -49,38 +49,35 @@
         </div>
 
         <div id="detail_content">
-            <div id="detail">
-                <table align="center" style="border-collapse: collapse;">
+            <div id="detail" style="text-align: center;">
+                <table style="border-collapse: collapse;">
                     <thead>
                         <tr>
-                            <th>신청자명</th>
-                            <th>제목</th>
-                            <th>문의날짜</th>
-                            <th>문의 상태</th>
+                            <th>문의자명</th>
+                            <th>문의사유</th>
+                            <th>문의상태</th>
                         </tr>
                     </thead>
-                    <tbody style="margin-top: 20px;">
-                        <tr>
-                            <th>정주영</th>
-                            <th>   밥  먹  어   요?</th>
-                            <th>2021/05/05</th>
-                            <th>미답변</th>
+				<tbody>
+              <c:forEach var="guideContact" items="${ guideContact }" >
+                        <tr onclick="location.href='${ pageContext.servletContext.contextPath }
+                         /user/guidepage/guideContactDetail?tripInquiryCode=${guideContact.tripInquiryCode}'">
+                            <td><c:out value="${ guideContact.guideList[0].applyName }"/></td>
+                            <td><c:out value="${ guideContact.inquiryReason }"/></td>
+                            <td><c:out value="${ guideContact.inquiryYn }"/></td>
                         </tr>
-                        <tr>
-                            <th>박주영</th>
-                            <th>   밥  안  먹  어   요?</th>
-                            <th>2021/06/05</th>
-                            <th>미답변</th>
-                        </tr>
-                    </tbody>
-
+               </c:forEach>
+                   </tbody>
                 </table>
 
             </div>
         </div>
+
     </div>
 	
         <div class="clearbothsite" style="clear:both; width:1px; height: 1px;" ></div>
 	<jsp:include page="../common/footer.jsp"/>
+
+	
 </body>
 </html>

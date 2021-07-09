@@ -24,6 +24,8 @@ public interface GuidePageService {
 	int updateStopSell(int guideCode);
 
 	int updateStartSell(int guideCode);
+
+	List<TripReviewDTO> selectGuideContact(int guideCode);
 	
 		
 

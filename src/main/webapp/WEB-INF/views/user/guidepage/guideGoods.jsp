@@ -47,7 +47,6 @@
             <br>
             <div class="tabList" style="margin: 0 auto;">
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic2" href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내 정보수정</a></div>
                 <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
@@ -103,8 +102,9 @@
 								class="btn btn-outline-info" style="width: 139px;">판매게시</button>
 								</c:if>
 								
-						    	<button type="button" class="btn btn-outline-info" id="btnUpdateGoods"
-						    	onClick="onClickUpdateGoods()">수정하기</button> 
+								 <input type="button" class="btn btn-outline-info" value="수정하기" style="width: 139px; border: 1px solid #17a2b8;"
+		                        onclick="location.href='${ pageContext.servletContext.contextPath }/user/guidepage/updateGuide'">
+								
 					<!-- 	<button type="button" class="btn btn-outline-info">등업요청</button> -->
 								
 								
@@ -131,16 +131,6 @@
 
 		}
 	</script> 
-	
-	<script>
-		function onClickUpdateGoods() {
-			$.ajax({
-			    url: "${ pageContext.servletContext.contextPath }/user/guidepage/UpdateGoods",
-			    type : 'get'
-			}); 
-		}
-	</script>
-								
 							</div>
 						</div>
 					</div>

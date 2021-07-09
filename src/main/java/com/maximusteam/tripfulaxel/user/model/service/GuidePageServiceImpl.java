@@ -85,6 +85,15 @@ public class GuidePageServiceImpl implements GuidePageService {
 		return mapper.updateStartSell(guideCode);
 	}
 
+	/**
+	 * 문의관리 
+	 */
+	@Override
+	public List<TripReviewDTO> selectGuideContact(int guideCode) {
+		
+		return mapper.selectGuideContact(guideCode);
+	}
+
 
 	
 	
