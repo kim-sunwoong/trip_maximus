@@ -20,7 +20,7 @@ public class TripReviewDTO {
 	
 	/* 후기 댓글 */
 	
-	
+	private int guideReplyCode; // 
 	private int replycode; // 후기댓글코드
 	private String replyDetail; // 여행후기댓글
 	private Date replyDate; // 작성일
@@ -49,8 +49,10 @@ public class TripReviewDTO {
 	
 	List<UserDTO> guideList;
 	List<ReviewImgDTO> reviewImgList;
+	List<TripImageDTO> tripImgList;
+	List<TripDTO> tripList;
 	
-
+	
 	public TripReviewDTO() {
 		super();
 		
@@ -58,9 +60,10 @@ public class TripReviewDTO {
 
 
 	public TripReviewDTO(int reviewCode, String reviewTitle, String reviewContent, Date reviewDate, int reviewGrade,
-			int tripApply, int replycode, String replyDetail, Date replyDate, int tripRegistListCode, int joinTripcode,
-			Date joinTripDate, String joinTripCancel, String joinTripAttend, String joinTripReason,
-			List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList) {
+			int tripApply, int guideReplyCode, int replycode, String replyDetail, Date replyDate,
+			int tripRegistListCode, int joinTripcode, Date joinTripDate, String joinTripCancel, String joinTripAttend,
+			String joinTripReason, List<UserDTO> guideList, List<ReviewImgDTO> reviewImgList,
+			List<TripImageDTO> tripImgList, List<TripDTO> tripList) {
 		super();
 		this.reviewCode = reviewCode;
 		this.reviewTitle = reviewTitle;
@@ -68,6 +71,7 @@ public class TripReviewDTO {
 		this.reviewDate = reviewDate;
 		this.reviewGrade = reviewGrade;
 		this.tripApply = tripApply;
+		this.guideReplyCode = guideReplyCode;
 		this.replycode = replycode;
 		this.replyDetail = replyDetail;
 		this.replyDate = replyDate;
@@ -79,10 +83,11 @@ public class TripReviewDTO {
 		this.joinTripReason = joinTripReason;
 		this.guideList = guideList;
 		this.reviewImgList = reviewImgList;
+		this.tripImgList = tripImgList;
+		this.tripList = tripList;
 	}
 
-	
-	
+
 	public int getReviewCode() {
 		return reviewCode;
 	}
@@ -140,6 +145,16 @@ public class TripReviewDTO {
 
 	public void setTripApply(int tripApply) {
 		this.tripApply = tripApply;
+	}
+
+
+	public int getGuideReplyCode() {
+		return guideReplyCode;
+	}
+
+
+	public void setGuideReplyCode(int guideReplyCode) {
+		this.guideReplyCode = guideReplyCode;
 	}
 
 
@@ -253,19 +268,39 @@ public class TripReviewDTO {
 	}
 
 
+	public List<TripImageDTO> getTripImgList() {
+		return tripImgList;
+	}
+
+
+	public void setTripImgList(List<TripImageDTO> tripImgList) {
+		this.tripImgList = tripImgList;
+	}
+
+
+	public List<TripDTO> getTripList() {
+		return tripList;
+	}
+
+
+	public void setTripList(List<TripDTO> tripList) {
+		this.tripList = tripList;
+	}
+
+
 	@Override
 	public String toString() {
 		return "TripReviewDTO [reviewCode=" + reviewCode + ", reviewTitle=" + reviewTitle + ", reviewContent="
 				+ reviewContent + ", reviewDate=" + reviewDate + ", reviewGrade=" + reviewGrade + ", tripApply="
-				+ tripApply + ", replycode=" + replycode + ", replyDetail=" + replyDetail + ", replyDate=" + replyDate
-				+ ", tripRegistListCode=" + tripRegistListCode + ", joinTripcode=" + joinTripcode + ", joinTripDate="
-				+ joinTripDate + ", joinTripCancel=" + joinTripCancel + ", joinTripAttend=" + joinTripAttend
-				+ ", joinTripReason=" + joinTripReason + ", guideList=" + guideList + ", reviewImgList=" + reviewImgList
-				+ "]";
+				+ tripApply + ", guideReplyCode=" + guideReplyCode + ", replycode=" + replycode + ", replyDetail="
+				+ replyDetail + ", replyDate=" + replyDate + ", tripRegistListCode=" + tripRegistListCode
+				+ ", joinTripcode=" + joinTripcode + ", joinTripDate=" + joinTripDate + ", joinTripCancel="
+				+ joinTripCancel + ", joinTripAttend=" + joinTripAttend + ", joinTripReason=" + joinTripReason
+				+ ", guideList=" + guideList + ", reviewImgList=" + reviewImgList + ", tripImgList=" + tripImgList
+				+ ", tripList=" + tripList + "]";
 	}
 
-	
-	
+
 	
 	
 }

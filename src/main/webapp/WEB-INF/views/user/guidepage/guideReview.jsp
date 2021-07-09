@@ -64,7 +64,7 @@
 				</div>
 				<div class="tabb">
 					<a class="pic2"
-						href="${pageContext.request.contextPath}/user/guidepage/guideTab2">내
+						href="${pageContext.request.contextPath}/user/guidepage/updateGuide">내
 						정보수정</a>
 				</div>
 				<div class="tabb">
@@ -83,22 +83,18 @@
 					<a class="pic6"
 						href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a>
 				</div>
-				<div class="tabb">
-					<a class="pic7"
-						href="${pageContext.request.contextPath}/user/guidepage/guideGradeup">등업신청</a>
-				</div>
 			</div>
 		</div>
-		
+
 	 <c:forEach var="GuideReview" items="${ selectGuideReview }"> 
 		<div id="detail_content">
 			<div class="card mb-3" style="width: 90%; margin: 0 auto;">
 			
 				<div class="card-img-top"
-					style="width: 97%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
+					style="width: 100%; margin: 0 auto; display: flex; justify-content: space-between; padding-top: 20px;">
 					
 			    <c:forEach var="img" items="${GuideReview.reviewImgList }"> 
-					<img src="${pageContext.servletContext.contextPath}/resources/user/images/trip/review/${img.reviewsaved}"
+					<img src="${pageContext.servletContext.contextPath}/resources/images/trip/review/${img.reviewsaved}"
 						class="card-img1" alt="" width="32%" height="200px">
 				   </c:forEach> 
 				</div>
@@ -110,45 +106,54 @@
 					<br>
 					<p class="card-text">
 						<!-- 여행후기 -->
-					 <c:out value="${GuideReview.reviewContent }"/> 즐거웠어요
+					 <c:out value="${GuideReview.reviewContent }"/> 
 					</p>
 					<br>
 					<!-- 별점 -->
-					 <c:forEach var="grade" begin="1" end="${GuideReview.reviewGrade }">  
+				   <c:forEach var="grade" begin="1" end="${ GuideReview.reviewGrade }">  
 					<img src="/tripfulaxel/resources/images/common/star.png"
 						style="width: 20px; height: 20px;">
-				 	</c:forEach> 
-
+				 	</c:forEach>
+				 	
 					<p class="card-text">
-						<small class="text-muted">작성자: <%--  <c:out value="${GuideReview.guideList.userName }"/>  --%> </small>
 						  <br>
-						 <small class="text-muted">   <c:out value="${GuideReview.reviewDate } "/>  </small>
+						 <small class="text-muted"> 작성날짜 :  <c:out value="${ GuideReview.reviewDate } "/></small>
+						 <small class="text-muted"> 작성자 :  <c:out value="${ GuideReview.guideList[0].applyName }"/></small>
 					</p>
 				</div>
 				
-				
+				<c:if test="${ !empty GuideReview.replyDetail }">
 				<div class="guide-text">
-					<textarea readonly style="float: right; width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
-					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"> 고마웠습니다.</textarea>
+					<textarea readonly style="width: 100%; height: 100px; margin-top: 50px; margin: 0 auto; background: #80808029; 
+					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"><c:out value="${ GuideReview.replyDetail }"/> </textarea>
 				</div>
+				</c:if>
 				
 			</div>
 			<!-- card mb-3 div 끝  -->
-
-
-			<div class="reviewdepth" style="width: 90%">
-				<textarea name="Message" id="Message"
+			
+	
+			<c:if test="${ empty GuideReview.replyDetail }">
+			<form name="replyGuide" 
+			      action="${pageContext.servletContext.contextPath}/user/guidepage/guideReviewReply"
+			      method="post">
+			 <div class="reviewdepth" style="width: 90%">
+				<textarea name="replyDetail" id="replyDetail"
 					style=" width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
 					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
 					placeholder="답글을 작성해보세요">
                 </textarea>
-
-				<input type="submit" class="buttonset" value="작성하기"
-				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; float: right; margin-top: 10px;">
+                
+                <input type="hidden" name="reviewCode" value="${ GuideReview.reviewCode }">
 			</div>
+				<input type="submit" class="buttonset" value="작성하기"
+				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; margin-top: 10px;">
+		   </form>
+		   </c:if>
+		  
 
 			<p>
-		</div>
+	  	</div>
 	 </c:forEach> 
 		<!-- detail_content div 끝 -->
 

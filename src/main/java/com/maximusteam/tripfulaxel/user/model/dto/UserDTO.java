@@ -14,6 +14,7 @@ public class UserDTO {
 	private String userRegisterDay;
 	private int userReportCount;
 	private String userGuideYN;
+	private String applyName;
 	
 	
 	public UserDTO() {
@@ -23,7 +24,7 @@ public class UserDTO {
 
 
 	public UserDTO(int userCode, String userName, String userPhone, String userPwd, String userBday, String userGender,
-			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN) {
+			String userEmail, String userRegisterDay, int userReportCount, String userGuideYN, String applyName) {
 		super();
 		this.userCode = userCode;
 		this.userName = userName;
@@ -35,12 +36,13 @@ public class UserDTO {
 		this.userRegisterDay = userRegisterDay;
 		this.userReportCount = userReportCount;
 		this.userGuideYN = userGuideYN;
+		this.applyName = applyName;
 	}
 
+	
+	
+	
 
-	
-	
-	
 	public int getUserCode() {
 		return userCode;
 	}
@@ -141,14 +143,23 @@ public class UserDTO {
 	}
 
 
+	public String getApplyName() {
+		return applyName;
+	}
+
+
+	public void setApplyName(String applyName) {
+		this.applyName = applyName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserDTO [userCode=" + userCode + ", userName=" + userName + ", userPhone=" + userPhone + ", userPwd="
 				+ userPwd + ", userBday=" + userBday + ", userGender=" + userGender + ", userEmail=" + userEmail
 				+ ", userRegisterDay=" + userRegisterDay + ", userReportCount=" + userReportCount + ", userGuideYN="
-				+ userGuideYN + "]";
+				+ userGuideYN + ", applyName=" + applyName + "]";
 	}
-
 	
 
 	

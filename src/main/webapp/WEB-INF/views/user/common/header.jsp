@@ -419,7 +419,7 @@ li.header_menu:hover {
    function findEmail(event){
       event.preventDefault()
          
-          var findUserName = $("#findUserName").val();
+           var findUserName = $("#findUserName").val();
             var findUserPhone = $("#findUserPhone").val();
             var findUserBday = $("#findUserBday").val(); 
          
@@ -435,14 +435,12 @@ li.header_menu:hover {
                   
                   if(data.res == 'fail') {
                      //찾지못함.
-                     
                    console.log("값 찾지못함")
                      
                   }  else {
                      //찾음
                      const resData = JSON.parse(data);
-                     
-                         console.log("값 찾음 : " + resData.email);
+                        console.log("값 찾음 : " + resData.email);
                         $(".pop_wrap:visible").hide();
                         document.getElementById("finded_email").value = resData.email;
                         $(".find_id_fin_pop").parent(".pop_wrap").show();
@@ -519,7 +517,6 @@ li.header_menu:hover {
                   }  else {
                 
                      console.log("이메일 전송 완료")
-                     
                      $("html").addClass("pop");
                      $(".pop_wrap:visible").hide();
                      $(".find_password_fin_pop").parent(".pop_wrap").show();
