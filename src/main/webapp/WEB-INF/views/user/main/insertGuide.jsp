@@ -137,7 +137,6 @@
 						
 					</p>
 					
-					
 			    <!-- 신분증 사진 업로드  -->
 				<td>
 				<div class="form-layer">
@@ -212,6 +211,7 @@
 					</div>	
 
 					<div class="form-layer">
+						<span class="form-title" style="display:inline-block">사진첨부</span>
 						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>
