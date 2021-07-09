@@ -30,7 +30,7 @@
 <table id="registTb" class="table table-bordered">
 	<thead></thead>
 	
-	<!-- 1. 가이드 기본 정보   -->
+	<!-- 1. 회원 기본 정보   -->
 		<tbody>
 			<tr class="tr1">
 				<th>

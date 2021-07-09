@@ -30,7 +30,7 @@
 <table id="registTb" class="table table-bordered">
 	<thead></thead>
 	
-	<!-- 1. 가이드 기본 정보   -->
+	<!-- 1. 방장 기본 정보   -->
 		<tbody>
 			<tr class="tr1">
 				<th>
@@ -354,7 +354,7 @@
 	            async : false,
 	            success : function(data) {
 	                if(data.httpStatus == "OK"){
-	                	alert("같이가요 여행 등록이 정상으로 완료되었습니다!\n상단의 같이가요에서 확인할 수 있습니다\n 좋은 여행파트너를 만나시길 바랄게요");
+	                	alert("같이가요 여행 등록이 정상으로 완료되었습니다!\n상단의 같이가요에서 확인할 수 있습니다\n좋은 여행파트너를 만나시길 바랄게요");
 					 	window.location.href = "${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
 
 	                }else if(data.httpStatus == "400"){
