@@ -51,7 +51,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">트리플 악셀</a>
+            <a class="navbar-brand ps-3" href="CustomerMain.html" style="width: 180px;">Tripful axcel</a>
             <!-- Sidebar Toggle-->
             <button
                 class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -89,10 +89,6 @@
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/calculateList">
                                 	가이드 정산 처리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">

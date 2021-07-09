@@ -33,7 +33,7 @@
                 $(document).ready(function(){
                     $("#datatablesSimple").DataTable({
                         "info":false,
-                        dom: '<lf<t>>',
+                        dom: '<lf<t>ip>',
                         "language":{
                             "lengthMenu":'<select>'+
                                 '<option value="10">10</option>'+
@@ -89,10 +89,6 @@
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/calculateList">
                                 	가이드 정산 처리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/taxList">
-                                	세금계산서 발행
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <a class="nav-link collapsed" href="${ pageContext.servletContext.contextPath }/admin/answerList">

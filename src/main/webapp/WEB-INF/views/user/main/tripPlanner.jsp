@@ -26,18 +26,19 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
 
-<div id="container" style="width:80%; height:800px; margin:auto;" >
+<div id="container" style="width:80%; height:1000px; margin:auto;" >
 
-<!-- 	<h1 style="font-size: 30px; color: skyblue; margin-top:50px" align="center"> 어떤 여행을 플랜하겠어요? </h1>
- -->	
- 	<div id="arrows" style="width:100%; height:200px;">
- 		
+ 	<div id="arrows" style="width:100%; height:300px;">
+ 			<img src="${pageContext.servletContext.contextPath}/resources/images/common/arrow.png" class="rounded float-start">
  	</div>
 	<div id="images" style="width:100%; height:1000px;" align="center">
+			<a href="${pageContext.servletContext.contextPath}/user/tripAlone/" target="_blank">
+				<img src="${pageContext.servletContext.contextPath}/resources/images/common/selfTrip2.jpg" class="rounded float-start">
+			</a>
 			
-			<img src="${pageContext.servletContext.contextPath}/resources/images/common/selfTrip2.jpg" class="rounded float-start">
-			
-			<img src="${pageContext.servletContext.contextPath}/resources/images/common/friendsTrip2.jpg" class="rounded float-end" alt="...">
+			<a href="${pageContext.servletContext.contextPath}/user/tripTogetger/" target="_blank">
+			<img src="${pageContext.servletContext.contextPath}/resources/images/common/friendsTrip2.png" class="rounded float-end" alt="...">
+			</a>
 		</div>
 
 	</div>

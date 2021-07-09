@@ -22,7 +22,6 @@ import com.maximusteam.tripfulaxel.testGuide;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
-//import com.maximusteam.tripfulaxel.guide.model.dto.GuideRegistFormDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideTripDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripDTO;
@@ -30,15 +29,15 @@ import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripRegistListDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripThemeChoiceDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO;
-import com.maximusteam.tripfulaxel.guide.model.service.GuideService;
+import com.maximusteam.tripfulaxel.guide.model.service.GuideTripService;
 
 @RestController
 public class userGuideController {
 
 	@Inject
-	private final GuideService guideService;
+	private final GuideTripService guideService;
 	
-	public userGuideController(GuideService guideService) {
+	public userGuideController(GuideTripService guideService) {
 		this.guideService = guideService;
 	}
 	
