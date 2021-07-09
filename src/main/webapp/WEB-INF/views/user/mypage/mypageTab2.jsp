@@ -29,6 +29,8 @@
     
     
     #multiple-container {
+    width : 310px;
+    height:80px;
     display: flex;
     flex-flow: row nowrap;
 }
@@ -215,8 +217,8 @@ function cancel(){
         <div class="thumblist" style="width: 45%; height: 70px; display: flex; margin-top: 10px; float: left; justify-content: space-between;">
         
         <div class="thumbview"  style="width: 320px; height: 120px; float: left">
-        <input style="display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple="multiple" name="multiFiles">
-		<div id="multiple-container">
+        <input style="display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple="multiple" name="multiFiles" >
+		<!-- <div id="multiple-container"> -->
 		</div>
         </div>
         
@@ -297,7 +299,11 @@ function cancel(){
 			}
 			
 		</script> -->
-		<script>
+		<!-- <script>
+			
+			
+		
+		
 		function readMultipleImage(input) {
     const multipleContainer = document.getElementById("multiple-container");
     
@@ -309,43 +315,48 @@ function cancel(){
         const fileArr = Array.from(input.files);
         const $colDiv1 = document.createElement("div");
         const $colDiv2 = document.createElement("div");
-        $colDiv1.classList.add("column")
-        $colDiv2.classList.add("column")
+        const $colDiv3 = document.createElement("div");
+        $colDiv1.classList.add("column");
+        $colDiv2.classList.add("column");
+        $colDiv3.classList.add("column");
         fileArr.forEach((file, index) => {
-            const reader = new FileReader()
-            const $imgDiv = document.createElement("div")   
-            const $img = document.createElement("img")
-            $img.classList.add("image")
-            const $label = document.createElement("label")
-            $label.classList.add("image-label")
-            $label.textContent = file.name
-            $imgDiv.appendChild($img)
-            $imgDiv.appendChild($label)
+            const reader = new FileReader();
+            const $imgDiv = document.createElement("div")  ; 
+            const $img = document.createElement("img");
+            $img.classList.add("image");
+            const $label = document.createElement("label");
+            $label.classList.add("image-label");
+            $label.textContent = file.name;
+            $imgDiv.appendChild($img);
+            $imgDiv.appendChild($label);
             reader.onload = e => {
                 $img.src = e.target.result;
                 
-                $imgDiv.style.width = ($img.naturalWidth) * 0.5 + "px";
-                $imgDiv.style.height = ($img.naturalHeight) * 0.5 + "px";
+                $imgDiv.style.width = /* ($img.naturalWidth) * 0.5 */ 100 + "px";
+                $imgDiv.style.height = /* ($img.naturalHeight) * 0.5 */ 80 + "px";
             }
             
             console.log(file.name)
-            if(index % 2 == 0) {
-                $colDiv1.appendChild($imgDiv)
+            if(index % 3 == 0) {
+                $colDiv1.appendChild($imgDiv);
+            } else if {
+                $colDiv2.appendChild($imgDiv);
             } else {
-                $colDiv2.appendChild($imgDiv)
+            	$colDiv3.appendChild($imgDiv);
             }
             
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
         })
-        multipleContainer.appendChild($colDiv1)
-        multipleContainer.appendChild($colDiv2)
+        multipleContainer.appendChild($colDiv1);
+        multipleContainer.appendChild($colDiv2);
+        multipleContainer.appendChild($colDiv3);
     }
-}
-const inputMultipleImage = document.getElementById("input-multiple-image");
-inputMultipleImage.addEventListener("change", e => {
-    readMultipleImage(e.target);
-})
-</script>
+		const inputMultipleImage = document.getElementById("input-multiple-image");
+		inputMultipleImage.addEventListener("change", e => {
+		    readMultipleImage(e.target);
+		})
+}}
+</script> -->
     
 </body>
 </html>

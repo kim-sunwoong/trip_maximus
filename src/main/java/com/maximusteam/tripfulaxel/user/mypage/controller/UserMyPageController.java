@@ -373,13 +373,13 @@ public class UserMyPageController {
 			map.put("review", review);
 			map.put("id", id);
 			
-			int result = userMypageService.insertReview(map);
-			
-			if(result>0) {
-				
-			} else {
-				
-			}
+//			int result = userMypageService.insertReview(map);
+//			
+//			if(result>0) {
+//				
+//			} else {
+//				
+//			}
 			
 			try {
 			for(int i = 0; i<multiFiles.size(); i++) {
