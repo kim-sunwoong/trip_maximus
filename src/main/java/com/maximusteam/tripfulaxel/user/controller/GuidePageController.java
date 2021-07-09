@@ -46,8 +46,9 @@ public class GuidePageController {
 		System.out.println("로그인한 사람의 코드 :  " + guideCode);
 
 		List<TripReviewDTO> myGoods = guidePageService.selectMyGoods(guideCode);
+		
 		System.out.println("내 여행상품 : " + myGoods);
-		model.addAttribute("myGoods", myGoods);
+		model.addAttribute("myGoods", myGoods.get(0));
 
 		int goodsCount = guidePageService.selectCount(guideCode);
 		System.out.println("내 총 리뷰수 : " + goodsCount);
@@ -140,10 +141,11 @@ public class GuidePageController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("updateSell")
+	@GetMapping("UpdateGoods")
 	public String select2(Model model) {
 		System.out.println("내정보수정");
-		return "redirect:/updateGuide";
+		
+		return "user/guidepage/updateGuide";
 	}
 	
 	

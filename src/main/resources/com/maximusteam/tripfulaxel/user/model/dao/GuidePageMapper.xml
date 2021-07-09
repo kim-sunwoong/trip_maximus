@@ -6,22 +6,22 @@
  <mapper namespace="com.maximusteam.tripfulaxel.user.model.dao.GuidePageMapper">
  
     <resultMap type="TripReviewDTO" id="tripReviewResult">
-	    <result property="reviewCode" column="TRIP_REVIEW_CODE"/>
-	    <result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
-	    <result property="reviewDate" column="TRIP_REVIEW_DATE"/>
-	    <result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
-	    <result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
-	    <result property="tripApply" column="TRIP_REVIEW_CODE"/>
-	    <result property="replycode" column="TRIP_REPLY_CODE"/>
-	    <result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
-	    <result property="replyDate" column="TRIP_REPLY_DATE"/>
-	    <result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
-	    <result property="registTypeCode" column="REGIST_TYPE_CODE"/>
-	    <result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
-	    <result property="joinTripDate" column="JOIN_TRIP_DATE"/>
-	    <result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
-	    <result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
-	    <result property="joinTripReason" column="JOIN_TRIP_REASON"/>
+    <result property="reviewCode" column="TRIP_REVIEW_CODE"/>
+    <result property="reviewContent" column="TRIP_REVIEW_CONTENT"/>
+    <result property="reviewDate" column="TRIP_REVIEW_DATE"/>
+    <result property="reviewGrade" column="TRIP_REVIEW_GRADE"/>
+    <result property="reviewTitle" column="TRIP_REVIEW_TITLE"/>
+    <result property="tripApply" column="TRIP_REVIEW_CODE"/>
+    <result property="replycode" column="TRIP_REPLY_CODE"/>
+    <result property="replyDetail" column="TRIP_REPLY_DETAIL"/>
+    <result property="replyDate" column="TRIP_REPLY_DATE"/>
+    <result property="tripRegistListCode" column="TRIP_REGIST_LIST_CODE"/>
+    <result property="registTypeCode" column="REGIST_TYPE_CODE"/>
+    <result property="joinTripcode" column="JOIN_TRIP_APPLY_CODE"/>
+    <result property="joinTripDate" column="JOIN_TRIP_DATE"/>
+    <result property="joinTripCancel" column="JOIN_TRIP_CANCEL_YN"/>
+    <result property="joinTripAttend" column="JOIN_TRIP_ATTEND_YN"/>
+    <result property="joinTripReason" column="JOIN_TRIP_REASON"/>
     
     
   <collection property="guideList" ofType="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
