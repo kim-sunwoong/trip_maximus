@@ -239,7 +239,7 @@ main footer a{
 <script>
 window.onload = function connect() {
  		var userCode = ${sessionScope.loginUser.userCode};
-	    var socket = new SockJS('http://localhost:8090/tripfulaxel/chat');
+	    var socket = new SockJS('http://localhost:8880/tripfulaxel/chat');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function () {
 	        stompClient.subscribe('/topic/group/${room.roomCode}', function (e) {

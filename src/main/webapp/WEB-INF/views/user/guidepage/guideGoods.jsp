@@ -130,8 +130,16 @@
 			isClickStopSell = !isClickStopSell;
 
 		}
-		
 	</script> 
+	
+	<script>
+		function onClickUpdateGoods() {
+			$.ajax({
+			    url: "${ pageContext.servletContext.contextPath }/user/guidepage/UpdateGoods",
+			    type : 'get'
+			}); 
+		}
+	</script>
 								
 							</div>
 						</div>

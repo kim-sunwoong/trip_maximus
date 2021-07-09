@@ -141,10 +141,11 @@ public class GuidePageController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("updateSell")
+	@GetMapping("UpdateGoods")
 	public String select2(Model model) {
 		System.out.println("내정보수정");
-		return "redirect:/updateGuide";
+		
+		return "user/guidepage/updateGuide";
 	}
 	
 	
