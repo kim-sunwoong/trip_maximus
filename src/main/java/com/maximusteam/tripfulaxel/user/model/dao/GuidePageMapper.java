@@ -7,6 +7,7 @@ import com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO;
 
 public interface GuidePageMapper {
 
+	
 	List<TripReviewDTO> selectGuideReview(int guideCode);
 
 	int insertReply(TripReviewDTO tripreview);
