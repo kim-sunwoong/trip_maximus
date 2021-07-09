@@ -97,7 +97,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                               		 가이드  정보 수정
+                               		 가이드  정보 수정 상세정보
                             </div>
 
                             <div class="card-body">
