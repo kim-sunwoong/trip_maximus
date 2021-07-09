@@ -21,66 +21,9 @@
  	}
 </style>
 
-<!-- <script>
- 참고할 사항
-    function to_ajax(){
-  
- 
-        var queryString = $("form[name=testForm]").serialize() ;
- 
-        $.ajax({
-            type : 'post',
-            url : '/test.jsp',
-            data : queryString,
-            dataType : 'json',
-            error: function(xhr, status, error){
-                alert(error);
-            },
-            success : function(json){
-                alert(json)
-            }
-        });
-  
-    }
- </script>
- 
- <form id="form2" name="form2" method="post" enctype="multipart/form-data">
-    <input type="file" id="files" name="files" multiple/>
-    <input type="button" value="확인" onclick="test2(); return false;">
-</form>
- 
-<script>
-    function test2(){
-        var form = $("form")[0];        
-        var formData = new FormData(form);
-
-        $.ajax({
-            cache : false,
-            url : "${pageContext.request.contextPath}/testForm2", // 요기에
-            processData: false,
-            contentType: false,
-            type : 'POST', 
-            data : formData, 
-            success : function(data) {
-                var jsonObj = JSON.parse(data);
-            }, // success 
-    
-            error : function(xhr, status) {
-                alert(xhr + " : " + status);
-            }
-        }); // $.ajax */    }
- 
-</script> -->
 <body>
-<!-- <script>
-	const loginMember = '${ requestScope.loginMember }';
-	if(loginMember != null && loginMember !== '') {
-		alert(loginMember);
-	}
-</script> -->
 
 <jsp:include page="../common/header.jsp"></jsp:include>
-
 
 <form id="insertGuideForm" name="insertGuideForm" method="post" enctype="multipart/form-data">
 
@@ -194,7 +137,6 @@
 						
 					</p>
 					
-					
 			    <!-- 신분증 사진 업로드  -->
 				<td>
 				<div class="form-layer">
@@ -269,6 +211,7 @@
 					</div>	
 
 					<div class="form-layer">
+						<span class="form-title" style="display:inline-block">사진첨부</span>
 						<input type="file"  name="imageTrip" onchange="selectedImage(this)" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8" multiple="multiple"> 
                   		<p class="description" style="margin-bottom: 3px;">*다중 선택 가능합니다.</p>
 					</div>

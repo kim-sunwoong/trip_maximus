@@ -68,7 +68,7 @@
 		<result column="GUIDE_EXP_YN" property="guideExp" />
 		<result column="GUIDE_CAR_YN" property="guideCar" />
 		<result column="GUIDE_INTRO" property="guideIntro" />
-		<result column="EXAMINE_REQUEST_REASON" property="guideTravel"/>
+		<result column="TRIP_INTRO" property="guideTravel"/>
 		<result column="EXAMINE_REQUEST_CODE" property="requestCode"/>
 		<result column="GUIDE_CODE" property="guideCode"/>
 		<result column="USER_CODE" property="userCode"/>
@@ -580,7 +580,7 @@
 	         , A.GUIDE_EXP_YN
 	         , A.GUIDE_CAR_YN
 	         , A.GUIDE_INTRO
-	         , C.EXAMINE_REQUEST_REASON 
+	         , H.TRIP_INTRO 
 	         , C.EXAMINE_REQUEST_CODE 
 	         , A.GUIDE_CODE
 	         , B.USER_CODE
@@ -588,6 +588,10 @@
 	      JOIN GUIDE A ON (A.USER_CODE = B.USER_CODE)
 	      JOIN EXAMINE C ON (B.USER_CODE = C.EXAMINE_REQUEST_FROM)
 	      JOIN EXAMINE_TYPE D ON (C.TYPE_CODE = D.EXAMINE_TYPE_CODE)
+	      JOIN TRIP_REGIST_LIST E ON (B.USER_CODE = E.USER_CODE)
+	      JOIN TRIP F ON (E.TRIP_CODE = F.TRIP_CODE)
+	      JOIN GUIDE_TRIP G ON (F.TRIP_CODE = G.TRIP_CODE)
+	      JOIN TRIP H ON (G.TRIP_CODE = H.TRIP_CODE)
 	     WHERE B.USER_CODE = #{ no }
            AND C.TYPE_CODE = 4; 
 	</select>

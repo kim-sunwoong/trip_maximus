@@ -143,7 +143,7 @@ function tripJoin() {
 					<div class="offer_main_slider">
 						<c:forEach var="tripImg" items="${trip[0].tripImgList }">
  							<div class="topimg">
-	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${tripImg.saveName}">
+	 							<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${tripImg.saveName}">
 	 						</div>
  						</c:forEach>
 					</div>
@@ -171,16 +171,13 @@ function tripJoin() {
 					<div class="clearfix2 offer_tm_profile">
 						<div class="profile_details clearfix">
 							<div class="pfImg floatL">
-								<img src="/tripfulaxel/resources/images/trip/guide1.png">
+								<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${trip[0].joinTripImg}">
 							</div>
 							<div class="tm_info floatL" style="font-size: 18px;">
 								<h3 class="nick"></h3>
-								<p class="grade txt_md">서울</p>
+								<p class="grade txt_md"></p>
 
-								<p style="width: 100%;" class="grade txt_md">오랜만에 떠나는 여행 즐거운 추억 남겨보아요~~~!!</p>
-								<p class="txt_md">
-									<i class="grade_ico" style="font-size: 16px"></i>평점 5.0
-								</p>
+								<p style="width: 100%;" class="grade txt_md"><c:out value="${trip[0].joinTripInfo} "></c:out></p>
 							</div>
 						</div>
 					</div>
@@ -240,7 +237,7 @@ function tripJoin() {
 								<c:forEach var="course" items="${ trip[0].tripCourseList}" varStatus="status">
  									<dl class="clearfix new_box_shadow">
 	 									<dt class="floatL" style="width:200px; height:220px;">
-	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/jointrip/${course.image}">
+	 										<img src="${pageContext.servletContext.contextPath}/resources/images/trip/guidetrip/${course.image}">
 	 									</dt>
 	 									<dd class="floatL">
 	 										<h5 class="txt_md" style="word-break: break-all;">
@@ -513,7 +510,8 @@ function tripJoin() {
 							<span class=" txtC" style="font-size: 16px;">즐거운 추억 만들어
 								보아요!</span>
 						</div>
-								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
+								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/><br>
+								1인당 예상 가격 : <c:out value="${trip[0].joinTripPrice }"/>
 							
 						<div class="offerPrice">
 							<div class="clearfix2 msgCont">
@@ -535,7 +533,7 @@ function tripJoin() {
 					<div class="msgCont">
 						<div class="clearfix">
 							<div class="msgImg floatL">
-								<img src="/tripfulaxel/resources/images/trip/guide1.png">
+								<img src="${pageContext.servletContext.contextPath}/resources/images/guide/${trip[0].joinTripImg}">
 							</div>
 							<div class="floatL txt_bold">
 								To.<br>

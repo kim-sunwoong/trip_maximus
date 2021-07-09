@@ -97,7 +97,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                               		 가이드 가입
+                               		 가이드 등록 승인 상세정보
                             </div>
 
                             <div class="card-body">

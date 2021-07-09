@@ -69,6 +69,9 @@
 		<!-- join trip 부분 -->		
 		<result property="joinTripMaximum" column="J_TRIP_MAXIMIM"/>
 		<result property="joinTripCode" column="J_TRIP_CODE"/>
+		<result property="joinTripPrice" column="J_TRIP_PRICE"/>
+		<result property="joinTripInfo" column="J_TRIP_INFO"/>
+		<result property="joinTripImg" column="J_TRIP_HOST_SAVED_IMAGE_NAME"/>
 		
 		<!-- guide trip 부분 -->
 		<result property="guideTripCode" column="G_TRIP_CODE"/>
@@ -81,6 +84,7 @@
 		<result property="userTripComentTitle" column="U_TRIP_COMENT_TITLE"/>
 		<result property="userTripComent" column="U_TRIP_COMENT_INFO"/>
 		<result property="userTripComentPoint" column="U_TRIP_COMENT_POINT"/>
+		<result property="userTripPrice" column="U_TRIP_PRICE"/>
 		
 		<!-- course -->
 		<collection property="tripCourseList" ofType="com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO">
@@ -156,6 +160,9 @@
 			 <when test='condition.tripType == 2'>
 				   J_TRIP_CODE,
 				   J_TRIP_MAXIMIM,
+				   J_TRIP_PRICE,
+				   J_TRIP_INFO,
+				   J_TRIP_HOST_SAVED_IMAGE_NAME,
 				   ti.TRIP_IMAGE_CODE
 			  FROM JOIN_TRIP jt 
 			  JOIN TRIP t ON (jt.TRIP_CODE = t.TRIP_CODE)
@@ -178,6 +185,7 @@
 				   U_TRIP_COMENT_TITLE,
 				   U_TRIP_COMENT_INFO,
 				   U_TRIP_COMENT_POINT,
+				   U_TRIP_PRICE,
 				   ti.TRIP_IMAGE_CODE
 			  FROM USER_TRIP ut 
 			  JOIN TRIP t ON (ut.TRIP_CODE = t.TRIP_CODE)

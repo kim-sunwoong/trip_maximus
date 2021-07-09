@@ -98,7 +98,7 @@
 
                             <div class="card-header" style="font-size: x-large;">
                                 <i class="fas fa-table me-1"></i>
-                                	문의내역 상세보기
+                                	문의내역 상세정보
                             </div>
 
                             <div class="row" style="margin-top: 20px;margin-left: 10px;">
