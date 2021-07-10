@@ -20,8 +20,11 @@ public class SampleController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "ThisIsAPIOPERATIONVALUE", tags = "ThisIsTags")
     public ResponseEntity sample(@RequestParam String param) {
+    	
     	Map<String, String> testMap = new HashMap<>();
     	testMap.put("James", param);
-        return ResponseEntity.ok(testMap);
+        
+    	return ResponseEntity.ok(testMap);
+        
     }
 }
