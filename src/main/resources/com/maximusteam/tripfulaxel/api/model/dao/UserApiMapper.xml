@@ -4,5 +4,22 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maximusteam.tripfulaxel.api.model.dao.UserApiMapper">
 
+	<resultMap id="UserApiDTO" type="UserApiDTO" >
+		<result column="USER_CODE" property="userCode" />
+	    <result column="USER_NAME" property="userName" />
+	    <result column="USER_PHONE" property="userPhone" />
+	    <result column="USER_PWD" property="userPwd" />
+	    <result column="USER_BDAY" property="userBday" />
+	    <result column="USER_GENDER" property="userGender" />
+	    <result column="USER_EMAIL" property="userEmail" />
+	    <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+	    <result column="USER_REPORT_COUNT" property="userReportCount" />
+	    <result column="USER_GUIDE_YN" property="userGuideYN" />
+	</resultMap>
 
+	<select id="getUsers" resultMap="UserApiDTO">
+		SELECT
+			   *
+		  FROM USER
+	</select>
 </mapper>

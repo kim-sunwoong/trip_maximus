@@ -21,8 +21,8 @@ public class UserApiServiceImpl implements UserApiService {
 	
 	@Override
 	public List<UserApiDTO> getUsers() {
-		List<UserApiDTO> user = userApiMapper.getUsers();
-		return null;
+		List<UserApiDTO> userList = userApiMapper.getUsers();
+		return userList;
 	}
 
 	@Override

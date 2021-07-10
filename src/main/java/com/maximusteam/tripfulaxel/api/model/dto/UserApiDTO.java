@@ -2,15 +2,20 @@ package com.maximusteam.tripfulaxel.api.model.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserApiDTO {
 
 	private int userCode;
 	private String userName;
 	private String userPhone;
+	@JsonIgnore
 	private String userPwd;
 	private String userBday;
 	private String userGender;
 	private String userEmail;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date userRegisterDay;
 	private int userReportCount;
 	private String userGuideYN;

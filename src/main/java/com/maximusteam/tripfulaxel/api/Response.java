@@ -6,21 +6,24 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class Response {
 
-	@ApiModelProperty(example = "싱태코드")
+	@ApiModelProperty(example = "상태코드")
 	private int status;
 	
 	@ApiModelProperty(example = "메세지")
 	private String message;
 	
+	@ApiModelProperty(example = "시간")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime timestamp;
+	
 	@ApiModelProperty(example = "응답데이터")
 	private Map<String, Object> data;
-	
-	@ApiModelProperty(example = "시간")
-	private LocalDateTime timestamp;
 	
 	public Response() {
 		this(HttpStatus.OK);
@@ -29,8 +32,8 @@ public class Response {
 	public Response(HttpStatus httpStatus) {
 		this.status = httpStatus.value();
 		this.message = httpStatus.getReasonPhrase();
-		this.data = new HashMap<>();
 		this.timestamp = LocalDateTime.now();
+		this.data = new HashMap<>();
 	}
 	
 	public int getStatus() {
@@ -49,6 +52,14 @@ public class Response {
 		this.message = message;
 	}
 
+	public LocalDateTime getTimestamp() {
+		return timestamp;
+	}
+	
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
+	}
+	
 	public Map<String, Object> getData() {
 		return data;
 	}
@@ -57,17 +68,10 @@ public class Response {
 		this.data = data;
 	}
 
-	public LocalDateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(LocalDateTime timestamp) {
-		this.timestamp = timestamp;
-	}
 
 	@Override
 	public String toString() {
-		return "Response [status=" + status + ", message=" + message + ", data=" + data + ", timestamp=" + timestamp
+		return "Response [status=" + status + ", message=" + message + ", timestamp=" + timestamp + ", data=" + data
 				+ "]";
 	}
 
