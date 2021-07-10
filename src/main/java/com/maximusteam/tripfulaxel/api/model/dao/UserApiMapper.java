@@ -12,5 +12,9 @@ public interface UserApiMapper {
 	UserApiDTO getUser(int id);
 
 	int registUser(NewUserApiDTO userDTO);
+	
+	int removeUser(int id);
+	
+	int modifyUser(UserApiDTO userDTO);
 
 }

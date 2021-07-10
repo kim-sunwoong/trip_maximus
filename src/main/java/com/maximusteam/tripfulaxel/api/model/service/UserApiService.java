@@ -13,8 +13,8 @@ public interface UserApiService {
 
 	UserApiDTO registUser(NewUserApiDTO userDTO);
 
-	void modifyUser(UserApiDTO userDTO);
+	UserApiDTO modifyUser(UserApiDTO userDTO);
 
-	void removeUser(int id);
+	UserApiDTO removeUser(int id);
 
 }

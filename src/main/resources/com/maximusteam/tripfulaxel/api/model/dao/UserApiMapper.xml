@@ -57,4 +57,23 @@
 	          , NOW()
 	        )
 	</insert>
+	
+	<delete id="removeUser" parameterType="int">
+		DELETE FROM USER
+		 WHERE USER_CODE = #{id}
+	</delete>
+	
+	<update id="modifyUser" parameterType="UserApiDTO">
+		UPDATE USER
+		   SET USER_NAME = #{userName}
+			 , USER_PHONE = #{userPhone}
+			 , USER_BDAY = #{userBday}
+			 , USER_GENDER = #{userGender}
+			 , USER_EMAIL = #{userEmail}
+			 , USER_REGISTER_DAY = #{userRegisterDay}
+			 , USER_REPORT_COUNT = #{userReportCount}
+			 , USER_GUIDE_YN = #{userGuideYN}
+		 WHERE USER_CODE =#{userCode}
+	</update>
+	
 </mapper>

@@ -43,13 +43,31 @@ public class UserApiServiceImpl implements UserApiService {
 	}
 
 	@Override
-	public void modifyUser(UserApiDTO userDTO) {
+	public UserApiDTO modifyUser(UserApiDTO userDTO) {
 		
+		UserApiDTO user = userApiMapper.getUser(userDTO.getUserCode());
+
+		if(user != null) {
+			int result = userApiMapper.modifyUser(userDTO);
+			if(result > 0 ) {
+				return user;
+			}
+		}
+		return null;
 	}
 
 	@Override
-	public void removeUser(int id) {
+	public UserApiDTO removeUser(int id) {
 		
+		UserApiDTO userDTO = userApiMapper.getUser(id);
+
+		if(userDTO != null) {
+			int result = userApiMapper.removeUser(id);
+			if(result > 0 ) {
+				return userDTO;
+			}
+		}
+		return null;
 	}
 
 }
