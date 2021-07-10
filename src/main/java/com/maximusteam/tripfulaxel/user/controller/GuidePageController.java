@@ -54,9 +54,15 @@ public class GuidePageController {
 		System.out.println("내 총 리뷰수 : " + goodsCount);
 		model.addAttribute("goodsCount", goodsCount);
 
-		int reviewStar = guidePageService.selectStar(guideCode);
-		System.out.println("내 평균별점 : " + reviewStar);
-		model.addAttribute("reviewStar", reviewStar);
+		try {
+			int reviewStar = guidePageService.selectStar(guideCode);
+			System.out.println("내 평균별점 : " + reviewStar);
+			model.addAttribute("reviewStar", reviewStar);
+		}catch(Exception E) {
+			model.addAttribute("reviewStar", 0);
+		}
+		
+		
 
 		return "user/guidepage/guideGoods";
 	}
