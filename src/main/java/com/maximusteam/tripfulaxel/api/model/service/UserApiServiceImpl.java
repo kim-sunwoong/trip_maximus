@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.maximusteam.tripfulaxel.api.model.dao.UserApiMapper;
+import com.maximusteam.tripfulaxel.api.model.dto.NewUserApiDTO;
 import com.maximusteam.tripfulaxel.api.model.dto.UserApiDTO;
 
 @Service
@@ -27,12 +28,18 @@ public class UserApiServiceImpl implements UserApiService {
 
 	@Override
 	public UserApiDTO getUser(int id) {
-		return null;
+		UserApiDTO user = userApiMapper.getUser(id);
+		return user;
 	}
 
 	@Override
-	public void registUser(UserApiDTO userDTO) {
+	public UserApiDTO registUser(NewUserApiDTO userDTO) {
+		int result = userApiMapper.registUser(userDTO);
 		
+		if(result > 0 ) {
+			return userApiMapper.getUser(userDTO.getUserCode());
+		}
+		return null;
 	}
 
 	@Override

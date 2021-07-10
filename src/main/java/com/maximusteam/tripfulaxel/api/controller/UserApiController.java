@@ -2,6 +2,7 @@ package com.maximusteam.tripfulaxel.api.controller;
 
 import javax.inject.Inject;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.api.Response;
+import com.maximusteam.tripfulaxel.api.model.dto.NewUserApiDTO;
 import com.maximusteam.tripfulaxel.api.model.dto.UserApiDTO;
 import com.maximusteam.tripfulaxel.api.model.service.UserApiService;
 
@@ -22,11 +24,13 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api")
 public class UserApiController {
 
-	@Inject
 	private final UserApiService userApiService;
-	
-	public UserApiController(UserApiService userApiService) {
+	private final BCryptPasswordEncoder passwordEncoder;
+
+	@Inject
+	public UserApiController(UserApiService userApiService, BCryptPasswordEncoder passwordEncoder) {
 		this.userApiService = userApiService;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	@GetMapping("/users")
@@ -50,10 +54,12 @@ public class UserApiController {
 	
 	@PostMapping("/users")
 	@ApiOperation(value = "유저등록", notes="유저를 등록한다")
-	public Response registUser(@RequestBody UserApiDTO userDTO) {
+	public Response registUser(@RequestBody NewUserApiDTO userDTO) {
 		Response response = new Response();
 		
-		userApiService.registUser(userDTO);
+		userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+		
+		response.add("new user", userApiService.registUser(userDTO));
 		
 		return response;
 	}

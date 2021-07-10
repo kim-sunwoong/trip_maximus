@@ -29,6 +29,7 @@
   		<typeAlias alias="UserTripAloneDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO"/>	
   		<typeAlias alias="UserTripTogetherDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripTogetherDTO"/>	
   		<typeAlias alias="UserApiDTO" type="com.maximusteam.tripfulaxel.api.model.dto.UserApiDTO"/>	
+  		<typeAlias alias="NewUserApiDTO" type="com.maximusteam.tripfulaxel.api.model.dto.NewUserApiDTO"/>	
   	</typeAliases>
   	
  	

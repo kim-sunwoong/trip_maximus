@@ -2,6 +2,7 @@ package com.maximusteam.tripfulaxel.api.model.service;
 
 import java.util.List;
 
+import com.maximusteam.tripfulaxel.api.model.dto.NewUserApiDTO;
 import com.maximusteam.tripfulaxel.api.model.dto.UserApiDTO;
 
 public interface UserApiService {
@@ -10,7 +11,7 @@ public interface UserApiService {
 
 	UserApiDTO getUser(int id);
 
-	void registUser(UserApiDTO userDTO);
+	UserApiDTO registUser(NewUserApiDTO userDTO);
 
 	void modifyUser(UserApiDTO userDTO);
 

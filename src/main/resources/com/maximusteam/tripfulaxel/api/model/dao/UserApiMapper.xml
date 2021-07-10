@@ -22,4 +22,39 @@
 			   *
 		  FROM USER
 	</select>
+	
+	<select id="getUser" parameterType="int" resultMap="UserApiDTO">
+		SELECT
+			   *
+		  FROM USER
+		 WHERE USER_CODE = #{id}
+	</select>
+	
+	<insert id="registUser" parameterType="NewUserApiDTO">
+		<selectKey resultType="int"  keyProperty="userCode" order="AFTER">
+		 	SELECT MAX(USER_CODE) FROM USER
+		</selectKey>
+			INSERT INTO USER 
+			(
+				 USER_CODE
+			   , USER_NAME
+			   , USER_PHONE
+			   , USER_PWD
+			   , USER_BDAY
+			   , USER_GENDER
+			   , USER_EMAIL
+			   , USER_REGISTER_DAY
+			)
+	        VALUES
+	        (
+	            (SELECT IFNULL(MAX(b.USER_CODE) + 1, 1) FROM USER b)
+	          , #{ Name }
+	          , #{ Phone }
+	          , #{ Password }
+	          , #{ Birthday }
+	          , #{ Gender }
+	          , #{ Email }
+	          , NOW()
+	        )
+	</insert>
 </mapper>
