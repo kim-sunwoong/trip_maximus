@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <link rel="stylesheet"
 	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
 <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
@@ -63,20 +66,12 @@
 						여행상품</a>
 				</div>
 				<div class="tabb">
-					<a class="pic3"
-						href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a>
-				</div>
-				<div class="tabb">
 					<a class="pic4"
 						href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a>
 				</div>
 				<div class="tabb" style="border: 3px solid skyblue;">
 					<a class="pic5"
 						href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a>
-				</div>
-				<div class="tabb">
-					<a class="pic6"
-						href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a>
 				</div>
 			</div>
 		</div>
@@ -131,18 +126,18 @@
 			<c:if test="${ empty GuideReview.replyDetail }">
 			<form name="replyGuide" 
 			      action="${pageContext.servletContext.contextPath}/user/guidepage/guideReviewReply"
-			      method="post">
+			      method="post"
+			      style="margin-left: 70px;">
 			 <div class="reviewdepth" style="width: 90%">
 				<textarea name="replyDetail" id="replyDetail"
 					style=" width: 90%; height: 100px; margin-top: 50px; margin: 0 auto; 
 					border: 1px solid rgba(0, 0, 0, 0.3); margin-top: 10px;"
-					placeholder="답글을 작성해보세요">
-                </textarea>
+					placeholder="답글을 작성해보세요"></textarea>
                 
                 <input type="hidden" name="reviewCode" value="${ GuideReview.reviewCode }">
 			</div>
 				<input type="submit" class="buttonset" value="작성하기"
-				style="font-family: 'noto sans KR', serif; width: 80px; height: 30px; margin-top: 10px;">
+				style="font-family: 'noto sans KR', serif; background: skyblue; width: 111px; height: 42px; margin-top: 10px;">
 		   </form>
 		   </c:if>
 		  

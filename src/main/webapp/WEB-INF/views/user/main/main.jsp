@@ -9,10 +9,10 @@
 <meta name="title" property="title" content="트리플악셀 :: 당신의여행에 가속을">
 <meta name="viewport"
    content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
-<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
 
 
-
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>

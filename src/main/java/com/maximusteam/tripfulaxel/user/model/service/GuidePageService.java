@@ -13,7 +13,7 @@ public interface GuidePageService {
 
 	List<TripReviewDTO> selectGuideReview(int guideCode);
 
-	 int insertReply(TripReviewDTO tripreview);
+	int insertReply(TripReviewDTO tripreview);
 
 	List<TripReviewDTO> selectMyGoods(int guideCode);
 
@@ -26,6 +26,10 @@ public interface GuidePageService {
 	int updateStartSell(int guideCode);
 
 	List<TripReviewDTO> selectGuideContact(int guideCode);
+
+	List<TripReviewDTO> selectGuideDetail(int tripInquiryCode);
+
+	int insertContactDetailReply(TripReviewDTO tripreview);
 	
 		
 
