@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>트리풀 악셀 </title>
+<title>TripfulAxel - 여행에 가속을 </title>
 <link href="${pageContext.servletContext.contextPath}/resources/user/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/user/js/jquery.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/user/js/scripts.js"></script>
@@ -29,7 +29,7 @@
 <div id="container" style="width:80%; height:1000px; margin:auto;" >
 
  	<div id="arrows" style="width:100%; height:300px;">
- 			<img src="${pageContext.servletContext.contextPath}/resources/images/common/arrow.png" class="rounded float-start">
+ 			<img src="${pageContext.servletContext.contextPath}/resources/images/common/newImage.png" class="rounded float-start">
  	</div>
 	<div id="images" style="width:100%; height:1000px;" align="center">
 			<a href="${pageContext.servletContext.contextPath}/user/tripAlone/" target="_blank">
