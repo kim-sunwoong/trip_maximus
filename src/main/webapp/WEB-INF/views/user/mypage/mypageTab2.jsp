@@ -123,7 +123,7 @@ function cancel(){
                     </thead>
                     <tbody style="margin-top: 20px;">
                     	<c:forEach items="${gApplyList}" var="g">
-                        <tr>
+                        <tr> 
                             <td><c:out value="${g.gTripTitle}"/></td>
                             <td><c:out value="${g.gTripDate}"/></td>
                             <td><c:out value="${g.gName}"/></td>
