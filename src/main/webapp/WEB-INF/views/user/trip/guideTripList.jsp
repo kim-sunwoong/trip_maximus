@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
@@ -17,9 +20,6 @@
 
 <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
-<!-- 파비콘 이미지 변경 -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
 
 
 <link rel="stylesheet"
