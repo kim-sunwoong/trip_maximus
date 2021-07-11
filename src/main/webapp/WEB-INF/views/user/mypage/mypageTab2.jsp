@@ -57,7 +57,7 @@
         }
         #detail tbody th {text-align: center;}</style>
     <script>
-        function PopUp(){
+        function PopUp(id){
     var pop1 = document.querySelector(".bg");
     var pop2 = document.querySelector(".reviewWrap");
    document.getElementsByName("star")[0].checked = false;
@@ -66,6 +66,7 @@
    document.getElementsByName("star")[3].checked = false;
    document.getElementsByName("star")[4].checked = false; 
    
+   document.querySelector("#formId").name = 
 
 
     pop1.style.display='block';
@@ -129,16 +130,17 @@ function cancel(){
                             <td><c:out value="${g.price}"/></td>
                             <td><c:out value="${g.payment}"/></td>
                             <td><c:out value="${g.status.tripCancelYN}"/></td>
-                            <c:set var="today" value="<%= new java.util.Date() %>"/>
+                            <td><a onclick="PopUp(${g.tripRegistCode})">후기보러가기</a></td>
+                            <%-- <c:set var="today" value="<%= new java.util.Date() %>"/> --%>
                             <%-- <c:set var="endDate" value="${g.status.tripEndDate}"/> --%>
-                            <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy-MM-dd"/>
+                            <%--  <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy-MM-dd"/>
                             <fmt:parseDate var="endDate" value="${g.status.tripEndDate}" pattern="yyyy-MM-dd"/>
                             <c:choose>
                             <c:when test="endDate le now"><td>참여</td></c:when>
                             <c:when test="endDate ge now && ${g.status.reviewCode == null}"><td>후기쓰러가기</td></c:when>
-                            <c:when test="${g.status.reviewCode != null}"><td>후기보러가기</td></c:when>
+                            <c:when test="${g.status.reviewCode != null}"><td><a onclick="PopUp(${g.status.review})">후기보러가기</a></td></c:when>
                             <c:otherwise><td>불참</td></c:otherwise>
-                            </c:choose>
+                            </c:choose> --%>
                         </tr>
                         </c:forEach>
                         
@@ -171,6 +173,7 @@ function cancel(){
 
   font-weight: bold;">가이드 리뷰 작성하기</h2>
   <form action="${ pageContext.servletContext.contextPath }/user/mypage/insert/review" method="post" enctype="multipart/form-data" >
+  		<input id="formId" name="tripRegistCode" style="display:none;"></input>
         <div class="startRadio" >
             <label class="startRadio__box">
               <input type="radio" name="star" id="" value="1">
@@ -301,12 +304,15 @@ function cancel(){
 			}
 			
 		</script> -->
-		<!-- <script>
+		<script>
 			
 			
 		
 		
 		function readMultipleImage(input) {
+		if (input.files.length > 3) {
+		alert("파일은 3개까지만 등록이 가능합니다");
+		}
     const multipleContainer = document.getElementById("multiple-container");
     
     // 인풋 태그에 파일들이 있는 경우
@@ -358,7 +364,7 @@ function cancel(){
 		    readMultipleImage(e.target);
 		})
 }}
-</script> -->
+</script>
     
 </body>
 </html>

@@ -56,8 +56,9 @@
 
         <div id="detail_content">
             <div id="detail">
-
+				
                 <table width="500" height="500" align="center" style="margin-top:100px; margin: 0 auto;">
+                	<form action="${ pageContext.servletContext.contextPath }/user/mypage/update/userinfo" method="post">
                     <tr>
                         <td colspan="2" height="80" style=" background-color: #F7FAFC;"><h3>회원정보 수정</h3></td>
                         <td></td>
@@ -68,31 +69,31 @@
                     </tr>
                     <tr>
                         <td>이름</td>
-                        <td><input type="text" name="name"></td>
+                        <td><input type="text" name="userName" value="${user.userName}"></td>
+                    </tr>
+                    <tr style="background-color: #F7FAFC;">
+                        <td>성별</td>
+                        <td><input type="text" name="userGender" value="${user.userGender}"></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
                         <td>생년월일</td>
-                        <td><input type="text" name="birth"></td>
+                        <td><input type="text" name="userBday" value="${user.userBday}"></td>
                     </tr>
                     <tr>
                         <td>이메일</td>
-                        <td><input type="text" name="email"></td>
+                        <td><input type="text" name="userEmail" value="${user.userEmail}"></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
                         <td>연락처</td>
-                        <td><input type="text" name="tel"></td>
+                        <td><input type="text" name="userPhone" value="${user.userPhone}"></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
                         <td colspan="2"></td>
                         <td></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
-                        <td>이전 비밀번호</td>
-                        <td><input type="text" name="id"></td>
-                    </tr>
-                    <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호</td>
-                        <td><input type="password" name="pass"></td>
+                        <td><input type="password" name="pass" value="userPwd"></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
                         <td>새로운 비밀번호 확인</td>
@@ -106,7 +107,7 @@
                         <td align="center" colspan="2"><input type="submit" class="buttonset" value="변경하기" style="font-family: 'noto sans KR', serif; width: 80px;  height: 30px"></td>
                     </tr>
 					</table>
-
+					</form>
 
             </div>
         </div>

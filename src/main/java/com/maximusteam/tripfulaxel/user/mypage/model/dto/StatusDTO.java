@@ -9,15 +9,18 @@ public class StatusDTO {
 	private Date tripEndDate;
 	private int reviewCode;
 	private String status;
+	private int tripRegistCode;
 	public StatusDTO() {
 	}
-	public StatusDTO(String tripCancelYN, String tripAttendYN, Date tripEndDate, int reviewCode, String status) {
+	public StatusDTO(String tripCancelYN, String tripAttendYN, Date tripEndDate, int reviewCode, String status,
+			int tripRegistCode) {
 		super();
 		this.tripCancelYN = tripCancelYN;
 		this.tripAttendYN = tripAttendYN;
 		this.tripEndDate = tripEndDate;
 		this.reviewCode = reviewCode;
 		this.status = status;
+		this.tripRegistCode = tripRegistCode;
 	}
 	public String getTripCancelYN() {
 		return tripCancelYN;
@@ -49,10 +52,17 @@ public class StatusDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public int getTripRegistCode() {
+		return tripRegistCode;
+	}
+	public void setTripRegistCode(int tripRegistCode) {
+		this.tripRegistCode = tripRegistCode;
+	}
 	@Override
 	public String toString() {
 		return "StatusDTO [tripCancelYN=" + tripCancelYN + ", tripAttendYN=" + tripAttendYN + ", tripEndDate="
-				+ tripEndDate + ", reviewCode=" + reviewCode + ", status=" + status + "]";
+				+ tripEndDate + ", reviewCode=" + reviewCode + ", status=" + status + ", tripRegistCode="
+				+ tripRegistCode + "]";
 	}
 	
 }

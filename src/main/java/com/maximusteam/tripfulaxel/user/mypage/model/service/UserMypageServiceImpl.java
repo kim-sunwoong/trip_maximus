@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
@@ -24,18 +25,17 @@ public class UserMypageServiceImpl implements UserMypageService{
 	}
 
 	@Override
-	public List<JoinTripListDTO> selectJoinList() {
-		return mapper.selectJoinList();
+	public List<JoinTripListDTO> selectJoinList(int id) {
+		return mapper.selectJoinList(id);
 	}
-
 	@Override
-	public List<JoinTripListDTO> selectJoinList2() {
-		return mapper.selectJoinList2();
+	public List<JoinTripListDTO> selectJoinList2(int id) {
+		return mapper.selectJoinList2(id);
 	}
 	
 	@Override
-	public List<GuideTripApplyDTO> selectguideTripList() {
-		return mapper.selectguideTripList();
+	public List<GuideTripApplyDTO> selectguideTripList(int id) {
+		return mapper.selectguideTripList(id);
 	}
 
 	@Override
@@ -44,20 +44,30 @@ public class UserMypageServiceImpl implements UserMypageService{
 	}
 
 	@Override
-	public List<GuideTripApplyDTO> selectMyTripReviewList() {
-		return mapper.selectMyTripReviewList();
+	public List<GuideTripApplyDTO> selectMyTripReviewList(int id) {
+		return mapper.selectMyTripReviewList(id);
 	}
 
 	@Override
 	public List<JoinTripListDTO> selectMyJoinList(int id) {
 		return mapper.selectMyJoinList(id);
 	}
-
 	@Override
 	public List<JoinTripListDTO> selectMyJoinList2(int id) {
 		return mapper.selectMyJoinList2(id);
 	}
 
+	@Override
+	public UserDTO selectUserInfo(int id) {
+		return mapper.selectUserInfo(id);
+	}
+	
+	@Override
+	public int updateUserPwd(UserDTO user) {
+		return mapper.updateUserPwd(user);
+	}
+
+	
 	@Override
 	public List<ReqListDTO> selectRequestList(int id) {
 		return mapper.selectRequestList(id);
@@ -73,6 +83,7 @@ public class UserMypageServiceImpl implements UserMypageService{
 		return mapper.selectInquiry(id);
 	}
 
+	
 	@Override
 	public int insertReview(Map<String, Object> map) {
 		int result = mapper.insertReview(map);
@@ -81,9 +92,24 @@ public class UserMypageServiceImpl implements UserMypageService{
 	}
 
 	@Override
+	public int selectRevPK(Map<String, Object> map) {
+		return mapper.selectRevPK(map);
+	}
+	
+	@Override
 	public int insertrevImg(Map<String, Object> map) {
 		return mapper.insertrevImg(map);
 	}
+
+	@Override
+	public int selectjtaCode(int id) {
+		return mapper.selectjtaCode(id);
+	}
+
+
+
+
+	
 
 	
 	
