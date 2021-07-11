@@ -217,17 +217,6 @@ function tripJoin() {
 				</div>
 				<div class="offerArea" id="Course">
 					<div class="">
-						<div class="">
-							<h4 class="txt_big" style="margin-bottom: 20px;">로컬 포인트</h4>
-							<ul class="textP ">
-								<li class="WhiteSpacing text_cut_expand1"
-									style="width: 100%; word-break: break-all;">중국 하면 로컬음식!
-									육즙을 빨대로 먹을 수 있는 일명 빨대 만두, 중국의 전통 간식인 과일 꼬치 탕후루, 달걀과 각종 채소, 치즈,
-									베이컨 등을 넣어 또띠아처럼 말아 먹는 따뜻하고 든든한 간식 쇼좌삥 한 입, 해가 지면 하나둘 보이는 길거리 좌판
-									위의 꼬치 요리와 맥주를 한 잔 들이켜면 여행에서의 소소한 행복이 전해져요. 블로그의 유명 맛집들도 좋지만,
-									저렴하고 푸짐한 로컬 음식을 먹으며 중국의 맛에 빠져보는 것은 어떨까요?</li>
-							</ul>
-						</div>
 						<div class="offerBox">
 							<h4 class="txt_big">
 								코스 안내<span class="">
@@ -314,18 +303,6 @@ function tripJoin() {
 				<div class="offerArea floatL" style="margin-bottom: 0px"
 					id="offerInfo">
 					<div style="width: 770px;">
-						<div>
-							<h4 class="txt_big" style="margin-bottom: 20px;">로컬가이드 한마디</h4>
-							<ul class="textP">
-								<li id="text_cut_expand3"
-									class="WhiteSpacing offerWhiteSpacing text_cut_expand3">1.
-									중국 여행비자 중국을 여행하기에 앞서 제일 중요한 건 비자 발급이에요. 여행을 오시기 최소 2주 전에 반드시!
-									비자를 발급받아야 한다는 점 명심해주세요! 비자는 마트에서 쉽게 볼 수 있는 여행사 부스에서도 발급할 수
-									있는데요, 가격은 10만 원 안팎의 가격이며 (보통 현금 혹은 계좌이체만 가능) , 여권, 비자 사진( 여권
-									사진과 다르며 촬영 시기가 3개월이 넘지 않는 흰색 배경의 사진, 흰옷 금지) 을 준비해주시면 된답니다! 중국
-									비자센터에 직접 방문하신다면 조금 더 저렴한 가격으로 발급을 받으실 수도 있어요.
-							</ul>
-						</div>
 						<c:if test="${trip[0].include ne ''} ">
  						
 	 						<div class="offerBox">

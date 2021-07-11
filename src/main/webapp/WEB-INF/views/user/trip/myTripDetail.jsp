@@ -165,17 +165,6 @@
  				</div>
  				<div class="offerArea" id="Course">
  					<div class="">
- 						<div class="">
- 							<h4 class="txt_big" style="margin-bottom: 20px;">여행 포인트</h4>
- 							<ul class="textP ">
- 								<li class="WhiteSpacing text_cut_expand1"
- 									style="width: 100%; word-break: break-all;">중국 하면 로컬음식!
- 									육즙을 빨대로 먹을 수 있는 일명 빨대 만두, 중국의 전통 간식인 과일 꼬치 탕후루, 달걀과 각종 채소, 치즈,
- 									베이컨 등을 넣어 또띠아처럼 말아 먹는 따뜻하고 든든한 간식 쇼좌삥 한 입, 해가 지면 하나둘 보이는 길거리 좌판
- 									위의 꼬치 요리와 맥주를 한 잔 들이켜면 여행에서의 소소한 행복이 전해져요. 블로그의 유명 맛집들도 좋지만,
- 									저렴하고 푸짐한 로컬 음식을 먹으며 중국의 맛에 빠져보는 것은 어떨까요?</li>
- 							</ul>
- 						</div>
  						<div class="offerBox">
  							<h4 class="txt_big">
  								코스 안내<span class="">
@@ -242,7 +231,7 @@
 
 								        // 인포윈도우로 장소에 대한 설명을 표시합니다
 								        var infowindow = new kakao.maps.InfoWindow({
-								            content: '<div style="width:150px;text-align:center;padding:6px 0;">만나는 장소</div>'
+								            content: '<div style="width:150px;text-align:center;padding:6px 0;">여행 시작지</div>'
 								        });
 								        infowindow.open(map, marker);
 
@@ -258,7 +247,7 @@
  				<div class="offerArea floatL" style="margin-bottom: 0px"
  					id="offerInfo">
  					<div style="width: 770px;">
- 						<c:if test="${trip[0].include ne ''} ">
+ 						<c:if test="${trip[0].include != null} ">
  						
 	 						<div class="offerBox">
 	 							<h4 class="txt_big">포함사항</h4>
