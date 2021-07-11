@@ -54,13 +54,13 @@ public class UserMyPageController {
 		System.out.println(id);
 		
 		List<JoinTripListDTO> joinList = userMypageService.selectJoinList(id);
-		List<JoinTripListDTO> joinList2 = userMypageService.selectJoinList2(id);
-		for(int i = 0; i<joinList.size();i++) {
-			joinList.get(i).setCountUser(joinList2.get(i).getCountUser());
+//		List<JoinTripListDTO> joinList2 = userMypageService.selectJoinList2(id);
+//		for(int i = 0; i<joinList.size();i++) {
+//			joinList.get(i).setCountUser(joinList2.get(i).getCountUser());
 //			if(joinList.get(i).getStatus().getTripCancelYN().equals("Y") && Date (joinList.get(i).getStatus().getTripEndDate()) > today) {
 //				joinList.get(i).getStatus().setStatus("참여대기중");
 //			}
-		}
+//		}
 		
 		model.addAttribute("joinList",joinList);
 		return "user/mypage/mypageTab1";

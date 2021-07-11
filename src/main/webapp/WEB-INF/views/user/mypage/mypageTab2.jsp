@@ -57,7 +57,7 @@
         }
         #detail tbody th {text-align: center;}</style>
     <script>
-        function PopUp(id){
+        function PopUp(){
     var pop1 = document.querySelector(".bg");
     var pop2 = document.querySelector(".reviewWrap");
    document.getElementsByName("star")[0].checked = false;
@@ -66,7 +66,7 @@
    document.getElementsByName("star")[3].checked = false;
    document.getElementsByName("star")[4].checked = false; 
    
-   document.querySelector("#formId").name = 
+   /* document.querySelector("#formId").value = this.id; */
 
 
     pop1.style.display='block';
@@ -118,7 +118,7 @@ function cancel(){
                             <th>1인당 가격</th>
                             <th>결제금액</th>
                             <th>취소여부</th>
-                            <th>진행상태</th>
+                            <!-- <th>진행상태</th> -->
                         </tr>
                     </thead>
                     <tbody style="margin-top: 20px;">
@@ -130,7 +130,7 @@ function cancel(){
                             <td><c:out value="${g.price}"/></td>
                             <td><c:out value="${g.payment}"/></td>
                             <td><c:out value="${g.status.tripCancelYN}"/></td>
-                            <td><a onclick="PopUp(${g.tripRegistCode})">후기보러가기</a></td>
+                           <%--  <td><a onclick="PopUp(<c:out value="${g.tripRegistCode}"/>)">후기보러가기</a></td> --%>
                             <%-- <c:set var="today" value="<%= new java.util.Date() %>"/> --%>
                             <%-- <c:set var="endDate" value="${g.status.tripEndDate}"/> --%>
                             <%--  <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy-MM-dd"/>
@@ -156,8 +156,8 @@ function cancel(){
     
     <jsp:include page="../common/footer.jsp"/>
 
-    <div class="bg"></div>
-    <div class="reviewWrap" style="height: 400px;">
+    <div class="bg" style="display: none;"></div>
+    <div class="reviewWrap" style="height: 400px; display: none;">
         <div class="reviewDetail">
         <h2 style="line-height: 40px;  display: block;
 
@@ -309,7 +309,7 @@ function cancel(){
 			
 		
 		
-		function readMultipleImage(input) {
+		/*  function readMultipleImage(input) {
 		if (input.files.length > 3) {
 		alert("파일은 3개까지만 등록이 가능합니다");
 		}
@@ -340,8 +340,8 @@ function cancel(){
             reader.onload = e => {
                 $img.src = e.target.result;
                 
-                $imgDiv.style.width = /* ($img.naturalWidth) * 0.5 */ 100 + "px";
-                $imgDiv.style.height = /* ($img.naturalHeight) * 0.5 */ 80 + "px";
+                $imgDiv.style.width = \\\ ($img.naturalWidth)\\\ * 0.5  100 + "px";
+                $imgDiv.style.height = \\\ ($img.naturalHeight)\\\ * 0.5  80 + "px";
             }
             
             console.log(file.name)
@@ -363,8 +363,8 @@ function cancel(){
 		inputMultipleImage.addEventListener("change", e => {
 		    readMultipleImage(e.target);
 		})
-}}
-</script>
+} */
+</script> 
     
 </body>
 </html>
