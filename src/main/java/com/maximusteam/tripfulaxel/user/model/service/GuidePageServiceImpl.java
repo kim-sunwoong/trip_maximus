@@ -94,6 +94,24 @@ public class GuidePageServiceImpl implements GuidePageService {
 		return mapper.selectGuideContact(guideCode);
 	}
 
+	/**
+	 * 문의관리 디테일
+	 */
+	@Override
+	public List<TripReviewDTO> selectGuideDetail(int tripInquiryCode) {
+		
+		return mapper.selectGuideDetail(tripInquiryCode);
+	}
+
+	/**
+	 * 문의관리 답변 
+	 */
+	@Override
+	public int insertContactDetailReply(TripReviewDTO tripreview) {
+		
+		return mapper.insertContactDetailReply(tripreview);
+	}
+
 
 	
 	

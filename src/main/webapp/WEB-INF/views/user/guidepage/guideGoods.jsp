@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <link rel="stylesheet" href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
     <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -47,10 +50,8 @@
             <br>
             <div class="tabList" style="margin: 0 auto;">
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
-                <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
             </div>
         </div>
 
@@ -102,8 +103,8 @@
 								class="btn btn-outline-info" style="width: 139px;">판매게시</button>
 								</c:if>
 								
-								 <input type="button" class="btn btn-outline-info" value="수정하기" style="width: 139px; border: 1px solid #17a2b8;"
-		                        onclick="location.href='${ pageContext.servletContext.contextPath }/user/guidepage/updateGuide'">
+							<%-- 	 <input type="button" class="btn btn-outline-info" value="수정하기" style="width: 139px; border: 1px solid #17a2b8;"
+		                        onclick="location.href='${ pageContext.servletContext.contextPath }/user/guidepage/updateGuide'"> --%>
 								
 					<!-- 	<button type="button" class="btn btn-outline-info">등업요청</button> -->
 								

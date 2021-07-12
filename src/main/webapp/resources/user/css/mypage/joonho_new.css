@@ -14,7 +14,7 @@ html, body{ font-weight: 400 !important;
 
 
 
-#wrapp .tabList {width: 90% !important; height: 10% !important; display: flex; margin-bottom: -1px; justify-content: center; margin: 0 auto;}
+#wrapp .tabList {width: 90% !important; height: 10% !important; margin-bottom: -1px; justify-content: center; margin: 0 auto;}
 
 /* .tab {width: 10%; height: 5%; box-sizing: border-box; background-color: blue;;} */
 #wrapp .tabb { display: inline-block;

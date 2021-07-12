@@ -130,20 +130,6 @@
     
     }
 
-/*     .Footer_container div{
-        transition-property: all;
-        -moz-transition-property: all;
-        -o-transition-property: all;
-        -webkit-transition-property: all;
-        transition-duration: 200ms;
-        -moz-transition-duration: 200ms;
-        -o-transition-duration: 200ms;
-        -webkit-transition-duration: 200ms;
-        transition-timing-function: ease;
-        -moz-transition-timing-function: ease;
-        -o-transition-timing-function: ease;
-        -webkit-transition-timing-function: ease;
-    } */
 
 
     /*{ 시작 / 회사정보 / Footer_travelMaker */
@@ -644,7 +630,7 @@
         <div class="canteen">
             <div class="row justify-content-center" style="margin-left:10%">
                 <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px !important; padding:10px; margin-left:0px;">
-                    <h3 style="font-family: BME; font-size: 24px; color: black; margin: 15px;">약관 및 방침</h3>
+                    <h3 style="font-family: BME; font-size: 24px; color: black; margin: 15px; color: skyblue;">약관 및 방침</h3>
                     <ul style="font-family: icomoon; font-size: 14px; list-style: none; padding-left:0px; color: black; line-height:30px; ">
                         <li><a>이용약관</a></li>
                         <li><a>개인정보 및 처리방침</a></li>
@@ -654,14 +640,14 @@
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
-                    <h3 style="font-size: 24px; color: black; margin: 15px;">로컬가이드</h3>
+                    <h3 style="font-size: 24px; color: black; margin: 15px;color: skyblue; ">로컬가이드</h3>
                     <ul style="font-size: 14px; list-style: none; padding-left:0px; color: black;">
                         <li style="margin-left: 15px;"><a>로컬가이드 지원하기</a></li>
                       	<li style="margin-left: 15px;"><a>로컬가이드 목록보기</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
-                    <h3 style="font-size: 24px; color: black; margin: 15px;">고객센터</h3>
+                    <h3 style="font-size: 24px; color: black; margin: 15px;color: skyblue;">고객센터</h3>
                     <ul style="font-size: 14px; list-style: none; padding-left:0px; color: black; line-height:30px;">
                     
                         <li style="margin-left: 15px;">이메일 : admin@greedy.com</li>
@@ -670,7 +656,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 item" style="float: left; width: 240px; padding:10px;">
-                    <h3 style="font-size: 24px; color: black; margin: 15px;">회사소개</h3>
+                    <h3 style="font-size: 24px; color: black; margin: 15px;color: skyblue;">회사소개</h3>
                     <ul style="list-style: none; padding-left:0px;">
                         <li style="margin-left: 15px;">대표 : 유승제</li>
                         <li style="margin-left: 15px;">주소 : 서울시 서초구 강남대로 441 5층</li>

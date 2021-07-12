@@ -24,4 +24,8 @@ public interface GuidePageMapper {
 
 	List<TripReviewDTO> selectGuideContact(int guideCode);
 
+	List<TripReviewDTO> selectGuideDetail(int tripInquiryCode);
+
+	int insertContactDetailReply(TripReviewDTO tripreview);
+
 }
