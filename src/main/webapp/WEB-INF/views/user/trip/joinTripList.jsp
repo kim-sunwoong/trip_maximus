@@ -106,7 +106,7 @@
 	<section id="speakers">
 		<div class="container" data-aos="fade-up">
 			<div class="section-header">
-				<h2 style="color:skyblue;">같이가요!! 여행 친구를 구해용!</h2>
+				<h2>같이가요!! 여행 친구를 구해용!</h2>
 				<p>세상에 단 하나뿐인 나만의 여행을 경험해보세요!</p>
 			<!-- searchBox -->
 				<div class="new_search_box">

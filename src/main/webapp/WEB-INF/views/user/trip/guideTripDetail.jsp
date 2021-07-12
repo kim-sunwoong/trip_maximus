@@ -336,14 +336,14 @@
  							<h4 class="txt_big">취소 및 환불 규정</h4>
  							<ul class="textP text_cut_expand2">
  								<li class="txtG">- 여행시작 30일전까지 통보시: 여행 요금 전액 환불, 여행자 부담 없음</li>
- 								<li class="txtG">- 여행시작 20일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
+ 								<li class="txtG">- 여행시작 20일 전까지 통보시: 여행요금에서 “트리풀악셀” 요금의
  									10%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="txtG">- 여행시작 6일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
+ 								<li class="txtG">- 여행시작 6일 전까지 통보시: 여행요금에서 “트리풀악셀” 요금의
  									15%와 “회사” 수수료 공제 후 환불</li>
- 								<li class="txtG">- 여행시작 1일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
+ 								<li class="txtG">- 여행시작 1일 전까지 통보시: 여행요금에서 “트리풀악셀” 요금의
  									20%와 “회사” 수수료 공제 후 환불</li>
  								<li class="txtG" style="margin-bottom: 10px;">- 여행시작 시간 기준
- 									24시간 이내 통보시: 여행요금에서 “트래블메이커” 요금의 50%와 “회사” 수수료 공제 후 환불</li>
+ 									24시간 이내 통보시: 여행요금에서 “트리풀악셀” 요금의 50%와 “회사” 수수료 공제 후 환불</li>
  								<li class="">* “여행자”가 여행요금을 결제(지급)한 때로부터 24시간 이내에 여행계약을
  									취소(철회)하는 경우와 “여행자”가 트래블 예약 후 TM이 여행 확정하기 전에 취소(철회)하는 경우는 여행요금을
  									전액 환불합니다. 단, “여행자”가 여행요금을 결제하였다고 하더라도 해당 시점으로부터 24시간 이내 여행이 시작될
@@ -485,25 +485,8 @@
  						style="width: 30px; position: absolute; top: 10px; right: 21px;">
  					</div>
  					<div class="price_div txtG" style="margin-bottom: 3px;">
- 						<span class=" txtC"><c:out value="${trip[0].payment }"/> 원</span> / 1인
- 					</div>
- 					<ul class="inputLabel">
- 						<li>
- 							<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
-						</li>
- 						<li><select name="reser_Per" id="amountList" onchange="amount()">
- 								<option value="1">1 명</option>
- 								<option value="2">2 명</option>
- 								<option value="3">3 명</option>
- 								<option value="4">4 명</option>
- 						</select>
- 						
- 					</ul>
- 					<div class="offerPrice">
- 						<div class="clearfix2">
- 							<span class="txtG">총 금액</span> <span
- 								class="total_price txtC txt_big" id="totalPay"></span>
- 						</div>
+ 						<span class=" txtC"><c:out value="${trip[0].payment }"/> 원</span> / 1인<br>
+ 						<span class=" txtC">여행일자 :</span> <c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/>
  					</div>
  					<button class="btn btnBgC btnFull txt_md"
  						onclick="payment()" style="background:skyblue;">예약하기</button>
