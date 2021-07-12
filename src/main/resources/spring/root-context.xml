@@ -82,9 +82,13 @@
          <tx:method name="find*" read-only="true" rollback-for="Exception" />
          <tx:method name="search*" read-only="true" rollback-for="Exception" />
          <tx:method name="select*" read-only="true" rollback-for="Exception" />
+         <tx:method name="*" read-only="true" rollback-for="Exception" />
          <tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
+         <tx:method name="regist*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE"/>
          <tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
+         <tx:method name="modify*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
          <tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
+         <tx:method name="remove*" rollback-for="Exception" propagation="REQUIRED" isolation="SERIALIZABLE" />
       </tx:attributes>
    </tx:advice> 
    
