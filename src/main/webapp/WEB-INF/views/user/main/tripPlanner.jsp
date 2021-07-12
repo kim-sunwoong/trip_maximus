@@ -27,7 +27,7 @@
 
 <div id="container" style="width:80%; height:1000px; margin:auto;" >
 
- 	<div id="arrows" style="width:100%; height:300px;">
+ 	<div id="arrows" style="width:100%; margin-left:8%;">
  			<img src="${pageContext.servletContext.contextPath}/resources/images/common/newImage.png" class="rounded float-start">
  	</div>
 	<div id="images" style="width:100%; height:1000px;" align="center">
@@ -38,9 +38,8 @@
 			<a href="${pageContext.servletContext.contextPath}/user/tripTogetger/" target="_blank">
 			<img src="${pageContext.servletContext.contextPath}/resources/images/common/friendsTrip2.png" class="rounded float-end" alt="...">
 			</a>
-		</div>
-
 	</div>
+</div>
 
 
 <jsp:include page="../common/footer.jsp"></jsp:include>
