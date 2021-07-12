@@ -41,7 +41,7 @@ public class TripApiController {
 	
 	@GetMapping("/trips/{id}")
 	@ApiOperation(value = "특정여행 조회", notes="특정 여행를 id를 이용해 조회한다")
-	@ApiImplicitParam(name = "id", value = "여행 아이디")
+	@ApiImplicitParam(name = "id", value = "여행 코드")
 	public Response getTrip(@PathVariable int id) {
 		
 		Response response = new Response();
@@ -84,8 +84,8 @@ public class TripApiController {
 	}
 	
 	@DeleteMapping("/trips/{id}")
-	@ApiOperation(value = "특정여행 삭제", notes="특정 여행를 id를 이용해 삭제한다")
-	@ApiImplicitParam(name = "id", value = "삭제할 여행 아이디")
+	@ApiOperation(value = "특정여행 삭제", notes="특정 여행를 code를 이용해 삭제한다")
+	@ApiImplicitParam(name = "id", value = "삭제할 여행 코드")
 	public Response removeTrip(@PathVariable int id) {
 		
 		Response response = new Response();
