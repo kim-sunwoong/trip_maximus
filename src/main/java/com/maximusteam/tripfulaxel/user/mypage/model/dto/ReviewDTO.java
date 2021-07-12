@@ -1,4 +1,4 @@
-package com.maximusteam.tripfulaxel.trip.model.dto;
+package com.maximusteam.tripfulaxel.user.mypage.model.dto;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,7 +9,8 @@ public class ReviewDTO {
 	private String reviewTitle;
 	private String reviewInfo;
 	private Date reviewDate;
-	private int reviewPoint;
+	private int star;
+	private int jtaCode;
 	
 	private List<ImageDTO> reviewImgList;
 	
@@ -18,14 +19,15 @@ public class ReviewDTO {
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int reviewPoint,
+	public ReviewDTO(int reviewCode, String reviewTitle, String reviewInfo, Date reviewDate, int star, int jtaCode,
 			List<ImageDTO> reviewImgList, ReviewComentDTO reviewComent) {
 		super();
 		this.reviewCode = reviewCode;
 		this.reviewTitle = reviewTitle;
 		this.reviewInfo = reviewInfo;
 		this.reviewDate = reviewDate;
-		this.reviewPoint = reviewPoint;
+		this.star = star;
+		this.jtaCode = jtaCode;
 		this.reviewImgList = reviewImgList;
 		this.reviewComent = reviewComent;
 	}
@@ -62,12 +64,20 @@ public class ReviewDTO {
 		this.reviewDate = reviewDate;
 	}
 
-	public int getReviewPoint() {
-		return reviewPoint;
+	public int getStar() {
+		return star;
 	}
 
-	public void setReviewPoint(int reviewPoint) {
-		this.reviewPoint = reviewPoint;
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+	public int getJtaCode() {
+		return jtaCode;
+	}
+
+	public void setJtaCode(int jtaCode) {
+		this.jtaCode = jtaCode;
 	}
 
 	public List<ImageDTO> getReviewImgList() {
@@ -89,9 +99,10 @@ public class ReviewDTO {
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewCode=" + reviewCode + ", reviewTitle=" + reviewTitle + ", reviewInfo=" + reviewInfo
-				+ ", reviewDate=" + reviewDate + ", reviewPoint=" + reviewPoint + ", reviewImgList=" + reviewImgList
-				+ ", reviewComent=" + reviewComent + "]";
+				+ ", reviewDate=" + reviewDate + ", star=" + star + ", jtaCode=" + jtaCode + ", reviewImgList="
+				+ reviewImgList + ", reviewComent=" + reviewComent + "]";
 	}
+
 	
 	
 	

@@ -1,0 +1,60 @@
+/* 썸네일 영역 스타일 지정 */
+.thumbnail-area {
+	width:760px;
+	height:550px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* 썸네일 목록 스타일 지정 */
+.thumb-list {
+	width:220px;
+	border:1px solid white;
+	display:inline-block;
+	margin:10px;
+	align:center;
+}
+
+.thumb-list:hover {
+	opacity:0.8;
+	cursor:pointer;
+}
+
+/* 썸네일 작성 영역 스타일 지정 */
+.title-img-area {
+	width:350px;
+	height:200px;
+	border:2px dashed darkgray;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+.title-img-area:hover, .content-img-area1:hover, 
+.content-img-area2:hover, .content-img-area3:hover {
+	cursor:pointer;
+}
+.content-img-area1, .content-img-area2, .content-img-area3 {
+	
+	width:10px;
+	height:180px;
+	border:2px dashed darkgray;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.thumbnail-insert-area {
+	width:500px;
+	height:450px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.thumbnail-btn-area {
+	width:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.thumbnail-file-area input[type=file] {
+	display:none;
+}

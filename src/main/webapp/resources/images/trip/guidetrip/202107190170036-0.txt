@@ -1,0 +1,44 @@
+mvn lib 다운된 폴더 위치
+
+사용자 -> tj -> .m2 -> repository 여기에 모든 lib가 다운되어 있다.
+
+-----------------------------------------------
+
+스프링 explorer 설명
+
+src/main/java , src/main/resources : java 소스들
+
+target 폴더 : java 소스들 빌드된 내용들이 들어간다.
+
+webapp : webApplication
+
+
+pom.xml에 대하여
+
+model-version은 고정
+<groupId> : 2뎁스 표시
+<artifactId> : rootcontext = 3뎁스
+<name> : 프로젝트명
+<packaging> : war고정 =  packaging을 할때 어떤 형식으로 압축할 것인가를 말한다. 압축파일 형식
+		- 서버에 올릴때 war로 배포한다.
+---변경---
+java-version 1.8
+org.springframework-version 5.2.9.RELEASE
+org.aspectj-version 1.9.6
+org.slf4j-version 1.7.30
+
+log 1.2.17
+
+servlet
+<version> = 3.1.0
+<artifactId> = javax.servlet-api
+
+junit 4.12
+
+configuration
+source = 1.8
+target = 1.8
+
+
+maven 업데이트 필수로해줄것
+

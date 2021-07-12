@@ -8,7 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
+
+
 <link rel="stylesheet"
 	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
 <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
@@ -73,20 +76,14 @@
                 <div class="tabb" ><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb" style="border: 3px solid blue;"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
 			</div>
 		</div>
 
 		<div id="detail_content">
 			<div id="detail">
 			
-				<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: flex; justify-content: center; width: 50%; margin:0 auto;">
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-				  <label class="btn btn-outline-primary" for="btnradio1" style="width: 400px;">관리자 문의 내역</label>
 				
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-				  <label class="btn btn-outline-primary" for="btnradio2" style="width: 400px;">여행 문의 내역</label>
-				
-				</div>
 			
 				<table align="center" class="detailTable"
 					style="border-collapse: collapse; margin: 0 auto; table-layout: fixed;">
@@ -117,7 +114,7 @@
 
 
 
-						<tr>
+						<!-- <tr>
 							<td colspan="4">
 								<div id="contact-area" style="margin: 0 auto; clear: both;">
 									<form style="background-color: #f7fafc;">
@@ -161,7 +158,7 @@
 									</form>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 
 
 

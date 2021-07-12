@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,7 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
+
 <link rel="stylesheet" href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
     <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
 	<link rel="icon" type="image/png" sizes="16x16" href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
@@ -55,6 +58,7 @@
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/mypage/mypageTab5">회원정보 수정</a></div>
                 <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/mypage/mypageTab6">문의 내역</a></div>
                 <div class="tabb"><a class="pic7" href="${pageContext.request.contextPath}/user/mypage/mypageTab7">문의하기</a></div>
+                <div class="tabb"><a class="pic8" href="${pageContext.request.contextPath}/user/mypage/mypageTab8">여행 문의내역</a></div>
             </div>
         </div>
 
@@ -64,12 +68,12 @@
                     <h3 style="width: 25%; height: auto; margin: 0 auto;">여행 플래너 (미래)</h3>
                 </div> -->
 
-                <div class="card w-75" style="margin: 0 auto;">
+                <!-- <div class="card w-75" style="margin: 0 auto;">
                     <div class="card-body" style="margin: 0 auto;">
                       <h5 class="card-title" style="float: left; line-height: 45px;  margin-right: 150px;">내가만든 여행 제목</h5>
                       <a href="#" class="btn btn-primary" style="float: right; color: white;">자세히 보기</a>
                     </div>
-                  </div>
+                  </div> -->
 			
                 <div class="section1" style="margin-top: 60px; ">
 						
@@ -91,8 +95,11 @@
                             <td><c:out value="${mj.joinTripDate}"/></td>
                             <td><c:out value="${mj.countUser}"/></td>
                             <%-- <td><c:out value="${mj.status.tripCancelYN}"/></td> --%>
+                            <%-- <c:set var="today" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>"/> --%>
                             <c:set var="today" value="<%= new java.util.Date() %>"/>
                             <c:set var="endDate" value="${mj.status.tripEndDate}"/>
+                            <fmt:formatDate var="now" type="date" value="${today}" pattern="yyyy.MM.dd"/>
+                            <fmt:parseDate var="endDate" value="${endDate}" pattern="yyyy.MM.dd"/>
                             <c:choose>
                             <c:when test="endDate lt today"><td>여행완료</td></c:when>
                             <c:otherwise><td>진행중</td></c:otherwise>
