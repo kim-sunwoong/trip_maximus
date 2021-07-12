@@ -27,7 +27,7 @@ public class TripApiServiceImpl implements TripApiService {
 
 	@Override
 	public TripApiDTO getTrip(int id) {
-		return tripApiMapper.getTrip();
+		return tripApiMapper.getTrip(id);
 	}
 
 	@Override

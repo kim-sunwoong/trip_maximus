@@ -8,7 +8,7 @@ public interface TripApiMapper {
 
 	List<TripApiDTO> getTrips();
 
-	TripApiDTO getTrip();
+	TripApiDTO getTrip(int id);
 
 	int registTrip(TripApiDTO tripApiDTO);
 

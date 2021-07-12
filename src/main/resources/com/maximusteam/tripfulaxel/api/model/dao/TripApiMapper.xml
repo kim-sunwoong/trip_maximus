@@ -19,7 +19,7 @@
 		  FROM TRIP
 	</select>
 	
-	<select id="getTrip" resultMap="TripApiDTO">
+	<select id="getTrip" resultMap="TripApiDTO" parameterType="int">
 		SELECT *
 		  FROM TRIP
 		 WHERE TRIP_CODE = #{id}

@@ -12,9 +12,9 @@ public class TripApiDTO {
 	private String meetLocation;
 	private String include;
 	private String exclude;
-	@JsonFormat(pattern = "yyyyMMdd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date tripStartDate;
-	@JsonFormat(pattern = "yyyyMMdd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date tripEndDate;
 
 	public TripApiDTO() {
