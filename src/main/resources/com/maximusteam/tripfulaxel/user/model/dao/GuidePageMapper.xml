@@ -179,7 +179,7 @@
         JOIN TRIP_REGIST_LIST B ON(A.TRIP_REGIST_LIST_CODE = B.TRIP_REGIST_LIST_CODE)
         JOIN USER C ON(B.USER_CODE = C.USER_CODE)
        WHERE C.USER_CODE = #{guideCode} 
-        AND A.INQUIRY_YN = 'N'
+       ORDER BY TRIP_INQUIRY_CODE DESC;
 	</select>
  	
  	<!-- 문의 디테일   -->

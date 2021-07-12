@@ -53,7 +53,7 @@
                         <tr>
                             <th>문의자명</th>
                             <th>문의사유</th>
-                            <th>문의상태</th>
+                            <th>답변상태</th>
                         </tr>
                     </thead>
 				<tbody>

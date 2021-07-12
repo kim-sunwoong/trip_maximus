@@ -798,12 +798,12 @@ li.header_menu:hover {
          <article class="find_btn_area floatR " style="margin-right: 21%;margin-left: 10%; ">
 			<div class="category">
             <div style="margin-top: 5px; margin-bottom: -10px;">
-               <a href="${ pageContext.servletContext.contextPath }/main"><img id="rotating_img"
+               <a href="${ pageContext.servletContext.contextPath }/main">
+               <img id="rotating_img"
                   style="width: 90px; height: 99px; object-fit: cover;"
                   src="/tripfulaxel/resources/images/common/3.png" alt=""></a> <a
                   href="${ pageContext.servletContext.contextPath }/main"><img style="width: 300px; height: 99px"
                   src="/tripfulaxel/resources/images/common/2.png" alt=""></a>
-
             </div>
 
 

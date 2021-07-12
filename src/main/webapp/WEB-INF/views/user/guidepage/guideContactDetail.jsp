@@ -80,7 +80,7 @@
                     			
                     			<tr>
                     				<th>내용 : &nbsp;&nbsp;</th>
-                    				<th><textarea name="title" id="title"  style="height: 159px; width: 227%;"><c:out value="${ selectGuideDetail.inquiryReason }"/></textarea></th>
+                    				<th><textarea readonly name="title" id="title"  style="height: 159px; width: 227%;"><c:out value="${ selectGuideDetail.inquiryReason }"/></textarea></th>
                     			</tr>
                          	
                     			<tr>

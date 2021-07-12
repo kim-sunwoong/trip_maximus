@@ -4,7 +4,6 @@
 <html>
 <head>
 <title>TripfulAxel - 여행에 가속을 </title>
-<link href="${pageContext.servletContext.contextPath}/resources/user/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/user/js/jquery.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/user/js/scripts.js"></script>
 <link href="${pageContext.servletContext.contextPath}/resources/user/css/styles.css" rel="stylesheet">
