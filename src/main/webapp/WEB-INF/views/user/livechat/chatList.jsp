@@ -78,9 +78,6 @@ function newRoom(){
 	  </tr>
   </c:forEach>
   <tr>
-    <th>채팅방 만들기</th>
-  </tr>
-  <tr>
   	<th>
   		채팅방 제목 : <input type="text" id="roomTitle" style="width:350px; height:30px; color:black;"> <button onclick = "newRoom()" style="width:70px; height:30px;">만들기</button>
   	</th>
