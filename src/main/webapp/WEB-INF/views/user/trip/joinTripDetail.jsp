@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <style>
 </style>
 <link rel="stylesheet" type="text/css"
@@ -217,17 +220,6 @@ function tripJoin() {
 				</div>
 				<div class="offerArea" id="Course">
 					<div class="">
-						<div class="">
-							<h4 class="txt_big" style="margin-bottom: 20px;">로컬 포인트</h4>
-							<ul class="textP ">
-								<li class="WhiteSpacing text_cut_expand1"
-									style="width: 100%; word-break: break-all;">중국 하면 로컬음식!
-									육즙을 빨대로 먹을 수 있는 일명 빨대 만두, 중국의 전통 간식인 과일 꼬치 탕후루, 달걀과 각종 채소, 치즈,
-									베이컨 등을 넣어 또띠아처럼 말아 먹는 따뜻하고 든든한 간식 쇼좌삥 한 입, 해가 지면 하나둘 보이는 길거리 좌판
-									위의 꼬치 요리와 맥주를 한 잔 들이켜면 여행에서의 소소한 행복이 전해져요. 블로그의 유명 맛집들도 좋지만,
-									저렴하고 푸짐한 로컬 음식을 먹으며 중국의 맛에 빠져보는 것은 어떨까요?</li>
-							</ul>
-						</div>
 						<div class="offerBox">
 							<h4 class="txt_big">
 								코스 안내<span class="">
@@ -314,18 +306,6 @@ function tripJoin() {
 				<div class="offerArea floatL" style="margin-bottom: 0px"
 					id="offerInfo">
 					<div style="width: 770px;">
-						<div>
-							<h4 class="txt_big" style="margin-bottom: 20px;">로컬가이드 한마디</h4>
-							<ul class="textP">
-								<li id="text_cut_expand3"
-									class="WhiteSpacing offerWhiteSpacing text_cut_expand3">1.
-									중국 여행비자 중국을 여행하기에 앞서 제일 중요한 건 비자 발급이에요. 여행을 오시기 최소 2주 전에 반드시!
-									비자를 발급받아야 한다는 점 명심해주세요! 비자는 마트에서 쉽게 볼 수 있는 여행사 부스에서도 발급할 수
-									있는데요, 가격은 10만 원 안팎의 가격이며 (보통 현금 혹은 계좌이체만 가능) , 여권, 비자 사진( 여권
-									사진과 다르며 촬영 시기가 3개월이 넘지 않는 흰색 배경의 사진, 흰옷 금지) 을 준비해주시면 된답니다! 중국
-									비자센터에 직접 방문하신다면 조금 더 저렴한 가격으로 발급을 받으실 수도 있어요.
-							</ul>
-						</div>
 						<c:if test="${trip[0].include ne ''} ">
  						
 	 						<div class="offerBox">
@@ -350,27 +330,6 @@ function tripJoin() {
 	 						</div>
  						
  						</c:if>
-						<div class="offerBox">
-							<h4 class="txt_big">취소 및 환불 규정</h4>
-							<ul class="textP text_cut_expand2">
-								<li class="txtG">- 여행시작 30일전까지 통보시: 여행 요금 전액 환불, 여행자 부담 없음</li>
-								<li class="txtG">- 여행시작 20일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
-									10%와 “회사” 수수료 공제 후 환불</li>
-								<li class="txtG">- 여행시작 6일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
-									15%와 “회사” 수수료 공제 후 환불</li>
-								<li class="txtG">- 여행시작 1일 전까지 통보시: 여행요금에서 “트래블메이커” 요금의
-									20%와 “회사” 수수료 공제 후 환불</li>
-								<li class="txtG" style="margin-bottom: 10px;">- 여행시작 시간 기준
-									24시간 이내 통보시: 여행요금에서 “트래블메이커” 요금의 50%와 “회사” 수수료 공제 후 환불</li>
-								<li class="">* “여행자”가 여행요금을 결제(지급)한 때로부터 24시간 이내에 여행계약을
-									취소(철회)하는 경우와 “여행자”가 트래블 예약 후 TM이 여행 확정하기 전에 취소(철회)하는 경우는 여행요금을
-									전액 환불합니다. 단, “여행자”가 여행요금을 결제하였다고 하더라도 해당 시점으로부터 24시간 이내 여행이 시작될
-									경우는 전액 환불 대상에서 제외합니다.</li>
-								<li class="">* 취소(철회) 통보 시점은, ‘취소 요청서가 “회사” 플랫폼에 접수된 시간’ 또는
-									“회사” 공식 카카오 상담센터를 통하여 취소(철회) 통보한 내용이 기록된 시간’을 기준으로 합니다.</li>
-							</ul>
-						</div>
-
 
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 package com.maximusteam.tripfulaxel.livechat.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,7 +69,6 @@ public class ChatController {
 			} else {
 				System.out.println("유저 채팅 접속 실패!!!");
 			}
-			
 			
 		} else if(message.getMessageType().equals("out")){
 			
