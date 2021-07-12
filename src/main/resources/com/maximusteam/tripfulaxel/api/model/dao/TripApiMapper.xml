@@ -15,6 +15,61 @@
 	</resultMap>
 	
 	<select id="getTrips" resultMap="TripApiDTO">
-		
+		SELECT *
+		  FROM TRIP
 	</select>
+	
+	<select id="getTrip" resultMap="TripApiDTO">
+		SELECT *
+		  FROM TRIP
+		 WHERE TRIP_CODE = #{id}
+	</select>
+	
+	<insert id="registTrip" parameterType="TripApiDTO">
+		<selectKey resultType="int" keyProperty="tripCode" order="AFTER">
+	    	SELECT MAX(TRIP_CODE) as tripCode FROM TRIP
+	    </selectKey>
+	    INSERT INTO TRIP
+	    (
+	    	   TRIP_CODE
+			 , TRIP_TITLE
+			 , TRIP_INTRO
+			 , TRIP_START_DATE
+			 , TRIP_MEET_LOCATION
+			 , TRIP_INCLUDE
+			 , TRIP_N_INCLUDE
+			 , TRIP_END_DATE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
+	        , #{tripTitle}
+	        , #{tripIntro}
+	        , #{tripStartDate}
+	        , #{meetLocation}
+	        , #{include}
+	        , #{exclude}
+	        , #{tripEndDate}
+	    )
+	</insert>
+	
+	<update id="modifyTrip" parameterType="TripApiDTO">
+		UPDATE 
+			   TRIP
+		   SET 
+			   TRIP_TITLE = #{tripTitle}
+			 , TRIP_INTRO = #{tripIntro}
+			 , TRIP_START_DATE = #{tripStartDate}
+			 , TRIP_MEET_LOCATION = #{meetLocation}
+			 , TRIP_INCLUDE = #{include}
+			 , TRIP_N_INCLUDE = #{exclude}
+			 , TRIP_END_DATE = #{tripEndDate}
+	 	 WHERE TRIP_CODE = #{tripCode}
+	</update>
+	
+	<delete id="removeTrip" parameterType="int">
+		DELETE
+		  FROM TRIP
+		 WHERE TRIP_CODE = #{id}
+	</delete>
 </mapper>
