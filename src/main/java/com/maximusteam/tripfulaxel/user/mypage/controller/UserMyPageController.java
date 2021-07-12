@@ -66,6 +66,9 @@ public class UserMyPageController {
 		return "user/mypage/mypageTab1";
 	}
 	
+//	@GetMapping("tab1Detail")
+//	public void
+	
 	@GetMapping("mypageTab2")
 	public String selectGuideTripList(Model model, HttpSession session) {
 		

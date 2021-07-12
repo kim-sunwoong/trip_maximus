@@ -162,16 +162,17 @@
 			  , USER_PWD
 			  , USER_BDAY
 			  , USER_GENDER
-		  FROM 'USER' u
-		 WHERE u.USER_CODE = #{id}
+			  , USER_EMAIL
+		  FROM USER
+		 WHERE USER_CODE = #{id}
 	</select>
 	
 	<update id="updateUserPwd">
-		UPDATE 'USER' u
+		UPDATE 'USER'
 		   SET  
-			    u.USER_PHONE = #{user.userName}
-			  , u.USER_PWD = #{user.userPwd}
-		WHERE u.USER_CODE = #{user.userCode}
+			    USER_PHONE = #{user.userName}
+			  , USER_PWD = #{user.userPwd}
+		WHERE USER_CODE = #{user.userCode}
 	</update>
 	
 	<!-- userpage6 -->
@@ -317,8 +318,8 @@
 				   JOIN_TRIP_APPLY_CODE
 			  FROM JOIN_TRIP_APPLY jta
 			  JOIN TRIP_REGIST_LIST trl ON(jta.TRIP_REGIST_LIST_CODE = trl.TRIP_REGIST_LIST_CODE)
-			 WHERE jta.USER_CODE = #{id}
-			   AND trl.TRIP_REGIST_LIST_CODE = 20
+			 WHERE jta.USER_CODE = 4
+			   AND trl.TRIP_REGIST_LIST_CODE = 3
 		</select>
 		
 		

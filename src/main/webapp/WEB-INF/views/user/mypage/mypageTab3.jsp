@@ -8,7 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
+
 <link rel="stylesheet" href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
     <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
 	<link rel="icon" type="image/png" sizes="16x16" href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
@@ -66,12 +68,12 @@
                     <h3 style="width: 25%; height: auto; margin: 0 auto;">여행 플래너 (미래)</h3>
                 </div> -->
 
-                <div class="card w-75" style="margin: 0 auto;">
+                <!-- <div class="card w-75" style="margin: 0 auto;">
                     <div class="card-body" style="margin: 0 auto;">
                       <h5 class="card-title" style="float: left; line-height: 45px;  margin-right: 150px;">내가만든 여행 제목</h5>
                       <a href="#" class="btn btn-primary" style="float: right; color: white;">자세히 보기</a>
                     </div>
-                  </div>
+                  </div> -->
 			
                 <div class="section1" style="margin-top: 60px; ">
 						

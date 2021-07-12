@@ -8,7 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
+
+
 <link rel="stylesheet"
 	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
 <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
@@ -81,7 +84,6 @@
 			<div id="detail">
 			
 				
-				</div>
 			
 				<table align="center" class="detailTable"
 					style="border-collapse: collapse; margin: 0 auto; table-layout: fixed;">
@@ -112,7 +114,7 @@
 
 
 
-						<tr>
+						<!-- <tr>
 							<td colspan="4">
 								<div id="contact-area" style="margin: 0 auto; clear: both;">
 									<form style="background-color: #f7fafc;">
@@ -156,7 +158,7 @@
 									</form>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 
 
 
