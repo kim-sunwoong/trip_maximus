@@ -3,5 +3,18 @@
 <mapper
 	namespace="com.maximusteam.tripfulaxel.api.model.dao.TripApiMapper">
 	
+	<resultMap type="TripApiDTO" id="TripApiDTO">
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="exclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+	</resultMap>
 	
+	<select id="getTrips" resultMap="TripApiDTO">
+		
+	</select>
 </mapper>
