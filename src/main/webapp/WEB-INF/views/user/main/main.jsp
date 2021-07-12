@@ -12,7 +12,6 @@
 <title>TRIPFUL AXEL - 여행에 가속을</title>
 
 
-<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
@@ -82,6 +81,7 @@
    crossorigin="anonymous"></script>
 
 
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 
 </head>
 <body>
