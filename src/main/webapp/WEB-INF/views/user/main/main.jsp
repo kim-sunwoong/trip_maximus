@@ -209,11 +209,12 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
                      style="width: 800px; height: 535;"
                      src="/tripfulaxel/resources/images/common/local_guide_main.png"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">로컬
-                        가이드 여행</h1>
+                                                     가이드 여행</h1>
                      <p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>
                   </div>
                </div>
@@ -222,7 +223,8 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
                      alt="Second slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_alone.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">나만의
@@ -235,7 +237,8 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_together.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">같이가요
@@ -243,24 +246,50 @@ li.header_menu:hover {
                      <p>혼자가기엔 아쉬운 여행, 여행 파트너를 찾아보거나 다른 회원의 여행에 조인할 수 있어요!</p>
                   </div>
                </div>
+               
+               <c:if test="${ !empty sessionScope.loginUser }">
                <div class="carousel-item">
                   <img class="d-block w-100"
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/planner/choose'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">여행플래너</h1>
                      <p>나의 여행, 플랜 만들기부터 공유까지 할 수 있어요!</p>
                   </div>
                </div>
+               </c:if>
+               
+              
+                            
+               <c:if test="${ empty sessionScope.loginUser }">
+               <div class="carousel-item">
+                  <img class="d-block w-100"
+                     data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
+                     alt="Third slide [800x400]"
+                     src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
+                     data-holder-rendered="true"
+                     onclick="javascript:alert('로그인 후 이용해주세요');">
+                  <div class="carousel-caption d-none d-md-block"
+                     style="bottom: 50px;">
+                     <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">여행플래너</h1>
+                     <p>나의 여행, 플랜 만들기부터 공유까지 할 수 있어요!</p>
+                  </div>
+               </div>
+               </c:if>
+               
+               
+               <c:if test="${ !empty sessionScope.loginUser }">
                <div class="carousel-item">
                   <img class="d-block w-100"
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
@@ -268,6 +297,26 @@ li.header_menu:hover {
                      <p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
                   </div>
                </div>
+               </c:if>
+               
+             <c:if test="${  empty sessionScope.loginUser  }">
+               <div class="carousel-item">
+                  <img class="d-block w-100"
+                     data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
+                     alt="Third slide [800x400]"
+                     src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
+                     data-holder-rendered="true"
+                     onclick="javascript:alert('로그인 후 이용해주세요');">
+                  <div class="carousel-caption d-none d-md-block"
+                     style="bottom: 50px;">
+                     <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
+                                                  정보 공유</h1>
+                     <p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
+                  </div>
+               </div>
+               </c:if>
+               
+               
 
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions"
