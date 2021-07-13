@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.maximusteam.tripfulaxel.guide.model.dto.TripImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.ReviewDTO;
@@ -25,7 +24,6 @@ import com.maximusteam.tripfulaxel.trip.model.dto.SortCondition;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripCourseDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripInquiryDTO;
-import com.maximusteam.tripfulaxel.trip.model.dto.TripJoinDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripPaymentAndJoinDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripThemeDTO;
 import com.maximusteam.tripfulaxel.trip.model.dto.TripTransitDTO;

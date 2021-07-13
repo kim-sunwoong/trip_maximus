@@ -88,6 +88,7 @@
         LEFT JOIN TRIP_REPLY E ON(D.TRIP_REVIEW_CODE = E.TRIP_REVIEW_CODE)
        WHERE A.USER_GUIDE_YN = 'Y'
          AND A.USER_CODE = #{guideCode}
+      ORDER BY D.TRIP_REVIEW_CODE DESC
     </select>
     
     <!-- 후기 댓글  -->

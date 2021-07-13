@@ -151,101 +151,122 @@
       <result column="USER_REPORT_COUNT" property="userReportCount" />
       <result column="USER_GUIDE_YN" property="userGuideYN" />
     </resultMap> -->
-   
-   <!-- chap5 -->
-   <select id="selectUserInfo" resultMap="userResult">
-       SELECT
-             USER_CODE
-           , USER_NAME
-           , USER_PHONE
-           , USER_PWD
-           , USER_BDAY
-           , USER_GENDER
-           , USER_EMAIL
-        FROM USER
-       WHERE USER_CODE = #{id}
-   </select>
-   
-   <update id="updateUserPwd">
-      UPDATE 'USER'
-         SET  
-             USER_PHONE = #{user.userName}
-           , USER_PWD = #{user.userPwd}
-      WHERE USER_CODE = #{user.userCode}
-   </update>
-   
-   <!-- userpage6 -->
-   <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectRequestList">
-         <result property="reqDate" column="EXAMINE_REQUEST_DATE"/>   
-         <result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
-         <result property="reqYN" column="EXAMINE_REQUEST_YN"/>
-         <result property="reqTo" column="EXAMINE_REQUEST_TO"/>
-   </resultMap>                       
-   
-   <select id="selectRequestList" resultMap="selectRequestList">
-   SELECT
-         e.EXAMINE_REQUEST_REASON 
-       , e.EXAMINE_REQUEST_YN
-       , e.EXAMINE_REQUEST_DATE
-     FROM EXAMINE e 
-    WHERE e.TYPE_CODE IN (2,5)
-    AND e.EXAMINE_REQUEST_FROM = #{id}
-   </select>
-    
-    
-    
-    
-    <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectExamineList">
-       <result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
-       <result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
-       <result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
-       <result property="reqType" column="TYPE_CODE"/>
-       <result property="reqFrom" column="EXAMINE_REQUEST_FROM"/>
-       <result property="reqYN" column="EXAMINE_REQUEST_YN"/>
-       <result property="reqTo" column="EXAMINE_REQUEST_TO"/>
-       <collection property="reqImage" resultMap="reqImagedto"/>
-    </resultMap>              
-    
-    <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
-       <result property="code" column="REPORT_IMAGE_CODE"/>
-       <result property="saveName" column="REPORT_IMAGE_SAVED_NAME"/>
-       <result property="orignName" column="REPORT_IMAGE_ORIGIN_NAME"/>
-       <result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
-    </resultMap>                 
-    
-    <insert id="insertRequest">
-      <selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
-          SELECT
-               MAX(EXAMINE_REQUEST_CODE)+1 FROM EXAMINE
-               
-       </selectKey>
-        INSERT
-          INTO EXAMINE
-          (
-             EXAMINE_REQUEST_CODE
-         , EXAMINE_REQUEST_DATE
-         , EXAMINE_REQUEST_REASON
-         , TYPE_CODE
-         , EXAMINE_REQUEST_FROM
-         , EXAMINE_REQUEST_YN
-         , EXAMINE_REQUEST_TO
-          )
-        VALUES
-        (
-          #{reqCode}
-       , DATE_FORMAT(now(),'%Y-%m-%d')
-       , #{req.reqReason}      
-       , #{req.reqType}
-       , #{id}      
-       , 'N'                     
-       , #{req.reqTo}
-        )
-    </insert>
-    
-    
-    
-    
-    <resultMap id="userResult" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
+	
+	<!-- chap5 -->
+	<select id="selectUserInfo" resultMap="userResult">
+		 SELECT
+			    USER_CODE
+			  , USER_NAME
+			  , USER_PHONE
+			  , USER_PWD
+			  , USER_BDAY
+			  , USER_GENDER
+			  , USER_EMAIL
+		  FROM USER
+		 WHERE USER_CODE = #{id}
+	</select>
+	
+	<update id="updateUserPwd">
+		UPDATE 'USER'
+		   SET  
+			    USER_PHONE = #{user.userName}
+			  , USER_PWD = #{user.userPwd}
+		WHERE USER_CODE = #{user.userCode}
+	</update>
+	
+	<!-- userpage6 -->
+	<resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectRequestList">
+			<result property="reqDate" column="EXAMINE_REQUEST_DATE"/>	
+			<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
+			<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
+			<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+			<result property="reqType" column="TYPE_CODE"/>
+	</resultMap>                       
+	
+	<select id="selectRequestList" resultMap="selectRequestList">
+	SELECT
+		   e.EXAMINE_REQUEST_REASON 
+		 , e.EXAMINE_REQUEST_YN
+		 , e.TYPE_CODE
+		 , e.EXAMINE_REQUEST_DATE
+	  FROM EXAMINE e 
+	 WHERE e.TYPE_CODE IN (2,5)
+	 AND e.EXAMINE_REQUEST_FROM = #{id}
+	</select>
+	 
+	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO" id="selectExamineList">
+	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
+	 	<result property="reqDate" column="EXAMINE_REQUEST_REASON"/>
+	 	<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
+	 	<result property="reqType" column="TYPE_CODE"/>
+	 	<result property="reqFrom" column="EXAMINE_REQUEST_FROM"/>
+	 	<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
+	 	<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+	 	<collection property="reqImage" resultMap="reqImagedto"/>
+	 </resultMap>              
+	 
+	 <resultMap type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO" id="reqImagedto">
+	 	<result property="code" column="REPORT_IMAGE_CODE"/>
+	 	<result property="saveName" column="REPORT_IMAGE_SAVED_NAME"/>
+	 	<result property="orignName" column="REPORT_IMAGE_ORIGIN_NAME"/>
+	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
+	 </resultMap>                 
+	 
+	 <insert id="insertRequest" >
+		<selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
+	 		SELECT
+	 			  MAX(EXAMINE_REQUEST_CODE)+1 FROM EXAMINE
+	 	</selectKey>
+	 	 INSERT
+	 	   INTO EXAMINE
+	 	   (
+	 	      EXAMINE_REQUEST_CODE
+			, EXAMINE_REQUEST_DATE
+			, EXAMINE_REQUEST_REASON
+			, TYPE_CODE
+			, EXAMINE_REQUEST_FROM
+			, EXAMINE_REQUEST_YN
+			, EXAMINE_REQUEST_TO
+	 	   )
+	 	 VALUES
+	 	 (
+	 	   #{reqCode}
+		 , DATE_FORMAT(now(),'%Y-%m-%d')
+		 , #{req.reqReason}		
+		 , #{req.reqType}
+		 , #{id}		
+		 , 'N'							
+		 , #{req.reqTo}
+	 	 )
+	 </insert>
+	  
+	 <select id="selectRepPK">
+		 SELECT MAX(REPORT_IMAGE_CODE)+1 as m FROM REPORT_IMAGE
+		</select>
+		
+		<insert id="insertReqImg" >
+			 	<selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
+			 	SELECT
+			 			  MAX(EXAMINE_REQUEST_CODE) FROM EXAMINE
+			 	</selectKey>
+			INSERT
+	        INTO REPORT_IMAGE 
+	        (
+	          REPORT_IMAGE_CODE
+			, REPORT_IMAGE_SAVED_NAME
+			, REPORT_IMAGE_ORIGIN_NAME
+			, EXAMINE_REQUEST_CODE
+	        )
+	      VALUES
+	      (
+	      , #{req.reqImage.code}
+	      , #{req.reqImage.saveName}
+	      , #{req.reqImage.orignName}
+	      , #{reqCode}
+	      )
+		</insert>
+		
+	 <resultMap id="userResult" type="com.maximusteam.tripfulaxel.user.model.dto.UserDTO">
       <result column="USER_CODE" property="userCode" />
       <result column="USER_NAME" property="userName" />
       <result column="USER_PHONE" property="userPhone" />
