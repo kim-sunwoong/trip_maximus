@@ -30,6 +30,8 @@ public interface UserMypageMapper {
 	List<ReqListDTO> selectRequestList(int id);
 	
 	int insertRequest(Map<String, Object> map);
+	int selectRepPK();
+	int insertReqImg(Map<String, Object> map);
 	
 	List<InquiryDTO> selectInquiry(int id);
 	

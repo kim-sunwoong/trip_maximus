@@ -73,11 +73,21 @@ public class UserMypageServiceImpl implements UserMypageService{
 		return mapper.selectRequestList(id);
 	}
 
+	
 	@Override
 	public int insertRequest(Map<String, Object> map) {
 		return mapper.insertRequest(map);
 	}
+	@Override
+	public int selectRepPK() {
+		return mapper.selectRepPK();
+	}
+	@Override
+	public int insertReqImg(Map<String, Object> map) {
+		return mapper.insertReqImg(map);
+	}
 
+	
 	@Override
 	public List<InquiryDTO> selectInquiry(int id) {
 		return mapper.selectInquiry(id);
@@ -105,6 +115,10 @@ public class UserMypageServiceImpl implements UserMypageService{
 	public int selectjtaCode(int id) {
 		return mapper.selectjtaCode(id);
 	}
+
+	
+	
+
 
 
 

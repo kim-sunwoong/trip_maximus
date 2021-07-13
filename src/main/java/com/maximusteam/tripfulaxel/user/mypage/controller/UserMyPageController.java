@@ -25,12 +25,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
+import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
 
 @Controller
 @RequestMapping("/user/mypage/*")
@@ -190,9 +193,17 @@ public class UserMyPageController {
 				HttpServletRequest request, Model model,HttpSession session,@ModelAttribute("req") ReqListDTO req) {
 		
 		System.out.println("----------------------------------");
+		System.out.println(multiFiles==null);
+		System.out.println(multiFiles.isEmpty());
 		System.out.println(multiFiles);
-		System.out.println(req);
-		if(req.getReqImage()==null) {
+		System.out.println("----------------------------------");
+		System.out.println(multiFiles.get(0));
+		System.out.println("----------------------------------");
+		System.out.println(multiFiles.size());
+		System.out.println("----------------------------------");
+
+
+		if(multiFiles.size() == 1) {
 			UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
 			int id = userdto.getUserCode();
 			System.out.println(id);
@@ -204,6 +215,12 @@ public class UserMyPageController {
 			map.put("id", id);
 			
 			int result = userMypageService.insertRequest(map);
+			System.out.println("==============   null인경우   =============================");
+			System.out.println("result : " + result);
+			System.out.println("===========================================");
+			
+			
+			
 		}
 		else {
 		/* 파일을 저장할 경로 설정 */
@@ -274,15 +291,20 @@ public class UserMyPageController {
 			
 			int result = userMypageService.insertRequest(map);
 			
+			System.out.println("===========================================");
+			System.out.println("result : " + result);
+			System.out.println("===========================================");
+			
 			if(result > 0) {
-				try {
-					response.setCharacterEncoding("UTF-8");
-					response.getWriter().print("여행 문의가 등록 되었습니다.");
-				} catch (IOException e) {
-					e.printStackTrace();
+				System.out.println("godd");
+				int code = userMypageService.selectRepPK();
+				System.out.println("CODE : " + code);
+				for(int i= 0 ;i<map.size();i++) {
+				req.getReqImage().get(i).setCode(code);
 				}
-			} else {
-				System.out.println("여행 문의 등록 실패!");
+				map.put("req", req);
+				
+				userMypageService.insertReqImg(map);
 			}
 			
 			
@@ -333,110 +355,127 @@ public class UserMyPageController {
 	}
 	
 	
-/*
- * @PostMapping("insert/review") public String insertReview(@RequestParam
- * List<MultipartFile> multiFiles, Model model, HttpServletRequest
- * request,HttpSession session, @ModelAttribute("review") ReviewDTO review) {
- ********************************* 
- * MultipartFile 타입의 변수만 매개변수로 선언하면 파일에 대한 처리를 할 수
- * 있다.************************************
- * 
- * multipart로 전송된 request에 대한 인코딩 처리를 해주어야 하는데 일반 인코딩 필터보다 구현하기 힘들다. 스프링에서 인코딩
- * 필터를 제공한다. --> web.xml에 필터를 등록
- * 
- * System.out.println("===============================================");
- * System.out.println("multiFile : " + multiFiles);
- * System.out.println("===============================================");
- * System.out.println("review : " + review);
- * System.out.println("===============================================");
- * 
- * 
- * if(review.getReviewImgList()==null) { UserDTO userdto = (UserDTO)
- * session.getAttribute("loginUser"); int id = userdto.getUserCode();
- * System.out.println(id);
- * 
- * Map<String, Object> map = new HashMap<String, Object>();
- * 
- * map.put("review", review); map.put("id", id);
- * 
- * int result = userMypageService.insertReview(map); } else { 파일을 저장할 경로 설정
- * RootContext : request.getSession().getServletContext() +
- * getRealPath("이 부분을 찾는다.") String root =
- * request.getSession().getServletContext().getRealPath("resources");
- * 
- * String filePath = root + "\\uploadFiles";
- * 
- * // 폴더경로만들어주기 자동생성 File mkdir = new File(filePath); if(!mkdir.exists()) {
- * mkdir.mkdirs(); }
- * 
- * List<Map<String,String>> files = new ArrayList<>(); for(int i = 0 ;
- * i<multiFiles.size();i++) {
- * 
- * 파일명 변경 처리 String originFileName = multiFiles.get(i).getOriginalFilename();
- * String ext = originFileName.substring(originFileName.lastIndexOf("."));
- * String saveName = UUID.randomUUID().toString().replace("-", "") + ext;
- * 
- * 파일에 관한 정보 추출 후 보관 Map<String, String> file = new HashMap<String, String>();
- * file.put("originFileName", originFileName); file.put("saveName", saveName);
- * file.put("filePath", filePath);
- * 
- * files.add(file); }
- * 
- * 파일을 저장한다. UserDTO userdto = (UserDTO) session.getAttribute("loginUser"); int
- * id = userdto.getUserCode(); System.out.println(id);
- * 
- * List<ImageDTO> revimglist = new ArrayList<ImageDTO>(); for(int i = 0;
- * i<files.size(); i++) { ImageDTO revimgdto = new ImageDTO();
- * revimgdto.setSaveName(files.get(i).get("saveName"));
- * revimgdto.setOrignName(files.get(i).get("originFileName"));
- * 
- * revimglist.add(revimgdto); } review.setReviewImgList(revimglist);
- * 
- * Map<String, Object> map = new HashMap<String, Object>();
- * 
- * int jtaCode = userMypageService.selectjtaCode(id);
- * review.setJtaCode(jtaCode); map.put("review", review); map.put("id", id);
- * 
- * int result = userMypageService.insertReview(map);
- * 
- * System.out.println(
- * "=======================================================================");
- * System.out.println("result : "+result);
- * 
- * System.out.println(
- * "========================================================================");
- * 
- * 
- * if(result>0) {
- * 
- * int revimgCode = userMypageService.selectRevPK(map); for(int i = 0;
- * i<review.getReviewImgList().size(); i++) {
- * review.getReviewImgList().get(i).setCode(revimgCode); } int result2 =
- * userMypageService.insertrevImg(map);
- * System.out.println("result2 : "+result2);
- * 
- * } System.out.println(
- * "========================================================================");
- * try { for(int i = 0; i<multiFiles.size(); i++) {
- * 
- * Map<String, String> file = files.get(i);
- * 
- * multiFiles.get(i).transferTo(new File(filePath +
- * "\\" + file.get("saveName")));
- * 
- * } model.addAttribute("message","파일 업로드 성공!~!!!!"); } catch (Exception e) {
- * e.printStackTrace();
- * 
- * 실패시 파일 삭제 for(int i = 0; i<multiFiles.size(); i++) {
- * 
- * Map<String, String> file = files.get(i);
- * 
- * new File(filePath + "\\" + file.get("saveName")).delete(); }
- * model.addAttribute("message","파일 업로드 실패!!"); }
- * 
- * 
- * } return "user/mypage/mypageTab2"; }
- * 
- * }
- */
-}
+
+  @PostMapping("insert/review")
+  public String insertReview(@RequestParam List<MultipartFile> multiFiles, Model model, HttpServletRequest
+  request,HttpSession session, @ModelAttribute("review") ReviewDTO review) {
+	  
+ /********************************* 
+  MultipartFile 타입의 변수만 매개변수로 선언하면 파일에 대한 처리를 할 수
+  있다.*************************************/
+  
+//  multipart로 전송된 request에 대한 인코딩 처리를 해주어야 하는데 일반 인코딩 필터보다 구현하기 힘들다. 스프링에서 인코딩
+//  필터를 제공한다. --> web.xml에 필터를 등록
+  
+  System.out.println("===============================================");
+  System.out.println("multiFile : " + multiFiles);
+  System.out.println("===============================================");
+  System.out.println("review : " + review);
+  System.out.println("===============================================");
+  
+  
+  if(multiFiles.size()==1) { UserDTO userdto = (UserDTO)
+  session.getAttribute("loginUser"); int id = userdto.getUserCode();
+  System.out.println(id);
+  
+  Map<String, Object> map = new HashMap<String, Object>();
+  
+  map.put("review", review); map.put("id", id);
+  
+  int result = userMypageService.insertReview(map); }
+  
+  
+  else {
+//	  파일을 저장할 경로 설정
+//  RootContext : request.getSession().getServletContext() + getRealPath("이 부분을 찾는다.")
+  String root =  request.getSession().getServletContext().getRealPath("resources");
+  
+  String filePath = root + "\\uploadFiles";
+  
+  // 폴더경로만들어주기 자동생성
+  File mkdir = new File(filePath);
+  if(!mkdir.exists()) { mkdir.mkdirs(); }
+  
+  List<Map<String,String>> files = new ArrayList<>();
+  for(int i = 0 ;i<multiFiles.size();i++) {
+  
+//  파일명 변경 처리 
+  String originFileName = multiFiles.get(i).getOriginalFilename();
+  String ext = originFileName.substring(originFileName.lastIndexOf("."));
+  String saveName = UUID.randomUUID().toString().replace("-", "") + ext;
+  
+//  파일에 관한 정보 추출 후 보관
+  Map<String, String> file = new HashMap<String, String>();
+  file.put("originFileName", originFileName); file.put("saveName", saveName);
+  file.put("filePath", filePath);
+  
+  files.add(file); 
+  }
+  
+//  파일을 저장한다.
+  UserDTO userdto = (UserDTO) session.getAttribute("loginUser"); int
+  id = userdto.getUserCode(); System.out.println(id);
+  
+  List<ImageDTO> revimglist = new ArrayList<ImageDTO>();
+  
+  for(int i = 0; i<files.size(); i++) {
+			  ImageDTO revimgdto = new ImageDTO();
+		  revimgdto.setSaveName(files.get(i).get("saveName"));
+		  revimgdto.setOrignName(files.get(i).get("originFileName"));
+		  
+		  revimglist.add(revimgdto);
+  }
+  
+  review.setReviewImgList(revimglist);
+  
+  Map<String, Object> map = new HashMap<String, Object>();
+  
+  int jtaCode = userMypageService.selectjtaCode(id);
+  review.setJtaCode(jtaCode);
+  
+  map.put("review", review);
+  map.put("id", id);
+  
+  int result = userMypageService.insertReview(map);
+  
+  System.out.println(
+  "=======================================================================");
+  System.out.println("result : "+result);
+  
+  System.out.println(
+  "========================================================================");
+  
+  
+  if(result>0) {
+  
+  int revimgCode = userMypageService.selectRevPK(map);
+  for(int i = 0; i<review.getReviewImgList().size(); i++) {
+  review.getReviewImgList().get(i).setCode(revimgCode); }
+  
+  int result2 = userMypageService.insertrevImg(map);
+  System.out.println("result2 : "+result2);
+  
+  }
+  System.out.println("========================================================================");
+  try { for(int i = 0; i<multiFiles.size(); i++) {
+  
+  Map<String, String> file = files.get(i);
+  
+  multiFiles.get(i).transferTo(new File(filePath + "\\" + file.get("saveName")));
+  
+  } model.addAttribute("message","파일 업로드 성공!~!!!!"); } catch (Exception e) {
+  e.printStackTrace();
+  
+//  실패시 파일 삭제
+  for(int i = 0; i<multiFiles.size(); i++) {
+  
+  Map<String, String> file = files.get(i);
+  
+  new File(filePath + "\\" + file.get("saveName")).delete(); }
+  model.addAttribute("message","파일 업로드 실패!!"); }
+  
+  
+  } return "user/mypage/mypageTab2"; }
+  
+  }
+ 
