@@ -12,7 +12,6 @@
 <title>TRIPFUL AXEL - 여행에 가속을</title>
 
 
-<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
@@ -82,6 +81,7 @@
    crossorigin="anonymous"></script>
 
 
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 
 </head>
 <body>
@@ -310,7 +310,7 @@ li.header_menu:hover {
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
-                        정보 공유</h1>
+                                                  정보 공유</h1>
                      <p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
                   </div>
                </div>

@@ -61,7 +61,9 @@
                         <tr onclick="location.href='${ pageContext.servletContext.contextPath }/user/guidepage/guideContactDetail?tripInquiryCode=${guideContact.tripInquiryCode}'">
                             <td><c:out value="${ guideContact.guideList[0].applyName }"/></td>
                             <td><c:out value="${ guideContact.inquiryReason }"/></td>
-                            <td><c:out value="${ guideContact.inquiryYn }"/></td>
+                            <c:if test="${ guideContact.inquiryYn == 'N' }"><td>미답변</td></c:if>
+                            <c:if test="${ guideContact.inquiryYn == 'Y' }"><td>답변</td></c:if>
+                           <%--  <td><c:out value="${ guideContact.inquiryYn }"/></td> --%>
                         </tr>
                </c:forEach>
                    </tbody>
