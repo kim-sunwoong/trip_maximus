@@ -181,12 +181,14 @@
 			<result property="reqReason" column="EXAMINE_REQUEST_REASON"/>
 			<result property="reqYN" column="EXAMINE_REQUEST_YN"/>
 			<result property="reqTo" column="EXAMINE_REQUEST_TO"/>
+			<result property="reqType" column="TYPE_CODE"/>
 	</resultMap>                       
 	
 	<select id="selectRequestList" resultMap="selectRequestList">
 	SELECT
 		   e.EXAMINE_REQUEST_REASON 
 		 , e.EXAMINE_REQUEST_YN
+		 , e.TYPE_CODE
 		 , e.EXAMINE_REQUEST_DATE
 	  FROM EXAMINE e 
 	 WHERE e.TYPE_CODE IN (2,5)
@@ -214,11 +216,10 @@
 	 	<result property="reqCode" column="EXAMINE_REQUEST_CODE"/>
 	 </resultMap>                 
 	 
-	 <insert id="insertRequest">
+	 <insert id="insertRequest" >
 		<selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
 	 		SELECT
 	 			  MAX(EXAMINE_REQUEST_CODE)+1 FROM EXAMINE
-	 			  
 	 	</selectKey>
 	 	 INSERT
 	 	   INTO EXAMINE
@@ -242,6 +243,34 @@
 		 , #{req.reqTo}
 	 	 )
 	 </insert>
+	  
+	 <select id="selectRepPK">
+		 SELECT MAX(REPORT_IMAGE_CODE)+1 as m FROM REPORT_IMAGE
+		</select>
+		
+		<insert id="insertReqImg" >
+			 	<selectKey keyProperty="reqCode" order="BEFORE" resultType="_int">
+			 	SELECT
+			 			  MAX(EXAMINE_REQUEST_CODE) FROM EXAMINE
+			 	</selectKey>
+			INSERT
+	        INTO REPORT_IMAGE 
+	        (
+	          REPORT_IMAGE_CODE
+			, REPORT_IMAGE_SAVED_NAME
+			, REPORT_IMAGE_ORIGIN_NAME
+			, EXAMINE_REQUEST_CODE
+	        )
+	      VALUES
+	      (
+	      , #{req.reqImage.code}
+	      , #{req.reqImage.saveName}
+	      , #{req.reqImage.orignName}
+	      , #{reqCode}
+	      )
+		</insert>
+		
+		
 	 
 	 
 	 

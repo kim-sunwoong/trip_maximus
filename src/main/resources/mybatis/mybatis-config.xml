@@ -28,6 +28,7 @@
   		<typeAlias alias="TripTransitChoiceDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.TripTransitChoiceDTO"/>	
   		<typeAlias alias="UserTripAloneDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripAloneDTO"/>	
   		<typeAlias alias="UserTripTogetherDTO" type="com.maximusteam.tripfulaxel.guide.model.dto.UserTripTogetherDTO"/>	
+  		<typeAlias alias="ReqListDTO" type="com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO"/>	
   	</typeAliases>
   	
  	
