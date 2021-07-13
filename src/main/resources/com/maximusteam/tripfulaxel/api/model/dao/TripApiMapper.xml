@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.maximusteam.tripfulaxel.api.model.dao.TripApiMapper">
+	
+	<resultMap type="TripApiDTO" id="TripApiDTO">
+		<result property="tripCode" column="TRIP_CODE"/>
+		<result property="tripTitle" column="TRIP_TITLE"/>
+		<result property="tripIntro" column="TRIP_INTRO"/>
+		<result property="meetLocation" column="TRIP_MEET_LOCATION"/>
+		<result property="include" column="TRIP_INCLUDE"/>
+		<result property="exclude" column="TRIP_N_INCLUDE"/>
+		<result property="tripStartDate" column="TRIP_START_DATE"/>
+		<result property="tripEndDate" column="TRIP_END_DATE"/>
+	</resultMap>
+	
+	<select id="getTrips" resultMap="TripApiDTO">
+		SELECT *
+		  FROM TRIP
+	</select>
+	
+	<select id="getTrip" resultMap="TripApiDTO" parameterType="int">
+		SELECT *
+		  FROM TRIP
+		 WHERE TRIP_CODE = #{id}
+	</select>
+	
+	<insert id="registTrip" parameterType="TripApiDTO">
+		<selectKey resultType="int" keyProperty="tripCode" order="AFTER">
+	    	SELECT MAX(TRIP_CODE) as tripCode FROM TRIP
+	    </selectKey>
+	    INSERT INTO TRIP
+	    (
+	    	   TRIP_CODE
+			 , TRIP_TITLE
+			 , TRIP_INTRO
+			 , TRIP_START_DATE
+			 , TRIP_MEET_LOCATION
+			 , TRIP_INCLUDE
+			 , TRIP_N_INCLUDE
+			 , TRIP_END_DATE
+	    )
+	    VALUES
+	    (
+	          (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
+	        , #{tripTitle}
+	        , #{tripIntro}
+	        , #{tripStartDate}
+	        , #{meetLocation}
+	        , #{include}
+	        , #{exclude}
+	        , #{tripEndDate}
+	    )
+	</insert>
+	
+	<update id="modifyTrip" parameterType="TripApiDTO">
+		UPDATE 
+			   TRIP
+		   SET 
+			   TRIP_TITLE = #{tripTitle}
+			 , TRIP_INTRO = #{tripIntro}
+			 , TRIP_START_DATE = #{tripStartDate}
+			 , TRIP_MEET_LOCATION = #{meetLocation}
+			 , TRIP_INCLUDE = #{include}
+			 , TRIP_N_INCLUDE = #{exclude}
+			 , TRIP_END_DATE = #{tripEndDate}
+	 	 WHERE TRIP_CODE = #{tripCode}
+	</update>
+	
+	<delete id="removeTrip" parameterType="int">
+		DELETE
+		  FROM TRIP
+		 WHERE TRIP_CODE = #{id}
+	</delete>
+</mapper>
