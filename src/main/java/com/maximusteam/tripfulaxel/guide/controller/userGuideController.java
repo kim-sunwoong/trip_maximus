@@ -369,12 +369,4 @@ public class userGuideController {
 		/* 어떤것으로 JSON을 표현할지 생각 */
 	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "가이드 등록신청 완료"), HttpStatus.OK);
 	}
-	
-
-	/* 응답성공 */
-	@RequestMapping(value = "/api/insert/test/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
-	public ResponseEntity<?> testGuide(@PathVariable int id){
-		System.out.println("test");
-	    return new ResponseEntity<testGuide>(new testGuide(id, "JAMES"), HttpStatus.OK);
-	}
 }
