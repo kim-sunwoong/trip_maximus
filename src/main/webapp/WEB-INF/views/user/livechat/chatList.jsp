@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <style>
 
 
