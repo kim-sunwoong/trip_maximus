@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maximusteam.tripfulaxel.user.model.dto.TripReviewDTO;
@@ -54,9 +56,15 @@ public class GuidePageController {
 		System.out.println("내 총 리뷰수 : " + goodsCount);
 		model.addAttribute("goodsCount", goodsCount);
 
-		int reviewStar = guidePageService.selectStar(guideCode);
-		System.out.println("내 평균별점 : " + reviewStar);
-		model.addAttribute("reviewStar", reviewStar);
+		try {
+			int reviewStar = guidePageService.selectStar(guideCode);
+			System.out.println("내 평균별점 : " + reviewStar);
+			model.addAttribute("reviewStar", reviewStar);
+		}catch(Exception E) {
+			model.addAttribute("reviewStar", 0);
+		}
+		
+		
 
 		return "user/guidepage/guideGoods";
 	}
@@ -133,7 +141,7 @@ public class GuidePageController {
 		
 		guidePageService.insertReply(tripreview);
 		
-		return "redirect:/";
+		return "redirect:/user/guidepage/guideReview";
 	}
 	
 	
@@ -168,18 +176,45 @@ public class GuidePageController {
 	 * @return
 	 */
 	@GetMapping("guideContactDetail")
-	public String insertGuideDetail(@ModelAttribute TripReviewDTO tripreview,HttpServletRequest request, Model model) {
+	public String selectGuideDetail(@RequestParam("tripInquiryCode") int tripInquiryCode
+			,@ModelAttribute TripReviewDTO tripreview,HttpServletRequest request, Model model) {
 		
-
-		System.out.println("문의코드 : " + tripreview.getTripInquiryCode());
+		System.out.println(tripInquiryCode);
 		
 		HttpSession session = request.getSession();
 		int guideCode = ((UserDTO) session.getAttribute("loginUser")).getUserCode();
 		System.out.println("로그인한 사람의 코드 :  " + guideCode);
 		
+		List<TripReviewDTO> selectGuideDetail = guidePageService.selectGuideDetail(tripInquiryCode);
+		System.out.println(selectGuideDetail);
+		
+		model.addAttribute("selectGuideDetail",selectGuideDetail);
+		
 		
 		return "user/guidepage/guideContactDetail";
 	}
+	
+	/**
+	 * 문의 답변 
+	 * @param tripreview
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "contactDetailReply", method = RequestMethod.POST)
+	public String insertContactDetailReply(@ModelAttribute TripReviewDTO tripreview) {
+		
+		
+		System.out.println("가이드가 입력한 문의답변   : " + tripreview.getInquiryResponse());
+		System.out.println("가이드의 입력한 문의코드 : " + tripreview.getTripInquiryCode());
+		
+		guidePageService.insertContactDetailReply(tripreview);
+		
+		return "redirect:/user/guidepage/guideContact";
+	}
+	
+	
+	
 	
 	
 	/**

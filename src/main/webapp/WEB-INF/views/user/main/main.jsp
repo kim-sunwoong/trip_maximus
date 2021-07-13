@@ -9,8 +9,7 @@
 <meta name="title" property="title" content="트리플악셀 :: 당신의여행에 가속을">
 <meta name="viewport"
    content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
-<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
-
+<title>TRIPFUL AXEL - 여행에 가속을</title>
 
 
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -82,6 +81,7 @@
    crossorigin="anonymous"></script>
 
 
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 
 </head>
 <body>
@@ -209,11 +209,12 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
                      style="width: 800px; height: 535;"
                      src="/tripfulaxel/resources/images/common/local_guide_main.png"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">로컬
-                        가이드 여행</h1>
+                                                     가이드 여행</h1>
                      <p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>
                   </div>
                </div>
@@ -222,7 +223,8 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
                      alt="Second slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_alone.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">나만의
@@ -235,7 +237,8 @@ li.header_menu:hover {
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_together.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">같이가요
@@ -243,24 +246,50 @@ li.header_menu:hover {
                      <p>혼자가기엔 아쉬운 여행, 여행 파트너를 찾아보거나 다른 회원의 여행에 조인할 수 있어요!</p>
                   </div>
                </div>
+               
+               <c:if test="${ !empty sessionScope.loginUser }">
                <div class="carousel-item">
                   <img class="d-block w-100"
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/planner/choose'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">여행플래너</h1>
                      <p>나의 여행, 플랜 만들기부터 공유까지 할 수 있어요!</p>
                   </div>
                </div>
+               </c:if>
+               
+              
+                            
+               <c:if test="${ empty sessionScope.loginUser }">
+               <div class="carousel-item">
+                  <img class="d-block w-100"
+                     data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
+                     alt="Third slide [800x400]"
+                     src="/tripfulaxel/resources/images/common/trip_planner.jpeg"
+                     data-holder-rendered="true"
+                     onclick="javascript:alert('로그인 후 이용해주세요');">
+                  <div class="carousel-caption d-none d-md-block"
+                     style="bottom: 50px;">
+                     <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">여행플래너</h1>
+                     <p>나의 여행, 플랜 만들기부터 공유까지 할 수 있어요!</p>
+                  </div>
+               </div>
+               </c:if>
+               
+               
+               <c:if test="${ !empty sessionScope.loginUser }">
                <div class="carousel-item">
                   <img class="d-block w-100"
                      data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
                      alt="Third slide [800x400]"
                      src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
-                     data-holder-rendered="true">
+                     data-holder-rendered="true"
+                     onclick="location.href='${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0'">
                   <div class="carousel-caption d-none d-md-block"
                      style="bottom: 50px;">
                      <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
@@ -268,6 +297,26 @@ li.header_menu:hover {
                      <p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
                   </div>
                </div>
+               </c:if>
+               
+             <c:if test="${  empty sessionScope.loginUser  }">
+               <div class="carousel-item">
+                  <img class="d-block w-100"
+                     data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide"
+                     alt="Third slide [800x400]"
+                     src="/tripfulaxel/resources/images/common/trip_realtime.jpg"
+                     data-holder-rendered="true"
+                     onclick="javascript:alert('로그인 후 이용해주세요');">
+                  <div class="carousel-caption d-none d-md-block"
+                     style="bottom: 50px;">
+                     <h1 style="font-size: 50px; margin-bottom: 10px; color: white;">실시간
+                                                  정보 공유</h1>
+                     <p>Tripful Axel회원들의 신나는 여행 정보 공유</p>
+                  </div>
+               </div>
+               </c:if>
+               
+               
 
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions"
@@ -354,59 +403,48 @@ li.header_menu:hover {
       <!--       <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
  -->
       <script>
-         $(document)
-               .ready(
-                     function() {
-                        console.log("gg");
-                        $
-                              .ajax({
-                                 url : "jeju",
-                                 success : function(data, status,
-                                       xhr) {
-                                    /* console.log(JSON.parse(data.jejuData));*/
-                                    /*                 h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
-                                     *//* JSON.parse(data.jejuData).response.body.items.item[0] */
-                                    console
-                                          .log(JSON
-                                                .parse(data.jejuData).response.body.items);
-                                    $
-                                          .each(
-                                                JSON
-                                                      .parse(data.jejuData).response.body.items.item,
-                                                function(i,
-                                                      item) {
-                                                   console
-                                                         .log(item.galWebImageUrl);
-                                                   /* var aa ='<li style="text-align: center; display: none;">' +
-                                                             '<a class="exhibition_href" href="#" target="_blank">' +
-                                                            '<div class="exhibition_img"' + 
-                                                   'style="width: 1070px; overflow: hidden; background: rgba(150, 150, 150, 0.3)' + 
-                                                             'url('+ "'" +item.galWebImageUrl+ "'"+') no-repeat center/cover;">'+
-                                                        '</div>' +
-                                                   '</a>' +
-                                                   '</li>'; */
+         $(document).ready(function() {
+        	 console.log("gg");
+             $.ajax({
+             	url : "jeju",
+                success : function(data, status,xhr) {
+                /* console.log(JSON.parse(data.jejuData));*/
+                /*                 h1.innerText = JSON.parse(data.jejuData).response.body.items.item[0].galTitle;
+                 *//* JSON.parse(data.jejuData).response.body.items.item[0] */
+	                 console.log(JSON.parse(data.jejuData).response.body.items);
+	                 $.each(JSON.parse(data.jejuData).response.body.items.item,
+                           function(i,item) {
+                               console.log(item.galWebImageUrl);
+                                    /* var aa ='<li style="text-align: center; display: none;">' +
+                                              '<a class="exhibition_href" href="#" target="_blank">' +
+                                             '<div class="exhibition_img"' + 
+                                    'style="width: 1070px; overflow: hidden; background: rgba(150, 150, 150, 0.3)' + 
+                                              'url('+ "'" +item.galWebImageUrl+ "'"+') no-repeat center/cover;">'+
+                                         '</div>' +
+                                    '</a>' +
+                                    '</li>'; */
 
-                                                   var aa = '<div class="carousel-item">'
-                                                         + '<img class="d-block w-100"'
-                                                         + 'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'
-                                                         + 'style=" width:800px; height:700px;"'
-                                                         + 'src="'
-                                                         + item.galWebImageUrl
-                                                         + '"'
-                                                         + 'data-holder-rendered="true">'
-                                                         + '<div class="carousel-caption d-none d-md-block"' +
-                     'style="bottom: 50px;">'
-                                                         + '<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">로컬 가이드 여행</h1>'
-                                                         + '<p>진짜 로컬, 그들만의 특별한 장소를 공개합니다!</p>'
-                                                         + '</div>'
-                                                         + '</div>';
-                                                   /*                   var aa = "<p>" + "dddd" + "</p>";
-                                                    */
-                                                   $(
-                                                         "#jejuData")
-                                                         .append(
-                                                               aa);
-                                                });
+                                    var aa = '<div class="carousel-item">'
+                                          + '<img class="d-block w-100"'
+                                          + 'data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"'
+                                          + 'style=" width:800px; height:700px;"'
+                                          + 'src="'
+                                          + item.galWebImageUrl
+                                          + '"'
+                                          + 'data-holder-rendered="true">'
+                                          + '<div class="carousel-caption d-none d-md-block"' 
+                                          + 'style="bottom: 50px;">'
+                                          + '<h1 style="font-size: 50px; margin-bottom: 10px; color:white;">'
+                                          + item.galTitle
+                                          + '</h1>'
+                                          + '<p>관련 키워드 # : '
+                                          + item.galSearchKeyword
+                                          + '</p>'
+                                          + '</div>'
+                                          + '</div>';
+                                                   
+                                                   $("#jejuData").append(aa);
+                                     });
                                  },
                                  error : function(xhr, status, error) {
                                     console.log(error);

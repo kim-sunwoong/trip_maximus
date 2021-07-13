@@ -9,10 +9,10 @@
 <meta name="title" property="title" content="트리플악셀 :: 당신의여행에 가속을">
 <meta name="viewport"
    content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
-<title>TRIPFUL AXEL - 당신의 여행에 가속을 더하다</title>
+<title>TRIPFUL AXEL  </title>
 
 
-
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
@@ -739,62 +739,69 @@ li.header_menu:hover {
 
       <div class="pcWrap clearfix"
          style="background-color: skyblue; width: 100%;">
-         <div class="floatL logo_area"></div>
-         <div class="floatR login_area" style="margin-right: 30px;">
+         <div class="floatR login_area" style="margin-right: 5% !important; width:25% !important;">
             
          
-            <ul class="clearfix">
+            <ul class="clearfix" style="margin-right:0% !important;">
                      
-              <c:if test="${ sessionScope.loginUser.userGuideYN eq 'N' }">
-               <li class="floatL">
-               <a href="${ pageContext.servletContext.contextPath }/insertGuide">
-                     <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드
-                                              등록</span>
-               </a></li>
+              <c:if test="${ !empty sessionScope.loginUser }">
+            	
+	               <li class="floatR" style="padding-left:20px !important;">
+	               <a class="logout_link"
+	               href="${ pageContext.servletContext.contextPath }/user/logout"> 
+	               <span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
                </c:if>
 
 
                <c:if test="${ empty sessionScope.loginUser }">
-                  <li class="floatL">
-                  <a class="login_link" 
-                   href="javascript:void(0)">
-                   <span style="color: white; font-size: 18px; font-weight: bold;">로그인</span>
-                  </a></li>
                   
-                  <li class="floatL"><a class="signup_link"
-                 href="javascript:void(0)"> <span
-                 style="color: white; font-size: 18px; font-weight: bold;">회원가입</span>
-                  </a></li>
-                  
+	                  <li class="floatR" style="padding-left:20px !important;"><a class="signup_link"
+	                 href="javascript:void(0)"> <span
+	                 style="color: white; font-size: 18px; font-weight: bold;">회원가입</span>
+	                  </a></li>
+	                  
+	                  <li class="floatR" style="padding-left:20px !important;">
+	                  <a class="login_link" 
+	                   href="javascript:void(0)">
+	                   <span style="color: white; font-size: 18px; font-weight: bold;">로그인</span>
+	                  </a></li>
                </c:if>
+               
+                <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
+	                 
+	                 <li class="floatR" style="padding-left:20px !important;">
+	                <a href="${ pageContext.servletContext.contextPath }/user/guidepage/">
+	                <span style="color: white; font-size: 18px; font-weight: bold;">
+	                                       가이드페이지</span>
+	               </a></li>
+	               </c:if>   
+               
 
                <c:if test="${ !empty sessionScope.loginUser }">
-               <li class="floatL">
-               <a class="logout_link"
-               href="${ pageContext.servletContext.contextPath }/user/logout"> 
-               <span style="color: white; font-size: 18px; font-weight: bold;">로그아웃</span></a></li>
             	
-                <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/user/mypage/">
-                <span style="color: white; font-size: 18px; font-weight: bold;">
-                                          마이페이지</span>
-               </a></li>
+	                <li class="floatR" style="padding-left:20px !important;">
+	                <a href="${ pageContext.servletContext.contextPath }/user/mypage/">
+	                <span style="color: white; font-size: 18px; font-weight: bold;">
+	                                          마이페이지</span>
+	               </a></li>
+	               
                </c:if>
            
-                 <c:if test="${ sessionScope.loginUser.userGuideYN eq 'Y' }">
-                 <li class="floatL">
-                <a href="${ pageContext.servletContext.contextPath }/user/guidepage/">
-                <span style="color: white; font-size: 18px; font-weight: bold;">
-                                       가이드페이지</span>
-               </a></li>
-               </c:if>           
+           		<c:if test="${ sessionScope.loginUser.userGuideYN eq 'N' }">
+	               <li class="floatR" style="padding-left:20px !important;">
+	               <a href="${ pageContext.servletContext.contextPath }/insertGuide">
+	                     <span style="color: white; font-size: 18px; font-weight: bold;">로컬가이드등록</span>
+	               </a></li>
+               </c:if>
+           
+                    
             </ul>
          </div>
 		
 		
-         <article class="find_btn_area floatR " style="margin-right: 21%;margin-left: 10%; ">
+         <div class="find_btn_area " style=" ">
 			<div class="category">
-            <div style="margin-top: 5px; margin-bottom: -10px;">
+            <div style="margin-bottom: -10px; margin-left: 25% !important;">
                <a href="${ pageContext.servletContext.contextPath }/main"><img id="rotating_img"
                   style="width: 90px; height: 99px; object-fit: cover;"
                   src="/tripfulaxel/resources/images/common/3.png" alt=""></a> <a
@@ -805,38 +812,38 @@ li.header_menu:hover {
 
 
 
-            <ul>
+            <ul style="margin-left:32% !important; height: 100px !important; margin-top:10px ;">
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
-                     style="color: white; font-size: 20px;"> 로컬가이드 여행</span></a></li>
+                     style="color: white; font-size: 20px;"> 로컬가이드여행</span></a></li>
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=3&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
-                     style="color: white; font-size: 20px;"> 나만의 여행</span></a></li>
+                     style="color: white; font-size: 20px;"> 나만의여행</span></a></li>
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=2&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
-                     style="color: white; font-size: 20px;"> 같이가요 여행</span></a></li>
+                     style="color: white; font-size: 20px;"> 같이가요여행</span></a></li>
                
                <c:if test="${ empty sessionScope.loginUser }">
                 <li class="floatL header_menu" >
                     <a class="btnLineC txt_md" href="javascript:alert('로그인 후 이용해주세요');">
-                    <span style="color:white; font-size: 20px;">여행 플래너</span></a>
+                    <span style="color:white; font-size: 20px;">여행플래너</span></a>
                 </li>
       			</c:if>
                
                 <c:if test="${ !empty sessionScope.loginUser }">
                 <li class="floatL header_menu"><a href="${pageContext.servletContext.contextPath}/planner/choose"
                   class="btnLineC txt_md"> <span
-                     style="color: white; font-size: 20px;">여행 플래너</span></a></li>
+                     style="color: white; font-size: 20px;">여행플래너</span></a></li>
       			</c:if>
       			
       		
       		   <c:if test="${ empty sessionScope.loginUser }">
                <li class="floatL header_menu" >
                     <a class="btnLineC txt_md" href="javascript:alert('로그인 후 이용해주세요');">
-                    <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
+                    <span style="color:white; font-size: 20px;">실시간정보공유</span></a>
                 </li>
                 </c:if>
           
@@ -844,14 +851,14 @@ li.header_menu:hover {
                <c:if test="${ !empty sessionScope.loginUser }">
                <li class="floatL header_menu">
                     <a href="${pageContext.servletContext.contextPath}/share/select/chatRoom?roomCode=0&userCode=0" class="btnLineC txt_md" >
-                    <span style="color:white; font-size: 20px;">실시간 정보 공유</span></a>
+                    <span style="color:white; font-size: 20px;">실시간정보공유</span></a>
                 </li>
                 </c:if>
                 
                 
             </ul>
             </div>
-         </article>
+         </div>
          </div>
      
    </header>

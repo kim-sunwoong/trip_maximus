@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximusteam.tripfulaxel.api.model.dao.UserApiMapper">
+
+	<resultMap id="UserApiDTO" type="UserApiDTO" >
+		<result column="USER_CODE" property="userCode" />
+	    <result column="USER_NAME" property="userName" />
+	    <result column="USER_PHONE" property="userPhone" />
+	    <result column="USER_PWD" property="userPwd" />
+	    <result column="USER_BDAY" property="userBday" />
+	    <result column="USER_GENDER" property="userGender" />
+	    <result column="USER_EMAIL" property="userEmail" />
+	    <result column="USER_REGISTER_DAY" property="userRegisterDay" />
+	    <result column="USER_REPORT_COUNT" property="userReportCount" />
+	    <result column="USER_GUIDE_YN" property="userGuideYN" />
+	</resultMap>
+
+	<select id="getUsers" resultMap="UserApiDTO">
+		SELECT
+			   *
+		  FROM USER
+	</select>
+	
+	<select id="getUser" parameterType="int" resultMap="UserApiDTO">
+		SELECT
+			   *
+		  FROM USER
+		 WHERE USER_CODE = #{id}
+	</select>
+	
+	<insert id="registUser" parameterType="NewUserApiDTO">
+		<selectKey resultType="int"  keyProperty="userCode" order="AFTER">
+		 	SELECT MAX(USER_CODE) FROM USER
+		</selectKey>
+			INSERT INTO USER 
+			(
+				 USER_CODE
+			   , USER_NAME
+			   , USER_PHONE
+			   , USER_PWD
+			   , USER_BDAY
+			   , USER_GENDER
+			   , USER_EMAIL
+			   , USER_REGISTER_DAY
+			)
+	        VALUES
+	        (
+	            (SELECT IFNULL(MAX(b.USER_CODE) + 1, 1) FROM USER b)
+	          , #{ Name }
+	          , #{ Phone }
+	          , #{ Password }
+	          , #{ Birthday }
+	          , #{ Gender }
+	          , #{ Email }
+	          , NOW()
+	        )
+	</insert>
+	
+	<delete id="removeUser" parameterType="int">
+		DELETE FROM USER
+		 WHERE USER_CODE = #{id}
+	</delete>
+	
+	<update id="modifyUser" parameterType="UserApiDTO">
+		UPDATE USER
+		   SET USER_NAME = #{userName}
+			 , USER_PHONE = #{userPhone}
+			 , USER_BDAY = #{userBday}
+			 , USER_GENDER = #{userGender}
+			 , USER_EMAIL = #{userEmail}
+			 , USER_REGISTER_DAY = #{userRegisterDay}
+			 , USER_REPORT_COUNT = #{userReportCount}
+			 , USER_GUIDE_YN = #{userGuideYN}
+		 WHERE USER_CODE =#{userCode}
+	</update>
+	
+</mapper>

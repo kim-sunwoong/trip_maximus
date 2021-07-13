@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <link rel="stylesheet" href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
     <script src="https://www.travelmaker.co.kr/js/modernizr.custom.70111.js"></script>
-	<link rel="icon" type="image/png" sizes="16x16" href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
@@ -17,9 +19,7 @@
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/main.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/common.css?ver=20210620">
     <link rel="stylesheet" href="https://www.travelmaker.co.kr/css/html/style.css?ver=20210620">
-<!-- <script type="text/javascript" src=".\joon_script.js"></script> -->
-
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mypage/joonho_new.css">
 	<style>
 	        #detail thead th {border-top: 3px solid rgba(0, 0, 0, 0.7);}
 	
@@ -41,10 +41,8 @@
             <br>
             <div class="tabList">
                 <div class="tabb"><a class="pic1" href="${pageContext.request.contextPath}/user/guidepage/guideGoods">내 여행상품</a></div>
-                <div class="tabb"><a class="pic3" href="${pageContext.request.contextPath}/user/guidepage/guideParticipants">참가인원보기</a></div>
                 <div class="tabb" style="border: 3px solid skyblue;"><a class="pic4" href="${pageContext.request.contextPath}/user/guidepage/guideContact">문의관리</a></div>
                 <div class="tabb"><a class="pic5" href="${pageContext.request.contextPath}/user/guidepage/guideReview">후기관리</a></div>
-                <div class="tabb"><a class="pic6" href="${pageContext.request.contextPath}/user/guidepage/guideTax">정산관리</a></div>
             </div>
         </div>
 
@@ -55,16 +53,17 @@
                         <tr>
                             <th>문의자명</th>
                             <th>문의사유</th>
-                            <th>문의상태</th>
+                            <th>답변상태</th>
                         </tr>
                     </thead>
 				<tbody>
               <c:forEach var="guideContact" items="${ guideContact }" >
-                        <tr onclick="location.href='${ pageContext.servletContext.contextPath }
-                         /user/guidepage/guideContactDetail?tripInquiryCode=${guideContact.tripInquiryCode}'">
+                        <tr onclick="location.href='${ pageContext.servletContext.contextPath }/user/guidepage/guideContactDetail?tripInquiryCode=${guideContact.tripInquiryCode}'">
                             <td><c:out value="${ guideContact.guideList[0].applyName }"/></td>
                             <td><c:out value="${ guideContact.inquiryReason }"/></td>
-                            <td><c:out value="${ guideContact.inquiryYn }"/></td>
+                            <c:if test="${ guideContact.inquiryYn == 'N' }"><td>미답변</td></c:if>
+                            <c:if test="${ guideContact.inquiryYn == 'Y' }"><td>답변</td></c:if>
+                           <%--  <td><c:out value="${ guideContact.inquiryYn }"/></td> --%>
                         </tr>
                </c:forEach>
                    </tbody>

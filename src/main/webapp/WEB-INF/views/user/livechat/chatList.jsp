@@ -4,7 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <style>
+
+
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -76,11 +82,8 @@ function newRoom(){
 	  </tr>
   </c:forEach>
   <tr>
-    <th>채팅방 만들기</th>
-  </tr>
-  <tr>
   	<th>
-  		채팅방 제목 : <input type="text" id="roomTitle" style="width:350px; height:30px;"> <button onclick = "newRoom()" style="width:70px; height:30px;">만들기</button>
+  		채팅방 제목 : <input type="text" id="roomTitle" style="width:350px; height:30px; color:black;"> <button onclick = "newRoom()" style="width:70px; height:30px;">만들기</button>
   	</th>
   </tr>
 </table>

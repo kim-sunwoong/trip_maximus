@@ -136,7 +136,7 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td></td>
+                                            <td>서비스 점검 안내</td>
                                             <td>2021-06-25</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -146,7 +146,7 @@
                                         </tr>
                                          <tr>
                                             <td>2</td>
-                                            <td></td>
+                                            <td>경품 이벤트</td>
                                             <td>2021-06-26</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -156,7 +156,7 @@
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td></td>
+                                            <td>무료 초대권 이벤트</td>
                                             <td>2021-06-27</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -166,7 +166,7 @@
                                         </tr>
                                         <tr>
                                             <td>4</td>
-                                            <td></td>
+                                            <td>개인정보 처리 방침 이벤트</td>
                                             <td>2021-06-28</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -176,7 +176,7 @@
                                         </tr>
                                         <tr>
                                             <td>5</td>
-                                            <td></td>
+                                            <td>신규 회원 첫결제 이벤트</td>
                                             <td>2021-06-29</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -186,7 +186,7 @@
                                         </tr>
                                         <tr>
                                             <td>6</td>
-                                            <td></td>
+                                            <td>럭키드로우 이벤트</td>
                                             <td>2021-06-30</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -196,7 +196,7 @@
                                         </tr>
                                         <tr>
                                             <td>7</td>
-                                            <td></td>
+                                            <td>무료 체험 이벤트</td>
                                             <td>2021-07-01</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -206,7 +206,7 @@
                                         </tr>
                                         <tr>
                                             <td>8</td>
-                                            <td></td>
+                                            <td>퀴즈이벤트</td>
                                             <td>2021-07-02</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -216,7 +216,7 @@
                                         </tr>
                                         <tr>
                                             <td>9</td>
-                                            <td></td>
+                                            <td>잘쓴 리뷰 이벤트</td>
                                             <td>2021-07-03</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">
@@ -226,7 +226,7 @@
                                         </tr>
                                         <tr>
                                             <td>10</td>
-                                            <td></td>
+                                            <td>랜덤 뽑기 이벤트</td>
                                             <td>2021-07-04</td>
                                             <td>
                                                 <button type="submit" onclick="location.href='${ pageContext.servletContext.contextPath }/admin/noticeDetail'">

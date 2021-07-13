@@ -5,21 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPFUL AXEL - 여행에 가속을</title>
+
+
+<link rel="shortcut icon" href="${pageContext.servletContext.contextPath }/resources/images/common/airplane.png">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="/tripfulaxel/resources/user/js/jquery.menu.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/common.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/wrest.js?ver=171222"></script>
 <script src="/tripfulaxel/resources/user/js/placeholders.min.js"></script>
-<!-- 웹 폰트 확인 후 변경 -->
-<link rel="stylesheet"
-	href="https://www.travelmaker.co.kr/js/font-awesome/css/font-awesome.min.css">
 
 <script src="/tripfulaxel/resources/user/js/modernizr.custom.70111.js"></script>
 
-<!-- 파비콘 이미지 변경 -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="https://www.travelmaker.co.kr/img/favicon-16x16.png">
 
 
 <link rel="stylesheet"
@@ -109,7 +106,7 @@
 	<section id="speakers">
 		<div class="container" data-aos="fade-up">
 			<div class="section-header">
-				<h2 style="color:skyblue;">같이가요!! 여행 친구를 구해용!</h2>
+				<h2>같이가요!! 여행 친구를 구해용!</h2>
 				<p>세상에 단 하나뿐인 나만의 여행을 경험해보세요!</p>
 			<!-- searchBox -->
 				<div class="new_search_box">
@@ -121,8 +118,8 @@
 								<option value="인기순" <c:if test="${condition.sortCondition eq '인기순'}">selected</c:if>>인기순</option>
 							</select>
 					</li>
-					<li style="margin-left: 5px; margin-top: 10px; width:220px;">
-						<select name="search_theme" id="search_theme" onchange="sort()" style="width:220px;">
+					<li style="margin-left: 5px; margin-top: 10px; width:260px;">
+						<select name="search_theme" id="search_theme" onchange="sort()" style="width:260px;">
 								<option value="" <c:if test="${condition.sortTheme == null}">selected</c:if>>여행 테마 선택</option>
 								<option value="1" <c:if test="${condition.sortTheme == 1}">selected</c:if>>직접 체험하는 액티비티</option>
 								<option value="2" <c:if test="${condition.sortTheme == 2}">selected</c:if>>온몸으로 느끼는 자연</option>
