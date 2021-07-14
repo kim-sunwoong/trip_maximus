@@ -812,7 +812,7 @@ li.header_menu:hover {
 
 
 
-            <ul style="margin-left:32% !important; height: 100px !important; margin-top:10px ;">
+            <ul style="margin-left:32% !important; margin-top:10px ;">
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
