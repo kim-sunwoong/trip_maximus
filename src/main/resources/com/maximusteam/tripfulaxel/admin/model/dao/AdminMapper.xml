@@ -72,6 +72,10 @@
 		<result column="EXAMINE_REQUEST_CODE" property="requestCode"/>
 		<result column="GUIDE_CODE" property="guideCode"/>
 		<result column="USER_CODE" property="userCode"/>
+		<result column="TRIP_MEET_LOCATION" property="meetLocation"/>
+		<result column="G_TRIP_PAYMENT" property="payment"/>
+		<result column="G_TRIP_MAXIMUM" property="maximum"/>
+		<result column="G_TRIP_MINIMUM" property="minimum"/>
 	</resultMap>
 	
 	<!-- 가이드 사진 -->
@@ -205,6 +209,10 @@
 	         , A.GUIDE_CAR_YN
 	         , A.GUIDE_INTRO
 	         , H.TRIP_INTRO 
+	         , H.TRIP_MEET_LOCATION 
+	         , G.G_TRIP_PAYMENT 
+	         , G.G_TRIP_MAXIMUM 
+	         , G.G_TRIP_MINIMUM 
 	         , C.EXAMINE_REQUEST_CODE 
 	         , A.GUIDE_CODE
 	         , B.USER_CODE
@@ -585,6 +593,10 @@
 	         , A.GUIDE_CAR_YN
 	         , A.GUIDE_INTRO
 	         , H.TRIP_INTRO 
+	         , H.TRIP_MEET_LOCATION 
+	         , G.G_TRIP_PAYMENT 
+	         , G.G_TRIP_MAXIMUM 
+	         , G.G_TRIP_MINIMUM 	         
 	         , C.EXAMINE_REQUEST_CODE 
 	         , A.GUIDE_CODE
 	         , B.USER_CODE

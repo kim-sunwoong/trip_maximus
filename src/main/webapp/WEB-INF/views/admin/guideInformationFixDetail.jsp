@@ -105,43 +105,66 @@
                                 <table class="table table">
                                     <tr>
                                         <td style="width: 15%;">이름</td>
-                                        <td><input type="text"  class="form-control" name="name" value="${selectGuideInformationDetail.guideName}"></td>
+                                        <td><input type="text"  class="form-control" name="name" value="${selectGuideInformationDetail.guideName}" readonly></td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 15%;">성별</td>
-                                        <td><input type="text"  class="form-control" name="gender" value="${selectGuideInformationDetail.guideGender}"></td>
+                                        <td><input type="text"  class="form-control" name="gender" value="${selectGuideInformationDetail.guideGender}" readonly></td>
                                     </tr>
 
                                     <tr>
                                      <td style="width: 15%;">활동명</td>
-                                     <td><input type="text"  class="form-control" name="nickName" value="${selectGuideInformationDetail.guideNickname}"></td>
+                                     <td><input type="text"  class="form-control" name="nickName" value="${selectGuideInformationDetail.guideNickname}" readonly></td>
                                     </tr>
                                     <tr>
                                      <td>가이드 경험 여부</td>
-                                     <td><input type="text"  class="form-control" name="experience" value="${selectGuideInformationDetail.guideExp}"></td>
+                                     <td><input type="text"  class="form-control" name="experience" value="${selectGuideInformationDetail.guideExp}" readonly></td>
                                     </tr>
                                     <tr>
                                         <td>개인차량여부</td>
-                                        <td><input type="text"  class="form-control" name="car" value="${selectGuideInformationDetail.guideCar}"></td>
+                                        <td><input type="text"  class="form-control" name="car" value="${selectGuideInformationDetail.guideCar}" readonly></td>
                                        </tr>
 
                                     <tr>
                                      <td>가이드 소개</td>
                                      <td>
-                                     	<input  type="text" name="guideContent" class="form-control" value="${selectGuideInformationDetail.guideIntro}"> 
+                                     	<input  type="text" name="guideContent" class="form-control" value="${selectGuideInformationDetail.guideIntro}" readonly> 
                                      </td>
                                     </tr>
           							<tr>
                                      <td>가이드 여행소개</td>
                                      <td>
-                                     	<input  type="text" name="travelContent" class="form-control" value="${selectGuideInformationDetail.guideTravel}"> 
+                                     	<input  type="text" name="travelContent" class="form-control" value="${selectGuideInformationDetail.guideTravel}" readonly> 
                                      	<input  type="hidden" name="requestCode" value="${selectGuideInformationDetail.requestCode}">
                                      	<input  type="hidden" name="guideCode" value="${selectGuideInformationDetail.guideCode}">
                                      	<input  type="hidden" name="userCode" value="${selectGuideInformationDetail.userCode}">
                                      </td>
                                     </tr>
-                                                                    
+                                    <tr>
+                                     <td>만나는 위치 </td>
+                                     <td>
+                                     	<input  type="text" name="meetLocation" class="form-control" value="${selectGuideInformationDetail.meetLocation}" readonly> 
+                                     </td>
+                                    </tr>
+                               	    <tr>
+                                     <td>가격 </td>
+                                     <td>
+                                     	<input  type="number" name="price" claSss="form-control" value="${selectGuideInformationDetail.payment}" readonly> 
+                                     </td>
+                                    </tr>
+                               	    <tr>
+                                     <td>최소인원 </td>
+                                     <td>
+                                     	<input  type="number" name="minimum" class="form-control" value="${selectGuideInformationDetail.minimum}" readonly> 
+                                     </td>
+                                    </tr>    
+                               	    <tr>
+                                     <td>최대인원 </td>
+                                     <td>
+                                     	<input  type="number" name="maximum" class="form-control" value="${selectGuideInformationDetail.maximum}" readonly> 
+                                     </td>
+                                    </tr>                                                                      
                                     <tr>
                                         <td>프로필 사진</td>
                                         <td>

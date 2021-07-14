@@ -187,7 +187,6 @@ function tripJoin() {
 				</div>
 
 				<div class="offerArea" id="offerTravel">
-					<div class="">
 						<h3 class="txt_tit">여행 소개</h3>
 						<ul class="starUl">
 							<li style="width: 100%; padding-left: 0">
@@ -301,21 +300,18 @@ function tripJoin() {
 								
 							 </script>
 						</div>
-					</div>
 				</div>
 				<div class="offerArea floatL" style="margin-bottom: 0px"
 					id="offerInfo">
 					<div style="width: 770px;">
-						<c:if test="${trip[0].include ne ''} ">
+						<c:if test="${trip[0].include ne ''}">
  						
-	 						<div class="offerBox">
 	 							<h4 class="txt_big">포함사항</h4>
 	 							<ul class="textP">
 	 								<li class="txtG" style="word-break: break-all;">
 	 									<c:out value="${trip[0].include }"/>
 	 								</li>
 	 							</ul>
-	 						</div>
  						
  						</c:if>
 						
@@ -464,20 +460,17 @@ function tripJoin() {
 						<div
 							style="width: 30px; position: absolute; top: 10px; right: 21px;">
 						</div>
-						<br>
 						<div class="price_div txtG" style="margin-bottom: 3px;">
 							<span class=" txtC" style="font-size: 16px;">즐거운 추억 만들어
 								보아요!</span>
 						</div>
-								<c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/><br>
-								1인당 예상 가격 : <c:out value="${trip[0].joinTripPrice }"/>
+								<span class=" txtC">여행 일자 : </span><c:out value="${trip[0].tripStartDate }"/> ~ <c:out value="${trip[0].tripEndDate }"/><br>
+								<span class=" txtC">1인당 예상 가격 : </span><c:out value="${trip[0].joinTripPrice }"/>원<br>
+								<span class=" txtC">총 여행 인원 : </span><c:out value="${trip[0].joinTripMaximum }"/>
 							
-						<div class="offerPrice">
 							<div class="clearfix2 msgCont">
-								<span class="txtG">총 여행 인원 : <c:out value="${trip[0].joinTripMaximum }"/></span><span class="total_price txtC txt_big"></span>
-								<textarea name="sendcontent" id="joinReason" style="height:100px;" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
+								<textarea name="sendcontent" id="joinReason" style="height:90px;" placeholder="참가하고자 하는 이유를 입력해 주세요."></textarea>
 							</div>
-						</div>
 						<button class="btn btnBgC btnFull txt_md"
 							onclick="tripJoin()" style="background:skyblue;">여행 참가하기</button>
 
@@ -499,7 +492,7 @@ function tripJoin() {
 								여행 방장님~
 							</div>
 						</div>
-						<textarea name="sendcontent" id="sendContent" style="height:130px;" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="sendcontent" id="sendContent" style="height:110px;" placeholder="내용을 입력하세요."></textarea>
 						<button class="btn btnBgC btnFull txt_md"
 							onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
 					</div>
@@ -515,7 +508,7 @@ function tripJoin() {
 
 		</div>
 	</section>
-	<!-- //본문 영역 끝 -->
+	<!— //본문 영역 끝 —>
 
 
 </body>

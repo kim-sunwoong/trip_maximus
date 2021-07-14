@@ -361,13 +361,13 @@ li.header_menu:hover {
             <form class="member_form"
                id ="findEmailForm"
                >
-               <input type="text" placeholder="* 이름(예:홍길동)" value="김진수"
+               <input type="text" placeholder="* 이름(예:홍길동)" value=""
                   id="findUserName" name="userName"> <input type="text"
-                  id="findUserPhone" name="userPhone" value="010-1234-5678" required
+                  id="findUserPhone" name="userPhone" value="" required
                   class="frm_input half_input" placeholder="* 전화번호(예:010-1234-5678)">
 
 
-               <input type="text" id="findUserBday" name="userBday" value="19901129"
+               <input type="text" id="findUserBday" name="userBday" value=""
                   required class="frm_input half_input"
                   placeholder="* 출생연도(예:19900120)">
 
@@ -432,14 +432,15 @@ li.header_menu:hover {
                   userBday : findUserBday
                },
                success: function(data,textStatus,xhr) {
-                  
-                  if(data.res == 'fail') {
+            	   const resData = JSON.parse(data);
+                  if(resData.res == 'fail') {
                      //찾지못함.
                    console.log("값 찾지못함")
+                   alert("입력하신 정보가 옳지않습니다.다시 확인해주세요.")
                      
                   }  else {
                      //찾음
-                     const resData = JSON.parse(data);
+                     
                         console.log("값 찾음 : " + resData.email);
                         $(".pop_wrap:visible").hide();
                         document.getElementById("finded_email").value = resData.email;
@@ -473,7 +474,7 @@ li.header_menu:hover {
                <input type="text" placeholder="* 이름(예:홍길동)" id="serachUserName" name="userName">
                <input type="email" placeholder="이메일 주소" id="serachUserEmail" name="userEmail">
             
-               <input type="text" id="serachUserBday" name="userBday" value="19901129"
+               <input type="text" id="serachUserBday" name="userBday" value=""
                   required class="frm_input half_input"
                   placeholder="* 출생연도(예:19900120)">
 
@@ -510,7 +511,7 @@ li.header_menu:hover {
                   userBday : serachUserBday
                },
                success: function(data,textStatus,xhr) {
-                  
+            
                   if(data == 'fail') {
                    alert("입력하신 이메일로 전송이 불가능합니다. 고객센터로 확인해주세요.")
                      
@@ -812,7 +813,7 @@ li.header_menu:hover {
 
 
 
-            <ul style="margin-left:32% !important; height: 100px !important; margin-top:10px ;">
+            <ul style="margin-left:32% !important; margin-top:10px ;">
                <li class="floatL header_menu"><a
                   href="${pageContext.servletContext.contextPath}/trip/select/list?tripType=1&sortCondition=최신순"
                   class="btnLineC txt_md"> <span
