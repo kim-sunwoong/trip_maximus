@@ -83,19 +83,13 @@
 								<li class="clearfix">
 									<p class="floatL">여행인원</p>
 									<p class="floatR">
-										<span><c:out value="${pay.amount }"/></span> 명
-									</p>
-								</li>
-								<li class="clearfix">
-									<p class="floatL">1인당</p>
-									<p class="floatR">
-										<span><fmt:formatNumber type="number" maxFractionDigits="0" value="${pay.totalPay/pay.amount }" /></span> 원
+										<span>1</span> 명
 									</p>
 								</li>
 							</ul>
 						</div>
 						<div class="payment_total clearfix txt_md" style="padding-left: 0px; padding-right: 0px;">
-							<p class="floatL txtC">최종결제 금액</p>
+							<p class="floatL txtC">결제 금액</p>
 							<p class="floatR txtC">
 								<span><c:out value="${pay.totalPay }"/></span> 원
 							</p>
@@ -251,7 +245,7 @@
 							</label>
 						</div>
 					</li>
-					<div align="Center" style="font-size:25px; color:white; background:skyblue;"><button id="doPay">결제하기</button></div>
+					<div align="Center" style="font-size:25px; color:white; background:skyblue;"><button id="doPay" style="background:skyblue;">결제하기</button></div>
 				</ul>
 			</div>
 		</div>

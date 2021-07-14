@@ -125,6 +125,17 @@
  								<p style="width: 100%;" class="txt_md">
  									지출비용 : <c:out value="${trip[0].userTripPrice }"/>
  								</p>
+ 								<c:if test="${trip[0].include ne ''}">
+	 								<p style="width: 100%;" class="txt_md">
+	 									포함사항 : <c:out value="${trip[0].include }"/>
+	 								</p>
+ 								</c:if>
+ 								<c:if test="${trip[0].nInclude ne ''}">
+	 								<p style="width: 100%;" class="txt_md">
+	 									불포함사항 : <c:out value="${trip[0].nInclude }"/>
+	 								</p>
+	 							</c:if>
+ 								
  							</div>
  						</div>
  					</div>
@@ -246,29 +257,7 @@
  				<div class="offerArea floatL" style="margin-bottom: 0px"
  					id="offerInfo">
  					<div style="width: 770px;">
- 						<c:if test="${trip[0].include != null} ">
  						
-	 						<div class="offerBox">
-	 							<h4 class="txt_big">포함사항</h4>
-	 							<ul class="textP">
-	 								<li class="txtG" style="word-break: break-all;">
-	 									<c:out value="${trip[0].include }"/>
-	 								</li>
-	 							</ul>
-	 						</div>
- 						
- 						</c:if>
- 						<c:if test="${trip[0].nInclude ne ''}">
-	 						<div class="offerBox">
-	 							<h4 class="txt_big">불포함사항</h4>
-	 							<ul class="textP">
-	 								<li class="txtG" style="word-break: break-all;">
-	 									<c:out value="${trip[0].nInclude }"/>
-	 								</li>
-	 							</ul>
-	 						</div>
- 						
- 						</c:if>
  					</div>
  				</div>
  				<div class="clearfix"></div>
@@ -322,33 +311,6 @@
  				<!-- //TM 소개영역 끝 -->
                 
  				
- 				<!-- 
- 					문의하기
- 				<div class="popMsg dialog" style="display: none;">
-                <div class="msgCont">
-                    <div class="clearfix">
-                        <div class="msgImg floatL">
-                            <img src="/img/html/tm_admin/imgs/tmprofile/831mb_profile.jpg" alt="트래블 메이커 프로필 사진">
-                        </div>
-                        <div class="floatL txt_bold">
-                            <p>To.</p>
-                            <p>이안 TM</p>
-                        </div>
-                    </div>
-                    <textarea name="sendcontent" id="" placeholder="내용을 입력하세요."></textarea>
-                    <button class="btn btnBgC btnFull txt_md" onclick="javascript:sendMessage();">메시지 전송</button>
-                </div>
-            </div>
- 				
- 				 -->
- 			</div>
- 		</div>
- 		<!-- //상품상세영역 끝 -->
- 		<div class="hiddenBox"></div>
- 		</div>
- 	</section>
- 	<!-- //본문 영역 끝 -->
-
 
  </body>
- </html> 
+ </html>

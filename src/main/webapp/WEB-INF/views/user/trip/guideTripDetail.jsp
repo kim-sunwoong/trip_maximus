@@ -69,26 +69,13 @@
  	</style>
  	<script>
  	
- 						function amount() {
- 							var total = document.getElementById("totalPay");
- 							
- 							var amountList = document.getElementById("amountList");
-							var amount = amountList.options[amountList.selectedIndex].value;
-							
-							var totalPay = ${trip[0].payment } * amount;
-							
-							total.innerHTML = totalPay;
-							
-						}
  						
  						function payment() {
  							
- 							var amountList = document.getElementById("amountList");
-							var amount = amountList.options[amountList.selectedIndex].value;
 							var saveName = "${trip[0].tripImgList[0].saveName }"
-							var totalPay = ${trip[0].payment } * amount;
+							var totalPay = ${trip[0].payment };
 							location.href="${pageContext.servletContext.contextPath}/trip/payment?tripCode=${trip[0].tripCode}&userCode=${sessionScope.loginUser.userCode}&totalPay="
-									+ totalPay + "&amount=" + amount + "&tripRegistCode=${trip[0].tripRegistCode}&tripDay=${trip[0].tripStartDate}&saveName=" + saveName;
+									+ totalPay + "&tripRegistCode=${trip[0].tripRegistCode}&tripDay=${trip[0].tripStartDate}&saveName=" + saveName;
 						}
  						
  						
@@ -308,7 +295,7 @@
  				<div class="offerArea floatL" style="margin-bottom: 0px"
  					id="offerInfo">
  					<div style="width: 770px;">
- 						<c:if test="${trip[0].include ne ''} ">
+ 						<c:if test="${trip[0].include ne ''}">
  						
 	 						<div class="offerBox">
 	 							<h4 class="txt_big">포함사항</h4>
@@ -508,11 +495,11 @@
  							</c:forEach>
                         </div>
                         <div class="floatL txt_bold">
-                            <p>To.</p>
+                            To.
                             <p><c:out value="${guide.nickName }"/></p>
                         </div>
                     </div>
-	                    <textarea name="sendcontent" id="sendContent" placeholder="내용을 입력하세요."></textarea>
+	                    <textarea name="sendcontent" id="sendContent" placeholder="내용을 입력하세요." style="height:150px;" ></textarea>
 	                    <button class="btn btnBgC btnFull txt_md" onclick="inquiry()" style="background:skyblue;">메시지 전송</button>
                    </div>
  				</div>
@@ -525,33 +512,8 @@
  				<!-- //TM 소개영역 끝 -->
                 
  				
- 				<!-- 
- 					문의하기
- 				<div class="popMsg dialog" style="display: none;">
-                <div class="msgCont">
-                    <div class="clearfix">
-                        <div class="msgImg floatL">
-                            <img src="/img/html/tm_admin/imgs/tmprofile/831mb_profile.jpg" alt="트래블 메이커 프로필 사진">
-                        </div>
-                        <div class="floatL txt_bold">
-                            <p>To.</p>
-                            <p>이안 TM</p>
-                        </div>
-                    </div>
-                    <textarea name="sendcontent" id="" placeholder="내용을 입력하세요."></textarea>
-                    <button class="btn btnBgC btnFull txt_md" onclick="javascript:sendMessage();">메시지 전송</button>
-                </div>
-            </div>
  				
- 				 -->
- 			</div>
- 		</div>
- 		<!-- //상품상세영역 끝 -->
- 		<div class="hiddenBox"></div>
- 		</div>
- 	</section>
- 	<!-- //본문 영역 끝 -->
 
 
  </body>
- </html> 
+ </html>
