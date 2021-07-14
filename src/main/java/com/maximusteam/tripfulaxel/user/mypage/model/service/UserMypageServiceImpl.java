@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dao.UserMypageMapper;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 
 @Service
@@ -79,7 +82,7 @@ public class UserMypageServiceImpl implements UserMypageService{
 		return mapper.insertRequest(map);
 	}
 	@Override
-	public int selectRepPK() {
+	public ReqImageDTO selectRepPK() {
 		return mapper.selectRepPK();
 	}
 	@Override
@@ -106,14 +109,22 @@ public class UserMypageServiceImpl implements UserMypageService{
 		return mapper.selectRevPK(map);
 	}
 	
-	@Override
-	public int insertrevImg(Map<String, Object> map) {
-		return mapper.insertrevImg(map);
-	}
 
 	@Override
 	public int selectjtaCode(int id) {
 		return mapper.selectjtaCode(id);
+	}
+
+	@Override
+	public int insertrevImg(ReviewDTO review) {
+		int result = 0;
+		for(int i = 1 ; i<review.getReviewImgList().size();i++) {
+			ImageDTO imgdto = new ImageDTO();
+			imgdto.setImgType(review.getReviewImgList().get(i).getImgType());
+			imgdto = review.getReviewImgList().get(i);
+			 result = mapper.insertrevImg(imgdto);
+			}
+		return result;
 	}
 
 	

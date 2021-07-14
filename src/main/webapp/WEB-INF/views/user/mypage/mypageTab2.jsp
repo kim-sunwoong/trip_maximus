@@ -221,10 +221,11 @@ function cancel(){
           <input type="text" name="reviewTitle" style="width: 100%; height: 40px; border: 1px solid rgba(0, 0, 0, 0.3);" placeholder="리뷰 제목을 입력하세요" >
         <textarea name="reviewInfo" id="mytripreview" cols="30" rows="10" style="border: 1px solid rgba(0, 0, 0, 0.3);"></textarea>
         <div class="thumblist" style="width: 45%; height: 70px; display: flex; margin-top: 10px; float: left; justify-content: space-between;">
+        <input style=" display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple name="multiFiles" >
         
         <!-- <div class="thumbview"  style="width: 320px; height: 120px; float: left"> -->
-        <input style=" display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple name="multiFiles" >
-		<!-- <div id="multiple-container">
+<!--         <input style=" display: block; height: 20px; width: 200px;" type="file" id="input-multiple-image" multiple name="multiFiles" >
+ -->		<!-- <div id="multiple-container">
 		</div> -->
         <!-- </div> -->
         

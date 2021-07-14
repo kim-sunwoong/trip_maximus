@@ -7,7 +7,9 @@ import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 
 public interface UserMypageService {
@@ -30,7 +32,7 @@ public interface UserMypageService {
 	List<ReqListDTO> selectRequestList(int id);
 	
 	int insertRequest(Map<String, Object> map);
-	int selectRepPK();
+	ReqImageDTO selectRepPK();
 	int insertReqImg(Map<String, Object> map);
 
 	
@@ -38,7 +40,7 @@ public interface UserMypageService {
 	
 	int insertReview(Map<String, Object> map);
 	int selectRevPK(Map<String, Object> map);
-	int insertrevImg(Map<String, Object> map);
+	int insertrevImg(ReviewDTO review);
 	int selectjtaCode(int id);
 	
 

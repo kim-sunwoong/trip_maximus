@@ -5,9 +5,12 @@ import java.util.Map;
 
 import com.maximusteam.tripfulaxel.user.model.dto.UserDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.GuideTripApplyDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.InquiryDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.JoinTripListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqImageDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
+import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 
 public interface UserMypageMapper {
@@ -30,16 +33,16 @@ public interface UserMypageMapper {
 	List<ReqListDTO> selectRequestList(int id);
 	
 	int insertRequest(Map<String, Object> map);
-	int selectRepPK();
+	ReqImageDTO selectRepPK();
 	int insertReqImg(Map<String, Object> map);
 	
 	List<InquiryDTO> selectInquiry(int id);
 	
 	int insertReview(Map<String, Object> map);
 	int selectRevPK(Map<String, Object> map);
-	int insertrevImg(Map<String, Object> map);
 	int selectjtaCode(int id);
 	
+	int insertrevImg(ImageDTO imgdto);
 
 
 }
