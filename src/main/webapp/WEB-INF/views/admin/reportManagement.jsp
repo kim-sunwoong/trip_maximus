@@ -33,7 +33,7 @@
                 $(document).ready(function(){
                     $("#datatablesSimple").DataTable({
                         "info":false,
-                        dom: '<lf<t>>',
+                        dom: '<lf<t>ip>',
                         "language":{
                             "lengthMenu":'<select>'+
                                 '<option value="10">10</option>'+
