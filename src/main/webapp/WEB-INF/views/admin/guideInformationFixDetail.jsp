@@ -150,7 +150,7 @@
                                	    <tr>
                                      <td>가격 </td>
                                      <td>
-                                     	<input  type="number" name="price" claSss="form-control" value="${selectGuideInformationDetail.payment}" readonly> 
+                                     	<input  type="number" name="price" class="form-control" value="${selectGuideInformationDetail.payment}" readonly> 
                                      </td>
                                     </tr>
                                	    <tr>

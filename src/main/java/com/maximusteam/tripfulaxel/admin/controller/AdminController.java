@@ -51,16 +51,16 @@ public class AdminController {
 		return "admin/noticeWrite";
 	}
 
-	@GetMapping("workerList") // 얘는 화면에서 우리가 여기로 오라고 주소를 정해주는 것이고
+	@GetMapping("workerList")
 	public String selectWorkerList(Model model) {
 
-		System.out.println("여기는 된단 소린데..");
 		List<AdminDTO> adminList = adminService.selectAdminList();
 		model.addAttribute("selectAdmin", adminList);
 
-		return "admin/workerList"; // 리턴값의 주소는 받아온 값을 가지고 다시 이 화면으로 가라는 것이다.
+		return "admin/workerList"; 
 	}
 
+	
 	@GetMapping("memberList")
 	public String selectMemberList(Model model) {
 
