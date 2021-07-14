@@ -53,27 +53,27 @@
 	    </selectKey>
 	    INSERT INTO GUIDE
 	    (
-	    	  GUIDE_CODE
-	    	, GUIDE_CAR_YN
-			, GUIDE_EXP_YN
-			, GUIDE_NICKNAME
-			, GUIDE_INTRO
-			, USER_CODE
-			, GUIDE_YN
-			, GUIDE_LEVEL_CODE
-			, RESIDENCE_PERIOD_CODE
+	    	   GUIDE_CODE
+	    	 , GUIDE_CAR_YN
+			 , GUIDE_EXP_YN
+			 , GUIDE_NICKNAME
+			 , GUIDE_INTRO
+			 , USER_CODE
+			 , GUIDE_YN
+			 , GUIDE_LEVEL_CODE
+			 , RESIDENCE_PERIOD_CODE
 	    )
 	    VALUES
 	    (
-	          (SELECT IFNULL(MAX(b.GUIDE_CODE) + 1, 1) FROM GUIDE b)
-	        , #{carYn}
-	        , #{expYn}
-	        , #{nickname}
-	        , #{intro}
-	        , #{userCode}
-	        , #{guideYn}
-	        , #{levelCode}
-	        , #{periodCode}
+	           (SELECT IFNULL(MAX(b.GUIDE_CODE) + 1, 1) FROM GUIDE b)
+	         , #{carYn}
+	         , #{expYn}
+	         , #{nickname}
+	         , #{intro}
+	         , #{userCode}
+	         , #{guideYn}
+	         , #{levelCode}
+	         , #{periodCode}
 	    )
 	</insert>
 	
@@ -90,9 +90,9 @@
 	    )
 	    VALUES
 	    (
-	          (SELECT IFNULL(MAX(b.GUIDE_STYLE_CHOICE_CODE) + 1, 1) FROM GUIDE_STYLE_CHOICE b)
-	        , #{guideCode}
-	        , #{guideStyleCode}
+	           (SELECT IFNULL(MAX(b.GUIDE_STYLE_CHOICE_CODE) + 1, 1) FROM GUIDE_STYLE_CHOICE b)
+	         , #{guideCode}
+	         , #{guideStyleCode}
 	    )
 	</insert>
 	
@@ -115,14 +115,14 @@
 	    )
 	    VALUES
 	    (
-	          (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
-	        , #{tripTitle}
-	        , #{tripIntro}
-	        , #{tripStartDate}
-	        , #{meetLocation}
-	        , #{include}
-	        , #{exclude}
-	        , #{tripEndDate}
+	           (SELECT IFNULL(MAX(b.TRIP_CODE) + 1, 1) FROM TRIP b)
+	         , #{tripTitle}
+	         , #{tripIntro}
+	         , #{tripStartDate}
+	         , #{meetLocation}
+	         , #{include}
+	         , #{exclude}
+	         , #{tripEndDate}
 	    )
 	</insert>
 	
@@ -141,11 +141,11 @@
 	    )
 	    VALUES
 	    (
-	          (SELECT IFNULL(MAX(b.TRIP_REGIST_LIST_CODE) + 1, 1) FROM TRIP_REGIST_LIST b)
-	        , #{userCode}
-	        , #{tripTypeCode}
-	        , #{tripCode}
-	        , #{registTypeCode}
+	           (SELECT IFNULL(MAX(b.TRIP_REGIST_LIST_CODE) + 1, 1) FROM TRIP_REGIST_LIST b)
+	         , #{userCode}
+	         , #{tripTypeCode}
+	         , #{tripCode}
+	         , #{registTypeCode}
 	    )
 	</insert>
 	
