@@ -116,7 +116,7 @@
                     </tr>
                     <tr>
                         <td>이메일</td>
-                        <td><input type="text" name="userEmail" value="${user.userEmail}" disabled="disabled"></td>
+                        <td><input type="text" value="${user.userEmail}" disabled="disabled"></td>
                     </tr>
                     <tr style="background-color: #F7FAFC;">
                         <td>연락처</td>

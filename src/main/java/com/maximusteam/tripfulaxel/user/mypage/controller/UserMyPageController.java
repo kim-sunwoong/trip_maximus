@@ -1,8 +1,9 @@
 package com.maximusteam.tripfulaxel.user.mypage.controller;
 
 import java.io.File;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,6 @@ import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReqListDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.ReviewDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.dto.TestDTO;
 import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageService;
-import com.maximusteam.tripfulaxel.user.mypage.model.service.UserMypageServiceImpl;
 
 @Controller
 @RequestMapping("/user/mypage/*")
@@ -57,20 +57,41 @@ public class UserMyPageController {
 		System.out.println(id);
 		
 		List<JoinTripListDTO> joinList = userMypageService.selectJoinList(id);
-//		List<JoinTripListDTO> joinList2 = userMypageService.selectJoinList2(id);
-//		for(int i = 0; i<joinList.size();i++) {
-//			joinList.get(i).setCountUser(joinList2.get(i).getCountUser());
-//			if(joinList.get(i).getStatus().getTripCancelYN().equals("Y") && Date (joinList.get(i).getStatus().getTripEndDate()) > today) {
-//				joinList.get(i).getStatus().setStatus("참여대기중");
-//			}
-//		}
+		List<JoinTripListDTO> joinList2 = userMypageService.selectJoinList2(id);
+		System.out.println(joinList);
 		
+		SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = new Date();
+		
+		for(int i = 0; i<joinList.size();i++) {
+			System.out.println("====================================");
+			System.out.println("joinList.get(i).getStatus().getTripEndDate().before(today) : " + joinList.get(i).getStatus().getTripEndDate().before(today));
+			System.out.println("====================================");
+//			System.out.println("joinList.get(i).getStatus().getReviewCode() + " + joinList.get(i).getStatus().getReviewCode());
+			joinList.get(i).setCountUser(joinList2.get(i).getCountUser());
+			if(joinList.get(i).getStatus().getTripCancelYN().equals("N") && 
+			joinList.get(i).getStatus().getTripEndDate().before(today) &&
+			joinList.get(i).getStatus().getReviewCode() != 0 ) {
+			joinList.get(i).getStatus().setStatus("후기작성완료");
+		} else if(joinList.get(i).getStatus().getTripCancelYN().equals("N") && 
+				joinList.get(i).getStatus().getTripEndDate().before(today) &&
+				joinList.get(i).getStatus().getReviewCode() == 0 ) {
+			joinList.get(i).getStatus().setStatus("후기쓰러가기");
+		}  else if(joinList.get(i).getStatus().getTripCancelYN().equals("N") && 
+				!joinList.get(i).getStatus().getTripEndDate().before(today)) {
+			joinList.get(i).getStatus().setStatus("참여중");
+		} else if(joinList.get(i).getStatus().getTripCancelYN().equals("Y") &&
+				!joinList.get(i).getStatus().getTripEndDate().before(today)) {
+			joinList.get(i).getStatus().setStatus("취소");
+		} 
+		}
 		model.addAttribute("joinList",joinList);
+		
 		return "user/mypage/mypageTab1";
 	}
 	
-//	@GetMapping("tab1Detail")
-//	public void
+//	@GetMapping("jointrip/detail")
+//	public String 
 	
 	@GetMapping("mypageTab2")
 	public String selectGuideTripList(Model model, HttpSession session) {
@@ -271,11 +292,14 @@ public class UserMyPageController {
 			}
 			
 			List<ReqImageDTO> reqimglist = new ArrayList<ReqImageDTO>();
+			ReqImageDTO reqimgdtoCode = userMypageService.selectRepPK();
+			
 			for(int i = 0; i<files.size(); i++) {
 				ReqImageDTO reqimgdto = new ReqImageDTO();
 				reqimgdto.setSaveName(files.get(i).get("saveName"));
 				reqimgdto.setOrignName(files.get(i).get("originFileName"));
-				
+				reqimgdto.setCode(reqimgdtoCode.getCode());
+				reqimgdto.setreqCode(reqimgdtoCode.getreqCode());
 				reqimglist.add(reqimgdto);
 			}
 			req.setReqImage(reqimglist);
@@ -296,15 +320,11 @@ public class UserMyPageController {
 			System.out.println("===========================================");
 			
 			if(result > 0) {
-				System.out.println("godd");
-				int code = userMypageService.selectRepPK();
-				System.out.println("CODE : " + code);
-				for(int i= 0 ;i<map.size();i++) {
-				req.getReqImage().get(i).setCode(code);
-				}
-				map.put("req", req);
+				System.out.println("=========== req  : " + req);
 				
-				userMypageService.insertReqImg(map);
+//				for(int i= 0 ;i<req.getReqImage().size();i++) {
+//				userMypageService.insertReqImg(req.getReqImage());
+//				}
 			}
 			
 			
@@ -412,9 +432,12 @@ public class UserMyPageController {
   files.add(file); 
   }
   
+  
+  
 //  파일을 저장한다.
-  UserDTO userdto = (UserDTO) session.getAttribute("loginUser"); int
-  id = userdto.getUserCode(); System.out.println(id);
+  UserDTO userdto = (UserDTO) session.getAttribute("loginUser");
+  int id = userdto.getUserCode();
+  System.out.println(id);
   
   List<ImageDTO> revimglist = new ArrayList<ImageDTO>();
   
@@ -429,9 +452,10 @@ public class UserMyPageController {
   review.setReviewImgList(revimglist);
   
   Map<String, Object> map = new HashMap<String, Object>();
-  
-  int jtaCode = userMypageService.selectjtaCode(id);
-  review.setJtaCode(jtaCode);
+//  map.put("review", review);
+//  map.put("id", id);
+//  int jtaCode = userMypageService.selectjtaCode(map);
+//  review.setJtaCode(jtaCode);
   
   map.put("review", review);
   map.put("id", id);
@@ -450,9 +474,9 @@ public class UserMyPageController {
   
   int revimgCode = userMypageService.selectRevPK(map);
   for(int i = 0; i<review.getReviewImgList().size(); i++) {
-  review.getReviewImgList().get(i).setCode(revimgCode); }
+  review.getReviewImgList().get(i).setImgType(revimgCode); }
   
-  int result2 = userMypageService.insertrevImg(map);
+  int result2 = userMypageService.insertrevImg(review);
   System.out.println("result2 : "+result2);
   
   }
