@@ -28,6 +28,12 @@ public class MainController {
         return "user/main/main";
 	}
 	
+	/**
+	 * @author Jinseo James Cha
+	 * 한국 관광공사 API를 활용 -> View로 데이터 전송
+	 * @return ModelAndView -> JsonView
+	 * @throws IOException
+	 */
 	@GetMapping("jeju")
 	@ResponseBody
 	public ModelAndView searchJejuData(ModelAndView mv,HttpServletResponse response) throws IOException {
