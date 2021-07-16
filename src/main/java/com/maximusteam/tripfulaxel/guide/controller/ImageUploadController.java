@@ -35,6 +35,10 @@ public class ImageUploadController {
 		this.guideService = guideService;
 	}
 	
+	/**
+	 * @author Jinseo James Cha
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/guide", method= RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView insertImages(ModelAndView mv,
