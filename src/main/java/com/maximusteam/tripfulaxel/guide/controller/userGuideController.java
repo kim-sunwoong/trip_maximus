@@ -39,6 +39,12 @@ public class userGuideController {
 		this.guideService = guideService;
 	}
 	
+	/**
+	 * @author Jinseo James Cha
+	 * @param formDataMap
+	 * @return ResponseEntity<ApiResponse>
+	 * @exception ApiException
+	 */
 	@RequestMapping(value = "/api/insert/guide", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
