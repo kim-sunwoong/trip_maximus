@@ -36,6 +36,12 @@ public class userTripTogetherController {
 		this.tripInsertService = tripInsertService;
 	}
 	
+	/**
+	 * @author Jinseo James Cha
+	 * @param formDataMap
+	 * @return ResponseEntity<ApiResponse>
+	 * @exception ApiException
+	 */
 	@RequestMapping(value = "/api/insert/tripTogether", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
