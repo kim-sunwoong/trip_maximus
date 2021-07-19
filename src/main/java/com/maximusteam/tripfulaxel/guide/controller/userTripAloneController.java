@@ -36,6 +36,12 @@ public class userTripAloneController {
 		this.tripInsertService = tripInsertService;
 	}
 	
+	/**
+	 * @author Jinseo James Cha
+	 * @param formDataMap
+	 * @return ResponseEntity<ApiResponse>
+	 * @exception ApiException
+	 */
 	@RequestMapping(value = "/api/insert/tripAlone", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public ResponseEntity<?> insertGuide(@RequestBody Map<String, LinkedHashMap<String, Object>> formDataMap){
 		
@@ -76,7 +82,6 @@ public class userTripAloneController {
 		 * 				IMAGE DATA - INSERT(OPTIONAL)
 		 * 1. TRIP_COURSE			TripCourseDTO
 		 * */
-		
 		
 		// 1-1 TripDTO
 		TripDTO tripDTO = new TripDTO();
@@ -302,6 +307,4 @@ public class userTripAloneController {
 		/* 어떤것으로 JSON을 표현할지 생각 */
 	    return new ResponseEntity<ApiResponse>(new ApiResponse(HttpStatus.OK, "나만의 여행신청 완료"), HttpStatus.OK);
 	}
-
-
 }
