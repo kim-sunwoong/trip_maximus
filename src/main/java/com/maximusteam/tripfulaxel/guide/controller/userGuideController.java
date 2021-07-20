@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.maximusteam.tripfulaxel.ApiException;
 import com.maximusteam.tripfulaxel.ApiResponse;
-import com.maximusteam.tripfulaxel.testGuide;
 import com.maximusteam.tripfulaxel.admin.model.dto.ExamineDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideDTO;
 import com.maximusteam.tripfulaxel.guide.model.dto.GuideStyleChoiceDTO;
