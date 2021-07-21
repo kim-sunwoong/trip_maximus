@@ -33,7 +33,7 @@ public class MainController {
 	public ModelAndView searchJejuData(ModelAndView mv,HttpServletResponse response) throws IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		
-		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/PhotoGalleryService/gallerySearchList"); /*URL*/
+		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/PhotoGalleryService/gallerySearchList");
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=qiBMch2XLyGzzmlUaWQ1%2BB6laTjpanQ1YGhlYjwKsoT%2FJ40Nx6%2FPAGc331orJarrVQq35y5ojNT4jNnwal8E1A%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/

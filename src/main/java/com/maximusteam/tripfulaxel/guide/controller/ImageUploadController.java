@@ -103,7 +103,6 @@ public class ImageUploadController {
 					
 					new File(filePath + File.separator + savedName + ext).delete();
 					System.out.println("사진 업로드 실패");
-//					throw new MemberRegistException("사진 업로드 때문에 회원 가입 실패함!");
 				}
 			}
 			
