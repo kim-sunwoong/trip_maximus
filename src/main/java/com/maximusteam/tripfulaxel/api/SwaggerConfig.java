@@ -60,6 +60,11 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 			.build();
     }
     
+    /**
+     * @author james
+     * this method needs in Spring framework.
+     * it would not need in Spring boot.
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
