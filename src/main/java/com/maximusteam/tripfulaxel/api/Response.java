@@ -68,7 +68,6 @@ public class Response {
 		this.data = data;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Response [status=" + status + ", message=" + message + ", timestamp=" + timestamp + ", data=" + data

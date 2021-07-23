@@ -76,7 +76,6 @@
 	</bean> 
 	<!-- 주영 추가 : 메일 끝  -->
    
-   
    <tx:advice id="txAdvice" transaction-manager="transactionManager">
       <tx:attributes>
          <tx:method name="find*" read-only="true" rollback-for="Exception" />

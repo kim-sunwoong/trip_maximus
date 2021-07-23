@@ -45,8 +45,6 @@
 		<beans:property name="maxUploadSize" value="10000000000" />
 	</beans:bean>
 	
-	
-	
 <!-- 	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<beans:property name="exceptionMappings">
 			<beans:props>
