@@ -499,7 +499,7 @@ public class UserMyPageController {
   model.addAttribute("message","파일 업로드 실패!!"); }
   
   
-  } return "user/mypage/mypageTab2"; }
+  } return "user/mypage/mypageTab1"; }
   
   }
  
